@@ -522,17 +522,60 @@ and made the features unfindable — nobody scanning for a scoreboard finds
 `Review` and `Trouble cards`, in English, and so are the headings of the
 panels they open.
 
-Each row's subheading carries that mode's live state, so the drawer answers
-the obvious question without being opened into:
+**Review leads the three**, because the rank at the top of the drawer is read
+off it. Each row's subheading carries that mode's live state, so the drawer
+answers the obvious question without being opened into:
 
 | | |
 |:--|:--|
+| `Review` | *79% cold recall · 80 cards drawn* — or *locked · 12 of 40 cards*, or *ready · draw 20 cards* before the first draw |
 | `Scoreboard` | *best scores · 3 of 71 lists finished* |
-| `Review` | *79% mastery · 80 cards drawn* — or *locked · 12 of 40 cards*, or *ready · draw 20 cards* before the first draw |
 | `Trouble cards` | *7 cards to clear · 2 cleared* |
 
-The review mastery figure in particular used to be reachable only by opening
-the scoreboard, which is not where anyone looked for it.
+The cold-recall figure in particular used to be reachable only by opening the
+scoreboard, which is not where anyone looked for it.
+
+### Rank
+
+Review is the mastery system, so the drawer's headline figure is what review
+produces — not a bare card count:
+
+```
+PRACTISED                                                  33%
+79% recalled cold · 42% of the course mastered
+873 of 2079 cards mastered
+```
+
+Two things have to be true to know the forms, and **neither is mastery on its
+own**:
+
+| | |
+|:--|:--|
+| **accuracy** | how much comes back cold in a review draw, where cards arrive shuffled out of their decks, days after the round that taught them |
+| **coverage** | how much of the course has been mastered at all |
+
+A learner who recalls 95% of the fifty cards they have seen has not mastered
+the course, and one who has been through everything at 40% recall has not
+either. So the two **multiply** rather than averaging: neither half can carry
+the figure by itself, and a test asserts each in turn.
+
+`rankOf()` reads `masteryPct()` and `progressOf(ALL_IDS)` — both figures the
+app already kept and already displayed — so the rank adds **no stored state
+and nothing to migrate**. It carries the same two guards `progressOf` does: it
+will not round up to a finished rank, and will not round a real start away to
+nothing. Before the first draw there is no rank at all: the block reads
+`Unranked · —` and says *a review draw sets your rank*, which is the point —
+mastery is not something a deck can award itself.
+
+The ladder is `RANKS` in `app.js`, in English like the modes rather than in
+Sanskrit like the curriculum: Starting out, Beginning (1), Familiar (10),
+Practised (25), Fluent (45), Accomplished (65), Mastered (85).
+
+**"Mastery" now names the rank, so the review figure is called cold recall**
+wherever it appears — the drawer row, the review window, the scoreboard's
+label and the shared score. The arithmetic is printed in the review window
+itself, where it is produced, rather than being a number that turns up in the
+drawer for no visible reason.
 
 Two things are deliberately absent from the drawer, and tests assert both:
 

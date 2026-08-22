@@ -90,6 +90,9 @@
     <h2>Review</h2>
     <div class="score" id="rp-sub"></div>
     <div class="note" id="rp-note"></div>
+    <!-- The rank is read off this mode, so its arithmetic is shown where it
+         is produced rather than only in the drawer. -->
+    <div class="rank" id="rp-rank"></div>
   </div>
 
   <div class="board" id="trouble">
@@ -112,7 +115,7 @@
   <div class="board" id="board">
     <h2>Scoreboard</h2>
     <div class="mastery" id="b-mastery" hidden>
-      <span class="m-label">review mastery</span>
+      <span class="m-label">cold recall</span>
       <span class="m-pct" id="b-mpct"></span>
       <span class="m-sub" id="b-msub"></span>
     </div>
@@ -183,21 +186,27 @@
     <button id="dr-close" class="dr-x" aria-label="Close">×</button>
   </div>
 
+  <!-- Rank, not "course progress".  Review is the mastery system, so the
+       headline figure is the one it produces: how well cold recall goes in a
+       review draw, against how much of the course has been mastered. -->
   <div class="dr-prog" id="dr-prog">
-    <span class="dp-label">course progress</span>
+    <span class="dp-label" id="dp-label">rank</span>
     <span class="dp-pct" id="dp-pct"></span>
     <span class="dp-sub" id="dp-sub"></span>
+    <span class="dp-sub dp-cards" id="dp-cards"></span>
     <span class="bar"><i id="dp-bar"></i></span>
   </div>
 
   <div class="dr-modes">
-    <button id="dr-board" class="dr-mode board">
-      <span class="dm-name">Scoreboard</span>
-      <span class="dm-sub" id="dm-board">best scores</span>
-    </button>
-    <button id="dr-review" class="dr-mode">
+    <!-- Review leads: it is the mastery system the rank above is read off,
+         and the one thing here that is worth opening first. -->
+    <button id="dr-review" class="dr-mode board">
       <span class="dm-name">Review</span>
       <span class="dm-sub" id="dm-review">proof of mastery</span>
+    </button>
+    <button id="dr-board" class="dr-mode">
+      <span class="dm-name">Scoreboard</span>
+      <span class="dm-sub" id="dm-board">best scores</span>
     </button>
     <button id="dr-trouble" class="dr-mode">
       <span class="dm-name">Trouble cards</span>

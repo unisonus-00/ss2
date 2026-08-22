@@ -1368,15 +1368,16 @@ const open = async (browser, opts = {}) => {
       name: x.querySelector('.dm-name').textContent,
       sub: x.querySelector('.dm-sub').textContent,
     })));
-    ok('the modes are named in English',
+    /* Review leads: it is the mastery system the rank is read off. */
+    ok('the modes are named in English, review first',
       JSON.stringify(rows.map(r => r.name)) ===
-        JSON.stringify(['Scoreboard', 'Review', 'Trouble cards']),
+        JSON.stringify(['Review', 'Scoreboard', 'Trouble cards']),
       rows.map(r => r.name).join(' | '));
-    ok('the scoreboard row counts what it holds',
-      /\d+ of \d+ lists finished/.test(rows[0].sub), rows[0].sub);
     // the figure the mode exists to produce, on the row that opens it
-    ok('the review row shows the mastery percentage',
-      /^\d+% mastery/.test(rows[1].sub), rows[1].sub);
+    ok('the review row shows the cold-recall percentage',
+      /^\d+% cold recall/.test(rows[0].sub), rows[0].sub);
+    ok('the scoreboard row counts what it holds',
+      /\d+ of \d+ lists finished/.test(rows[1].sub), rows[1].sub);
     ok('the trouble row says what is on the list',
       /cleared/.test(rows[2].sub), rows[2].sub);
 
@@ -1590,6 +1591,78 @@ const open = async (browser, opts = {}) => {
                   : fragments + ' fragments across ' + files + ' references');
   }
 
+  // ── the rank: cold recall against how much has been mastered ──────
+  // Review is the mastery system, so the drawer's headline is what review
+  // produces.  Neither half is mastery alone — 95% recall over fifty cards is
+  // not a mastered course, and neither is the whole course at 40% recall — so
+  // the two multiply rather than averaging.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const out = {};
+      const set = (right, seen) => { SAVED.review = { runs: 1, right: right, seen: seen }; };
+
+      /* before any draw there is no rank, and the drawer says why */
+      set(0, 0);
+      openDrawer();
+      out.unranked = { label: document.getElementById('dp-label').textContent,
+                       pct: document.getElementById('dp-pct').textContent,
+                       sub: document.getElementById('dp-sub').textContent,
+                       bar: document.getElementById('dp-bar').style.width };
+      closeDrawer();
+
+      const ids = []; ALL_IDS.forEach(k => ids.push(k));
+      const master = n => { SAVED.mastered = {}; for (let i = 0; i < n; i++) SAVED.mastered[ids[i]] = 1; };
+
+      /* the arithmetic itself, over the real card total */
+      master(Math.floor(ids.length * 0.4));
+      out.cov = progressOf(ALL_IDS).pct;
+      set(8, 10);
+      out.acc80 = rankOf();
+
+      /* both halves move it, and neither can carry it alone */
+
+      master(ids.length);            // everything mastered
+      set(10, 10); out.perfect = rankOf();
+      set(4, 10);  out.halfRecall = rankOf();
+      master(Math.floor(ids.length / 2));
+      set(10, 10); out.halfCourse = rankOf();
+      master(1);
+      set(10, 10); out.barely = rankOf();
+
+      /* the two guards: no rounding up to a finished rank, none away to zero */
+      out.notRounded = out.halfRecall.score < 100 && out.halfCourse.score < 100;
+      out.notZeroed = out.barely.score >= 1;
+
+      /* and the review panel shows where the number came from */
+      master(Math.floor(ids.length / 2)); set(8, 10);
+      openPanel('reviewpanel');
+      out.panel = document.getElementById('rp-rank').textContent;
+      return out;
+    });
+
+    ok('no rank before a review draw',
+      r.unranked.pct === '—' && r.unranked.label === 'Unranked'
+        && /draw/.test(r.unranked.sub) && r.unranked.bar === '0%',
+      r.unranked.label + ' ' + r.unranked.pct + ' · ' + r.unranked.sub);
+    ok('the rank is cold recall times coverage',
+      r.acc80.score === Math.round(80 * r.cov / 100) && r.acc80.acc === 80,
+      '80% × ' + r.cov + '% = ' + r.acc80.score + '%');
+    ok('a perfect course at perfect recall is 100%',
+      r.perfect.score === 100 && r.perfect.name === 'Mastered', JSON.stringify(r.perfect));
+    ok('recall alone does not carry it', r.halfCourse.score <= 51 && r.halfCourse.acc === 100,
+      JSON.stringify(r.halfCourse));
+    ok('nor does coverage alone', r.halfRecall.score === 40,
+      JSON.stringify(r.halfRecall));
+    ok('neither rounds up to finished nor away to nothing',
+      r.notRounded && r.notZeroed,
+      'barely ' + r.barely.score + '% · ' + r.barely.name);
+    ok('the review panel shows the arithmetic',
+      /\d+% recalled cold × \d+% of the course mastered/.test(r.panel),
+      r.panel.slice(0, 70));
+    await p.close();
+  }
+
   // ── a panel's own action leads, and its state is on the row ───────
   // The review window described the mode and then offered only "Back to the
   // cards", because #panel-back sat above #rp-actions in the DOM: what it
@@ -1646,8 +1719,8 @@ const open = async (browser, opts = {}) => {
     ok('an unlocked review names the action, not the mode',
       /^ready · draw \d+ cards$/.test(r.rowBefore), JSON.stringify(r.rowBefore));
     ok('and shows its mastery once there is one',
-      r.mastery !== null && r.rowAfter.startsWith(r.mastery + '% mastery')
-        && r.subAfter.startsWith(r.mastery + '% mastery'),
+      r.mastery !== null && r.rowAfter.startsWith(r.mastery + '% cold recall')
+        && r.subAfter.startsWith(r.mastery + '% cold recall'),
       JSON.stringify(r.rowAfter) + ' / ' + JSON.stringify(r.subAfter));
     await p.close();
   }
@@ -2060,14 +2133,15 @@ const open = async (browser, opts = {}) => {
       // the track and lesson holding the current list open on the way in
       lessons: document.querySelectorAll('.tr-body:not([hidden]) .ls-head').length,
       decks: document.querySelectorAll('.ls-body:not([hidden]) .dk').length,
-      overall: document.getElementById('dp-sub').textContent,
+      cards: document.getElementById('dp-cards').textContent,
+      rank: document.getElementById('dp-sub').textContent,
     }));
     ok('the handle opens the drawer', opened.open && opened.veil);
     ok('every track is a heading', opened.tracks === 6, opened.tracks + ' headings');
     ok('the drawer lands on the current lesson', opened.lessons > 0 && opened.decks > 0,
       opened.lessons + ' lessons, ' + opened.decks + ' decks');
-    ok('the course figure is over cards', /\d+ of \d+ cards mastered/.test(opened.overall),
-      opened.overall);
+    ok('the course figure is over cards', /\d+ of \d+ cards mastered/.test(opened.cards),
+      opened.cards);
 
     const reach = await p.evaluate(() => {
       // shut everything, then walk down: track -> lesson -> deck

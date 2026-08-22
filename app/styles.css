@@ -497,7 +497,13 @@
   .dp-pct { font-size: 1.5rem; font-variant-numeric: tabular-nums;
             grid-row: span 2; align-self: center; }
   .dp-sub { font-size: .74rem; color: var(--faded); }
+  /* the card count, kept under the rank's own line rather than beside it */
+  .dp-cards { font-size: .68rem; opacity: .85; }
   .dr-prog .bar { grid-column: 1 / -1; margin-top: .4rem; }
+
+  /* the rank's arithmetic, on the panel that produces it */
+  .rank { margin-top: .9rem; padding-top: .8rem; font-size: .84rem;
+          border-top: 1px solid var(--leaf-edge); color: var(--ink); }
 
   /* one progress bar, used at every level */
   .bar { display: block; height: 2px; background: rgba(125,112,92,.4); }

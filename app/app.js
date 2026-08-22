@@ -702,10 +702,16 @@ function lessonRow(L) {
 }
 
 function renderDrawer() {
-  const all = progressOf(ALL_IDS);
-  fillRow(document, { '#dp-pct': all.pct + '%',
-                      '#dp-sub': all.done + ' of ' + all.total + ' cards mastered' });
-  $('dp-bar').style.width = all.pct + '%';
+  const all = progressOf(ALL_IDS), r = rankOf();
+  fillRow(document, {
+    '#dp-label': r.name,
+    '#dp-pct': r.score === null ? '—' : r.score + '%',
+    '#dp-sub': r.acc === null
+      ? 'a review draw sets your rank'
+      : r.acc + '% recalled cold \u00b7 ' + r.cov + '% of the course mastered',
+    '#dp-cards': all.done + ' of ' + all.total + ' cards mastered'
+  });
+  $('dp-bar').style.width = (r.score === null ? 0 : r.score) + '%';
 
   const host = $('dr-tracks');
   host.innerHTML = '';
@@ -808,7 +814,7 @@ function syncReviewUI() {
        draw" described what review is to someone who had just been told, and
        read as one more definition rather than something to start. */
     : m === null        ? 'ready \u00b7 draw ' + REVIEW_SIZE + ' cards'
-    :                     m + '% mastery \u00b7 ' + SAVED.review.seen + ' cards drawn';
+    :                     m + '% cold recall \u00b7 ' + SAVED.review.seen + ' cards drawn';
   $('dr-review').classList.toggle('on', panelOpen === 'reviewpanel');
 }
 
@@ -822,13 +828,21 @@ function renderReviewPanel() {
   const m = masteryPct();
   $('rp-sub').textContent = !ready
     ? "locked \u00b7 " + pool + " of " + REVIEW_MIN + " cards finished"
-    : (m === null ? "ready" : m + "% mastery")
+    : (m === null ? "ready" : m + "% cold recall")
       + " \u00b7 drawing from " + pool + " cards across " + lists + " finished list" + s;
   $('rp-note').textContent = REVIEW_SIZE + " cards drawn at random from every list you "
     + "have finished, shuffled out of their decks so nothing is guessable from its "
-    + "neighbour. No list's best score changes \u2014 what you know cold feeds the review "
-    + "mastery figure on the scoreboard."
+    + "neighbour. No list's best score changes \u2014 what comes back cold here is what "
+    + "your rank is built from."
     + (ready ? "" : " Unlocks at " + REVIEW_MIN + " unique cards finished.");
+  /* The rank is produced here, so the arithmetic is shown here rather than
+     being a number that appears in the drawer for no visible reason. */
+  const r = rankOf();
+  $('rp-rank').textContent = r.acc === null
+    ? "Unranked \u00b7 a draw sets it: cold recall against how much of the course "
+      + "you have mastered."
+    : r.name + " \u00b7 " + r.score + "%  \u2014  " + r.acc + "% recalled cold \u00d7 "
+      + r.cov + "% of the course mastered.";
   $('rp-actions').hidden = false;
   $('rp-draw').hidden = !ready;
   $('rp-draw').textContent = "Draw " + REVIEW_SIZE
@@ -1691,7 +1705,7 @@ function finish() {
   let scoreLine = (reviewing ? "Cleared on the first showing this time: " : "Known on the first showing: ")
     + "<b>" + firstPass + " of " + total + "</b>";
   if (mixed && !reviewing && !trouble)
-    scoreLine += "<br>Review mastery: <b>" + masteryPct() + "%</b> over "
+    scoreLine += "<br>Cold recall: <b>" + masteryPct() + "%</b> over "
                + SAVED.review.seen + " cards drawn";
   if (justCleared)
     scoreLine += "<br><b>" + justCleared + "</b> left the trouble list";
@@ -1806,6 +1820,41 @@ const masteryPct = () => {
   const r = SAVED.review;
   return r.seen ? Math.round(r.right / r.seen * 100) : null;
 };
+
+/* ── rank ──────────────────────────────────────────────────
+   Review is the mastery system, and the rank is what it produces.  Two things
+   have to be true to know a language's forms, and neither is mastery on its
+   own:
+
+     accuracy   how much comes back cold in a review draw, where the cards
+                arrive shuffled out of their decks and days after the round
+                that taught them
+     coverage   how much of the course has been mastered at all
+
+   A learner who recalls 95% of the fifty cards they have seen has not
+   mastered the course, and one who has been through everything at 40% recall
+   has not either.  So the two multiply rather than averaging: neither can
+   carry the figure by itself.
+
+   Both halves already exist and are already displayed elsewhere — this adds
+   no new stored state, and nothing to migrate. */
+const RANKS = [
+  [85, 'Mastered'], [65, 'Accomplished'], [45, 'Fluent'], [25, 'Practised'],
+  [10, 'Familiar'], [1, 'Beginning'], [0, 'Starting out']
+];
+
+function rankOf() {
+  const acc = masteryPct();                  // null until the first review draw
+  const cov = progressOf(ALL_IDS);
+  if (acc === null) return { acc: null, cov: cov.pct, score: null, name: 'Unranked' };
+  let score = Math.round(acc * cov.pct / 100);
+  /* the same two guards progressOf uses: a rank may not round up to finished,
+     nor round a real start away to nothing */
+  if (score === 100 && !(acc === 100 && cov.full)) score = 99;
+  if (score === 0 && acc > 0 && cov.done > 0) score = 1;
+  return { acc: acc, cov: cov.pct, score: score,
+           name: RANKS.find(r => score >= r[0])[1] };
+}
 
 /* ── scoreboard ────────────────────────────────────────────
    Nothing new is stored: every finished round already records its best
