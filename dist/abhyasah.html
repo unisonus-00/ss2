@@ -20,8 +20,14 @@
     --kumkuma: #a5341f;
     --faded: #7d705c;
     /* right answers.  kumkuma already means wrong everywhere on this page,
-       so correctness gets the other pigment on the same shelf. */
+       so correctness gets the other pigment on the same shelf.  Both are
+       chosen to sit on the light card; on the dark ground they read at about
+       2.4:1, which is right for a border and far too low for a glyph.  So
+       each has a light tint for use as ink there, at ~7.5:1 — the tint is
+       its own pigment lightened, same hue and saturation, not a new colour. */
     --patra: #4f6137;
+    --patra-ink: #a2b983;
+    --kumkuma-ink: #e2a08e;
   }
   * { box-sizing: border-box; }
   /* a class rule with display: outranks the UA's [hidden] rule — force it back */
@@ -254,7 +260,7 @@
   .check input:focus-visible { outline: 2px solid var(--kumkuma); outline-offset: 2px; }
   .pilebtn { margin-bottom: .8rem; font-size: .74rem; min-height: 38px;
              padding: .4rem .9rem;
-             color: #e2a08e; border-color: var(--kumkuma); }
+             color: var(--kumkuma-ink); border-color: var(--kumkuma); }
   button:disabled { opacity: .45; cursor: default; }
 
   /* an empty transliteration line shouldn't leave a gap behind */
@@ -268,7 +274,9 @@
      transliteration takes the display size the front would have given it */
   .mode-produce .iast-back { font-size: 1.2rem; opacity: .85; }
   button.primary { border-color: var(--leaf); }
-  button.miss { border-color: var(--kumkuma); color: #e2a08e; }
+  button.miss { border-color: var(--kumkuma); color: var(--kumkuma-ink); }
+  /* the counterpart: the same relationship, the other pigment */
+  button.knew { border-color: var(--patra); color: var(--patra-ink); }
   /* The two grade buttons carry the same ✕ and ✓ the choice options and the
      sequence chips already use, so the mark means one thing everywhere.  Set
      larger than the 44px minimum: they are hit on every single card, and a
@@ -280,7 +288,7 @@
            text-transform: uppercase; color: var(--faded); line-height: 1.55; }
   .validate { margin-top: 2.2rem; font-size: .7rem; letter-spacing: .1em;
               color: var(--faded); text-align: center; max-width: 440px; }
-  .validate.bad { color: #e2a08e; }
+  .validate.bad { color: var(--kumkuma-ink); }
   .skiplist { margin-top: .5rem; font-size: .68rem; text-align: left;
               letter-spacing: 0; line-height: 1.5; }
   .keys { margin-top: .8rem; font-size: .7rem; color: var(--faded); letter-spacing: .08em; }
@@ -611,7 +619,7 @@
        rather than a sentence about it.  The glyph is decorative; the name a
        screen reader reads is on the button. -->
   <button id="miss" class="miss grade" aria-label="Didn't know it" title="Didn't know it"><span aria-hidden="true">✕</span></button>
-  <button id="knew" class="primary grade" aria-label="Knew it" title="Knew it"><span aria-hidden="true">✓</span></button>
+  <button id="knew" class="knew grade" aria-label="Knew it" title="Knew it"><span aria-hidden="true">✓</span></button>
 </div>
 
 <!-- A choice or sequence card grades itself from what was tapped, so it needs

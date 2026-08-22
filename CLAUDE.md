@@ -253,7 +253,7 @@ JOINS AND SPLITS            31 LEFT  0 LEARNED  0 MISSED
 ┌──────────────────────────────────────────────────────┐
 │                       the card                        │
 └──────────────────────────────────────────────────────┘
-                      [ ✕ ]      [ ✓ ]
+                      [ ✕ ]      [ ✓ ]      ← kumkuma / patra
                  ⇄ join → result    ☑ IAST
 ```
 
@@ -697,6 +697,19 @@ deck rather than the other way round, and `ds.best` is compared as a ratio —
 so a best score set on a larger version of a deck stays meaningful. A card
 that is removed and later restored brings its trouble history back with it.
 Tests cover all four.
+
+**Each pigment has a light tint for the dark ground.** `--kumkuma` and
+`--patra` were chosen to sit on the light card, where they read as wrong and
+right. On the dark ground both fall to about 2.4:1 — right for a border, far
+too low for a glyph — so each has an ink token lightened to about 7.5:1 with
+its own hue and saturation kept: `--kumkuma-ink` `#e2a08e`, `--patra-ink`
+`#a2b983`. The two grade buttons use the pair, bordered in the pigment and
+inked in the tint.
+
+A `var()` that does not resolve is not an error; it falls back silently to
+the inherited colour, which is how a self-referential token went unnoticed
+until the cross came out cream. A test reads the resolved `rgb` off both
+buttons rather than trusting the declarations.
 
 A choice note is not uppercased the way a reveal card's morphology chip is —
 a sandhi rule prints vowel values (`guṇa · a + i → e`), and IAST is written

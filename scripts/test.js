@@ -1125,6 +1125,28 @@ const open = async (browser, opts = {}) => {
     ok('a mark is a bigger target than the phrase was',
       r.every(x => x.h >= 44 && x.w >= 64),
       r.map(x => Math.round(x.w) + '×' + Math.round(x.h)).join(' '));
+
+    /* Each mark takes its own pigment: kumkuma for wrong, patra for right,
+       bordered in the pigment and inked in its light tint.  Checked as
+       resolved rgb, because a var() that does not resolve is not an error —
+       it silently falls back to the inherited colour, which is what a
+       self-referential token did here. */
+    const ink = await p.evaluate(() => {
+      const of = id => { const s = getComputedStyle(document.getElementById(id));
+        return { border: s.borderTopColor, color: s.color }; };
+      const root = getComputedStyle(document.documentElement);
+      return { miss: of('miss'), knew: of('knew'),
+        tokens: ['--kumkuma', '--kumkuma-ink', '--patra', '--patra-ink']
+          .map(t => root.getPropertyValue(t).trim()) };
+    });
+    ok('every pigment token resolves', ink.tokens.every(v => /^#[0-9a-f]{6}$/i.test(v)),
+      ink.tokens.join(' '));
+    ok('the cross is bordered and inked in kumkuma',
+      ink.miss.border === 'rgb(165, 52, 31)' && ink.miss.color === 'rgb(226, 160, 142)',
+      JSON.stringify(ink.miss));
+    ok('the check is bordered and inked in patra',
+      ink.knew.border === 'rgb(79, 97, 55)' && ink.knew.color === 'rgb(162, 185, 131)',
+      JSON.stringify(ink.knew));
     await p.close();
   }
 
