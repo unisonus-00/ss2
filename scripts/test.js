@@ -1440,6 +1440,7 @@ const open = async (browser, opts = {}) => {
         startRound([card], {}); reveal();
         return { dn: el('dn'), iastFront: el('iast'), gloss: el('gloss'),
                  iastBack: el('iast-back'), tag: el('tag'),
+                 detail: el('detail'), detailIast: el('detail-iast'),
                  boxOff: document.getElementById('iast-on').disabled,
                  boxOn: document.getElementById('iast-on').checked };
       };
@@ -1455,7 +1456,14 @@ const open = async (browser, opts = {}) => {
       const pattern = DECKS[vrtta].find(c => !/[ऀ-ॿ]/.test(c.devanagari));
       const headword = DECKS[vrtta].find(c => /[ऀ-ॿ]/.test(c.devanagari));
       const patOff = show(vrtta, pattern, 'reveal', false);
+      const patOn  = show(vrtta, pattern, 'reveal', true);
       const headOff = show(vrtta, headword, 'reveal', false);
+
+      /* A gaṇa card is the pure case: pattern on the front, "laghu guru
+         guru" beneath it, and nothing on the card in Devanagari to
+         transliterate.  There the box really is greyed. */
+      const gana = '29 · Gaṇa — the eight metrical feet';
+      const gOff = show(gana, DECKS[gana][0], 'reveal', false);
 
       /* Swept across every reveal card: a second line that is not a
          transliteration must survive the toggle being off. */
@@ -1468,7 +1476,7 @@ const open = async (browser, opts = {}) => {
         if (!document.getElementById('iast').textContent) lost.push(c.id);
       }));
 
-      return { pOn, pOff, rOn, rOff, patOff, headOff,
+      return { pOn, pOff, rOn, rOff, patOff, patOn, headOff, gOff,
                lost: lost.slice(0, 3), nLost: lost.length,
                word: word.iast };
     });
@@ -1486,8 +1494,43 @@ const open = async (browser, opts = {}) => {
 
     ok('a scansion pattern keeps its reading with IAST off',
       !!r.patOff.iastFront, JSON.stringify(r.patOff.iastFront));
-    ok('and greys the box, which explains why',
-      r.patOff.boxOff && r.patOff.boxOn, 'disabled ' + r.patOff.boxOff);
+    /* The rule is per line, not per card.  A vṛtta card's front pair is a
+       pattern and its syllable count — nothing to transliterate — but its
+       ANSWER pair is the gaṇa formula in Devanagari over the same formula in
+       IAST, which is a transliteration exactly.  So the box is live, and what
+       it hides is the second of those two lines and nothing else. */
+    ok('a vṛtta card keeps its gaṇa formula and hides only its IAST',
+      !r.patOff.boxOff && r.patOff.detail && !r.patOff.detailIast
+        && r.patOn.detail === r.patOff.detail && !!r.patOn.detailIast,
+      JSON.stringify(r.patOff.detail) + ' / ' + JSON.stringify(r.patOff.detailIast));
+    ok('and the metre is not given away on the front',
+      !r.patOff.dn.includes(r.patOff.detail) && !r.patOff.iastFront.includes('ma'),
+      JSON.stringify(r.patOff.iastFront));
+    ok('a card with nothing to transliterate still greys the box',
+      r.gOff.boxOff && r.gOff.boxOn && !!r.gOff.iastFront,
+      'disabled ' + r.gOff.boxOff + ' · ' + JSON.stringify(r.gOff.iastFront));
+    /* Reversed, the card runs metre → pattern.  `detail` belongs to the
+       ANSWER, so it has to move with it: rendered from c.detail rather than
+       from whichever side the Devanagari is on, it stays on the back. */
+    const rev = await p.evaluate(() => {
+      const vrtta = '28 · Vṛtta — the classical metres';
+      const card = DECKS[vrtta].find(c => !/[ऀ-ॿ]/.test(c.devanagari));
+      loadDeck(vrtta); setDir('produce'); setIast(true);
+      startRound([card], {});
+      const front = document.getElementById('dn').textContent
+                  + ' ' + document.getElementById('iast').textContent;
+      reveal();
+      const d = document.getElementById('detail');
+      return { front, detail: d.textContent,
+               /* the slot the learner cannot see until the card is turned */
+               hidden: !!d.closest('.back'),
+               back: document.getElementById('gloss').textContent };
+    });
+    ok('reversed, the gaṇa formula stays on the answer side',
+      rev.hidden && !rev.front.includes(rev.detail) && rev.detail.includes('·')
+        && rev.back.includes('◡'),
+      JSON.stringify(rev.front.trim()) + ' → ' + JSON.stringify(rev.detail));
+
     ok('a real headword in the same list still hides its IAST',
       !r.headOff.iastFront && !r.headOff.boxOff, JSON.stringify(r.headOff.iastFront));
 

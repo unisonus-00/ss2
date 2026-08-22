@@ -449,8 +449,20 @@ function dirLabel() {
    holds twelve pattern cards and two ordinary headwords, and each behaves as
    what it is. */
 const DEVANAGARI = /[\u0900-\u097F]/;
+/* A card can hold two such pairs — its headword, and the optional `detail`
+   line that stays on the answer side in both directions — and they need not
+   agree.  A vṛtta card's front is a laghu/guru pattern with "19 syllables"
+   beneath it, which is a second reading of the pattern rather than a
+   transliteration of it; its answer is the metre's name in Devanagari over
+   the gaṇa formula म · स · ज · स · त · त · ग, and *that* line's
+   `ma · sa · ja · sa · ta · ta · ga` is a transliteration exactly. So the
+   rule is applied per line: the toggle governs whichever pairs have
+   Devanagari to transliterate, and leaves the others alone. */
 const transliterates = c => DEVANAGARI.test(c.devanagari || '');
+const detailTransliterates = c => DEVANAGARI.test(c.detail || '');
+const hasIastToggle = c => transliterates(c) || detailTransliterates(c);
 const showIast = c => IAST || !transliterates(c);
+const showDetailIast = c => IAST || !detailTransliterates(c);
 
 /* Both toggles are meaningless on an interactive card: a transformation runs
    one way, and the IAST there *is* the content rather than a gloss of it.
@@ -1274,7 +1286,7 @@ function paint() {
   $('choices').hidden = true;
   $('choices').textContent = '';
   $('keys').textContent = KEYS_REVEAL;
-  setToggles(true, transliterates(c));
+  setToggles(true, hasIastToggle(c));
   $('src').textContent = '';
   /* The transliteration goes on whichever side the Devanagari is, as its own
      line.  It used to be appended to the annotation in the produce direction,
@@ -1292,10 +1304,16 @@ function paint() {
     $('gloss').textContent     = c.gloss;
     $('iast-back').textContent = '';
   }
+  /* `detail` is part of the ANSWER, so it stays on the back whichever way
+     round the card is running.  A metre is identified by its gaṇa formula as
+     much as by its name; putting the formula on the front handed the learner
+     the answer they were being asked for. */
+  $('detail').textContent      = c.detail || '';
+  $('detail-iast').textContent = c.detail && showDetailIast(c) ? c.detailIast || '' : '';
   renderTag(c.note);
   /* The box reflects what is on the card, which is not always the setting:
      a card with nothing to transliterate shows its second line regardless. */
-  $('iast-on').checked = showIast(c);
+  $('iast-on').checked = hasIastToggle(c) ? IAST : true;
 }
 
 /* \u2500\u2500 choice cards \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
@@ -1324,6 +1342,8 @@ function paintChoice(c) {
   $('iast').textContent = '';
   $('gloss').textContent = '';
   $('iast-back').textContent = '';
+  $('detail').textContent = '';
+  $('detail-iast').textContent = '';
   renderTag(c.note);
   $('src').textContent = c.source || '';
   setToggles(false);
@@ -1391,6 +1411,8 @@ function paintSequence(c) {
   $('iast').textContent = '';
   $('gloss').textContent = '';
   $('iast-back').textContent = '';
+  $('detail').textContent = '';
+  $('detail-iast').textContent = '';
   renderTag(c.note);
   $('src').textContent = c.source || '';
   setToggles(false);

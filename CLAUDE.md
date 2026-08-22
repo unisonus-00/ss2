@@ -356,8 +356,16 @@ were once wrong:
   `◡ — —`, it does not transliterate it, and hiding it left the card as bare
   marks. `transliterates(c)` tests the card's own `devanagari` for Devanagari
   codepoints, so the toggle governs a card only when there is something to
-  govern — 20 cards across `29 · Gaṇa` and `28 · Vṛtta`. On those the box is
-  greyed and shown checked, with a `title` saying why.
+  govern — the 8 cards of `29 · Gaṇa`. On those the box is greyed and shown
+  checked, with a `title` saying why.
+- **The rule is per line, not per card.** A card holds up to two such pairs:
+  its headword, and the optional `detail` line. A vṛtta card's front pair is a
+  laghu/guru pattern over `19 syllables` — nothing to transliterate — while its
+  answer pair is `म · स · ज · स · त · त · ग` over
+  `ma · sa · ja · sa · ta · ta · ga`, which is a transliteration exactly. So
+  the box is live there and hides the second of those lines alone.
+  `detailTransliterates(c)` is the same test applied to `detail`, and
+  `hasIastToggle(c)` is the two together.
 
 This is a fact about the **card**, not the list: `28 · Vṛtta` holds twelve
 pattern cards and two ordinary headwords (`उपजातिः`, `आर्या`), and each
@@ -514,6 +522,36 @@ lesson, in both directions, and fails if one repeats the other.
 A card with no `type` is `reveal`. `choice` adds `front`, `options`, `answer`;
 `sequence` adds `front`, `parts`, `answer` (an array). Both take an optional
 `source`. Add nothing else without a demonstrated need.
+
+`detail` and `detailIast` are a **second line of the answer**, and they are
+rendered from `c.detail` rather than from whichever side the Devanagari is on,
+so they stay on the back in *both* directions. That is the whole reason they
+exist. A metre is identified by its gaṇa formula as much as by its name, so a
+`gloss` carrying both would hand the learner the answer the moment the card
+was reversed:
+
+```json
+{ "devanagari": "— — — ◡ ◡ — ◡ — ◡ ◡ ◡ — — — ◡ — — ◡ —",
+  "iast": "19 syllables",
+  "gloss": "शार्दूलविक्रीडितम् · śārdūlavikrīḍitam",
+  "detail": "म · स · ज · स · त · त · ग",
+  "detailIast": "ma · sa · ja · sa · ta · ta · ga",
+  "note": "19 syllables · atidhṛti" }
+```
+
+**The front of a metre card shows the pattern and the count, and nothing
+else.** The gaṇa sequence used to sit on the front beside the syllable count,
+where it *was* the answer written out in another notation — a learner who can
+read `ma sa ja sa ta ta ga` has already identified the metre and is only being
+asked to recall a name for it. Reversed, the card runs metre → pattern, which
+is the composition drill, and the formula stays on the back there too. The
+class (`atidhṛti`) is in the `note` chip, which is small, uppercased and
+kumkuma — secondary by construction.
+
+The reference gives gaṇas and metre names in IAST only; the Devanagari is
+added beside it, never in place of it, on the same principle the IAST toggle
+runs on. The pattern itself stays in `◡` and `—`: those are symbols, and
+setting them in Devanagari would teach nothing.
 
 ```json
 {
