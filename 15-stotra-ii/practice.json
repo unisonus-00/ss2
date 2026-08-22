@@ -1,0 +1,228 @@
+{
+  "lesson": "15-stotra-ii",
+  "decks": [
+    {
+      "name": "Name the vibhakti — practice",
+      "pair": "line → vibhakti",
+      "cards": [
+        {
+          "id": "15-stotra-ii:analysis:nilakanthaya-namah",
+          "type": "choice",
+          "front": "Identify the vibhakti: nīlakaṇṭhāya namaḥ",
+          "options": ["caturthī", "ṣaṣṭhī", "saptamī"],
+          "answer": "caturthī",
+          "note": "dative · salutation TO the blue-throated one",
+          "source": "workbook D1"
+        },
+        {
+          "id": "15-stotra-ii:analysis:devya-anugrahena",
+          "type": "choice",
+          "front": "Identify the vibhakti: devyā anugraheṇa jīvāmi",
+          "options": ["tṛtīyā", "caturthī", "pañcamī"],
+          "answer": "tṛtīyā",
+          "note": "instrumental · I live BY the goddess's grace",
+          "source": "workbook D2"
+        },
+        {
+          "id": "15-stotra-ii:analysis:papat-trahi",
+          "type": "choice",
+          "front": "Identify the vibhakti: pāpāt trāhi mām",
+          "options": ["pañcamī", "tṛtīyā", "ṣaṣṭhī"],
+          "answer": "pañcamī",
+          "note": "ablative · save me FROM sin",
+          "source": "workbook D3"
+        },
+        {
+          "id": "15-stotra-ii:analysis:shivasya-rupam",
+          "type": "choice",
+          "front": "Identify the vibhakti: śivasya rūpaṃ divyam",
+          "options": ["ṣaṣṭhī", "caturthī", "saptamī"],
+          "answer": "ṣaṣṭhī",
+          "note": "genitive · the form OF Śiva is divine",
+          "source": "workbook D4"
+        },
+        {
+          "id": "15-stotra-ii:analysis:hrdaye-vasasi",
+          "type": "choice",
+          "front": "Identify the vibhakti: hṛdaye tvaṃ sadā vasasi",
+          "options": ["saptamī", "pañcamī", "tṛtīyā"],
+          "answer": "saptamī",
+          "note": "locative · you always dwell IN the heart",
+          "source": "workbook D5"
+        },
+        {
+          "id": "15-stotra-ii:analysis:shivat-jnanam",
+          "type": "choice",
+          "front": "\"knowledge from Śiva\"\n___ jñānam",
+          "options": ["śivāt", "śivāya", "śive"],
+          "answer": "śivāt",
+          "note": "pañcamī marks the source · apādāna",
+          "source": "theory, Pañcamī"
+        },
+        {
+          "id": "15-stotra-ii:analysis:tvayi-vishvasah",
+          "type": "choice",
+          "front": "\"trust in you\"\n___ viśvāsaḥ",
+          "options": ["tvayi", "tvayā", "tubhyam"],
+          "answer": "tvayi",
+          "note": "saptamī of yuṣmad- · the locus devotion rests in",
+          "source": "theory, Saptamī"
+        }
+      ]
+    },
+    {
+      "name": "Namaḥ — the dative salutation",
+      "pair": "form → sense",
+      "cards": [
+        {
+          "id": "15-stotra-ii:namah:shivaya",
+          "devanagari": "शिवाय नमः",
+          "iast": "śivāya namaḥ",
+          "gloss": "salutation to Śiva",
+          "note": "caturthī ekavacana · a-stem · śiva",
+          "source": "workbook A1.1"
+        },
+        {
+          "id": "15-stotra-ii:namah:devyai",
+          "devanagari": "देव्यै नमः",
+          "iast": "devyai namaḥ",
+          "gloss": "salutation to the Goddess",
+          "note": "caturthī ekavacana · ī-stem · devī",
+          "source": "workbook A1.2"
+        },
+        {
+          "id": "15-stotra-ii:namah:vishnave",
+          "devanagari": "विष्णवे नमः",
+          "iast": "viṣṇave namaḥ",
+          "gloss": "salutation to Viṣṇu",
+          "note": "caturthī ekavacana · u-stem · viṣṇu",
+          "source": "workbook A1.3"
+        },
+        {
+          "id": "15-stotra-ii:namah:ganeshaya",
+          "devanagari": "गणेशाय नमः",
+          "iast": "gaṇeśāya namaḥ",
+          "gloss": "salutation to Gaṇeśa",
+          "note": "caturthī ekavacana · a-stem · gaṇeśa",
+          "source": "workbook A1.4"
+        },
+        {
+          "id": "15-stotra-ii:namah:gurave",
+          "devanagari": "गुरवे नमः",
+          "iast": "gurave namaḥ",
+          "gloss": "salutation to the Guru",
+          "note": "caturthī ekavacana · u-stem · guru",
+          "source": "workbook A1.5"
+        }
+      ]
+    },
+    {
+      "name": "Kṛpā — the genitive of grace",
+      "pair": "form → sense",
+      "cards": [
+        {
+          "id": "15-stotra-ii:krpa:shivasya",
+          "devanagari": "शिवस्य कृपा",
+          "iast": "śivasya kṛpā",
+          "gloss": "Śiva's grace",
+          "note": "ṣaṣṭhī ekavacana · a-stem · śiva",
+          "source": "workbook A2.1"
+        },
+        {
+          "id": "15-stotra-ii:krpa:devyah",
+          "devanagari": "देव्याः कृपा",
+          "iast": "devyāḥ kṛpā",
+          "gloss": "the Goddess's grace",
+          "note": "ṣaṣṭhī ekavacana · ī-stem · devī",
+          "source": "workbook A2.2"
+        },
+        {
+          "id": "15-stotra-ii:krpa:ramasya",
+          "devanagari": "रामस्य कृपा",
+          "iast": "rāmasya kṛpā",
+          "gloss": "Rāma's grace",
+          "note": "ṣaṣṭhī ekavacana · a-stem · rāma",
+          "source": "workbook A2.3"
+        },
+        {
+          "id": "15-stotra-ii:krpa:guroh",
+          "devanagari": "गुरोः कृपा",
+          "iast": "guroḥ kṛpā",
+          "gloss": "the Guru's grace",
+          "note": "ṣaṣṭhī ekavacana · u-stem · guru",
+          "source": "workbook A2.4"
+        },
+        {
+          "id": "15-stotra-ii:krpa:bhagavatah",
+          "devanagari": "भगवतः कृपा",
+          "iast": "bhagavataḥ kṛpā",
+          "gloss": "the Lord's grace",
+          "note": "ṣaṣṭhī ekavacana · at-stem · bhagavat",
+          "source": "workbook A2.5"
+        }
+      ]
+    },
+    {
+      "name": "Case as relation — the seven stances",
+      "pair": "line → relation",
+      "cards": [
+        {
+          "id": "15-stotra-ii:stance:prathama",
+          "devanagari": "शिवः सर्वम्",
+          "iast": "śivaḥ sarvam",
+          "gloss": "the divine IS — identity",
+          "note": "prathamā · ontology",
+          "source": "theory, Case as Theological Statement"
+        },
+        {
+          "id": "15-stotra-ii:stance:dvitiya",
+          "devanagari": "शिवं भजामि",
+          "iast": "śivaṃ bhajāmi",
+          "gloss": "I seek the divine — object of devotion",
+          "note": "dvitīyā · karman",
+          "source": "theory, Case as Theological Statement"
+        },
+        {
+          "id": "15-stotra-ii:stance:trtiya",
+          "devanagari": "शिवेन जीवामि",
+          "iast": "śivena jīvāmi",
+          "gloss": "I am sustained BY the divine",
+          "note": "tṛtīyā · sustaining power",
+          "source": "theory, Case as Theological Statement"
+        },
+        {
+          "id": "15-stotra-ii:stance:caturthi",
+          "devanagari": "शिवाय सर्वं समर्पयामि",
+          "iast": "śivāya sarvaṃ samarpayāmi",
+          "gloss": "I dedicate TO the divine",
+          "note": "caturthī · offering and service",
+          "source": "theory, Case as Theological Statement"
+        },
+        {
+          "id": "15-stotra-ii:stance:pancami",
+          "devanagari": "शिवाद् अहम् आगतः",
+          "iast": "śivād aham āgataḥ",
+          "gloss": "I come FROM the divine",
+          "note": "pañcamī · source of grace",
+          "source": "theory, Case as Theological Statement"
+        },
+        {
+          "id": "15-stotra-ii:stance:sasthi",
+          "devanagari": "शिवस्य दासः अस्मि",
+          "iast": "śivasya dāsaḥ asmi",
+          "gloss": "I belong to the divine",
+          "note": "ṣaṣṭhī · relation, not a kāraka",
+          "source": "theory, Case as Theological Statement"
+        },
+        {
+          "id": "15-stotra-ii:stance:saptami",
+          "devanagari": "शिवे मम विश्रान्तिः",
+          "iast": "śive mama viśrāntiḥ",
+          "gloss": "I rest IN the divine",
+          "note": "saptamī · immanence and dwelling",
+          "source": "theory, Case as Theological Statement"
+        }
+      ]
+    }
+  ]
+}

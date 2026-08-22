@@ -171,9 +171,16 @@ which complements the numbered stages rather than replacing them.
 
 Every lesson directory carries `theory.md`, `reference.md`,
 `workbook-questions.md`, `workbook-answers.md`, and `badge.md`. `bricks.md`
-exists only in `02-varna-vidya`, `05-rupa`, and `06-kriya`. 22 of the 36 carry
-a `practice.json`; the 14 without are mostly composition and avadhāna stages,
-where open-ended production is the point and the workbook is the right home.
+exists only in `02-varna-vidya`, `05-rupa`, and `06-kriya`. 23 of the 36 carry
+a `practice.json`; the 13 without are composition and avadhāna stages, where
+open-ended production is the point and the workbook is the right home — every
+one of their badges asks the learner to *compose*, *narrate* or *rewrite*.
+That is the rule, not a backlog: a stage is carded when its workbook holds a
+bounded operation to card. Stotra II looked like a gap next to Stotra I and
+was one — its workbook sections A and D (dative and genitive across stem
+types, and naming the vibhakti a devotional line turns on) are exactly that
+kind of operation, and are now carded, while its sections B and C stay in the
+workbook where composition belongs.
 
 Stage numbering is now consistent: directory number, `badge.md`, and every
 lesson file heading agree across all 36. See `AUDIT.md` for what was repaired
@@ -618,8 +625,8 @@ Three things here are load-bearing for the compatibility list above:
   chain, and keep each step stamping its own version rather than the newest;
   every `localStorage` touch stays guarded, since it can be absent or full.
 
-The app carries 23 lessons, 149 decks, and 2055 cards — 1912 `reveal`, 138
-`choice` and 5 `sequence`, spread over 12 interactive decks in 9 lessons,
+The app carries 24 lessons, 153 decks, and 2079 cards — 1929 `reveal`, 145
+`choice` and 5 `sequence`, spread over 13 interactive decks in 10 lessons,
 plus the mastery decks holding complete paradigms.
 They are curated practice, not conversions of the reference tables:
 
