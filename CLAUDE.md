@@ -315,6 +315,31 @@ Two rules beyond that:
 - **A cross-list draw falls back to `word → meaning`.** Review and trouble
   rounds mix decks, so no single pair describes them.
 
+### The IAST toggle
+
+It hides a **transliteration**, and nothing else. Two things follow, and both
+were once wrong:
+
+- **The transliteration is a line on the card**, on whichever side the
+  Devanagari is. In the produce direction it used to be appended to the
+  morphology annotation instead, so the card showed no IAST at all and
+  toggling the box looked like it was rewriting the grammar. `#iast` carries
+  it on the front, `#iast-back` on the back; `renderTag` now only ever
+  receives `c.note`, and a test asserts the annotation is byte-identical with
+  the toggle on and off.
+- **A card with no Devanagari has no transliteration to hide.** Its `iast`
+  field is a second content line: a gaṇa's `laghu guru guru` *reads*
+  `◡ — —`, it does not transliterate it, and hiding it left the card as bare
+  marks. `transliterates(c)` tests the card's own `devanagari` for Devanagari
+  codepoints, so the toggle governs a card only when there is something to
+  govern — 20 cards across `29 · Gaṇa` and `28 · Vṛtta`. On those the box is
+  greyed and shown checked, with a `title` saying why.
+
+This is a fact about the **card**, not the list: `28 · Vṛtta` holds twelve
+pattern cards and two ordinary headwords (`उपजातिः`, `आर्या`), and each
+behaves as what it is. A per-deck flag would have got that deck wrong, and a
+future card needs no flag to be handled correctly.
+
 ### Navigation and progress
 
 The app opens on a card, not on a menu. Navigation is a **left drawer**, opened
@@ -579,7 +604,7 @@ lowercase.
 
 **Testing** — `node scripts/test.js` drives the built file in headless
 Chromium from `file://` and checks the compatibility list above: saved
-progress and its migration, trouble cards, review replay, the IAST toggle,
+progress and its migration, trouble cards, review replay, both toggles,
 morphology, mobile touch targets, the choice interaction, drawer navigation
 down to a deck, and the mastery figure at every level. It needs
 `playwright-core` on the path but is deliberately not in a `package.json`; the

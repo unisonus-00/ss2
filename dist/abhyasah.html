@@ -115,6 +115,11 @@
   .back { margin-top: .9rem; display: none; }
   .card.open .back { display: block; }
   .gloss { font-size: 1.1rem; }
+  /* the answer's transliteration, under the answer rather than inside the
+     annotation below it */
+  .iast-back { margin-top: .25rem; font-size: .95rem; font-style: italic;
+               color: var(--ink); opacity: .8; }
+  .iast-back:empty { display: none; }
   .tag { margin-top: .6rem; font-size: .7rem; letter-spacing: .14em; line-height: 1.9;
          text-transform: uppercase; color: var(--kumkuma); }
   /* where the exercise came from — provenance, not morphology, so it stays
@@ -252,7 +257,9 @@
   .mode-produce .dn { font-family: inherit; font-size: 1.45rem; line-height: 1.4; }
   .mode-produce .gloss { font-family: "Noto Serif Devanagari", "Kohinoor Devanagari", serif;
                          font-size: 2rem; line-height: 1.5; }
-  .mode-produce .tag { text-transform: none; letter-spacing: .02em; font-size: .85rem; }
+  /* the produce direction sets the answer in Devanagari, so its
+     transliteration takes the display size the front would have given it */
+  .mode-produce .iast-back { font-size: 1.2rem; opacity: .85; }
   button.primary { border-color: var(--leaf); }
   button.miss { border-color: var(--kumkuma); color: #e2a08e; }
   button:focus-visible, .card:focus-visible { outline: 2px solid var(--kumkuma); outline-offset: 3px; }
@@ -536,6 +543,11 @@
     <div class="rule"></div>
     <div class="back" aria-live="polite">
       <div class="gloss" id="gloss"></div>
+      <!-- The transliteration of the answer, when the answer is the
+           Devanagari.  Its own line on the card: it used to be folded into
+           the annotation below, where toggling IAST looked like it was
+           editing the grammar. -->
+      <div class="iast-back" id="iast-back"></div>
       <div class="tag" id="tag"></div>
       <div class="src" id="src"></div>
     </div>
@@ -1083,17 +1095,33 @@ function dirLabel() {
                            : half[0] + ' \u2192 ' + half[1];
 }
 
+/* The IAST toggle hides a TRANSLITERATION.  A card whose front carries no
+   Devanagari has none to hide: its second line is content in its own right.
+   A gaṇa's "laghu guru guru" reads a pattern of marks, it does not
+   transliterate one, and hiding it left the card with nothing but the marks.
+   So the toggle governs a card only when there is Devanagari to transliterate,
+   which is a fact about the card rather than about the list — the vṛtta deck
+   holds twelve pattern cards and two ordinary headwords, and each behaves as
+   what it is. */
+const DEVANAGARI = /[\u0900-\u097F]/;
+const transliterates = c => DEVANAGARI.test(c.devanagari || '');
+const showIast = c => IAST || !transliterates(c);
+
 /* Both toggles are meaningless on an interactive card: a transformation runs
    one way, and the IAST there *is* the content rather than a gloss of it.
    They are greyed for as long as one is showing, and the direction button
    stops claiming a pair it cannot offer. */
-function setToggles(on) {
-  $('dir').disabled = !on;
-  $('iast-on').disabled = !on;
-  $('dir-label').textContent = on ? dirLabel() : 'one direction only';
-  $('dir').setAttribute('aria-label', on
+function setToggles(dirOn, iastOn) {
+  if (iastOn === undefined) iastOn = dirOn;
+  $('dir').disabled = !dirOn;
+  $('iast-on').disabled = !iastOn;
+  $('dir-label').textContent = dirOn ? dirLabel() : 'one direction only';
+  $('dir').setAttribute('aria-label', dirOn
     ? 'Direction: ' + dirLabel() + '. Tap to reverse.'
     : 'This list runs one way, so the direction cannot be reversed.');
+  $('iast-on').title = iastOn ? ''
+    : 'This card has no Devanagari, so its second line is content rather than '
+      + 'a transliteration, and is always shown.';
 }
 
 function setDir(d) {
@@ -1843,19 +1871,28 @@ function paint() {
   $('choices').hidden = true;
   $('choices').textContent = '';
   $('keys').textContent = KEYS_REVEAL;
-  setToggles(true);
+  setToggles(true, transliterates(c));
   $('src').textContent = '';
+  /* The transliteration goes on whichever side the Devanagari is, as its own
+     line.  It used to be appended to the annotation in the produce direction,
+     so the card showed no IAST at all and the toggle appeared to rewrite the
+     morphology instead. */
+  const iast = showIast(c) ? c.iast : '';
   if (DIR === 'produce') {
-    $('dn').textContent    = c.gloss;
-    $('iast').textContent  = '';
-    $('gloss').textContent = c.devanagari;
-    renderTag([IAST ? c.iast : '', c.note].filter(Boolean).join(' \u00b7 '));
+    $('dn').textContent        = c.gloss;
+    $('iast').textContent      = '';
+    $('gloss').textContent     = c.devanagari;
+    $('iast-back').textContent = iast;
   } else {
-    $('dn').textContent    = c.devanagari;
-    $('iast').textContent  = IAST ? c.iast : '';
-    $('gloss').textContent = c.gloss;
-    renderTag(c.note);
+    $('dn').textContent        = c.devanagari;
+    $('iast').textContent      = iast;
+    $('gloss').textContent     = c.gloss;
+    $('iast-back').textContent = '';
   }
+  renderTag(c.note);
+  /* The box reflects what is on the card, which is not always the setting:
+     a card with nothing to transliterate shows its second line regardless. */
+  $('iast-on').checked = showIast(c);
 }
 
 /* \u2500\u2500 choice cards \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
@@ -1883,6 +1920,7 @@ function paintChoice(c) {
   $('dn').textContent   = c.front || '';
   $('iast').textContent = '';
   $('gloss').textContent = '';
+  $('iast-back').textContent = '';
   renderTag(c.note);
   $('src').textContent = c.source || '';
   setToggles(false);
@@ -1949,6 +1987,7 @@ function paintSequence(c) {
   $('dn').textContent = c.front || '';
   $('iast').textContent = '';
   $('gloss').textContent = '';
+  $('iast-back').textContent = '';
   renderTag(c.note);
   $('src').textContent = c.source || '';
   setToggles(false);

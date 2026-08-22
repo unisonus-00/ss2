@@ -991,6 +991,79 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
+  // ── the IAST toggle governs a transliteration, and only that ───────
+  // Two bugs lived here.  In the produce direction the transliteration was
+  // appended to the morphology annotation instead of being shown on the
+  // card, so the card had no IAST and the toggle appeared to rewrite the
+  // grammar.  And on a card whose front is a scansion pattern rather than
+  // Devanagari, the second line is content — a gaṇa's "laghu guru guru"
+  // reads the marks, it does not transliterate them — and hiding it left
+  // the card with nothing but the marks.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const el = id => document.getElementById(id).textContent;
+      const show = (deck, card, dir, iast) => {
+        loadDeck(deck); setDir(dir); setIast(iast);
+        startRound([card], {}); reveal();
+        return { dn: el('dn'), iastFront: el('iast'), gloss: el('gloss'),
+                 iastBack: el('iast-back'), tag: el('tag'),
+                 boxOff: document.getElementById('iast-on').disabled,
+                 boxOn: document.getElementById('iast-on').checked };
+      };
+
+      const bhava = '20 · Bhāva — inner states';
+      const word = DECKS[bhava][0];
+      const pOn  = show(bhava, word, 'produce', true);
+      const pOff = show(bhava, word, 'produce', false);
+      const rOn  = show(bhava, word, 'reveal', true);
+      const rOff = show(bhava, word, 'reveal', false);
+
+      const vrtta = '28 · Vṛtta — the classical metres';
+      const pattern = DECKS[vrtta].find(c => !/[ऀ-ॿ]/.test(c.devanagari));
+      const headword = DECKS[vrtta].find(c => /[ऀ-ॿ]/.test(c.devanagari));
+      const patOff = show(vrtta, pattern, 'reveal', false);
+      const headOff = show(vrtta, headword, 'reveal', false);
+
+      /* Swept across every reveal card: a second line that is not a
+         transliteration must survive the toggle being off. */
+      setIast(false);
+      const lost = [];
+      Object.entries(DECKS).forEach(([n, cards]) => cards.forEach(c => {
+        if ((c.type || 'reveal') !== 'reveal' || !c.iast) return;
+        if (/[ऀ-ॿ]/.test(c.devanagari || '')) return;   // has a translit
+        startRound([c], {});
+        if (!document.getElementById('iast').textContent) lost.push(c.id);
+      }));
+
+      return { pOn, pOff, rOn, rOff, patOff, headOff,
+               lost: lost.slice(0, 3), nLost: lost.length,
+               word: word.iast };
+    });
+
+    ok('the produce direction shows IAST on the card',
+      r.pOn.iastBack === r.word && r.pOn.gloss && !r.pOn.iastFront,
+      JSON.stringify(r.pOn.iastBack));
+    ok('and not folded into the annotation',
+      !r.pOn.tag.includes(r.word), r.pOn.tag.slice(0, 40));
+    ok('toggling IAST never rewrites the annotation',
+      r.pOn.tag === r.pOff.tag && r.rOn.tag === r.rOff.tag, r.pOff.tag.slice(0, 40));
+    ok('the produce direction can still hide it', !r.pOff.iastBack, r.pOff.iastBack);
+    ok('the reveal direction is unchanged',
+      r.rOn.iastFront === r.word && !r.rOff.iastFront && !r.rOn.iastBack);
+
+    ok('a scansion pattern keeps its reading with IAST off',
+      !!r.patOff.iastFront, JSON.stringify(r.patOff.iastFront));
+    ok('and greys the box, which explains why',
+      r.patOff.boxOff && r.patOff.boxOn, 'disabled ' + r.patOff.boxOff);
+    ok('a real headword in the same list still hides its IAST',
+      !r.headOff.iastFront && !r.headOff.boxOff, JSON.stringify(r.headOff.iastFront));
+
+    ok('no card loses a second line that is not a transliteration',
+      r.nLost === 0, r.nLost + ' lost, eg ' + r.lost.join(', '));
+    await p.close();
+  }
+
   // ── the direction toggle means something on every list ─────────────
   // "word → meaning" was printed over lists that hold no meanings: a
   // paradigm cell answers with an analysis, a sandhi rule with the result of
