@@ -528,7 +528,7 @@ the obvious question without being opened into:
 | | |
 |:--|:--|
 | `Scoreboard` | *best scores · 3 of 71 lists finished* |
-| `Review` | *79% mastery · 80 cards drawn* — or *locked · 12 of 40 cards* |
+| `Review` | *79% mastery · 80 cards drawn* — or *locked · 12 of 40 cards*, or *ready · draw 20 cards* before the first draw |
 | `Trouble cards` | *7 cards to clear · 2 cleared* |
 
 The review mastery figure in particular used to be reachable only by opening
@@ -547,7 +547,15 @@ Two things are deliberately absent from the drawer, and tests assert both:
 Review, trouble and the scoreboard live in the drawer too, above the tracks,
 with the scoreboard first. A panel is opened from the drawer, which then
 closes, so the way back cannot be the button that opened it: `#panel-back`
-does that instead.
+does that instead — and it sits **below** the panel's own action, never above
+it. It used to come first in the markup, so the review window described the
+mode and then offered nothing but *Back to the cards*: what it read as
+offering was leaving. The mode's button leads; the way out follows.
+
+For the same reason the unlocked-but-unused review row names the action rather
+than the mode. *ready · a 20-card draw* was one more definition to someone who
+had just read three; it is *ready · draw 20 cards*. The mastery figure appears
+on the row **and** in the window it comes from, as soon as there is one.
 
 **Progress is mastered cards over cards held.** A card is mastered once it
 comes back right on its **first** showing in a round — the same cold-recall

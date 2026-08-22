@@ -142,10 +142,6 @@
   <button id="s-check" class="primary">Check</button>
 </div>
 
-<div class="actions" id="panel-back" hidden>
-  <button id="p-back">Back to the cards</button>
-</div>
-
 <div class="actions" id="rp-actions" hidden>
   <button id="rp-draw" class="primary"></button>
 </div>
@@ -153,6 +149,13 @@
 <div class="actions" id="t-actions" hidden>
   <button id="t-drill" class="primary">Practise these</button>
   <button id="t-copy">Copy the list</button>
+</div>
+
+<!-- The way out of a panel, and deliberately BELOW the panel's own action:
+     a window that describes a mode and then offers only "back" reads as
+     having nothing to start.  The mode's button leads; this follows it. -->
+<div class="actions" id="panel-back" hidden>
+  <button id="p-back">Back to the cards</button>
 </div>
 
 <div class="actions" id="after" hidden>

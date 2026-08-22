@@ -804,7 +804,10 @@ function syncReviewUI() {
      used to be visible only after opening the scoreboard. */
   $('dm-review').textContent =
       pool < REVIEW_MIN ? 'locked \u00b7 ' + pool + ' of ' + REVIEW_MIN + ' cards'
-    : m === null        ? 'ready \u00b7 a ' + REVIEW_SIZE + '-card draw'
+    /* Unlocked but never used: name the action, not the mode.  "a 20-card
+       draw" described what review is to someone who had just been told, and
+       read as one more definition rather than something to start. */
+    : m === null        ? 'ready \u00b7 draw ' + REVIEW_SIZE + ' cards'
     :                     m + '% mastery \u00b7 ' + SAVED.review.seen + ' cards drawn';
   $('dr-review').classList.toggle('on', panelOpen === 'reviewpanel');
 }
@@ -814,9 +817,13 @@ function syncReviewUI() {
 function renderReviewPanel() {
   const pool = reviewPool().length, ready = pool >= REVIEW_MIN;
   const lists = finishedDecks().length, s = lists > 1 ? "s" : "";
-  $('rp-sub').textContent = ready
-    ? "ready \u00b7 drawing from " + pool + " cards across " + lists + " finished list" + s
-    : "locked \u00b7 " + pool + " of " + REVIEW_MIN + " cards finished";
+  /* The figure the mode exists to produce leads its own window too, once
+     there is one — the drawer row should not be the only place it shows. */
+  const m = masteryPct();
+  $('rp-sub').textContent = !ready
+    ? "locked \u00b7 " + pool + " of " + REVIEW_MIN + " cards finished"
+    : (m === null ? "ready" : m + "% mastery")
+      + " \u00b7 drawing from " + pool + " cards across " + lists + " finished list" + s;
   $('rp-note').textContent = REVIEW_SIZE + " cards drawn at random from every list you "
     + "have finished, shuffled out of their decks so nothing is guessable from its "
     + "neighbour. No list's best score changes \u2014 what you know cold feeds the review "

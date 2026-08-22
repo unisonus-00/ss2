@@ -1590,6 +1590,68 @@ const open = async (browser, opts = {}) => {
                   : fragments + ' fragments across ' + files + ' references');
   }
 
+  // ── a panel's own action leads, and its state is on the row ───────
+  // The review window described the mode and then offered only "Back to the
+  // cards", because #panel-back sat above #rp-actions in the DOM: what it
+  // read as offering was leaving.  The mode's button comes first now.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const out = {};
+      /* finish four small lists cold, which is what unlocks review */
+      let n = 0;
+      for (const d of Object.keys(DECKS)) {
+        if (n >= 4) break;
+        if (DECKS[d].length > 20) continue;
+        n++; loadDeck(d);
+        while (current) knew();
+      }
+      const rows = () => [...document.querySelectorAll('.actions')]
+        .filter(e => !e.hidden).map(e => e.id);
+
+      openPanel('reviewpanel');
+      out.reviewRows = rows();
+      out.drawShown = !document.getElementById('rp-draw').hidden;
+      out.reviewSub = document.getElementById('rp-sub').textContent;
+      /* unlocked but never drawn: the row names the action, not the mode */
+      openDrawer();
+      out.rowBefore = document.getElementById('dm-review').textContent;
+      closeDrawer();
+
+      openPanel('trouble');
+      out.troubleRows = rows();
+      closePanel();
+
+      /* and once a draw has happened the figure is on the row and in the
+         window it came from */
+      openPanel('reviewpanel');
+      document.getElementById('rp-draw').click();
+      let g = 0;
+      while (current && g++ < 60) (g % 3 ? knew : didntKnow)();
+      openDrawer();
+      out.rowAfter = document.getElementById('dm-review').textContent;
+      closeDrawer();
+      openPanel('reviewpanel');
+      out.subAfter = document.getElementById('rp-sub').textContent;
+      out.mastery = masteryPct();
+      return out;
+    });
+
+    const leads = (rows, own) => rows.indexOf(own) >= 0
+      && rows.indexOf(own) < rows.indexOf('panel-back');
+    ok('review offers the draw above the way out',
+      r.drawShown && leads(r.reviewRows, 'rp-actions'), r.reviewRows.join(' | '));
+    ok('so does the trouble drill', leads(r.troubleRows, 't-actions'),
+      r.troubleRows.join(' | '));
+    ok('an unlocked review names the action, not the mode',
+      /^ready · draw \d+ cards$/.test(r.rowBefore), JSON.stringify(r.rowBefore));
+    ok('and shows its mastery once there is one',
+      r.mastery !== null && r.rowAfter.startsWith(r.mastery + '% mastery')
+        && r.subAfter.startsWith(r.mastery + '% mastery'),
+      JSON.stringify(r.rowAfter) + ' / ' + JSON.stringify(r.subAfter));
+    await p.close();
+  }
+
   // ── Study: the lesson's reference, and nothing more ───────────────
   // A reference VIEWER, not a second learning system.  It shows the lesson's
   // own reference.md, rendered at build time and inlined, and it holds no
