@@ -2,7 +2,7 @@
   "lesson": "06-kriya",
   "decks": [
     {
-      "name": "Kriyā practice — person, tense and mood",
+      "name": "Practice — person, tense and mood",
       "cards": [
         {
           "id": "06-kriya:person:nam-1sg",
@@ -276,6 +276,290 @@
           "answer": "rakṣeyam",
           "note": "1 sg. vidhiliṅ · -eyam",
           "source": "workbook G3"
+        }
+      ]
+    },
+    {
+      "name": "Conjugation mastery — laṭ parasmaipada",
+      "cards": [
+        {
+          "id": "06-kriya:lat-nam:prathama-eka",
+          "devanagari": "नमति",
+          "iast": "namati",
+          "gloss": "√nam laṭ — prathama ekavacana",
+          "note": "3rd sg. pres. · √nam (1P) · parasmaipada · to bow"
+        },
+        {
+          "id": "06-kriya:lat-nam:prathama-dvi",
+          "devanagari": "नमतः",
+          "iast": "namataḥ",
+          "gloss": "√nam laṭ — prathama dvivacana",
+          "note": "3rd du. pres. · √nam (1P) · parasmaipada · to bow"
+        },
+        {
+          "id": "06-kriya:lat-nam:prathama-bahu",
+          "devanagari": "नमन्ति",
+          "iast": "namanti",
+          "gloss": "√nam laṭ — prathama bahuvacana",
+          "note": "3rd pl. pres. · √nam (1P) · parasmaipada · to bow"
+        },
+        {
+          "id": "06-kriya:lat-nam:madhyama-eka",
+          "devanagari": "नमसि",
+          "iast": "namasi",
+          "gloss": "√nam laṭ — madhyama ekavacana",
+          "note": "2nd sg. pres. · √nam (1P) · parasmaipada · to bow"
+        },
+        {
+          "id": "06-kriya:lat-nam:madhyama-dvi",
+          "devanagari": "नमथः",
+          "iast": "namathaḥ",
+          "gloss": "√nam laṭ — madhyama dvivacana",
+          "note": "2nd du. pres. · √nam (1P) · parasmaipada · to bow"
+        },
+        {
+          "id": "06-kriya:lat-nam:madhyama-bahu",
+          "devanagari": "नमथ",
+          "iast": "namatha",
+          "gloss": "√nam laṭ — madhyama bahuvacana",
+          "note": "2nd pl. pres. · √nam (1P) · parasmaipada · to bow"
+        },
+        {
+          "id": "06-kriya:lat-nam:uttama-eka",
+          "devanagari": "नमामि",
+          "iast": "namāmi",
+          "gloss": "√nam laṭ — uttama ekavacana",
+          "note": "1st sg. pres. · √nam (1P) · parasmaipada · to bow"
+        },
+        {
+          "id": "06-kriya:lat-nam:uttama-dvi",
+          "devanagari": "नमावः",
+          "iast": "namāvaḥ",
+          "gloss": "√nam laṭ — uttama dvivacana",
+          "note": "1st du. pres. · √nam (1P) · parasmaipada · to bow"
+        },
+        {
+          "id": "06-kriya:lat-nam:uttama-bahu",
+          "devanagari": "नमामः",
+          "iast": "namāmaḥ",
+          "gloss": "√nam laṭ — uttama bahuvacana",
+          "note": "1st pl. pres. · √nam (1P) · parasmaipada · to bow"
+        },
+        {
+          "id": "06-kriya:lat-bhu:prathama-eka",
+          "devanagari": "भवति",
+          "iast": "bhavati",
+          "gloss": "√bhū laṭ — prathama ekavacana",
+          "note": "3rd sg. pres. · √bhū (1P) · parasmaipada · to be, become"
+        },
+        {
+          "id": "06-kriya:lat-bhu:prathama-dvi",
+          "devanagari": "भवतः",
+          "iast": "bhavataḥ",
+          "gloss": "√bhū laṭ — prathama dvivacana",
+          "note": "3rd du. pres. · √bhū (1P) · parasmaipada · to be, become"
+        },
+        {
+          "id": "06-kriya:lat-bhu:prathama-bahu",
+          "devanagari": "भवन्ति",
+          "iast": "bhavanti",
+          "gloss": "√bhū laṭ — prathama bahuvacana",
+          "note": "3rd pl. pres. · √bhū (1P) · parasmaipada · to be, become"
+        },
+        {
+          "id": "06-kriya:lat-bhu:madhyama-eka",
+          "devanagari": "भवसि",
+          "iast": "bhavasi",
+          "gloss": "√bhū laṭ — madhyama ekavacana",
+          "note": "2nd sg. pres. · √bhū (1P) · parasmaipada · to be, become"
+        },
+        {
+          "id": "06-kriya:lat-bhu:madhyama-dvi",
+          "devanagari": "भवथः",
+          "iast": "bhavathaḥ",
+          "gloss": "√bhū laṭ — madhyama dvivacana",
+          "note": "2nd du. pres. · √bhū (1P) · parasmaipada · to be, become"
+        },
+        {
+          "id": "06-kriya:lat-bhu:madhyama-bahu",
+          "devanagari": "भवथ",
+          "iast": "bhavatha",
+          "gloss": "√bhū laṭ — madhyama bahuvacana",
+          "note": "2nd pl. pres. · √bhū (1P) · parasmaipada · to be, become"
+        },
+        {
+          "id": "06-kriya:lat-bhu:uttama-eka",
+          "devanagari": "भवामि",
+          "iast": "bhavāmi",
+          "gloss": "√bhū laṭ — uttama ekavacana",
+          "note": "1st sg. pres. · √bhū (1P) · parasmaipada · to be, become"
+        },
+        {
+          "id": "06-kriya:lat-bhu:uttama-dvi",
+          "devanagari": "भवावः",
+          "iast": "bhavāvaḥ",
+          "gloss": "√bhū laṭ — uttama dvivacana",
+          "note": "1st du. pres. · √bhū (1P) · parasmaipada · to be, become"
+        },
+        {
+          "id": "06-kriya:lat-bhu:uttama-bahu",
+          "devanagari": "भवामः",
+          "iast": "bhavāmaḥ",
+          "gloss": "√bhū laṭ — uttama bahuvacana",
+          "note": "1st pl. pres. · √bhū (1P) · parasmaipada · to be, become"
+        },
+        {
+          "id": "06-kriya:lat-puj:prathama-eka",
+          "devanagari": "पूजयति",
+          "iast": "pūjayati",
+          "gloss": "√pūj laṭ — prathama ekavacana",
+          "note": "3rd sg. pres. · √pūj (10P) · parasmaipada · to worship"
+        },
+        {
+          "id": "06-kriya:lat-puj:prathama-dvi",
+          "devanagari": "पूजयतः",
+          "iast": "pūjayataḥ",
+          "gloss": "√pūj laṭ — prathama dvivacana",
+          "note": "3rd du. pres. · √pūj (10P) · parasmaipada · to worship"
+        },
+        {
+          "id": "06-kriya:lat-puj:prathama-bahu",
+          "devanagari": "पूजयन्ति",
+          "iast": "pūjayanti",
+          "gloss": "√pūj laṭ — prathama bahuvacana",
+          "note": "3rd pl. pres. · √pūj (10P) · parasmaipada · to worship"
+        },
+        {
+          "id": "06-kriya:lat-puj:madhyama-eka",
+          "devanagari": "पूजयसि",
+          "iast": "pūjayasi",
+          "gloss": "√pūj laṭ — madhyama ekavacana",
+          "note": "2nd sg. pres. · √pūj (10P) · parasmaipada · to worship"
+        },
+        {
+          "id": "06-kriya:lat-puj:madhyama-dvi",
+          "devanagari": "पूजयथः",
+          "iast": "pūjayathaḥ",
+          "gloss": "√pūj laṭ — madhyama dvivacana",
+          "note": "2nd du. pres. · √pūj (10P) · parasmaipada · to worship"
+        },
+        {
+          "id": "06-kriya:lat-puj:madhyama-bahu",
+          "devanagari": "पूजयथ",
+          "iast": "pūjayatha",
+          "gloss": "√pūj laṭ — madhyama bahuvacana",
+          "note": "2nd pl. pres. · √pūj (10P) · parasmaipada · to worship"
+        },
+        {
+          "id": "06-kriya:lat-puj:uttama-eka",
+          "devanagari": "पूजयामि",
+          "iast": "pūjayāmi",
+          "gloss": "√pūj laṭ — uttama ekavacana",
+          "note": "1st sg. pres. · √pūj (10P) · parasmaipada · to worship"
+        },
+        {
+          "id": "06-kriya:lat-puj:uttama-dvi",
+          "devanagari": "पूजयावः",
+          "iast": "pūjayāvaḥ",
+          "gloss": "√pūj laṭ — uttama dvivacana",
+          "note": "1st du. pres. · √pūj (10P) · parasmaipada · to worship"
+        },
+        {
+          "id": "06-kriya:lat-puj:uttama-bahu",
+          "devanagari": "पूजयामः",
+          "iast": "pūjayāmaḥ",
+          "gloss": "√pūj laṭ — uttama bahuvacana",
+          "note": "1st pl. pres. · √pūj (10P) · parasmaipada · to worship"
+        }
+      ]
+    },
+    {
+      "name": "Sentences — build in order",
+      "cards": [
+        {
+          "id": "06-kriya:sentence:puj-devam",
+          "type": "sequence",
+          "front": "Build: “I worship the deity.”",
+          "parts": [
+            "aham",
+            "devam",
+            "pūjayāmi"
+          ],
+          "answer": [
+            "aham",
+            "devam",
+            "pūjayāmi"
+          ],
+          "note": "subject → object → verb · the unmarked order; Sanskrit permits others",
+          "source": "workbook C1"
+        },
+        {
+          "id": "06-kriya:sentence:gam-mandiram",
+          "type": "sequence",
+          "front": "Build: “The devotee goes to the temple.”",
+          "parts": [
+            "bhaktaḥ",
+            "mandiram",
+            "gacchati"
+          ],
+          "answer": [
+            "bhaktaḥ",
+            "mandiram",
+            "gacchati"
+          ],
+          "note": "subject → object → verb · the unmarked order; Sanskrit permits others",
+          "source": "workbook C1"
+        },
+        {
+          "id": "06-kriya:sentence:jap-mantram",
+          "type": "sequence",
+          "front": "Build: “You chant the mantra.”",
+          "parts": [
+            "tvam",
+            "mantram",
+            "japasi"
+          ],
+          "answer": [
+            "tvam",
+            "mantram",
+            "japasi"
+          ],
+          "note": "subject → object → verb · the unmarked order; Sanskrit permits others",
+          "source": "workbook C1"
+        },
+        {
+          "id": "06-kriya:sentence:raks-bhaktam",
+          "type": "sequence",
+          "front": "Build: “The goddess protects the devotee.”",
+          "parts": [
+            "devī",
+            "bhaktam",
+            "rakṣati"
+          ],
+          "answer": [
+            "devī",
+            "bhaktam",
+            "rakṣati"
+          ],
+          "note": "subject → object → verb · the unmarked order; Sanskrit permits others",
+          "source": "workbook C1"
+        },
+        {
+          "id": "06-kriya:sentence:gai-stotram",
+          "type": "sequence",
+          "front": "Build: “We sing the hymn.”",
+          "parts": [
+            "vayam",
+            "stotram",
+            "gāyāmaḥ"
+          ],
+          "answer": [
+            "vayam",
+            "stotram",
+            "gāyāmaḥ"
+          ],
+          "note": "subject → object → verb · the unmarked order; Sanskrit permits others",
+          "source": "workbook C1"
         }
       ]
     },
@@ -893,96 +1177,6 @@
           "iast": "√vad",
           "gloss": "to speak",
           "note": "dhātu · vadati, vādin · KS passim"
-        }
-      ]
-    },
-    {
-      "name": "Kriyā sentences — build in order",
-      "cards": [
-        {
-          "id": "06-kriya:sentence:puj-devam",
-          "type": "sequence",
-          "front": "Build: “I worship the deity.”",
-          "parts": [
-            "aham",
-            "devam",
-            "pūjayāmi"
-          ],
-          "answer": [
-            "aham",
-            "devam",
-            "pūjayāmi"
-          ],
-          "note": "subject → object → verb · the unmarked order; Sanskrit permits others",
-          "source": "workbook C1"
-        },
-        {
-          "id": "06-kriya:sentence:gam-mandiram",
-          "type": "sequence",
-          "front": "Build: “The devotee goes to the temple.”",
-          "parts": [
-            "bhaktaḥ",
-            "mandiram",
-            "gacchati"
-          ],
-          "answer": [
-            "bhaktaḥ",
-            "mandiram",
-            "gacchati"
-          ],
-          "note": "subject → object → verb · the unmarked order; Sanskrit permits others",
-          "source": "workbook C1"
-        },
-        {
-          "id": "06-kriya:sentence:jap-mantram",
-          "type": "sequence",
-          "front": "Build: “You chant the mantra.”",
-          "parts": [
-            "tvam",
-            "mantram",
-            "japasi"
-          ],
-          "answer": [
-            "tvam",
-            "mantram",
-            "japasi"
-          ],
-          "note": "subject → object → verb · the unmarked order; Sanskrit permits others",
-          "source": "workbook C1"
-        },
-        {
-          "id": "06-kriya:sentence:raks-bhaktam",
-          "type": "sequence",
-          "front": "Build: “The goddess protects the devotee.”",
-          "parts": [
-            "devī",
-            "bhaktam",
-            "rakṣati"
-          ],
-          "answer": [
-            "devī",
-            "bhaktam",
-            "rakṣati"
-          ],
-          "note": "subject → object → verb · the unmarked order; Sanskrit permits others",
-          "source": "workbook C1"
-        },
-        {
-          "id": "06-kriya:sentence:gai-stotram",
-          "type": "sequence",
-          "front": "Build: “We sing the hymn.”",
-          "parts": [
-            "vayam",
-            "stotram",
-            "gāyāmaḥ"
-          ],
-          "answer": [
-            "vayam",
-            "stotram",
-            "gāyāmaḥ"
-          ],
-          "note": "subject → object → verb · the unmarked order; Sanskrit permits others",
-          "source": "workbook C1"
         }
       ]
     }

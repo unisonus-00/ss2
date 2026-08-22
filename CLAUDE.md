@@ -29,6 +29,28 @@ not silently guess.
 
 Flashcards are curated practice, not exhaustive copies of reference tables.
 
+**Except within a selected paradigm.** Declension tables and conjugation
+paradigms are finite closed systems where a gap is a real gap, and the badges
+demand them whole: Rūpa asks for a noun "through all 8 vibhaktis × 3 vacanas",
+Kriyā for "3 dhātus in laṭ lakāra (all 9 parasmaipada forms)". The scope rule
+is:
+
+> Exhaustive **within** a selected paradigm, not exhaustive **across** the
+> language.
+
+- **Table mastery** — every cell of a selected model paradigm, syncretic forms
+  included. A learner who takes up Rāma should eventually retrieve the whole
+  table.
+- **Conjugation mastery** — for a selected dhātu + lakāra + pada, every person
+  × number. Nine forms are nine learnable relationships.
+- **Everything else stays curated.** Sandhi, samāsa, chandas and vocabulary
+  must not drift into exhaustive databases.
+- **Never** every root × every lakāra × both padas. That explodes
+  combinatorially. The curriculum decides which paradigms deserve mastery;
+  those are then tested completely.
+- **Mixed review draws round-robin across lists**, so a table is covered over
+  many sessions rather than dumped into one.
+
 Prefer the smallest interaction that tests the actual skill:
 
 - **reveal** — recall
@@ -265,17 +287,24 @@ Three things here are load-bearing for the compatibility list above:
   derived from what the card displays. Change an id and you retire that card's
   history.
 - **Deck names key saved scores.** `SAVED.decks` is keyed by the deck's full
-  name, so renaming a deck silently drops its best score. The names still carry
-  their original `01 ·` / `V01 ·` prefixes for exactly this reason; the picker
-  hides them from display but the value keeps them.
+  name, so renaming a deck would silently drop its best score and missed pile.
+  `DECK_RENAMES` in `app.js` lists every rename the app has made and applies it
+  once on load, the same way `OLD_KEYS` rescues state from an earlier storage
+  key. **Never rename a deck without adding a line there.** Vocab-bank decks
+  still carry their `V01 ·` prefixes; the picker hides them from display.
+- **Deck names carry the product structure.** Within a lesson the picker reads
+  `Practice`, then `Table mastery` / `Conjugation mastery`, then the rest —
+  because `DECK_SHORT` displays the text before the em dash. Practice prepares
+  generalisation; mastery closes known finite gaps.
 - **Progress lives in `localStorage`** under `abhyāsaḥ`, versioned by `SAVED.v`
   (now 2). v1 keyed trouble history by `devanagari + '¦' + gloss`; the app
   lifts those records onto stable ids on first load. `OLD_KEYS` separately
   lifts state out of earlier storage key names. Keep both chains; every
   `localStorage` touch stays guarded, since it can be absent or full.
 
-The app carries 23 lessons, 70 decks, and 1926 cards — 1772 `reveal`, 142
-`choice` and 12 `sequence`, spread over 13 interactive decks in 11 lessons.
+The app carries 23 lessons, 71 decks, and 2030 cards — 1876 `reveal`, 142
+`choice` and 12 `sequence`, spread over 13 interactive decks in 11 lessons,
+plus two mastery decks holding complete paradigms.
 They are curated practice, not conversions of the reference tables:
 
 - `06-kriya` — 21 cards: person, tense, imperative, optative, and parsing.
@@ -317,15 +346,16 @@ They are curated practice, not conversions of the reference tables:
 Roughly the last third of the decks are generated from the `vocab/` bank and
 marked as such.
 
-**On deck size.** A large vocabulary deck is not bloat — a word list is not a
-reference table, and nobody learns Sanskrit from fifteen nouns. `01-nama`
-legitimately holds a third of the app. What *is* forbidden is reproducing a
-paradigm: `V21 · Deity vibhakti` was nine complete declension tables at 139
-cards and is now 63, the singular alone, which is where the contrast between
-the eight baseplates actually lives. The full tables remain in
-`05-rupa/reference.md` and `vocab/21-deity-vibhakti.md`, where reference
-belongs. `scripts/test.js` asserts no deck reproduces a full paradigm and that
-no card appears twice within one lesson.
+**On deck size.** A large deck is not automatically bloat. A word list is not
+a reference table, and nobody learns Sanskrit from fifteen nouns — `01-nama`
+legitimately holds a third of the app. A paradigm deck is large for a
+different and equally good reason: the table is finite and the badge wants all
+of it.
+
+What is bloat is the same card twice in one lesson, and unbounded expansion of
+the *curated* sets. `scripts/test.js` asserts that no card appears twice
+within a lesson, and — the other way round — that every declension stem covers
+all 24 cells and every conjugated dhātu all 9 laṭ forms.
 
 **Removing a card does not destroy its history.** The v1→v2 migration leaves
 records it does not recognise alone, `pileCards()` resolves a pile against the

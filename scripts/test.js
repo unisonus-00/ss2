@@ -19,7 +19,7 @@ const { chromium } = require('playwright-core');
 const path = require('path');
 const FILE = 'file://' + path.resolve(__dirname, '..', 'dist', 'abhyasah.html');
 const EXE = process.env.CHROME || '/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
-const DECK = 'Kriyā practice — person, tense and mood';
+const DECK = 'Practice — person, tense and mood';
 
 /* Expected counts come from the practice files themselves, so adding a
    lesson's practice does not break the suite — what is checked is that the
@@ -352,7 +352,7 @@ const open = async (browser, opts = {}) => {
     const p = await open(browser);
     const r = await p.evaluate(() => {
       // build a round mixing the choice deck with a reveal deck
-      const mix = [...DECKS['Kriyā practice — person, tense and mood'].slice(0, 3),
+      const mix = [...DECKS['Practice — person, tense and mood'].slice(0, 3),
                    ...DECKS['10 · Kriyā — verbs in form'].slice(0, 3)];
       startRound(mix, {});
       const kinds = [];
@@ -405,7 +405,7 @@ const open = async (browser, opts = {}) => {
     const p = await open(browser);
     const r = await p.evaluate(() => {
       // fail a short round outright
-      startRound(DECKS['Kriyā practice — person, tense and mood'].slice(0, 3), {});
+      startRound(DECKS['Practice — person, tense and mood'].slice(0, 3), {});
       let g = 0;
       while (current && g++ < 30) {
         [...document.querySelectorAll('#choices .opt')].find(x => x.textContent !== current.card.answer).click();
@@ -428,7 +428,7 @@ const open = async (browser, opts = {}) => {
   {
     const p = await open(browser);
     const r = await p.evaluate(() => {
-      const card = DECKS['Kriyā practice — person, tense and mood'][0];
+      const card = DECKS['Practice — person, tense and mood'][0];
       SAVED.trouble[card.id] = { w: 3, r: 0, s: '' }; save();
       const onList = troubleCards().some(c => c.id === card.id);
       startTroubleDrill();
@@ -451,7 +451,7 @@ const open = async (browser, opts = {}) => {
     const p = await browser.newPage();
     await p.goto(FILE, { waitUntil: 'load' });
     const r = await p.evaluate(() => {
-      const name = 'Sandhi practice — joins and splits';
+      const name = 'Practice — joins and splits';
       const d = DECKS[name];
       if (!d) return { missing: true };
       const kinds = { join: 0, split: 0, name: 0, category: 0 };
@@ -493,7 +493,7 @@ const open = async (browser, opts = {}) => {
   }
 
   // ── sequence: assemble supplied pieces by tapping ─────────────────
-  const SEQ = 'Vākya sentences — build in order';
+  const SEQ = 'Sentences — build in order (vākya)';
   const openSeq = async (id) => {
     const p = await browser.newPage();
     p.on('pageerror', e => { console.log('  PAGEERROR ' + e.message); fail.push('pageerror'); });
@@ -723,7 +723,7 @@ const open = async (browser, opts = {}) => {
     const p = await browser.newPage();
     await p.goto(FILE, { waitUntil: 'load' });
     const r = await p.evaluate(() => {
-      const d = DECKS['Kāraka practice — roles in a sentence'] || [];
+      const d = DECKS['Practice — roles in a sentence'] || [];
       const sentence = d.filter(c => c.id.startsWith('07-karaka:role:'));
       return {
         n: sentence.length,
@@ -746,53 +746,83 @@ const open = async (browser, opts = {}) => {
   {
     const p = await browser.newPage();
     p.on('pageerror', e => { console.log('  PAGEERROR ' + e.message); fail.push('pageerror'); });
-    await p.addInitScript(() => {
+    // 12-vakya:indeclinables-particles:api was removed as a duplicate
+    const GONE = '12-vakya:indeclinables-particles:api';
+    await p.addInitScript(g => {
       try {
         localStorage.setItem('abhyāsaḥ', JSON.stringify({
           v: 2,
-          decks: { 'V21 · Deity vibhakti — the eight baseplates':
-                   { best: [130, 139], pile: ['05-rupa:deity-vibhakti:ramau'] } },
-          trouble: { '05-rupa:deity-vibhakti:ramau': { w: 4, r: 0, s: '' } },
+          decks: { 'V15 · Indeclinables & particles — DM': { best: [55, 61], pile: [g] } },
+          trouble: { [g]: { w: 4, r: 0, s: '' } },
           cleared: 7,
         }));
       } catch (e) {}
-    });
+    }, GONE);
     await p.goto(FILE, { waitUntil: 'load' });
-    const r = await p.evaluate(() => {
-      const name = 'V21 · Deity vibhakti — the eight baseplates';
+    const r = await p.evaluate(g => {
+      const name = 'V15 · Indeclinables & particles — DM';
       const s = document.getElementById('deck');
       s.value = name; s.dispatchEvent(new Event('change'));
       const raw = JSON.parse(localStorage.getItem('abhyāsaḥ'));
       return {
         best: raw.decks[name].best,
         cleared: raw.cleared,
-        staleKept: !!raw.trouble['05-rupa:deity-vibhakti:ramau'],
+        staleKept: !!raw.trouble[g],
         pile: pileCards().length,
         trouble: troubleCards().length,
-        round: queue.length + 1,
       };
-    });
+    }, GONE);
     ok('a removed card keeps its trouble record', r.staleKept);
     ok('a best score set on the old, larger deck survives',
-      r.best && r.best[0] === 130 && r.best[1] === 139, JSON.stringify(r.best));
+      r.best && r.best[0] === 55 && r.best[1] === 61, JSON.stringify(r.best));
     ok('the cleared tally survives curation', r.cleared === 7);
     ok('stale pile keys resolve to nothing rather than breaking', r.pile === 0);
     ok('stale trouble keys do not enter the drill', r.trouble === 0);
     await p.close();
   }
 
-  // ── no exhaustive paradigm decks, and no duplicate card in one lesson ──
+  // ── paradigm decks must be COMPLETE, not curated ──────────────────
+  // The badges mandate this: Rūpa asks for a noun through all 8 vibhaktis ×
+  // 3 vacanas, Kriyā for 3 dhātus in all 9 parasmaipada forms of laṭ. A gap
+  // in a finite table is a real gap, so these decks are the one exception to
+  // "curated, not exhaustive".
   {
     const p = await browser.newPage();
+    p.on('pageerror', e => { console.log('  PAGEERROR ' + e.message); fail.push('pageerror'); });
     await p.goto(FILE, { waitUntil: 'load' });
     const r = await p.evaluate(() => {
-      const dumps = [], dupes = [];
-      const perLesson = {};
+      const VIB = ['prathamā','dvitīyā','tṛtīyā','caturthī','pañcamī','ṣaṣṭhī','saptamī','sambodhana'];
+      const NUM = { ekavacana: 'sg', dvivacana: 'du', bahuvacana: 'pl' };
+      const table = DECKS['Table mastery — the eight baseplates'] || [];
+      const cells = {};
+      table.forEach(c => {
+        const note = c.note || '';
+        const stem = note.includes('stem: ') ? note.split('stem: ')[1].split(' ·')[0] : '?';
+        cells[stem] = cells[stem] || new Set();
+        (c.gloss.split('—').pop() || '').split(',').forEach(chunk => {
+          const nums = Object.keys(NUM).filter(n => chunk.includes(n));
+          VIB.filter(v => chunk.includes(v)).forEach(v =>
+            nums.forEach(n => cells[stem].add(v + '.' + NUM[n])));
+        });
+      });
+      const incomplete = Object.entries(cells)
+        .filter(([, set]) => set.size !== 24)
+        .map(([stem, set]) => stem + ':' + set.size);
+
+      const conj = DECKS['Conjugation mastery — laṭ parasmaipada'] || [];
+      const byRoot = {};
+      conj.forEach(c => {
+        const root = c.id.split(':')[1];
+        byRoot[root] = byRoot[root] || new Set();
+        byRoot[root].add(c.gloss.split('—').pop().trim());
+      });
+      const shortRoots = Object.entries(byRoot)
+        .filter(([, set]) => set.size !== 9).map(([r, set]) => r + ':' + set.size);
+
+      // no card appears twice within one lesson
+      const perLesson = {}, dupes = [];
       Object.entries(DECKS).forEach(([name, cards]) => {
         const lesson = DECK_LESSON[name];
-        const nonSingular = cards.filter(c => (c.type || 'reveal') === 'reveal'
-          && /dvivacana|bahuvacana/.test(c.gloss || '') && !/ekavacana/.test(c.gloss || ''));
-        if (nonSingular.length) dumps.push(name + ': ' + nonSingular.length);
         cards.forEach(c => {
           if ((c.type || 'reveal') !== 'reveal') return;
           const k = lesson + '|' + c.devanagari + '|' + c.gloss;
@@ -800,12 +830,65 @@ const open = async (browser, opts = {}) => {
           else perLesson[k] = c.id;
         });
       });
-      return { dumps, dupes };
+      return { stems: Object.keys(cells).length, incomplete,
+               roots: Object.keys(byRoot).length, shortRoots, conj: conj.length, dupes };
     });
-    ok('no deck reproduces a full declension paradigm',
-      r.dumps.length === 0, r.dumps.join(' | '));
+    ok('every declension stem covers all 24 cells',
+      r.stems === 9 && r.incomplete.length === 0, r.stems + ' stems; short: ' + r.incomplete.join(', '));
+    ok('every conjugated dhātu has all 9 laṭ forms',
+      r.roots === 3 && r.conj === 27 && r.shortRoots.length === 0,
+      r.roots + ' roots, ' + r.conj + ' forms; short: ' + r.shortRoots.join(', '));
     ok('no card appears twice within one lesson',
       r.dupes.length === 0, r.dupes.slice(0, 4).join(' | '));
+    await p.close();
+  }
+
+  // ── a renamed deck keeps its score, and no table swamps a review ───
+  {
+    const p = await browser.newPage();
+    await p.addInitScript(() => {
+      try {
+        localStorage.setItem('abhyāsaḥ', JSON.stringify({
+          v: 2,
+          deck: 'V21 · Deity vibhakti — the eight baseplates',
+          decks: { 'V21 · Deity vibhakti — the eight baseplates': { best: [130, 139], pile: [] },
+                   'Practice — person, tense and mood': { best: [18, 21], pile: [] } },
+          trouble: {}, cleared: 0,
+        }));
+      } catch (e) {}
+    });
+    await p.goto(FILE, { waitUntil: 'load' });
+    const r = await p.evaluate(() => {
+      const raw = JSON.parse(localStorage.getItem('abhyāsaḥ'));
+      return {
+        moved: raw.decks['Table mastery — the eight baseplates'],
+        movedKriya: raw.decks['Practice — person, tense and mood'],
+        oldGone: !raw.decks['V21 · Deity vibhakti — the eight baseplates'],
+        lastDeckMoved: raw.deck === 'Table mastery — the eight baseplates',
+        finished: finishedDecks().length,
+      };
+    });
+    ok('a renamed deck keeps its best score',
+      r.moved && r.moved.best[0] === 130 && r.movedKriya && r.movedKriya.best[0] === 18,
+      JSON.stringify(r.moved && r.moved.best));
+    ok('the old deck name is cleared away', r.oldGone);
+    ok('the remembered deck follows the rename', r.lastDeckMoved);
+    ok('both renamed decks still count as finished', r.finished === 2, r.finished + ' finished');
+
+    // the draw must spread across lists, not pour out of the biggest one
+    const spread = await p.evaluate(() => {
+      const counts = [];
+      for (let i = 0; i < 25; i++) {
+        const drawn = mixCards();
+        const fromTable = drawn.filter(c =>
+          DECK_OF.get(c) === 'Table mastery — the eight baseplates').length;
+        counts.push(fromTable / drawn.length);
+      }
+      return { worst: Math.max(...counts), size: mixCards().length };
+    });
+    ok('a 139-card table never dominates a 20-card draw',
+      spread.worst <= 0.65, 'worst share ' + Math.round(spread.worst * 100) + '%');
+    ok('the draw still fills a session', spread.size === 20, spread.size + ' cards');
     await p.close();
   }
 

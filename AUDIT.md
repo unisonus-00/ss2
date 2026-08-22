@@ -220,14 +220,24 @@ operational lessons the refinement targets hold 27 (Sandhi), 75 (Kriyā), and 90
 (Guṇa).
 
 **Addressed, in part.** The operational lessons now carry curated `choice` and
-`sequence` practice, so the imbalance is no longer one of *kind*. On volume,
-99 cards were removed: 23 exact duplicates that appeared twice within a single
-lesson, and the 76 dual and plural forms of `V21`, the only exhaustive
-paradigm deck in the app.
+`sequence` practice, so the imbalance is no longer one of *kind*.
+
+On volume, 23 exact duplicates were removed — the same card in two decks of a
+single lesson, which also split that word's trouble history across two ids.
 
 `01-nama`'s remaining bulk was examined and deliberately kept. A vocabulary
 list is not a reference table, and cutting words to make a number smaller
 would have been vandalism dressed as curation.
+
+> **Correction.** A first pass also cut the 76 dual and plural forms of `V21`
+> as an "exhaustive paradigm". That was wrong, and the cut has been reverted.
+> Declension tables and conjugation paradigms are an explicit **exception** to
+> the curated-not-exhaustive rule: they are finite systems the badges demand
+> whole — Rūpa "through all 8 vibhaktis × 3 vacanas", Kriyā "all 9
+> parasmaipada forms". The governing scope rule is now recorded in CLAUDE.md:
+> *exhaustive within a selected paradigm, not across the language.* `V21` is
+> back at 139 cards, plus the `pitṛ-` vocative it had always been missing, and
+> a Kriyā conjugation-mastery deck was added to match.
 
 `03-sandhi` is the clearest illustration of the problem the refinement is meant
 to solve: 27 cards that name the rules, and not one that performs a join. Its

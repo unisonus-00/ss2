@@ -101,6 +101,32 @@ const SAVED = (() => {
   } catch (e) { return {}; }
 })();
 SAVED.decks = SAVED.decks || {};
+
+/* Deck names key SAVED.decks, so renaming one would silently drop its best
+   score and its missed pile.  Every rename this app has made is listed here
+   and applied once, the same way OLD_KEYS rescues state from an earlier
+   storage key.  Never rename a deck without adding a line here. */
+const DECK_RENAMES = {
+  'Rūpa practice — case and form':               'Practice — case and form',
+  'V21 · Deity vibhakti — the eight baseplates': 'Table mastery — the eight baseplates',
+  'Kriyā practice — person, tense and mood':     'Practice — person, tense and mood',
+  'Kriyā sentences — build in order':            'Sentences — build in order',
+  'Vākya sentences — build in order':            'Sentences — build in order (vākya)',
+  'Sandhi practice — joins and splits':          'Practice — joins and splits',
+  'Guṇa practice — agreement':                   'Practice — agreement',
+  'Kāraka practice — roles in a sentence':       'Practice — roles in a sentence',
+  'Sambodhana practice — direct address':        'Practice — direct address',
+  'Pratyāhāra practice — what each covers':      'Practice — pratyāhāras',
+  'Samāsa practice — name the compound':         'Practice — name the compound',
+  'Suffix practice — kṛt and taddhita':          'Practice — kṛt and taddhita',
+  'Chandas practice — scan and name':            'Practice — scan and name',
+  'Vṛtta practice — name the metre':             'Practice — name the metre',
+};
+Object.entries(DECK_RENAMES).forEach(([from, to]) => {
+  if (SAVED.decks[from] && !SAVED.decks[to]) SAVED.decks[to] = SAVED.decks[from];
+  delete SAVED.decks[from];
+  if (SAVED.deck === from) SAVED.deck = to;
+});
 SAVED.review = SAVED.review || { runs: 0, right: 0, seen: 0 };   // mixed-review tally
 SAVED.trouble = SAVED.trouble || {};       // per-card history, keyed by card
 SAVED.cleared = SAVED.cleared || 0;        // cards that have left the trouble list
@@ -395,7 +421,36 @@ function loadDeck() {
    REVIEW_SIZE taken.  A flat draw on purpose: weighting it towards the
    cards you keep missing would flatter the number, and the whole point
    of this mode is to measure what actually stayed. */
-const mixCards = () => shuffle(reviewPool()).slice(0, REVIEW_SIZE);
+/* Drawn round-robin across the finished lists rather than flat across their
+   cards, so one large list cannot swamp a session.  That matters now the
+   paradigm decks exist: a complete declension table is a hundred-odd cards,
+   and a flat draw would make every review mostly that table.
+
+   Still unweighted WITHIN a list — the draw measures what stayed, and
+   favouring the cards you keep missing would flatter the number.  Weighted
+   practice is what the trouble drill is for.  Exhaustive coverage of a table
+   therefore happens across many sessions, not in any one of them. */
+function mixCards() {
+  const byDeck = new Map();
+  reviewPool().forEach(c => {
+    const d = DECK_OF.get(c) || '';
+    if (!byDeck.has(d)) byDeck.set(d, []);
+    byDeck.get(d).push(c);
+  });
+  const piles = shuffle([...byDeck.values()].map(cs => shuffle(cs)));
+  const out = [];
+  for (let i = 0; out.length < REVIEW_SIZE; i++) {
+    let took = false;
+    for (const pile of piles) {
+      if (i >= pile.length) continue;
+      out.push(pile[i]);
+      took = true;
+      if (out.length === REVIEW_SIZE) break;
+    }
+    if (!took) break;                    // every list exhausted
+  }
+  return out;
+}
 
 function startMixedReview() {
   if (reviewPool().length < REVIEW_MIN) return;      // the button is disabled, but still
