@@ -206,7 +206,8 @@ const open = async (browser, opts = {}) => {
     }));
     ok('card renders as a choice', r.isChoice);
     ok('2-4 options shown', r.n >= 2 && r.n <= 4, r.n + ' options');
-    ok('prompt is the transformation', /→|which analysis/.test(r.prompt), JSON.stringify(r.prompt));
+    ok('prompt states a task', /^[^\n]+:/.test(r.prompt) || /\?$/.test(r.prompt),
+      JSON.stringify(r.prompt));
     ok('options visible', r.choicesShown);
     ok('answer not shown before answering', !r.open && r.glossEmpty);
     ok('direction toggle disabled', r.dirDisabled);
@@ -484,12 +485,12 @@ const open = async (browser, opts = {}) => {
       r.kinds && r.kinds.join >= 15 && r.kinds.split >= 5 && r.kinds.name >= 3 && r.kinds.category >= 2,
       JSON.stringify(r.kinds));
     ok('a join card asks for the combination',
-      / \+ .*→ \?$/.test(r.joinPrompt), JSON.stringify(r.joinPrompt));
+      /^Join: .+ \+ /.test(r.joinPrompt), JSON.stringify(r.joinPrompt));
     ok('a join card names its rule on the answer',
       /sandhi|guṇa|vṛddhi|savarṇa|yan|jaśtva|anusvāra|anunāsika|śchutva|ādeśa|lopa/i.test(r.joinNote),
       JSON.stringify(r.joinNote));
-    ok('a split card asks where a form came from',
-      /came from \?$/.test(r.splitPrompt), JSON.stringify(r.splitPrompt));
+    ok('a split card asks a form to be taken apart',
+      /^Split: \S/.test(r.splitPrompt), JSON.stringify(r.splitPrompt));
     ok('split options are word pairs',
       r.splitOpts && r.splitOpts.every(o => o.includes(' + ')), JSON.stringify(r.splitOpts));
     await p.close();
@@ -740,7 +741,7 @@ const open = async (browser, opts = {}) => {
         bothNamed: sentence.every(c =>
           /kartā|karma|karaṇa|sampradāna|apādāna|adhikaraṇa/.test(c.note) &&
           /prathamā|dvitīyā|tṛtīyā|caturthī|pañcamī|saptamī/.test(c.note)),
-        askAboutAWord: sentence.every(c => /what role does “.+” play\?$/.test(c.front)),
+        askAboutAWord: sentence.every(c => /^Role of \S.*:\n\S/.test(c.front)),
       };
     });
     ok('karaka cards ask about a word in a real sentence',
@@ -898,6 +899,89 @@ const open = async (browser, opts = {}) => {
     ok('a 139-card table never dominates a 20-card draw',
       spread.worst <= 0.65, 'worst share ' + Math.round(spread.worst * 100) + '%');
     ok('the draw still fills a session', spread.size === 20, spread.size + ' cards');
+    await p.close();
+  }
+
+  // ── the practice screen: branded top left, and compact ─────────────
+  {
+    const p = await browser.newPage({ viewport: { width: 390, height: 844 } });
+    p.on('pageerror', e => { console.log('  PAGEERROR ' + e.message); fail.push('pageerror'); });
+    await p.goto(FILE, { waitUntil: 'load' });
+    const r = await p.evaluate(() => {
+      const box = s => { const e = document.querySelector(s); return e && e.getBoundingClientRect(); };
+      const brand = box('.brand'), card = box('.panel'), mark = box('.brand .mark');
+      const drawer = document.getElementById('drawer');
+      return {
+        hasMark: !!mark && mark.width > 0,
+        markInline: !document.querySelector('.brand img, .brand [src]'),
+        brandLeft: brand && Math.round(brand.left),
+        brandTop: brand && Math.round(brand.top),
+        brandHeight: brand && Math.round(brand.height),
+        cardLeft: card && Math.round(card.left),
+        cardTop: card && Math.round(card.top),
+        // no centred logo during practice
+        centred: !document.querySelector('h1'),
+        // branding is out of the drawer entirely
+        drawerBranded: /abhyāsa|अभ्यास/i.test(drawer.textContent)
+                       || !!drawer.querySelector('.mark, .wordmark'),
+        navFull: (() => { const n = box('#nav-label');
+          return n && n.width > 0 && document.getElementById('nav-label').scrollWidth
+                 <= Math.ceil(n.width) + 1; })(),
+      };
+    });
+    ok('the mark is drawn inline, with nothing to fetch', r.hasMark && r.markInline);
+    ok('branding sits at the top left, on the card’s edge',
+      r.brandLeft === r.cardLeft && r.brandTop < 40,
+      'brand x' + r.brandLeft + ' y' + r.brandTop + ' · card x' + r.cardLeft);
+    ok('no centred logo during practice', r.centred);
+    ok('the branding stays small', r.brandHeight <= 44, r.brandHeight + 'px tall');
+    ok('branding is out of the drawer', !r.drawerBranded);
+    // the whole point of the pass: the exercise begins near the top
+    ok('the exercise starts high on a phone', r.cardTop <= 165, r.cardTop + 'px down');
+    ok('the list name is not truncated', r.navFull);
+    await p.close();
+  }
+
+  // ── prompts are task prompts ───────────────────────────────────────
+  // A prompt names the operation and then the item: "Split: jagan nāthaḥ",
+  // not "jagan nāthaḥ came from ?".  Checked over every choice card rather
+  // than a sample, so a conversational one added later is caught.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const all = [];
+      Object.values(DECKS).forEach(cards => cards.forEach(c => {
+        if ((c.type || 'reveal') === 'choice') all.push(c);
+      }));
+      const head = f => f.split('\n')[0];
+      /* Three shapes are allowed, and nothing else:
+           a task label and its item   "Split: jagan nāthaḥ"
+           a direct question           "Which vibhakti is NOT a kāraka?"
+           a meaning over a frame      "“I bow to Rāma”" / "___ namāmi"
+         In the third the blank is the task, so it needs no label. */
+      const shaped = f =>
+        /:/.test(head(f)) || /\?$/.test(head(f)) || f.includes('___');
+      return {
+        n: all.length,
+        shapeless: all.filter(c => !shaped(c.front)).map(c => c.id + ' — ' + c.front),
+        // the conversational shapes this pass removed
+        chatty: all.filter(c => /came from|which analysis|→ \?$|play\?$|make it/.test(c.front))
+                   .map(c => c.id + ' — ' + c.front),
+        /* A task label is short, so the item is what gets read.  Only where
+           the item follows on the same line: a prompt that ENDS at its colon
+           is a lead-in to the options, and is a sentence by design. */
+        longLabel: all.filter(c => {
+          const m = head(c.front).match(/^([^:]+):\s*\S/);
+          return m && m[1].split(/\s+/).length > 5;
+        }).map(c => c.id + ' — ' + c.front),
+      };
+    });
+    ok('every choice card names its task or asks outright',
+      !r.shapeless.length, r.shapeless.slice(0, 3).join(' | '));
+    ok('no conversational prompt survives',
+      !r.chatty.length, r.chatty.slice(0, 3).join(' | '));
+    ok('a task label stays short', !r.longLabel.length, r.longLabel.slice(0, 3).join(' | '));
+    console.log('        ' + r.n + ' choice prompts checked');
     await p.close();
   }
 

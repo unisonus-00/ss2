@@ -674,7 +674,6 @@ function loadDeck(name) {
      what neither of those says. */
   $('stage').textContent = [
     DECK_DESC(name),
-    src.length + " cards",
     best ? "best " + best[0] + "/" + best[1] : ""
   ].filter(Boolean).join(" · ");
   refreshPile();

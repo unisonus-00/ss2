@@ -7,7 +7,7 @@
         {
           "id": "21-chandas-ii:metre:indravajra",
           "type": "choice",
-          "front": "11 syllables · ta ta ja ga ga — which metre?",
+          "front": "Name the metre: 11 syllables · ta ta ja ga ga",
           "options": [
             "indravajrā",
             "upendravajrā",
@@ -20,7 +20,7 @@
         {
           "id": "21-chandas-ii:metre:upendravajra",
           "type": "choice",
-          "front": "11 syllables · ja ta ja ga ga — which metre?",
+          "front": "Name the metre: 11 syllables · ja ta ja ga ga",
           "options": [
             "upendravajrā",
             "indravajrā",
@@ -33,7 +33,7 @@
         {
           "id": "21-chandas-ii:metre:vasantatilaka",
           "type": "choice",
-          "front": "14 syllables · ta bha ja ja ga ga — which metre?",
+          "front": "Name the metre: 14 syllables · ta bha ja ja ga ga",
           "options": [
             "vasantatilakā",
             "mālinī",
@@ -46,7 +46,7 @@
         {
           "id": "21-chandas-ii:metre:malini",
           "type": "choice",
-          "front": "15 syllables · na na ma ya ya — which metre?",
+          "front": "Name the metre: 15 syllables · na na ma ya ya",
           "options": [
             "mālinī",
             "vasantatilakā",

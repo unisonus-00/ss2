@@ -194,7 +194,8 @@ Application code lives in `app/`; **edit there, never in `dist/`**. Curriculum
 content lives beside its lesson:
 
 ```
-app/index.html         markup only — ~175 lines, no card data
+app/index.html         markup only — ~190 lines, no card data
+app/logo.svg           the brand mark, inlined by the build
 app/styles.css
 app/app.js
 scripts/build.js       discovers, validates and inlines -> dist/abhyasah.html
@@ -203,8 +204,8 @@ NN-lesson/practice.json   the lesson's curated practice
 practice.json             cross-cutting practice, beside 00-overview.md
 ```
 
-`node scripts/build.js` inlines the CSS, the JS, and every `practice.json` into
-one file. `--check` builds in memory and fails if `dist/` is stale, without
+`node scripts/build.js` inlines the CSS, the JS, the mark, and every
+`practice.json` into one file. `--check` builds in memory and fails if `dist/` is stale, without
 writing.
 
 Practice files are **discovered, not listed** — any numbered lesson directory
@@ -221,6 +222,38 @@ among them, a `sequence` whose answer uses pieces absent from `parts`, a
 is never loaded. It then scans its own output for `<script src>`, `fetch`,
 `@import`, remote `url()` and the like, so an accidental network dependency
 fails the build rather than shipping.
+
+### The practice screen
+
+The exercise is the page. Everything above the card is small, left-aligned on
+the card's own edge, and adds up to about 140px on a 390px phone — a test
+asserts the card starts within 165px, because this is the kind of thing that
+creeps back.
+
+```
+[◎] अभ्यासः                  ⇄ word → meaning   ☑ IAST
+    abhyāsaḥ
+☰ Sandhi · Practice ›
+GOODNESS NAMES              14 LEFT  1 LEARNED  0 MISSED
+┌──────────────────────────────────────────────────────┐
+│                     the card                          │
+```
+
+- **The branding is top-left and secondary.** A 30px mark and the name in two
+  small lines, in the same row as the direction and IAST controls, so it costs
+  no height of its own. There is no centred logo during practice; a test
+  asserts there is no `h1` at all.
+- **The mark is `app/logo.svg`**, drawn rather than embedded so it stays a few
+  hundred bytes, scales, and takes the palette through `currentColor`. The
+  build inlines it at the `<!--logo-->` placeholder — a separate source file to
+  edit, one file to ship. Replace the file and the build picks it up.
+- **The selector gets a row to itself.** Sharing one with the tally clipped the
+  list name to an ellipsis on a phone, and the list name is the point of it.
+- **The tally is one line**, paired with the deck's descriptor. It was three
+  stacked blocks taller than everything around them; it is status, not the
+  exercise.
+- **Branding is out of the drawer.** Navigation stays functional and compact,
+  and a test asserts the drawer holds neither the name nor the mark.
 
 ### Navigation and progress
 
@@ -323,6 +356,22 @@ A card with no `type` is `reveal`. `choice` adds `front`, `options`, `answer`;
   "source": "workbook A2"
 }
 ```
+
+**A prompt names the task, then the item.** `Split: jagan nāthaḥ`, not
+`jagan nāthaḥ came from ?`. The learner is mid-round and reading fast; the
+operation should be the first thing on the card and the item the thing they
+dwell on. Three shapes are allowed and `scripts/test.js` asserts that every
+`choice` card is one of them:
+
+| | |
+|:--|:--|
+| a task label and its item | `Change to 1st singular: namati` |
+| a direct question | `Which vibhakti is NOT a kāraka?` |
+| a meaning over a frame | `"I bow to Rāma"` ⏎ `___ namāmi` |
+
+The label stays short — five words at most where an item follows it — so the
+item is what gets read. A prompt that *ends* at its colon is a lead-in to the
+options and is a sentence by design, so the length rule does not apply to it.
 
 **`choice` is one renderer, not one per lesson.** Recognition ("which
 analysis?") and controlled transformation ("make it 'I'") differ only in the

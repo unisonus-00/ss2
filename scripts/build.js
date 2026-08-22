@@ -30,6 +30,10 @@ const read = f => fs.readFileSync(path.join(APP, f), 'utf8');
 const LINK = '<link rel="stylesheet" href="styles.css">';
 const SCRIPT = '<script src="app.js"></script>';
 const PRACTICE = /<script id="practice" type="application\/json">[\s\S]*?<\/script>/;
+/* The brand mark is a separate source file so it can be redrawn or replaced
+   without touching the markup, and is inlined here — the distributable has to
+   stay one file with nothing to fetch. */
+const LOGO = '<!--logo-->';
 
 const CARD_TYPES = new Set(['reveal', 'choice', 'sequence']);
 
@@ -195,6 +199,7 @@ function build() {
   for (const [tag, file, open, close] of [
     [LINK, 'styles.css', '<style>', '</style>'],
     [SCRIPT, 'app.js', '<script>', '</script>'],
+    [LOGO, 'logo.svg', '', ''],
   ]) {
     if (!html.includes(tag)) throw new Error(`index.html has no ${tag}`);
     if (html.indexOf(tag) !== html.lastIndexOf(tag)) {

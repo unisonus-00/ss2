@@ -7,7 +7,7 @@
         {
           "id": "04-guna:agree:sundara-m",
           "type": "choice",
-          "front": "sundara + devaḥ (m.) → ?",
+          "front": "Make it agree: sundara + devaḥ (m.)",
           "options": [
             "sundaraḥ devaḥ",
             "sundarī devaḥ",
@@ -20,7 +20,7 @@
         {
           "id": "04-guna:agree:sundara-f",
           "type": "choice",
-          "front": "sundara + devī (f.) → ?",
+          "front": "Make it agree: sundara + devī (f.)",
           "options": [
             "sundarī devī",
             "sundarā devī",
@@ -33,7 +33,7 @@
         {
           "id": "04-guna:agree:sundara-n",
           "type": "choice",
-          "front": "sundara + phalam (n.) → ?",
+          "front": "Make it agree: sundara + phalam (n.)",
           "options": [
             "sundaram phalam",
             "sundaraḥ phalam",
@@ -46,7 +46,7 @@
         {
           "id": "04-guna:agree:divya-f",
           "type": "choice",
-          "front": "divya + mūrtiḥ (f.) → ?",
+          "front": "Make it agree: divya + mūrtiḥ (f.)",
           "options": [
             "divyā mūrtiḥ",
             "divyī mūrtiḥ",
@@ -59,7 +59,7 @@
         {
           "id": "04-guna:agree:divya-n",
           "type": "choice",
-          "front": "divya + mandiram (n.) → ?",
+          "front": "Make it agree: divya + mandiram (n.)",
           "options": [
             "divyam mandiram",
             "divyā mandiram",
@@ -72,7 +72,7 @@
         {
           "id": "04-guna:agree:divya-m",
           "type": "choice",
-          "front": "divya + dīpaḥ (m.) → ?",
+          "front": "Make it agree: divya + dīpaḥ (m.)",
           "options": [
             "divyaḥ dīpaḥ",
             "divyā dīpaḥ",
@@ -85,7 +85,7 @@
         {
           "id": "04-guna:agree:parama-f",
           "type": "choice",
-          "front": "parama + śaktiḥ (f.) → ?",
+          "front": "Make it agree: parama + śaktiḥ (f.)",
           "options": [
             "paramā śaktiḥ",
             "parama śaktiḥ",
@@ -98,7 +98,7 @@
         {
           "id": "04-guna:fem:sundara-rule",
           "type": "choice",
-          "front": "Which feminine does sundara take?",
+          "front": "Feminine of sundara:",
           "options": [
             "sundarī",
             "sundarā",

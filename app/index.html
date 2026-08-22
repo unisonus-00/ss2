@@ -8,9 +8,27 @@
 </head>
 <body>
 
-<!-- The selector sits on the left, aligned with the card below it, rather
-     than centred in the header the way the old dropdown was. -->
+<!-- The branding sits with the navigation at the top left, small.  During
+     practice the exercise should dominate, so there is no centred logo: the
+     mark, the name, the list in play and the running tally together take
+     about a third of the height the centred header used to. -->
 <div class="topbar">
+  <div class="brand">
+    <!--logo-->
+    <span class="wordmark">
+      <b class="wm-dn">अभ्यासः</b>
+      <i class="wm-iast">abhyāsaḥ</i>
+    </span>
+  </div>
+  <div class="controls">
+    <button id="dir" title="Tap to reverse"><span class="swap" aria-hidden="true">⇄</span><span id="dir-label">word → meaning</span></button>
+    <label class="check" for="iast-on"><input type="checkbox" id="iast-on" checked> IAST</label>
+  </div>
+</div>
+
+<!-- What is in play.  Its own row: sharing one with the tally squeezed the
+     list name to an ellipsis on a phone, and the list name is the point. -->
+<div class="nowbar">
   <button id="nav" class="navbtn" aria-haspopup="dialog" aria-expanded="false" aria-controls="drawer">
     <span class="bars" aria-hidden="true"></span>
     <span id="nav-label">lists</span>
@@ -18,22 +36,17 @@
   </button>
 </div>
 
-<header>
-  <h1>अभ्यासः</h1>
-  <div class="sub">abhyāsaḥ</div>
-  <div class="controls">
-    <button id="dir" title="Tap to reverse"><span class="swap" aria-hidden="true">⇄</span><span id="dir-label">word → meaning</span></button>
-    <label class="check" for="iast-on"><input type="checkbox" id="iast-on" checked> IAST</label>
-  </div>
+<!-- What the list is, and how the round is going.  Wraps to two lines only
+     where it has to. -->
+<div class="statusbar">
   <div class="stage" id="stage"></div>
-  <button id="pile" class="pilebtn" hidden></button>
-</header>
-
-<div class="tally" id="tally">
-  <span>Left<b id="t-left">0</b></span>
-  <span>Learned<b id="t-knew">0</b></span>
-  <span class="miss">To review<b id="t-miss">0</b></span>
+  <div class="tally" id="tally">
+    <span><b id="t-left">0</b>left</span>
+    <span><b id="t-knew">0</b>learned</span>
+    <span class="miss"><b id="t-miss">0</b>missed</span>
+  </div>
 </div>
+<button id="pile" class="pilebtn" hidden></button>
 
 <div class="panel">
   <div class="card" id="card" tabindex="0" role="button" aria-label="Show meaning">
@@ -130,7 +143,6 @@
 <nav class="drawer" id="drawer" role="dialog" aria-modal="true"
      aria-label="Lists and progress" hidden>
   <div class="dr-top">
-    <div class="dr-title">abhyāsaḥ</div>
     <button id="dr-close" class="dr-x" aria-label="Close">×</button>
   </div>
 

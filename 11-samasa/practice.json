@@ -7,7 +7,7 @@
         {
           "id": "11-samasa:type:nilakantha",
           "type": "choice",
-          "front": "nīlakaṇṭha — which compound?",
+          "front": "Name the compound: nīlakaṇṭha",
           "options": [
             "bahuvrīhi",
             "karmadhāraya",
@@ -20,7 +20,7 @@
         {
           "id": "11-samasa:type:mahadeva",
           "type": "choice",
-          "front": "mahādeva — which compound?",
+          "front": "Name the compound: mahādeva",
           "options": [
             "karmadhāraya",
             "bahuvrīhi",
@@ -33,7 +33,7 @@
         {
           "id": "11-samasa:type:rama-laksmanau",
           "type": "choice",
-          "front": "rāma-lakṣmaṇau — which compound?",
+          "front": "Name the compound: rāma-lakṣmaṇau",
           "options": [
             "dvandva",
             "dvigu",
@@ -46,7 +46,7 @@
         {
           "id": "11-samasa:type:rajaputra",
           "type": "choice",
-          "front": "rāja-putra — which compound?",
+          "front": "Name the compound: rāja-putra",
           "options": [
             "tatpuruṣa",
             "bahuvrīhi",
@@ -59,7 +59,7 @@
         {
           "id": "11-samasa:type:triloka",
           "type": "choice",
-          "front": "tri-loka — which compound?",
+          "front": "Name the compound: tri-loka",
           "options": [
             "dvigu",
             "dvandva",
@@ -72,7 +72,7 @@
         {
           "id": "11-samasa:type:pratidinam",
           "type": "choice",
-          "front": "prati-dinam — which compound?",
+          "front": "Name the compound: prati-dinam",
           "options": [
             "avyayībhāva",
             "tatpuruṣa",
@@ -85,7 +85,7 @@
         {
           "id": "11-samasa:type:caturbhuja",
           "type": "choice",
-          "front": "caturbhuja — which compound?",
+          "front": "Name the compound: caturbhuja",
           "options": [
             "bahuvrīhi",
             "dvigu",
@@ -98,7 +98,7 @@
         {
           "id": "11-samasa:type:pitambara",
           "type": "choice",
-          "front": "pīta-ambara — which compound?",
+          "front": "Name the compound: pīta-ambara",
           "options": [
             "bahuvrīhi",
             "karmadhāraya",
@@ -111,7 +111,7 @@
         {
           "id": "11-samasa:vibhakti:vanavasa",
           "type": "choice",
-          "front": "vana-vāsa unpacks with which vibhakti?",
+          "front": "Which vibhakti unpacks vana-vāsa?",
           "options": [
             "saptamī",
             "ṣaṣṭhī",
@@ -124,7 +124,7 @@
         {
           "id": "11-samasa:vibhakti:devadatta",
           "type": "choice",
-          "front": "deva-datta unpacks with which vibhakti?",
+          "front": "Which vibhakti unpacks deva-datta?",
           "options": [
             "tṛtīyā",
             "caturthī",
@@ -137,7 +137,7 @@
         {
           "id": "11-samasa:vibhakti:yajnasala",
           "type": "choice",
-          "front": "yajña-śālā unpacks with which vibhakti?",
+          "front": "Which vibhakti unpacks yajña-śālā?",
           "options": [
             "caturthī",
             "saptamī",

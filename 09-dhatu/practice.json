@@ -7,7 +7,7 @@
         {
           "id": "09-dhatu:suffix:gam-ktva",
           "type": "choice",
-          "front": "√gam + ktvā → ?",
+          "front": "Build: √gam + ktvā",
           "options": [
             "gatvā",
             "gantum",
@@ -20,7 +20,7 @@
         {
           "id": "09-dhatu:suffix:gam-tumun",
           "type": "choice",
-          "front": "√gam + tumun → ?",
+          "front": "Build: √gam + tumun",
           "options": [
             "gantum",
             "gatvā",
@@ -33,7 +33,7 @@
         {
           "id": "09-dhatu:suffix:gam-kta",
           "type": "choice",
-          "front": "√gam + kta → ?",
+          "front": "Build: √gam + kta",
           "options": [
             "gataḥ",
             "gatavān",
@@ -46,7 +46,7 @@
         {
           "id": "09-dhatu:suffix:kr-trc",
           "type": "choice",
-          "front": "√kṛ + tṛc → ?",
+          "front": "Build: √kṛ + tṛc",
           "options": [
             "kartā",
             "kartavyam",
@@ -59,7 +59,7 @@
         {
           "id": "09-dhatu:suffix:kr-tavya",
           "type": "choice",
-          "front": "√kṛ + tavya → ?",
+          "front": "Build: √kṛ + tavya",
           "options": [
             "kartavyam",
             "kartā",
@@ -72,7 +72,7 @@
         {
           "id": "09-dhatu:suffix:agam-lyap",
           "type": "choice",
-          "front": "ā-√gam + lyap → ?",
+          "front": "Build: ā-√gam + lyap",
           "options": [
             "āgatya",
             "āgatvā",
@@ -85,7 +85,7 @@
         {
           "id": "09-dhatu:suffix:dhana-matup",
           "type": "choice",
-          "front": "dhana + matup → ?",
+          "front": "Build: dhana + matup",
           "options": [
             "dhanavān",
             "dhanatvam",
@@ -98,7 +98,7 @@
         {
           "id": "09-dhatu:suffix:guru-tva",
           "type": "choice",
-          "front": "guru + tva → ?",
+          "front": "Build: guru + tva",
           "options": [
             "gurutvam",
             "gurutaraḥ",
@@ -111,7 +111,7 @@
         {
           "id": "09-dhatu:suffix:patu-tarap",
           "type": "choice",
-          "front": "paṭu + tarap → ?",
+          "front": "Build: paṭu + tarap",
           "options": [
             "paṭutaraḥ",
             "paṭutamaḥ",
@@ -124,7 +124,7 @@
         {
           "id": "09-dhatu:suffix:patu-tamap",
           "type": "choice",
-          "front": "paṭu + tamap → ?",
+          "front": "Build: paṭu + tamap",
           "options": [
             "paṭutamaḥ",
             "paṭutaraḥ",
@@ -137,7 +137,7 @@
         {
           "id": "09-dhatu:suffix:krt-vs-taddhita",
           "type": "choice",
-          "front": "A suffix put on a finished word rather than a root is called?",
+          "front": "A suffix added to a finished stem, not a root:",
           "options": [
             "taddhita",
             "kṛt",

@@ -7,7 +7,7 @@
         {
           "id": "06-kriya:person:nam-1sg",
           "type": "choice",
-          "front": "namati → make it “I”",
+          "front": "Change to 1st singular: namati",
           "options": [
             "namāmi",
             "namasi",
@@ -20,7 +20,7 @@
         {
           "id": "06-kriya:person:puj-3sg",
           "type": "choice",
-          "front": "pūjayāmi → make it “he/she”",
+          "front": "Change to 3rd singular: pūjayāmi",
           "options": [
             "pūjayati",
             "pūjayasi",
@@ -33,7 +33,7 @@
         {
           "id": "06-kriya:person:gam-2sg",
           "type": "choice",
-          "front": "gacchati → make it “you”",
+          "front": "Change to 2nd singular: gacchati",
           "options": [
             "gacchasi",
             "gacchāmi",
@@ -46,7 +46,7 @@
         {
           "id": "06-kriya:person:bhaj-1sg",
           "type": "choice",
-          "front": "bhajati → make it “I”",
+          "front": "Change to 1st singular: bhajati",
           "options": [
             "bhajāmi",
             "bhajasi",
@@ -59,7 +59,7 @@
         {
           "id": "06-kriya:person:smr-2sg",
           "type": "choice",
-          "front": "smarati → make it “you”",
+          "front": "Change to 2nd singular: smarati",
           "options": [
             "smarasi",
             "smarāmi",
@@ -72,7 +72,7 @@
         {
           "id": "06-kriya:person:drs-3pl",
           "type": "choice",
-          "front": "paśyati → make it “they”",
+          "front": "Change to 3rd plural: paśyati",
           "options": [
             "paśyanti",
             "paśyataḥ",
@@ -85,7 +85,7 @@
         {
           "id": "06-kriya:person:da-1sg",
           "type": "choice",
-          "front": "dadāti → make it “I”",
+          "front": "Change to 1st singular: dadāti",
           "options": [
             "dadāmi",
             "dadāsi",
@@ -98,7 +98,7 @@
         {
           "id": "06-kriya:parse:namami",
           "type": "choice",
-          "front": "namāmi — which analysis?",
+          "front": "Parse: namāmi",
           "options": [
             "1 sg. present",
             "3 sg. present",
@@ -111,7 +111,7 @@
         {
           "id": "06-kriya:parse:gacchasi",
           "type": "choice",
-          "front": "gacchasi — which analysis?",
+          "front": "Parse: gacchasi",
           "options": [
             "2 sg. present",
             "1 sg. present",
@@ -124,7 +124,7 @@
         {
           "id": "06-kriya:parse:raksantu",
           "type": "choice",
-          "front": "rakṣantu — which analysis?",
+          "front": "Parse: rakṣantu",
           "options": [
             "3 pl. imperative",
             "3 pl. present",
@@ -137,7 +137,7 @@
         {
           "id": "06-kriya:parse:abhavat",
           "type": "choice",
-          "front": "abhavat — which analysis?",
+          "front": "Parse: abhavat",
           "options": [
             "3 sg. past",
             "3 sg. present",
@@ -150,7 +150,7 @@
         {
           "id": "06-kriya:past:nam-1sg",
           "type": "choice",
-          "front": "namāmi → put it in the past",
+          "front": "Change to past tense: namāmi",
           "options": [
             "anamam",
             "anamat",
@@ -163,7 +163,7 @@
         {
           "id": "06-kriya:past:puj-3sg",
           "type": "choice",
-          "front": "pūjayati → put it in the past",
+          "front": "Change to past tense: pūjayati",
           "options": [
             "apūjayat",
             "apūjayam",
@@ -176,7 +176,7 @@
         {
           "id": "06-kriya:past:gam-1sg",
           "type": "choice",
-          "front": "gacchāmi → put it in the past",
+          "front": "Change to past tense: gacchāmi",
           "options": [
             "agaccham",
             "agacchat",
@@ -189,7 +189,7 @@
         {
           "id": "06-kriya:past:raks-3pl",
           "type": "choice",
-          "front": "rakṣanti → put it in the past",
+          "front": "Change to past tense: rakṣanti",
           "options": [
             "arakṣan",
             "arakṣat",
@@ -202,7 +202,7 @@
         {
           "id": "06-kriya:past:bhu-2sg",
           "type": "choice",
-          "front": "bhavasi → put it in the past",
+          "front": "Change to past tense: bhavasi",
           "options": [
             "abhavaḥ",
             "abhavat",
@@ -215,7 +215,7 @@
         {
           "id": "06-kriya:imperative:raks-2sg",
           "type": "choice",
-          "front": "rakṣati → “protect!” (to one person)",
+          "front": "Change to imperative, 2nd singular: rakṣati",
           "options": [
             "rakṣa",
             "rakṣatu",
@@ -228,7 +228,7 @@
         {
           "id": "06-kriya:imperative:puj-3sg",
           "type": "choice",
-          "front": "pūjayati → “let him worship”",
+          "front": "Change to imperative, 3rd singular: pūjayati",
           "options": [
             "pūjayatu",
             "pūjaya",
@@ -241,7 +241,7 @@
         {
           "id": "06-kriya:imperative:bhu-3pl",
           "type": "choice",
-          "front": "bhavanti → “let them be”",
+          "front": "Change to imperative, 3rd plural: bhavanti",
           "options": [
             "bhavantu",
             "bhavatu",
@@ -254,7 +254,7 @@
         {
           "id": "06-kriya:optative:puj-3sg",
           "type": "choice",
-          "front": "pūjayati → “one should worship”",
+          "front": "Change to optative, 3rd singular: pūjayati",
           "options": [
             "pūjayet",
             "pūjayeyam",
@@ -267,7 +267,7 @@
         {
           "id": "06-kriya:optative:raks-1sg",
           "type": "choice",
-          "front": "rakṣati → “I should protect”",
+          "front": "Change to optative, 1st singular: rakṣati",
           "options": [
             "rakṣeyam",
             "rakṣet",

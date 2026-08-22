@@ -7,7 +7,7 @@
         {
           "id": "03-sandhi:join:nara-indrah",
           "type": "choice",
-          "front": "nara + indraḥ → ?",
+          "front": "Join: nara + indraḥ",
           "options": [
             "narendraḥ",
             "narīndraḥ",
@@ -20,7 +20,7 @@
         {
           "id": "03-sandhi:join:kavi-indrah",
           "type": "choice",
-          "front": "kavi + indraḥ → ?",
+          "front": "Join: kavi + indraḥ",
           "options": [
             "kavīndraḥ",
             "kavendraḥ",
@@ -33,7 +33,7 @@
         {
           "id": "03-sandhi:join:maha-utsavah",
           "type": "choice",
-          "front": "mahā + utsavaḥ → ?",
+          "front": "Join: mahā + utsavaḥ",
           "options": [
             "mahotsavaḥ",
             "mahautsavaḥ",
@@ -46,7 +46,7 @@
         {
           "id": "03-sandhi:join:maha-rsih",
           "type": "choice",
-          "front": "mahā + ṛṣiḥ → ?",
+          "front": "Join: mahā + ṛṣiḥ",
           "options": [
             "maharṣiḥ",
             "mahārṣiḥ",
@@ -59,7 +59,7 @@
         {
           "id": "03-sandhi:join:vidya-alayah",
           "type": "choice",
-          "front": "vidyā + ālayaḥ → ?",
+          "front": "Join: vidyā + ālayaḥ",
           "options": [
             "vidyālayaḥ",
             "vidyelayaḥ",
@@ -72,7 +72,7 @@
         {
           "id": "03-sandhi:join:sada-eva",
           "type": "choice",
-          "front": "sadā + eva → ?",
+          "front": "Join: sadā + eva",
           "options": [
             "sadaiva",
             "sadeva",
@@ -85,7 +85,7 @@
         {
           "id": "03-sandhi:join:jala-oghah",
           "type": "choice",
-          "front": "jala + oghaḥ → ?",
+          "front": "Join: jala + oghaḥ",
           "options": [
             "jalaughaḥ",
             "jaloghaḥ",
@@ -98,7 +98,7 @@
         {
           "id": "03-sandhi:join:prati-ekam",
           "type": "choice",
-          "front": "prati + ekam → ?",
+          "front": "Join: prati + ekam",
           "options": [
             "pratyekam",
             "pratekam",
@@ -111,7 +111,7 @@
         {
           "id": "03-sandhi:join:su-agatam",
           "type": "choice",
-          "front": "su + āgatam → ?",
+          "front": "Join: su + āgatam",
           "options": [
             "svāgatam",
             "sāgatam",
@@ -124,7 +124,7 @@
         {
           "id": "03-sandhi:join:sat-cit",
           "type": "choice",
-          "front": "sat + cit → ?",
+          "front": "Join: sat + cit",
           "options": [
             "sac cit",
             "sat cit",
@@ -137,7 +137,7 @@
         {
           "id": "03-sandhi:join:ramas-sete",
           "type": "choice",
-          "front": "rāmas + śete → ?",
+          "front": "Join: rāmas + śete",
           "options": [
             "rāmaś śete",
             "rāmas śete",
@@ -150,7 +150,7 @@
         {
           "id": "03-sandhi:join:vak-isah",
           "type": "choice",
-          "front": "vāk + īśaḥ → ?",
+          "front": "Join: vāk + īśaḥ",
           "options": [
             "vāg īśaḥ",
             "vāk īśaḥ",
@@ -163,7 +163,7 @@
         {
           "id": "03-sandhi:join:vak-mayam",
           "type": "choice",
-          "front": "vāk + mayam → ?",
+          "front": "Join: vāk + mayam",
           "options": [
             "vāṅ mayam",
             "vāg mayam",
@@ -176,7 +176,7 @@
         {
           "id": "03-sandhi:join:sat-mukhah",
           "type": "choice",
-          "front": "ṣaṭ + mukhaḥ → ?",
+          "front": "Join: ṣaṭ + mukhaḥ",
           "options": [
             "ṣaṇ mukhaḥ",
             "ṣaḍ mukhaḥ",
@@ -189,7 +189,7 @@
         {
           "id": "03-sandhi:join:krsnam-vande",
           "type": "choice",
-          "front": "kṛṣṇam + vande → ?",
+          "front": "Join: kṛṣṇam + vande",
           "options": [
             "kṛṣṇaṁ vande",
             "kṛṣṇam vande",
@@ -202,7 +202,7 @@
         {
           "id": "03-sandhi:join:ramah-hasati",
           "type": "choice",
-          "front": "rāmaḥ + hasati → ?",
+          "front": "Join: rāmaḥ + hasati",
           "options": [
             "rāmo hasati",
             "rāmar hasati",
@@ -215,7 +215,7 @@
         {
           "id": "03-sandhi:join:ramah-tatra",
           "type": "choice",
-          "front": "rāmaḥ + tatra → ?",
+          "front": "Join: rāmaḥ + tatra",
           "options": [
             "rāmas tatra",
             "rāmo tatra",
@@ -228,7 +228,7 @@
         {
           "id": "03-sandhi:join:ramah-ca",
           "type": "choice",
-          "front": "rāmaḥ + ca → ?",
+          "front": "Join: rāmaḥ + ca",
           "options": [
             "rāmaś ca",
             "rāmas ca",
@@ -241,7 +241,7 @@
         {
           "id": "03-sandhi:join:munih-agatah",
           "type": "choice",
-          "front": "muniḥ + āgataḥ → ?",
+          "front": "Join: muniḥ + āgataḥ",
           "options": [
             "munir āgataḥ",
             "munio āgataḥ",
@@ -254,7 +254,7 @@
         {
           "id": "03-sandhi:join:devah-vadanti",
           "type": "choice",
-          "front": "devāḥ + vadanti → ?",
+          "front": "Join: devāḥ + vadanti",
           "options": [
             "devā vadanti",
             "devo vadanti",
@@ -267,7 +267,7 @@
         {
           "id": "03-sandhi:split:narendrah",
           "type": "choice",
-          "front": "narendraḥ came from ?",
+          "front": "Split: narendraḥ",
           "options": [
             "nara + indraḥ",
             "naram + indraḥ",
@@ -280,7 +280,7 @@
         {
           "id": "03-sandhi:split:pratyekam",
           "type": "choice",
-          "front": "pratyekam came from ?",
+          "front": "Split: pratyekam",
           "options": [
             "prati + ekam",
             "prati + akam",
@@ -293,7 +293,7 @@
         {
           "id": "03-sandhi:split:gurupadesah",
           "type": "choice",
-          "front": "gurūpadeśaḥ came from ?",
+          "front": "Split: gurūpadeśaḥ",
           "options": [
             "guru + upadeśaḥ",
             "guru + padeśaḥ",
@@ -306,7 +306,7 @@
         {
           "id": "03-sandhi:split:jagannathah",
           "type": "choice",
-          "front": "jagan nāthaḥ came from ?",
+          "front": "Split: jagan nāthaḥ",
           "options": [
             "jagat + nāthaḥ",
             "jagam + nāthaḥ",
@@ -319,7 +319,7 @@
         {
           "id": "03-sandhi:split:vanmayam",
           "type": "choice",
-          "front": "vāṅ mayam came from ?",
+          "front": "Split: vāṅ mayam",
           "options": [
             "vāk + mayam",
             "vāt + mayam",
@@ -332,7 +332,7 @@
         {
           "id": "03-sandhi:name:rama-isah",
           "type": "choice",
-          "front": "rāma + īśaḥ → rāmeśaḥ. Which sandhi?",
+          "front": "Name the sandhi: rāma + īśaḥ → rāmeśaḥ",
           "options": [
             "guṇa",
             "savarṇadīrgha",
@@ -345,7 +345,7 @@
         {
           "id": "03-sandhi:name:iti-uvaca",
           "type": "choice",
-          "front": "iti + uvāca → ityuvāca. Which sandhi?",
+          "front": "Name the sandhi: iti + uvāca → ityuvāca",
           "options": [
             "yan",
             "guṇa",
@@ -358,7 +358,7 @@
         {
           "id": "03-sandhi:name:krsnam-vande",
           "type": "choice",
-          "front": "kṛṣṇaṁ vande. Which sandhi?",
+          "front": "Name the sandhi: kṛṣṇaṁ vande",
           "options": [
             "anusvāra",
             "anunāsika",
@@ -371,7 +371,7 @@
         {
           "id": "03-sandhi:name:balakas-tiksnah",
           "type": "choice",
-          "front": "bālakaḥ + tīkṣṇaḥ → bālakas tīkṣṇaḥ. Which sandhi?",
+          "front": "Name the sandhi: bālakaḥ + tīkṣṇaḥ → bālakas tīkṣṇaḥ",
           "options": [
             "sakārādeśa",
             "ukārādeśa",
@@ -384,7 +384,7 @@
         {
           "id": "03-sandhi:category:visarga",
           "type": "choice",
-          "front": "Sandhi that changes a visarga belongs to which category?",
+          "front": "Which category: sandhi that changes a visarga",
           "options": [
             "viśeṣa (visarga) sandhi",
             "ac (svara) sandhi",
@@ -397,7 +397,7 @@
         {
           "id": "03-sandhi:category:yan",
           "type": "choice",
-          "front": "Yan, guṇa and vṛddhi all belong to which category?",
+          "front": "Which category: yan, guṇa, vṛddhi",
           "options": [
             "ac (svara) sandhi",
             "hal (vyañjana) sandhi",

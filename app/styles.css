@@ -18,26 +18,45 @@
     font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia,
                  "Noto Serif Devanagari", "Kohinoor Devanagari", serif;
     display: flex; flex-direction: column; align-items: center;
-    padding: 1.5rem 1rem 3rem;
+    padding: .9rem 1rem 3rem;
   }
-  header { text-align: center; margin-bottom: 1.1rem; }
-  h1 { font-size: 1.6rem; font-weight: 500; margin: 0 0 .4rem;
-       font-family: "Noto Serif Devanagari", "Kohinoor Devanagari", serif; }
-  /* left lowercase: IAST is written lowercase, and at this size an
-     uppercased ṚḤ hides its own underdots */
-  .sub { font-size: .88rem; letter-spacing: .22em; font-style: italic; color: var(--faded); }
-  /* The selector, left-aligned with the card rather than centred in the
-     header: it is a way in to the drawer, not a title.  Its own row, so its
-     width follows the list it names instead of a fixed picker width. */
-  .topbar { width: 100%; max-width: 440px; display: flex; margin-bottom: 1rem; }
+  /* Everything above the card shares the card's width, so the brand, the
+     selector and the caption all line up on its left edge. */
+  .topbar, .nowbar, .statusbar { width: 100%; max-width: 440px; }
+  /* space-between rather than an auto margin on the controls: when the row
+     is too narrow for both — a 320px phone — the controls wrap to their own
+     line and start at the left edge instead of hanging off the right. */
+  .topbar { display: flex; align-items: center; justify-content: space-between;
+            gap: .5rem 1rem; flex-wrap: wrap; margin-bottom: .7rem; }
+
+  /* Present, but secondary to the exercise: about a fifth of the height the
+     centred header took, and never in the way of the card. */
+  .brand { display: flex; align-items: center; gap: .55rem; color: var(--leaf); }
+  .brand .mark { flex: none; width: 30px; height: 30px; opacity: .92; }
+  .wordmark { display: flex; flex-direction: column; line-height: 1.15; }
+  .wm-dn { font-weight: 500; font-size: 1.02rem;
+           font-family: "Noto Serif Devanagari", "Kohinoor Devanagari", serif; }
+  /* left lowercase: IAST is written lowercase, and an uppercased ṚḤ hides
+     its own underdots */
+  .wm-iast { font-size: .62rem; letter-spacing: .18em; font-style: normal;
+             color: var(--faded); }
+
+  .nowbar { display: flex; margin-bottom: .1rem; }
+  /* the deck's descriptor on the left, the round's state on the right */
+  .statusbar { display: flex; align-items: baseline; justify-content: space-between;
+               gap: .3rem .9rem; flex-wrap: wrap; margin-bottom: .8rem; }
+  /* The selector, left-aligned with the card.  It is a way in to the drawer,
+     not a title, so it is a row control rather than a boxed imitation of the
+     dropdown it replaced — the border would only add height here. */
   .navbtn {
-    display: inline-flex; align-items: center; gap: .55rem;
-    max-width: 100%; min-height: 44px; padding: .45rem .75rem .45rem .65rem;
+    display: inline-flex; align-items: center; gap: .5rem;
+    min-width: 0; min-height: 44px; padding: .35rem .4rem .35rem 0;
     background: transparent; color: var(--leaf);
-    border: 1px solid rgba(125,112,92,.55); border-radius: 2px;
-    font-family: inherit; font-size: .88rem; text-align: left; cursor: pointer;
+    border: 0; border-radius: 2px;
+    font-family: inherit; font-size: .95rem; text-align: left; cursor: pointer;
   }
-  .navbtn:hover { border-color: var(--faded); }
+  .navbtn:hover { color: var(--leaf); }
+  .navbtn:hover .bars, .navbtn:hover .nav-caret { border-color: var(--leaf); }
   #nav-label { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .nav-caret {
     width: 5px; height: 5px; flex: none; margin-left: .05rem;
@@ -54,15 +73,15 @@
   .bars::before { top: 4px; }
   .bars::after { top: 9px; }
 
-  /* running tally */
+  /* Running tally, on one line: it is status, and it used to be three
+     stacked blocks taller than the selector beside it. */
   .tally {
-    display: flex; gap: 1.4rem; margin-bottom: .9rem;
-    font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; color: var(--faded);
+    display: flex; gap: .7rem; flex: none;
+    font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; color: var(--faded);
   }
-  .tally b { display: block; font-size: 1.15rem; font-weight: 500; letter-spacing: 0;
-             text-transform: none; color: var(--leaf); margin-top: .15rem; }
+  .tally b { font-size: .95rem; font-weight: 500; letter-spacing: 0;
+             text-transform: none; color: var(--leaf); margin-right: .25rem; }
   .tally .miss b { color: var(--kumkuma); }
-  .tally span { text-align: center; }
 
   .panel {
     width: 100%; max-width: 440px;
@@ -198,20 +217,21 @@
     padding: .6rem 1.3rem; border-radius: 2px; cursor: pointer;
     background: transparent; color: var(--leaf); border: 1px solid var(--faded);
   }
-  .controls { display: flex; gap: .9rem; justify-content: center;
-              align-items: center; flex-wrap: wrap; margin-top: .6rem; }
-  #dir { font-size: .76rem; letter-spacing: .06em; padding: .4rem .9rem;
+  .controls { display: flex; gap: .7rem;
+              align-items: center; flex-wrap: wrap; }
+  #dir { font-size: .7rem; letter-spacing: .05em; padding: .3rem .6rem;
          min-height: 36px; color: var(--leaf); }
   #dir .swap { color: var(--faded); margin-right: .4rem; }
-  .check { display: inline-flex; align-items: center; gap: .4rem;
-           min-height: 36px; padding: 0 .3rem;
-           font-size: .76rem; letter-spacing: .06em; color: var(--faded);
+  .check { display: inline-flex; align-items: center; gap: .35rem;
+           min-height: 36px; padding: 0 .2rem;
+           font-size: .7rem; letter-spacing: .05em; color: var(--faded);
            cursor: pointer; user-select: none; }
-  .check input { accent-color: var(--kumkuma); width: 17px; height: 17px;
+  .check input { accent-color: var(--kumkuma); width: 15px; height: 15px;
                  cursor: pointer; margin: 0; }
   .check:has(input:checked) { color: var(--leaf); }
   .check input:focus-visible { outline: 2px solid var(--kumkuma); outline-offset: 2px; }
-  .pilebtn { margin-top: .55rem; font-size: .78rem;
+  .pilebtn { margin-bottom: .8rem; font-size: .74rem; min-height: 38px;
+             padding: .4rem .9rem;
              color: #e2a08e; border-color: var(--kumkuma); }
   button:disabled { opacity: .45; cursor: default; }
 
@@ -226,9 +246,8 @@
   button.primary { border-color: var(--leaf); }
   button.miss { border-color: var(--kumkuma); color: #e2a08e; }
   button:focus-visible, .card:focus-visible { outline: 2px solid var(--kumkuma); outline-offset: 3px; }
-  .stage { margin-top: .5rem; font-size: .72rem; letter-spacing: .1em;
-           text-transform: uppercase; color: var(--faded);
-           max-width: 22rem; line-height: 1.6; }
+  .stage { font-size: .66rem; letter-spacing: .1em;
+           text-transform: uppercase; color: var(--faded); line-height: 1.55; }
   .validate { margin-top: 2.2rem; font-size: .7rem; letter-spacing: .1em;
               color: var(--faded); text-align: center; max-width: 440px; }
   .validate.bad { color: #e2a08e; }
@@ -349,11 +368,9 @@
     width: min(23rem, 90vw); overflow-y: auto; -webkit-overflow-scrolling: touch;
     background: #2b251e; border-right: 1px solid var(--faded);
     box-shadow: 6px 0 26px rgba(0,0,0,.45);
-    padding: 1rem .85rem 2.5rem;
+    padding: .45rem .85rem 2.5rem;
   }
-  .dr-top { display: flex; align-items: center; gap: .6rem; }
-  .dr-title { flex: 1; font-size: .9rem; font-style: italic;
-              letter-spacing: .18em; color: var(--faded); }
+  .dr-top { display: flex; justify-content: flex-end; }
   .dr-x { background: none; border: 0; color: var(--faded); font-size: 1.6rem;
           line-height: 1; width: 44px; height: 44px; cursor: pointer; padding: 0; }
   .dr-x:hover { color: var(--leaf); }

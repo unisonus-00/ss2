@@ -7,7 +7,7 @@
         {
           "id": "08-sambodhana:voc:siva",
           "type": "choice",
-          "front": "śivaḥ → direct address",
+          "front": "Change to vocative: śivaḥ",
           "options": [
             "he śiva!",
             "he śive!",
@@ -20,7 +20,7 @@
         {
           "id": "08-sambodhana:voc:devi",
           "type": "choice",
-          "front": "devī → direct address",
+          "front": "Change to vocative: devī",
           "options": [
             "he devi!",
             "he devī!",
@@ -33,7 +33,7 @@
         {
           "id": "08-sambodhana:voc:durga",
           "type": "choice",
-          "front": "durgā → direct address",
+          "front": "Change to vocative: durgā",
           "options": [
             "he durge!",
             "he durga!",
@@ -46,7 +46,7 @@
         {
           "id": "08-sambodhana:voc:visnu",
           "type": "choice",
-          "front": "viṣṇuḥ → direct address",
+          "front": "Change to vocative: viṣṇuḥ",
           "options": [
             "he viṣṇo!",
             "he viṣṇu!",
@@ -59,7 +59,7 @@
         {
           "id": "08-sambodhana:voc:agni",
           "type": "choice",
-          "front": "agniḥ → direct address",
+          "front": "Change to vocative: agniḥ",
           "options": [
             "he agne!",
             "he agno!",
@@ -72,7 +72,7 @@
         {
           "id": "08-sambodhana:voc:jagadamba",
           "type": "choice",
-          "front": "jagadambā → direct address",
+          "front": "Change to vocative: jagadambā",
           "options": [
             "he jagadambe!",
             "he jagadamba!",
@@ -85,7 +85,7 @@
         {
           "id": "08-sambodhana:voc:bhagavan",
           "type": "choice",
-          "front": "bhagavān → direct address",
+          "front": "Change to vocative: bhagavān",
           "options": [
             "he bhagavan!",
             "he bhagavān!",
@@ -98,7 +98,7 @@
         {
           "id": "08-sambodhana:voc:sundari",
           "type": "choice",
-          "front": "sundarī (devī) → direct address",
+          "front": "Change to vocative: sundarī (devī)",
           "options": [
             "he sundari!",
             "he sundare!",
@@ -111,7 +111,7 @@
         {
           "id": "08-sambodhana:rule:i-vs-u",
           "type": "choice",
-          "front": "Which ending does an i-stem take in the vocative?",
+          "front": "Vocative ending of an i-stem:",
           "options": [
             "-e, as agniḥ → agne",
             "-o, as agniḥ → agno",

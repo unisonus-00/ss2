@@ -7,7 +7,7 @@
         {
           "id": "07-karaka:role:bhaktah",
           "type": "choice",
-          "front": "bhaktaḥ devam pūjayati — what role does “bhaktaḥ” play?",
+          "front": "Role of bhaktaḥ:\nbhaktaḥ devam pūjayati",
           "options": [
             "kartā",
             "karma",
@@ -20,7 +20,7 @@
         {
           "id": "07-karaka:role:devam",
           "type": "choice",
-          "front": "bhaktaḥ devam pūjayati — what role does “devam” play?",
+          "front": "Role of devam:\nbhaktaḥ devam pūjayati",
           "options": [
             "karma",
             "kartā",
@@ -33,7 +33,7 @@
         {
           "id": "07-karaka:role:puspena",
           "type": "choice",
-          "front": "bhaktaḥ puṣpeṇa devam pūjayati — what role does “puṣpeṇa” play?",
+          "front": "Role of puṣpeṇa:\nbhaktaḥ puṣpeṇa devam pūjayati",
           "options": [
             "karaṇa",
             "kartā",
@@ -46,7 +46,7 @@
         {
           "id": "07-karaka:role:sivaya",
           "type": "choice",
-          "front": "bhaktaḥ śivāya namaḥ karoti — what role does “śivāya” play?",
+          "front": "Role of śivāya:\nbhaktaḥ śivāya namaḥ karoti",
           "options": [
             "sampradāna",
             "adhikaraṇa",
@@ -59,7 +59,7 @@
         {
           "id": "07-karaka:role:mandire",
           "type": "choice",
-          "front": "bhaktaḥ mandire pūjayati — what role does “mandire” play?",
+          "front": "Role of mandire:\nbhaktaḥ mandire pūjayati",
           "options": [
             "adhikaraṇa",
             "apādāna",
@@ -72,7 +72,7 @@
         {
           "id": "07-karaka:role:bhaktya",
           "type": "choice",
-          "front": "bhaktaḥ bhaktyā devāya puṣpam arpayati — what role does “bhaktyā” play?",
+          "front": "Role of bhaktyā:\nbhaktaḥ bhaktyā devāya puṣpam arpayati",
           "options": [
             "karaṇa",
             "sampradāna",
@@ -85,7 +85,7 @@
         {
           "id": "07-karaka:role:devaya-arpayati",
           "type": "choice",
-          "front": "bhaktaḥ bhaktyā devāya puṣpam arpayati — what role does “devāya” play?",
+          "front": "Role of devāya:\nbhaktaḥ bhaktyā devāya puṣpam arpayati",
           "options": [
             "sampradāna",
             "karma",
@@ -98,7 +98,7 @@
         {
           "id": "07-karaka:case:karana",
           "type": "choice",
-          "front": "Karaṇa is typically carried by which vibhakti?",
+          "front": "Which vibhakti carries karaṇa?",
           "options": [
             "tṛtīyā",
             "dvitīyā",
@@ -111,7 +111,7 @@
         {
           "id": "07-karaka:case:sampradana",
           "type": "choice",
-          "front": "Sampradāna is typically carried by which vibhakti?",
+          "front": "Which vibhakti carries sampradāna?",
           "options": [
             "caturthī",
             "tṛtīyā",
@@ -124,7 +124,7 @@
         {
           "id": "07-karaka:case:apadana",
           "type": "choice",
-          "front": "Apādāna is typically carried by which vibhakti?",
+          "front": "Which vibhakti carries apādāna?",
           "options": [
             "pañcamī",
             "saptamī",

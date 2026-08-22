@@ -7,7 +7,7 @@
         {
           "id": "05-rupa:parse:sivam",
           "type": "choice",
-          "front": "śivam — which vibhakti?",
+          "front": "Identify the case: śivam",
           "options": [
             "dvitīyā",
             "prathamā",
@@ -20,7 +20,7 @@
         {
           "id": "05-rupa:parse:devaya",
           "type": "choice",
-          "front": "devāya — which vibhakti?",
+          "front": "Identify the case: devāya",
           "options": [
             "caturthī",
             "ṣaṣṭhī",
@@ -33,7 +33,7 @@
         {
           "id": "05-rupa:parse:mandire",
           "type": "choice",
-          "front": "mandire — which vibhakti?",
+          "front": "Identify the case: mandire",
           "options": [
             "saptamī",
             "dvitīyā",
@@ -46,7 +46,7 @@
         {
           "id": "05-rupa:parse:puspena",
           "type": "choice",
-          "front": "puṣpeṇa — which vibhakti?",
+          "front": "Identify the case: puṣpeṇa",
           "options": [
             "tṛtīyā",
             "caturthī",
@@ -59,7 +59,7 @@
         {
           "id": "05-rupa:form:siva-acc",
           "type": "choice",
-          "front": "śivaḥ → accusative singular",
+          "front": "Change to accusative singular: śivaḥ",
           "options": [
             "śivam",
             "śivena",
@@ -72,7 +72,7 @@
         {
           "id": "05-rupa:form:mandira-loc",
           "type": "choice",
-          "front": "mandiram → locative singular",
+          "front": "Change to locative singular: mandiram",
           "options": [
             "mandire",
             "mandirasya",
@@ -85,7 +85,7 @@
         {
           "id": "05-rupa:form:mala-instr",
           "type": "choice",
-          "front": "mālā → instrumental singular",
+          "front": "Change to instrumental singular: mālā",
           "options": [
             "mālayā",
             "mālāyāḥ",
@@ -98,7 +98,7 @@
         {
           "id": "05-rupa:form:agni-dat",
           "type": "choice",
-          "front": "agniḥ → dative singular",
+          "front": "Change to dative singular: agniḥ",
           "options": [
             "agnaye",
             "agneḥ",
@@ -111,7 +111,7 @@
         {
           "id": "05-rupa:form:puspa-instr",
           "type": "choice",
-          "front": "puṣpam → instrumental singular",
+          "front": "Change to instrumental singular: puṣpam",
           "options": [
             "puṣpeṇa",
             "puṣpāya",
@@ -124,7 +124,7 @@
         {
           "id": "05-rupa:form:visnu-gen",
           "type": "choice",
-          "front": "viṣṇuḥ → genitive singular",
+          "front": "Change to genitive singular: viṣṇuḥ",
           "options": [
             "viṣṇoḥ",
             "viṣṇave",
@@ -137,7 +137,7 @@
         {
           "id": "05-rupa:form:devi-gen",
           "type": "choice",
-          "front": "devī → genitive singular",
+          "front": "Change to genitive singular: devī",
           "options": [
             "devyāḥ",
             "devyai",
@@ -150,7 +150,7 @@
         {
           "id": "05-rupa:phrase:visnave-namah",
           "type": "choice",
-          "front": "___ namaḥ — “salutation to Viṣṇu”",
+          "front": "“salutation to Viṣṇu”\n___ namaḥ",
           "options": [
             "viṣṇave",
             "viṣṇum",
@@ -163,7 +163,7 @@
         {
           "id": "05-rupa:phrase:ramam-namami",
           "type": "choice",
-          "front": "___ namāmi — “I bow to Rāma”",
+          "front": "“I bow to Rāma”\n___ namāmi",
           "options": [
             "rāmam",
             "rāmāya",
@@ -176,7 +176,7 @@
         {
           "id": "05-rupa:phrase:puspena-pujayami",
           "type": "choice",
-          "front": "___ pūjayāmi — “I worship with a flower”",
+          "front": "“I worship with a flower”\n___ pūjayāmi",
           "options": [
             "puṣpeṇa",
             "puṣpam",
@@ -189,7 +189,7 @@
         {
           "id": "05-rupa:phrase:krsne-bhaktih",
           "type": "choice",
-          "front": "___ bhaktiḥ — “devotion in Kṛṣṇa”",
+          "front": "“devotion in Kṛṣṇa”\n___ bhaktiḥ",
           "options": [
             "kṛṣṇe",
             "kṛṣṇasya",

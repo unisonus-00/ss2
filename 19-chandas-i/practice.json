@@ -7,7 +7,7 @@
         {
           "id": "19-chandas-i:scan:namami",
           "type": "choice",
-          "front": "namāmi — scan it",
+          "front": "Scan: namāmi",
           "options": [
             "∪ – ∪",
             "– ∪ –",
@@ -20,7 +20,7 @@
         {
           "id": "19-chandas-i:scan:bhagavan",
           "type": "choice",
-          "front": "bhagavān — scan it",
+          "front": "Scan: bhagavān",
           "options": [
             "∪ ∪ –",
             "∪ – ∪",
@@ -33,7 +33,7 @@
         {
           "id": "19-chandas-i:scan:trisulam",
           "type": "choice",
-          "front": "triśūlam — scan it",
+          "front": "Scan: triśūlam",
           "options": [
             "∪ – –",
             "∪ – ∪",
@@ -46,7 +46,7 @@
         {
           "id": "19-chandas-i:scan:padmam",
           "type": "choice",
-          "front": "padmam — scan it",
+          "front": "Scan: padmam",
           "options": [
             "– –",
             "∪ –",
@@ -59,7 +59,7 @@
         {
           "id": "19-chandas-i:scan:namah",
           "type": "choice",
-          "front": "namaḥ — scan it",
+          "front": "Scan: namaḥ",
           "options": [
             "∪ –",
             "– ∪",
@@ -72,7 +72,7 @@
         {
           "id": "19-chandas-i:rule:conjunct",
           "type": "choice",
-          "front": "A short vowel followed by a conjunct consonant is?",
+          "front": "A short vowel before a conjunct is:",
           "options": [
             "guru",
             "laghu",
@@ -85,7 +85,7 @@
         {
           "id": "19-chandas-i:gana:ya",
           "type": "choice",
-          "front": "∪ – – is which gaṇa?",
+          "front": "Name the gaṇa: ∪ – –",
           "options": [
             "ya",
             "sa",
@@ -98,7 +98,7 @@
         {
           "id": "19-chandas-i:gana:ja",
           "type": "choice",
-          "front": "∪ – ∪ is which gaṇa?",
+          "front": "Name the gaṇa: ∪ – ∪",
           "options": [
             "ja",
             "ra",
@@ -111,7 +111,7 @@
         {
           "id": "19-chandas-i:gana:ra",
           "type": "choice",
-          "front": "– ∪ – is which gaṇa?",
+          "front": "Name the gaṇa: – ∪ –",
           "options": [
             "ra",
             "ja",
@@ -124,7 +124,7 @@
         {
           "id": "19-chandas-i:gana:sa",
           "type": "choice",
-          "front": "∪ ∪ – is which gaṇa?",
+          "front": "Name the gaṇa: ∪ ∪ –",
           "options": [
             "sa",
             "na",
@@ -137,7 +137,7 @@
         {
           "id": "19-chandas-i:gana:bha",
           "type": "choice",
-          "front": "– ∪ ∪ is which gaṇa?",
+          "front": "Name the gaṇa: – ∪ ∪",
           "options": [
             "bha",
             "ta",

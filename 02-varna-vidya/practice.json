@@ -7,7 +7,7 @@
         {
           "id": "02-varna-vidya:praty:ik",
           "type": "choice",
-          "front": "ik covers which sounds?",
+          "front": "Expand: ik",
           "options": [
             "i, u, ṛ, ḷ",
             "ya, va, ra, la",
@@ -20,7 +20,7 @@
         {
           "id": "02-varna-vidya:praty:ac",
           "type": "choice",
-          "front": "ac covers which sounds?",
+          "front": "Expand: ac",
           "options": [
             "all the vowels",
             "all the consonants",
@@ -33,7 +33,7 @@
         {
           "id": "02-varna-vidya:praty:hal",
           "type": "choice",
-          "front": "hal covers which sounds?",
+          "front": "Expand: hal",
           "options": [
             "all the consonants",
             "all the vowels",
@@ -46,7 +46,7 @@
         {
           "id": "02-varna-vidya:praty:an",
           "type": "choice",
-          "front": "aṇ covers which sounds?",
+          "front": "Expand: aṇ",
           "options": [
             "a, i, u",
             "a, i, u, ṛ, ḷ",
@@ -59,7 +59,7 @@
         {
           "id": "02-varna-vidya:praty:eng",
           "type": "choice",
-          "front": "eṅ covers which sounds?",
+          "front": "Expand: eṅ",
           "options": [
             "e, o",
             "e, o, ai, au",
@@ -72,7 +72,7 @@
         {
           "id": "02-varna-vidya:praty:which-vowels",
           "type": "choice",
-          "front": "Which pratyāhāra means “all the vowels”?",
+          "front": "Name the pratyāhāra: all the vowels",
           "options": [
             "ac",
             "hal",
@@ -85,7 +85,7 @@
         {
           "id": "02-varna-vidya:praty:rule",
           "type": "choice",
-          "front": "How is a pratyāhāra formed?",
+          "front": "A pratyāhāra is formed from:",
           "options": [
             "first sound + a later it-marker, covering everything between",
             "first sound + last sound of the same sūtra",
