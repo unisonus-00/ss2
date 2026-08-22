@@ -151,6 +151,7 @@
     },
     {
       "name": "14 · Samāsa — compound types",
+      "pair": "parts → compound",
       "cards": [
         {
           "id": "11-samasa:samasa:raja-purusah",
@@ -198,6 +199,7 @@
     },
     {
       "name": "V17 · Compounds broken down — LS · DM",
+      "pair": "compound → vigraha",
       "cards": [
         {
           "id": "11-samasa:compounds-broken-down:mahisasura-mardani",

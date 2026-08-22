@@ -151,6 +151,7 @@
     },
     {
       "name": "17 · Chandas — metre",
+      "pair": "term → definition",
       "cards": [
         {
           "id": "19-chandas-i:chandas:chandah",
@@ -240,6 +241,7 @@
     },
     {
       "name": "29 · Gaṇa — the eight metrical feet",
+      "pair": "pattern → name",
       "cards": [
         {
           "id": "19-chandas-i:gana:laghu-guru-guru",

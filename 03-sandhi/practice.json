@@ -501,6 +501,7 @@
     },
     {
       "name": "S · Sandhi — all 27 rules (vyākaraṇam ch. 2)",
+      "pair": "join → result",
       "cards": [
         {
           "id": "03-sandhi:sandhi:stri-ai",

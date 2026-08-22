@@ -151,6 +151,7 @@
     },
     {
       "name": "09 · Dhātu — roots",
+      "pair": "root → meaning",
       "cards": [
         {
           "id": "09-dhatu:dhatu:nam",
@@ -268,6 +269,7 @@
     },
     {
       "name": "35 · Kṛt — primary suffixes",
+      "pair": "term → definition",
       "cards": [
         {
           "id": "09-dhatu:krt:krt",
@@ -350,6 +352,7 @@
     },
     {
       "name": "36 · Taddhita — secondary suffixes",
+      "pair": "term → definition",
       "cards": [
         {
           "id": "09-dhatu:taddhita:taddhitah",
@@ -411,6 +414,7 @@
     },
     {
       "name": "V16 · Upasargas & suffixes",
+      "pair": "affix → sense",
       "cards": [
         {
           "id": "09-dhatu:upasargas-suffixes:pra",

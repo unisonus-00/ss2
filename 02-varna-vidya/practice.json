@@ -99,6 +99,7 @@
     },
     {
       "name": "15 · Varṇa — sounds and articulation",
+      "pair": "term → definition",
       "cards": [
         {
           "id": "02-varna-vidya:varna:varnah",
@@ -216,6 +217,7 @@
     },
     {
       "name": "27 · Pratyāhāra — the Maheśvara sūtras",
+      "pair": "sūtra → sounds",
       "cards": [
         {
           "id": "02-varna-vidya:pratyahara:a-i-u-n",

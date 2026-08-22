@@ -3,6 +3,7 @@
   "decks": [
     {
       "name": "19 · Rasa — aesthetic flavour",
+      "pair": "term → definition",
       "cards": [
         {
           "id": "25-rasa:rasa:rasah",

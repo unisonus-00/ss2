@@ -22,18 +22,24 @@
   }
   /* Everything above the card shares the card's width, so the brand, the
      selector and the caption all line up on its left edge. */
-  .topbar, .nowbar, .statusbar { width: 100%; max-width: 440px; }
-  /* space-between rather than an auto margin on the controls: when the row
-     is too narrow for both — a 320px phone — the controls wrap to their own
-     line and start at the left edge instead of hanging off the right. */
+  .topbar, .statusbar, .controls { width: 100%; max-width: 440px; }
+  /* Navigation left, mark right, on one row.  The list name is what the row
+     is for, so it takes the space that is left and the brand never shrinks. */
   .topbar { display: flex; align-items: center; justify-content: space-between;
-            gap: .5rem 1rem; flex-wrap: wrap; margin-bottom: .7rem; }
+            gap: .6rem; margin-bottom: .5rem; }
 
   /* Present, but secondary to the exercise: about a fifth of the height the
      centred header took, and never in the way of the card. */
-  .brand { display: flex; align-items: center; gap: .55rem; color: var(--leaf); }
+  .brand { display: flex; align-items: center; gap: .5rem; flex: none;
+           color: var(--leaf); }
   .brand .mark { flex: none; width: 30px; height: 30px; opacity: .92; }
-  .wordmark { display: flex; flex-direction: column; line-height: 1.15; }
+  /* right-aligned, since the lockup now sits in the right-hand corner */
+  .wordmark { display: flex; flex-direction: column; line-height: 1.15;
+              text-align: right; }
+  /* On a phone the bar is not wide enough for both the lockup and the longest
+     list name, and the list name is what the bar is for.  The mark alone
+     carries the corner there; the name returns as soon as there is room. */
+  @media (max-width: 400px) { .wordmark { display: none; } }
   .wm-dn { font-weight: 500; font-size: 1.02rem;
            font-family: "Noto Serif Devanagari", "Kohinoor Devanagari", serif; }
   /* left lowercase: IAST is written lowercase, and an uppercased ṚḤ hides
@@ -41,7 +47,6 @@
   .wm-iast { font-size: .62rem; letter-spacing: .18em; font-style: normal;
              color: var(--faded); }
 
-  .nowbar { display: flex; margin-bottom: .1rem; }
   /* the deck's descriptor on the left, the round's state on the right */
   .statusbar { display: flex; align-items: baseline; justify-content: space-between;
                gap: .3rem .9rem; flex-wrap: wrap; margin-bottom: .8rem; }
@@ -50,7 +55,7 @@
      dropdown it replaced — the border would only add height here. */
   .navbtn {
     display: inline-flex; align-items: center; gap: .5rem;
-    min-width: 0; min-height: 44px; padding: .35rem .4rem .35rem 0;
+    min-width: 0; flex: 0 1 auto; min-height: 44px; padding: .35rem .4rem .35rem 0;
     background: transparent; color: var(--leaf);
     border: 0; border-radius: 2px;
     font-family: inherit; font-size: .95rem; text-align: left; cursor: pointer;
@@ -217,8 +222,12 @@
     padding: .6rem 1.3rem; border-radius: 2px; cursor: pointer;
     background: transparent; color: var(--leaf); border: 1px solid var(--faded);
   }
-  .controls { display: flex; gap: .7rem;
-              align-items: center; flex-wrap: wrap; }
+  /* under the card, centred, and quiet: they change how a card is shown
+     rather than being part of the exercise */
+  .controls { display: flex; gap: .9rem; margin-top: .9rem;
+              align-items: center; justify-content: center; flex-wrap: wrap; }
+  .controls .check input:disabled { cursor: default; }
+  .controls .check:has(input:disabled) { opacity: .45; cursor: default; }
   #dir { font-size: .7rem; letter-spacing: .05em; padding: .3rem .6rem;
          min-height: 36px; color: var(--leaf); }
   #dir .swap { color: var(--faded); margin-right: .4rem; }

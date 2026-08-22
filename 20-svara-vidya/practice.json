@@ -3,6 +3,7 @@
   "decks": [
     {
       "name": "16 · Svara — Vedic accent",
+      "pair": "term → definition",
       "cards": [
         {
           "id": "20-svara-vidya:svara:udattah",

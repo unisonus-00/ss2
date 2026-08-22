@@ -231,18 +231,26 @@ asserts the card starts within 165px, because this is the kind of thing that
 creeps back.
 
 ```
-[◎] अभ्यासः                  ⇄ word → meaning   ☑ IAST
-    abhyāsaḥ
-☰ Sandhi · Practice ›
-GOODNESS NAMES              14 LEFT  1 LEARNED  0 MISSED
+☰ Sandhi · Practice ›                       अभ्यासः  [◎]
+                                            abhyāsaḥ
+JOINS AND SPLITS            31 LEFT  0 LEARNED  0 MISSED
 ┌──────────────────────────────────────────────────────┐
-│                     the card                          │
+│                       the card                        │
+└──────────────────────────────────────────────────────┘
+              [ Didn't know it ]  [ Knew it ]
+                 ⇄ join → result    ☑ IAST
 ```
 
-- **The branding is top-left and secondary.** A 30px mark and the name in two
-  small lines, in the same row as the direction and IAST controls, so it costs
-  no height of its own. There is no centred logo during practice; a test
-  asserts there is no `h1` at all.
+- **Navigation top left, the mark top right**, on one row. There is no centred
+  logo during practice; a test asserts there is no `h1` at all.
+- **The branding is secondary.** A 30px mark and the name in two small lines.
+  Below 400px the wordmark drops and the mark holds the corner alone: the bar
+  is not wide enough on a phone for both the lockup and the longest list name,
+  and the list name is what the bar is for. A test walks every deck at 390px
+  and fails if any name is clipped.
+- **The two toggles sit below the card, centred.** They change how a card is
+  shown, so they belong under the thing they change; above it they competed
+  with the prompt.
 - **The mark is `app/logo.svg`**, drawn rather than embedded so it stays a few
   hundred bytes, scales, and takes the palette through `currentColor`. The
   build inlines it at the `<!--logo-->` placeholder — a separate source file to
@@ -254,6 +262,42 @@ GOODNESS NAMES              14 LEFT  1 LEARNED  0 MISSED
   exercise.
 - **Branding is out of the drawer.** Navigation stays functional and compact,
   and a test asserts the drawer holds neither the name nor the mark.
+
+### The direction toggle
+
+`word → meaning` was printed over lists that hold no meanings. A paradigm cell
+answers with an analysis (`Lakṣmī — saptamī bahuvacana`), a sandhi rule with
+the result of a join, a gaṇa with its name. Reversed, those read
+`meaning → word`, which was simply false.
+
+A deck may therefore name its own pair, and **both labels come off that one
+string** — the reverse is the halves swapped:
+
+```json
+{ "name": "Table mastery — the eight baseplates",
+  "pair": "form → analysis",
+  "cards": [ … ] }
+```
+
+`pair` is optional and defaults to `word → meaning`, which is right for most
+of the app. The build rejects a `pair` that is not exactly `front → back`.
+Twenty-four decks carry one: `form → analysis`, `join → result`,
+`term → definition`, `pattern → name`, `pattern → metre`, `parts → compound`,
+`compound → vigraha`, `sūtra → sounds`, `root → meaning`, `affix → sense`.
+
+Reversing is worth having on all of them — `analysis → form` is the drill a
+paradigm table exists for, and `result → join` is the split exercise.
+
+Two rules beyond that:
+
+- **A list that runs one way says so.** On a `choice` or `sequence` card both
+  toggles grey out and the button reads `one direction only` rather than
+  naming a pair it cannot offer. A transformation runs one way, and the IAST
+  on those cards *is* the content rather than a gloss of it. A deck of nothing
+  but interactive cards is therefore greyed for its whole round, which is what
+  "disabled by lesson structure" amounts to.
+- **A cross-list draw falls back to `word → meaning`.** Review and trouble
+  rounds mix decks, so no single pair describes them.
 
 ### Navigation and progress
 

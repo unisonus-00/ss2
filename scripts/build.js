@@ -117,6 +117,16 @@ function loadPractice() {
       if (!Array.isArray(deck.cards) || !deck.cards.length) {
         problems.push(`${at} ("${deck.name}"): no cards`); return;
       }
+      /* `pair` names what a reveal card runs between, so the direction button
+         can say so and say the reverse.  Both labels come from this one
+         string, so it has to have exactly one arrow with text either side. */
+      if (deck.pair !== undefined) {
+        const halves = String(deck.pair).split(' → ');
+        if (halves.length !== 2 || !halves[0].trim() || !halves[1].trim()) {
+          problems.push(`${at} ("${deck.name}"): pair "${deck.pair}" must read "front → back"`);
+          return;
+        }
+      }
 
       deck.cards.forEach((c, ci) => {
         const at2 = `${where} "${deck.name}" card ${ci}`;

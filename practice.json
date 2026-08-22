@@ -3,6 +3,7 @@
   "decks": [
     {
       "name": "13 · Vyākaraṇam — grammar terms",
+      "pair": "term → definition",
       "cards": [
         {
           "id": "00-overview:vyakaranam:dhatuh",

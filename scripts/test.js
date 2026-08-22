@@ -910,35 +910,113 @@ const open = async (browser, opts = {}) => {
     const r = await p.evaluate(() => {
       const box = s => { const e = document.querySelector(s); return e && e.getBoundingClientRect(); };
       const brand = box('.brand'), card = box('.panel'), mark = box('.brand .mark');
-      const drawer = document.getElementById('drawer');
+      const nav = box('#nav'), ctl = box('.controls'), drawer = document.getElementById('drawer');
+      /* the longest list name is what decides whether the bar is wide enough */
+      let clipped = null;
+      for (const n of Object.keys(DECKS)) {
+        loadDeck(n);
+        const e = document.getElementById('nav-label');
+        if (e.scrollWidth > Math.ceil(e.getBoundingClientRect().width) + 1) { clipped = n; break; }
+      }
       return {
         hasMark: !!mark && mark.width > 0,
         markInline: !document.querySelector('.brand img, .brand [src]'),
-        brandLeft: brand && Math.round(brand.left),
+        navLeft: nav && Math.round(nav.left),
+        navTop: nav && Math.round(nav.top),
+        brandRight: brand && Math.round(brand.right),
         brandTop: brand && Math.round(brand.top),
         brandHeight: brand && Math.round(brand.height),
         cardLeft: card && Math.round(card.left),
+        cardRight: card && Math.round(card.right),
         cardTop: card && Math.round(card.top),
+        cardBottom: card && Math.round(card.bottom),
+        controlsTop: ctl && Math.round(ctl.top),
+        controlsCentred: ctl && card
+          && Math.abs((ctl.left + ctl.right) / 2 - (card.left + card.right) / 2) <= 1,
         // no centred logo during practice
         centred: !document.querySelector('h1'),
         // branding is out of the drawer entirely
         drawerBranded: /abhyāsa|अभ्यास/i.test(drawer.textContent)
                        || !!drawer.querySelector('.mark, .wordmark'),
-        navFull: (() => { const n = box('#nav-label');
-          return n && n.width > 0 && document.getElementById('nav-label').scrollWidth
-                 <= Math.ceil(n.width) + 1; })(),
+        clipped,
       };
     });
     ok('the mark is drawn inline, with nothing to fetch', r.hasMark && r.markInline);
-    ok('branding sits at the top left, on the card’s edge',
-      r.brandLeft === r.cardLeft && r.brandTop < 40,
-      'brand x' + r.brandLeft + ' y' + r.brandTop + ' · card x' + r.cardLeft);
+    ok('navigation is in the top left corner',
+      r.navLeft === r.cardLeft && r.navTop < 30,
+      'nav x' + r.navLeft + ' y' + r.navTop + ' · card x' + r.cardLeft);
+    ok('the mark is in the top right corner',
+      r.brandRight === r.cardRight && r.brandTop < 30,
+      'brand right ' + r.brandRight + ' · card right ' + r.cardRight);
     ok('no centred logo during practice', r.centred);
     ok('the branding stays small', r.brandHeight <= 44, r.brandHeight + 'px tall');
     ok('branding is out of the drawer', !r.drawerBranded);
     // the whole point of the pass: the exercise begins near the top
-    ok('the exercise starts high on a phone', r.cardTop <= 165, r.cardTop + 'px down');
-    ok('the list name is not truncated', r.navFull);
+    ok('the exercise starts high on a phone', r.cardTop <= 120, r.cardTop + 'px down');
+    ok('no list name is truncated on a phone', !r.clipped, r.clipped || '');
+    ok('the toggles sit below the card, centred',
+      r.controlsTop > r.cardBottom && r.controlsCentred,
+      'controls at ' + r.controlsTop + ', card ends ' + r.cardBottom);
+    await p.close();
+  }
+
+  // ── the direction toggle means something on every list ─────────────
+  // "word → meaning" was printed over lists that hold no meanings: a
+  // paradigm cell answers with an analysis, a sandhi rule with the result of
+  // a join.  Each list names its own pair, and a list that runs one way says
+  // so instead of offering a flip it cannot make.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const label = () => document.getElementById('dir-label').textContent;
+      const off = () => document.getElementById('dir').disabled
+                     && document.getElementById('iast-on').disabled;
+      const read = n => {
+        loadDeck(n);
+        setDir('reveal');  const fwd = label(), fwdOff = off();
+        setDir('produce'); const rev = label();
+        setDir('reveal');
+        return { fwd, rev, off: fwdOff };
+      };
+      const seen = {};
+      Object.keys(DECKS).forEach(n => { seen[n] = read(n); });
+
+      const revealDecks = Object.keys(DECKS).filter(n =>
+        DECKS[n].some(c => (c.type || 'reveal') === 'reveal'));
+      const interactive = Object.keys(DECKS).filter(n =>
+        DECKS[n].every(c => (c.type || 'reveal') !== 'reveal'));
+
+      // a cross-list draw has no single pair to name
+      startRound([DECKS[revealDecks[0]][0]], { mixed: true });
+      const mixedLabel = label();
+
+      return {
+        pairs: [...new Set(revealDecks.map(n => seen[n].fwd))].sort(),
+        // every reveal list offers a flip, and the flip is the pair reversed
+        flips: revealDecks.every(n => {
+          const h = seen[n].fwd.split(' → ');
+          return h.length === 2 && seen[n].rev === h[1] + ' → ' + h[0];
+        }),
+        revealOn: revealDecks.every(n => !seen[n].off),
+        interactiveOff: interactive.every(n => seen[n].off),
+        interactiveSays: [...new Set(interactive.map(n => seen[n].fwd))],
+        nInteractive: interactive.length,
+        mixedLabel,
+      };
+    });
+    ok('every reveal list can be flipped', r.revealOn && r.flips);
+    ok('a list that runs one way greys both toggles',
+      r.nInteractive > 0 && r.interactiveOff, r.nInteractive + ' interactive lists');
+    ok('and says so rather than naming a pair',
+      r.interactiveSays.length === 1 && r.interactiveSays[0] === 'one direction only',
+      r.interactiveSays.join(' | '));
+    ok('lists name more than one kind of pair', r.pairs.length >= 5, r.pairs.join(' | '));
+    ok('a paradigm list runs form to analysis, not word to meaning',
+      r.pairs.includes('form → analysis') && r.pairs.includes('join → result'),
+      r.pairs.join(' | '));
+    ok('a cross-list draw falls back to the general pair',
+      r.mixedLabel === 'word → meaning', r.mixedLabel);
+    console.log('        pairs: ' + r.pairs.join(' | '));
     await p.close();
   }
 

@@ -3,6 +3,7 @@
   "decks": [
     {
       "name": "21 · Darśana — philosophical terms",
+      "pair": "term → definition",
       "cards": [
         {
           "id": "26-darshana:darsana:brahma",

@@ -12,9 +12,10 @@
    Cards with no `type` are `reveal`, which is what every migrated card is. */
 const CARD_TYPES = ["reveal", "choice", "sequence"];
 
-const [DECKS, DECK_STAGE, DECK_LESSON, LESSON_LABEL, LESSON_GLOSS, PARSE] = (() => {
-  const decks = {}, stages = {}, lessons = {}, labels = {}, glosses = {}, skipped = [];
-  const fail = why => [decks, stages, lessons, labels, glosses,
+const [DECKS, DECK_STAGE, DECK_LESSON, LESSON_LABEL, LESSON_GLOSS, DECK_PAIR, PARSE] = (() => {
+  const decks = {}, stages = {}, lessons = {}, labels = {}, glosses = {}, pairs = {},
+        skipped = [];
+  const fail = why => [decks, stages, lessons, labels, glosses, pairs,
                        { count: 0, decks: 0, skipped, fatal: why }];
 
   const src = document.getElementById('practice');
@@ -43,11 +44,12 @@ const [DECKS, DECK_STAGE, DECK_LESSON, LESSON_LABEL, LESSON_GLOSS, PARSE] = (() 
       decks[d.name] = cards;
       stages[d.name] = L.stage;
       lessons[d.name] = L.lesson;
+      if (d.pair) pairs[d.name] = d.pair;
     });
   });
 
   const count = Object.values(decks).reduce((a, b) => a + b.length, 0);
-  return [decks, stages, lessons, labels, glosses,
+  return [decks, stages, lessons, labels, glosses, pairs,
           { count, decks: Object.keys(decks).length, skipped }];
 })();
 
@@ -389,12 +391,42 @@ if (SAVED.mode && SAVED.dir === undefined) {
 let DIR  = SAVED.dir === 'produce' ? 'produce' : 'reveal';
 let IAST = SAVED.iast !== false;
 
+/* What a reveal card runs between.  Most lists are a word and its meaning,
+   but plenty are not: a paradigm cell answers with an analysis, a sandhi rule
+   with the result of a join, a gaṇa with its name.  Saying "word → meaning"
+   over those was simply wrong, so each list can name its own pair in
+   practice.json and both labels are read off that one string.
+
+   A list with no reveal cards at all runs one way by construction — see
+   setDirFor, which greys the button rather than labelling it falsely. */
+const DEFAULT_PAIR = 'word \u2192 meaning';
+const pairOf = name => DECK_PAIR[name] || DEFAULT_PAIR;
+/* A cross-list draw has no single pair, so it falls back to the general one. */
+const currentPair = () => (mixed || !deckName ? DEFAULT_PAIR : pairOf(deckName));
+
+function dirLabel() {
+  const half = currentPair().split(' \u2192 ');
+  return DIR === 'produce' ? half[1] + ' \u2192 ' + half[0]
+                           : half[0] + ' \u2192 ' + half[1];
+}
+
+/* Both toggles are meaningless on an interactive card: a transformation runs
+   one way, and the IAST there *is* the content rather than a gloss of it.
+   They are greyed for as long as one is showing, and the direction button
+   stops claiming a pair it cannot offer. */
+function setToggles(on) {
+  $('dir').disabled = !on;
+  $('iast-on').disabled = !on;
+  $('dir-label').textContent = on ? dirLabel() : 'one direction only';
+  $('dir').setAttribute('aria-label', on
+    ? 'Direction: ' + dirLabel() + '. Tap to reverse.'
+    : 'This list runs one way, so the direction cannot be reversed.');
+}
+
 function setDir(d) {
   DIR = d; SAVED.dir = d; save();
   document.body.classList.toggle('mode-produce', d === 'produce');
-  const label = d === 'produce' ? "meaning → word" : "word → meaning";
-  $('dir-label').textContent = label;
-  $('dir').setAttribute('aria-label', "Direction: " + label + ". Tap to reverse.");
+  setToggles(!$('dir').disabled);
   if (current) paint();
 }
 
@@ -665,6 +697,7 @@ function loadDeck(name) {
   SAVED.deck = name; save();
   mixed = trouble = false;
   relabelAll();
+  setToggles(true);            // the new list names its own pair
   $('restart').textContent = "Whole deck again";
   const src = DECKS[name];
   const best = deckState(name).best;
@@ -1137,7 +1170,7 @@ function paint() {
   $('choices').hidden = true;
   $('choices').textContent = '';
   $('keys').textContent = KEYS_REVEAL;
-  $('dir').disabled = false;
+  setToggles(true);
   $('src').textContent = '';
   if (DIR === 'produce') {
     $('dn').textContent    = c.gloss;
@@ -1179,8 +1212,7 @@ function paintChoice(c) {
   $('gloss').textContent = '';
   renderTag(c.note);
   $('src').textContent = c.source || '';
-  /* Flipping a transformation makes no sense \u2014 it only runs one way. */
-  $('dir').disabled = true;
+  setToggles(false);
   $('keys').textContent = 'tap an answer \u00b7 1\u2013' + c.options.length + ' \u2014 choose';
 
   const box = $('choices');
@@ -1246,7 +1278,7 @@ function paintSequence(c) {
   $('gloss').textContent = '';
   renderTag(c.note);
   $('src').textContent = c.source || '';
-  $('dir').disabled = true;
+  setToggles(false);
   $('keys').textContent = 'tap the pieces in order';
   $('seq').hidden = false;
   $('seq-actions').hidden = false;
