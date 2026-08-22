@@ -155,7 +155,7 @@ const open = async (browser, opts = {}) => {
       };
     });
     // the chain runs to the end, not just to the step under test
-    ok('saved state runs the whole migration chain', r.version === 3, 'v' + r.version);
+    ok('saved state runs the whole migration chain', r.version === 4, 'v' + r.version);
     ok('old text key removed', r.oldGone);
     ok('record moved onto the stable id', r.newRec && r.newRec.w === 3, JSON.stringify(r.newRec));
     ok('per-deck best score untouched', r.deckBestKept && r.deckBestKept.best === 12, JSON.stringify(r.deckBestKept));
@@ -1609,10 +1609,9 @@ const open = async (browser, opts = {}) => {
       const out = {
         first: document.querySelector('#drawer .dr-prog, #drawer .dr-mode') === sec,
         name: document.getElementById('dp-label').textContent,
-        what: document.querySelector('.dp-what').textContent,
         heads: [...document.querySelectorAll('#drawer .dp-h')].map(x => x.textContent),
         pct: document.getElementById('dp-pct').textContent,
-        cpct: document.getElementById('dp-cpct').textContent,
+        cards: document.getElementById('dp-cards').textContent,
         /* neither the arithmetic nor the readings it combines: the drawer
            carries the figure, the card carries what it is made of */
         formula: /[×x]\s*\d+%|cold recall|cards drawn|lists finished|accuracy|coverage/i
@@ -1634,16 +1633,162 @@ const open = async (browser, opts = {}) => {
 
     ok('the drawer opens with the Abhyāsa section',
       r.first && /abhy[aā]sa/i.test(r.name), r.name);
-    ok('and says what the mode is for', /master what you/i.test(r.what), r.what);
     ok('it is drawn as a button, not another row', r.raised);
-    ok('the course-progress bar is labelled and counted in lists',
-      JSON.stringify(r.heads) === JSON.stringify(['Course progress'])
-        && /^\d+%$/.test(r.cpct), r.heads.join(' | ') + ' · ' + r.cpct);
+    ok('the mastery bar is labelled and paired with list progress',
+      JSON.stringify(r.heads) === JSON.stringify(['Overall mastery'])
+        && /^\d+ of \d+ lists complete$/.test(r.cards), r.heads.join(' | ') + ' · ' + r.cards);
     ok('the drawer carries the figure and its rank alone',
       /^(Unranked|\d+% · [A-Z])/.test(r.pct) && !r.formula, r.pct);
     ok('it is the draw, one tap away', r.tappable && r.opens && r.heading === 'Abhyāsa',
       r.heading);
     ok('so it is no longer one of the mode rows', r.notAMode, r.modes.join(' | '));
+    await p.close();
+  }
+
+  // ── what a review draws, and when a card comes back ───────────────
+  // The card promises material is checked repeatedly over time but not too
+  // often: remembered cards rest, missed cards return sooner, and the draw
+  // stays spread across every completed list.  Each of those is asserted
+  // against the draw itself rather than against the code that builds it.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const out = {};
+      const small = Object.keys(DECKS).filter(n => DECKS[n].length <= 15).slice(0, 6);
+      SAVED.decks = {};
+      small.forEach(n => {
+        SAVED.decks[n] = { best: [DECKS[n].length, DECKS[n].length], pile: [] };
+      });
+      SAVED.review = { runs: 0, right: 0, seen: 0, cards: {} };
+
+      /* with nothing recorded, every card is due and the draw is full */
+      const first = mixCards();
+      out.size = first.length;
+      out.lists = new Set(first.map(c => DECK_OF.get(c))).size;
+      out.listsAvailable = small.length;
+
+      /* record the session: half remembered, half missed */
+      const missed = new Set(first.filter((c, i) => i % 2));
+      SAVED.review.runs++;
+      recordReview(first, missed);
+
+      const rested = new Set(first.filter(c => !missed.has(c)));
+      /* Everything else in the pool is unseen, and unseen material leads the
+         draw — rightly.  Mark it seen and remembered so the next draw is
+         deciding between a miss and a success, which is the rule under
+         test. */
+      reviewPool().forEach(c => {
+        const k = cardKey(c);
+        if (!SAVED.review.cards[k]) SAVED.review.cards[k] = [SAVED.review.runs, 1];
+      });
+      const second = mixCards();
+      const back = new Set(second);
+      out.missedBack = first.filter(c => missed.has(c)).every(c => back.has(c));
+      /* The remembered ones are resting, so they may only appear once the
+         due cards run out — never ahead of a card that was missed. */
+      const lastMissed = second.reduce((k, c, i) => missed.has(c) ? i : k, -1);
+      out.restedAhead = second.slice(0, lastMissed + 1).filter(c => rested.has(c)).length;
+
+      /* a card remembered repeatedly rests for longer and longer */
+      const one = [...rested][0];
+      delete SAVED.review.cards[cardKey(one)];      // measure the ladder from the start
+      const restOf = () => {
+        const rec = SAVED.review.cards[cardKey(one)];
+        return restFor(rec[1]);
+      };
+      out.rests = [];
+      for (let i = 0; i < 4; i++) {
+        SAVED.review.runs++;
+        recordReview([one], new Set());
+        out.rests.push(restOf());
+      }
+      /* and one miss puts it straight back in the next session */
+      SAVED.review.runs++;
+      recordReview([one], new Set([one]));
+      out.afterMiss = restOf();
+      out.dueAfterMiss = overdueBy(one) >= 0;
+
+      /* a short pool still hands back a full session rather than a stunted
+         one — nothing is due, but the draw fills anyway */
+      SAVED.review.runs = 1;
+      SAVED.review.cards = {};
+      reviewPool().forEach(c => { SAVED.review.cards[cardKey(c)] = [1, 4]; });
+      out.filled = mixCards().length;
+
+      /* and the draw is not a replay of the last one */
+      SAVED.review.cards = {};
+      const a = mixCards().map(cardKey).join('|');
+      const b = mixCards().map(cardKey).join('|');
+      out.varies = a !== b;
+      return out;
+    });
+
+    ok('a review draws a full session', r.size === 20, r.size + ' cards');
+    ok('spread across every completed list',
+      r.lists === r.listsAvailable, r.lists + ' of ' + r.listsAvailable + ' lists');
+    ok('a missed card comes back in the next session', r.missedBack);
+    ok('while remembered cards yield to it', r.restedAhead === 0,
+      r.restedAhead + ' cut ahead of a missed card');
+    ok('and rest longer each time they are remembered',
+      JSON.stringify(r.rests) === JSON.stringify([1, 2, 4, 8]), r.rests.join(' → '));
+    ok('one miss puts it back in the very next session',
+      r.afterMiss === 0 && r.dueAfterMiss);
+    ok('a pool with nothing due still fills the session', r.filled === 20,
+      r.filled + ' cards');
+    ok('and no two draws are the same', r.varies);
+    await p.close();
+  }
+
+  // ── the results say which lists held up ───────────────────────────
+  // A review crosses lists, so "which cards went wrong" is the wrong
+  // question at the end of one; the learner-facing unit is the list.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const small = Object.keys(DECKS).filter(n => DECKS[n].length <= 15).slice(0, 5);
+      SAVED.decks = {};
+      small.forEach(n => {
+        SAVED.decks[n] = { best: [DECKS[n].length, DECKS[n].length], pile: [] };
+      });
+      SAVED.review = { runs: 0, right: 0, seen: 0, cards: {} };
+      startMixedReview();
+      /* miss everything from the first list drawn, know the rest */
+      const weak = DECK_OF.get(current.card);
+      let n = 0;
+      while (current && n++ < 200) (DECK_OF.get(current.card) === weak ? didntKnow : knew)();
+
+      const rows = [...document.querySelectorAll('#r-list .brow')].map(x => ({
+        name: x.querySelector('.b-name').textContent,
+        score: x.querySelector('.b-score').textContent,
+        verdict: x.querySelector('.b-pct').textContent,
+        full: x.classList.contains('full'),
+      }));
+      const strong = [...document.querySelectorAll('#r-list .brow.full .b-pct')][0];
+      return { rows: rows, weak: DECK_SHORT(weak),
+               strongInk: strong ? getComputedStyle(strong).color : '',
+               /* resolved, not declared — a var() that fails to resolve is
+                  not an error, it just inherits */
+               patra: (() => { const d = document.createElement('div');
+                 d.style.color = 'var(--patra)'; document.body.appendChild(d);
+                 const c = getComputedStyle(d).color; d.remove(); return c; })(),
+               head: (document.querySelector('#r-list .missed-head') || {}).textContent,
+               score: document.getElementById('r-score').textContent,
+               /* card-level detail is evidence, not the headline */
+               cardsInSummary: /\d+ cards mastered/.test(document.getElementById('r-list').textContent) };
+    });
+
+    ok('the results break the round down by list', r.rows.length >= 2,
+      r.rows.length + ' lists');
+    ok('headed as such', /How each list held up/.test(r.head || ''), r.head);
+    ok('weakest first, and named as needing practice',
+      r.rows[0].name === r.weak && r.rows[0].verdict === 'practise',
+      r.rows[0].name + ' ' + r.rows[0].score + ' · ' + r.rows[0].verdict);
+    ok('a list that held up is marked strong, in the right-answer pigment',
+      r.rows.some(x => x.full && x.verdict === 'strong') && r.strongInk === r.patra,
+      r.rows.map(x => x.name + ' ' + x.score).join(' | ') + ' · ' + r.strongInk);
+    ok('the review score is still stated', /Review accuracy/.test(r.score),
+      r.score.replace(/\s+/g, ' ').slice(0, 60));
+    ok('and no card-level progress leaks into it', !r.cardsInSummary);
     await p.close();
   }
 
@@ -1731,8 +1876,10 @@ const open = async (browser, opts = {}) => {
     ok('and what it is drawing on',
       /^Reviewing \d+ cards from \d+ completed lists?$/.test(r.panelWhat), r.panelWhat);
     ok('the explanation describes the mode, not the arithmetic',
-      /^Review mixes material you’ve already studied\./.test(r.panelNote)
-        && /strengthen mastery/.test(r.panelNote) && !/[×x] \d/.test(r.panelNote),
+      /^Abhyāsa checks how well your studied material is holding up over time\./
+        .test(r.panelNote)
+        && /return later/.test(r.panelNote) && /return\s+sooner/.test(r.panelNote)
+        && !/[×x] \d/.test(r.panelNote),
       r.panelNote.slice(0, 48));
     ok('the panel names the figure exactly as the drawer does',
       /^Overall mastery \d+% · [A-Z]/.test(r.panelTop)
@@ -2228,7 +2375,7 @@ const open = async (browser, opts = {}) => {
     /* The section's own statistic is lists carried to 100%, not a card count
        already folded into the figure above it. */
     ok('course progress is counted in lists, not cards',
-      /^\d+ \/ \d+ lists complete$/.test(opened.cards), opened.cards);
+      /^\d+ of \d+ lists complete$/.test(opened.cards), opened.cards);
 
     const reach = await p.evaluate(() => {
       // shut everything, then walk down: track -> lesson -> deck
@@ -2313,7 +2460,7 @@ const open = async (browser, opts = {}) => {
     ok('a perfect round on a smaller deck seeds nothing',
       r.resized.done === 0, r.resized.done + ' seeded');
     ok('a partial best score seeds nothing', r.partial.done === 0, r.partial.done + ' seeded');
-    ok('the store is stamped v3', r.v === 3, 'v' + r.v);
+    ok('the store is stamped v4', r.v === 4, 'v' + r.v);
     await p.close();
   }
 

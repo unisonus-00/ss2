@@ -538,30 +538,30 @@ three: it is the section the drawer opens with. Tapping it opens the review.
 ```
 ┌──────────────────────────────────────────┐
 │ ABHYĀSA                                  │
-│ master what you've learned            ›  │
+│ OVERALL MASTERY                       ›  │
 │ 3% · Novice                              │
+│ ▬▬▬──────────────────────────────────    │
+│ 5 of 153 lists complete                  │
 └──────────────────────────────────────────┘
-COURSE PROGRESS                          5%
-7 / 153 lists complete
-▬▬▬───────────────────────────────────────
 ```
 
 **It is drawn as a button, not as another row.** Abhyāsa is the one thing in
-the drawer you *act on* rather than navigate to, so it is a raised panel in
-the accent pigment with an arrow on it — visibly a different kind of object
-from the rows below, which are a list. A test asserts the border and the
-arrow.
+the drawer you *act on* rather than navigate to, so it is a raised panel with
+an arrow on it — visibly a different kind of object from the rows below, which
+are a list. A test asserts the border and the arrow. It is **palm-leaf, barely
+tinted, not kumkuma**: the accent is the app's *wrong* colour, and a block of
+it at this size reads as an alarm rather than an invitation.
+
+**The bar is overall mastery**, and the line under it is the concrete thing
+that moves it: lists complete. One block, so a learner reads the figure, sees
+how far along the bar it is, and sees what it is built from without a second
+heading competing for the same space.
 
 **The drawer carries the figure and its rank; the card carries what they are
 made of.** Two numbers side by side, each needing its own explanation, is the
-same crowding the old layout had. So `65% review accuracy · 5% course
+same crowding the old layout had. So `65% review accuracy · 4% course
 coverage` lives on the card the button opens, and a test fails if either word
 appears in the drawer at all.
-
-**The bar belongs to course progress**, where it measures one plain countable
-thing — lists — and carries its own percentage. Sitting under the mastery
-figure it implied that a percentage of cards and a rank were the same
-quantity.
 
 **The interface states the meaning; it never exposes the calculation.** Every
 figure is labelled before it is given, and the two readings the mastery number
@@ -604,15 +604,65 @@ The review window says the same things in the same words:
 
 ```
 Abhyāsa
+MASTERY REVIEW
 65% correct on first try
-Reviewing 20 cards from 7 completed lists
+Reviewing 20 cards from 4 completed lists
 
-Review mixes material you've already studied. Correct first answers
-strengthen mastery; misses lower it and return to practice.
+Abhyāsa checks how well your studied material is holding up over time.
+It mixes cards from completed lists and counts only your first answer.
+Cards you remember return later; cards you miss return sooner, so
+review stays focused without becoming repetitive.
 ────────────────────────────────────────────────
-Overall mastery 3% · Novice
-65% review accuracy · 5% course coverage
+Overall mastery 1% · Novice
+65% review accuracy · 2% course coverage
 ```
+
+### What a review draws
+
+The paragraph above is a promise, and three small rules keep it. They live in
+`mixCards()` and `overdueBy()`; the per-card history is
+`SAVED.review.cards[id] = [session last reviewed, run of first-try corrects]`.
+
+1. **REST** — `[0, 1, 2, 4, 8, 16]` sessions, indexed by that run, so what is
+   holding up is asked less and less often. A miss resets the run to zero, and
+   a rest of zero means *the very next session*.
+2. **Overdue first** — among cards whose rest is up, the longest-waiting goes
+   first; a card never reviewed waits longest of all, so new material leads.
+   Ties are shuffled before a stable sort, so a session is never a replay.
+3. **Round-robin across lists** — piles are drawn from one at a time, so one
+   large list cannot swamp a session. A complete declension table is a
+   hundred-odd cards; a flat draw would make every review mostly that table.
+   Broad representation is a property of the draw, not of luck.
+
+If fewer cards are due than a session holds, the rest of the session is filled
+with the longest-rested cards anyway — a short pool should still give a full
+review. The draw is deliberately **not** weighted towards the cards you keep
+missing: it measures what stayed, and favouring the weak ones would flatter
+the figure. Weighted practice is what the trouble drill is for.
+
+`SAVED.v` 3→4 adds that history. There is nothing to recover — before it only
+the running totals were kept, and no record survives of *which* cards a past
+session showed — so it starts empty, every card is due, and the first session
+after upgrading draws from the whole pool exactly as it used to.
+
+### The end of a review
+
+A review crosses lists, so "which cards went wrong" is the wrong question at
+the end of one. The results lead with a per-list breakdown, weakest first:
+
+```
+HOW EACH LIST HELD UP
+Deva                                  1 / 4    practise
+Āyudha                                2 / 4    practise
+Devī                                  4 / 4    strong
+```
+
+Counted in cards, because that is what a round contains, but reported per
+list, because that is the unit the learner finishes and the drawer measures.
+The missed cards still follow underneath — they are the evidence, not the
+headline. A `strong` row takes `--patra`, the right-answer pigment, rather
+than the accent the scoreboard uses to mark a finished list. The breakdown is
+skipped when a round touched only one list, which is not a comparison.
 
 The ladder is `RANKS` in `app.js`, in English like the modes rather than in
 Sanskrit like the curriculum: **Novice, Learner (10), Skilled (30), Expert
@@ -637,7 +687,6 @@ window, scoreboard, shared score:
 | cards drawn | cards reviewed |
 | finished lists | completed lists |
 | consistent mastery | overall mastery |
-| Review what you've learned | master what you've learned |
 | % of the course mastered | % course coverage |
 | Draw 20 cards | Review 20 cards |
 
@@ -862,10 +911,12 @@ Three things here are load-bearing for the compatibility list above:
   the brand settled on the bare stem **Abhyāsa**, and left alone: it is
   invisible plumbing, not displayed text, and renaming it would only add
   migration risk for no visible benefit. Versioned by `SAVED.v`
-  (now 3). v1 keyed trouble history by `devanagari + '¦' + gloss`; the app
+  (now 4). v1 keyed trouble history by `devanagari + '¦' + gloss`; the app
   lifts those records onto stable ids on first load. v2→v3 seeds `SAVED.mastered`
   from the one case that can be resolved exactly rather than guessed at — a
   deck whose best round was perfect *and* whose size has not changed since.
+  v3→v4 adds the per-card review history that paces the draw, starting empty
+  because no record of *which* cards a past session showed ever existed.
   `OLD_KEYS` separately lifts state out of earlier storage key names. Keep every
   chain, and keep each step stamping its own version rather than the newest;
   every `localStorage` touch stays guarded, since it can be absent or full.

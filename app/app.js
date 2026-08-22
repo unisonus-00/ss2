@@ -164,7 +164,11 @@ Object.entries(DECK_RENAMES).forEach(([from, to]) => {
   delete SAVED.decks[from];
   if (SAVED.deck === from) SAVED.deck = to;
 });
-SAVED.review = SAVED.review || { runs: 0, right: 0, seen: 0 };   // mixed-review tally
+SAVED.review = SAVED.review || { runs: 0, right: 0, seen: 0 };   // the review tally
+/* Per-card review history: id -> [session it was last reviewed, how many
+   sessions running it has come back right on the first try].  This is what
+   lets a card rest after it is remembered and return sooner after a miss. */
+SAVED.review.cards = SAVED.review.cards || {};
 SAVED.trouble = SAVED.trouble || {};       // per-card history, keyed by card
 SAVED.cleared = SAVED.cleared || 0;        // cards that have left the trouble list
 SAVED.mastered = SAVED.mastered || {};     // card ids answered right on a cold showing
@@ -186,7 +190,7 @@ const deckState = name => SAVED.decks[name] = SAVED.decks[name] || {};
 
    SAVED.decks is keyed by deck NAME, and deck names did not change in the
    migration, so per-deck best scores need no rescue. */
-const SAVED_VERSION = 3;
+const SAVED_VERSION = 4;
 if ((SAVED.v || 1) < 2) {
   let moved = 0;
   Object.values(DECKS).forEach(cards => cards.forEach(c => {
@@ -221,9 +225,20 @@ if ((SAVED.v || 1) < 3) {
     if (!best || best[0] !== best[1] || best[1] !== cards.length) return;
     cards.forEach(c => { if (!SAVED.mastered[c.id]) { SAVED.mastered[c.id] = 1; seeded++; } });
   });
-  SAVED.v = SAVED_VERSION;
+  SAVED.v = 3;                        // this step only — v4 runs below
   save();
   if (seeded) console.info("abhy\u0101sa\u1e25: seeded " + seeded + " mastered cards from perfect rounds");
+}
+
+/* v4 added the per-card review history that paces the draw.  There is
+   nothing to recover: before it, only the running totals were kept, and no
+   record survives of WHICH cards a past session showed.  So it starts empty,
+   which makes every card due — the first session after upgrading draws from
+   the whole pool, exactly as it did before, and pacing begins from there. */
+if ((SAVED.v || 1) < 4) {
+  SAVED.review.cards = SAVED.review.cards || {};
+  SAVED.v = SAVED_VERSION;
+  save();
 }
 
 /* ── trouble cards ─────────────────────────────────────────
@@ -707,17 +722,13 @@ function renderDrawer() {
      learner finishes, and it is the same act that puts the list into review —
      so one number carries the whole model. */
   const done = finishedDecks().length;
-  let cpct = all ? Math.round(done / all * 100) : 0;
-  if (cpct === 100 && done < all) cpct = 99;
-  if (cpct === 0 && done > 0) cpct = 1;
   fillRow(document, {
     /* the figure and its rank, and nothing else: what it is made of is on
        the card this button opens */
     '#dp-pct': r.score === null ? 'Unranked' : r.score + '% \u00b7 ' + r.name,
-    '#dp-cpct': cpct + '%',
-    '#dp-cards': done + ' / ' + all + ' lists complete'
+    '#dp-cards': done + ' of ' + all + ' lists complete'
   });
-  $('dp-bar').style.width = cpct + '%';
+  $('dp-bar').style.width = (r.score === null ? 0 : r.score) + '%';
 
   const host = $('dr-tracks');
   host.innerHTML = '';
@@ -828,9 +839,10 @@ function renderReviewPanel() {
   $('rp-what').textContent = !ready
     ? "Complete more lists \u2014 " + pool + " of " + REVIEW_MIN + " cards so far"
     : "Reviewing " + REVIEW_SIZE + " cards from " + lists + " completed list" + s;
-  $('rp-note').textContent = "Review mixes material you\u2019ve already studied. "
-    + "Correct first answers strengthen mastery; misses lower it and return to "
-    + "practice.";
+  $('rp-note').textContent = "Abhy\u0101sa checks how well your studied material is "
+    + "holding up over time. It mixes cards from completed lists and counts only "
+    + "your first answer. Cards you remember return later; cards you miss return "
+    + "sooner, so review stays focused without becoming repetitive.";
   /* Stated here as well as in the drawer, and in the same words: the figure
      and its two readings.  Never the multiplication. */
   const r = rankOf();
@@ -915,15 +927,45 @@ function loadDeck(name) {
    REVIEW_SIZE taken.  A flat draw on purpose: weighting it towards the
    cards you keep missing would flatter the number, and the whole point
    of this mode is to measure what actually stayed. */
-/* Drawn round-robin across the finished lists rather than flat across their
-   cards, so one large list cannot swamp a session.  That matters now the
-   paradigm decks exist: a complete declension table is a hundred-odd cards,
-   and a flat draw would make every review mostly that table.
+/* ── what a review draws ────────────────────────────────────
+   The promise the card makes is that material is checked repeatedly over
+   time, but not too often: remembered cards rest, missed cards come back
+   sooner, and the draw stays spread across every completed list.  Three
+   small rules do all of it.
 
-   Still unweighted WITHIN a list — the draw measures what stayed, and
-   favouring the cards you keep missing would flatter the number.  Weighted
-   practice is what the trouble drill is for.  Exhaustive coverage of a table
-   therefore happens across many sessions, not in any one of them. */
+   1. REST — how many sessions a card sits out, by its run of first-try
+      correct answers, so what is holding up is asked less and less.  A miss
+      resets the run to zero, and a rest of zero means the very next session.
+
+   2. Overdue first.  Among the cards whose rest is up, the one that has
+      waited longest goes first; a card never reviewed at all waits longest
+      of all.  Within a tie the order is shuffled, so a session is never a
+      replay of the last.
+
+   3. Round-robin across lists.  Piles are drawn from one at a time, so one
+      large list cannot swamp a session — a complete declension table is a
+      hundred-odd cards, and a flat draw would make every review mostly that
+      table.  Broad representation is a property of the draw, not of luck.
+
+   If fewer cards are due than a session holds, the rest of the session is
+   filled with the longest-rested cards anyway: a short pool should still
+   give a full review rather than a stunted one.
+
+   The draw is deliberately NOT weighted towards the cards you keep missing.
+   It measures what stayed, and favouring the weak cards would flatter the
+   figure.  Weighted practice is what the trouble drill is for. */
+const REST = [0, 1, 2, 4, 8, 16];
+const restFor = streak => REST[Math.min(Math.max(streak, 0), REST.length - 1)];
+
+/* How many sessions past its rest a card is.  0 is due exactly now, negative
+   is still resting, and a card never reviewed is treated as maximally
+   overdue so new material leads. */
+function overdueBy(card) {
+  const rec = SAVED.review.cards[cardKey(card)];
+  if (!rec) return Infinity;
+  return (SAVED.review.runs - rec[0]) - restFor(rec[1]);
+}
+
 function mixCards() {
   const byDeck = new Map();
   reviewPool().forEach(c => {
@@ -931,19 +973,46 @@ function mixCards() {
     if (!byDeck.has(d)) byDeck.set(d, []);
     byDeck.get(d).push(c);
   });
-  const piles = shuffle([...byDeck.values()].map(cs => shuffle(cs)));
-  const out = [];
-  for (let i = 0; out.length < REVIEW_SIZE; i++) {
+  /* Shuffle first so equally overdue cards come out in a different order
+     each session, then sort — Array#sort is stable, so the shuffle survives
+     within each tier. */
+  const piles = shuffle([...byDeck.values()].map(cs =>
+    shuffle(cs).sort((a, b) => overdueBy(b) - overdueBy(a))));
+
+  /* one pass round-robin: pile 1's first card, pile 2's first, and so on */
+  const order = [];
+  for (let i = 0; ; i++) {
     let took = false;
     for (const pile of piles) {
-      if (i >= pile.length) continue;
-      out.push(pile[i]);
-      took = true;
-      if (out.length === REVIEW_SIZE) break;
+      if (i < pile.length) { order.push(pile[i]); took = true; }
     }
-    if (!took) break;                    // every list exhausted
+    if (!took) break;
+  }
+
+  const due = order.filter(c => overdueBy(c) >= 0);
+  const out = due.slice(0, REVIEW_SIZE);
+  /* Not enough rested yet: fill the session out with the next longest
+     rested rather than handing back a short round. */
+  if (out.length < REVIEW_SIZE) {
+    const taken = new Set(out);
+    for (const c of order) {
+      if (out.length === REVIEW_SIZE) break;
+      if (!taken.has(c)) { out.push(c); taken.add(c); }
+    }
   }
   return out;
+}
+
+/* Record what the session found.  Only the FIRST answer counts: that is the
+   retention signal the whole mode is built on, and it is the same signal a
+   deck's best score and the trouble list already use. */
+function recordReview(cards, missedSet) {
+  const now = SAVED.review.runs;
+  cards.forEach(c => {
+    const k = cardKey(c), prev = SAVED.review.cards[k];
+    const streak = missedSet.has(c) ? 0 : ((prev && prev[1]) || 0) + 1;
+    SAVED.review.cards[k] = [now, streak];
+  });
 }
 
 function startMixedReview() {
@@ -1652,6 +1721,44 @@ function didntKnow() {
   next();
 }
 
+/* How each list held up in a cross-list round, weakest first — the answer to
+   "where do I go back to?".  Counted in cards because that is what a round
+   contains, but reported per list because that is the unit the learner
+   finishes and the drawer measures. */
+function byListSummary(host, cards, missedCards) {
+  const bad = new Set(missedCards);
+  const rows = new Map();
+  cards.forEach(c => {
+    const n = DECK_OF.get(c);
+    if (!n) return;
+    if (!rows.has(n)) rows.set(n, { right: 0, total: 0 });
+    const r = rows.get(n);
+    r.total++;
+    if (!bad.has(c)) r.right++;
+  });
+  if (rows.size < 2) return;            // one list is not a comparison
+
+  const head = document.createElement('div');
+  head.className = 'missed-head';
+  head.textContent = "How each list held up";
+  host.appendChild(head);
+
+  [...rows.entries()]
+    .sort((a, b) => (a[1].right / a[1].total) - (b[1].right / b[1].total)
+                 || a[0].localeCompare(b[0]))
+    .forEach(([name, r]) => {
+      const full = r.right === r.total;
+      const d = document.createElement('div');
+      d.className = 'brow' + (full ? ' full' : '');
+      d.innerHTML = '<span class="b-name"></span><span class="b-score"></span>'
+                  + '<span class="b-pct"></span>';
+      d.querySelector('.b-name').textContent = DECK_SHORT(name);
+      d.querySelector('.b-score').textContent = r.right + " / " + r.total;
+      d.querySelector('.b-pct').textContent = full ? "strong" : "practise";
+      host.appendChild(d);
+    });
+}
+
 /* ── end of round ──────────────────────────────────────── */
 function finish() {
   const total = roundSource.length;
@@ -1669,6 +1776,7 @@ function finish() {
     if (!reviewing && !trouble) {
       const r = SAVED.review;
       r.runs++; r.right += firstPass; r.seen += total;
+      recordReview(roundSource, new Set(missed));
       save();
     }
   } else {
@@ -1710,15 +1818,20 @@ function finish() {
 
   const list = $('r-list');
   list.innerHTML = "";
+  /* A review crosses lists, so the useful question at the end is not which
+     cards went wrong but which LISTS are holding up.  Card-level detail is
+     the evidence underneath; the learner-facing unit is the list, and this
+     is what says where to go back to. */
+  if (mixed && !trouble) byListSummary(list, roundSource, missed);
   if (!missed.length) {
-    list.innerHTML = '<div class="clean">' + (
+    list.insertAdjacentHTML('beforeend', '<div class="clean">' + (
         trouble
       ? 'Every one of them on the first showing. Two more sittings like that and they leave the list.'
       : mixed && !reviewing
       ? 'Every card cold, straight out of its list. Draw again, or go back to a list.'
       : reviewing
       ? 'All of them clear this time. Back to the whole deck, or pick another list.'
-      : 'Every card on the first showing. Pick another list, or run this one again.') + '</div>';
+      : 'Every card on the first showing. Pick another list, or run this one again.') + '</div>');
     $('again-missed').hidden = true;
     return;
   }
