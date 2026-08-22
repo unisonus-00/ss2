@@ -2,7 +2,7 @@
 
 ## Mission
 
-Build **Abhyāsaḥ** as the lightweight practice layer for Sanskrit School.
+Build **Abhyāsa** as the lightweight practice layer for Sanskrit School.
 
 Follow the repository curriculum. Do not create a parallel curriculum.
 
@@ -20,7 +20,7 @@ Use its materials according to purpose:
 | `workbook-questions.md` | exercise patterns |
 | `workbook-answers.md` | verification |
 | `badge.md` | mastery target |
-| `practice.json` | curated Abhyāsaḥ practice |
+| `practice.json` | curated Abhyāsa practice |
 
 When these disagree about stage numbering or content, report the conflict; do
 not silently guess.
@@ -185,7 +185,7 @@ into the single-page `index.html` at the repository root. It already knows the
 absent, so adding `bricks.md` to a lesson needs no build change. Run it with
 `python3 build.py`.
 
-**Abhyāsaḥ** — the primary project file, distributed as `dist/abhyasah.html`.
+**Abhyāsa** — the primary project file, distributed as `dist/abhyasah.html`.
 It is one self-contained page with no external references of any kind: no CDN,
 no fonts, no `fetch`, no stylesheets. It opens from `file://` and works
 offline, and it must stay that way.
@@ -232,8 +232,8 @@ asserts the card starts within 165px, because this is the kind of thing that
 creeps back.
 
 ```
-☰ Sandhi · Practice ›                       अभ्यासः  [◎]
-                                            abhyāsaḥ
+☰ Sandhi · Practice ›                       अभ्यास  [◎]
+                                            abhyāsa
 JOINS AND SPLITS            31 LEFT  0 LEARNED  0 MISSED
 ┌──────────────────────────────────────────────────────┐
 │                       the card                        │
@@ -485,7 +485,10 @@ Three things here are load-bearing for the compatibility list above:
   `Practice`, then `Table mastery` / `Conjugation mastery`, then the rest —
   because `DECK_SHORT` displays the text before the em dash. Practice prepares
   generalisation; mastery closes known finite gaps.
-- **Progress lives in `localStorage`** under `abhyāsaḥ`, versioned by `SAVED.v`
+- **Progress lives in `localStorage`** under the key `abhyāsaḥ` — chosen before
+  the brand settled on the bare stem **Abhyāsa**, and left alone: it is
+  invisible plumbing, not displayed text, and renaming it would only add
+  migration risk for no visible benefit. Versioned by `SAVED.v`
   (now 3). v1 keyed trouble history by `devanagari + '¦' + gloss`; the app
   lifts those records onto stable ids on first load. v2→v3 seeds `SAVED.mastered`
   from the one case that can be resolved exactly rather than guessed at — a

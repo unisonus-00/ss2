@@ -1532,7 +1532,7 @@ function scoreText() {
   const pct = Math.round(r.firstPass / r.total * 100);
   const filled = Math.round(pct / 10);
   if (r.trouble) {
-    return "अभ्यासः · sanskrit flashcards\n"
+    return "अभ्यास · sanskrit flashcards\n"
          + "Trouble cards — a drill of the " + r.total + " giving me most trouble\n"
          + "Known on the first showing: " + r.firstPass + " of " + r.total + " · " + pct + "%\n"
          + "\u25cf".repeat(filled) + "\u25cb".repeat(10 - filled)
@@ -1540,14 +1540,14 @@ function scoreText() {
   }
   if (r.mixed) {
     const m = masteryPct();
-    return "अभ्यासः · sanskrit flashcards\n"
+    return "अभ्यास · sanskrit flashcards\n"
          + "Mixed review — a random draw from " + r.lists
          + " finished list" + (r.lists > 1 ? "s" : "") + "\n"
          + "Known cold: " + r.firstPass + " of " + r.total + " · " + pct + "%\n"
          + "\u25cf".repeat(filled) + "\u25cb".repeat(10 - filled)
          + (m === null ? "" : "\nReview mastery: " + m + "%");
   }
-  return "अभ्यासः · sanskrit flashcards\n"
+  return "अभ्यास · sanskrit flashcards\n"
        + r.deck + (r.lesson ? "  (" + r.lesson + ")" : "") + "\n"
        + (r.reviewing ? "Review cleared: " : "Known on the first showing: ")
        + r.firstPass + " of " + r.total + " · " + pct + "%\n"
@@ -1753,7 +1753,7 @@ function renderTrouble() {
    pasted list drops straight back into a deck file. */
 function troubleText() {
   const cards = troubleCards();
-  return "अभ्यासः \u00b7 trouble cards (" + cards.length + ")\n"
+  return "अभ्यास \u00b7 trouble cards (" + cards.length + ")\n"
        + SAVED.cleared + " cleared so far\n\n"
        + cards.map(c => [c.devanagari, c.iast, c.gloss].join(" | ")).join("\n");
 }

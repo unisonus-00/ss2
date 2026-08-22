@@ -60,7 +60,7 @@ Each stage contains:
 | `workbook-questions.md` | Exercises |
 | `workbook-answers.md` | Answer key |
 | `badge.md` | The mastery target for the stage |
-| `practice.json` | Curated Abhyāsaḥ practice |
+| `practice.json` | Curated Abhyāsa practice |
 
 A `vocab/` library provides 22 thematic word lists — goddess names, weapons, nature, ritual, philosophy, and more.
 
@@ -94,7 +94,7 @@ case as the stage's own reference and workbooks.
 
 **Practice — `dist/abhyasah.html`**
 
-अभ्यासः, the flashcard layer. Open it directly in a browser; it is a single
+अभ्यास, the flashcard layer. Open it directly in a browser; it is a single
 self-contained file with no network dependencies, so it works offline and from
 `file://` — including on a phone. Decks are tied to the numbered stages, and
 progress, trouble cards, and scores are saved in the browser.
