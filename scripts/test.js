@@ -1061,6 +1061,19 @@ const open = async (browser, opts = {}) => {
       kavya && kavya.kids.includes('Alaṅkāra') && kavya.kids.includes('Rasa'),
       kavya ? kavya.kids.join(' | ') : 'missing');
 
+    /* Folding may shorten the tree; it may never delete a name from it.
+       A lesson of one list used to be drawn under the LIST's name, so
+       `Chandas II` read `Vṛtta` and the drawer had a Chandas I and no
+       Chandas II at all. Every lesson the app carries must be findable. */
+    const named = await p.evaluate(() => {
+      openTracks.clear(); openLessons.clear();
+      TRACK_ROWS.forEach(x => openTracks.add(x.track.id));
+      renderDrawer();
+      const text = document.getElementById('dr-tracks').innerText;
+      return LESSONS.filter(L => !text.includes(L.label)).map(L => L.label);
+    });
+    ok('no lesson name is lost to folding', !named.length, named.join(' | '));
+
     ok('the folding is derived, not a list of exceptions', r.derived);
     console.log('        folded: ' + r.singleLessonTracks.join(', ')
       + ' · one-list lessons: ' + r.singleDeckLessons.join(', '));

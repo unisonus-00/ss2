@@ -552,6 +552,14 @@ const setBar = (el, pct) => { const i = el.querySelector('.bar i'); if (i) i.sty
    curriculum's own shape is still the only thing driving the drawer. */
 const soleLesson = row => row.lessons.length === 1 ? row.lessons[0] : null;
 const soleDeck   = L   => L.decks.length === 1 ? L.decks[0] : null;
+/* A row that has folded a level away keeps that level's name: `inner` leads
+   the subheading unless it merely repeats the name already on the row, in
+   which case the row's own gloss stands in.  Nothing about the curriculum
+   should be reachable only by knowing it used to be there. */
+function foldedSub(inner, outer, fallback, rest) {
+  const lead = inner && inner !== outer ? inner : fallback;
+  return [lead].concat(rest).filter(Boolean).join(' · ');
+}
 const count = (n, word) => n + ' ' + word + (n === 1 ? '' : 's');
 
 /* One row of the drawer.  `cls` is the level it is drawn at, so a list
@@ -586,7 +594,18 @@ function deckRow(name, cls) {
 
 function lessonRow(L) {
   const one = soleDeck(L);
-  if (one) return deckRow(one, 'ls');       // the lesson IS that list
+  if (one) {
+    /* The lesson IS that list — but the row still has to say which lesson.
+       Folding may not silently delete a curriculum name: `Chandas II` read
+       simply `Vṛtta`, and the drawer then had a Chandas I and no Chandas II.
+       So the lesson's name leads, exactly as a folded track's does, and the
+       list's own name is kept in the subheading wherever it differs. */
+    const r = deckRow(one, 'ls');
+    fillRow(r, { '.ls-name': L.label,
+      '.ls-sub': foldedSub(DECK_SHORT(one), L.label, DECK_DESC(one),
+                           [DECKS[one].length + ' cards']) });
+    return r;
+  }
 
   const p = progressOf(L.ids), open = openLessons.has(L.lesson);
   const wrap = document.createElement('div');
@@ -626,10 +645,12 @@ function renderDrawer() {
        its own to expand, since there is nothing underneath to reveal. */
     if (onlyDeck) {
       const head = deckRow(onlyDeck, 'tr');
-      /* the track's own name and gloss lead.  The list's descriptor is left
-         off: at this level it only ever restates the gloss it sits beside. */
+      /* the track's own name leads.  Where the lesson folded away underneath
+         is named something else, that name takes the subheading rather than
+         the gloss, so no level of the curriculum vanishes without trace. */
       fillRow(head, { '.tr-name': t.name,
-        '.tr-sub': t.gloss + ' · ' + DECKS[onlyDeck].length + ' cards' });
+        '.tr-sub': foldedSub(only.label, t.name, t.gloss,
+                             [DECKS[onlyDeck].length + ' cards']) });
       wrap.appendChild(head);
       host.appendChild(wrap);
       return;
@@ -640,7 +661,7 @@ function renderDrawer() {
       /* one lesson: name it here rather than saying "1 lesson" and repeating
          the track's own name on the row below */
       sub: only
-        ? (only.label === t.name ? t.gloss : only.label) + ' · ' + count(only.decks.length, 'list')
+        ? foldedSub(only.label, t.name, t.gloss, [count(only.decks.length, 'list')])
         : t.gloss + ' · ' + count(row.lessons.length, 'lesson')
     });
     head.setAttribute('aria-expanded', open ? 'true' : 'false');
