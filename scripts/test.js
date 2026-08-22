@@ -1093,6 +1093,60 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
+  // ── the gaṇa mnemonics agree with each other and with the phrase ───
+  // theory.md and reference.md disagreed on two of the eight, and the app
+  // had copied one file for its practice and the other for its recall, so
+  // the same lesson taught ja-gaṇa two different ways.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      /* the phrase both curriculum files cite, and the weight of each
+         syllable in it: a long vowel is guru, a short one laghu */
+      const PHRASE = [['ya','∪'],['mā','–'],['tā','–'],['rā','–'],['ja','∪'],
+                      ['bhā','–'],['na','∪'],['sa','∪'],['la','∪'],['gā','–']];
+      const START = { ya:0, ma:1, ta:2, ra:3, ja:4, bha:5, na:6, sa:7 };
+      const derive = g => PHRASE.slice(START[g], START[g] + 3);
+
+      /* The name sits in the gloss on a recall card and in the note on a
+         practice card, so look in both.  No \b anywhere near this: JS word
+         boundaries are ASCII, and every one of these ends in a long vowel. */
+      const said = {};          // gaṇa -> every mnemonic the app prints for it
+      Object.keys(DECKS).forEach(n => DECKS[n].forEach(c => {
+        const where = (c.gloss || '') + ' ¦ ' + (c.note || '');
+        const m = where.match(/([a-zā]+)-gaṇa/);
+        if (!m || !(m[1] in START)) return;
+        const mn = ((c.note || '').match(/·[^·]*?([^\s·]+-[^\s·]+-[^\s·]+)/) || [])[1];
+        if (mn) (said[m[1]] = said[m[1]] || new Set()).add(mn);
+      }));
+
+      const disagree = [], wrong = [];
+      Object.entries(said).forEach(([g, set]) => {
+        if (set.size > 1) disagree.push(g + ': ' + [...set].join(' vs '));
+        const want = derive(g).map(x => x[0]).join('-');
+        [...set].forEach(mn => { if (mn !== want) wrong.push(g + ': ' + mn + ' ≠ ' + want); });
+      });
+
+      /* and the pattern each gaṇa card shows must be the weights that
+         mnemonic actually spells */
+      const badPattern = [];
+      Object.keys(DECKS).forEach(n => DECKS[n].forEach(c => {
+        const m = (c.gloss || '').match(/^([a-zā]+)-gaṇa/);
+        if (!m || !(m[1] in START)) return;
+        const want = derive(m[1]).map(x => x[1]).join(' ');
+        const got = (c.devanagari || '').replace(/—/g, '–').replace(/◡/g, '∪');
+        if (got !== want) badPattern.push(m[1] + ': ' + got + ' ≠ ' + want);
+      }));
+      return { seen: Object.keys(said).length, disagree, wrong, badPattern };
+    });
+    ok('one mnemonic per gaṇa across the whole app',
+      !r.disagree.length, r.disagree.join(' | '));
+    ok('every mnemonic is what the phrase spells', !r.wrong.length, r.wrong.join(' | '));
+    ok('every gaṇa pattern is the weights of its own mnemonic',
+      !r.badPattern.length, r.badPattern.join(' | '));
+    console.log('        ' + r.seen + ' gaṇas checked against yamātārājabhānasalagām');
+    await p.close();
+  }
+
   // ── every list is a chunk a learner can finish ─────────────────────
   {
     const p = await open(browser);

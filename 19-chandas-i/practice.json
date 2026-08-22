@@ -2,7 +2,7 @@
   "lesson": "19-chandas-i",
   "decks": [
     {
-      "name": "Scan and name — practice",
+      "name": "Scan — practice, syllable weight",
       "cards": [
         {
           "id": "19-chandas-i:scan:namami",
@@ -81,7 +81,12 @@
           "answer": "guru",
           "note": "weight comes from what follows the vowel, not only from the vowel",
           "source": "theory · laghu and guru"
-        },
+        }
+      ]
+    },
+    {
+      "name": "Name the gaṇa — practice, the eight feet",
+      "cards": [
         {
           "id": "19-chandas-i:gana:ya",
           "type": "choice",
@@ -92,7 +97,7 @@
             "ta"
           ],
           "answer": "ya",
-          "note": "ya-gaṇa · yamātā",
+          "note": "ya-gaṇa · ya-mā-tā",
           "source": "theory · gaṇas"
         },
         {
@@ -105,7 +110,7 @@
             "ya"
           ],
           "answer": "ja",
-          "note": "ja-gaṇa · jabhalā",
+          "note": "ja-gaṇa · ja-bhā-na",
           "source": "theory · gaṇas"
         },
         {
@@ -118,7 +123,7 @@
             "bha"
           ],
           "answer": "ra",
-          "note": "ra-gaṇa · rājabhā · the mirror of ja",
+          "note": "ra-gaṇa · rā-ja-bhā · the mirror of ja",
           "source": "theory · gaṇas"
         },
         {
@@ -131,7 +136,7 @@
             "ya"
           ],
           "answer": "sa",
-          "note": "sa-gaṇa · salāgā",
+          "note": "sa-gaṇa · sa-la-gā",
           "source": "theory · gaṇas"
         },
         {
@@ -144,7 +149,7 @@
             "ra"
           ],
           "answer": "bha",
-          "note": "bha-gaṇa · bhānasa",
+          "note": "bha-gaṇa · bhā-na-sa",
           "source": "theory · gaṇas"
         }
       ]

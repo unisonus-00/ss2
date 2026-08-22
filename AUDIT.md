@@ -169,6 +169,35 @@ how chapters relate to the stages that already absorbed four of their files.
 That is a curriculum-publishing decision, not a mechanical fix, and it is left
 for the maintainer.
 
+### 3b. Two gaṇa mnemonics contradict themselves — repaired
+
+`19-chandas-i/theory.md` and `19-chandas-i/reference.md` both give the eight
+gaṇas and both cite the same mnemonic phrase, **yamātārājabhānasalagām**. They
+disagree on two of the eight:
+
+| gaṇa | pattern | `reference.md` | `theory.md` |
+|:-----|:--------|:---------------|:------------|
+| ja | ∪ – ∪ | **ja**-bhā-na | ~~jabhalā~~ |
+| sa | ∪ ∪ – | **sa**-la-gā | ~~salāgā~~ |
+
+This is not a judgement call between two readings. The phrase runs
+`ya-mā-tā-rā-ja-bhā-na-sa-la-gā`, and each gaṇa is three syllables read from
+its own letter, which `theory.md` states three lines below its own table:
+
+- `ja` → ja-bhā-na = ∪ – ∪ ✓. `jabhalā` reads ja-bha-lā = ∪ ∪ –, which is
+  **sa**-gaṇa, and contradicts the ∪ – ∪ in the same row.
+- `sa` → sa-la-gā = ∪ ∪ – ✓. `salāgā` reads sa-lā-gā = ∪ – –, which is
+  **ya**-gaṇa, and contradicts the ∪ ∪ – in the same row.
+
+`reference.md` is right in all eight; `theory.md` was wrong in those two and
+has been corrected to match.
+
+**Abhyāsa had inherited both sides.** The recall list took the reference's
+forms, the practice list took the theory's, so one lesson taught `ja-gaṇa`
+two different ways depending on which list you opened. Both now carry the
+reference's forms. `scripts/test.js` derives all eight from the phrase and
+fails if any card disagrees with it or with another card.
+
 ## 4. Current Abhyāsaḥ decks and their lesson mapping
 
 57 decks, 1871 cards, all `type: reveal`. The good news: the `@stage N` markers

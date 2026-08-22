@@ -38,10 +38,10 @@ Groups of 3 syllables have names:
 | ma | – – – | mātārā | mātārā |
 | ta | – – ∪ | tārāja | tārāja |
 | ra | – ∪ – | rājabhā | rājabhā |
-| ja | ∪ – ∪ | jabhalā | jabhalā |
+| ja | ∪ – ∪ | jabhāna | jabhāna |
 | bha | – ∪ ∪ | bhānasa | bhānasa |
 | na | ∪ ∪ ∪ | nasala | nasala |
-| sa | ∪ ∪ – | salāgā | salāgā |
+| sa | ∪ ∪ – | salagā | salagā |
 
 **Memory trick:** Take the phrase **ya-mā-tā-rā-ja-bhā-na-sa-la-gā-m**. Each gaṇa's pattern is read from its starting letter through the next two syllables.
 

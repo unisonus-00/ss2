@@ -148,6 +148,8 @@ const DECK_RENAMES = {
   'Practice — kṛt and taddhita':                   'Kṛt and taddhita — practice',
   'Practice — name the compound':                  'Name the compound — practice',
   'Practice — case, form and connector':           'Case, form and connector — practice',
+  /* Split straight after this rename into Scan / Name the gaṇa, one skill
+     each, so this target no longer exists either — see the split note above. */
   'Practice — scan and name':                      'Scan and name — practice',
   'Practice — name the metre':                     'Name the metre — practice',
 };
