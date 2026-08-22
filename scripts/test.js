@@ -677,6 +677,52 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
+  // ── Milestone 7 decks: Guṇa, Rūpa, Kāraka ─────────────────────────
+  {
+    const specs = [
+      ['Guṇa practice — agreement', '04-guna', 4, 11],
+      ['Rūpa practice — case and form', '05-rupa', 5, 15],
+      ['Kāraka practice — roles in a sentence', '07-karaka', 7, 11],
+    ];
+    const p = await browser.newPage();
+    p.on('pageerror', e => { console.log('  PAGEERROR ' + e.message); fail.push('pageerror'); });
+    await p.goto(FILE, { waitUntil: 'load' });
+    const r = await p.evaluate(ss => ss.map(([deck, lesson, stage, n]) => {
+      const d = DECKS[deck];
+      if (!d) return { deck, missing: true };
+      const bad = d.filter(c => c.type !== 'choice' || !c.options.includes(c.answer)
+        || new Set(c.options).size !== c.options.length || !c.note || !c.source);
+      return { deck, lesson: DECK_LESSON[deck], stage: DECK_STAGE[deck],
+               n: d.length, wantLesson: lesson, wantStage: stage, wantN: n,
+               bad: bad.map(c => c.id) };
+    }), specs);
+    r.forEach(x => {
+      ok('deck present: ' + x.deck, !x.missing);
+      if (x.missing) return;
+      ok('  sits in ' + x.wantLesson,
+        x.lesson === x.wantLesson && x.stage === x.wantStage, x.lesson + ' / stage ' + x.stage);
+      ok('  ' + x.wantN + ' well-formed choice cards',
+        x.n === x.wantN && x.bad.length === 0, x.n + ' cards; bad: ' + x.bad.join(', '));
+    });
+
+    // the karaka notes must carry BOTH the semantic role and the case
+    const roles = await p.evaluate(() => {
+      const d = DECKS['Kāraka practice — roles in a sentence'];
+      const sentence = d.filter(c => c.id.startsWith('07-karaka:role:'));
+      return {
+        n: sentence.length,
+        bothNamed: sentence.every(c =>
+          /kartā|karma|karaṇa|sampradāna|apādāna|adhikaraṇa/.test(c.note) &&
+          /prathamā|dvitīyā|tṛtīyā|caturthī|pañcamī|saptamī/.test(c.note)),
+        askAboutAWord: sentence.every(c => /what role does “.+” play\?$/.test(c.front)),
+      };
+    });
+    ok('karaka cards ask about a word in a real sentence',
+      roles.n >= 5 && roles.askAboutAWord, roles.n + ' role cards');
+    ok('karaka notes name both the role and the vibhakti', roles.bothNamed);
+    await p.close();
+  }
+
   await browser.close();
   console.log(fail.length ? `\n${fail.length} FAILED: ${fail.join(', ')}` : '\nall checks passed');
   process.exit(fail.length ? 1 : 0);

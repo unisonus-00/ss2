@@ -274,7 +274,7 @@ Three things here are load-bearing for the compatibility list above:
   lifts state out of earlier storage key names. Keep both chains; every
   `localStorage` touch stays guarded, since it can be absent or full.
 
-The app carries 23 lessons, 61 decks, and 1935 cards — 1871 `reveal`, 52
+The app carries 23 lessons, 64 decks, and 1972 cards — 1871 `reveal`, 89
 `choice` and 12 `sequence`. The interactive sets are curated practice, not
 conversions of the reference tables:
 
@@ -285,6 +285,17 @@ conversions of the reference tables:
   terminology where terminology is the point, and the operation is now
   drilled separately.
 
+- `04-guna` — 11 cards: adjective agreement, including the contrast that
+  `sundara` takes a feminine in -ī where `divya` takes -ā. Adjective
+  *vocabulary* stays `reveal`.
+- `05-rupa` — 15 cards: recognise a case, produce a form, and pick the case a
+  devotional phrase needs. Selected contrasts across stems, never a paradigm
+  table transcribed.
+- `07-karaka` — 11 cards: the role a word plays in a real sentence, plus the
+  role→vibhakti mapping and the fact that ṣaṣṭhī is not a kāraka at all. Each
+  answer names **both** the semantic role and the morphological case
+  (`karaṇa · instrument · tṛtīyā · instr. sg.`), which is the distinction the
+  lesson exists to teach.
 - `06-kriya` and `12-vakya` — 5 and 7 `sequence` cards: sentence building,
   taken from the two workbooks' own "form a sentence from these elements"
   exercises, which is the sequence interaction already written on paper.

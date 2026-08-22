@@ -2,6 +2,154 @@
   "lesson": "04-guna",
   "decks": [
     {
+      "name": "Guṇa practice — agreement",
+      "cards": [
+        {
+          "id": "04-guna:agree:sundara-m",
+          "type": "choice",
+          "front": "sundara + devaḥ (m.) → ?",
+          "options": [
+            "sundaraḥ devaḥ",
+            "sundarī devaḥ",
+            "sundaram devaḥ"
+          ],
+          "answer": "sundaraḥ devaḥ",
+          "note": "the adjective takes the noun’s gender, number and case",
+          "source": "workbook A1"
+        },
+        {
+          "id": "04-guna:agree:sundara-f",
+          "type": "choice",
+          "front": "sundara + devī (f.) → ?",
+          "options": [
+            "sundarī devī",
+            "sundarā devī",
+            "sundaraḥ devī"
+          ],
+          "answer": "sundarī devī",
+          "note": "sundara forms its feminine in -ī, not -ā",
+          "source": "workbook A1"
+        },
+        {
+          "id": "04-guna:agree:sundara-n",
+          "type": "choice",
+          "front": "sundara + phalam (n.) → ?",
+          "options": [
+            "sundaram phalam",
+            "sundaraḥ phalam",
+            "sundarī phalam"
+          ],
+          "answer": "sundaram phalam",
+          "note": "neuter -am",
+          "source": "workbook A1"
+        },
+        {
+          "id": "04-guna:agree:divya-f",
+          "type": "choice",
+          "front": "divya + mūrtiḥ (f.) → ?",
+          "options": [
+            "divyā mūrtiḥ",
+            "divyī mūrtiḥ",
+            "divyaḥ mūrtiḥ"
+          ],
+          "answer": "divyā mūrtiḥ",
+          "note": "divya forms its feminine in -ā — contrast sundarī",
+          "source": "workbook A2"
+        },
+        {
+          "id": "04-guna:agree:divya-n",
+          "type": "choice",
+          "front": "divya + mandiram (n.) → ?",
+          "options": [
+            "divyam mandiram",
+            "divyā mandiram",
+            "divyaḥ mandiram"
+          ],
+          "answer": "divyam mandiram",
+          "note": "neuter -am",
+          "source": "workbook A2"
+        },
+        {
+          "id": "04-guna:agree:divya-m",
+          "type": "choice",
+          "front": "divya + dīpaḥ (m.) → ?",
+          "options": [
+            "divyaḥ dīpaḥ",
+            "divyā dīpaḥ",
+            "divyam dīpaḥ"
+          ],
+          "answer": "divyaḥ dīpaḥ",
+          "note": "masculine -aḥ",
+          "source": "workbook A2"
+        },
+        {
+          "id": "04-guna:agree:parama-f",
+          "type": "choice",
+          "front": "parama + śaktiḥ (f.) → ?",
+          "options": [
+            "paramā śaktiḥ",
+            "parama śaktiḥ",
+            "paramī śaktiḥ"
+          ],
+          "answer": "paramā śaktiḥ",
+          "note": "feminine -ā · śakti is feminine however it ends",
+          "source": "theory · agreement rule"
+        },
+        {
+          "id": "04-guna:fem:sundara-rule",
+          "type": "choice",
+          "front": "Which feminine does sundara take?",
+          "options": [
+            "sundarī",
+            "sundarā",
+            "sundaram"
+          ],
+          "answer": "sundarī",
+          "note": "-ra adjectives take -ī · most other -a adjectives take -ā, as divya → divyā",
+          "source": "workbook A1 / A2"
+        },
+        {
+          "id": "04-guna:fix:santa-devi",
+          "type": "choice",
+          "front": "Fix the agreement: śāntaḥ devī",
+          "options": [
+            "śāntā devī",
+            "śāntaḥ devī",
+            "śāntam devī"
+          ],
+          "answer": "śāntā devī",
+          "note": "devī is feminine, so the adjective must be too",
+          "source": "workbook A3"
+        },
+        {
+          "id": "04-guna:fix:nila-akasah",
+          "type": "choice",
+          "front": "Fix the agreement: nīlam ākāśaḥ",
+          "options": [
+            "nīlaḥ ākāśaḥ",
+            "nīlam ākāśaḥ",
+            "nīlā ākāśaḥ"
+          ],
+          "answer": "nīlaḥ ākāśaḥ",
+          "note": "ākāśaḥ is masculine despite the neuter-looking adjective",
+          "source": "workbook A3"
+        },
+        {
+          "id": "04-guna:fix:pavitra-ganga",
+          "type": "choice",
+          "front": "Fix the agreement: pavitraḥ gaṅgā",
+          "options": [
+            "pavitrā gaṅgā",
+            "pavitraḥ gaṅgā",
+            "pavitram gaṅgā"
+          ],
+          "answer": "pavitrā gaṅgā",
+          "note": "gaṅgā is feminine",
+          "source": "workbook A3"
+        }
+      ]
+    },
+    {
       "name": "03 · Guṇa — adjectives",
       "cards": [
         {

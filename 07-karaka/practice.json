@@ -2,6 +2,154 @@
   "lesson": "07-karaka",
   "decks": [
     {
+      "name": "Kāraka practice — roles in a sentence",
+      "cards": [
+        {
+          "id": "07-karaka:role:bhaktah",
+          "type": "choice",
+          "front": "bhaktaḥ devam pūjayati — what role does “bhaktaḥ” play?",
+          "options": [
+            "kartā",
+            "karma",
+            "karaṇa"
+          ],
+          "answer": "kartā",
+          "note": "kartā · agent · prathamā · nom. sg.",
+          "source": "workbook A1"
+        },
+        {
+          "id": "07-karaka:role:devam",
+          "type": "choice",
+          "front": "bhaktaḥ devam pūjayati — what role does “devam” play?",
+          "options": [
+            "karma",
+            "kartā",
+            "sampradāna"
+          ],
+          "answer": "karma",
+          "note": "karma · object · dvitīyā · acc. sg.",
+          "source": "workbook A1"
+        },
+        {
+          "id": "07-karaka:role:puspena",
+          "type": "choice",
+          "front": "bhaktaḥ puṣpeṇa devam pūjayati — what role does “puṣpeṇa” play?",
+          "options": [
+            "karaṇa",
+            "kartā",
+            "karma"
+          ],
+          "answer": "karaṇa",
+          "note": "karaṇa · instrument · tṛtīyā · instr. sg.",
+          "source": "workbook A1"
+        },
+        {
+          "id": "07-karaka:role:sivaya",
+          "type": "choice",
+          "front": "bhaktaḥ śivāya namaḥ karoti — what role does “śivāya” play?",
+          "options": [
+            "sampradāna",
+            "adhikaraṇa",
+            "karaṇa"
+          ],
+          "answer": "sampradāna",
+          "note": "sampradāna · recipient · caturthī · dat. sg.",
+          "source": "workbook A1"
+        },
+        {
+          "id": "07-karaka:role:mandire",
+          "type": "choice",
+          "front": "bhaktaḥ mandire pūjayati — what role does “mandire” play?",
+          "options": [
+            "adhikaraṇa",
+            "apādāna",
+            "karaṇa"
+          ],
+          "answer": "adhikaraṇa",
+          "note": "adhikaraṇa · location · saptamī · loc. sg.",
+          "source": "workbook A1"
+        },
+        {
+          "id": "07-karaka:role:bhaktya",
+          "type": "choice",
+          "front": "bhaktaḥ bhaktyā devāya puṣpam arpayati — what role does “bhaktyā” play?",
+          "options": [
+            "karaṇa",
+            "sampradāna",
+            "kartā"
+          ],
+          "answer": "karaṇa",
+          "note": "karaṇa · instrument — “with devotion” · tṛtīyā",
+          "source": "workbook B1"
+        },
+        {
+          "id": "07-karaka:role:devaya-arpayati",
+          "type": "choice",
+          "front": "bhaktaḥ bhaktyā devāya puṣpam arpayati — what role does “devāya” play?",
+          "options": [
+            "sampradāna",
+            "karma",
+            "adhikaraṇa"
+          ],
+          "answer": "sampradāna",
+          "note": "sampradāna · recipient — to whom it is offered · caturthī",
+          "source": "workbook B1"
+        },
+        {
+          "id": "07-karaka:case:karana",
+          "type": "choice",
+          "front": "Karaṇa is typically carried by which vibhakti?",
+          "options": [
+            "tṛtīyā",
+            "dvitīyā",
+            "caturthī"
+          ],
+          "answer": "tṛtīyā",
+          "note": "instrument · 3rd",
+          "source": "workbook A2"
+        },
+        {
+          "id": "07-karaka:case:sampradana",
+          "type": "choice",
+          "front": "Sampradāna is typically carried by which vibhakti?",
+          "options": [
+            "caturthī",
+            "tṛtīyā",
+            "ṣaṣṭhī"
+          ],
+          "answer": "caturthī",
+          "note": "recipient · 4th",
+          "source": "workbook A2"
+        },
+        {
+          "id": "07-karaka:case:apadana",
+          "type": "choice",
+          "front": "Apādāna is typically carried by which vibhakti?",
+          "options": [
+            "pañcamī",
+            "saptamī",
+            "tṛtīyā"
+          ],
+          "answer": "pañcamī",
+          "note": "source · 5th",
+          "source": "workbook A2"
+        },
+        {
+          "id": "07-karaka:case:not-a-karaka",
+          "type": "choice",
+          "front": "Which vibhakti is NOT a kāraka?",
+          "options": [
+            "ṣaṣṭhī",
+            "tṛtīyā",
+            "saptamī"
+          ],
+          "answer": "ṣaṣṭhī",
+          "note": "ṣaṣṭhī expresses sambandha — relation, not participation in the action",
+          "source": "workbook A3"
+        }
+      ]
+    },
+    {
       "name": "12 · Kāraka — semantic roles",
       "cards": [
         {

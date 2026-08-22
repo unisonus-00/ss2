@@ -2,6 +2,206 @@
   "lesson": "05-rupa",
   "decks": [
     {
+      "name": "Rūpa practice — case and form",
+      "cards": [
+        {
+          "id": "05-rupa:parse:sivam",
+          "type": "choice",
+          "front": "śivam — which vibhakti?",
+          "options": [
+            "dvitīyā",
+            "prathamā",
+            "tṛtīyā"
+          ],
+          "answer": "dvitīyā",
+          "note": "accusative · the object · “whom?”",
+          "source": "workbook A1"
+        },
+        {
+          "id": "05-rupa:parse:devaya",
+          "type": "choice",
+          "front": "devāya — which vibhakti?",
+          "options": [
+            "caturthī",
+            "ṣaṣṭhī",
+            "saptamī"
+          ],
+          "answer": "caturthī",
+          "note": "dative · for / to · “for whom?”",
+          "source": "workbook A1"
+        },
+        {
+          "id": "05-rupa:parse:mandire",
+          "type": "choice",
+          "front": "mandire — which vibhakti?",
+          "options": [
+            "saptamī",
+            "dvitīyā",
+            "tṛtīyā"
+          ],
+          "answer": "saptamī",
+          "note": "locative · in / on · “where?”",
+          "source": "workbook A1"
+        },
+        {
+          "id": "05-rupa:parse:puspena",
+          "type": "choice",
+          "front": "puṣpeṇa — which vibhakti?",
+          "options": [
+            "tṛtīyā",
+            "caturthī",
+            "prathamā"
+          ],
+          "answer": "tṛtīyā",
+          "note": "instrumental · by / with · “by what?”",
+          "source": "workbook A1"
+        },
+        {
+          "id": "05-rupa:form:siva-acc",
+          "type": "choice",
+          "front": "śivaḥ → accusative singular",
+          "options": [
+            "śivam",
+            "śivena",
+            "śivāya"
+          ],
+          "answer": "śivam",
+          "note": "a-stem m. · dvitīyā ekavacana",
+          "source": "workbook C1"
+        },
+        {
+          "id": "05-rupa:form:mandira-loc",
+          "type": "choice",
+          "front": "mandiram → locative singular",
+          "options": [
+            "mandire",
+            "mandirasya",
+            "mandirāya"
+          ],
+          "answer": "mandire",
+          "note": "a-stem n. · saptamī ekavacana",
+          "source": "workbook C1"
+        },
+        {
+          "id": "05-rupa:form:mala-instr",
+          "type": "choice",
+          "front": "mālā → instrumental singular",
+          "options": [
+            "mālayā",
+            "mālāyāḥ",
+            "mālām"
+          ],
+          "answer": "mālayā",
+          "note": "ā-stem f. · tṛtīyā ekavacana",
+          "source": "workbook C1"
+        },
+        {
+          "id": "05-rupa:form:agni-dat",
+          "type": "choice",
+          "front": "agniḥ → dative singular",
+          "options": [
+            "agnaye",
+            "agneḥ",
+            "agninā"
+          ],
+          "answer": "agnaye",
+          "note": "i-stem m. · caturthī ekavacana",
+          "source": "workbook C1"
+        },
+        {
+          "id": "05-rupa:form:puspa-instr",
+          "type": "choice",
+          "front": "puṣpam → instrumental singular",
+          "options": [
+            "puṣpeṇa",
+            "puṣpāya",
+            "puṣpe"
+          ],
+          "answer": "puṣpeṇa",
+          "note": "a-stem n. · tṛtīyā ekavacana · ṇ by ṇatva after ṣ",
+          "source": "workbook C1"
+        },
+        {
+          "id": "05-rupa:form:visnu-gen",
+          "type": "choice",
+          "front": "viṣṇuḥ → genitive singular",
+          "options": [
+            "viṣṇoḥ",
+            "viṣṇave",
+            "viṣṇunā"
+          ],
+          "answer": "viṣṇoḥ",
+          "note": "u-stem m. · ṣaṣṭhī ekavacana",
+          "source": "workbook C1"
+        },
+        {
+          "id": "05-rupa:form:devi-gen",
+          "type": "choice",
+          "front": "devī → genitive singular",
+          "options": [
+            "devyāḥ",
+            "devyai",
+            "devyām"
+          ],
+          "answer": "devyāḥ",
+          "note": "ī-stem f. · ṣaṣṭhī ekavacana",
+          "source": "workbook C1"
+        },
+        {
+          "id": "05-rupa:phrase:visnave-namah",
+          "type": "choice",
+          "front": "___ namaḥ — “salutation to Viṣṇu”",
+          "options": [
+            "viṣṇave",
+            "viṣṇum",
+            "viṣṇoḥ"
+          ],
+          "answer": "viṣṇave",
+          "note": "caturthī · namaḥ takes the dative",
+          "source": "workbook C2"
+        },
+        {
+          "id": "05-rupa:phrase:ramam-namami",
+          "type": "choice",
+          "front": "___ namāmi — “I bow to Rāma”",
+          "options": [
+            "rāmam",
+            "rāmāya",
+            "rāmasya"
+          ],
+          "answer": "rāmam",
+          "note": "dvitīyā · namāmi takes an object, unlike namaḥ",
+          "source": "workbook C2"
+        },
+        {
+          "id": "05-rupa:phrase:puspena-pujayami",
+          "type": "choice",
+          "front": "___ pūjayāmi — “I worship with a flower”",
+          "options": [
+            "puṣpeṇa",
+            "puṣpam",
+            "puṣpāya"
+          ],
+          "answer": "puṣpeṇa",
+          "note": "tṛtīyā · the instrument of the worship",
+          "source": "workbook C2"
+        },
+        {
+          "id": "05-rupa:phrase:krsne-bhaktih",
+          "type": "choice",
+          "front": "___ bhaktiḥ — “devotion in Kṛṣṇa”",
+          "options": [
+            "kṛṣṇe",
+            "kṛṣṇasya",
+            "kṛṣṇāya"
+          ],
+          "answer": "kṛṣṇe",
+          "note": "saptamī · devotion rests *in* its object",
+          "source": "workbook C2"
+        }
+      ]
+    },
+    {
       "name": "11 · Vibhakti — the seven cases",
       "cards": [
         {
