@@ -26,16 +26,27 @@
   /* left lowercase: IAST is written lowercase, and at this size an
      uppercased ṚḤ hides its own underdots */
   .sub { font-size: .88rem; letter-spacing: .22em; font-style: italic; color: var(--faded); }
-  /* Deliberately close to the browser default: on Android the dropdown
-     inherits the select's own colours and text properties, and author
-     styling there makes Chrome stop drawing its native rows — taking the
-     per-row selected indicator with them.  Only size is set here. */
-  select {
+  /* Where the deck picker used to sit, at the same width: it names the list
+     in play and opens the drawer that changes it. */
+  .navbtn {
     margin-top: .9rem; background: transparent; color: var(--leaf);
     border: 1px solid var(--faded); border-radius: 2px;
     padding: .5rem .7rem; font-family: inherit; font-size: .95rem;
     width: min(92vw, 21rem); min-height: 44px;
+    display: inline-flex; align-items: center; gap: .6rem;
+    cursor: pointer; text-align: left;
   }
+  .navbtn:hover { border-color: var(--leaf); }
+  #nav-label { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  /* drawn rather than typed: a ☰ glyph is missing from some Devanagari-first
+     font stacks, and this page ships no font of its own */
+  .bars { width: 15px; height: 11px; flex: none; position: relative; }
+  .bars, .bars::before, .bars::after {
+    border-top: 1px solid var(--faded);
+  }
+  .bars::before, .bars::after { content: ""; position: absolute; left: 0; right: 0; }
+  .bars::before { top: 4px; }
+  .bars::after { top: 9px; }
 
   /* running tally */
   .tally {
@@ -196,7 +207,6 @@
   .check input:focus-visible { outline: 2px solid var(--kumkuma); outline-offset: 2px; }
   .pilebtn { margin-top: .55rem; font-size: .78rem;
              color: #e2a08e; border-color: var(--kumkuma); }
-  .revbtn { margin-top: .9rem; font-size: .8rem; letter-spacing: .04em; }
   button:disabled { opacity: .45; cursor: default; }
 
   /* an empty transliteration line shouldn't leave a gap behind */
@@ -249,13 +259,6 @@
   .b-pct { font-size: .8rem; color: var(--faded);
            min-width: 3.2em; text-align: right; font-variant-numeric: tabular-nums; }
   .brow.full .b-score, .brow.full .b-pct { color: var(--kumkuma); }
-  .boardlink { margin-top: .7rem; font-size: .7rem; letter-spacing: .08em;
-               color: var(--faded); }
-  .boardlink button { background: none; border: none; min-height: 0;
-                      padding: .45rem .3rem; font-size: inherit; letter-spacing: inherit;
-                      color: var(--faded); text-decoration: underline;
-                      text-underline-offset: 3px; }
-  .boardlink button:hover { color: var(--leaf); }
 
   /* a case name inside the red annotation, tappable for the long version.
      Inherits everything from .tag so it reads as part of the line; the
@@ -311,10 +314,6 @@
   .eg-iast { display: block; font-style: italic; }
   .eg-tr { display: block; color: var(--faded); }
 
-  /* one line under each mode button — the rest lives in its panel */
-  .tagline { margin: .4rem auto .1rem; text-align: center;
-             font-size: .72rem; letter-spacing: .09em; font-style: italic;
-             color: var(--faded); }
 
   /* review mastery, at the head of the scoreboard */
   .mastery { padding: .4rem 0 .9rem; margin-bottom: .6rem;
@@ -333,3 +332,112 @@
   /* before there is a figure to show, the line is the sub-text alone */
   .mastery.waiting .m-pct { display: none; }
   .mastery.waiting .m-sub { margin-left: 0; }
+
+  /* ── the drawer ────────────────────────────────────────────
+     Track → lesson → deck, plus the modes and the course figure.  A left
+     drawer, not a permanent sidebar: on the phone this page is built for,
+     a fixed panel would take the space the card needs. */
+  .dveil { position: fixed; inset: 0; z-index: 54; background: rgba(0,0,0,.5); }
+  .drawer {
+    position: fixed; z-index: 55; top: 0; left: 0; bottom: 0;
+    width: min(23rem, 90vw); overflow-y: auto; -webkit-overflow-scrolling: touch;
+    background: #2b251e; border-right: 1px solid var(--faded);
+    box-shadow: 6px 0 26px rgba(0,0,0,.45);
+    padding: 1rem .85rem 2.5rem;
+  }
+  .dr-top { display: flex; align-items: center; gap: .6rem; }
+  .dr-title { flex: 1; font-size: 1.15rem;
+              font-family: "Noto Serif Devanagari", "Kohinoor Devanagari", serif; }
+  .dr-x { background: none; border: 0; color: var(--faded); font-size: 1.6rem;
+          line-height: 1; width: 44px; height: 44px; cursor: pointer; padding: 0; }
+  .dr-x:hover { color: var(--leaf); }
+
+  /* the course figure, over every card the app carries */
+  .dr-prog { display: grid; grid-template-columns: 1fr auto; gap: .15rem .6rem;
+             padding: .7rem 0 .8rem; margin-bottom: .5rem;
+             border-bottom: 1px solid rgba(125,112,92,.45); }
+  .dp-label { font-size: .64rem; letter-spacing: .14em; text-transform: uppercase;
+              color: var(--kumkuma); align-self: center; }
+  .dp-pct { font-size: 1.5rem; font-variant-numeric: tabular-nums;
+            grid-row: span 2; align-self: center; }
+  .dp-sub { font-size: .74rem; color: var(--faded); }
+  .dr-prog .bar { grid-column: 1 / -1; margin-top: .4rem; }
+
+  /* one progress bar, used at every level */
+  .bar { display: block; height: 2px; background: rgba(125,112,92,.4); }
+  .bar i { display: block; height: 100%; background: var(--kumkuma); }
+  .full > .tr-head .bar i, .full > .ls-head .bar i { background: var(--patra); }
+
+  /* review, trouble and the scoreboard, which used to trail the page */
+  .dr-modes { display: flex; flex-direction: column; gap: .35rem; margin-bottom: 1rem; }
+  .dr-mode {
+    display: block; width: 100%; text-align: left; min-height: 46px;
+    padding: .5rem .7rem; border-radius: 2px; cursor: pointer;
+    background: transparent; color: var(--leaf);
+    border: 1px solid rgba(125,112,92,.55); font-family: inherit;
+  }
+  .dr-mode:hover { border-color: var(--faded); }
+  /* the scoreboard leads, and is the one row drawn in full */
+  .dr-mode.board { border-color: var(--kumkuma); }
+  .dr-mode.on { border-color: var(--leaf); }
+  .dm-name { display: block; font-size: .92rem; }
+  .dm-sub { display: block; margin-top: .1rem; font-size: .68rem;
+            font-style: italic; color: var(--faded); }
+
+  /* a track: its stage range, its name, what it covers, how much is back */
+  .tr { border-bottom: 1px solid rgba(125,112,92,.3); }
+  .tr:last-child { border-bottom: none; }
+  .tr-head {
+    display: grid; width: 100%; text-align: left; cursor: pointer;
+    grid-template-columns: 1fr auto; gap: .1rem .6rem;
+    grid-template-areas: "range pct" "name pct" "blurb blurb" "bar bar";
+    background: none; border: 0; font-family: inherit; color: var(--leaf);
+    padding: .75rem .2rem .8rem; min-height: 48px;
+  }
+  .tr-range { grid-area: range; font-size: .62rem; letter-spacing: .14em;
+              text-transform: uppercase; color: var(--kumkuma); }
+  .tr-name { grid-area: name; font-size: 1rem; }
+  .tr-blurb { grid-area: blurb; font-size: .71rem; font-style: italic;
+              line-height: 1.45; color: var(--faded); margin-top: .15rem; }
+  .tr-pct { grid-area: pct; align-self: center; font-size: .85rem;
+            color: var(--faded); font-variant-numeric: tabular-nums; }
+  .tr-head .bar { grid-area: bar; margin-top: .5rem; }
+  .tr.full .tr-pct { color: var(--patra); }
+  .tr-head[aria-expanded="true"] .tr-name { color: var(--leaf); }
+  .tr-body { padding: 0 0 .6rem .55rem; border-left: 1px solid rgba(125,112,92,.3);
+             margin-left: .2rem; }
+
+  /* a lesson inside a track */
+  .ls-head {
+    display: grid; width: 100%; text-align: left; cursor: pointer;
+    grid-template-columns: 1fr auto; gap: .1rem .6rem;
+    grid-template-areas: "name pct" "bar bar";
+    background: none; border: 0; font-family: inherit; color: var(--leaf);
+    padding: .55rem .2rem; min-height: 44px;
+  }
+  .ls-name { grid-area: name; font-size: .88rem; }
+  .ls-pct { grid-area: pct; align-self: center; font-size: .78rem;
+            color: var(--faded); font-variant-numeric: tabular-nums; }
+  .ls-head .bar { grid-area: bar; margin-top: .35rem; }
+  /* a lesson is ticked only when every card it holds is back cold */
+  .ls.full .ls-pct { color: var(--patra); font-size: .95rem; }
+  .ls-body { padding: .1rem 0 .5rem .55rem; }
+
+  /* a deck: the row that actually starts a round */
+  .dk {
+    display: grid; width: 100%; text-align: left; cursor: pointer;
+    grid-template-columns: 1fr auto; gap: 0 .6rem;
+    grid-template-areas: "name pct" "sub pct";
+    background: none; font-family: inherit; color: var(--leaf);
+    border: 1px solid transparent; border-radius: 2px;
+    padding: .45rem .5rem; min-height: 44px;
+  }
+  .dk:hover { border-color: rgba(125,112,92,.5); }
+  .dk.on { border-color: var(--leaf); }
+  .dk-name { grid-area: name; font-size: .86rem; }
+  .dk-sub { grid-area: sub; font-size: .66rem; color: var(--faded); }
+  .dk-pct { grid-area: pct; align-self: center; font-size: .74rem;
+            color: var(--faded); font-variant-numeric: tabular-nums; }
+  .dk.full .dk-pct { color: var(--patra); font-size: .9rem; }
+
+  .drawer button:focus-visible { outline: 2px solid var(--kumkuma); outline-offset: 2px; }

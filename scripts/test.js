@@ -51,10 +51,7 @@ const open = async (browser, opts = {}) => {
   const p = await browser.newPage(opts);
   p.on('pageerror', e => { console.log('  PAGEERROR ' + e.message); fail.push('pageerror'); });
   await p.goto(FILE, { waitUntil: 'load' });
-  await p.evaluate(d => {
-    const s = document.getElementById('deck');
-    s.value = d; s.dispatchEvent(new Event('change'));
-  }, DECK);
+  await p.evaluate(d => loadDeck(d), DECK);
   return p;
 };
 
@@ -76,8 +73,9 @@ const open = async (browser, opts = {}) => {
       skipped: PARSE.skipped.length,
       fatal: PARSE.fatal || null,
       validateShown: !!document.getElementById('validate').textContent,
-      groups: [...document.querySelectorAll('#deck optgroup')].map(g => g.label),
-      options: document.querySelectorAll('#deck option').length,
+      groups: LESSONS.map(L => L.label),
+      options: LESSONS.reduce((a, L) => a + L.decks.length, 0),
+      tracks: TRACK_ROWS.map(r => r.track.name),
       idsOnCards: Object.values(DECKS).every(cs => cs.every(c => typeof c.id === 'string' && c.id.includes(':'))),
     }));
 
@@ -90,7 +88,7 @@ const open = async (browser, opts = {}) => {
     ok('nothing skipped', r.skipped === 0 && !r.fatal, r.fatal || '');
     ok('validation banner silent', !r.validateShown);
     ok('every card has an id', r.idsOnCards);
-    ok('picker grouped by lesson', r.groups.length === EXPECTED.lessons,
+    ok('navigation grouped by lesson', r.groups.length === EXPECTED.lessons,
       r.groups.length + ' of ' + EXPECTED.lessons + ' lessons');
     ok('groups are curriculum-ordered',
       JSON.stringify(r.groups.slice(0, 4)) ===
@@ -99,7 +97,8 @@ const open = async (browser, opts = {}) => {
     ok('cross-cutting practice comes last',
       r.groups[r.groups.length - 1] === 'Vyākaraṇam · cross-cutting',
       r.groups[r.groups.length - 1]);
-    ok('all decks in the picker', r.options === EXPECTED.decks, r.options + ' of ' + EXPECTED.decks);
+    ok('every deck reachable from the drawer', r.options === EXPECTED.decks,
+      r.options + ' of ' + EXPECTED.decks);
     console.log('        groups: ' + r.groups.join(' | '));
     await p.close();
   }
@@ -109,16 +108,15 @@ const open = async (browser, opts = {}) => {
     const p = await browser.newPage();
     await p.goto(FILE, { waitUntil: 'load' });
     const r = await p.evaluate(() => {
-      const sel = document.getElementById('deck');
-      const first = [...sel.options].find(o => o.value && !o.value.startsWith('¦'));
-      sel.value = first.value; sel.dispatchEvent(new Event('change'));
+      const first = Object.keys(DECKS)[0];
+      loadDeck(first);
       const started = !!current, q0 = queue.length;
       reveal();
       knew();
       const afterKnew = { learned, q: queue.length };
       didntKnow();
       const afterMiss = { missed: missed.length };
-      return { deck: first.value, started, q0, afterKnew, afterMiss };
+      return { deck: first, started, q0, afterKnew, afterMiss };
     });
     ok('round starts', r.started, r.deck);
     ok('right answer retires a card', r.afterKnew.learned === 1 && r.afterKnew.q === r.q0 - 1);
@@ -150,7 +148,8 @@ const open = async (browser, opts = {}) => {
         clearedKept: raw.cleared,
       };
     });
-    ok('saved state bumped to v2', r.version === 2, 'v' + r.version);
+    // the chain runs to the end, not just to the step under test
+    ok('saved state runs the whole migration chain', r.version === 3, 'v' + r.version);
     ok('old text key removed', r.oldGone);
     ok('record moved onto the stable id', r.newRec && r.newRec.w === 3, JSON.stringify(r.newRec));
     ok('per-deck best score untouched', r.deckBestKept && r.deckBestKept.best === 12, JSON.stringify(r.deckBestKept));
@@ -163,9 +162,7 @@ const open = async (browser, opts = {}) => {
     const p = await browser.newPage();
     await p.goto(FILE, { waitUntil: 'load' });
     const r = await p.evaluate(() => {
-      const sel = document.getElementById('deck');
-      const first = [...sel.options].find(o => o.value && !o.value.startsWith('¦'));
-      sel.value = first.value; sel.dispatchEvent(new Event('change'));
+      loadDeck(Object.keys(DECKS)[0]);
       reveal();
       const iastBox = document.getElementById('iast-on');
       const before = getComputedStyle(document.querySelector('.iast') || document.body).display;
@@ -499,8 +496,7 @@ const open = async (browser, opts = {}) => {
     p.on('pageerror', e => { console.log('  PAGEERROR ' + e.message); fail.push('pageerror'); });
     await p.goto(FILE, { waitUntil: 'load' });
     await p.evaluate(([deck, cid]) => {
-      const s = document.getElementById('deck');
-      s.value = deck; s.dispatchEvent(new Event('change'));
+      loadDeck(deck);
       const d = DECKS[deck];
       startRound([cid ? d.find(c => c.id === cid) : d[0]], {});
     }, [SEQ, id]);
@@ -664,8 +660,7 @@ const open = async (browser, opts = {}) => {
     const p = await browser.newPage({ viewport: { width: 360, height: 740 } });
     await p.goto(FILE, { waitUntil: 'load' });
     await p.evaluate(d => {
-      const s = document.getElementById('deck');
-      s.value = d; s.dispatchEvent(new Event('change'));
+      loadDeck(d);
       // the widest sequence card there is — the tightest layout case
       const widest = DECKS[d].filter(c => c.parts)
         .sort((a, b) => b.parts.length - a.parts.length)[0];
@@ -770,8 +765,7 @@ const open = async (browser, opts = {}) => {
     await p.goto(FILE, { waitUntil: 'load' });
     const r = await p.evaluate(g => {
       const name = 'V15 · Indeclinables & particles — DM';
-      const s = document.getElementById('deck');
-      s.value = name; s.dispatchEvent(new Event('change'));
+      loadDeck(name);
       const raw = JSON.parse(localStorage.getItem('abhyāsaḥ'));
       return {
         best: raw.decks[name].best,
@@ -898,6 +892,300 @@ const open = async (browser, opts = {}) => {
     ok('a 139-card table never dominates a 20-card draw',
       spread.worst <= 0.65, 'worst share ' + Math.round(spread.worst * 100) + '%');
     ok('the draw still fills a session', spread.size === 20, spread.size + ' cards');
+    await p.close();
+  }
+
+  // ── the five course tracks ─────────────────────────────────────────
+  // The drawer is built from TRACKS alone, so what is checked here is that
+  // the table matches the curriculum and that every stage lands in exactly
+  // one place — a stage in two tracks would be counted twice.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const stages = [];
+      for (let n = 1; n <= 36; n++) stages.push({ n, hits: TRACKS.filter(t => t.has(n)).map(t => t.id) });
+      return {
+        names: TRACKS.map(t => t.name),
+        doubled: stages.filter(x => x.hits.length > 1).map(x => x.n),
+        homeless: stages.filter(x => !x.hits.length).map(x => x.n),
+        stage20: TRACKS.filter(t => t.has(20)).map(t => t.id),
+        stage17: TRACKS.filter(t => t.has(17)).map(t => t.id),
+        rowNames: TRACK_ROWS.map(r => r.track.name),
+        crossLast: TRACK_ROWS[TRACK_ROWS.length - 1].track.id,
+        crossStages: TRACK_ROWS[TRACK_ROWS.length - 1].lessons.map(L => L.stage),
+      };
+    });
+    ok('there are five course tracks', r.names.length === 5, r.names.join(' | '));
+    ok('the tracks are the curriculum’s own five',
+      JSON.stringify(r.names) === JSON.stringify([
+        'Language Acquisition', 'Poetic Composition', 'Pūjā-Vāk — ritual literacy',
+        'Svara-Vidyā — Vedic literacy', 'Avadhāna']), r.names.join(' | '));
+    ok('no stage belongs to two tracks', !r.doubled.length, r.doubled.join(', '));
+    ok('every stage 1–36 has a track', !r.homeless.length, r.homeless.join(', '));
+    // the one ambiguity in the source diagram, resolved the way stage 17 is
+    ok('stage 20 is Svara-Vidyā, not poetic composition',
+      JSON.stringify(r.stage20) === '["svara"]', r.stage20.join(', '));
+    ok('stage 17 is Pūjā-Vāk', JSON.stringify(r.stage17) === '["puja"]', r.stage17.join(', '));
+    // cross-cutting grammar is listed after the five, and is not a sixth track
+    ok('cross-cutting practice trails the tracks', r.crossLast === 'vyakaranam', r.crossLast);
+    ok('nothing but stage 0 is cross-cutting',
+      r.crossStages.every(n => n === 0), r.crossStages.join(', '));
+    await p.close();
+  }
+
+  // ── progress is counted from cards, at every level ─────────────────
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      // master every card of the smallest lesson, and nothing else
+      const small = LESSONS.slice().sort((a, b) => a.ids.size - b.ids.size)[0];
+      small.ids.forEach(k => { SAVED.mastered[k] = 1; });
+      save();
+      const row = TRACK_ROWS.find(x => x.lessons.includes(small));
+      const lessonP = progressOf(small.ids);
+      const trackP = progressOf(row.ids);
+      // what an average of lesson percentages would have said instead
+      const avg = row.lessons.reduce((a, L) => a + progressOf(L.ids).pct, 0) / row.lessons.length;
+      const cardWeighted = Math.round(
+        row.lessons.reduce((a, L) => a + progressOf(L.ids).done, 0) / row.ids.size * 100);
+      return { lesson: small.label, lessonP, trackP, avg: Math.round(avg), cardWeighted,
+               lessons: row.lessons.length };
+    });
+    ok('a fully mastered lesson reads 100% and ticks',
+      r.lessonP.pct === 100 && r.lessonP.full, r.lesson + ' ' + r.lessonP.pct + '%');
+    ok('a track counts cards, not an average of its lessons',
+      r.trackP.pct === r.cardWeighted && (r.lessons < 2 || r.trackP.pct !== r.avg),
+      'track ' + r.trackP.pct + '% · card-weighted ' + r.cardWeighted
+        + '% · lesson average ' + r.avg + '%');
+    await p.close();
+  }
+
+  // ── mastery follows cold recall, and can be lost again ─────────────
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const deck = DECKS['Practice — person, tense and mood'];
+      const ids = new Set(deck.map(c => c.id));
+      startRound(deck.slice(0, 3), {});
+      const first = current.card.id;
+      reveal(); knew();                       // cold: mastered
+      const afterCold = !!SAVED.mastered[first];
+      const second = current.card.id;
+      reveal(); didntKnow();                  // missed, then met again
+      let guard = 0;
+      while (current && current.card.id !== second && guard++ < 20) { reveal(); knew(); }
+      const relearned = current && current.card.id === second;
+      if (relearned) { reveal(); knew(); }    // right on the second look
+      const afterRelearn = !!SAVED.mastered[second];
+      // and losing one already held
+      startRound(deck.filter(c => c.id === first), {});
+      reveal(); didntKnow();
+      return { afterCold, relearned, afterRelearn, afterMiss: !!SAVED.mastered[first],
+               pctFalls: progressOf(ids).done };
+    });
+    ok('a cold right answer masters the card', r.afterCold);
+    ok('a card missed then relearned is not mastered', r.relearned && !r.afterRelearn);
+    ok('a wrong answer takes mastery back', r.afterMiss === false);
+    await p.close();
+  }
+
+  // ── 100% is exact, never a rounding artefact ───────────────────────
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const big = LESSONS.slice().sort((a, b) => b.ids.size - a.ids.size)[0];
+      const ids = [...big.ids];
+      ids.slice(0, ids.length - 1).forEach(k => { SAVED.mastered[k] = 1; });
+      const nearly = progressOf(big.ids);
+      SAVED.mastered[ids[ids.length - 1]] = 1;
+      const done = progressOf(big.ids);
+      // and the other end: one card in a long list must not round to nothing
+      const one = {};
+      Object.keys(SAVED.mastered).forEach(k => delete SAVED.mastered[k]);
+      SAVED.mastered[ids[0]] = 1;
+      one.pct = progressOf(big.ids).pct;
+      return { size: big.ids.size, nearly, done, one };
+    });
+    ok('one card short never shows 100%',
+      r.nearly.pct === 99 && !r.nearly.full, r.nearly.done + ' of ' + r.nearly.total);
+    ok('all of them shows 100% and ticks', r.done.pct === 100 && r.done.full);
+    ok('one card in a long list is not rounded away', r.one.pct === 1, r.one.pct + '%');
+    await p.close();
+  }
+
+  // ── the drawer navigates, and starts a round ───────────────────────
+  {
+    const p = await browser.newPage({ viewport: { width: 360, height: 740 } });
+    p.on('pageerror', e => { console.log('  PAGEERROR ' + e.message); fail.push('pageerror'); });
+    await p.goto(FILE, { waitUntil: 'load' });
+
+    const shut = await p.evaluate(() => ({
+      hidden: document.getElementById('drawer').hidden,
+      label: document.getElementById('nav-label').textContent,
+      noSelect: !document.querySelector('select'),
+    }));
+    ok('the deck dropdown is gone', shut.noSelect);
+    ok('the drawer starts shut', shut.hidden);
+    ok('the handle names the list in play', !!shut.label && shut.label !== 'lists', shut.label);
+
+    await p.click('#nav');
+    const opened = await p.evaluate(() => ({
+      open: !document.getElementById('drawer').hidden,
+      veil: !document.getElementById('dveil').hidden,
+      tracks: document.querySelectorAll('.tr-head').length,
+      // the track and lesson holding the current list open on the way in
+      lessons: document.querySelectorAll('.tr-body:not([hidden]) .ls-head').length,
+      decks: document.querySelectorAll('.ls-body:not([hidden]) .dk').length,
+      overall: document.getElementById('dp-sub').textContent,
+    }));
+    ok('the handle opens the drawer', opened.open && opened.veil);
+    ok('every track is a heading', opened.tracks === 6, opened.tracks + ' headings');
+    ok('the drawer lands on the current lesson', opened.lessons > 0 && opened.decks > 0,
+      opened.lessons + ' lessons, ' + opened.decks + ' decks');
+    ok('the course figure is over cards', /\d+ of \d+ cards mastered/.test(opened.overall),
+      opened.overall);
+
+    const reach = await p.evaluate(() => {
+      // shut everything, then walk down: track -> lesson -> deck
+      openTracks.clear(); openLessons.clear(); renderDrawer();
+      const before = document.querySelectorAll('.tr-body:not([hidden]) .ls-head').length;
+      document.querySelector('.tr-head').click();
+      const afterTrack = document.querySelectorAll('.tr-body:not([hidden]) .ls-head').length;
+      document.querySelector('.tr-body:not([hidden]) .ls-head').click();
+      const afterLesson = document.querySelectorAll('.ls-body:not([hidden]) .dk').length;
+      return { before, afterTrack, afterLesson,
+               name: document.querySelector('.ls-body:not([hidden]) .dk').title };
+    });
+    ok('collapsed tracks hide their lessons', reach.before === 0, reach.before + ' showing');
+    ok('a track expands to its lessons', reach.afterTrack > 0, reach.afterTrack + ' lessons');
+    ok('a lesson expands to its decks', reach.afterLesson > 0, reach.afterLesson + ' decks');
+
+    await p.click('.ls-body:not([hidden]) .dk');
+    const chosen = await p.evaluate(() => ({
+      shut: document.getElementById('drawer').hidden,
+      deck: deckName, running: !!current,
+      label: document.getElementById('nav-label').textContent,
+      expected: [LESSON_LABEL[DECK_LESSON[deckName]], DECK_SHORT(deckName)].join(' · '),
+      focus: document.activeElement && document.activeElement.id,
+    }));
+    ok('picking a deck starts its round', chosen.running, chosen.deck);
+    ok('focus lands on the card, not the shut drawer',
+      chosen.focus === 'card', chosen.focus);
+    ok('picking a deck closes the drawer', chosen.shut);
+    ok('the handle follows the choice', chosen.label === chosen.expected, chosen.label);
+
+    // every row a finger has to hit
+    const touch = await p.evaluate(() => {
+      document.getElementById('nav').click();
+      document.querySelectorAll('.tr-head').forEach(b => { if (b.getAttribute('aria-expanded') === 'false') b.click(); });
+      document.querySelectorAll('.ls-head').forEach(b => { if (b.getAttribute('aria-expanded') === 'false') b.click(); });
+      const rows = [...document.querySelectorAll('.tr-head, .ls-head, .dk, .dr-mode, .dr-x')];
+      const r = document.getElementById('drawer').getBoundingClientRect();
+      return {
+        minH: Math.min(...rows.map(x => x.getBoundingClientRect().height)),
+        rows: rows.length,
+        fitsWidth: r.width <= 360,
+        noOverflow: document.documentElement.scrollWidth <= 360,
+      };
+    });
+    ok('every drawer row meets the 44px touch target', touch.minH >= 44,
+      touch.minH + 'px over ' + touch.rows + ' rows');
+    ok('the drawer fits a 360px phone', touch.fitsWidth && touch.noOverflow);
+    await p.close();
+  }
+
+  // ── existing history seeds the new mastery figure, where it can ────
+  {
+    const p = await browser.newPage();
+    await p.addInitScript(() => {
+      try {
+        localStorage.setItem('abhyāsaḥ', JSON.stringify({
+          v: 2,
+          decks: {
+            // perfect, and the deck is still that size: every card was cold
+            'Practice — person, tense and mood': { best: [21, 21], pile: [] },
+            // perfect, but set when the deck was smaller — cannot be attributed
+            'Practice — case and form': { best: [9, 9], pile: [] },
+            // not perfect: which cards were cold is simply not recorded
+            'Practice — joins and splits': { best: [30, 31], pile: [] },
+          },
+          trouble: {}, cleared: 0,
+        }));
+      } catch (e) {}
+    });
+    await p.goto(FILE, { waitUntil: 'load' });
+    const r = await p.evaluate(() => {
+      const of = n => progressOf(new Set(DECKS[n].map(c => c.id)));
+      return {
+        v: JSON.parse(localStorage.getItem('abhyāsaḥ')).v,
+        exact: of('Practice — person, tense and mood'),
+        resized: of('Practice — case and form'),
+        partial: of('Practice — joins and splits'),
+      };
+    });
+    ok('a perfect round on the deck as it stands seeds mastery',
+      r.exact.full, r.exact.done + ' of ' + r.exact.total);
+    ok('a perfect round on a smaller deck seeds nothing',
+      r.resized.done === 0, r.resized.done + ' seeded');
+    ok('a partial best score seeds nothing', r.partial.done === 0, r.partial.done + ' seeded');
+    ok('the store is stamped v3', r.v === 3, 'v' + r.v);
+    await p.close();
+  }
+
+  // ── review, trouble and the scoreboard, opened from the drawer ─────
+  {
+    const p = await open(browser);
+    for (const [btn, panel, name] of [
+      ['#dr-board', 'board', 'the scoreboard'],
+      ['#dr-review', 'reviewpanel', 'review mode'],
+      ['#dr-trouble', 'trouble', 'trouble cards'],
+    ]) {
+      await p.click('#nav');
+      await p.click(btn);
+      const r = await p.evaluate(([sel, id]) => ({
+        open: panelOpen === id,
+        shown: getComputedStyle(document.getElementById(id)).display !== 'none',
+        drawerShut: document.getElementById('drawer').hidden,
+        back: !document.getElementById('panel-back').hidden,
+        marked: document.querySelector(sel).classList.contains('on'),
+        cardHidden: document.getElementById('card').style.display === 'none',
+      }), [btn, panel]);
+      ok(name + ' opens from the drawer', r.open && r.shown && r.drawerShut, panel);
+      ok(name + ' marks its row', r.marked);
+      ok(name + ' offers the way back', r.back && r.cardHidden);
+      await p.click('#p-back');
+      const back = await p.evaluate(() => ({
+        closed: panelOpen === null,
+        backGone: document.getElementById('panel-back').hidden,
+        cardBack: document.getElementById('card').style.display !== 'none',
+      }));
+      ok(name + ' closes back onto the cards', back.closed && back.backGone && back.cardBack);
+    }
+    await p.close();
+  }
+
+  // ── a round in progress is still guarded ───────────────────────────
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(async () => {
+      reveal(); knew();                      // something graded to lose
+      const was = deckName;
+      const other = Object.keys(DECKS).find(n => n !== was);
+      chooseDeck(other);                     // deliberately not awaited
+      await new Promise(r => setTimeout(r, 0));
+      const asked = !document.getElementById('ask').hidden;
+      document.getElementById('ask-no').click();
+      await new Promise(r => setTimeout(r, 0));
+      const stayed = deckName === was;
+      chooseDeck(other);
+      await new Promise(r => setTimeout(r, 0));
+      document.getElementById('ask-yes').click();
+      await new Promise(r => setTimeout(r, 0));
+      return { asked, stayed, moved: deckName === other };
+    });
+    ok('changing lists mid-round asks first', r.asked);
+    ok('keeping going stays on the list', r.stayed);
+    ok('leaving it changes the list', r.moved);
     await p.close();
   }
 

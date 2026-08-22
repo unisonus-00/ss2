@@ -141,6 +141,8 @@ Preserve unless intentionally changing them:
 - mixed review
 - scoreboard
 - saved progress
+- track / lesson / deck navigation
+- mastery percentages
 
 Use stable card IDs. Do not casually invalidate learner history.
 
@@ -192,7 +194,7 @@ Application code lives in `app/`; **edit there, never in `dist/`**. Curriculum
 content lives beside its lesson:
 
 ```
-app/index.html         markup only — ~120 lines, no card data
+app/index.html         markup only — ~175 lines, no card data
 app/styles.css
 app/app.js
 scripts/build.js       discovers, validates and inlines -> dist/abhyasah.html
@@ -208,8 +210,8 @@ writing.
 Practice files are **discovered, not listed** — any numbered lesson directory
 holding a `practice.json` is picked up, in directory order, so adding a
 lesson's practice needs no build change. Directory order *is* the app's
-navigation order: the deck picker groups decks under one optgroup per lesson,
-labelled from that lesson's own `theory.md` heading, so the picker and the
+navigation order: the drawer groups decks under one heading per lesson,
+labelled from that lesson's own `theory.md` heading, so the navigation and the
 curriculum cannot drift apart.
 
 The build refuses to ship a broken or non-offline page. It rejects duplicate
@@ -219,6 +221,54 @@ among them, a `sequence` whose answer uses pieces absent from `parts`, a
 is never loaded. It then scans its own output for `<script src>`, `fetch`,
 `@import`, remote `url()` and the like, so an accidental network dependency
 fails the build rather than shipping.
+
+### Navigation and progress
+
+The app opens on a card, not on a menu. Navigation is a **left drawer** — the
+button where the deck picker used to sit names the list in play and opens it —
+and inside it the curriculum's own shape: **track → lesson → deck**.
+
+The five tracks are the course:
+
+| Track | Stages | |
+|:------|:-------|:--|
+| Language Acquisition | 1–13 | nouns → free composition, in devotional context |
+| Poetic Composition | 14–16, 18–19, 21–26 | stotra, chandas, alaṅkāra, rasa, darśana |
+| Pūjā-Vāk — ritual literacy | 17 | saṅkalpa, nyāsa, dhyāna, upacāra grammar |
+| Svara-Vidyā — Vedic literacy | 20 | udātta / anudātta / svarita, vikṛtis |
+| Avadhāna | 27–36 | eight challenges → full Aṣṭāvadhāna |
+
+`TRACKS` in `app.js` is the only place this lives, and the drawer is built from
+it alone, so navigation cannot drift from the curriculum. Cross-cutting
+vyākaraṇam practice is **not a sixth track**: it is listed after the five and
+counts towards no track's percentage. A track with no practice yet is left out
+rather than shown as an empty 0% — the drawer navigates what exists.
+
+Review, trouble and the scoreboard live in the drawer too, above the tracks,
+with the scoreboard first. A panel is opened from the drawer, which then
+closes, so the way back cannot be the button that opened it: `#panel-back`
+does that instead.
+
+**Progress is mastered cards over cards held.** A card is mastered once it
+comes back right on its **first** showing in a round — the same cold-recall
+signal a deck's best score is built from, and the one that counts a card out
+of the trouble list. A wrong answer takes it back; a percentage that could
+only ever rise would leave a lesson ticked long after it had gone. Every kind
+of round feeds this, review draws and trouble drills included: whether a card
+came back cold is a fact about the card, not about the round it turned up in.
+
+Two rules keep the figure honest:
+
+- **Counted from cards the whole way up.** A track's figure is the union of its
+  lessons' cards, never the average of their percentages — that would give a
+  five-card lesson the same weight as a hundred-card one.
+- **A tick means all of it.** 100% is `done === total`, not a rounded 99.6;
+  `progressOf` holds a not-quite-finished list at 99% and a barely-started one
+  at 1% rather than letting either round away.
+
+Every card the app carries counts towards the denominator. What is here is
+curated practice plus the paradigm tables the badges ask for whole — reference
+material was never brought in, so there is nothing to filter out.
 
 ### Card schema
 
@@ -305,16 +355,19 @@ Three things here are load-bearing for the compatibility list above:
   `DECK_RENAMES` in `app.js` lists every rename the app has made and applies it
   once on load, the same way `OLD_KEYS` rescues state from an earlier storage
   key. **Never rename a deck without adding a line there.** Vocab-bank decks
-  still carry their `V01 ·` prefixes; the picker hides them from display.
-- **Deck names carry the product structure.** Within a lesson the picker reads
+  still carry their `V01 ·` prefixes; the drawer hides them from display.
+- **Deck names carry the product structure.** Within a lesson the drawer reads
   `Practice`, then `Table mastery` / `Conjugation mastery`, then the rest —
   because `DECK_SHORT` displays the text before the em dash. Practice prepares
   generalisation; mastery closes known finite gaps.
 - **Progress lives in `localStorage`** under `abhyāsaḥ`, versioned by `SAVED.v`
-  (now 2). v1 keyed trouble history by `devanagari + '¦' + gloss`; the app
-  lifts those records onto stable ids on first load. `OLD_KEYS` separately
-  lifts state out of earlier storage key names. Keep both chains; every
-  `localStorage` touch stays guarded, since it can be absent or full.
+  (now 3). v1 keyed trouble history by `devanagari + '¦' + gloss`; the app
+  lifts those records onto stable ids on first load. v2→v3 seeds `SAVED.mastered`
+  from the one case that can be resolved exactly rather than guessed at — a
+  deck whose best round was perfect *and* whose size has not changed since.
+  `OLD_KEYS` separately lifts state out of earlier storage key names. Keep every
+  chain, and keep each step stamping its own version rather than the newest;
+  every `localStorage` touch stays guarded, since it can be absent or full.
 
 The app carries 23 lessons, 71 decks, and 2041 cards — 1876 `reveal`, 160
 `choice` and 5 `sequence`, spread over 14 interactive decks in 11 lessons,
@@ -389,7 +442,8 @@ lowercase.
 **Testing** — `node scripts/test.js` drives the built file in headless
 Chromium from `file://` and checks the compatibility list above: saved
 progress and its migration, trouble cards, review replay, the IAST toggle,
-morphology, mobile touch targets, and the choice interaction. It needs
+morphology, mobile touch targets, the choice interaction, drawer navigation
+down to a deck, and the mastery figure at every level. It needs
 `playwright-core` on the path but is deliberately not in a `package.json`; the
 app itself has no dependencies and should keep none. Run it after any change
 to `app/`.
@@ -401,12 +455,17 @@ itself. Publish that file to give the learner a live page to try on a phone.
 The demo is generated and git-ignored; `dist/abhyasah.html` remains the real
 distributable.
 
-Card data still lives in `app/index.html` rather than in per-lesson
-`practice.json` files. Migrating it out — one `practice.json` beside each
-lesson, discovered by the build — is the next structural step, and it is what
-empties `app/index.html` down to actual markup.
-
 ### Known conflicts
+
+**Stage 20 is drawn in two places.** The course-track diagram gives
+Svara-Vidyā a track of its own at stage 20, while the poetic track's range is
+written "18–26", which contains it. Stage 17 is carved out of its neighbouring
+range in exactly the same way, and there it is unambiguous because
+"14–16, 18–26" simply skips 17. Reading 20 the same way — a named track lifted
+out of the range around it — is what the diagram means, so `TRACKS` excludes it
+from the poetic track rather than counting it twice, and a test asserts no
+stage belongs to two tracks. Say so if the diagram is ever meant literally.
+
 
 **`AUDIT.md` is the full record** — read it before touching stage metadata. The
 short version:

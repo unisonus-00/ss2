@@ -132,6 +132,7 @@ Object.entries(DECK_RENAMES).forEach(([from, to]) => {
 SAVED.review = SAVED.review || { runs: 0, right: 0, seen: 0 };   // mixed-review tally
 SAVED.trouble = SAVED.trouble || {};       // per-card history, keyed by card
 SAVED.cleared = SAVED.cleared || 0;        // cards that have left the trouble list
+SAVED.mastered = SAVED.mastered || {};     // card ids answered right on a cold showing
 if (SAVED.deck === MIX) delete SAVED.deck;      // the review is no longer a picker choice
 function save() {
   try { localStorage.setItem(STORE_KEY, JSON.stringify(SAVED)); } catch (e) {}
@@ -150,7 +151,7 @@ const deckState = name => SAVED.decks[name] = SAVED.decks[name] || {};
 
    SAVED.decks is keyed by deck NAME, and deck names did not change in the
    migration, so per-deck best scores need no rescue. */
-const SAVED_VERSION = 2;
+const SAVED_VERSION = 3;
 if ((SAVED.v || 1) < 2) {
   let moved = 0;
   Object.values(DECKS).forEach(cards => cards.forEach(c => {
@@ -162,9 +163,32 @@ if ((SAVED.v || 1) < 2) {
       moved++;
     }
   }));
-  SAVED.v = SAVED_VERSION;
+  SAVED.v = 2;                        // this step only — v3 runs below
   save();
   if (moved) console.info("abhy\u0101sa\u1e25: carried " + moved + " trouble records onto stable ids");
+}
+
+/* v3 introduced SAVED.mastered, and nothing before it recorded which cards
+   came back cold — only how many did, in ds.best.  One case can be resolved
+   exactly rather than guessed at: a deck whose best round was perfect had
+   every one of its cards right on the first showing, and that is the mastery
+   signal itself.  So those decks are seeded and no others.
+
+   The size check matters.  A best score is compared as a ratio, so a perfect
+   one may have been set on a smaller version of the deck; seeding from it
+   would hand mastery to cards that were never in the round.  Anything
+   partial, and anything set on a deck that has since changed size, starts
+   from nothing — which is what an unrecorded card honestly is. */
+if ((SAVED.v || 1) < 3) {
+  let seeded = 0;
+  Object.entries(DECKS).forEach(([name, cards]) => {
+    const best = (SAVED.decks[name] || {}).best;
+    if (!best || best[0] !== best[1] || best[1] !== cards.length) return;
+    cards.forEach(c => { if (!SAVED.mastered[c.id]) { SAVED.mastered[c.id] = 1; seeded++; } });
+  });
+  SAVED.v = SAVED_VERSION;
+  save();
+  if (seeded) console.info("abhy\u0101sa\u1e25: seeded " + seeded + " mastered cards from perfect rounds");
 }
 
 /* ── trouble cards ─────────────────────────────────────────
@@ -222,6 +246,127 @@ function reviewPool() {
   return [...seen.values()];
 }
 
+/* ── mastery ───────────────────────────────────────
+   A card is mastered once it has come back right on its FIRST showing in a
+   round — the same cold-recall signal a deck's best score is built from, and
+   the same one that counts a card out of the trouble list.  A wrong answer
+   takes it back: a percentage that could only ever rise would leave a lesson
+   ticked long after it had gone, which is not what a tick is for.
+
+   Every kind of round feeds this, review draws and trouble drills included.
+   Whether a card came back cold is a fact about the card, not about which
+   round it happened to turn up in. */
+function markMastered(card) {
+  const k = cardKey(card);
+  if (SAVED.mastered[k]) return;
+  SAVED.mastered[k] = 1; save();
+}
+function unmarkMastered(card) {
+  const k = cardKey(card);
+  if (!SAVED.mastered[k]) return;
+  delete SAVED.mastered[k]; save();
+}
+
+/* ── the five course tracks ─────────────────────────────
+   The curriculum's own shape, one level above the numbered lessons.  A stage
+   belongs to exactly one track, and the drawer is built from this table and
+   nothing else, so the navigation cannot drift from the curriculum.
+
+   Stage 20 is the one place the source diagram is ambiguous: Svara-Vidyā is
+   drawn as a track in its own right, yet the poetic track's range is written
+   "18–26", which contains it.  Stage 17 is carved out of its neighbouring
+   range in exactly the same way, and there it is unambiguous because
+   "14–16, 18–26" simply skips it.  Reading 20 the same way — a named track
+   lifted out of the range around it — is what the diagram means, so it is
+   excluded from the poetic track here rather than counted twice. */
+const TRACKS = [
+  { id: 'bhasha',   name: 'Language Acquisition', range: 'stages 1–13',
+    blurb: 'Nouns → free composition, grounded in devotional context',
+    has: s => s >= 1 && s <= 13 },
+  { id: 'kavya',    name: 'Poetic Composition', range: 'stages 14–16, 18–26',
+    blurb: 'Stotra, chandas, alaṅkāra, rasa, darśana',
+    has: s => (s >= 14 && s <= 16) || (s >= 18 && s <= 26 && s !== 20) },
+  { id: 'puja',     name: 'Pūjā-Vāk — ritual literacy', range: 'stage 17',
+    blurb: 'Saṅkalpa, nyāsa, dhyāna, upacāra grammar',
+    has: s => s === 17 },
+  { id: 'svara',    name: 'Svara-Vidyā — Vedic literacy', range: 'stage 20',
+    blurb: 'Udātta / anudātta / svarita, vikṛtis',
+    has: s => s === 20 },
+  { id: 'avadhana', name: 'Avadhāna', range: 'stages 27–36',
+    blurb: 'Eight challenges → full Aṣṭāvadhāna; stage 36, mastery as living practice',
+    has: s => s >= 27 && s <= 36 }
+];
+/* Cross-cutting practice sits outside the stage sequence, so it is not a
+   sixth track: it is listed after the five, and belongs to no track's
+   percentage.  The five are the course; this is what runs alongside it. */
+const CROSS_TRACK = {
+  id: 'vyakaranam', name: 'Vyākaraṇam', range: 'cross-cutting',
+  blurb: 'Formal grammar, alongside the stages rather than inside them'
+};
+const trackOf = stage => TRACKS.find(t => t.has(stage)) || CROSS_TRACK;
+
+/* Lessons in curriculum order — the order the build handed the decks over —
+   each carrying its decks and the distinct cards they hold. */
+const DECK_IDS = {};
+Object.keys(DECKS).forEach(n => { DECK_IDS[n] = new Set(DECKS[n].map(cardKey)); });
+
+const LESSONS = (() => {
+  const by = new Map();
+  Object.keys(DECKS).forEach(name => {
+    const key = DECK_LESSON[name];
+    if (!by.has(key)) by.set(key, {
+      lesson: key, stage: DECK_STAGE[name],
+      label: LESSON_LABEL[key] || key, decks: [], ids: new Set()
+    });
+    const L = by.get(key);
+    L.decks.push(name);
+    DECK_IDS[name].forEach(k => L.ids.add(k));
+  });
+  return [...by.values()];
+})();
+
+/* The drawer's spine: each track that has any practice at all, with its
+   lessons and the union of their cards.  A track with no practice yet is
+   left out rather than shown as an empty 0% — the drawer navigates what
+   exists. */
+const TRACK_ROWS = (() => {
+  const rows = [];
+  [...TRACKS, CROSS_TRACK].forEach(track => {
+    const lessons = LESSONS.filter(L => trackOf(L.stage) === track);
+    if (!lessons.length) return;
+    const ids = new Set();
+    lessons.forEach(L => L.ids.forEach(k => ids.add(k)));
+    rows.push({ track, lessons, ids });
+  });
+  return rows;
+})();
+const ALL_IDS = (() => {
+  const s = new Set();
+  TRACK_ROWS.forEach(r => r.ids.forEach(k => s.add(k)));
+  return s;
+})();
+
+/* Progress is mastered cards over cards held, counted from cards the whole
+   way up: a track's figure is the union of its lessons' cards, never the
+   average of their percentages — that would give a five-card lesson the same
+   weight as a hundred-card one.
+
+   Every card the app carries counts towards it.  What is here is curated
+   practice plus the paradigm tables the badges ask for whole; reference
+   material was never brought in, so there is nothing to filter out and
+   nothing to dilute the figure. */
+function progressOf(ids) {
+  const total = ids.size;
+  let done = 0;
+  ids.forEach(k => { if (SAVED.mastered[k]) done++; });
+  let pct = total ? Math.round(done / total * 100) : 0;
+  /* Rounding must not hand out a tick's worth of progress that has not been
+     earned, nor swallow the first card of a long list. */
+  if (pct === 100 && done < total) pct = 99;
+  if (pct === 0 && done > 0) pct = 1;
+  return { done, total, pct, full: total > 0 && done === total };
+}
+
 /* Two independent settings now:
      DIR  — which way round the card runs: 'reveal' (word → meaning)
             or 'produce' (meaning → word).  One button flips it.
@@ -252,12 +397,15 @@ function setIast(on) {
   if (current) paint();
 }
 
-/* A native mobile picker cannot be styled, so the only way to stop long
-   names wrapping onto two lines is to keep the text short.  The option
-   VALUE stays the full deck name (it keys DECKS and the saved progress);
-   only what the picker displays is trimmed: drop the leading number,
-   drop the "— descriptor" tail, and if it is still long keep the phrase
-   before the "&".  The descriptor reappears in the caption below. */
+/* A deck's full name is its key — it keys DECKS and the saved per-deck
+   progress — but it is too long to head a row on a phone.  The short form
+   drops the leading number and the "— descriptor" tail, keeping the phrase
+   before an "&" if it is still long.  The descriptor is not thrown away:
+   DECK_DESC returns it, and the drawer prints it on the row's second line.
+
+   Within a lesson this ordering is load-bearing.  DECK_SHORT displays the
+   text before the em dash, which is what puts "Practice" above "Table
+   mastery" and "Conjugation mastery" in the drawer. */
 const DECK_DESC = name => {
   const m = name.match(/^.*?\s+—\s+(.*)$/);
   return m ? m[1] : "";
@@ -275,67 +423,163 @@ const DECK_SHORT = name => {
   return t || name;
 };
 
-/* Deck picker, grouped by curriculum lesson.
+/* ── the drawer ─────────────────────────────────────────
+   Navigation is track → lesson → deck, opened from the button that names
+   the list you are on.  A left drawer rather than a fixed sidebar: this page
+   is used on a phone, where a permanent panel would eat the card.
 
-   The repository's numbered lesson directories are the navigation: one
-   optgroup per lesson, in the order the build handed them over, which is
-   directory order.  Decks keep their full name as the option VALUE because
-   that is what keys DECKS and the saved per-deck scores. */
-(() => {
-  const names = Object.keys(DECKS);
-  if (!names.length) return;
+   Everything below the mode buttons is rebuilt each time the drawer opens,
+   because every percentage in it can have moved since it was last seen. */
+const openTracks = new Set();
+const openLessons = new Set();
+const drawerOpen = () => !$('drawer').hidden;
 
-  const seen = [];
-  names.forEach(n => { if (!seen.includes(DECK_LESSON[n])) seen.push(DECK_LESSON[n]); });
+const toggleIn = (set, key) => { set.has(key) ? set.delete(key) : set.add(key); };
 
-  seen.forEach(lesson => {
-    const members = names.filter(n => DECK_LESSON[n] === lesson);
-    if (!members.length) return;
-    const g = document.createElement('optgroup');
-    g.label = LESSON_LABEL[lesson] || lesson;
-    members.forEach(name => {
-      const o = document.createElement('option');
-      o.value = name;                    // the real key — never abbreviated
-      o.textContent = DECK_SHORT(name);
-      o.title = name;                    // full name on hover, where there is one
-      g.appendChild(o);
-    });
-    $('deck').appendChild(g);
+/* The button where the picker used to be, naming the list in play.  It
+   carries the lesson as well as the deck: within a lesson the decks are
+   called "Practice" and "Table mastery", so the deck name on its own would
+   not say whose practice you are in. */
+function syncNav() {
+  const label = deckName ? LESSON_LABEL[DECK_LESSON[deckName]] : '';
+  $('nav-label').textContent =
+      deckName === MIX     ? 'mixed review'
+    : deckName === TROUBLE ? 'trouble cards'
+    : deckName             ? [label, DECK_SHORT(deckName)].filter(Boolean).join(' \u00b7 ')
+    :                        'lists';
+}
+
+function fillRow(el, parts) {
+  Object.entries(parts).forEach(([sel, text]) => {
+    const t = el.querySelector(sel);
+    if (t) t.textContent = text;
   });
-  if (SAVED.deck && DECKS[SAVED.deck]) $('deck').value = SAVED.deck;
-})();
-
-/* The review is entered by its own button, not by the picker.  But while a
-   draw is running the picker has to say so, and has to fire a change event
-   when you pick the very list you were last on — so a transient entry
-   stands in for the round and is taken away the moment you leave it. */
-function showCrossOption(key, group, label) {
-  const sel = $('deck');
-  removeCrossOption();
-  const g = document.createElement('optgroup');
-  g.label = group;
-  g.setAttribute('data-mix', '');
-  const o = document.createElement('option');
-  o.value = key;
-  o.textContent = label;
-  g.appendChild(o);
-  sel.insertBefore(g, sel.firstChild);
-  sel.value = key;
 }
-function removeCrossOption() {
-  const g = $('deck').querySelector('optgroup[data-mix]');
-  if (g) g.remove();
+const setBar = (el, pct) => { const i = el.querySelector('.bar i'); if (i) i.style.width = pct + '%'; };
+
+function deckRow(name) {
+  const p = progressOf(DECK_IDS[name]);
+  const b = document.createElement('button');
+  b.className = 'dk' + (name === deckName ? ' on' : '') + (p.full ? ' full' : '');
+  b.innerHTML = '<span class="dk-name"></span><span class="dk-pct"></span>'
+              + '<span class="dk-sub"></span>';
+  fillRow(b, {
+    '.dk-name': DECK_SHORT(name),
+    '.dk-pct': p.full ? '✓' : p.pct + '%',
+    '.dk-sub': [DECK_DESC(name), DECKS[name].length + ' cards'].filter(Boolean).join(' · ')
+  });
+  b.title = name;                        // the full name, where there is a pointer
+  b.addEventListener('click', () => chooseDeck(name));
+  return b;
 }
 
-/* The button is live from the first load whether the mode is or not: a
-   locked one opens the panel that says what it is and what unlocks it,
-   exactly as the trouble button does with an empty list. */
+function lessonRow(L) {
+  const p = progressOf(L.ids), open = openLessons.has(L.lesson);
+  const wrap = document.createElement('div');
+  wrap.className = 'ls' + (p.full ? ' full' : '');
+
+  const head = document.createElement('button');
+  head.className = 'ls-head';
+  head.setAttribute('aria-expanded', open ? 'true' : 'false');
+  head.innerHTML = '<span class="ls-name"></span><span class="ls-pct"></span>'
+                 + '<span class="bar"><i></i></span>';
+  fillRow(head, { '.ls-name': L.label, '.ls-pct': p.full ? '✓' : p.pct + '%' });
+  setBar(head, p.pct);
+  head.addEventListener('click', () => { toggleIn(openLessons, L.lesson); renderDrawer(); });
+  wrap.appendChild(head);
+
+  const body = document.createElement('div');
+  body.className = 'ls-body';
+  body.hidden = !open;
+  L.decks.forEach(name => body.appendChild(deckRow(name)));
+  wrap.appendChild(body);
+  return wrap;
+}
+
+function renderDrawer() {
+  const all = progressOf(ALL_IDS);
+  fillRow(document, { '#dp-pct': all.pct + '%',
+                      '#dp-sub': all.done + ' of ' + all.total + ' cards mastered' });
+  $('dp-bar').style.width = all.pct + '%';
+
+  const host = $('dr-tracks');
+  host.innerHTML = '';
+  TRACK_ROWS.forEach(row => {
+    const t = row.track, p = progressOf(row.ids), open = openTracks.has(t.id);
+    const wrap = document.createElement('div');
+    wrap.className = 'tr' + (p.full ? ' full' : '');
+
+    const head = document.createElement('button');
+    head.className = 'tr-head';
+    head.setAttribute('aria-expanded', open ? 'true' : 'false');
+    head.innerHTML = '<span class="tr-range"></span><span class="tr-pct"></span>'
+                   + '<span class="tr-name"></span><span class="tr-blurb"></span>'
+                   + '<span class="bar"><i></i></span>';
+    fillRow(head, { '.tr-range': t.range, '.tr-name': t.name,
+                    '.tr-blurb': t.blurb, '.tr-pct': p.pct + '%' });
+    setBar(head, p.pct);
+    head.addEventListener('click', () => { toggleIn(openTracks, t.id); renderDrawer(); });
+    wrap.appendChild(head);
+
+    const body = document.createElement('div');
+    body.className = 'tr-body';
+    body.hidden = !open;
+    row.lessons.forEach(L => body.appendChild(lessonRow(L)));
+    wrap.appendChild(body);
+    host.appendChild(wrap);
+  });
+}
+
+function openDrawer() {
+  closePop();
+  /* Land on where you are rather than on a wall of shut headings: the track
+     and lesson holding the current list are opened on the way in. */
+  const L = LESSONS.find(x => x.lesson === DECK_LESSON[deckName]);
+  if (L) { openTracks.add(trackOf(L.stage).id); openLessons.add(L.lesson); }
+  renderDrawer();
+  relabelAll();
+  $('dveil').hidden = false;
+  $('drawer').hidden = false;
+  $('nav').setAttribute('aria-expanded', 'true');
+  $('dr-close').focus();
+}
+
+function closeDrawer(to) {
+  if (!drawerOpen()) return;
+  $('dveil').hidden = true;
+  $('drawer').hidden = true;
+  $('nav').setAttribute('aria-expanded', 'false');
+  /* Focus must not be left on a row that is now hidden.  It returns to the
+     handle, except when a list was picked: there it goes to the card, so
+     space flips it straight away instead of re-opening the drawer. */
+  $(to === 'card' ? 'card' : 'nav').focus();
+}
+
+/* Picking a list from the drawer, with the same guard the picker carried:
+   a round that has been graded is not thrown away without asking. */
+async function chooseDeck(name) {
+  if (name === deckName && !mixed) { closeDrawer('card'); return; }   // already here
+  if (roundInProgress()
+      && !await ask('Leave this round? Your progress in it will be lost.', 'Leave it')) return;
+  closeDrawer('card');
+  loadDeck(name);
+}
+
+/* Review, trouble and the scoreboard all open from the drawer, which then
+   gets out of the way. */
+function openFromDrawer(fn) {
+  closeDrawer();
+  fn();
+}
+
+/* The row is live from the first load whether the mode is or not: a locked
+   one opens the panel that says what it is and what unlocks it, exactly as
+   the trouble row does with an empty list. */
 function syncReviewUI() {
   const pool = reviewPool().length;
-  $('reviewbtn').textContent = panelOpen === 'reviewpanel'
-    ? 'back to the cards'
-    : pool >= REVIEW_MIN ? 'review mode'
-    : 'review mode \u2014 ' + pool + ' of ' + REVIEW_MIN + ' cards';
+  $('dm-review').textContent = '\u092A\u0930\u0940\u0915\u094D\u0937\u093E \u2014 review mode'
+    + (pool >= REVIEW_MIN ? '' : ' \u00b7 ' + pool + ' of ' + REVIEW_MIN);
+  $('dr-review').classList.toggle('on', panelOpen === 'reviewpanel');
 }
 
 /* ── the review window ──────────────────────────────────────
@@ -389,7 +633,7 @@ function startRound(cards, opt) {
   next();
 }
 
-function loadDeck() {
+function loadDeck(name) {
   if (!Object.keys(DECKS).length) {              // nothing parsed — say so instead of dying
     $('dn').textContent = "रिक्तम्";
     $('iast').textContent = "riktam — no cards";
@@ -398,10 +642,11 @@ function loadDeck() {
     $('tally').style.visibility = 'hidden';
     return;
   }
-  const name = $('deck').value;
+  /* Called with no name on first load: fall back to the list last used, and
+     to the first one in the curriculum if that list is gone. */
+  if (!name || !DECKS[name]) name = DECKS[SAVED.deck] ? SAVED.deck : Object.keys(DECKS)[0];
   deckName = name;
   SAVED.deck = name; save();
-  removeCrossOption();
   mixed = trouble = false;
   relabelAll();
   $('restart').textContent = "Whole deck again";
@@ -459,7 +704,7 @@ function startMixedReview() {
   const lists = finishedDecks().length;
   const cards = mixCards();
   deckName = MIX;
-  showCrossOption(MIX, 'Review', 'Mixed review \u00b7 ' + REVIEW_SIZE);
+  relabelAll();
   $('stage').textContent = ["mixed review", cards.length + " cards",
                             lists + " list" + (lists > 1 ? "s" : "")].join(" \u00b7 ");
   $('pile').hidden = true;
@@ -475,7 +720,6 @@ function startTroubleDrill() {
   const cards = troubleCards();
   if (!cards.length) return;
   deckName = TROUBLE;
-  showCrossOption(TROUBLE, 'Trouble', 'Trouble cards \u00b7 ' + cards.length);
   $('pile').hidden = true;
   $('restart').textContent = "Drill these again";
   startRound(cards, { review: true, mixed: true, trouble: true });
@@ -1107,7 +1351,7 @@ function knew() {
   if (!current) return;
   /* only a cold recall counts towards clearing: getting it right on the
      re-show, moments after being told, is relearning, not remembering */
-  if (!current.missedThisRound) markRight(current.card);
+  if (!current.missedThisRound) { markRight(current.card); markMastered(current.card); }
   learned++;
   next();
 }
@@ -1121,6 +1365,7 @@ function didntKnow() {
     current.missedThisRound = true;
     missed.push(current.card);
     markWrong(current.card);           // one strike per round, not per showing
+    unmarkMastered(current.card);      // a lesson must be able to lose its tick
   }
   /* Re-queue for one more meeting — once.  A card missed on that second
      look is left where it is: it is already on the review list, and the
@@ -1367,7 +1612,7 @@ function renderBoard() {
    untouched, so closing it puts you back exactly where you were. */
 let panelWas = null, panelOpen = null;
 function syncBoardUI() {
-  $('boardbtn').textContent = panelOpen === 'board' ? 'back to the cards' : 'scoreboard';
+  $('dr-board').classList.toggle('on', panelOpen === 'board');
 }
 
 /* Each window: what renders it, which button opens it, and the action bar
@@ -1378,13 +1623,14 @@ const PANELS = {
   reviewpanel: { render: renderReviewPanel, relabel: syncReviewUI,  actions: 'rp-actions' },
   trouble:     { render: renderTrouble,     relabel: syncTroubleUI, actions: 't-actions' }
 };
-const relabelAll = () => Object.values(PANELS).forEach(x => x.relabel());
+const relabelAll = () => { syncNav(); Object.values(PANELS).forEach(x => x.relabel()); };
 
 function closePanel() {
   if (!panelOpen) return;
   const spec = PANELS[panelOpen];
   $(panelOpen).style.display = 'none';
   if (spec.actions) $(spec.actions).hidden = true;
+  $('panel-back').hidden = true;
   panelOpen = null;
   relabelAll();
   $('card').style.display = panelWas.card;
@@ -1396,9 +1642,11 @@ function closePanel() {
   panelWas = null;
 }
 
-function togglePanel(which) {
+/* Opened from the drawer rather than from a button that stays on screen, so
+   the button cannot double as the way out — #panel-back does that instead. */
+function openPanel(which) {
   closePop();
-  if (panelOpen === which) { closePanel(); return; }
+  if (panelOpen === which) { PANELS[which].render(); return; }
   if (panelOpen) closePanel();                  // swapping one panel for the other
   panelWas = {
     card: $('card').style.display, review: $('review').style.display,
@@ -1412,6 +1660,7 @@ function togglePanel(which) {
   $('after').hidden = true;
   $('keys').hidden = true;
   $(which).style.display = 'block';
+  $('panel-back').hidden = false;
   panelOpen = which;
   relabelAll();
   PANELS[which].render();
@@ -1464,9 +1713,9 @@ function troubleText() {
 
 function syncTroubleUI() {
   const n = troubleCards().length;
-  $('troublebtn').textContent = panelOpen === 'trouble'
-    ? 'back to the cards'
-    : 'trouble cards' + (n ? ' (' + n + ')' : '');
+  $('dm-trouble').textContent = '\u0915\u094D\u0932\u093F\u0937\u094D\u091F\u093E\u0928\u093F \u2014 trouble cards'
+    + (n ? ' (' + n + ')' : '');
+  $('dr-trouble').classList.toggle('on', panelOpen === 'trouble');
 }
 
 /* ── wiring ────────────────────────────────────────────── */
@@ -1496,15 +1745,19 @@ $('again-missed').addEventListener('click', () => {
   if (!missed.length) return;          // nothing to review — should be unreachable
   startRound([...missed], { review: true, mixed, trouble });   // only the ones marked "Didn't know it"
 });
-$('reviewbtn').addEventListener('click', () => togglePanel('reviewpanel'));
+$('nav').addEventListener('click', () => drawerOpen() ? closeDrawer() : openDrawer());
+$('dr-close').addEventListener('click', closeDrawer);
+$('dveil').addEventListener('click', closeDrawer);
+$('dr-board').addEventListener('click', () => openFromDrawer(() => openPanel('board')));
+$('dr-review').addEventListener('click', () => openFromDrawer(() => openPanel('reviewpanel')));
+$('dr-trouble').addEventListener('click', () => openFromDrawer(() => openPanel('trouble')));
+$('p-back').addEventListener('click', closePanel);
 $('rp-draw').addEventListener('click', async () => {
   if (roundInProgress() && !await ask('Leave this round for a review draw?', 'Leave it')) return;
   startMixedReview();
 });
 $('restart').addEventListener('click',
-  () => trouble ? startTroubleDrill() : mixed ? startMixedReview() : loadDeck());
-$('boardbtn').addEventListener('click', () => togglePanel('board'));
-$('troublebtn').addEventListener('click', () => togglePanel('trouble'));
+  () => trouble ? startTroubleDrill() : mixed ? startMixedReview() : loadDeck(deckName));
 $('t-drill').addEventListener('click', async () => {
   if (roundInProgress() && !await ask('Leave this round for the drill?', 'Leave it')) return;
   startTroubleDrill();
@@ -1549,14 +1802,6 @@ $('ask-yes').addEventListener('click', () => answer(true));
 $('ask-no').addEventListener('click', () => answer(false));
 $('veil').addEventListener('click', () => answer(false));
 
-$('deck').addEventListener('change', async () => {
-  if (roundInProgress()
-      && !await ask('Leave this round? Your progress in it will be lost.', 'Leave it')) {
-    $('deck').value = deckName;
-    return;
-  }
-  loadDeck();
-});
 $('pile').addEventListener('click', async () => {
   if (roundInProgress()
       && !await ask('Leave this round for the missed pile?', 'Leave it')) return;
@@ -1568,6 +1813,10 @@ $('iast-on').addEventListener('change', e => setIast(e.target.checked));
 document.addEventListener('keydown', e => {
   if (askResolve) {                      // a question is on screen; answer that
     if (e.key === 'Escape') { e.preventDefault(); answer(false); }
+    return;
+  }
+  if (drawerOpen()) {                    // the drawer is modal over the round
+    if (e.key === 'Escape') { e.preventDefault(); closeDrawer(); }
     return;
   }
   const t = e.target.tagName;
@@ -1608,7 +1857,7 @@ document.addEventListener('keydown', e => {
 
 setDir(DIR);
 setIast(IAST);
-loadDeck();
+loadDeck(SAVED.deck);
 relabelAll();
 
 /* Load-time validation.  Silent while the card block is clean — the counts
