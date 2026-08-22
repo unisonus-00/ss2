@@ -143,15 +143,28 @@ into the single-page `index.html` at the repository root. It already knows the
 absent, so adding `bricks.md` to a lesson needs no build change. Run it with
 `python3 build.py`.
 
-**Abhyāsaḥ** — the primary project file, at `dist/abhyasah.html`. It is one
-self-contained page with no external references of any kind: no CDN, no fonts,
-no `fetch`, no stylesheets. It opens from `file://` and works offline, and it
-must stay that way.
+**Abhyāsaḥ** — the primary project file, distributed as `dist/abhyasah.html`.
+It is one self-contained page with no external references of any kind: no CDN,
+no fonts, no `fetch`, no stylesheets. It opens from `file://` and works
+offline, and it must stay that way.
 
-There is no `app/` or `scripts/build.js` yet — the page is currently hand-
-maintained rather than built, so `dist/abhyasah.html` is both source and
-distribution. Splitting it into the layout under **Architecture** is the next
-structural step; until then, edit the page directly.
+Source lives in `app/`; **edit there, never in `dist/`**:
+
+```
+app/index.html    markup, plus the card data block (until practice.json lands)
+app/styles.css
+app/app.js
+scripts/build.js  inlines the two into dist/abhyasah.html
+scripts/demo.js   repackages the distributable for publishing as an Artifact
+```
+
+`app/index.html` links `styles.css` and `app.js` with ordinary relative paths,
+so it opens directly from `file://` during development. `node scripts/build.js`
+swaps those two tags for the inlined contents; `--check` builds in memory and
+fails if `dist/` is stale, without writing. The build refuses to emit a page
+that reaches the network — it scans its own output for `<script src>`, `fetch`,
+`@import`, remote `url()`, and the like, so an accidental dependency fails the
+build rather than shipping.
 
 Its cards live in a `<script id="cards" type="text/plain">` block as
 pipe-delimited rows:
@@ -188,9 +201,10 @@ itself. Publish that file to give the learner a live page to try on a phone.
 The demo is generated and git-ignored; `dist/abhyasah.html` remains the real
 distributable.
 
-Card data still lives in the page rather than in per-lesson `practice.json`
-files. Migrating it out — one `practice.json` beside each lesson, assembled at
-build time — is the other half of the architecture work above.
+Card data still lives in `app/index.html` rather than in per-lesson
+`practice.json` files. Migrating it out — one `practice.json` beside each
+lesson, discovered by the build — is the next structural step, and it is what
+empties `app/index.html` down to actual markup.
 
 ### Known conflicts
 

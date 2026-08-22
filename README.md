@@ -91,6 +91,8 @@ self-contained file with no network dependencies, so it works offline and from
 `file://` — including on a phone. Decks are tied to the numbered stages, and
 progress, trouble cards, and scores are saved in the browser.
 
+Its source is `app/` — rebuild with `node scripts/build.js` after editing.
+
 **Reading — `index.html`**
 
 The full curriculum as one page. Open it directly, or serve locally:

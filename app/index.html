@@ -1,0 +1,2096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>अभ्यासः — flashcards</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <h1>अभ्यासः</h1>
+  <div class="sub">abhyāsaḥ</div>
+  <select id="deck" aria-label="Choose a list"></select>
+  <div class="controls">
+    <button id="dir" title="Tap to reverse"><span class="swap" aria-hidden="true">⇄</span><span id="dir-label">word → meaning</span></button>
+    <label class="check" for="iast-on"><input type="checkbox" id="iast-on" checked> IAST</label>
+  </div>
+  <div class="stage" id="stage"></div>
+  <button id="pile" class="pilebtn" hidden></button>
+</header>
+
+<div class="tally" id="tally">
+  <span>Left<b id="t-left">0</b></span>
+  <span>Learned<b id="t-knew">0</b></span>
+  <span class="miss">To review<b id="t-miss">0</b></span>
+</div>
+
+<div class="panel">
+  <div class="card" id="card" tabindex="0" role="button" aria-label="Show meaning">
+    <div class="seen-before" id="relearn" hidden>second look</div>
+    <div class="dn" id="dn">…</div>
+    <div class="iast" id="iast"></div>
+    <div class="rule"></div>
+    <div class="back" aria-live="polite">
+      <div class="gloss" id="gloss"></div>
+      <div class="tag" id="tag"></div>
+    </div>
+  </div>
+
+  <div class="review" id="review">
+    <h2 id="r-title">Round finished</h2>
+    <div class="score" id="r-score"></div>
+    <div id="r-list"></div>
+  </div>
+
+  <div class="board" id="reviewpanel">
+    <h2>परीक्षा — review mode</h2>
+    <div class="score" id="rp-sub"></div>
+    <div class="note" id="rp-note"></div>
+  </div>
+
+  <div class="board" id="trouble">
+    <h2>क्लिष्टानि — trouble cards</h2>
+    <div class="score" id="t-sub"></div>
+    <div class="note" id="t-note"></div>
+    <div id="t-list"></div>
+  </div>
+
+  <div class="board" id="board">
+    <h2>अङ्काः — best scores</h2>
+    <div class="mastery" id="b-mastery" hidden>
+      <span class="m-label">review mastery</span>
+      <span class="m-pct" id="b-mpct"></span>
+      <span class="m-sub" id="b-msub"></span>
+    </div>
+    <div class="score" id="b-sub"></div>
+    <div id="b-list"></div>
+  </div>
+</div>
+
+<div class="actions" id="grade" hidden>
+  <button id="miss" class="miss">Didn't know it</button>
+  <button id="knew" class="primary">Knew it</button>
+</div>
+
+<div class="actions" id="rp-actions" hidden>
+  <button id="rp-draw" class="primary"></button>
+</div>
+
+<div class="actions" id="t-actions" hidden>
+  <button id="t-drill" class="primary">Practise these</button>
+  <button id="t-copy">Copy the list</button>
+</div>
+
+<div class="actions" id="after" hidden>
+  <button id="again-missed" class="primary">Practise these again</button>
+  <button id="restart">Whole deck again</button>
+  <button id="share">Share score</button>
+</div>
+
+<div class="keys" id="keys">tap / space — flip · 1 — didn't know · 2 — knew it</div>
+<div class="boardlink"><button id="boardbtn">scoreboard</button></div>
+
+<button id="reviewbtn" class="revbtn"></button>
+<div class="tagline">proof of mastery</div>
+
+<button id="troublebtn" class="revbtn"></button>
+<div class="tagline">repeat offenders</div>
+
+<div class="validate" id="validate"></div>
+
+<div class="pop" id="pop" role="dialog" aria-label="What this annotation means" hidden></div>
+
+<div class="veil" id="veil" hidden></div>
+<div class="ask" id="ask" role="alertdialog" aria-modal="true" aria-labelledby="ask-msg" hidden>
+  <p id="ask-msg"></p>
+  <div class="ask-btns">
+    <button id="ask-no">Keep going</button>
+    <button id="ask-yes" class="primary">Leave it</button>
+  </div>
+</div>
+
+<script id="cards" type="text/plain">
+# 01 · Devī — goddess names   @stage 1
+कामाक्षी | kāmākṣī | she of loving eyes | prathamā | nom. sg. · f. · stem: kāmākṣī- · ī-stem
+ललिता | lalitā | the playful one | prathamā | nom. sg. · f. · stem: lalitā- · ā-stem
+त्रिपुरसुन्दरी | tripurasundarī | beauty of the three cities | prathamā | nom. sg. · f. · stem: tripurasundarī- · ī-stem
+राजराजेश्वरी | rājarājeśvarī | sovereign of sovereigns | prathamā | nom. sg. · f. · stem: rājarājeśvarī- · ī-stem
+बाला | bālā | the young one | prathamā | nom. sg. · f. · stem: bālā- · ā-stem
+दुर्गा | durgā | the unassailable | prathamā | nom. sg. · f. · stem: durgā- · ā-stem
+पार्वती | pārvatī | daughter of the mountain | prathamā | nom. sg. · f. · stem: pārvatī- · ī-stem
+सरस्वती | sarasvatī | she of the flowing speech | prathamā | nom. sg. · f. · stem: sarasvatī- · ī-stem
+लक्ष्मीः | lakṣmīḥ | fortune, splendour | prathamā | nom. sg. · f. · stem: lakṣmī- · ī-stem
+गौरी | gaurī | the radiant, fair one | prathamā | nom. sg. · f. · stem: gaurī- · ī-stem
+चण्डिका | caṇḍikā | the fierce one | prathamā | nom. sg. · f. · stem: caṇḍikā- · ā-stem
+श्यामा | śyāmā | the dark one | prathamā | nom. sg. · f. · stem: śyāmā- · ā-stem
+भवानी | bhavānī | consort of Bhava | prathamā | nom. sg. · f. · stem: bhavānī- · ī-stem
+अम्बा | ambā | mother | prathamā | nom. sg. · f. · stem: ambā- · ā-stem
+कुण्डलिनी | kuṇḍalinī | the coiled one | prathamā | nom. sg. · f. · stem: kuṇḍalinī- · ī-stem
+
+# 02 · Deva — god names   @stage 1
+शिवः | śivaḥ | the auspicious one | prathamā | nom. sg. · m. · stem: śiva- · a-stem
+विष्णुः | viṣṇuḥ | the all-pervading | prathamā | nom. sg. · m. · stem: viṣṇu- · u-stem
+हरिः | hariḥ | the remover | prathamā | nom. sg. · m. · stem: hari- · i-stem
+गणेशः | gaṇeśaḥ | lord of the hosts | prathamā | nom. sg. · m. · stem: gaṇeśa- · a-stem
+स्कन्दः | skandaḥ | Kārttikeya | prathamā | nom. sg. · m. · stem: skanda- · a-stem
+भैरवः | bhairavaḥ | the terrifying one | prathamā | nom. sg. · m. · stem: bhairava- · a-stem
+रुद्रः | rudraḥ | the howler | prathamā | nom. sg. · m. · stem: rudra- · a-stem
+ब्रह्मा | brahmā | the creator | prathamā | nom. sg. · m. · stem: brahman- · an-stem
+सूर्यः | sūryaḥ | the sun | prathamā | nom. sg. · m. · stem: sūrya- · a-stem
+इन्द्रः | indraḥ | lord of the gods | prathamā | nom. sg. · m. · stem: indra- · a-stem
+रामः | rāmaḥ | the delightful one | prathamā | nom. sg. · m. · stem: rāma- · a-stem
+कृष्णः | kṛṣṇaḥ | the dark one | prathamā | nom. sg. · m. · stem: kṛṣṇa- · a-stem
+भगवान् | bhagavān | the blessed lord | prathamā | nom. sg. · m. · stem: bhagavat- · at-stem
+आत्मा | ātmā | self | prathamā | nom. sg. · m. · stem: ātman- · an-stem
+महेश्वरः | maheśvaraḥ | the great lord | mahā + īśvara, guṇa sandhi
+
+# 03 · Guṇa — adjectives   @stage 4
+करुणामयी | karuṇāmayī | full of compassion | prathamā | nom. sg. · f. · stem: karuṇāmayī- · ī-stem
+दयालुः | dayāluḥ | compassionate | prathamā | nom. sg. · stem: dayālu- · u-stem
+सुन्दरः | sundaraḥ | beautiful | prathamā | nom. sg. · stem: sundara- · a-stem
+शुभः | śubhaḥ | auspicious | prathamā | nom. sg. · stem: śubha- · a-stem
+दिव्यः | divyaḥ | divine | prathamā | nom. sg. · stem: divya- · a-stem
+पवित्रः | pavitraḥ | pure | prathamā | nom. sg. · stem: pavitra- · a-stem
+नित्यः | nityaḥ | eternal | prathamā | nom. sg. · stem: nitya- · a-stem
+प्रसन्नः | prasannaḥ | gracious, serene | prathamā | nom. sg. · stem: prasanna- · a-stem
+उग्रः | ugraḥ | fierce | prathamā | nom. sg. · stem: ugra- · a-stem
+शान्तः | śāntaḥ | peaceful | prathamā | nom. sg. · stem: śānta- · a-stem
+मङ्गलः | maṅgalaḥ | blessed | prathamā | nom. sg. · stem: maṅgala- · a-stem
+महान् | mahān | great | prathamā | nom. sg. · stem: mahat- · at-stem
+श्वेतः | śvetaḥ | white | prathamā | nom. sg. · stem: śveta- · a-stem
+रक्तः | raktaḥ | red | prathamā | nom. sg. · stem: rakta- · a-stem
+कृपालुः | kṛpāluḥ | merciful | prathamā | nom. sg. · stem: kṛpālu- · u-stem
+
+# 04 · Āyudha — weapons and emblems   @stage 1
+त्रिशूलम् | triśūlam | trident | prathamā/dvitīyā | nom./acc. sg. · n. · stem: triśūla- · a-stem
+चक्रम् | cakram | discus | prathamā/dvitīyā | nom./acc. sg. · n. · stem: cakra- · a-stem
+शङ्खः | śaṅkhaḥ | conch | prathamā | nom. sg. · m. · stem: śaṅkha- · a-stem
+गदा | gadā | mace | prathamā | nom. sg. · f. · stem: gadā- · ā-stem
+धनुः | dhanuḥ | bow | prathamā/dvitīyā | nom./acc. sg. · n. · stem: dhanus- · us-stem
+बाणः | bāṇaḥ | arrow | prathamā | nom. sg. · m. · stem: bāṇa- · a-stem
+पाशः | pāśaḥ | noose | prathamā | nom. sg. · m. · stem: pāśa- · a-stem
+अङ्कुशः | aṅkuśaḥ | goad | prathamā | nom. sg. · m. · stem: aṅkuśa- · a-stem
+खड्गः | khaḍgaḥ | sword | prathamā | nom. sg. · m. · stem: khaḍga- · a-stem
+वज्रम् | vajram | thunderbolt | prathamā/dvitīyā | nom./acc. sg. · n. · stem: vajra- · a-stem
+डमरुः | ḍamaruḥ | hand-drum | prathamā | nom. sg. · m. · stem: ḍamaru- · u-stem
+अक्षमाला | akṣamālā | rosary | prathamā | nom. sg. · f. · stem: akṣamālā- · ā-stem
+कपालम् | kapālam | skull-bowl | prathamā/dvitīyā | nom./acc. sg. · n. · stem: kapāla- · a-stem
+पद्मम् | padmam | lotus | prathamā/dvitīyā | nom./acc. sg. · n. · stem: padma- · a-stem
+
+# 05 · Pūjā-dravya — ritual objects   @stage 1
+दीपः | dīpaḥ | lamp | prathamā | nom. sg. · m. · stem: dīpa- · a-stem
+पुष्पम् | puṣpam | flower | prathamā/dvitīyā | nom./acc. sg. · n. · stem: puṣpa- · a-stem
+धूपः | dhūpaḥ | incense | prathamā | nom. sg. · m. · stem: dhūpa- · a-stem
+नैवेद्यम् | naivedyam | food offering | prathamā/dvitīyā | nom./acc. sg. · n. · stem: naivedya- · a-stem
+गन्धः | gandhaḥ | fragrant paste | prathamā | nom. sg. · m. · stem: gandha- · a-stem
+अक्षताः | akṣatāḥ | unbroken rice | prathamā | nom. pl. · m. · stem: akṣata- · a-stem
+कलशः | kalaśaḥ | water pot | prathamā | nom. sg. · m. · stem: kalaśa- · a-stem
+आसनम् | āsanam | seat | prathamā/dvitīyā | nom./acc. sg. · n. · stem: āsana- · a-stem
+अर्घ्यम् | arghyam | offering water | prathamā/dvitīyā | nom./acc. sg. · n. · stem: arghya- · a-stem
+पाद्यम् | pādyam | water for the feet | prathamā/dvitīyā | nom./acc. sg. · n. · stem: pādya- · a-stem
+ताम्बूलम् | tāmbūlam | betel offering | prathamā/dvitīyā | nom./acc. sg. · n. · stem: tāmbūla- · a-stem
+कर्पूरः | karpūraḥ | camphor | prathamā | nom. sg. · m. · stem: karpūra- · a-stem
+घण्टा | ghaṇṭā | bell | prathamā | nom. sg. · f. · stem: ghaṇṭā- · ā-stem
+चामरम् | cāmaram | fly-whisk | prathamā/dvitīyā | nom./acc. sg. · n. · stem: cāmara- · a-stem
+वस्त्रम् | vastram | cloth | prathamā/dvitīyā | nom./acc. sg. · n. · stem: vastra- · a-stem
+
+# 06 · Upacāra — ritual acts   @stage 17
+पूजा | pūjā | worship | prathamā | nom. sg. · f. · stem: pūjā- · ā-stem
+आवाहनम् | āvāhanam | invocation | prathamā/dvitīyā | nom./acc. sg. · n. · stem: āvāhana- · a-stem
+ध्यानम् | dhyānam | meditation, visualisation | prathamā/dvitīyā | nom./acc. sg. · n. · stem: dhyāna- · a-stem
+न्यासः | nyāsaḥ | placement of mantra on the body | prathamā | nom. sg. · m. · stem: nyāsa- · a-stem
+सङ्कल्पः | saṅkalpaḥ | statement of intent | prathamā | nom. sg. · m. · stem: saṅkalpa- · a-stem
+अर्चना | arcanā | offering of names | prathamā | nom. sg. · f. · stem: arcanā- · ā-stem
+नमस्कारः | namaskāraḥ | salutation | prathamā | nom. sg. · m. · stem: namaskāra- · a-stem
+प्रदक्षिणा | pradakṣiṇā | circumambulation | prathamā | nom. sg. · f. · stem: pradakṣiṇā- · ā-stem
+नीराजनम् | nīrājanam | waving of lamps | prathamā/dvitīyā | nom./acc. sg. · n. · stem: nīrājana- · a-stem
+विसर्जनम् | visarjanam | dismissal | prathamā/dvitīyā | nom./acc. sg. · n. · stem: visarjana- · a-stem
+होमः | homaḥ | fire offering | prathamā | nom. sg. · m. · stem: homa- · a-stem
+जपः | japaḥ | mantra repetition | prathamā | nom. sg. · m. · stem: japa- · a-stem
+अभिषेकः | abhiṣekaḥ | ritual bathing | prathamā | nom. sg. · m. · stem: abhiṣeka- · a-stem
+प्रसादः | prasādaḥ | grace; consecrated food | prathamā | nom. sg. · m. · stem: prasāda- · a-stem
+स्तोत्रम् | stotram | hymn of praise | prathamā/dvitīyā | nom./acc. sg. · n. · stem: stotra- · a-stem
+उपचारः | upacāraḥ | an act of homage in worship | prathamā | nom. sg. · m. · stem: upacāra- · a-stem
+पद्धतिः | paddhatiḥ | ritual manual | prathamā | nom. sg. · f. · stem: paddhati- · i-stem
+प्रणामः | praṇāmaḥ | prostration | pra + √nam
+प्रार्थना | prārthanā | prayer, entreaty | prathamā | nom. sg. · f. · stem: prārthanā- · ā-stem
+सेवा | sevā | service, attendance | prathamā | nom. sg. · f. · stem: sevā- · ā-stem
+
+# 07 · Prakṛti — nature   @stage 1
+जलम् | jalam | water | prathamā/dvitīyā | nom./acc. sg. · n. · stem: jala- · a-stem
+अग्निः | agniḥ | fire | prathamā | nom. sg. · m. · stem: agni- · i-stem
+वायुः | vāyuḥ | wind | prathamā | nom. sg. · m. · stem: vāyu- · u-stem
+आकाशः | ākāśaḥ | space, ether | prathamā | nom. sg. · m. · stem: ākāśa- · a-stem
+पृथिवी | pṛthivī | earth | prathamā | nom. sg. · f. · stem: pṛthivī- · ī-stem
+चन्द्रः | candraḥ | moon | prathamā | nom. sg. · m. · stem: candra- · a-stem
+नक्षत्रम् | nakṣatram | star, lunar mansion | prathamā/dvitīyā | nom./acc. sg. · n. · stem: nakṣatra- · a-stem
+पर्वतः | parvataḥ | mountain | prathamā | nom. sg. · m. · stem: parvata- · a-stem
+नदी | nadī | river | prathamā | nom. sg. · f. · stem: nadī- · ī-stem
+वृक्षः | vṛkṣaḥ | tree | prathamā | nom. sg. · m. · stem: vṛkṣa- · a-stem
+वनम् | vanam | forest | prathamā/dvitīyā | nom./acc. sg. · n. · stem: vana- · a-stem
+समुद्रः | samudraḥ | ocean | prathamā | nom. sg. · m. · stem: samudra- · a-stem
+मेघः | meghaḥ | cloud | prathamā | nom. sg. · m. · stem: megha- · a-stem
+कमलम् | kamalam | lotus | prathamā/dvitīyā | nom./acc. sg. · n. · stem: kamala- · a-stem
+ज्योतिः | jyotiḥ | light | prathamā/dvitīyā | nom./acc. sg. · n. · stem: jyotis- · is-stem
+
+# 08 · Aṅga — body and nyāsa   @stage 17
+शिरः | śiraḥ | head | prathamā/dvitīyā | nom./acc. sg. · n. · stem: śiras- · as-stem
+नेत्रम् | netram | eye | prathamā/dvitīyā | nom./acc. sg. · n. · stem: netra- · a-stem
+मुखम् | mukham | face, mouth | prathamā/dvitīyā | nom./acc. sg. · n. · stem: mukha- · a-stem
+हस्तः | hastaḥ | hand | prathamā | nom. sg. · m. · stem: hasta- · a-stem
+पादः | pādaḥ | foot | prathamā | nom. sg. · m. · stem: pāda- · a-stem
+हृदयम् | hṛdayam | heart | prathamā/dvitīyā | nom./acc. sg. · n. · stem: hṛdaya- · a-stem
+शिखा | śikhā | crown-tuft | prathamā | nom. sg. · f. · stem: śikhā- · ā-stem
+कवचम् | kavacam | armour | prathamā/dvitīyā | nom./acc. sg. · n. · stem: kavaca- · a-stem
+अङ्गुष्ठः | aṅguṣṭhaḥ | thumb | prathamā | nom. sg. · m. · stem: aṅguṣṭha- · a-stem
+तर्जनी | tarjanī | index finger | prathamā | nom. sg. · f. · stem: tarjanī- · ī-stem
+मध्यमा | madhyamā | middle finger | prathamā | nom. sg. · f. · stem: madhyamā- · ā-stem
+अनामिका | anāmikā | ring finger | prathamā | nom. sg. · f. · stem: anāmikā- · ā-stem
+कनिष्ठिका | kaniṣṭhikā | little finger | prathamā | nom. sg. · f. · stem: kaniṣṭhikā- · ā-stem
+करतलम् | karatalam | palm of the hand | prathamā/dvitīyā | nom./acc. sg. · n. · stem: karatala- · a-stem
+देहः | dehaḥ | body | prathamā | nom. sg. · m. · stem: deha- · a-stem
+
+# 09 · Dhātu — roots   @stage 9
+√नम् | √nam | to bow | dhātu · namati
+√कृ | √kṛ | to do, make | dhātu · karoti
+√भू | √bhū | to be, become | dhātu · bhavati
+√स्तु | √stu | to praise | dhātu · stauti
+√गम् | √gam | to go | dhātu · gacchati
+√वद् | √vad | to speak | dhātu · vadati
+√दृश् | √dṛś | to see | dhātu · paśyati
+√श्रु | √śru | to hear | dhātu · śṛṇoti
+√पठ् | √paṭh | to recite, read | dhātu · paṭhati
+√दा | √dā | to give | dhātu · dadāti
+√स्था | √sthā | to stand | dhātu · tiṣṭhati
+√भज् | √bhaj | to worship, share | dhātu · bhajati
+√ज्ञा | √jñā | to know | dhātu · jānāti
+√अस् | √as | to be | dhātu · asti
+√वन्द् | √vand | to venerate | dhātu · vandate
+√पूज् | √pūj | to worship | dhātu · pūjayati
+
+# 10 · Kriyā — verbs in form   @stage 6
+नमामि | namāmi | I bow | 1 sg. pres. · √nam · parasmaipada
+वन्दे | vande | I venerate | 1 sg. pres. · √vand · ātmanepada
+करोमि | karomi | I do | 1 sg. pres. · √kṛ · parasmaipada
+भवति | bhavati | he/she becomes | 3 sg. pres. · √bhū · parasmaipada
+गच्छति | gacchati | he/she goes | 3 sg. pres. · √gam · parasmaipada
+पश्यति | paśyati | he/she sees | 3 sg. pres. · √dṛś · parasmaipada
+शृणोति | śṛṇoti | he/she hears | 3 sg. pres. · √śru · parasmaipada
+वदति | vadati | he/she speaks | 3 sg. pres. · √vad · parasmaipada
+ददाति | dadāti | he/she gives | 3 sg. pres. · √dā · parasmaipada
+तिष्ठति | tiṣṭhati | he/she stands | 3 sg. pres. · √sthā · parasmaipada
+जानाति | jānāti | he/she knows | 3 sg. pres. · √jñā · parasmaipada
+अस्ति | asti | he/she/it is | 3 sg. pres. · √as · parasmaipada
+सन्ति | santi | they are | 3 pl. pres. · √as · parasmaipada
+रक्ष | rakṣa | protect! | 2 sg. impv. · √rakṣ · parasmaipada
+देहि | dehi | give! | 2 sg. impv. · √dā · parasmaipada
+प्रसीद | prasīda | be gracious! | 2 sg. impv. · pra + √sad · parasmaipada
+उपविशति | upaviśati | he/she sits down | 3 sg. pres. · upa + √viś · parasmaipada
+
+# 11 · Vibhakti — the seven cases   @stage 5
+प्रथमा | prathamā | nominative — names the thing itself | prātipadikārtha, 2.3.46
+द्वितीया | dvitīyā | accusative — the object | karma
+तृतीया | tṛtīyā | instrumental — by, with | karaṇa
+चतुर्थी | caturthī | dative — to, for | sampradāna
+पञ्चमी | pañcamī | ablative — from | apādāna
+षष्ठी | ṣaṣṭhī | genitive — of | sambandha
+सप्तमी | saptamī | locative — in, on | adhikaraṇa
+सम्बोधनम् | sambodhanam | vocative — direct address | O …!
+
+# 12 · Kāraka — semantic roles   @stage 7
+कर्ता | kartā | the agent, the doer | prathamā | nom. sg. · m. · stem: kartṛ- · ṛ-stem
+कर्म | karma | the object acted upon | prathamā/dvitīyā | nom./acc. sg. · n. · stem: karman- · an-stem
+करणम् | karaṇam | the instrument | prathamā/dvitīyā | nom./acc. sg. · n. · stem: karaṇa- · a-stem
+सम्प्रदानम् | sampradānam | the recipient | prathamā/dvitīyā | nom./acc. sg. · n. · stem: sampradāna- · a-stem
+अपादानम् | apādānam | the source of separation | prathamā/dvitīyā | nom./acc. sg. · n. · stem: apādāna- · a-stem
+अधिकरणम् | adhikaraṇam | the locus | prathamā/dvitīyā | nom./acc. sg. · n. · stem: adhikaraṇa- · a-stem
+सम्बन्धः | sambandhaḥ | relation (not strictly a kāraka) | prathamā | nom. sg. · m. · stem: sambandha- · a-stem
+हेतुः | hetuḥ | cause | prathamā | nom. sg. · m. · stem: hetu- · u-stem
+[रामः] बाणेन रावणं हन्ति | [rāmaḥ] bāṇena rāvaṇaṃ hanti | kartṛ — the agent | kāraka · rāmaḥ is prathamā | nom. sg.
+रामः बाणेन [रावणं] हन्ति | rāmaḥ bāṇena [rāvaṇaṃ] hanti | karma — the object | kāraka · rāvaṇam is dvitīyā | acc. sg.
+रामः [बाणेन] रावणं हन्ति | rāmaḥ [bāṇena] rāvaṇaṃ hanti | karaṇa — the instrument | kāraka · bāṇena is tṛtīyā | instr. sg.
+रामः [विप्राय] धनं ददाति | rāmaḥ [viprāya] dhanaṃ dadāti | sampradāna — the recipient | kāraka · viprāya is caturthī | dat. sg.
+[वृक्षात्] पत्रं पतति | [vṛkṣāt] patraṃ patati | apādāna — the source | kāraka · vṛkṣāt is pañcamī | abl. sg.
+रामः [वने] वसति | rāmaḥ [vane] vasati | adhikaraṇa — the locus | kāraka · vane is saptamī | loc. sg.
+# 13 · Vyākaraṇam — grammar terms   @stage 0
+धातुः | dhātuḥ | verbal root | prathamā | nom. sg. · m. · stem: dhātu- · u-stem
+प्रत्ययः | pratyayaḥ | suffix | prathamā | nom. sg. · m. · stem: pratyaya- · a-stem
+उपसर्गः | upasargaḥ | prefix | prathamā | nom. sg. · m. · stem: upasarga- · a-stem
+प्रातिपदिकम् | prātipadikam | nominal stem | prathamā/dvitīyā | nom./acc. sg. · n. · stem: prātipadika- · a-stem
+सन्धिः | sandhiḥ | euphonic junction | prathamā | nom. sg. · m. · stem: sandhi- · i-stem
+समासः | samāsaḥ | compound | prathamā | nom. sg. · m. · stem: samāsa- · a-stem
+लिङ्गम् | liṅgam | gender | prathamā/dvitīyā | nom./acc. sg. · n. · stem: liṅga- · a-stem
+वचनम् | vacanam | number | prathamā/dvitīyā | nom./acc. sg. · n. · stem: vacana- · a-stem
+विभक्तिः | vibhaktiḥ | case ending | prathamā | nom. sg. · f. · stem: vibhakti- · i-stem
+सूत्रम् | sūtram | aphoristic rule | prathamā/dvitīyā | nom./acc. sg. · n. · stem: sūtra- · a-stem
+वृत्तिः | vṛttiḥ | commentary, gloss | prathamā | nom. sg. · f. · stem: vṛtti- · i-stem
+गुणः | guṇaḥ | the a-grade of a vowel | a, e, o
+वृद्धिः | vṛddhiḥ | the lengthened grade | ā, ai, au
+लोपः | lopaḥ | elision | prathamā | nom. sg. · m. · stem: lopa- · a-stem
+आगमः | āgamaḥ | augment | prathamā | nom. sg. · m. · stem: āgama- · a-stem
+अव्ययम् | avyayam | indeclinable | prathamā/dvitīyā | nom./acc. sg. · n. · stem: avyaya- · a-stem
+तिङ् | tiṅ | verbal ending | vs. sup, the noun endings
+पदम् | padam | a finished, inflected word | prathamā/dvitīyā | nom./acc. sg. · n. · stem: pada- · a-stem
+शब्दः | śabdaḥ | word, sound | prathamā | nom. sg. · m. · stem: śabda- · a-stem
+अक्षरम् | akṣaram | syllable | prathamā/dvitīyā | nom./acc. sg. · n. · stem: akṣara- · a-stem
+कारकम् | kārakam | a noun's relation to the action | prathamā/dvitīyā | nom./acc. sg. · n. · stem: kāraka- · a-stem
+नाम | nāma | name; noun | prathamā/dvitīyā | nom./acc. sg. · n. · stem: nāman- · an-stem
+रूपम् | rūpam | form; a declined shape | prathamā/dvitīyā | nom./acc. sg. · n. · stem: rūpa- · a-stem
+वाक्यम् | vākyam | sentence | prathamā/dvitīyā | nom./acc. sg. · n. · stem: vākya- · a-stem
+कथा | kathā | story, narrative | prathamā | nom. sg. · f. · stem: kathā- · ā-stem
+क्रिया | kriyā | action; the verb | prathamā | nom. sg. · f. · stem: kriyā- · ā-stem
+पर्यायः | paryāyaḥ | synonym | prathamā | nom. sg. · m. · stem: paryāya- · a-stem
+इत् | it | indicatory letter, then deleted | tasya lopaḥ, 1.3.9
+प्रत्याहारः | pratyāhāraḥ | abbreviation spanning the Śiva sūtras | e.g. ac, hal
+
+# 14 · Samāsa — compound types   @stage 11
+राज + पुरुषः | rāja + puruṣaḥ | राजपुरुषः · tatpuruṣa — "the king's man" | samāsa · the first member stands in a case relation to the second
+नील + उत्पलम् | nīla + utpalam | नीलोत्पलम् · karmadhāraya — "blue lotus" | samāsa · adjective and noun in the same case
+त्रि + लोकम् | tri + lokam | त्रिलोकम् · dvigu — "the three worlds" | samāsa · a karmadhāraya whose first member is a number
+पीत + अम्बरः | pīta + ambaraḥ | पीताम्बरः · bahuvrīhi — "he whose garment is yellow" | samāsa · names something outside itself
+राम + लक्ष्मणौ | rāma + lakṣmaṇau | रामलक्ष्मणौ · dvandva — "Rāma and Lakṣmaṇa" | samāsa · and-compound, the members equal
+उप + नदी | upa + nadī | उपनदि · avyayībhāva — "near the river" | samāsa · indeclinable, the first member governs
+# 15 · Varṇa — sounds and articulation   @stage 2
+वर्णः | varṇaḥ | phoneme, letter | prathamā | nom. sg. · m. · stem: varṇa- · a-stem
+स्वरः | svaraḥ | vowel | prathamā | nom. sg. · m. · stem: svara- · a-stem
+व्यञ्जनम् | vyañjanam | consonant | prathamā/dvitīyā | nom./acc. sg. · n. · stem: vyañjana- · a-stem
+स्थानम् | sthānam | place of articulation | prathamā/dvitīyā | nom./acc. sg. · n. · stem: sthāna- · a-stem
+प्रयत्नः | prayatnaḥ | effort of articulation | prathamā | nom. sg. · m. · stem: prayatna- · a-stem
+अनुस्वारः | anusvāraḥ | the nasal after-sound ṃ | prathamā | nom. sg. · m. · stem: anusvāra- · a-stem
+विसर्गः | visargaḥ | the released breath ḥ | prathamā | nom. sg. · m. · stem: visarga- · a-stem
+ह्रस्वः | hrasvaḥ | short (one mātrā) | prathamā | nom. sg. · stem: hrasva- · a-stem
+दीर्घः | dīrghaḥ | long (two mātrās) | prathamā | nom. sg. · stem: dīrgha- · a-stem
+प्लुतः | plutaḥ | protracted (three mātrās) | prathamā | nom. sg. · stem: pluta- · a-stem
+बीजम् | bījam | seed-syllable | prathamā/dvitīyā | nom./acc. sg. · n. · stem: bīja- · a-stem
+क ख ग घ ङ | ka kha ga gha ṅa | kaṇṭhya · कण्ठ्यः — guttural | sthāna · from the throat; also a, ā, h, ḥ
+च छ ज झ ञ | ca cha ja jha ña | tālavya · तालव्यः — palatal | sthāna · from the palate; also i, ī, y, ś
+ट ठ ड ढ ण | ṭa ṭha ḍa ḍha ṇa | mūrdhanya · मूर्धन्यः — retroflex | sthāna · from the roof of the mouth; also ṛ, r, ṣ
+त थ द ध न | ta tha da dha na | dantya · दन्त्यः — dental | sthāna · from the teeth; also ḷ, l, s
+प फ ब भ म | pa pha ba bha ma | oṣṭhya · ओष्ठ्यः — labial | sthāna · from the lips; also u, ū
+# 16 · Svara — Vedic accent   @stage 20
+उदात्तः | udāttaḥ | the raised accent | prathamā | nom. sg. · m. · stem: udātta- · a-stem
+अनुदात्तः | anudāttaḥ | the unraised accent | prathamā | nom. sg. · m. · stem: anudātta- · a-stem
+स्वरितः | svaritaḥ | the falling accent | prathamā | nom. sg. · m. · stem: svarita- · a-stem
+संहिता | saṃhitā | the continuous recitation | prathamā | nom. sg. · f. · stem: saṃhitā- · ā-stem
+पदपाठः | padapāṭhaḥ | word-by-word recitation | prathamā | nom. sg. · m. · stem: padapāṭha- · a-stem
+क्रमः | kramaḥ | step recitation (ab, bc, cd) | prathamā | nom. sg. · m. · stem: krama- · a-stem
+जटा | jaṭā | braided recitation | prathamā | nom. sg. · f. · stem: jaṭā- · ā-stem
+घनः | ghanaḥ | dense recitation | prathamā | nom. sg. · m. · stem: ghana- · a-stem
+विकृतिः | vikṛtiḥ | a permuted recitation pattern | prathamā | nom. sg. · f. · stem: vikṛti- · i-stem
+शिक्षा | śikṣā | the science of phonetics | prathamā | nom. sg. · f. · stem: śikṣā- · ā-stem
+प्रातिशाख्यम् | prātiśākhyam | phonetic treatise of a śākhā | prathamā/dvitīyā | nom./acc. sg. · n. · stem: prātiśākhya- · a-stem
+मात्रा | mātrā | a unit of duration | prathamā | nom. sg. · f. · stem: mātrā- · ā-stem
+
+# 17 · Chandas — metre   @stage 19
+छन्दः | chandaḥ | metre | prathamā/dvitīyā | nom./acc. sg. · n. · stem: chandas- · as-stem
+अनुष्टुभ् | anuṣṭubh | the 8×4 śloka metre | bh-stem f.
+त्रिष्टुप् | triṣṭup | the 11-syllable metre | p-stem f.
+गायत्री | gāyatrī | the 8×3 metre | prathamā | nom. sg. · f. · stem: gāyatrī- · ī-stem
+जगती | jagatī | the 12-syllable metre | prathamā | nom. sg. · f. · stem: jagatī- · ī-stem
+पादः | pādaḥ | a quarter of a verse | prathamā | nom. sg. · m. · stem: pāda- · a-stem
+गुरुः | guruḥ | a heavy syllable | prathamā | nom. sg. · stem: guru- · u-stem
+लघुः | laghuḥ | a light syllable | prathamā | nom. sg. · stem: laghu- · u-stem
+गणः | gaṇaḥ | a triad of syllables | prathamā | nom. sg. · m. · stem: gaṇa- · a-stem
+यतिः | yatiḥ | caesura, pause | prathamā | nom. sg. · f. · stem: yati- · i-stem
+वृत्तम् | vṛttam | a syllable-counted metre | prathamā/dvitīyā | nom./acc. sg. · n. · stem: vṛtta- · a-stem
+श्लोकः | ślokaḥ | a verse | prathamā | nom. sg. · m. · stem: śloka- · a-stem
+
+# 18 · Alaṅkāra — poetic ornament   @stage 24
+अलङ्कारः | alaṅkāraḥ | ornament of speech | prathamā | nom. sg. · m. · stem: alaṅkāra- · a-stem
+उपमा | upamā | simile | prathamā | nom. sg. · f. · stem: upamā- · ā-stem
+रूपकम् | rūpakam | metaphor | prathamā/dvitīyā | nom./acc. sg. · n. · stem: rūpaka- · a-stem
+यमकम् | yamakam | repetition of sound, different sense | prathamā/dvitīyā | nom./acc. sg. · n. · stem: yamaka- · a-stem
+अनुप्रासः | anuprāsaḥ | alliteration | prathamā | nom. sg. · m. · stem: anuprāsa- · a-stem
+श्लेषः | śleṣaḥ | double meaning, pun | prathamā | nom. sg. · m. · stem: śleṣa- · a-stem
+अतिशयोक्तिः | atiśayoktiḥ | hyperbole | prathamā | nom. sg. · f. · stem: atiśayokti- · i-stem
+उत्प्रेक्षा | utprekṣā | poetic fancy | prathamā | nom. sg. · f. · stem: utprekṣā- · ā-stem
+अर्थान्तरन्यासः | arthāntaranyāsaḥ | corroboration by a general truth | prathamā | nom. sg. · m. · stem: arthāntaranyāsa- · a-stem
+विरोधः | virodhaḥ | apparent contradiction | prathamā | nom. sg. · m. · stem: virodha- · a-stem
+
+# 19 · Rasa — aesthetic flavour   @stage 25
+रसः | rasaḥ | aesthetic flavour | prathamā | nom. sg. · m. · stem: rasa- · a-stem
+शृङ्गारः | śṛṅgāraḥ | the erotic, the amorous | rasa
+हास्यः | hāsyaḥ | the comic | rasa
+करुणः | karuṇaḥ | the compassionate, pathetic | rasa
+रौद्रः | raudraḥ | the furious | rasa
+वीरः | vīraḥ | the heroic | rasa
+भयानकः | bhayānakaḥ | the fearful | rasa
+बीभत्सः | bībhatsaḥ | the disgusting | rasa
+अद्भुतः | adbhutaḥ | the wondrous | rasa
+शान्तः | śāntaḥ | the peaceful | rasa
+स्थायिभावः | sthāyibhāvaḥ | the abiding emotion | prathamā | nom. sg. · m. · stem: sthāyibhāva- · a-stem
+विभावः | vibhāvaḥ | the determinant cause | prathamā | nom. sg. · m. · stem: vibhāva- · a-stem
+
+# 20 · Bhāva — inner states   @stage 13
+भक्तिः | bhaktiḥ | devotion | prathamā | nom. sg. · f. · stem: bhakti- · i-stem
+प्रेम | prema | love | prathamā/dvitīyā | nom./acc. sg. · n. · stem: preman- · an-stem
+आनन्दः | ānandaḥ | bliss | prathamā | nom. sg. · m. · stem: ānanda- · a-stem
+शोकः | śokaḥ | grief | prathamā | nom. sg. · m. · stem: śoka- · a-stem
+भयम् | bhayam | fear | prathamā/dvitīyā | nom./acc. sg. · n. · stem: bhaya- · a-stem
+क्रोधः | krodhaḥ | anger | prathamā | nom. sg. · m. · stem: krodha- · a-stem
+हर्षः | harṣaḥ | joy | prathamā | nom. sg. · m. · stem: harṣa- · a-stem
+करुणा | karuṇā | compassion | prathamā | nom. sg. · f. · stem: karuṇā- · ā-stem
+श्रद्धा | śraddhā | faith | prathamā | nom. sg. · f. · stem: śraddhā- · ā-stem
+शान्तिः | śāntiḥ | peace | prathamā | nom. sg. · f. · stem: śānti- · i-stem
+विस्मयः | vismayaḥ | wonder | prathamā | nom. sg. · m. · stem: vismaya- · a-stem
+लज्जा | lajjā | modesty, shame | prathamā | nom. sg. · f. · stem: lajjā- · ā-stem
+उत्साहः | utsāhaḥ | energy, resolve | prathamā | nom. sg. · m. · stem: utsāha- · a-stem
+भावः | bhāvaḥ | state of being, feeling | prathamā | nom. sg. · m. · stem: bhāva- · a-stem
+वैराग्यम् | vairāgyam | dispassion | prathamā/dvitīyā | nom./acc. sg. · n. · stem: vairāgya- · a-stem
+
+# 21 · Darśana — philosophical terms   @stage 26
+ब्रह्म | brahma | the absolute | prathamā/dvitīyā | nom./acc. sg. · n. · stem: brahman- · an-stem
+आत्मन् | ātman | the self | headword | m. · stem: ātman- · an-stem
+माया | māyā | the measuring power, illusion | prathamā | nom. sg. · f. · stem: māyā- · ā-stem
+मोक्षः | mokṣaḥ | liberation | prathamā | nom. sg. · m. · stem: mokṣa- · a-stem
+धर्मः | dharmaḥ | duty, law, nature | prathamā | nom. sg. · m. · stem: dharma- · a-stem
+ज्ञानम् | jñānam | knowledge | prathamā/dvitīyā | nom./acc. sg. · n. · stem: jñāna- · a-stem
+अविद्या | avidyā | ignorance | prathamā | nom. sg. · f. · stem: avidyā- · ā-stem
+सत् | sat | being | t-stem n.
+चित् | cit | consciousness | t-stem f.
+प्रकृतिः | prakṛtiḥ | nature, matter | prathamā | nom. sg. · f. · stem: prakṛti- · i-stem
+पुरुषः | puruṣaḥ | the conscious principle | prathamā | nom. sg. · m. · stem: puruṣa- · a-stem
+शक्तिः | śaktiḥ | power | prathamā | nom. sg. · f. · stem: śakti- · i-stem
+बिन्दुः | binduḥ | the point | prathamā | nom. sg. · m. · stem: bindu- · u-stem
+नादः | nādaḥ | primal sound | prathamā | nom. sg. · m. · stem: nāda- · a-stem
+मन्त्रः | mantraḥ | sacred formula | prathamā | nom. sg. · m. · stem: mantra- · a-stem
+यन्त्रम् | yantram | ritual diagram | prathamā/dvitīyā | nom./acc. sg. · n. · stem: yantra- · a-stem
+शब्दब्रह्म | śabdabrahma | sound as the absolute | prathamā/dvitīyā | nom./acc. sg. · n. · stem: śabdabrahman- · an-stem
+दर्शनम् | darśanam | viewpoint; a school of philosophy | prathamā/dvitīyā | nom./acc. sg. · n. · stem: darśana- · a-stem
+इष्टदेवता | iṣṭadevatā | one's chosen deity | prathamā | nom. sg. · f. · stem: iṣṭadevatā- · ā-stem
+श्रीविद्या | śrīvidyā | the Śrī tradition of the goddess | prathamā | nom. sg. · f. · stem: śrīvidyā- · ā-stem
+
+# 22 · Avadhāna — the eight challenges   @stage 27
+अवधानम् | avadhānam | sustained attention; the performance | prathamā/dvitīyā | nom./acc. sg. · n. · stem: avadhāna- · a-stem
+अवधानी | avadhānī | the performer | prathamā | nom. sg. · m. · stem: avadhānin- · in-stem
+पृच्छकः | pṛcchakaḥ | the questioner | prathamā | nom. sg. · m. · stem: pṛcchaka- · a-stem
+समस्यापूरणम् | samasyāpūraṇam | completing a verse from its last line | prathamā/dvitīyā | nom./acc. sg. · n. · stem: samasyāpūraṇa- · a-stem
+दत्तपदी | dattapadī | composing with imposed words | prathamā | nom. sg. · f. · stem: dattapadī- · ī-stem
+निषिद्धाक्षरी | niṣiddhākṣarī | composing with forbidden letters | prathamā | nom. sg. · f. · stem: niṣiddhākṣarī- · ī-stem
+चित्रकाव्यम् | citrakāvyam | constrained, figured poetry | prathamā/dvitīyā | nom./acc. sg. · n. · stem: citrakāvya- · a-stem
+धारणा | dhāraṇā | holding in memory | prathamā | nom. sg. · f. · stem: dhāraṇā- · ā-stem
+कथा | kathā | the narrated story, recalled and answered on afterwards | prathamā | nom. sg. · f. · stem: kathā- · ā-stem · also vācana
+अप्रस्तुतप्रसङ्गः | aprastutaprasaṅgaḥ | the irrelevant interruption | prathamā | nom. sg. · m. · stem: aprastutaprasaṅga- · a-stem
+आशुकवित्वम् | āśukavitvam | extempore composition | prathamā/dvitīyā | nom./acc. sg. · n. · stem: āśukavitva- · a-stem
+घण्टागणनम् | ghaṇṭāgaṇanam | counting bells while composing | prathamā/dvitīyā | nom./acc. sg. · n. · stem: ghaṇṭāgaṇana- · a-stem
+अष्टावधानम् | aṣṭāvadhānam | all eight at once | prathamā/dvitīyā | nom./acc. sg. · n. · stem: aṣṭāvadhāna- · a-stem
+शतावधानम् | śatāvadhānam | a hundred simultaneous tasks | prathamā/dvitīyā | nom./acc. sg. · n. · stem: śatāvadhāna- · a-stem
+
+# 23 · Saṅkhyā-kāla — number and time   @stage 1
+एकम् | ekam | one | prathamā/dvitīyā | nom./acc. sg. · n. · stem: eka- · numeral
+द्वे | dve | two | prathamā/dvitīyā | nom./acc. du. · f. · /n. · stem: dvi- · numeral
+त्रीणि | trīṇi | three | prathamā/dvitīyā | nom./acc. pl. · n. · stem: tri- · numeral
+चत्वारि | catvāri | four | prathamā/dvitīyā | nom./acc. pl. · n. · stem: catur- · numeral
+पञ्च | pañca | five | prathamā/dvitīyā | nom./acc. pl. · stem: pañcan- · numeral
+षट् | ṣaṭ | six | prathamā/dvitīyā | nom./acc. pl. · stem: ṣaṣ- · numeral
+सप्त | sapta | seven | prathamā/dvitīyā | nom./acc. pl. · stem: saptan- · numeral
+अष्ट | aṣṭa | eight | prathamā/dvitīyā | nom./acc. pl. · stem: aṣṭan- · numeral
+नव | nava | nine | prathamā/dvitīyā | nom./acc. pl. · stem: navan- · numeral
+दश | daśa | ten | prathamā/dvitīyā | nom./acc. pl. · stem: daśan- · numeral
+कालः | kālaḥ | time | prathamā | nom. sg. · m. · stem: kāla- · a-stem
+दिनम् | dinam | day | prathamā/dvitīyā | nom./acc. sg. · n. · stem: dina- · a-stem
+रात्रिः | rātriḥ | night | prathamā | nom. sg. · f. · stem: rātri- · i-stem
+मासः | māsaḥ | month | prathamā | nom. sg. · m. · stem: māsa- · a-stem
+वर्षम् | varṣam | year | prathamā/dvitīyā | nom./acc. sg. · n. · stem: varṣa- · a-stem
+अद्य | adya | today | indecl.
+श्वः | śvaḥ | tomorrow | indecl.
+ह्यः | hyaḥ | yesterday | indecl.
+
+# 24 · Sarvanāma-avyaya — pronouns and particles   @stage 12
+अहम् | aham | I | prathamā | nom. sg. · stem: asmad- · pronoun
+त्वम् | tvam | you | prathamā | nom. sg. · stem: yuṣmad- · pronoun
+सः | saḥ | he, that one | prathamā | nom. sg. · m. · stem: tad- · pronoun
+सा | sā | she, that one | prathamā | nom. sg. · f. · stem: tad- · pronoun
+तत् | tat | that, it | prathamā/dvitīyā | nom./acc. sg. · n. · stem: tad- · pronoun
+अयम् | ayam | this one | prathamā | nom. sg. · m. · stem: idam- · pronoun
+इदम् | idam | this | prathamā/dvitīyā | nom./acc. sg. · n. · stem: idam- · pronoun
+किम् | kim | what? | prathamā/dvitīyā | nom./acc. sg. · n. · stem: kim- · interrogative pronoun
+च | ca | and | indeclinable · enclitic
+वा | vā | or | indeclinable · enclitic
+न | na | not | indecl.
+एव | eva | indeed, only | indeclinable · emphatic
+अपि | api | also, even | indecl.
+इति | iti | thus (end of quotation) | indecl.
+अत्र | atra | here | indecl.
+कुत्र | kutra | where? | indecl.
+तथा | tathā | thus, so | indecl.
+यदि | yadi | if | indecl.
+
+# 25 · Jana — people and relations   @stage 1
+माता | mātā | mother | prathamā | nom. sg. · f. · stem: mātṛ- · ṛ-stem
+पिता | pitā | father | prathamā | nom. sg. · m. · stem: pitṛ- · ṛ-stem
+पुत्रः | putraḥ | son | prathamā | nom. sg. · m. · stem: putra- · a-stem
+पुत्री | putrī | daughter | prathamā | nom. sg. · f. · stem: putrī- · ī-stem
+भ्राता | bhrātā | brother | prathamā | nom. sg. · m. · stem: bhrātṛ- · ṛ-stem
+भगिनी | bhaginī | sister | prathamā | nom. sg. · f. · stem: bhaginī- · ī-stem
+गुरुः | guruḥ | teacher | prathamā | nom. sg. · m. · stem: guru- · u-stem
+शिष्यः | śiṣyaḥ | student | prathamā | nom. sg. · m. · stem: śiṣya- · a-stem
+मित्रम् | mitram | friend | prathamā/dvitīyā | nom./acc. sg. · n. · stem: mitra- · a-stem
+पतिः | patiḥ | husband, lord | prathamā | nom. sg. · m. · stem: pati- · i-stem
+पत्नी | patnī | wife | prathamā | nom. sg. · f. · stem: patnī- · ī-stem
+कविः | kaviḥ | poet | prathamā | nom. sg. · m. · stem: kavi- · i-stem
+नरः | naraḥ | man | prathamā | nom. sg. · m. · stem: nara- · a-stem
+जनः | janaḥ | person, people | prathamā | nom. sg. · m. · stem: jana- · a-stem
+
+# 34 · Lakāra — the ten tense-moods   @stage 0
+लकारः | lakāraḥ | a tense-mood slot, replaced by personal endings | lakāra · ten in all
+गच्छति | gacchati | laṭ · लट् — present | lakāra · vartamāne laṭ, 3.2.123
+जगाम | jagāma | liṭ · लिट् — remote past, unwitnessed | lakāra · parokṣe liṭ, 3.2.115
+गन्ता | gantā | luṭ · लुट् — future, not today | lakāra · anadyatane luṭ, 3.3.15
+गमिष्यति | gamiṣyati | lṛṭ · लृट् — general future | lakāra · 3.3.13
+गच्छतु | gacchatu | loṭ · लोट् — imperative | lakāra · 3.3.162
+अगच्छत् | agacchat | laṅ · लङ् — past, before today | lakāra · anadyatane laṅ, 3.2.111
+गच्छेत् | gacchet | liṅ · लिङ् — optative | lakāra · 3.3.161
+अगमत् | agamat | luṅ · लुङ् — aorist, general past | lakāra · 3.2.110
+अगमिष्यत् | agamiṣyat | lṛṅ · लृङ् — conditional | lakāra · 3.3.139
+लेट् | leṭ | the Vedic subjunctive | lakāra · chandas only
+# 35 · Kṛt — primary suffixes   @stage 0
+कृत् | kṛt | a suffix put straight on a root to make a nominal | kṛt suffix · 3.1.93
+गम् + क्त | gam + kta | गतः · gataḥ — gone | kṛt suffix · kta · past participle
+गम् + क्तवतु | gam + ktavatu | गतवान् · gatavān — having gone | kṛt suffix · ktavatu · past active participle
+गम् + शतृ | gam + śatṛ | गच्छत् · gacchat — going | kṛt suffix · śatṛ · present participle, parasmaipada
+लभ् + शानच् | labh + śānac | लभमानः · labhamānaḥ — obtaining | kṛt suffix · śānac · present participle, ātmanepada
+गम् + तुमुन् | gam + tumun | गन्तुम् · gantum — to go | kṛt suffix · tumun · infinitive
+गम् + क्त्वा | gam + ktvā | गत्वा · gatvā — having gone | kṛt suffix · ktvā · absolutive
+आगम् + ल्यप् | ā-gam + lyap | आगत्य · āgatya — having come | kṛt suffix · lyap · absolutive after a prefix
+कृ + तव्य | kṛ + tavya | कर्तव्यम् · kartavyam — to be done | kṛt suffix · tavya · gerundive
+कृ + अनीयर् | kṛ + anīyar | करणीयम् · karaṇīyam — to be done | kṛt suffix · anīyar · gerundive
+कृ + तृच् | kṛ + tṛc | कर्ता · kartā — doer | kṛt suffix · tṛc · agent noun
+# 36 · Taddhita — secondary suffixes   @stage 0
+तद्धितः | taddhitaḥ | a suffix put on a finished word, not on a root | taddhita suffix · 4.1.76
+धन + मतुप् | dhana + matup | धनवान् · dhanavān — possessing wealth | taddhita suffix · matup · possessive
+दशरथ + इञ् | daśaratha + iñ | दाशरथिः · dāśarathiḥ — son of Daśaratha | taddhita suffix · iñ · patronymic
+मथुरा + अण् | mathurā + aṇ | माथुरः · māthuraḥ — of Mathurā | taddhita suffix · aṇ · origin or relation
+पटु + तरप् | paṭu + tarap | पटुतरः · paṭutaraḥ — cleverer | taddhita suffix · tarap · comparative
+पटु + तमप् | paṭu + tamap | पटुतमः · paṭutamaḥ — cleverest | taddhita suffix · tamap · superlative
+गुरु + त्व | guru + tva | गुरुत्वम् · gurutvam — heaviness | taddhita suffix · tva · abstract noun
+देव + तल् | deva + tal | देवता · devatā — divinity | taddhita suffix · tal · abstract, feminine
+# S · Sandhi — all 27 rules (vyākaraṇam ch. 2)   @stage 3
+स्त्रि + ऐ | stri + ai | स्त्र्यै · stryai | sandhi rule · yaṇtāvantādeśa · i + ai → yai
+प्रति + एकम् | prati + ekam | प्रत्येकम् · pratyekam | sandhi rule · yaṇ · i + e → ye
+विद्या + आलयः | vidyā + ālayaḥ | विद्यालयः · vidyālayaḥ | sandhi rule · savarṇadīrgha · ā + ā → ā
+नर + इन्द्रः | nara + indraḥ | नरेन्द्रः · narendraḥ | sandhi rule · guṇa · a + i → e
+सदा + एव | sadā + eva | सदैव · sadaiva | sandhi rule · vṛddhi · ā + e → ai
+हरे + अत्र | hare + atra | हरेऽत्र · hare'tra | sandhi rule · pūrvarūpa · e + a → e, the a dropped
+उप + अजति | upa + ajati | उपजति · upajati | sandhi rule · pararūpa · a + a → a
+सत् + चित् | sat + cit | सच्चित् · saccit | sandhi rule · ścutva · t + c → c
+इष् + तः | iṣ + taḥ | इष्टः · iṣṭaḥ | sandhi rule · ṣṭutva · s + t → ṣ ṭ
+वाक् + ईशः | vāk + īśaḥ | वागीशः · vāgīśaḥ | sandhi rule · jaśtva · k + vowel → g
+जगत् + नाट्यम् | jagat + nāṭyam | जगन्नाट्यम् · jagannāṭyam | sandhi rule · anunāsika · t + n → n
+वाग् + च | vāg + ca | वाक् च · vāk ca | sandhi rule · cartva · g + voiceless → k
+कृष्णम् + वन्दे | kṛṣṇam + vande | कृष्णं वन्दे · kṛṣṇaṃ vande | sandhi rule · anusvāra · final m + consonant → ṃ
+अलं + चकार | alaṃ + cakāra | अलञ्चकार · alañcakāra | sandhi rule · parasavarṇa · ṃ + c → ñ
+अनु + छेद | anu + cheda | अनुच्छेद · anuccheda | sandhi rule · chatva · short vowel + ch → cch
+वाग् + हरति | vāg + harati | वाग् घरति · vāg gharati | sandhi rule · pūrvasavarṇa · g + h → gh
+प्रशान् + आत्मा | praśān + ātmā | प्रशान्नात्मा · praśānnātmā | sandhi rule · numāgama · short vowel + n + vowel → nn
+आ + छादयति | ā + chādayati | आच्छादयति · ācchādayati | sandhi rule · tugāgama · vowel + ch → cch
+तान् + च | tān + ca | तांश्च · tāṃśca | sandhi rule · satva · final n + c → ṃś
+देवाः + वदन्ति | devāḥ + vadanti | देवा वदन्ति · devā vadanti | sandhi rule · lopa · āḥ + voiced → ā
+रामः + गच्छति | rāmaḥ + gacchati | रामो गच्छति · rāmo gacchati | sandhi rule · ukārādeśa · aḥ + voiced → o
+मुनिः + आगतः | muniḥ + āgataḥ | मुनिरागतः · munirāgataḥ | sandhi rule · rephādeśa · iḥ + vowel → ir
+रामः + तत्र | rāmaḥ + tatra | रामस्तत्र · rāmastatra | sandhi rule · sakārādeśa · aḥ + t → as
+रामः + करोति | rāmaḥ + karoti | रामः करोति · rāmaḥ karoti | sandhi rule · jihvāmūlīya · ḥ + k stays
+रामः + अस्ति | rāmaḥ + asti | रामोऽस्ति · rāmo'sti | sandhi rule · visarga pūrvarūpa · aḥ + a → o'
+देवाः + गच्छन्ति | devāḥ + gacchanti | देवा गच्छन्ति · devā gacchanti | sandhi rule · visarga lopa · āḥ + voiced → ā
+पुनः + अपि | punaḥ + api | पुनरपि · punarapi | sandhi rule · visarga rephādeśa · avyaya ḥ + vowel → r
+# 27 · Pratyāhāra — the Maheśvara sūtras   @stage 2
+अइउण् | a i u ṇ | sūtra 1 — the simple vowels | gives aṇ, ak, ac
+ऋऌक् | ṛ ḷ k | sūtra 2 — the liquid vowels | with 1 gives ik
+एओङ् | e o ṅ | sūtra 3 — the simple diphthongs | gives eṅ, ec
+ऐऔच् | ai au c | sūtra 4 — the compound diphthongs | closes ac, ec
+हयवरट् | ha ya va ra ṭ | sūtra 5 — the semivowels with h | gives yaṇ, yaṭ
+लण् | la ṇ | sūtra 6 — l | closes yaṇ
+ञमङणनम् | ña ma ṅa ṇa na m | sūtra 7 — the nasals | gives yam, ñam
+झभञ् | jha bha ñ | sūtra 8 — voiced aspirates | opens jhal, jhaś
+घढधष् | gha ḍha dha ṣ | sūtra 9 — voiced aspirates | closes jhaṣ
+जबगडदश् | ja ba ga ḍa da ś | sūtra 10 — voiced unaspirates | closes jaś, baś
+खफछठथचटतव् | kha pha cha ṭha tha ca ṭa ta v | sūtra 11 — voiceless stops | gives khay, cay
+कपय् | ka pa y | sūtra 12 — k and p | closes yay, jhay
+शषसर् | śa ṣa sa r | sūtra 13 — the sibilants | gives śal, śar
+हल् | ha l | sūtra 14 — h | closes hal, jhal, val
+अ इ उ ऋ ऌ ए ओ ऐ औ | a i u ṛ ḷ e o ai au | ac · अच् | pratyāhāra · all vowels · sūtras 1–4
+य व र ल ञ म ङ ण न झ भ घ ढ ध ज ब ग ड द ख फ छ ठ थ च ट त क प श ष स ह | all thirty-three consonants | hal · हल् | pratyāhāra · sūtras 5–14
+इ उ ऋ ऌ | i u ṛ ḷ | ik · इक् | pratyāhāra · the yaṇ-sandhi inputs
+य व र ल | ya va ra la | yaṇ · यण् | pratyāhāra · the yaṇ-sandhi outputs
+झ भ घ ढ ध ज ब ग ड द ख फ छ ठ थ च ट त क प श ष स | all stops and sibilants | jhal · झल् | pratyāhāra · the jaśtva inputs
+ज ब ग ड द | ja ba ga ḍa da | jaś · जश् | pratyāhāra · the jaśtva outputs
+# 28 · Vṛtta — the classical metres   @stage 21
+— — ◡ — — ◡ ◡ — ◡ — — | 11 syllables · ta ta ja ga ga | indravajrā · इन्द्रवज्रा | vṛtta · triṣṭubh class
+◡ — ◡ — — ◡ ◡ — ◡ — — | 11 syllables · ja ta ja ga ga | upendravajrā · उपेन्द्रवज्रा | vṛtta · triṣṭubh class
+— — ◡ — ◡ ◡ ◡ — ◡ ◡ — ◡ — — | 14 syllables · ta bha ja ja ga ga | vasantatilakā · वसन्ततिलका | vṛtta · śakvarī class
+◡ ◡ ◡ ◡ ◡ ◡ — — — ◡ — — ◡ — — | 15 syllables · na na ma ya ya | mālinī · मालिनी | vṛtta · atiśakvarī class
+◡ — — — — — ◡ ◡ ◡ ◡ ◡ — — ◡ ◡ ◡ — | 17 syllables · ya ma na sa bha la ga | śikhariṇī · शिखरिणी | vṛtta · atyaṣṭi class
+— — — — ◡ ◡ ◡ ◡ ◡ — — ◡ — — ◡ — — | 17 syllables · ma bha na ta ta ga ga | mandākrāntā · मन्दाक्रान्ता | vṛtta · the Meghadūta metre
+◡ — ◡ ◡ ◡ — ◡ — ◡ ◡ ◡ — ◡ — — ◡ — | 17 syllables · ja sa ja sa ya la ga | pṛthvī · पृथ्वी | vṛtta · atyaṣṭi class
+— — — ◡ ◡ — ◡ — ◡ ◡ ◡ — — — ◡ — — ◡ — | 19 syllables · ma sa ja sa ta ta ga | śārdūlavikrīḍita · शार्दूलविक्रीडितम् | vṛtta · atidhṛti class
+— — — — ◡ — — ◡ ◡ ◡ ◡ ◡ ◡ — — ◡ — — ◡ — — | 21 syllables · ma ra bha na ya ya ya | sragdharā · स्रग्धरा | vṛtta · prakṛti class
+◡ — — ◡ — — ◡ — — ◡ — — | 12 syllables · ya ya ya ya | bhujaṅgaprayāta · भुजङ्गप्रयातम् | vṛtta · jagatī class
+◡ ◡ ◡ — ◡ ◡ — ◡ ◡ — ◡ — | 12 syllables · na bha bha ra | drutavilambita · द्रुतविलम्बितम् | vṛtta · jagatī class
+◡ ◡ — ◡ ◡ — ◡ ◡ — ◡ ◡ — | 12 syllables · sa sa sa sa | toṭaka · तोटकम् | vṛtta · jagatī class
+उपजातिः | upajātiḥ | indravajrā and upendravajrā mixed in one stanza | vṛtta · triṣṭubh class
+आर्या | āryā | a mātrā metre, counted by weight not syllables | vṛtta · 30 + 27 mātrās
+# 29 · Gaṇa — the eight metrical feet   @stage 19
+◡ — — | laghu guru guru | ya-gaṇa · यगणः | gaṇa · mnemonic ya-mā-tā
+— — — | guru guru guru | ma-gaṇa · मगणः | gaṇa · mnemonic mā-tā-rā
+— — ◡ | guru guru laghu | ta-gaṇa · तगणः | gaṇa · mnemonic tā-rā-ja
+— ◡ — | guru laghu guru | ra-gaṇa · रगणः | gaṇa · mnemonic rā-ja-bhā
+◡ — ◡ | laghu guru laghu | ja-gaṇa · जगणः | gaṇa · mnemonic ja-bhā-na
+— ◡ ◡ | guru laghu laghu | bha-gaṇa · भगणः | gaṇa · mnemonic bhā-na-sa
+◡ ◡ ◡ | laghu laghu laghu | na-gaṇa · नगणः | gaṇa · mnemonic na-sa-la
+◡ ◡ — | laghu laghu guru | sa-gaṇa · सगणः | gaṇa · mnemonic sa-la-gā
+# 30 · Paryāya — synonym sets   @stage 10
+जलम् | jalam | water | also: āpaḥ, toyam, salilam, vāri, ambu, payaḥ
+सूर्यः | sūryaḥ | sun | also: ravi, bhānu, arka, mārtaṇḍa, divākara
+पद्मम् | padmam | lotus | also: kamala, aravinda, paṅkaja, saroja, ambuja
+अग्निः | agniḥ | fire | also: vahni, anala, pāvaka, hutāśana
+चन्द्रः | candraḥ | moon | also: soma, indu, śaśin, niśākara
+राजा | rājā | king | also: nṛpa, bhūpa, pārthiva, narendra
+आकाशः | ākāśaḥ | sky, space | also: gagana, vyoman, nabhas, ambara
+पृथिवी | pṛthivī | earth | also: bhūmi, dharā, vasudhā, kṣiti
+वायुः | vāyuḥ | wind | also: pavana, mārut, anila, samīraṇa
+गजः | gajaḥ | elephant | also: hastin, kuñjara, dvipa, nāga
+पर्वतः | parvataḥ | mountain | also: giri, acala, śaila, adri
+समुद्रः | samudraḥ | ocean | also: sāgara, jaladhi, arṇava, ambudhi
+रात्रिः | rātriḥ | night | also: niśā, rajanī, yāminī, kṣapā
+वाक् | vāk | speech | also: vāṇī, bhāratī, gīḥ, bhāṣā
+देवः | devaḥ | god | also: sura, amara, vibudha, tridaśa
+
+# 31 · Sambodhana — vocative forms   @stage 8
+राम | rāma | O Rāma! | sambodhana | voc. sg. · m. · stem: rāma- · a-stem
+देव | deva | O god! | sambodhana | voc. sg. · m. · stem: deva- · a-stem
+देवि | devi | O goddess! | sambodhana | voc. sg. · f. · stem: devī- · ī-stem
+अम्ब | amba | O mother! | sambodhana | voc. sg. · f. · stem: ambā- · ā-stem
+मातः | mātaḥ | O mother! | sambodhana | voc. sg. · f. · stem: mātṛ- · ṛ-stem
+हरे | hare | O Hari! | sambodhana | voc. sg. · m. · stem: hari- · i-stem
+विष्णो | viṣṇo | O Viṣṇu! | sambodhana | voc. sg. · m. · stem: viṣṇu- · u-stem
+लक्ष्मि | lakṣmi | O Lakṣmī! | sambodhana | voc. sg. · f. · stem: lakṣmī- · ī-stem
+भगवन् | bhagavan | O blessed one! | sambodhana | voc. sg. · m. · stem: bhagavat- · at-stem
+आत्मन् | ātman | O self! | sambodhana | voc. sg. · m. · stem: ātman- · an-stem
+गुरो | guro | O teacher! | sambodhana | voc. sg. · m. · stem: guru- · u-stem
+शिवे | śive | O Śivā! | sambodhana | voc. sg. · f. · stem: śivā- · ā-stem
+मातर्देवि | mātar devi | O mother goddess! | sambodhana | voc. sg. · two vocatives together
+भो | bho | O! (general call) | indeclinable
+
+# 32 · Stotra-vāk — hymn phrases   @stage 14
+नमस्ते | namas te | salutation to you | namas: nom. sg. · te: dat. sg. · enclitic of yuṣmad-
+नमो नमः | namo namaḥ | salutation upon salutation | namaḥ: nom. sg. · stem: namas- · doubled for emphasis
+जय जय | jaya jaya | victory, victory! | jaya: 2 sg. impv. · √ji · doubled
+पाहि माम् | pāhi mām | protect me! | pāhi: 2 sg. impv. · √pā · mām: acc. sg. · stem: asmad-
+रक्ष रक्ष | rakṣa rakṣa | protect, protect! | rakṣa: 2 sg. impv. · √rakṣ · doubled
+प्रसीद | prasīda | be gracious! | 2 sg. impv. · pra + √sad · parasmaipada
+शरणं गच्छामि | śaraṇaṃ gacchāmi | I go for refuge | śaraṇam: acc. sg. n. · gacchāmi: 1 sg. pres. · √gam
+त्वामेव | tvām eva | you alone | dvitīyā | acc. sg. · stem: yuṣmad- · pronoun · eva: emphatic
+दयां कुरु | dayāṃ kuru | show compassion! | dayām: acc. sg. f. · kuru: 2 sg. impv. · √kṛ
+कृपया | kṛpayā | by your grace | tṛtīyā | instr. sg. · f. · stem: kṛpā- · ā-stem
+सदा | sadā | always | indeclinable
+भजामि | bhajāmi | I worship | 1 sg. pres. · √bhaj · parasmaipada
+स्मरामि | smarāmi | I remember, I call to mind | 1 sg. pres. · √smṛ · parasmaipada
+ॐ शान्तिः | oṃ śāntiḥ | Om, peace | śāntiḥ: prathamā | nom. sg. · stem: śānti- · i-stem f.
+
+# 33 · Saṅkalpa-vāk — ritual formulae   @stage 17
+ध्यायामि | dhyāyāmi | I meditate upon | 1 sg. pres. · √dhyai · parasmaipada
+आवाहयामि | āvāhayāmi | I invoke | 1 sg. pres. caus. · ā + √vah · parasmaipada
+समर्पयामि | samarpayāmi | I offer up | 1 sg. pres. caus. · sam + √ṛ · parasmaipada
+कल्पयामि | kalpayāmi | I present, I arrange | 1 sg. pres. caus. · √kḷp · parasmaipada
+प्रीत्यर्थम् | prītyartham | for the sake of pleasing | dvitīyā | acc. sg. · n. · stem: prītyartha- · a-stem · adverbial, dative sense
+यथाशक्ति | yathāśakti | according to my capacity | avyayībhāva
+तुभ्यम् | tubhyam | to you | caturthī | dat. sg. · stem: yuṣmad- · pronoun
+स्वाहा | svāhā | offering exclamation (fire) | indeclinable
+नमः | namaḥ | salutation (with dative) | prathamā/dvitīyā | nom./acc. sg. · n. · stem: namas- · as-stem
+स्वधा | svadhā | offering exclamation (ancestors) | prathamā | nom. sg. · f. · stem: svadhā- · ā-stem
+शुभे मुहूर्ते | śubhe muhūrte | at the auspicious moment | saptamī | loc. sg. · m. · stem: muhūrta- · a-stem · adjective agreeing
+अस्मिन् दिने | asmin dine | on this day | saptamī | loc. sg. · n. · stem: dina- · a-stem · adjective agreeing
+करिष्ये | kariṣye | I shall perform | 1 sg. fut. · √kṛ · ātmanepada
+अस्तु | astu | let it be | 3 sg. impv. · √as · parasmaipada
+
+
+#  ── BELOW: generated from the repo vocab bank (vocab/*.md), with sources ──
+
+# V01 · Goddess names — DM · LS · KS   @stage 1
+देवी | devī | the Goddess, the shining one | headword | f. · stem: devī- · ī-stem · from √div · DM 1.57
+दुर्गा | durgā | the inaccessible one | headword | f. · stem: durgā- · ā-stem · dur + gā · DM 4.11
+चण्डिका | caṇḍikā | the fierce one | headword | f. · stem: caṇḍikā- · ā-stem · from caṇḍa · DM 2.35
+अम्बिका | ambikā | mother | headword | f. · stem: ambikā- · ā-stem · from ambā · DM 5.88
+भगवती | bhagavatī | the blessed/divine one | headword | f. · stem: bhagavatī- · ī-stem · from bhaga · DM 4.5
+काली | kālī | the dark one / time-goddess | headword | f. · stem: kālī- · ī-stem · from kāla · DM 7.6
+कालिका | kālikā | Kālī (diminutive) | headword | f. · stem: kālikā- · ā-stem · DM 7.23
+ललिता | lalitā | she who plays (the sportive one) | headword | f. · stem: lalitā- · ā-stem · from √laḍ/laḷ · LS 1 (Śrīmātā) + throughout
+लक्ष्मी | lakṣmī | prosperity, beauty, fortune | headword | f. · stem: lakṣmī- · ī-stem · DM 4.8
+सरस्वती | sarasvatī | she of the flowing (river/speech) | headword | f. · stem: sarasvatī- · ī-stem · DM 5.79
+पार्वती | pārvatī | daughter of Parvata (mountain) | headword | f. · stem: pārvatī- · ī-stem · patronymic · DM 5.38
+गौरी | gaurī | the golden/fair one | headword | f. · stem: gaurī- · ī-stem · DM 11.10
+शिवा | śivā | the auspicious one | headword | f. · stem: śivā- · ā-stem · of śiva · DM 4.14
+महालक्ष्मी | mahālakṣmī | the great Lakṣmī | headword | f. · stem: mahālakṣmī- · ī-stem · mahā + lakṣmī · DM Ch.2-3 presiding deity
+महाकाली | mahākālī | the great Kālī | headword | f. · stem: mahākālī- · ī-stem · DM Ch.1 presiding deity
+महासरस्वती | mahāsarasvatī | the great Sarasvatī | headword | f. · stem: mahāsarasvatī- · ī-stem · DM Ch.5-13 presiding deity
+नारायणी | nārāyaṇī | Nārāyaṇa's śakti | headword | f. · stem: nārāyaṇī- · ī-stem · DM 11.12+
+कात्यायनी | kātyāyanī | of sage Kata's lineage | headword | f. · stem: kātyāyanī- · ī-stem · patronymic · DM 11.2
+चामुण्डा | cāmuṇḍā | slayer of Caṇḍa-Muṇḍa | headword | f. · stem: cāmuṇḍā- · ā-stem · DM 7.27
+महामाया | mahāmāyā | the great illusion/power | headword | f. · stem: mahāmāyā- · ā-stem · DM 1.40
+विष्णुमाया | viṣṇumāyā | Viṣṇu's māyā-power | headword | f. · stem: viṣṇumāyā- · ā-stem · DM 1.43
+योगनिद्रा | yoganidrā | the yoga-sleep | headword | f. · stem: yoganidrā- · ā-stem · DM 1.54
+श्मशानकालिका | śmaśānakālikā | Kālī of the cremation ground | headword | f. · stem: śmaśānakālikā- · ā-stem · KS 1
+भद्रकाली | bhadrakālī | the auspicious Kālī | headword | f. · stem: bhadrakālī- · ī-stem · KS 3
+कपालिनी | kapālinī | bearer of the skull | headword | f. · stem: kapālinī- · ī-stem · from kapāla · KS 4
+गुह्यकाली | guhyakālī | the secret Kālī | headword | f. · stem: guhyakālī- · ī-stem · KS 5
+कुरुकुल्ला | kurukullā | (Tāntric goddess name) | headword | f. · stem: kurukullā- · ā-stem · KS 7
+विरोधिनी | virodhinī | the opposing/obstructing one | headword | f. · stem: virodhinī- · ī-stem · KS 8
+कालरात्रि | kālarātri | night of dissolution | headword | f. · stem: kālarātri- · i-stem · KS 11
+कामाख्या | kāmākhyā | she named after desire | headword | f. · stem: kāmākhyā- · ā-stem · KKS 620
+कराली | karālī | the dreadful one | headword | f. · stem: karālī- · ī-stem · KKS 2
+कल्याणी | kalyāṇī | the auspicious one | headword | f. · stem: kalyāṇī- · ī-stem · KKS 3
+कमला | kamalā | the lotus one | headword | f. · stem: kamalā- · ā-stem · KKS 4
+कामिनी | kāminī | the desirable one | headword | f. · stem: kāminī- · ī-stem · KKS 554
+छिन्नमस्ता | chinnamastā | she whose head is severed | headword | f. · stem: chinnamastā- · ā-stem · KS 136
+तारा | tārā | the star / she who saves | headword | f. · stem: tārā- · ā-stem · from √tṝ · KS 277
+दक्षिणा | dakṣiṇā | the gracious/southern one | headword | f. · stem: dakṣiṇā- · ā-stem · KS 133
+दिगम्बरा | digambarā | sky-clad (naked) | headword | f. · stem: digambarā- · ā-stem · KS 128
+उग्रतारा | ugratārā | fierce Tārā | headword | f. · stem: ugratārā- · ā-stem · KS passim
+त्रिपुरसुन्दरी | tripurasundarī | beauty of the three cities | headword | f. · stem: tripurasundarī- · ī-stem · KS passim
+श्रीमाता | śrīmātā | the auspicious mother | headword | f. · stem: śrīmātā- · ā-stem · LS 1
+श्रीमहाराज्ञी | śrīmahārājñī | the great queen | headword | f. · stem: śrīmahārājñī- · ī-stem · LS 2
+श्रीमत्सिंहासनेश्वरी | śrīmatsiṃhāsaneśvarī | sovereign of the lion-throne | headword | f. · stem: śrīmatsiṃhāsaneśvarī- · ī-stem · LS 3
+चिदग्निकुसंभूता | cidagnikusaṃbhūtā | born from the fire of consciousness | headword | f. · stem: cidagnikusaṃbhūtā- · ā-stem · LS 4
+देवकार्यसमुद्यता | devakāryasamudyatā | risen for the work of the gods | headword | f. · stem: devakāryasamudyatā- · ā-stem · LS 5
+चतुर्बाहुसमन्विता | caturbāhusamanvitā | endowed with four arms | headword | f. · stem: caturbāhusamanvitā- · ā-stem · LS 7
+पञ्चतन्मात्रसायका | pañcatanmātrasāyakā | she whose arrows are five tanmātras | headword | f. · stem: pañcatanmātrasāyakā- · ā-stem · LS 10
+चिन्तामणिगृहान्तस्था | cintāmaṇigṛhāntasthā | dwelling in the wish-jewel palace | headword | f. · stem: cintāmaṇigṛhāntasthā- · ā-stem · LS 57
+पञ्चब्रह्मासनस्थिता | pañcabrahmāsanasthitā | seated on the five Brahmā throne | headword | f. · stem: pañcabrahmāsanasthitā- · ā-stem · LS 58
+महापद्माटवीसंस्था | mahāpadmāṭavīsaṃsthā | dwelling in the great lotus forest | headword | f. · stem: mahāpadmāṭavīsaṃsthā- · ā-stem · LS 59
+कामाक्षी | kāmākṣī | she of desire-eyes | headword | f. · stem: kāmākṣī- · ī-stem · LS 62
+कामधायिनी | kāmadhāyinī | fulfiller of desires | headword | f. · stem: kāmadhāyinī- · ī-stem · LS 63
+राजराजेश्वरी | rājarājeśvarī | sovereign of the king of kings | headword | f. · stem: rājarājeśvarī- · ī-stem · LS 684
+त्रिपुरा | tripurā | she of the three cities | headword | f. · stem: tripurā- · ā-stem · LS 533
+कामेश्वरप्राणनाडी | kāmeśvaraprāṇanāḍī | life-breath of Kāmeśvara | headword | f. · stem: kāmeśvaraprāṇanāḍī- · ī-stem · LS 372
+सृष्टिकर्त्रि | sṛṣṭikartri | creatrix | headword | f. · stem: sṛṣṭikartri- · i-stem · from √sṛj + √kṛ · DM 11.5
+गोप्त्री | goptrī | protectress | headword | f. · stem: goptrī- · ī-stem · from √gup · LS 266
+संहारिणी | saṃhāriṇī | destroyeress | headword | f. · stem: saṃhāriṇī- · ī-stem · from sam + √hṛ · LS 268
+तिरोधानकरि | tirodhānakari | she who conceals | headword | f. · stem: tirodhānakari- · i-stem · LS 270
+अनुग्रहदा | anugrahadā | bestower of grace | headword | f. · stem: anugrahadā- · ā-stem · LS 272
+जगद्धात्री | jagaddhātrī | supporter of the world | headword | f. · stem: jagaddhātrī- · ī-stem · DM 11.15
+जगन्माता | jaganmātā | mother of the world | headword | f. · stem: jaganmātā- · ā-stem · KS 163
+जगन्मयी | jaganmayī | she who pervades the world | headword | f. · stem: jaganmayī- · ī-stem · DM 11.23
+भुवनेश्वरी | bhuvaneśvarī | sovereign of the worlds | headword | f. · stem: bhuvaneśvarī- · ī-stem · LS 295
+विश्वरूपा | viśvarūpā | she of universal form | headword | f. · stem: viśvarūpā- · ā-stem · DM 11.26
+जगदीश्वरी | jagadīśvarī | ruler of the universe | headword | f. · stem: jagadīśvarī- · ī-stem · DM 4.3
+त्रैलोक्यरक्षिणी | trailokyarakṣiṇī | protectress of three worlds | headword | f. · stem: trailokyarakṣiṇī- · ī-stem · DM 11.12
+सर्वभूतहितेरता | sarvabhūtahiteratā | devoted to all beings' welfare | headword | f. · stem: sarvabhūtahiteratā- · ā-stem · DM 11.8
+सर्वमङ्गला | sarvamaṅgalā | all-auspicious | headword | f. · stem: sarvamaṅgalā- · ā-stem · DM 11.10
+सर्वज्ञा | sarvajñā | all-knowing | headword | f. · stem: sarvajñā- · ā-stem · DM 4.5
+सर्वगा | sarvagā | all-pervading | headword | f. · stem: sarvagā- · ā-stem · DM 4.6
+सर्वमयी | sarvamayī | pervading all | headword | f. · stem: sarvamayī- · ī-stem · DM 11.23
+सर्वस्वरूपिणी | sarvasvarūpiṇī | she of every form | headword | f. · stem: sarvasvarūpiṇī- · ī-stem · DM 11.6
+अपराजिता | aparājitā | unconquered | headword | f. · stem: aparājitā- · ā-stem · DM 11.10
+वरदा | varadā | boon-granting | headword | f. · stem: varadā- · ā-stem · DM 4.37
+अभयप्रदा | abhayapradā | bestower of fearlessness | headword | f. · stem: abhayapradā- · ā-stem · DM 4.37
+चैतन्यरूपिणी | caitanyarūpiṇī | whose form is consciousness | headword | f. · stem: caitanyarūpiṇī- · ī-stem · DM 5.14
+सर्वभूतेषु (X)-रूपेण | sarvabhūteṣu (X)-rūpeṇa | in all beings as (X) | f. · DM 5.17-78 (refrain)
+महाबला | mahābalā | of great strength | headword | f. · stem: mahābalā- · ā-stem · DM 11.18
+महावीर्या | mahāvīryā | of great valor | headword | f. · stem: mahāvīryā- · ā-stem · DM 11.18
+अमेया | ameyā | immeasurable | headword | f. · stem: ameyā- · ā-stem · KS passim
+ब्राह्मी / ब्रह्माणी | brāhmī / brahmāṇī | śakti of Brahmā | headword | f. · stem: brāhmī- · ī-stem · DM 8.13
+माहेश्वरी | māheśvarī | śakti of Maheśvara | headword | f. · stem: māheśvarī- · ī-stem · DM 8.14
+कौमारी | kaumārī | śakti of Kumāra | headword | f. · stem: kaumārī- · ī-stem · DM 8.15
+वैष्णवी | vaiṣṇavī | śakti of Viṣṇu | headword | f. · stem: vaiṣṇavī- · ī-stem · DM 8.16
+वाराही | vārāhī | śakti of Varāha | headword | f. · stem: vārāhī- · ī-stem · DM 8.18
+नारसिंही | nārasiṃhī | śakti of Narasiṃha | headword | f. · stem: nārasiṃhī- · ī-stem · DM 8.17
+ऐन्द्री / इन्द्राणी | aindrī / indrāṇī | śakti of Indra | headword | f. · stem: aindrī- · ī-stem · DM 8.19
+शिवदूती | śivadūtī | she who sent Śiva as envoy | headword | f. · stem: śivadūtī- · ī-stem · DM 8.28
+बुद्धि | buddhi | intellect | DM 5.17-18
+निद्रा | nidrā | sleep | DM 5.19-20
+क्षुधा | kṣudhā | hunger | DM 5.21-22
+छाया | chāyā | shadow | DM 5.23-24
+शक्ति | śakti | power | DM 5.25-26
+तृष्णा | tṛṣṇā | thirst | DM 5.27-28
+क्षान्ति | kṣānti | patience | DM 5.29-30
+जाति | jāti | birth/species | DM 5.31-32
+लज्जा | lajjā | modesty | DM 5.33-34; KS passim
+शान्ति | śānti | peace | DM 5.35-36
+श्रद्धा | śraddhā | faith | DM 5.37-38
+कान्ति | kānti | beauty/radiance | DM 5.39-40; LS 396
+वृत्ति | vṛtti | activity/occupation | DM 5.43-44
+स्मृति | smṛti | memory | DM 5.45-46; LS 475
+दया | dayā | compassion | DM 5.47-48; KS passim
+तुष्टि | tuṣṭi | contentment | DM 5.49-50; LS 394
+मातृ | mātṛ | motherhood | DM 5.51-52
+भ्रान्ति | bhrānti | delusion/error | DM 5.53-54
+चेतना | cetanā | consciousness | DM 5.14
+मेधा | medhā | wisdom/intelligence | DM 5.55-56; LS 476
+धृति | dhṛti | steadfastness | DM 5.57-58; LS 393
+पुष्टि | puṣṭi | nourishment | DM 5.59-60; LS 394
+माया | māyā | creative illusion — her power; his illusory power | headword | f. · stem: māyā- · ā-stem · DM 1.40; VS 73
+श्री | śrī | sacred beauty; (of Viṣṇu) his consort, his glory | headword | f. · stem: śrī- · ī-stem · LS throughout; VS 22, 178
+पद्मनाभसहोदरी | padmanābhasahodarī | sister of the lotus-naveled | headword | f. · stem: padmanābhasahodarī- · ī-stem · LS 253
+अच्युता / अच्युत | acyutā / acyuta | unfallen | f./m. · VS 100, 318
+अनन्त | ananta | endless | · VS 659; LS passim
+
+# V02 · God names & celestials — VS · DM   @stage 1
+ब्रह्मा | brahmā | the creator | headword | m. · stem: brahmā- · ā-stem · from √bṛh · DM 1.46+
+विष्णु | viṣṇu | the all-pervader | headword | m. · stem: viṣṇu- · u-stem · from √viṣ · DM 1.13+
+शिव / शङ्कर | śiva / śaṅkara | auspicious / benefactor | headword | m. · stem: śiva- · a-stem · DM 2.15
+महेश्वर | maheśvara | great lord | headword | m. · stem: maheśvara- · a-stem · mahā + īśvara · DM 2.14
+सदाशिव | sadāśiva | eternally auspicious | headword | m. · stem: sadāśiva- · a-stem · LS 271
+रुद्र | rudra | the howler/weeper | headword | m. · stem: rudra- · a-stem · from √rud · DM 11.10
+हर | hara | the seizer/destroyer | headword | m. · stem: hara- · a-stem · from √hṛ · KS passim
+नारायण | nārāyaṇa | dwelling in beings/waters | headword | m. · stem: nārāyaṇa- · a-stem · DM 1.73
+हरि | hari | the remover (of sin) | headword | m. · stem: hari- · i-stem · from √hṛ · VS 4
+केशव | keśava | long-haired / slayer of Keśin | headword | m. · stem: keśava- · a-stem · VS 23
+माधव | mādhava | of Madhu's clan / spring lord | headword | m. · stem: mādhava- · a-stem · VS 73
+गोविन्द | govinda | cow-finder / earth-finder | headword | m. · stem: govinda- · a-stem · VS 187
+जनार्दन | janārdana | agitator of beings | headword | m. · stem: janārdana- · a-stem · VS 126
+वासुदेव | vāsudeva | son of Vasudeva / indwelling god | headword | m. · stem: vāsudeva- · a-stem · VS 332
+पद्मनाभ | padmanābha | lotus-naveled | headword | m. · stem: padmanābha- · a-stem · VS 48
+दामोदर | dāmodara | rope-bellied (bound by Yaśodā) | headword | m. · stem: dāmodara- · a-stem · VS 367
+त्रिविक्रम | trivikrama | three-strider | headword | m. · stem: trivikrama- · a-stem · VS 530
+वामन | vāmana | the dwarf | headword | m. · stem: vāmana- · a-stem · VS 153
+पुरुषोत्तम | puruṣottama | supreme person | headword | m. · stem: puruṣottama- · a-stem · VS 24
+विश्वम् | viśvam | the universe | VS 1
+भूतकृत् | bhūtakṛt | creator of beings | VS 5
+भूतभृत् | bhūtabhṛt | sustainer of beings | VS 6
+प्रभव | prabhava | source of all | VS 7
+प्रभु | prabhu | lord | VS 8
+सर्वग | sarvaga | all-pervading | VS 18
+सर्वदर्शन | sarvadarśana | all-seeing | VS 20
+शाश्वत | śāśvata | eternal | VS 57
+पुरुष | puruṣa | the cosmic person | VS 14
+परमात्मा | paramātmā | supreme self | VS 10, 362
+अमृत्यु | amṛtyu | deathless | VS 26
+सर्वज्ञ | sarvajña | all-knowing | VS 453
+श्रीमत् | śrīmat | endowed with Śrī/beauty | VS 22, 178
+सुन्दर | sundara | beautiful | VS 591
+सत्य | satya | truth | VS 107, 212, 871
+धर्म | dharma | righteousness | VS 405
+सत् | sat | being/existence | VS 41
+अच्युत | acyuta | unfallen | VS 100, 318
+अजित | ajita | unconquered | VS 438
+अनन्त | ananta | endless | VS 659
+अमित | amita | immeasurable | VS 174
+अव्यय | avyaya | imperishable | VS 13
+स्रष्टा | sraṣṭā | creator | VS 472
+विकर्ता | vikartā | transformer | VS 452
+संहर्ता | saṃhartā | destroyer | VS -- (implied)
+स्थाणु | sthāṇu | pillar / immovable | VS 28
+धाता | dhātā | supporter | VS 43, 304
+विधाता | vidhātā | ordainer | VS 44, 305
+लोकाध्यक्ष | lokādhyakṣa | overseer of worlds | VS 51
+काल | kāla | time | VS 299
+ईश्वर | īśvara | lord | VS 36
+स्वयम्भू | svayambhū | self-born | VS 37
+इन्द्र / शक्र | indra / śakra | lord of devas / mighty one | headword | m. · stem: indra- · a-stem · DM 2.9
+अग्नि | agni | fire | headword | m. · stem: agni- · i-stem · DM 2.14
+वरुण | varuṇa | lord of waters | headword | m. · stem: varuṇa- · a-stem · DM 2.15
+वायु | vāyu | wind | headword | m. · stem: vāyu- · u-stem · DM 2.15
+यम | yama | lord of death/restraint | headword | m. · stem: yama- · a-stem · from √yam · DM 2.15
+कुबेर | kubera | lord of wealth | headword | m. · stem: kubera- · a-stem · DM 2.15
+सूर्य / आदित्य / रवि / भानु / दिवाकर | sūrya / āditya / ravi / bhānu / divākara | sun | m. · DM 2.14
+चन्द्र / सोम / इन्दु / शशिन् | candra / soma / indu / śaśin | moon | m. · DM 2.14
+कुमार / स्कन्द / कार्त्तिकेय | kumāra / skanda / kārttikeya | the youthful war-god | headword | m. · stem: kumāra- · a-stem · DM 8.15
+गणेश / गणपति | gaṇeśa / gaṇapati | lord of gaṇas | m. · LS passim
+काम / कामदेव / मन्मथ | kāma / kāmadeva / manmatha | god of desire | headword | m. · stem: kāma- · a-stem · LS 10
+प्रजापति | prajāpati | lord of creatures | headword | m. · stem: prajāpati- · i-stem · VS 70
+देव / सुर / अमर | deva / sura / amara | god, immortal | headword | m. · stem: deva- · a-stem · DM throughout
+देवगण / सुरगण | devagaṇa / suragaṇa | host of gods | headword | m. · stem: devagaṇa- · a-stem · DM 2.9
+ऋषि | ṛṣi | seer | headword | m. · stem: ṛṣi- · i-stem · DM 1.1
+महर्षि | maharṣi | great seer | headword | m. · stem: maharṣi- · i-stem · DM 3.44
+मुनि | muni | silent sage | headword | m. · stem: muni- · i-stem · from √man · DM passim
+गन्धर्व | gandharva | celestial musician | headword | m. · stem: gandharva- · a-stem · DM 3.44
+अप्सरस् | apsaras | celestial nymph | headword | f. · stem: apsaras- · as-stem · DM 3.44
+यक्ष | yakṣa | nature spirit | headword | m. · stem: yakṣa- · a-stem · DM 6.5
+सिद्ध | siddha | perfected being | headword | m. · stem: siddha- · a-stem · DM passim
+विद्याधर | vidyādhara | wisdom-bearer (aerial being) | headword | m. · stem: vidyādhara- · a-stem · KS passim
+किन्नर / किन्नरी | kinnara / kinnarī | half-human musician | m./f. · KS passim
+नाग | nāga | serpent deity | headword | m. · stem: nāga- · a-stem · VS passim
+मार्कण्डेय | mārkaṇḍeya | the narrator-sage | headword | m. · stem: mārkaṇḍeya- · a-stem · patronymic · DM 1.1
+सुरथ | suratha | king Suratha | headword | m. · stem: suratha- · a-stem · DM 1.5+
+समाधि | samādhi | the merchant (also: concentration) | headword | m. · stem: samādhi- · i-stem · DM 1.21+
+मेधस् | medhas | the sage Medhas | headword | m. · stem: medhas- · as-stem · DM 1.4
+सावर्णिः | sāvarṇiḥ | Sāvarṇi, the 8th Manu | headword | m. · stem: sāvarṇiḥ- · i-stem · DM 13.23
+विवस्वान् | vivasvān | the sun-god (father of Manu) | m. · DM 13.22
+
+# V03 · Asuras & demon vocabulary — DM   @stage 1
+असुर | asura | demon, anti-god | headword | m. · stem: asura- · a-stem · a + sura · DM throughout
+दैत्य | daitya | son of Diti | headword | m. · stem: daitya- · a-stem · patronymic · DM 2.5+
+दानव | dānava | son of Danu | headword | m. · stem: dānava- · a-stem · patronymic · DM 3.23+
+राक्षस | rākṣasa | one who guards/harms | headword | m. · stem: rākṣasa- · a-stem · DM passim
+दैत्यराज | daityarāja | demon-king | headword | m. · stem: daityarāja- · a-stem · tatpuruṣa · DM 5.100+
+दैत्यनायक | daityanāyaka | demon-leader | headword | m. · stem: daityanāyaka- · a-stem · DM 2.42
+दैत्यपुङ्गव | daityapuṅgava | bull among demons | headword | m. · stem: daityapuṅgava- · a-stem · DM 9.16
+असुराधिप | asurādhipa | overlord of asuras | headword | m. · stem: asurādhipa- · a-stem · DM 5.115
+असुरेश्वर | asureśvara | lord of asuras | headword | m. · stem: asureśvara- · a-stem · DM 9.10
+दानवेन्द्र | dānavendra | chief of dānavas | headword | m. · stem: dānavendra- · a-stem · DM 3.31
+सुरशत्रु | suraśatru | enemy of the gods | headword | m. · stem: suraśatru- · u-stem · DM 2.55
+अमरारि | amarāri | foe of immortals | headword | m. · stem: amarāri- · i-stem · DM 9.34
+मधु | madhu | demon Madhu (lit. honey) | headword | m. · stem: madhu- · u-stem · DM 1.72+
+कैटभ | kaiṭabha | demon Kaiṭabha | headword | m. · stem: kaiṭabha- · a-stem · DM 1.72+
+महिषासुर | mahiṣāsura | buffalo-demon | headword | m. · stem: mahiṣāsura- · a-stem · mahiṣa + asura · DM 2.3+
+चिक्षुर | cikṣura | demon general | headword | m. · stem: cikṣura- · a-stem · DM 2.42
+चामर | cāmara | demon general | headword | m. · stem: cāmara- · a-stem · DM 2.43
+कराल | karāla | the dreadful one | headword | m. · stem: karāla- · a-stem · DM 2.47
+उदग्र | udagra | the lofty one | headword | m. · stem: udagra- · a-stem · DM 2.48
+असिलोमा | asilomā | sword-haired | headword | m. · stem: asilomā- · ā-stem · bahuvrīhi · DM 2.48
+बाष्कल | bāṣkala | demon warrior | headword | m. · stem: bāṣkala- · a-stem · DM 2.48
+ताम्र | tāmra | copper-hued | headword | m. · stem: tāmra- · a-stem · DM 2.49
+बिदाल | bidāla | demon warrior | headword | m. · stem: bidāla- · a-stem · DM 2.50
+उग्रदर्शन | ugradarśana | terrible-looking | headword | m. · stem: ugradarśana- · a-stem · DM 2.50
+उद्धत | uddhata | the arrogant | headword | m. · stem: uddhata- · a-stem · DM 2.50
+शुम्भ | śumbha | demon Śumbha | headword | m. · stem: śumbha- · a-stem · DM 5.4+
+निशुम्भ | niśumbha | demon Niśumbha | headword | m. · stem: niśumbha- · a-stem · DM 5.4+
+रक्तबीज | raktabīja | blood-seed demon | headword | m. · stem: raktabīja- · a-stem · rakta + bīja · DM 8.40+
+धूम्रलोचन | dhūmralocana | smoky-eyed | headword | m. · stem: dhūmralocana- · a-stem · bahuvrīhi · DM 6.3+
+चण्ड | caṇḍa | the fierce one | headword | m. · stem: caṇḍa- · a-stem · DM 7.1+
+मुण्ड | muṇḍa | the shaven-headed | headword | m. · stem: muṇḍa- · a-stem · DM 7.1+
+दुर्गम | durgama | hard to traverse (demon name) | headword | m. · stem: durgama- · a-stem · DM 11.47
+सुग्रीव | sugrīva | the messenger demon | headword | m. · stem: sugrīva- · a-stem · DM 5.100+
+भण्डासुर | bhaṇḍāsura | the jester-demon | headword | m. · stem: bhaṇḍāsura- · a-stem · LS 67+
+भण्डपुत्र | bhaṇḍaputra | son of Bhaṇḍa | headword | m. · stem: bhaṇḍaputra- · a-stem · LS 73
+विशुक्र | viśukra | demon general | headword | m. · stem: viśukra- · a-stem · LS 77
+विशङ्ग | viśaṅga | demon general | headword | m. · stem: viśaṅga- · a-stem · LS 75
+दैत्यसेन | daityasena | demon army-commander | DM 2.42
+दैत्यसैन्ये | daityasainye | in the demon army (loc.) | saptamī | loc. sg. · n. · stem: daityasainya- · a-stem · DM 3.5
+असुराणाम् अधिपः | asurāṇām adhipaḥ | overlord of asuras | DM 6.3
+महासैन्य | mahāsainya | great army | DM 6.14
+दैत्यनाशिन् | daityanāśin | demon-destroyer | DM 11.14
+सर्वदैत्यकुलान्तक | sarvadaityakulāntaka | ender of all demon clans | DM 11.14
+महिषासुरमर्दनी | mahiṣāsuramardanī | crusher of the buffalo-demon | DM 3.44
+महिषासुरनिर्णाश | mahiṣāsuranirṇāśa | annihilation of Mahiṣāsura | DM Ch.3 colophon
+रक्तबीजवध | raktabījavadha | slaying of Raktabīja | DM Ch.8 colophon
+शुम्भवध | śumbhavadha | slaying of Śumbha | DM Ch.10 colophon
+केशाकर्षणविह्वला | keśākarṣaṇavihvalā | distraught from hair-dragging | DM 6.4, 6.9
+
+# V04 · Weapons & battle gear — DM   @stage 1
+त्रिशूल / शूल | triśūla / śūla | trident | m/n. · DM 2.20
+चक्र | cakra | discus | headword | n. · stem: cakra- · a-stem · from √car · DM 2.21
+गदा | gadā | mace | headword | f. · stem: gadā- · ā-stem · DM 2.21
+धनुस् | dhanus | bow | headword | n. · stem: dhanus- · us-stem · from √dhan · DM 2.22
+बाण / शर / सायक / इषु | bāṇa / śara / sāyaka / iṣu | arrow | m. · DM 2.22
+खड्ग / असि | khaḍga / asi | sword | m. · DM 2.24
+शक्ति | śakti | spear/javelin (also: power) | headword | f. · stem: śakti- · i-stem · DM 2.23
+परशु / परश्वध | paraśu / paraśvadha | axe | m. · DM 2.23
+वज्र / कुलिश | vajra / kuliśa | thunderbolt | n./m. · DM 2.20
+पाश | pāśa | noose | headword | m. · stem: pāśa- · a-stem · DM 2.24
+अङ्कुश | aṅkuśa | goad / elephant-hook | headword | m. · stem: aṅkuśa- · a-stem · DM 2.24
+कुन्त | kunta | lance | headword | m. · stem: kunta- · a-stem · DM 2.51
+पट्टिश | paṭṭiśa | sharp-edged spear | headword | m. · stem: paṭṭiśa- · a-stem · DM 3.10
+मुसल | musala | pestle/mace | headword | m. · stem: musala- · a-stem · DM 2.51
+तोमर | tomara | iron javelin | headword | m. · stem: tomara- · a-stem · DM 2.51
+भिन्दिपाल | bhindipāla | sling/slingshot | headword | m. · stem: bhindipāla- · a-stem · DM 2.51
+दण्ड | daṇḍa | staff/rod (Yama's) | headword | m. · stem: daṇḍa- · a-stem · DM 2.24
+हल | hala | plough | headword | m. · stem: hala- · a-stem · DM 2.23
+खेटक | kheṭaka | small shield | headword | m. · stem: kheṭaka- · a-stem · DM 3.10
+चर्म | carma | shield (leather) | prathamā/dvitīyā | nom./acc. sg. · n. · stem: carman- · an-stem · DM 2.24
+पिणाक | piṇāka | Śiva's bow | headword | m. · stem: piṇāka- · a-stem · KS passim
+कोदण्ड | kodaṇḍa | bow | headword | m. · stem: kodaṇḍa- · a-stem · LS 10
+खड्गपाणि | khaḍgapāṇi | sword-in-hand | m./f. · KS 131
+शरवृष्टि | śaravṛṣṭi | rain of arrows | headword | f. · stem: śaravṛṣṭi- · i-stem · DM 3.7
+शरौघ | śaraugha | flood of arrows | headword | m. · stem: śaraugha- · a-stem · DM 3.12
+शरोत्तम | śarottama | excellent arrow | headword | m. · stem: śarottama- · a-stem · compound · DM 3.8
+क्षुरप्रा | kṣuraprā | razor-edged (arrow) | headword | f. · stem: kṣuraprā- · ā-stem · DM 9.12
+शरोत्कर | śarotkara | mass of arrows | headword | m. · stem: śarotkara- · a-stem · DM 9.10
+अस्त्रौघ | astraugha | flood of missiles | headword | m. · stem: astraugha- · a-stem · DM 3.24
+आयुध | āyudha | weapon (general) | headword | n. · stem: āyudha- · a-stem · from ā + √yudh · DM 2.20+
+शस्त्र | śastra | edged weapon | headword | n. · stem: śastra- · a-stem · from √śas · DM 3.14
+अस्त्र | astra | missile weapon | headword | n. · stem: astra- · a-stem · from √as · DM 3.25
+प्रहरण | praharaṇa | weapon, instrument of striking | headword | n. · stem: praharaṇa- · a-stem · from pra + √hṛ · DM 2.20
+आयुधोपेत | āyudhopeta | equipped with weapons | headword | adj. · stem: āyudhopeta- · a-stem · KS passim
+सायुधा | sāyudhā | bearing weapons | headword | adj. · stem: sāyudhā- · ā-stem · DM 8.16
+सर्वायुधधर | sarvāyudhadhara | wielder of all weapons | headword | adj. · stem: sarvāyudhadhara- · a-stem · KS passim
+घण्टा | ghaṇṭā | bell | headword | f. · stem: ghaṇṭā- · ā-stem · DM 2.26
+शङ्ख | śaṅkha | conch | headword | m. · stem: śaṅkha- · a-stem · DM 2.26
+दुन्दुभि | dundubhi | war-drum | headword | m. · stem: dundubhi- · i-stem · DM 3.42
+भेरी | bherī | kettledrum | headword | f. · stem: bherī- · ī-stem · DM 3.42
+ज्या | jyā | bowstring | headword | f. · stem: jyā- · ā-stem · DM 9.19
+ज्याशब्द | jyāśabda | bowstring-twang | headword | m. · stem: jyāśabda- · a-stem · DM 9.19
+अक्षमाला / अक्षस्रक् | akṣamālā / akṣasrak | rosary (from Brahmā) | f. · DM 2.23
+कमण्डलु | kamaṇḍalu | water-pot (from Brahmā) | headword | m. · stem: kamaṇḍalu- · u-stem · DM 2.23
+कपाल | kapāla | skull-cup | headword | n. · stem: kapāla- · a-stem · KKS 137+
+खट्वाङ्ग | khaṭvāṅga | skull-staff | headword | n. · stem: khaṭvāṅga- · a-stem · KS passim
+मुण्डमाला / नृमुण्डस्रज् | muṇḍamālā / nṛmuṇḍasraj | garland of severed heads | f. · KS passim
+कर्परहस्तिनी | karparahastinī | skull-bowl in hand | headword | f. · stem: karparahastinī- · ī-stem · KS passim
+
+# V05 · Body & adornment — DM · LS   @stage 17
+शिरस् / मूर्धन् / मस्तक | śiras / mūrdhan / mastaka | head | n./m./n. · DM 3.33
+मुख / वदन / आनन | mukha / vadana / ānana | face | headword | n. · stem: mukha- · a-stem · DM 2.10
+नेत्र / नयन / अक्षि / लोचन / चक्षुस् | netra / nayana / akṣi / locana / cakṣus | eye | n. · DM 2.11
+त्रिलोचन / त्रिनेत्र | trilocana / trinetra | three-eyed | headword | adj. · stem: trilocana- · a-stem · DM 2.13
+कटाक्ष | kaṭākṣa | sidelong glance | headword | m. · stem: kaṭākṣa- · a-stem · kaṭa + akṣa · LS 62
+भ्रू | bhrū | eyebrow | headword | f. · stem: bhrū- · ū-stem · LS 15
+कपोल / गण्ड | kapola / gaṇḍa | cheek | headword | m. · stem: kapola- · a-stem · LS 16
+नासा / नासिका | nāsā / nāsikā | nose | headword | f. · stem: nāsā- · ā-stem · DM passim
+ओष्ठ / अधर | oṣṭha / adhara | lip | headword | m. · stem: oṣṭha- · a-stem · DM 8.4
+दन्त / दन्तपङ्क्ति | danta / dantapaṅkti | tooth / tooth-row | m./f. · LS 25
+दंष्ट्रा | daṃṣṭrā | fang, tusk | headword | f. · stem: daṃṣṭrā- · ā-stem · DM 7.9
+जिह्वा | jihvā | tongue | headword | f. · stem: jihvā- · ā-stem · DM 7.8
+चिबुक | cibuka | chin | headword | n. · stem: cibuka- · a-stem · LS 29
+कर्ण | karṇa | ear | headword | m. · stem: karṇa- · a-stem · KKS 209+
+ललाट / भाल | lalāṭa / bhāla | forehead | headword | n. · stem: lalāṭa- · a-stem · LS 15
+केश / कच / कुन्तल | keśa / kaca / kuntala | hair | headword | m. · stem: keśa- · a-stem · DM 6.4
+मुक्तकेशी | muktakeśī | loose-haired | headword | f. · stem: muktakeśī- · ī-stem · KS 101
+दीर्घकेशी | dīrghakeśī | long-haired | headword | f. · stem: dīrghakeśī- · ī-stem · KS 102
+जटा / जटिन् | jaṭā / jaṭin | matted locks / one with matted locks | f./adj. · KS passim
+केशर / केसरिन् | keśara / kesarin | mane (of lion) | m. · DM 6.17
+सूक्ष्मकेशी | sūkṣmakeśī | fine-haired | headword | f. · stem: sūkṣmakeśī- · ī-stem · KS passim
+भुज / बाहु | bhuja / bāhu | arm | m. · DM 2.12
+कर / हस्त / पाणि | kara / hasta / pāṇi | hand | m. · DM passim
+अङ्गुलि / अङ्गुलीय | aṅguli / aṅgulīya | finger / ring | f./n. · KS passim
+पद / चरण | pada / caraṇa | foot | headword | m. · stem: pada- · a-stem · LS 35+
+जङ्घा | jaṅghā | shin/calf | headword | f. · stem: jaṅghā- · ā-stem · LS 37
+जानु | jānu | knee | headword | n. · stem: jānu- · u-stem · LS 38
+ऊरु | ūru | thigh | headword | m. · stem: ūru- · u-stem · LS 36
+कटि | kaṭi | waist/hip | headword | f. · stem: kaṭi- · i-stem · LS 36
+मध्य | madhya | middle/waist | m./n. · LS 36
+नाभि | nābhi | navel | headword | f. · stem: nābhi- · i-stem · LS 35
+वक्षस् | vakṣas | chest | headword | n. · stem: vakṣas- · as-stem · DM passim
+स्तन / कुच | stana / kuca | breast | headword | m. · stem: stana- · a-stem · LS 35
+कण्ठ / ग्रीवा | kaṇṭha / grīvā | neck/throat | m./f. · DM 6.17
+अङ्ग | aṅga | limb/body part | headword | n. · stem: aṅga- · a-stem · DM passim
+गात्र | gātra | body/limb | headword | n. · stem: gātra- · a-stem · DM 5.14
+देह / शरीर / वपुस् / तनु | deha / śarīra / vapus / tanu | body | m./n./n./f. · DM passim
+त्वच् / त्वक् | tvac / tvak | skin | f. · LS passim
+रुधिर / रक्त / असृज् / शोणित | rudhira / rakta / asṛj / śoṇita | blood | n. · DM 6.18
+मांस | māṃsa | flesh | headword | n. · stem: māṃsa- · a-stem · KS passim
+अस्थि | asthi | bone | headword | n. · stem: asthi- · i-stem · KS passim
+मज्जा | majjā | marrow | headword | f. · stem: majjā- · ā-stem · LS passim
+मेद | meda | fat | headword | n. · stem: meda- · a-stem · LS passim
+हृदय | hṛdaya | heart | headword | n. · stem: hṛdaya- · a-stem · DM 9.34
+कोष्ठ | koṣṭha | torso/abdomen | headword | n. · stem: koṣṭha- · a-stem · DM 6.17
+शिरोधर | śirodhara | neck (lit. head-bearer) | headword | n. · stem: śirodhara- · a-stem · DM 6.18
+आभरण / भूषण / अलङ्कार | ābharaṇa / bhūṣaṇa / alaṅkāra | ornament | headword | n. · stem: ābharaṇa- · a-stem · DM 2.26
+किरीट / मुकुट | kirīṭa / mukuṭa | crown/tiara | headword | n. · stem: kirīṭa- · a-stem · LS 13
+कुण्डल | kuṇḍala | earring | headword | n. · stem: kuṇḍala- · a-stem · LS 16
+हार | hāra | necklace | headword | m. · stem: hāra- · a-stem · LS 30
+कङ्कण | kaṅkaṇa | bracelet | headword | n. · stem: kaṅkaṇa- · a-stem · LS 31
+केयूर | keyūra | armlet | headword | n. · stem: keyūra- · a-stem · LS 31
+नूपुर | nūpura | anklet | headword | n. · stem: nūpura- · a-stem · LS 40
+मञ्जीर | mañjīra | ankle-bell | headword | n. · stem: mañjīra- · a-stem · LS 40
+माल्यम् / माला | mālyam / mālā | garland | n./f. · DM 2.26
+सिन्दूर | sindūra | vermillion | headword | n. · stem: sindūra- · a-stem · KKS 747
+कुङ्कुम | kuṅkuma | saffron | headword | n. · stem: kuṅkuma- · a-stem · KKS 747
+कस्तूरी | kastūrī | musk | headword | f. · stem: kastūrī- · ī-stem · KKS 225-280
+कर्पूर | karpūra | camphor | headword | n. · stem: karpūra- · a-stem · KKS 531-537
+चन्दन | candana | sandalwood | headword | n. · stem: candana- · a-stem · KS passim
+तिलक | tilaka | forehead mark | headword | m. · stem: tilaka- · a-stem · KKS 239
+पट्टाम्बर | paṭṭāmbara | silk garment | headword | n. · stem: paṭṭāmbara- · a-stem · KS passim
+वस्त्र / अम्बर | vastra / ambara | garment | headword | n. · stem: vastra- · a-stem · KS passim
+काञ्ची | kāñcī | girdle/waist-chain | headword | f. · stem: kāñcī- · ī-stem · KKS 501
+ग्रैवैयक | graivaiyaka | neck-ornament | headword | n. · stem: graivaiyaka- · a-stem · LS 30
+रत्न / मणि | ratna / maṇi | gem/jewel | n./m. · DM 2.26
+मुक्ता / मौक्तिक | muktā / mauktika | pearl | f./n. · LS 30
+
+# V06 · Nature & cosmos — DM · LS   @stage 1
+पृथिवी / भूमि / धरा / क्ष्मा / अवनी / मही | pṛthivī / bhūmi / dharā / kṣmā / avanī / mahī | earth | f. · DM 3.39
+भूतल | bhūtala | surface of earth | headword | n. · stem: bhūtala- · a-stem · DM 9.16
+जगत् | jagat | world, moving things | n. · DM throughout
+लोक | loka | world, realm | headword | m. · stem: loka- · a-stem · DM 4.10
+विश्व / विश्वम् | viśva / viśvam | universe | n. · VS 1
+ब्रह्माण्ड | brahmāṇḍa | cosmic egg | headword | n. · stem: brahmāṇḍa- · a-stem · LS 11
+भुवन | bhuvana | world | headword | n. · stem: bhuvana- · a-stem · LS 295
+आकाश / गगन / नभस् / ख / व्योमन् | ākāśa / gagana / nabhas / kha / vyoman | sky, space | n. · DM 3.30
+अन्तरीक्ष | antarīkṣa | mid-air, atmosphere | headword | n. · stem: antarīkṣa- · a-stem · DM 3.30
+दिव् / द्यु | div / dyu | heaven/sky | f. · DM passim
+जल / तोय / आपस् / उदक / नीर / वारि / अम्बु | jala / toya / āpas / udaka / nīra / vāri / ambu | water | n./f.pl. · DM 2.15
+सागर / समुद्र / अर्णव / सिन्धु | sāgara / samudra / arṇava / sindhu | ocean | m. · DM 4.10
+नदी | nadī | river | headword | f. · stem: nadī- · ī-stem · KS passim
+गङ्गा | gaṅgā | the Ganges | headword | f. · stem: gaṅgā- · ā-stem · KS passim
+कालिन्दी / यमुना | kālindī / yamunā | the Yamunā | f. · KKS 688
+कावेरी | kāverī | the Kāverī | headword | f. · stem: kāverī- · ī-stem · KKS 705
+मन्दाकिनी | mandākinī | celestial Ganges | headword | f. · stem: mandākinī- · ī-stem · KS passim
+तरङ्ग / ऊर्मि | taraṅga / ūrmi | wave | m./f. · KS passim
+तरङ्गिणी | taraṅgiṇī | flowing with waves (river) | headword | f. · stem: taraṅgiṇī- · ī-stem · KS passim
+अग्नि / वह्नि / अनल / पावक / हुताशन | agni / vahni / anala / pāvaka / hutāśana | fire | m. · DM 2.14
+ज्वाला | jvālā | flame | headword | f. · stem: jvālā- · ā-stem · DM 10.25
+ज्योति | jyoti | light | headword | n. · stem: jyoti- · i-stem · LS passim
+दीप | dīpa | lamp | headword | m. · stem: dīpa- · a-stem · KKS 140
+तेजस् | tejas | fiery brilliance | headword | n. · stem: tejas- · as-stem · DM 2.10+
+प्रभा | prabhā | radiance | headword | f. · stem: prabhā- · ā-stem · DM 2.10
+विद्युत् | vidyut | lightning | f. · DM 11.44
+रवि / सूर्य / भानु / दिवाकर | ravi / sūrya / bhānu / divākara | sun | m. · DM 2.14
+चन्द्र / इन्दु / शशिन् / सोम | candra / indu / śaśin / soma | moon | m. · DM 2.14
+तारा / नक्षत्र | tārā / nakṣatra | star | f./n. · KS 277
+गिरि / पर्वत / अचल / अद्रि / शैल | giri / parvata / acala / adri / śaila | mountain | m. · DM 6.8
+हिमवान् / हिमाचल / तुहिनाचल | himavān / himācala / tuhinācala | Himālaya | m. · DM 6.8
+मेरु / सुमेरु | meru / sumeru | cosmic axis-mountain | headword | m. · stem: meru- · u-stem · LS 55
+विन्ध्य | vindhya | Vindhya mountains | headword | m. · stem: vindhya- · a-stem · LS 318
+कैलास | kailāsa | Śiva's mountain | headword | m. · stem: kailāsa- · a-stem · LS passim
+काञ्चनाद्रि | kāñcanādri | golden mountain (Meru) | headword | m. · stem: kāñcanādri- · i-stem · KKS 728
+शृङ्ग | śṛṅga | peak, summit | headword | n. · stem: śṛṅga- · a-stem · LS 55
+वन / अरण्य / कानन | vana / araṇya / kānana | forest | headword | n. · stem: vana- · a-stem · DM 1.6
+वृक्ष | vṛkṣa | tree | headword | m. · stem: vṛkṣa- · a-stem · KKS 111+
+कुसुम / पुष्प | kusuma / puṣpa | flower | headword | n. · stem: kusuma- · a-stem · DM 4.30
+पद्म / कमल / अरविन्द | padma / kamala / aravinda | lotus | headword | n. · stem: padma- · a-stem · VS passim
+कदम्ब | kadamba | Kadamba tree | headword | m. · stem: kadamba- · a-stem · LS 60
+कदली | kadalī | plantain/banana | headword | f. · stem: kadalī- · ī-stem · KKS 187-195
+तुलसी | tulasī | sacred basil | headword | f. · stem: tulasī- · ī-stem · KS passim
+केतकी | ketakī | screw-pine | headword | f. · stem: ketakī- · ī-stem · KKS 929
+करवीर | karavīra | oleander | headword | m. · stem: karavīra- · a-stem · KKS 512
+करञ्ज | karañja | pongam tree | headword | m. · stem: karañja- · a-stem · KKS 111-115
+फल | phala | fruit | headword | n. · stem: phala- · a-stem · DM 12 (phalastuti)
+बीज | bīja | seed | headword | n. · stem: bīja- · a-stem · DM 8.40 (raktabīja)
+दिश् / ककुभ् | diś / kakubh | direction, quarter | f. · DM 3.30
+दश दिशः | daśa diśaḥ | the ten directions | DM 9.21
+पूर्व | pūrva | east | adj./n.
+दक्षिण | dakṣiṇa | south | adj./n.
+पश्चिम | paścima | west | adj./n.
+उत्तर | uttara | north | adj./n.
+ऊर्ध्व | ūrdhva | above, upward | adj./adv. · DM passim
+अधस् | adhas | below | adv. · DM passim
+अग्रतस् | agratas | in front | adv. · DM 9.7
+पृष्ठतस् | pṛṣṭhatas | behind | adv. · DM 9.7
+पार्श्व | pārśva | side, flank | m./n. · DM 9.7
+त्रैलोक्य / त्रिलोक | trailokya / triloka | three worlds | n./m. · DM 2.4
+स्वर्ग | svarga | heaven | headword | m. · stem: svarga- · a-stem · DM 5.4
+मर्त्य / भूलोक | martya / bhūloka | earth-realm | m./m. · VS passim
+पाताल | pātāla | netherworld | headword | m. · stem: pātāla- · a-stem · DM 5.4
+
+# V07 · War & combat — DM   @stage 7
+युद्ध | yuddha | battle | headword | n. · stem: yuddha- · a-stem · from √yudh · DM 2.3
+संग्राम | saṃgrāma | battle | headword | m. · stem: saṃgrāma- · a-stem · sam + grāma · DM 3.26
+रण | raṇa | war, battlefield | headword | n. · stem: raṇa- · a-stem · DM 3.5+
+आहव | āhava | battle, sacrifice | headword | m. · stem: āhava- · a-stem · ā + √hu · DM 9.5
+समर | samara | battle | headword | n. · stem: samara- · a-stem · DM 3.25
+सङ्गर्ष | saṅgarṣa | conflict | headword | m. · stem: saṅgarṣa- · a-stem · DM passim
+वीर | vīra | hero, warrior | headword | m. · stem: vīra- · a-stem · DM 3.3
+योद्ध / योध | yoddha / yodha | fighter | headword | m. · stem: yoddha- · a-stem · from √yudh · DM 2.55
+सैन्य / सेना / बल / अनीक | sainya / senā / bala / anīka | army, force | n./f./n./n. · DM 2.40+
+वाहिनी | vāhinī | division, battalion | headword | f. · stem: vāhinī- · ī-stem · DM 2.55
+रथ | ratha | chariot | headword | m. · stem: ratha- · a-stem · DM 2.52
+सारथि | sārathi | charioteer | headword | m. · stem: sārathi- · i-stem · DM 2.53
+प्रहार | prahāra | strike, blow | headword | m. · stem: prahāra- · a-stem · pra + √hṛ · DM 3.24
+प्रहरण | praharaṇa | weapon/striking | headword | n. · stem: praharaṇa- · a-stem · DM 2.20
+√हन् | √han | to strike, kill | dhātu · jaghāna (perf.), hanti (pres.), hataḥ (pp.), ghnan (pres.p.) · DM 2.58
+√छिद् | √chid | to cut, sever | dhātu · ciccheda (perf.), chinna (pp.) · DM 3.18
+√भिद् | √bhid | to pierce, split | dhātu · bibheda (perf.), bhinna (pp.) · DM 9.34
+√ताड् | √tāḍ | to strike, beat | dhātu · atāḍayat (impf.), tāḍita (pp.) · DM 3.21
+√क्षिप् | √kṣip | to hurl, throw | dhātu · cikṣepa (perf.), kṣipta (pp.) · DM 3.18
+√पत् | √pat | to fall | dhātu · papāta (perf.), patita (pp.) · DM 3.33
+√पात् (caus.) | √pāt (caus.) | to cause to fall | dhātu · apātayat (impf.) · DM 9.16
+√मुच् | √muc | to release, shoot | dhātu · mumoca (perf.), mukta (pp.) · DM 3.8
+√धाव् | √dhāv | to rush, charge | dhātu · abhyadhāvat (impf.) · DM 6.13
+√वियध् | √viyadh | to pierce | dhātu · vivyādha (perf.), viddha (pp.) · DM 9.34
+√दल् | √dal | to split, shatter | dhātu · dālayāmāsa (periphr.perf.) · DM 3.25
+√चूर्ण् | √cūrṇ | to crush to powder | dhātu · acūrṇayat (impf., caus.) · DM 9.14
+√पीड् | √pīḍ | to press, crush | dhātu · pīḍayāmāsa · DM 3.24
+√भञ्ज् | √bhañj | to break | dhātu · babhañja (perf.) · DM 3.22
+√लू | √lū | to cut | dhātu · — · DM passim
+√व्रश्च् | √vraśc | to tear, rip | dhātu · — · DM passim
+√गर्ज् | √garj | to roar | dhātu · jagarje (perf.) · DM 3.31
+√नद् | √nad | to resound | dhātu · nanāda (perf.) · DM 3.31
+√कम्प् | √kamp | to tremble | dhātu · cakampe (perf.) · DM 3.31
+√त्रस् | √tras | to frighten | dhātu · trāsayāmāsa (caus.) · DM passim
+√क्रुध् | √krudh | to be angry | dhātu · cukrodha (perf.), kruddha (pp.) · DM 6.20
+√ग्रस् | √gras | to swallow | dhātu · grasati (pres.) · KS passim
+√खाद् | √khād | to devour | dhātu · cakhāda (perf.) · DM 9.37
+√पा | √pā | to drink | dhātu · papau (perf.) · DM 8.52+ (Kālī drinks blood)
+√भक्ष् | √bhakṣ | to eat | dhātu · bhakṣita (pp.) · DM 9.41
+वध | vadha | slaying | headword | m. · stem: vadha- · a-stem · from √vadh · DM colophons: vadho nāma
+संहार | saṃhāra | annihilation | headword | m. · stem: saṃhāra- · a-stem · sam + √hṛ · DM 11.5
+नाश / विनाश | nāśa / vināśa | destruction | headword | m. · stem: nāśa- · a-stem · from √naś · DM 11.5
+क्षय | kṣaya | decay, destruction | headword | m. · stem: kṣaya- · a-stem · from √kṣi · DM 6.19
+भस्म | bhasma | ashes | prathamā/dvitīyā | nom./acc. sg. · n. · stem: bhasman- · an-stem · DM 6.13 (hūṃkāreṇa taṃ bhasma sā cakāra)
+चूर्ण | cūrṇa | powder | headword | n. · stem: cūrṇa- · a-stem · DM 9.14
+प्रलय | pralaya | dissolution | headword | m. · stem: pralaya- · a-stem · VS passim
+निधन | nidhana | death, end | headword | n. · stem: nidhana- · a-stem · DM passim
+निपात | nipāta | downfall | headword | m. · stem: nipāta- · a-stem · ni + √pat · DM passim
+निहत | nihata | slain | ni + √han · DM 2.57
+विच्छिन्न | vicchinna | severed | vi + √chid · DM 3.18
+भिन्न | bhinna | split, pierced | √bhid · DM 9.39
+चूर्णित | cūrṇita | crushed | √cūrṇ · DM passim
+छिन्न | chinna | cut off | √chid · DM 3.18
+पतित | patita | fallen | √pat · DM passim
+क्षीण | kṣīṇa | diminished | √kṣi · DM passim
+खण्डशस् | khaṇḍaśas | into pieces | adv. · DM passim
+शतशस् | śataśas | by hundreds | adv. · DM 9.27
+सहस्रशस् | sahasraśas | by thousands | adv. · DM 8.45
+
+# V08 · Sound & speech — DM · LS   @stage 8
+नाद | nāda | sound, roar | headword | m. · stem: nāda- · a-stem · from √nad · DM 3.31
+सिंहनाद | siṃhanāda | lion-roar, battle cry | headword | m. · stem: siṃhanāda- · a-stem · DM 2.36
+हुंकार | huṃkāra | the sound "huṃ" | headword | m. · stem: huṃkāra- · a-stem · DM 6.13 (kills Dhūmralocana)
+अट्टहास | aṭṭahāsa | loud terrible laughter | headword | m. · stem: aṭṭahāsa- · a-stem · DM 7.11
+घोष | ghoṣa | noise, proclamation | headword | m. · stem: ghoṣa- · a-stem · DM 3.30
+निःस्वन / निस्स्वन | niḥsvana / nissvana | sound, resonance | headword | m. · stem: niḥsvana- · a-stem · DM 9.26
+निर्घोष / निर्घात | nirghoṣa / nirghāta | thunder, crash | headword | m. · stem: nirghoṣa- · a-stem · DM 9.26
+ज्याशब्द | jyāśabda | twang of bowstring | headword | m. · stem: jyāśabda- · a-stem · DM 9.19
+घण्टास्वन | ghaṇṭāsvana | bell-sound | headword | m. · stem: ghaṇṭāsvana- · a-stem · DM 9.20
+दुन्दुभिस्वन | dundubhisvana | war-drum sound | headword | m. · stem: dundubhisvana- · a-stem · DM 3.42
+कोलाहल | kolāhala | uproar | headword | m. · stem: kolāhala- · a-stem · DM passim
+रव / राव | rava / rāva | cry, sound | headword | m. · stem: rava- · a-stem · DM 7.9
+निनाद | nināda | resonant sound | headword | m. · stem: nināda- · a-stem · DM 9.22
+ध्वनि | dhvani | sound | headword | m. · stem: dhvani- · i-stem · KKS 671
+उवाच | uvāca | said (perf. of √vac) | DM throughout (narrative marker)
+आह | āha | said (perf. of √ah) | DM passim
+अब्रवीत् | abravīt | spoke (impf. of √brū) | DM passim
+जगाद | jagāda | spoke (perf. of √gad) | DM 6.8
+प्राह | prāha | spoke forth (perf. of pra + √ah) | DM 6.3
+अभ्यधात् | abhyadhāt | addressed | DM passim
+व्याजहार | vyājahāra | spoke forth (perf. of vi + ā + √hṛ) | DM 10.24
+समाचष्ट | samācaṣṭa | reported (perf. of sam + ā + √cakṣ) | DM 6.2
+वाच् / वाक् | vāc / vāk | speech | f. from √vac · DM passim
+वचन / वाक्य | vacana / vākya | word, statement | headword | n. · stem: vacana- · a-stem · DM 6.2
+आज्ञा | ājñā | command | headword | f. · stem: ājñā- · ā-stem · ā + √jñā · DM 6.7
+श्लोक | śloka | verse | headword | m. · stem: śloka- · a-stem · DM colophons
+गीत / गीता | gīta / gītā | song | n./f. · KS passim
+वाणी / सरस्वती | vāṇī / sarasvatī | speech (personified) | headword | f. · stem: vāṇī- · ī-stem · LS passim
+मात्रुका | mātrukā | alphabet/letters | headword | f. · stem: mātrukā- · ā-stem · KS passim
+वर्ण | varṇa | letter, syllable, color | headword | m. · stem: varṇa- · a-stem · KKS 25+
+शब्द | śabda | sound, word | headword | m. · stem: śabda- · a-stem · KKS 32
+कथा | kathā | story, narration | headword | f. · stem: kathā- · ā-stem · KKS 384
+काव्य | kāvya | poetry | headword | n. · stem: kāvya- · a-stem · KKS 24
+कवित्व | kavitva | poetic skill | headword | n. · stem: kavitva- · a-stem · KKS 150-162
+स्तुति | stuti | praise | headword | f. · stem: stuti- · i-stem · from √stu · DM 4.1
+स्तोत्र | stotra | hymn of praise | headword | n. · stem: stotra- · a-stem · from √stu · DM 12.2
+स्तव | stava | praise | headword | m. · stem: stava- · a-stem · from √stu · DM 12.2
+√स्तु | √stu | to praise — tuṣṭuvu (perf. 3pl), stūyate (pass.), stuta (pp.) | dhātu · DM 3.44, 4.1
+नमस्कार | namaskāra | salutation | headword | m. · stem: namaskāra- · a-stem · DM 11.12+
+वन्दन | vandana | worship, praise | headword | n. · stem: vandana- · a-stem · KS passim
+कीर्तन | kīrtana | glorification | headword | n. · stem: kīrtana- · a-stem · from √kīrt · DM 12.10
+सूक्त | sūkta | hymn | headword | n. · stem: sūkta- · a-stem · su + ukta · DM 13.10 (devīsūktam)
+माहात्म्य | māhātmya | glorification text | headword | n. · stem: māhātmya- · a-stem · from mahātman · DM colophons
+पाठ | pāṭha | recitation | headword | m. · stem: pāṭha- · a-stem · from √paṭh · DM 12.3+
+श्रवण | śravaṇa | listening | headword | n. · stem: śravaṇa- · a-stem · from √śru · DM 12.3
+ऋषिर् उवाच | ṛṣir uvāca | the sage said | narrator transition · DM every chapter
+राजोवाच | rājovāca | the king said | interlocutor · DM 1.3
+देव्युवाच | devyuvāca | the Goddess said | Devī speaks · DM 6.10
+देवा ऊचुः | devā ūcuḥ | the gods said | collective speech · DM 4.1
+मार्कण्डेय उवाच | mārkaṇḍeya uvāca | Mārkaṇḍeya said | frame narrator · DM 13.6
+इत्य् उक्त्वा | ity uktvā | having said thus | speech→action · DM passim
+इति श्रुत्वा | iti śrutvā | having heard thus | hearing→response · DM passim
+
+# V09 · Emotions & mind — DM · LS   @stage 13
+कोप | kopa | anger | headword | m. · stem: kopa- · a-stem · DM 6.20
+क्रोध | krodha | wrath | headword | m. · stem: krodha- · a-stem · from √krudh · DM 9.5
+रोष | roṣa | fury | headword | m. · stem: roṣa- · a-stem · DM 3.24
+अमर्ष | amarṣa | indignation | headword | m. · stem: amarṣa- · a-stem · DM 6.2
+कोपाविष्टा | kopāviṣṭā | seized by anger | headword | f. · stem: kopāviṣṭā- · ā-stem · pp. · DM 3.26
+क्रुद्ध / कुपित | kruddha / kupita | angered | headword | pp. · stem: kruddha- · a-stem · DM 6.20
+संक्रुद्ध | saṃkruddha | thoroughly enraged | headword | pp. · stem: saṃkruddha- · a-stem · DM 9.17
+कोपाध्मता | kopādhmatā | swollen with rage | headword | pp. · stem: kopādhmatā- · ā-stem · DM 8.4
+प्रस्फुरिताधर | prasphuritādhara | with quivering lip (from rage) | headword | adj. · stem: prasphuritādhara- · a-stem · DM 6.21
+भय | bhaya | fear | headword | n. · stem: bhaya- · a-stem · DM 4.28
+त्रास | trāsa | terror | headword | m. · stem: trāsa- · a-stem · from √tras · DM passim
+भीति | bhīti | dread | headword | f. · stem: bhīti- · i-stem · DM passim
+भीत / त्रस्त | bhīta / trasta | frightened | headword | pp. · stem: bhīta- · a-stem · DM 8.3
+भयङ्कर | bhayaṅkara | fear-causing | headword | adj. · stem: bhayaṅkara- · a-stem · DM passim
+भीषण | bhīṣaṇa | terrifying | headword | adj. · stem: bhīṣaṇa- · a-stem · DM 7.11
+भयापह | bhayāpaha | fear-removing | headword | adj. · stem: bhayāpaha- · a-stem · LS 117
+हर्ष | harṣa | joy | headword | m. · stem: harṣa- · a-stem · DM 3.43
+प्रीति | prīti | delight, love | headword | f. · stem: prīti- · i-stem · from √prī · DM 4.30
+आनन्द | ānanda | bliss | headword | m. · stem: ānanda- · a-stem · LS 216 (paramānanda)
+तुष्टि | tuṣṭi | contentment | headword | f. · stem: tuṣṭi- · i-stem · from √tuṣ · DM 5.49
+सुख | sukha | happiness, comfort | headword | n. · stem: sukha- · a-stem · DM passim
+सन्तोष | santoṣa | satisfaction | headword | m. · stem: santoṣa- · a-stem · KKS passim
+ह्लाद / आह्लाद | hlāda / āhlāda | delight | headword | m. · stem: hlāda- · a-stem · LS passim
+उल्लास | ullāsa | joy, exuberance | headword | m. · stem: ullāsa- · a-stem · KKS passim
+दुःख | duḥkha | suffering, sorrow | headword | n. · stem: duḥkha- · a-stem · DM 4.22
+शोक | śoka | grief | headword | m. · stem: śoka- · a-stem · from √śuc · DM 1.8
+दीन | dīna | wretched, miserable | headword | adj. · stem: dīna- · a-stem · DM 1.10
+निर्विण्ण | nirviṇṇa | dejected, disgusted | headword | pp. · stem: nirviṇṇa- · a-stem · DM 1.28
+पीडा | pīḍā | affliction | headword | f. · stem: pīḍā- · ā-stem · DM 12.9
+आर्ति | ārti | distress | headword | f. · stem: ārti- · i-stem · LS (durgārtināśinī)
+क्लेश | kleśa | affliction | headword | m. · stem: kleśa- · a-stem · KS passim
+ताप | tāpa | heat, suffering | headword | m. · stem: tāpa- · a-stem · LS passim
+सन्ताप | santāpa | intense suffering | headword | m. · stem: santāpa- · a-stem · LS 331
+मोह | moha | delusion | headword | m. · stem: moha- · a-stem · from √muh · DM 1.40
+मोहित | mohita | deluded | headword | pp. · stem: mohita- · a-stem · DM 1.42
+महामोह | mahāmoha | great delusion | headword | m. · stem: mahāmoha- · a-stem · DM 11.43
+भ्रान्ति | bhrānti | error, confusion | headword | f. · stem: bhrānti- · i-stem · DM 5.53
+अज्ञान / अविद्या | ajñāna / avidyā | ignorance | n./f. · LS passim
+माया | māyā | illusion | headword | f. · stem: māyā- · ā-stem · DM 1.40+
+काम | kāma | desire, love | headword | m. · stem: kāma- · a-stem · DM passim
+तृष्णा | tṛṣṇā | thirst, craving | headword | f. · stem: tṛṣṇā- · ā-stem · DM 5.27
+आशा | āśā | hope, expectation | headword | f. · stem: āśā- · ā-stem · KS passim
+राग | rāga | passion, attachment | headword | m. · stem: rāga- · a-stem · LS 8
+लोभ | lobha | greed | headword | m. · stem: lobha- · a-stem · LS 175 (nir-lobhā)
+गर्व / दर्प / मद | garva / darpa / mada | pride, arrogance, intoxication | headword | m. · stem: garva- · a-stem · DM passim
+मत्सर | matsara | jealousy | headword | m. · stem: matsara- · a-stem · LS passim
+ममत / ममता | mamata / mamatā | possessiveness, "my-ness" | f. · DM 1.39
+अहङ्कार | ahaṅkāra | ego-sense | headword | m. · stem: ahaṅkāra- · a-stem · LS 162
+श्रद्धा | śraddhā | faith | headword | f. · stem: śraddhā- · ā-stem · DM 5.37
+भक्ति | bhakti | devotion | headword | f. · stem: bhakti- · i-stem · from √bhaj · DM passim
+धृति | dhṛti | steadfastness | headword | f. · stem: dhṛti- · i-stem · from √dhṛ · DM 5.57
+क्षान्ति / क्षमा | kṣānti / kṣamā | patience, forbearance | f. · DM 5.29
+दया / करुणा | dayā / karuṇā | compassion | headword | f. · stem: dayā- · ā-stem · DM 5.47
+लज्जा | lajjā | modesty | headword | f. · stem: lajjā- · ā-stem · DM 5.33
+मेधा | medhā | wisdom, intelligence | headword | f. · stem: medhā- · ā-stem · DM 5.55
+बुद्धि / मति | buddhi / mati | intellect | headword | f. · stem: buddhi- · i-stem · DM 5.17
+स्मृति | smṛti | memory | headword | f. · stem: smṛti- · i-stem · from √smṛ · DM 5.45
+शान्ति | śānti | peace | headword | f. · stem: śānti- · i-stem · from √śam · DM 5.35
+वैराग्य | vairāgya | dispassion | headword | n. · stem: vairāgya- · a-stem · DM 1.27
+धैर्य | dhairya | courage, fortitude | headword | n. · stem: dhairya- · a-stem · KS passim
+नीति | nīti | right conduct, ethics | headword | f. · stem: nīti- · i-stem · KS passim
+विनय | vinaya | humility | headword | m. · stem: vinaya- · a-stem · VS passim
+
+# V10 · High-frequency verbs — text forms   @stage 6
+√अस् | √as | to be, exist | dhātu · asti, āsīt, astu · DM throughout
+√भू | √bhū | to become, be | dhātu · babhūva, bhavati, abhūt, bhūtaḥ, bhaviṣyati · DM throughout
+√गम् | √gam | to go | dhātu · jagāma, gacchati, gatvā, gataḥ, āgata · DM 1.4
+√या | √yā | to go, proceed | dhātu · yayau, yāti, yāhi (imp.) · DM 6.7
+√चर् | √car | to move, wander | dhātu · cacāra, carati, caran · DM passim
+√स्था | √sthā | to stand, remain | dhātu · tasthau, tiṣṭhati, sthitā (pp.) · DM 10.24
+√विश् | √viś | to enter | dhātu · prāviśat, viṣṭa · DM passim
+√आ-गम् | √ā-gam | to come, arrive | dhātu · āgacchati, āgatā · DM 2.34
+√प्र-या | √pra-yā | to go forth | dhātu · prayayau, prayāhi · DM 6.8
+√उप-गम् | √upa-gam | to approach | dhātu · upāgamya (abs.) · DM passim
+√धाव् | √dhāv | to run, rush | dhātu · dhāvati, abhyadhāvat · DM 6.13
+√उद्-गम् | √ud-gam | to rise | dhātu · udagāt, udgata · DM passim
+√दृश् | √dṛś | to see | dhātu · dadarśa, dṛṣṭvā, dṛṣṭaḥ · DM 1.8
+√श्रु | √śru | to hear | dhātu · śuśrāva, śrutvā, śruta · DM 6.20
+√विद् | √vid | to know | dhātu · veda, vetti, vidita · DM passim
+√ज्ञा | √jñā | to know | dhātu · jānāti, jñātaḥ, jñāna (n.) · DM passim
+√मन् | √man | to think | dhātu · manyate, manvāna, mata · DM passim
+√चिन्त् | √cint | to contemplate | dhātu · cintayāmāsa, cintita · DM 1.9
+√स्मृ | √smṛ | to remember | dhātu · smarati, smṛtā · LS passim
+√बुध् | √budh | to awaken, know | dhātu · buddhā, bodhayāmāsa · DM 1.73 (Viṣṇu awakened)
+√वच् | √vac | to speak | dhātu · uvāca, uktaḥ, vakti · DM throughout
+√ब्रू | √brū | to say | dhātu · abravīt, brūhi · DM passim
+√अह् | √ah | to say | dhātu · āha, prāha · DM 6.3
+√गद् | √gad | to speak | dhātu · jagāda · DM 6.8
+√कथय् | √kathay | to narrate | dhātu · kathayāmāsa · DM 1.4
+√दा | √dā | to give | dhātu · dadau, dadāti, dattaḥ · DM 4.37 (abhayaṃ dadau)
+√ग्रह् / √गृह् | √grah / √gṛh | to seize, take | dhātu · jagrāha, gṛhīta · DM 9.14
+√लभ् | √labh | to obtain | dhātu · lebhe, labdha, lābha · DM passim
+√आप् | √āp | to attain | dhātu · āpa, prāpta · DM 13.20
+√हृ | √hṛ | to take, carry | dhātu · jaghāra, āhṛta · DM passim
+√सृज् | √sṛj | to create, release | dhātu · sasarja, sṛṣṭa, sṛṣṭi · LS 264
+√नश् | √naś | to perish | dhātu · nāśa, naṣṭa, vināśa · DM 12.9
+√हन् | √han | to kill | dhātu · jaghāna, hata · DM throughout
+√कृ | √kṛ | to do, make | dhātu · cakāra, karoti, kṛtaḥ, kartṛ · DM throughout
+√जन् | √jan | to be born | dhātu · jajñe, jāta, janana · DM passim
+√मृ | √mṛ | to die | dhātu · mamāra, mṛta, maraṇa · DM passim
+√जीव् | √jīv | to live | dhātu · jīvati, jīvana · DM passim
+√स्तु | √stu | to praise | dhātu · tuṣṭuvu (perf. 3pl), stūyate, stutā, stuvanti · DM 3.44
+√नम् | √nam | to bow | dhātu · nanāma, namati, nataḥ · DM passim
+√प्रणम् | √praṇam | to prostrate | dhātu · praṇamya (abs.), praṇipatya · DM 13.8
+√पूज् | √pūj | to worship | dhātu · pūjayāmāsa, pūjita · DM 4.30
+√अर्च् | √arc | to honor | dhātu · arcita, arcanā · LS passim
+√भज् | √bhaj | to worship, share | dhātu · bhajati, bhakta · VS passim
+√यज् | √yaj | to sacrifice | dhātu · yajati, yajña · VS passim
+√जप् | √jap | to recite | dhātu · japati, japa · DM 13.10
+√तुष् | √tuṣ | to be pleased | dhātu · tuṣṭā (pp.), tuṣṭuvu (they praised) · DM 4.37
+√प्री | √prī | to please | dhātu · prīta, prīṇāti · DM passim
+√रक्ष् | √rakṣ | to protect | dhātu · rakṣatu (imp.), rakṣitā · DM 4.20
+√त्रा | √trā | to protect, save | dhātu · trāyate, trāhi (imp.) · DM 4.22
+√त्यज् | √tyaj | to abandon | dhātu · tatyāja, tyaktvā · DM 1.7
+√नी | √nī | to lead | dhātu · ninye, nīta · DM 6.19
+√वर्ष् | √varṣ | to rain | dhātu · vavarṣa, vṛṣṭi · DM 3.7
+√पा (to protect) | √pā (to protect) | to protect | dhātu · pātu, pālana · DM passim
+√वृ | √vṛ | to choose | dhātu · vavre, vṛta, vara · DM 13.17 (vavṛe)
+√पॄ | √pṝ | to fill | dhātu · pūrayāmāsa, pūrṇa · DM 9.20
+√वस् | √vas | to dwell | dhātu · vasati, vāsa, nivāsinī · KKS passim
+√धृ | √dhṛ | to hold | dhātu · dhārayati, dhṛta, dhāriṇī · KKS passim
+√वद् | √vad | to speak | dhātu · vadati, vādin · KS passim
+
+# V11 · Adjectives of power & beauty   @stage 4
+उग्र | ugra | fierce, formidable | headword | adj. · stem: ugra- · a-stem · DM 8.5; KS 46; VS 340
+घोर | ghora | terrible, dreadful | headword | adj. · stem: ghora- · a-stem · DM 7.11; KS 77
+भीम | bhīma | terrifying | headword | adj. · stem: bhīma- · a-stem · KS passim; VS 209
+भीषण | bhīṣaṇa | frightful | headword | adj. · stem: bhīṣaṇa- · a-stem · DM 7.11; KS passim
+रौद्र | raudra | wrathful | headword | adj. · stem: raudra- · a-stem · DM passim; KS passim
+प्रचण्ड | pracaṇḍa | extremely fierce | headword | adj. · stem: pracaṇḍa- · a-stem · DM 7.7; KS passim
+दारुण | dāruṇa | cruel, harsh | headword | adj. · stem: dāruṇa- · a-stem · DM passim; KS passim
+तीक्ष्ण | tīkṣṇa | sharp, keen | headword | adj. · stem: tīkṣṇa- · a-stem · DM 3.7; KS passim; VS passim
+तीव्र | tīvra | intense | headword | adj. · stem: tīvra- · a-stem · KS passim
+चण्ड | caṇḍa | fierce | headword | adj. · stem: caṇḍa- · a-stem · DM 7.1 (demon name); LS passim
+क्रूर | krūra | cruel | headword | adj. · stem: krūra- · a-stem · KS passim
+दुर्जय | durjaya | hard to conquer | headword | adj. · stem: durjaya- · a-stem · KS passim
+दुर्लभ | durlabha | hard to attain | headword | adj. · stem: durlabha- · a-stem · LS 188; KS passim
+दुर्धर्ष | durdharṣa | unassailable | headword | adj. · stem: durdharṣa- · a-stem · VS 220
+सुन्दर / रम्य / रुचिर / मनोहर | sundara / ramya / rucira / manohara | beautiful | headword | adj. · stem: sundara- · a-stem · LS passim; KS passim; VS passim
+दिव्य | divya | divine, celestial | headword | adj. · stem: divya- · a-stem · DM 2.10; LS passim; KS passim
+शोभन / शोभा | śobhana / śobhā | splendid | headword | adj. · stem: śobhana- · a-stem · KS 81; LS passim
+तेजस्विन् | tejasvin | radiant, brilliant | headword | adj. · stem: tejasvin- · in-stem · KS passim
+भास्वत् / भासुर | bhāsvat / bhāsura | shining | LS passim; KKS passim
+काञ्चन / हेम / सुवर्ण | kāñcana / hema / suvarṇa | golden | headword | adj. · stem: kāñcana- · a-stem · LS 13; KKS 448+; KS passim
+रुचिर | rucira | lustrous, beautiful | headword | adj. · stem: rucira- · a-stem · LS passim; KS passim
+चारु | cāru | beautiful, lovely | headword | adj. · stem: cāru- · u-stem · LS 201-203
+ललित | lalita | graceful, playful | headword | adj. · stem: lalita- · a-stem · LS title name
+कोमल | komala | soft, tender | headword | adj. · stem: komala- · a-stem · KKS 951; LS 399
+स्निग्ध | snigdha | smooth, tender | headword | adj. · stem: snigdha- · a-stem · KS passim
+स्फुरद् / स्फुरत् | sphurad / sphurat | glittering, throbbing | LS 16; KS passim
+महा / महत् | mahā / mahat | great | headword | adj. · stem: mahā- · ā-stem · DM throughout; VS/LS/KS throughout
+विशाल | viśāla | vast, wide | headword | adj. · stem: viśāla- · a-stem · KS 83; LS passim
+सूक्ष्म | sūkṣma | subtle, minute | headword | adj. · stem: sūkṣma- · a-stem · LS passim; KS passim
+स्थूल | sthūla | gross, large | headword | adj. · stem: sthūla- · a-stem · LS passim
+अनन्त | ananta | endless, infinite | headword | adj. · stem: ananta- · a-stem · VS 659; LS passim; KS passim
+अतुल | atula | incomparable | headword | adj. · stem: atula- · a-stem · DM 9.14; KS passim
+अमित | amita | immeasurable | headword | adj. · stem: amita- · a-stem · VS 174; LS passim
+अमेय | ameya | beyond measure | headword | adj. · stem: ameya- · a-stem · LS 406; KS passim
+अपार | apāra | boundless | headword | adj. · stem: apāra- · a-stem · VS passim
+अप्रमित / अप्रमेय | apramita / aprameya | immeasurable | headword | adj. · stem: apramita- · a-stem · LS 413; VS 248
+निरूपम | nirūpama | without comparison | headword | adj. · stem: nirūpama- · a-stem · LS passim; KS passim
+गम्भीर | gambhīra | deep, profound | headword | adj. · stem: gambhīra- · a-stem · VS passim
+शुद्ध / विशुद्ध | śuddha / viśuddha | pure | headword | adj. · stem: śuddha- · a-stem · LS passim; VS passim; KS passim
+पवित्र / पूत | pavitra / pūta | sacred, purified | headword | adj. · stem: pavitra- · a-stem · LS passim; KS 108; VS passim
+मङ्गल | maṅgala | auspicious | headword | adj. · stem: maṅgala- · a-stem · DM 11.10; KS passim
+शुभ | śubha | auspicious, good | headword | adj. · stem: śubha- · a-stem · DM 12.12; KS 81; VS passim
+पुण्य | puṇya | meritorious | headword | adj. · stem: puṇya- · a-stem · KS 106-108
+कल्याण | kalyāṇa | auspicious, blessed | headword | adj. · stem: kalyāṇa- · a-stem · KKS 3; LS 292; VS passim
+भद्र | bhadra | blessed, gentle | headword | adj. · stem: bhadra- · a-stem · KS 63; VS passim
+श्रीमत् | śrīmat | endowed with splendor | VS 22, 178; LS passim
+सत् | sat | true, good, real | VS 41; LS passim
+सत्य | satya | true, truthful | headword | adj. · stem: satya- · a-stem · KS passim; VS 107, 212
+निराधार | nirādhāra | without support | headword | adj. · stem: nirādhāra- · a-stem · LS 133
+निरञ्जन | nirañjana | unstained | headword | adj. · stem: nirañjana- · a-stem · LS 134; KS passim
+निर्लेप | nirlepa | without blemish | headword | adj. · stem: nirlepa- · a-stem · LS 135
+निर्मल | nirmala | spotless | headword | adj. · stem: nirmala- · a-stem · LS 136; KS passim
+नित्या | nityā | eternal | headword | adj. · stem: nityā- · ā-stem · LS 137; KS passim
+निराकार | nirākāra | formless | headword | adj. · stem: nirākāra- · a-stem · LS 138
+निर्गुण | nirguṇa | quality-less | headword | adj. · stem: nirguṇa- · a-stem · LS 139; KS passim; VS passim
+निष्कल | niṣkala | partless | headword | adj. · stem: niṣkala- · a-stem · LS 140
+निष्काम | niṣkāma | desireless | headword | adj. · stem: niṣkāma- · a-stem · LS 142; KS passim
+निर्मोह | nirmoha | without delusion | headword | adj. · stem: nirmoha- · a-stem · LS 165
+निर्मम | nirmama | without possessiveness | headword | adj. · stem: nirmama- · a-stem · LS 167
+निष्पाप | niṣpāpa | sinless | headword | adj. · stem: niṣpāpa- · a-stem · LS 169
+निर्माया | nirmāyā | beyond illusion | headword | adj. · stem: nirmāyā- · ā-stem · LS passim
+अव्यय | avyaya | imperishable | headword | adj. · stem: avyaya- · a-stem · VS 13; LS passim
+अव्यक्त | avyakta | unmanifest | headword | adj. · stem: avyakta- · a-stem · LS 398; VS passim
+अच्युत | acyuta | unfallen | headword | adj. · stem: acyuta- · a-stem · VS 100, 318
+अजित | ajita | unconquered | headword | adj. · stem: ajita- · a-stem · VS 438
+अशेष | aśeṣa | without remainder, total | headword | adj. · stem: aśeṣa- · a-stem · DM 6.19
+कृष्ण / श्याम | kṛṣṇa / śyāma | black, dark | headword | adj. · stem: kṛṣṇa- · a-stem · KS 36, 991; KS 134-135
+नील | nīla | blue-black | headword | adj. · stem: nīla- · a-stem · KS 45; KS passim
+रक्त / अरुण / लोहित | rakta / aruṇa / lohita | red | headword | adj. · stem: rakta- · a-stem · KS passim; LS passim
+पीत | pīta | yellow | headword | adj. · stem: pīta- · a-stem · LS passim
+श्वेत / धवल / गौर | śveta / dhavala / gaura | white, fair | headword | adj. · stem: śveta- · a-stem · KS passim; LS passim
+शुक्ल | śukla | white, bright | headword | adj. · stem: śukla- · a-stem · LS passim
+धूम्र | dhūmra | smoky | headword | adj. · stem: dhūmra- · a-stem · DM 6.3 (dhūmralocana)
+पिङ्गल | piṅgala | tawny, yellow-brown | headword | adj. · stem: piṅgala- · a-stem · KS passim
+कपिल | kapila | reddish-brown | headword | adj. · stem: kapila- · a-stem · KKS 468; KS passim
+
+# V12 · Ritual & worship — DM · LS   @stage 17
+पूजा | pūjā | worship | headword | f. · stem: pūjā- · ā-stem · DM 4.30
+अर्चन / अर्चना | arcana / arcanā | ritual worship | n./f. · LS passim
+जपम् | japam | repetitive recitation | n. from √jap · DM 13.10
+होम | homa | fire oblation | headword | m. · stem: homa- · a-stem · KKS 104
+बलि | bali | offering (esp. food/animal) | headword | m. · stem: bali- · i-stem · DM 13.12
+तर्पण | tarpaṇa | libation, satiating | headword | n. · stem: tarpaṇa- · a-stem · from √tṛp · DM 13.11
+अभिषेक | abhiṣeka | consecration/bathing | headword | m. · stem: abhiṣeka- · a-stem · KS passim
+आहुति | āhuti | oblation into fire | headword | f. · stem: āhuti- · i-stem · DM passim
+यज्ञ | yajña | sacrifice | headword | m. · stem: yajña- · a-stem · from √yaj · DM passim
+व्रत | vrata | vow, observance | headword | n. · stem: vrata- · a-stem · DM 13.8
+तपस् | tapas | austerity, penance | headword | n. · stem: tapas- · as-stem · from √tap · DM 13.9
+दीक्षा | dīkṣā | initiation | headword | f. · stem: dīkṣā- · ā-stem · LS passim
+साधन | sādhana | spiritual practice | headword | n. · stem: sādhana- · a-stem · KS passim
+उपासन | upāsana | meditation/worship | headword | n. · stem: upāsana- · a-stem · VS passim
+पुष्प / कुसुम | puṣpa / kusuma | flower | headword | n. · stem: puṣpa- · a-stem · DM 4.30
+धूप | dhūpa | incense | headword | m. · stem: dhūpa- · a-stem · DM 13.11
+दीप | dīpa | lamp | headword | m. · stem: dīpa- · a-stem · KKS 140
+गन्ध | gandha | sandalwood/fragrance | headword | m. · stem: gandha- · a-stem · DM 13.11
+नैवेद्य | naivedya | food offering | headword | n. · stem: naivedya- · a-stem · VS passim
+माल्य / माला | mālya / mālā | garland | n./f. · DM 2.26
+अर्घ्य | arghya | water offering | headword | n. · stem: arghya- · a-stem · KKS 182
+पाद्य | pādya | foot-wash water | headword | n. · stem: pādya- · a-stem · VS passim
+आचमनीय | ācamanīya | sipping water | headword | n. · stem: ācamanīya- · a-stem · VS passim
+चन्दन | candana | sandalwood | headword | n. · stem: candana- · a-stem · KS passim
+कस्तूरी | kastūrī | musk | headword | f. · stem: kastūrī- · ī-stem · KKS 225-280
+कुङ्कुम | kuṅkuma | saffron | headword | n. · stem: kuṅkuma- · a-stem · KKS 747
+कर्पूर | karpūra | camphor | headword | n. · stem: karpūra- · a-stem · KKS 531-537
+ताम्बूल | tāmbūla | betel | headword | n. · stem: tāmbūla- · a-stem · LS 472
+मन्त्र | mantra | sacred formula | headword | m. · stem: mantra- · a-stem · from √man · DM passim
+बीज | bīja | seed-syllable | headword | n. · stem: bīja- · a-stem · KKS 614-615
+ह्रीं | hrīṃ | māyā-bīja | indecl. · LS passim
+क्रीं | krīṃ | kālī-bīja | indecl. · KKS 1
+क्लीं | klīṃ | kāma-bīja | indecl. · LS passim
+ओं / प्रणव | oṃ / praṇava | the primordial sound | indecl./m. · all texts
+स्वाहा | svāhā | offering-call (for fire) | indecl. · DM passim
+स्वधा | svadhā | offering-call (for ancestors) | indecl. · LS 463
+नमः | namaḥ | salutation | indecl. · all texts (namo'stu te)
+हुं / हूं | huṃ / hūṃ | Śiva-bīja / threatening | indecl. · DM 6.13
+फट् | phaṭ | astra-bīja (missile) | indecl. · KKS 928
+सूक्त | sūkta | hymn | headword | n. · stem: sūkta- · a-stem · su + ukta · DM 13.10
+माहात्म्य | māhātmya | glorification text | headword | n. · stem: māhātmya- · a-stem · DM colophons
+चरित | carita | narrative of deeds | headword | n. · stem: carita- · a-stem · DM colophons (prathama/madhyama/uttama carita)
+वेद | veda | sacred knowledge | headword | m. · stem: veda- · a-stem · from √vid · KS passim
+श्रुति | śruti | revealed scripture | headword | f. · stem: śruti- · i-stem · from √śru · LS 474
+स्मृति | smṛti | remembered tradition | headword | f. · stem: smṛti- · i-stem · from √smṛ · LS 475
+विद्या | vidyā | knowledge, mantra | headword | f. · stem: vidyā- · ā-stem · from √vid · LS passim
+गुह्यविद्या | guhyavidyā | secret knowledge | headword | f. · stem: guhyavidyā- · ā-stem · KS passim
+महाविद्या | mahāvidyā | great knowledge | headword | f. · stem: mahāvidyā- · ā-stem · DM 1.55
+तन्त्र | tantra | esoteric system | headword | n. · stem: tantra- · a-stem · KKS 307
+पुराण | purāṇa | ancient text | headword | n. · stem: purāṇa- · a-stem · DM colophons
+आगम | āgama | revealed scripture | headword | m. · stem: āgama- · a-stem · KKS 19
+पाठ | pāṭha | recitation | headword | m. · stem: pāṭha- · a-stem · from √paṭh · DM 12.3
+श्रवण | śravaṇa | listening | headword | n. · stem: śravaṇa- · a-stem · from √śru · DM 12.3
+फल | phala | fruit, result | headword | n. · stem: phala- · a-stem · DM 12 (phalaśruti)
+फलस्तुति / फलश्रुति | phalastuti / phalaśruti | declaration of merit | headword | f. · stem: phalastuti- · i-stem · DM Ch.12 title
+पुण्य | puṇya | merit | headword | n. · stem: puṇya- · a-stem · DM 12.3
+पाप | pāpa | sin | headword | n. · stem: pāpa- · a-stem · DM 12.9
+मोक्ष / मुक्ति / अपवर्ग | mokṣa / mukti / apavarga | liberation | m./f./m. · DM 12.35
+भोग | bhoga | enjoyment | headword | m. · stem: bhoga- · a-stem · from √bhuj · DM 12.35
+सिद्धि | siddhi | perfection, attainment | headword | f. · stem: siddhi- · i-stem · from √sidh · KKS 146+
+ऋद्धि | ṛddhi | prosperity | headword | f. · stem: ṛddhi- · i-stem · KS passim
+वर / वरदान | vara / varadāna | boon / boon-granting | headword | m. · stem: vara- · a-stem · DM 4.37
+प्रसाद | prasāda | grace, favor | headword | m. · stem: prasāda- · a-stem · pra + √sad · DM passim
+अनुग्रह | anugraha | grace, blessing | headword | m. · stem: anugraha- · a-stem · anu + √grah · DM 11.33
+
+# V13 · Philosophy & tattvas — LS · VS   @stage 26
+ब्रह्मन् | brahman | the absolute | headword | n. · stem: brahman- · an-stem · LS passim
+परब्रह्मन् | parabrahman | supreme brahman | headword | n. · stem: parabrahman- · an-stem · KS passim
+आत्मन् | ātman | self | headword | m. · stem: ātman- · an-stem · VS passim
+परमात्मन् | paramātman | supreme self | headword | m. · stem: paramātman- · an-stem · VS 10
+पुरुष | puruṣa | the cosmic person | headword | m. · stem: puruṣa- · a-stem · VS 14
+प्रकृति | prakṛti | primordial nature/matter | headword | f. · stem: prakṛti- · i-stem · LS 397
+पर / परम | para / parama | supreme, beyond | headword | adj. · stem: para- · a-stem · DM passim
+तुरीय | turīya | the fourth (state beyond waking/dream/sleep) | headword | adj. · stem: turīya- · a-stem · LS 262
+अद्वैता | advaitā | non-dual | f./adj. · KS passim
+निर्द्वैता | nirdvaitā | without duality | headword | f. · stem: nirdvaitā- · ā-stem · LS passim
+माया | māyā | creative illusion, cosmic power | headword | f. · stem: māyā- · ā-stem · DM 1.40
+महामाया | mahāmāyā | the great māyā | headword | f. · stem: mahāmāyā- · ā-stem · DM 1.40
+मोह | moha | delusion | headword | m. · stem: moha- · a-stem · from √muh · DM 1.40
+महामोह | mahāmoha | great delusion | headword | m. · stem: mahāmoha- · a-stem · DM 11.43
+अविद्या / अज्ञान | avidyā / ajñāna | ignorance | f./n. · LS passim
+मिथ्या | mithyā | falsity | f./adv. · LS passim
+विवर्त | vivarta | transformation/illusion | headword | m. · stem: vivarta- · a-stem · LS passim
+गुण | guṇa | quality, strand | headword | m. · stem: guṇa- · a-stem · DM 1.38
+सत्त्व | sattva | purity, being | headword | n. · stem: sattva- · a-stem · DM 1.38
+रजस् | rajas | passion, activity | headword | n. · stem: rajas- · as-stem · DM 1.38
+तमस् | tamas | darkness, inertia | headword | n. · stem: tamas- · as-stem · DM 1.38
+सत्त्वरूपिणी | sattvarūpiṇī | she whose form is sattva | headword | f. · stem: sattvarūpiṇī- · ī-stem · LS passim
+निर्गुण | nirguṇa | beyond the guṇas | headword | adj. · stem: nirguṇa- · a-stem · LS 139
+त्रिगुणा / त्रिगुणात्मिका | triguṇā / triguṇātmikā | she of three guṇas | headword | f. · stem: triguṇā- · ā-stem · LS passim
+सृष्टि | sṛṣṭi | creation, emission | headword | f. · stem: sṛṣṭi- · i-stem · from √sṛj · DM 11.5
+स्थिति | sthiti | maintenance, preservation | headword | f. · stem: sthiti- · i-stem · from √sthā · DM 11.5
+संहार / लय / प्रलय | saṃhāra / laya / pralaya | dissolution | headword | m. · stem: saṃhāra- · a-stem · DM 11.5
+तिरोधान | tirodhāna | concealment | headword | n. · stem: tirodhāna- · a-stem · LS 270
+अनुग्रह | anugraha | grace, revelation | headword | m. · stem: anugraha- · a-stem · LS 272
+पञ्चकृत्य | pañcakṛtya | five cosmic acts | headword | n. · stem: pañcakṛtya- · a-stem · LS 273
+जगत्सृष्टि | jagatsṛṣṭi | world-creation | headword | f. · stem: jagatsṛṣṭi- · i-stem · DM 11.5
+ज्ञान | jñāna | knowledge | headword | n. · stem: jñāna- · a-stem · from √jñā · DM 13.18
+विज्ञान | vijñāna | discernment, higher knowledge | headword | n. · stem: vijñāna- · a-stem · LS 253
+विद्या | vidyā | knowledge, mantra-knowledge | headword | f. · stem: vidyā- · ā-stem · DM 1.55
+मोक्ष / मुक्ति / कैवल्य | mokṣa / mukti / kaivalya | liberation | m./f./n. · DM 12.35
+अपवर्ग | apavarga | liberation (final release) | headword | m. · stem: apavarga- · a-stem · DM 13.5
+बन्ध | bandha | bondage | headword | m. · stem: bandha- · a-stem · from √bandh · LS passim
+संसार | saṃsāra | cycle of rebirth | headword | m. · stem: saṃsāra- · a-stem · DM 1.36
+कर्म | karma | action, accumulated deeds | prathamā/dvitīyā | nom./acc. sg. · n. · stem: karman- · an-stem · KKS 317-345
+धर्म | dharma | righteousness, duty, cosmic law | headword | m. · stem: dharma- · a-stem · from √dhṛ · DM passim
+अधर्म | adharma | unrighteousness | headword | m. · stem: adharma- · a-stem · DM passim
+चित् / चिति | cit / citi | consciousness | f. · LS 4 (cidagnikusambhūtā)
+चेतना / चैतन्य | cetanā / caitanya | consciousness, awareness | f./n. · DM 5.14
+चिद्रूपिणी | cidrūpiṇī | whose form is consciousness | headword | f. · stem: cidrūpiṇī- · ī-stem · LS passim
+चिन्मयी | cinmayī | consisting of consciousness | headword | f. · stem: cinmayī- · ī-stem · LS 251
+जीव | jīva | individual soul | headword | m. · stem: jīva- · a-stem · VS passim
+अहंकार | ahaṃkāra | ego-sense | headword | m. · stem: ahaṃkāra- · a-stem · LS 162
+अन्तःकरण | antaḥkaraṇa | inner instrument (mind) | headword | n. · stem: antaḥkaraṇa- · a-stem · LS passim
+मनस् | manas | mind | headword | n. · stem: manas- · as-stem · LS passim
+शक्ति | śakti | power, energy, goddess | headword | f. · stem: śakti- · i-stem · from √śak · DM 5.25
+पराशक्ति | parāśakti | supreme power | headword | f. · stem: parāśakti- · i-stem · LS passim
+इच्छाशक्ति | icchāśakti | will-power | headword | f. · stem: icchāśakti- · i-stem · LS passim
+ज्ञानशक्ति | jñānaśakti | knowledge-power | headword | f. · stem: jñānaśakti- · i-stem · LS passim
+क्रियाशक्ति | kriyāśakti | action-power | headword | f. · stem: kriyāśakti- · i-stem · LS passim
+कुण्डलिनी | kuṇḍalinī | the coiled one (serpent energy) | headword | f. · stem: kuṇḍalinī- · ī-stem · LS 110
+षट्चक्र | ṣaṭcakra | six energy centers | headword | n. · stem: ṣaṭcakra- · a-stem · KS passim
+मूलाधार | mūlādhāra | root center | headword | n. · stem: mūlādhāra- · a-stem · LS passim
+सहस्रार | sahasrāra | thousand-petaled (crown) | headword | n. · stem: sahasrāra- · a-stem · LS passim
+श्रीविद्या | śrīvidyā | the auspicious knowledge (15/16-syllable mantra) | LS 585
+त्रिकोण | trikoṇa | triangle (of Śrīcakra) | KS passim; LS passim
+बिन्दु | bindu | point (center of Śrīcakra) | LS passim; KS passim
+नवचक्र | navacakra | nine enclosures (of Śrīcakra) | KS passim
+पञ्चदशी | pañcadaśī | fifteen-syllabled (mantra) | KS passim
+षोडशी | ṣoḍaśī | sixteen-syllabled (mantra) | KS passim
+कादि | kādi | beginning with ka (Kādi school) | KKS 586, 606-609
+हादि | hādi | beginning with ha (Hādi school) | LS passim
+कामकला | kāmakalā | desire-digit | KKS 583; LS passim
+
+# V14 · Animals & mounts — DM   @stage 1
+सिंह / केसरिन् / केशरी | siṃha / kesarin / keśarī | lion | Devī (DM, LS) · DM 2.29
+महिष | mahiṣa | buffalo | Mahiṣāsura's form; also Yama · DM 2.3
+गरुड | garuḍa | eagle/divine bird | Viṣṇu · VS passim
+हंस | haṃsa | swan/goose | Brahmā · VS passim
+वृषभ / नन्दिन् | vṛṣabha / nandin | bull | Śiva · KS passim
+मयूर | mayūra | peacock | Kumāra/Skanda · DM 8.15
+मूषक | mūṣaka | mouse | Gaṇeśa · —
+गज / हस्तिन् / इभ / कुञ्जर / करिन् / द्विप | gaja / hastin / ibha / kuñjara / karin / dvipa | elephant | m. · DM 2.52
+ऐरावत | airāvata | Indra's elephant | headword | m. · stem: airāvata- · a-stem · DM 2.20
+कुम्भ | kumbha | forehead-dome of elephant | headword | m. · stem: kumbha- · a-stem · KS passim
+मातङ्ग | mātaṅga | elephant (also: Mātaṅgī goddess) | headword | m. · stem: mātaṅga- · a-stem · KS passim
+अश्व / हय / तुरग / वाजिन् | aśva / haya / turaga / vājin | horse | m. · DM 2.52
+सर्प / नाग / अहि / भुजङ्ग | sarpa / nāga / ahi / bhujaṅga | serpent | m. · VS passim
+अनन्त / शेष | ananta / śeṣa | the infinite serpent-bed | headword | m. · stem: ananta- · a-stem · VS 659
+नागयज्ञोपवीत | nāgayajñopavīta | serpent as sacred thread | headword | adj. · stem: nāgayajñopavīta- · a-stem · KS passim
+मृग | mṛga | deer, wild animal | headword | m. · stem: mṛga- · a-stem · DM passim
+कुरङ्ग / हरिण | kuraṅga / hariṇa | deer | headword | m. · stem: kuraṅga- · a-stem · KKS 764
+श्वन् / कुक्कुर | śvan / kukkura | dog | m. · KKS 871-873 (kukkura)
+गो / धेनु | go / dhenu | cow | f. · LS passim
+कूर्म | kūrma | tortoise | headword | m. · stem: kūrma- · a-stem · KKS 883
+वराह | varāha | boar | headword | m. · stem: varāha- · a-stem · DM 8.18
+व्याघ्र | vyāghra | tiger | headword | m. · stem: vyāghra- · a-stem · KS passim
+कोकिल | kokila | cuckoo | headword | f. · stem: kokila- · a-stem · KKS 959
+कीर / शुक | kīra / śuka | parrot | headword | m. · stem: kīra- · a-stem · KS passim
+हंसी | haṃsī | female swan | headword | f. · stem: haṃsī- · ī-stem · KS passim
+चामरी | cāmarī | yak | headword | f. · stem: cāmarī- · ī-stem · KS passim
+मीन / मत्स्य | mīna / matsya | fish | headword | m. · stem: mīna- · a-stem · LS 18
+शरभ | śarabha | mythical eight-legged beast | headword | m. · stem: śarabha- · a-stem · KS passim
+रथ | ratha | chariot | headword | m. · stem: ratha- · a-stem · DM 2.52
+सारथि | sārathi | charioteer | headword | m. · stem: sārathi- · i-stem · DM 2.53
+वाहन | vāhana | mount, vehicle | headword | n. · stem: vāhana- · a-stem · from √vah · DM 6.15
+सिंहवाहिनी | siṃhavāhinī | she whose vehicle is the lion | headword | f. · stem: siṃhavāhinī- · ī-stem · DM 2.29
+वृषवाहिनी | vṛṣavāhinī | she whose vehicle is the bull | headword | f. · stem: vṛṣavāhinī- · ī-stem · KS passim
+चक्रराजरथ | cakrarājaratha | chariot of Śrīcakra | headword | m. · stem: cakrarājaratha- · a-stem · LS 65
+गेयचक्ररथ | geyacakraratha | chariot of Geyacakra | headword | m. · stem: geyacakraratha- · a-stem · LS 66
+किरिचक्ररथ | kiricakraratha | chariot of Kiricakra | headword | m. · stem: kiricakraratha- · a-stem · LS 67
+
+# V15 · Indeclinables & particles — DM   @stage 12
+च | ca | and | indeclinable · all texts, highest frequency
+तु | tu | but, however | indeclinable · DM passim
+वा | vā | or | indeclinable · DM passim
+अथवा | athavā | or else | indeclinable · DM passim
+अपि | api | also, even | indeclinable · DM passim
+अथ | atha | now, then (opening particle) | indeclinable · DM passim
+तथा | tathā | so, likewise | indeclinable · DM passim (paired with yathā)
+एव | eva | indeed, only, precisely | indeclinable · DM throughout
+हि | hi | indeed, for (causal) | indeclinable · DM passim
+खलु | khalu | indeed, certainly | indeclinable · DM passim
+नूनम् | nūnam | certainly, surely | indeclinable · DM passim
+स्म | sma | (emphatic past particle) | indeclinable · DM passim
+वै | vai | truly, indeed | indeclinable · DM passim
+न | na | not | indeclinable · DM throughout
+मा | mā | don't (prohibitive) | indeclinable · DM passim
+न... न | na... na | neither... nor | indeclinable · DM passim
+इव | iva | like, as if (simile marker) | indeclinable · DM 9.9; LS passim
+यथा | yathā | as, just as | indeclinable · DM passim
+समम् | samam | equally, like | indeclinable · DM passim
+ततः | tataḥ | then, thereupon | indeclinable · DM most frequent connector
+तदा | tadā | then, at that time | indeclinable · DM passim
+यदा | yadā | when | indeclinable · DM passim
+इदानीम् | idānīm | now | indeclinable · DM passim
+पुरा | purā | formerly | indeclinable · DM 2.3
+पूर्वम् | pūrvam | before | indeclinable · DM passim
+पश्चात् | paścāt | afterward | indeclinable · DM passim
+सदा / नित्यम् / सर्वदा | sadā / nityam / sarvadā | always | indeclinable · DM passim; KKS passim; KS passim
+मुहुर् मुहुर् | muhur muhur | again and again | indeclinable · DM passim
+पुनर् | punar | again | indeclinable · DM passim
+शीघ्रम् / द्रुतम् / आशु / त्वरितम् / लघु | śīghram / drutam / āśu / tvaritam / laghu | quickly | indeclinable · DM 6.7, 6.22
+सहसा | sahasā | suddenly | indeclinable · DM passim
+चिरात् / चिरम् | cirāt / ciram | for a long time | indeclinable · DM passim
+अत्र | atra | here | indeclinable · DM passim
+तत्र | tatra | there | indeclinable · DM passim
+यत्र | yatra | where | indeclinable · DM passim
+सर्वत्र | sarvatra | everywhere | indeclinable · DM passim
+समन्तात् | samantāt | all around | indeclinable · DM passim
+उपरि | upari | above | indeclinable · DM passim
+अधः | adhaḥ | below | indeclinable · DM passim
+अग्रतः | agrataḥ | in front | indeclinable · DM 9.7
+पृष्ठतः | pṛṣṭhataḥ | behind | indeclinable · DM 9.7
+दूरात् / दूरतः | dūrāt / dūrataḥ | from afar | indeclinable · DM passim
+अन्तरे | antare | within, between | indeclinable · DM passim
+किम् | kim | what? why? | prathamā/dvitīyā | nom./acc. sg. · n. · stem: kim- · interrogative pronoun
+कथम् | katham | how? | indeclinable · DM 1.31
+कुतः | kutaḥ | whence? why? | indeclinable · DM 1.31
+कः / का / किम् | kaḥ / kā / kim | who? which? what? | indeclinable · DM passim
+क्वचित् | kvacit | somewhere, sometimes | indeclinable · DM passim
+इति | iti | thus (closes quotation/speech) | indeclinable · DM throughout
+एवम् | evam | thus, in this way | indeclinable · DM passim
+स्वयम् | svayam | by oneself | indeclinable · DM 5.88 (svayameva)
+बलात् | balāt | forcibly | indeclinable · DM 6.4, 6.9
+संख्ये | saṃkhye | in battle (loc. of saṃkhyā) | saptamī | loc. sg. · f. · stem: saṃkhyā- · ā-stem · DM passim
+अहो | aho | ah! (exclamation) | indeclinable · DM passim
+हन्त | hanta | alas! come! | indeclinable · DM passim
+परम् | param | but, however; beyond | indeclinable · DM passim
+प्रभृति | prabhṛti | from (starting from) | indeclinable · DM passim
+प्रायः | prāyaḥ | mostly | indeclinable · DM passim
+किमु / किं पुनर् | kimu / kiṃ punar | how much more / what then | indeclinable · DM passim
+विना | vinā | without | indeclinable · DM passim
+सह | saha | with, together | indeclinable · DM passim
+
+# V16 · Upasargas & suffixes   @stage 9
+प्र- | pra- | forward, intensely, forth | upasarga · prahāra (strike), praṇamya (prostrate), prabodhana (awakening) · DM 1.73
+वि- | vi- | apart, away, intensely | upasarga · vicchinna (severed), vināśa (destruction), vimukta (freed) · DM 3.18
+सम्- | sam- | together, completely | upasarga · saṃhāra (annihilation), saṃgrāma (battle), saṃpūjya (worshipping fully) · DM 3.26
+उप- | upa- | near, toward, sub- | upasarga · upāgamya (having approached), upāsana (worship) · DM passim
+आ- | ā- | toward, until | upasarga · āgata (arrived), ākarṇya (hearing), ākṛṣya (dragging) · DM 6.2
+नि- | ni- | down, into, completely | upasarga · nipāta (downfall), nihata (slain), nilaya (abode) · DM passim
+निस्- / निर्- | nis- / nir- | out, without, away | upasarga · nirgata (gone out), nirghāta (thunder), nirañjana (unstained) · DM 9.26
+अभि- | abhi- | toward, against, upon | upasarga · abhyadhāvat (rushed toward), abhiṣeka (consecration) · DM 6.13
+परि- | pari- | around, fully | upasarga · parivṛta (surrounded), parikṣipta (encircled) · DM passim
+अनु- | anu- | after, along, according to | upasarga · anugraha (grace), anucara (follower) · LS 272
+अति- | ati- | beyond, exceedingly | upasarga · ativīrya (of great valor), atimatta (extremely intoxicated) · DM 2.57
+उद्- / उत्- | ud- / ut- | up, out | upasarga · utthitā (risen), udgata (arisen), unmatta (mad) · DM passim
+अप- | apa- | away, off | upasarga · apavarga (liberation), apamṛtyu (untimely death) · DM 13.5
+दुर्- / दुष्- | dur- / duṣ- | bad, difficult | upasarga · durgā (inaccessible), durlabha (hard to get), durjaya (hard to conquer) · DM 4.11
+सु- | su- | good, well, easy | upasarga · sundara (beautiful), sulabha (easy to attain), sukha (happiness) · LS passim
+-आ | -ā | basic feminine | suffix · durgā, kālī, ambikā, śivā · all texts
+-इनी | -inī | possessive feminine | suffix · yoginī, kāminī, vāsinī, dhāriṇī · LS/KKS/KS passim
+-इका | -ikā | diminutive/descriptive feminine | suffix · kālikā, caṇḍikā, nāyikā · DM passim
+-इणी | -iṇī | agent feminine | suffix · pāśinī, śūlinī, cakriṇī · KS passim
+-वती | -vatī | possessing (feminine) | suffix · kalavatī, bhagavatī, guṇavatī · KKS 6
+-मयी | -mayī | made of, consisting of (f.) | suffix · cinmayī, sarvamayī, ānandamayī · LS 251
+-रूपिणी | -rūpiṇī | having the form of (f.) | suffix · caitanyarūpiṇī, kāmarūpiṇī · DM 5.14
+-स्वरूपिणी | -svarūpiṇī | whose essential nature is (f.) | suffix · mantrarūpiṇī, sarvasvarūpiṇī · KS passim
+-परायणा | -parāyaṇā | devoted to (f.) | suffix · kāmaparāyaṇā, dharmaparāyaṇā · KKS passim
+-प्रिया | -priyā | fond of (f.) | suffix · puṣpapriyā, madhupriyā · KKS passim
+-स्था / -स्थिता | -sthā / -sthitā | situated in (f.) | suffix · bindumaṇḍalavāsinī, padmasthā · LS passim
+-दा / -दायिनी | -dā / -dāyinī | giving (f.) | suffix · varadā, abhayapradā, siddhidāyinī · LS passim
+-त | -ta | past passive participle | suffix · hata (slain), kṛta (done), stuta (praised) · all texts
+-तवत् | -tavat | one who has done | suffix · kṛtavān, dṛṣṭavān · DM passim
+-मान | -māna | being done | suffix · stūyamāna (being praised) · DM 4.37
+-अत् / -अन्त् | -at / -ant | doing | suffix · gacchat, kurvat, jayat · DM passim
+-तृ / -त्र् | -tṛ / -tr | doer | suffix · kartṛ, hartṛ, goptrī · LS 266
+-त्वा | -tvā | having done | suffix · hatvā, dṛṣṭvā, śrutvā, gatvā · DM throughout
+-य | -ya | having done (w/ prefix) | suffix · praṇamya, ākarṇya, samīkṣya · DM throughout
+-अन | -ana | the act of | suffix · vandana, tarpaṇa, pūjana · KKS passim
+-इन् | -in | having, possessing | suffix · tejasvín, tapasvin, yogin · VS passim
+-एय | -eya | son/descendant of | suffix · kauṇḍinya, kātyāyanī, kaunteya · KKS 985
+-इक | -ika | belonging to, connected with | suffix · vaidika, tāntrika, sāttvikaḥ · LS passim
+-त्व | -tva | -ness, -ship | suffix · kavitva, devatva, mahattva · KKS 150+
+-ता | -tā | -ness | suffix · devatā, mahimatā · VS passim
+
+# V17 · Compounds broken down — LS · DM   @stage 11
+महिषासुर-मर्दनी | mahiṣāsura-mardanī | mahiṣāsuraṃ mardayati iti | crusher of the buffalo-demon · DM 3.44
+दुर्गार्ति-नाशिनी | durgārti-nāśinī | durgām ārtim nāśayati iti | destroyer of dire suffering · LS
+त्रिशूल-धारिणी | triśūla-dhāriṇī | triśūlaṃ dhārayati iti | wielder of the trident · DM passim
+सिंह-वाहिनी | siṃha-vāhinī | siṃho vāhanam yasyāḥ sā | she whose vehicle is the lion · DM 2.29
+सर्वदैत्य-कुलान्तक | sarvadaitya-kulāntaka | sarveṣāṃ daityakulānāṃ antakaḥ | ender of all demon clans · DM 11.14
+सर्वदेव-शरीरजा | sarvadeva-śarīrajā | sarveṣāṃ devānāṃ śarīrebhyaḥ jātā | born from all gods' bodies · DM 2.10
+केश-आकर्षण-विह्वला | keśa-ākarṣaṇa-vihvalā | keśānām ākarṣaṇena vihvalā | distraught from hair-dragging · DM 6.4
+कपाल-माल्यम् | kapāla-mālyam | kapālānāṃ mālyam | garland of skulls · KS passim
+चिन्तामणि-गृह | cintāmaṇi-gṛha | cintāmaṇeḥ gṛham | wish-jewel palace · LS 57
+पुष्प-वृष्टि | puṣpa-vṛṣṭi | puṣpāṇāṃ vṛṣṭiḥ | rain of flowers · DM 4.30
+शर-वृष्टि | śara-vṛṣṭi | śarāṇāṃ vṛṣṭiḥ | rain of arrows · DM 3.7
+फल-श्रुति | phala-śruti | phalasya śrutiḥ | hearing of the fruit/merit · DM Ch.12
+महा-माया | mahā-māyā | mahātī ca sā māyā ca | the great illusion · DM 1.40
+महा-देवी | mahā-devī | mahātī ca sā devī ca | the great goddess · DM passim
+महा-विद्या | mahā-vidyā | mahātī ca sā vidyā ca | the great knowledge · DM 1.55
+महा-काली | mahā-kālī | mahātī ca sā kālī ca | the great Kālī · DM Ch.1
+पर-ब्रह्मन् | para-brahman | paraṃ ca tat brahma ca | the supreme absolute · LS passim
+सद्-गुरु | sad-guru | sat ca asau guruḥ ca | the true teacher · LS passim
+नील-सरस्वती | nīla-sarasvatī | nīlā ca sā sarasvatī ca | the blue Sarasvatī · KS passim
+रक्तबीज | raktabīja | raktaṃ bījaṃ yasya saḥ | he whose seed is blood · DM 8.40
+धूम्र-लोचन | dhūmra-locana | dhūmre locane yasya saḥ | he whose eyes are smoky · DM 6.3
+अष्टादश-भुजा | aṣṭādaśa-bhujā | aṣṭādaśa bhujāḥ yasyāḥ sā | she of eighteen arms · DM 2.12
+चतुर्-भुजा | catur-bhujā | catvāraḥ bhujāḥ yasyāḥ sā | she of four arms · LS 7
+त्रि-नेत्रा / त्रि-लोचना | tri-netrā / tri-locanā | trīṇi netrāṇi yasyāḥ sā | she of three eyes · DM 2.13
+पद्म-नयना | padma-nayanā | padme iva nayane yasyāḥ sā | she whose eyes are like lotuses · LS 207
+पीनोन्नत-स्तनी | pīnonnata-stanī | pīnau unnatau stanau yasyāḥ sā | she of full upraised breasts · KS 127
+मुक्त-केशी | mukta-keśī | muktāḥ keśāḥ yasyāḥ sā | she of loose/unbound hair · KS 101
+दिगम्बरा | digambarā | diśaḥ eva ambaraṃ yasyāḥ sā | she whose garment is the sky (naked) · KS 128
+नृमुण्ड-स्रग्विणी | nṛmuṇḍa-sragviṇī | nṛmuṇḍānāṃ srak yasyāḥ sā | she garlanded with human heads · KS passim
+प्रस्फुरिताधर | prasphuritādhara | prasphuritaḥ adharaḥ yasya saḥ | he whose lip quivers · DM 6.21
+देवासुर | devāsura | devāḥ ca asurāḥ ca | gods and demons · DM 2.3
+शुम्भ-निशुम्भ | śumbha-niśumbha | śumbhaḥ ca niśumbhaḥ ca | Śumbha and Niśumbha · DM 5.4+
+चण्ड-मुण्ड | caṇḍa-muṇḍa | caṇḍaḥ ca muṇḍaḥ ca | Caṇḍa and Muṇḍa · DM 7.1
+मधु-कैटभ | madhu-kaiṭabha | madhuḥ ca kaiṭabhaḥ ca | Madhu and Kaiṭabha · DM 1.72
+भोग-स्वर्ग-अपवर्ग | bhoga-svarga-apavarga | bhogaḥ ca svargaḥ ca apavargaḥ ca | enjoyment, heaven, and liberation · DM 13.5
+इच्छा-ज्ञान-क्रिया-शक्ति | icchā-jñāna-kriyā-śakti | icchā ca jñānaṃ ca kriyā ca | will, knowledge, and action powers · LS passim
+खण्डशः | khaṇḍaśaḥ | into pieces | DM passim
+शतशः | śataśaḥ | by hundreds | DM 9.27
+सहस्रशः | sahasraśaḥ | by thousands | DM 8.45, 9.27
+यथाविधि | yathāvidhi | according to rule | DM passim
+समन्ततः | samantataḥ | all around | DM passim
+सर्वमङ्गलमाङ्गल्ये | sarvamaṅgalamāṅgalye | O auspicious of all auspicious things | sambodhana | voc. sg. · f. · stem: sarvamaṅgalamāṅgalyā- · ā-stem · DM 11.10
+शिवे सर्वार्थसाधिके | śive sarvārthasādhike | O auspicious one, accomplisher of all goals | sambodhana | voc. sg. · f. · stem: śivā-, sarvārthasādhikā- · ā-stem · DM 11.10
+शरण्ये त्र्यम्बके गौरि | śaraṇye tryambake gauri | O refuge, three-eyed Gaurī | sambodhana | voc. sg. · f. · stem: śaraṇyā-, tryambakā-, gaurī- · ā-/ī-stem · DM 11.10
+नारायणि नमोऽस्तु ते | nārāyaṇi namo'stu te | O Nārāyaṇī, salutations to you | DM 11.12+ (refrain)
+
+# V18 · Refrains & formulae — DM · LS   @stage 14
+ऋषिर् उवाच | ṛṣir uvāca | the sage said | every chapter (narrator switch)
+राजोवाच | rājovāca | the king said | DM 1.3, 9.1, 13.1
+देव्युवाच | devyuvāca | the Goddess said | DM 5.116, 6.10, 12.1
+देवा ऊचुः | devā ūcuḥ | the gods said | DM 4.1, 5.9
+मार्कण्डेय उवाच | mārkaṇḍeya uvāca | Mārkaṇḍeya said | DM 13.6, 13.26
+ततः | tataḥ | then, thereupon | most common connector (~100 times)
+इत्य् उक्त्वा | ity uktvā | having said thus | speech→action transition
+इति श्रुत्वा | iti śrutvā | having heard thus | hearing→response
+एवं स्तुत्वा | evaṃ stutvā | having praised thus | stuti→result
+तान्/तां दृष्ट्वा | tān/tāṃ dṛṣṭvā | having seen them/her | vision→action
+ततो देवी | tato devī | then the Goddess | action pivot
+कोपाविष्टा | kopāviṣṭā | seized by anger | DM 3.26
+संक्रुद्ध | saṃkruddha | thoroughly enraged | DM 9.17
+कोपाध्मता | kopādhmatā | swollen with rage | DM 8.4
+प्रस्फुरिताधर | prasphuritādhara | with quivering lip | DM 6.21
+अमर्षपूरितः | amarṣapūritaḥ | filled with indignation | DM 6.2
+या देवी सर्वभूतेषु X-रूपेण संस्थिता | yā devī sarvabhūteṣu X-rūpeṇa saṃsthitā | She who in all beings is established as X | 
+नमः तस्यै नमः तस्यै नमः तस्यै नमो नमः | namaḥ tasyai namaḥ tasyai namaḥ tasyai namo namaḥ | Salutation to her, to her, to her — salutations! | 
+नारायणि नमोऽस्तु ते | nārāyaṇi namo'stu te | O Nārāyaṇī, salutations to you | 
+इति श्रीमार्कण्डेयपुराणे सावर्णिके मन्वन्तरे देवीमाहात्म्ये | iti śrīmārkaṇḍeyapurāṇe sāvarṇike manvantare devīmāhātmye | Thus in the Śrī Mārkaṇḍeya Purāṇa, in the Sāvarṇika Manvantara, in the Devī Māhātmya | 
+X-वधो नाम Y-ओऽध्यायः | X-vadho nāma Y-o'dhyāyaḥ | named "the slaying of X", the Y-th chapter | 
+ओं X-आय/ऐ नमः | oṃ X-āya/ai namaḥ | Oṃ, salutation to X | VS/LS/KKS/KS throughout
+ओं X-आय नमः | oṃ X-āya namaḥ | (masculine dative) | caturthī | dat. sg. · m. · a-stem · VS throughout
+ओं X-यै नमः | oṃ X-yai namaḥ | (feminine dative) | caturthī | dat. sg. · f. · ā-/ī-stem · LS/KKS/KS throughout
+श्री भगवान् उवाच | śrī bhagavān uvāca | the blessed Lord said | 
+यः सर्वत्रानवद्यात्मा | yaḥ sarvatrānavadyātmā | he who is the blameless self everywhere | 
+हयग्रीव उवाच | hayagrīva uvāca | Hayagrīva said | 
+अगस्त्याय वरं दत्त्वा | agastyāya varaṃ dattvā | having given a boon to Agastya | 
+ओं नमः शिवाय | oṃ namaḥ śivāya | Oṃ, salutation to Śiva | KS/KKS contexts
+ओं नमो नारायणाय | oṃ namo nārāyaṇāya | Oṃ, salutation to Nārāyaṇa | VS context
+ओं ऐं ह्रीं क्लीं | oṃ aiṃ hrīṃ klīṃ | Bāla mantra seed | LS/KKS contexts
+जयतु जयतु देवी | jayatu jayatu devī | victory, victory to the Goddess | DM passim
+स्वस्ति | svasti | well-being, auspiciousness | KS passim; VS passim
+
+# V19 · Numbers, time, space — DM   @stage 1
+एक | eka | 1 | ekārṇava (one cosmic ocean) · DM 1.64
+द्वि / द्वितीय | dvi / dvitīya | 2 | dvitīyo'dhyāyaḥ; dvijā (twice-born) · DM colophons
+त्रि | tri | 3 | trinetrā, trailokya, triśūla, trimūrti · DM passim
+चतुर् | catur | 4 | caturbhujā (four-armed) · LS 7
+पञ्च | pañca | 5 | prathamā/dvitīyā | nom./acc. pl. · stem: pañcan- · numeral
+षष् | ṣaṣ | 6 | ṣaṭcakra (six centers) · LS passim
+सप्त | sapta | 7 | prathamā/dvitīyā | nom./acc. pl. · stem: saptan- · numeral
+अष्ट | aṣṭa | 8 | prathamā/dvitīyā | nom./acc. pl. · stem: aṣṭan- · numeral
+नव | nava | 9 | prathamā/dvitīyā | nom./acc. pl. · stem: navan- · numeral
+दश | daśa | 10 | prathamā/dvitīyā | nom./acc. pl. · stem: daśan- · numeral
+एकादश | ekādaśa | 11 | ekādaśo'dhyāyaḥ · DM colophon
+द्वादश | dvādaśa | 12 | dvādaśo'dhyāyaḥ · DM colophon
+त्रयोदश | trayodaśa | 13 | trayodaśo'dhyāyaḥ · DM colophon
+षोडश | ṣoḍaśa | 16 | ṣoḍaśī (16-syllable mantra) · KS passim
+अष्टादश | aṣṭādaśa | 18 | aṣṭādaśabhujā (18-armed) · DM 2.12
+शत | śata | 100 | śatākṣī; pūrṇam abdaśatam · DM 2.3
+सहस्र | sahasra | 1,000 | sahasranāma; sahasraśas · all texts
+अयुत | ayuta | 10,000 | bāhūnām ayutam (10,000 arms) · DM 9.30
+लक्ष | lakṣa | 100,000 | — · —
+कोटि | koṭi | 10,000,000 | kalākōṭi; koṭisūryasamaprabhā · KKS 14-15
+सप्तशती | saptaśatī | 700 | the DM itself (700 verses) · DM title
+षष्टि सहस्र | ṣaṣṭi sahasra | 60,000 | ṣaṣṭyā sahasrāṇām (60,000 demons) · DM 6.7
+प्रथम | prathama | first | DM: prathamo'dhyāyaḥ
+द्वितीय | dvitīya | second | DM: dvitīyo'dhyāyaḥ
+तृतीय | tṛtīya | third | DM colophon
+चतुर्थ | caturtha | fourth | DM colophon
+पञ्चम | pañcama | fifth | DM colophon
+द्विधा | dvidhā | in two | DM 9.13
+त्रिधा | tridhā | in three | DM passim
+शतशः | śataśaḥ | by hundreds | DM 9.27
+सहस्रशः | sahasraśaḥ | by thousands | DM 8.45, 9.27
+कोटिशः | koṭiśaḥ | by millions | KS passim
+काल | kāla | time; also death | headword | m. · stem: kāla- · a-stem · DM 1.78
+युग | yuga | cosmic age | headword | n. · stem: yuga- · a-stem · DM passim
+कल्प | kalpa | cosmic cycle (day of Brahmā) | headword | m. · stem: kalpa- · a-stem · KKS 367+
+मन्वन्तर | manvantara | Manu-period | headword | n. · stem: manvantara- · a-stem · DM colophons (sāvarṇike manvantare)
+संवत्सर / वर्ष / अब्द | saṃvatsara / varṣa / abda | year | m./n./m. · DM 2.3 (abdaśatam)
+मास | māsa | month | headword | m. · stem: māsa- · a-stem · DM passim
+पक्ष | pakṣa | fortnight (bright/dark) | headword | m. · stem: pakṣa- · a-stem · DM passim
+दिन / अहर् / दिवस | dina / ahar / divasa | day | n./n./m. · DM passim
+रात्रि | rātri | night | headword | f. · stem: rātri- · i-stem · DM 1.78 (kālarātri)
+ऋतु | ṛtu | season | headword | m. · stem: ṛtu- · u-stem · DM passim
+क्षण / मुहूर्त / निमेष | kṣaṇa / muhūrta / nimeṣa | moment | headword | m. · stem: kṣaṇa- · a-stem · DM 6.19
+सन्ध्या | sandhyā | twilight junction | headword | f. · stem: sandhyā- · ā-stem · LS passim
+प्रलय | pralaya | cosmic dissolution | headword | m. · stem: pralaya- · a-stem · VS passim
+सृष्टि | sṛṣṭi | creation-time | headword | f. · stem: sṛṣṭi- · i-stem · LS 264
+स्थिति | sthiti | maintenance-time | headword | f. · stem: sthiti- · i-stem · LS 265
+मध्य / मध्यस्थ | madhya / madhyastha | middle / situated in the middle | n./adj. · KKS 43+
+निलय / आलय | nilaya / ālaya | abode, dwelling | headword | m. · stem: nilaya- · a-stem · KKS 31+
+स्थान | sthāna | place, station | headword | n. · stem: sthāna- · a-stem · KKS passim
+गृह / गेह / भवन | gṛha / geha / bhavana | house, dwelling | headword | n. · stem: gṛha- · a-stem · KKS 75+
+क्षेत्र | kṣetra | field, sacred place | headword | n. · stem: kṣetra- · a-stem · LS 317
+तीर्थ | tīrtha | sacred ford/place | headword | n. · stem: tīrtha- · a-stem · VS passim
+पीठ | pīṭha | seat, sacred seat | headword | n. · stem: pīṭha- · a-stem · LS passim
+सिंहासन | siṃhāsana | lion-throne | headword | n. · stem: siṃhāsana- · a-stem · LS 3
+आसन | āsana | seat | headword | n. · stem: āsana- · a-stem · KKS 129
+वास | vāsa | dwelling | headword | m. · stem: vāsa- · a-stem · KKS passim
+
+# V20 · Sacred geography & plants — DM · LS   @stage 1
+काशी | kāśī | Vārāṇasī | KKS 610; KS passim
+काञ्ची | kāñcī | Kāñcīpuram | KKS 501, 611
+कामरूप | kāmarūpa | Assam (Kāmākhyā region) | KKS 621, 628+, 659+
+काम्पिल्य | kāmpilya | ancient city | KKS 713
+केदार | kedāra | Kedārnāth | KKS 967-968
+केरळ | keraḷa | Kerala | KKS 964-966
+कोलापुर | kolāpura | Kolhapur | KKS 952-953
+काश्मीर | kāśmīra | Kashmir | KKS 657-658
+अवन्ती | avantī | Ujjain | KS passim
+मथुरा | mathurā | Mathurā | KS passim
+अयोध्या | ayodhyā | Ayodhyā | KS passim
+विन्ध्याचल | vindhyācala | Vindhya mountains | LS 318; KS passim
+श्मशान | śmaśāna | cremation ground | KS 1 (śmaśānakālikā)
+चिता | citā | funeral pyre | headword | f. · stem: citā- · ā-stem · KS passim
+गङ्गा | gaṅgā | Ganges | KS passim
+यमुना / कालिन्दी | yamunā / kālindī | Yamunā | KKS 688-689; KS passim
+कावेरी | kāverī | Kāverī | KKS 705-706
+मन्दाकिनी | mandākinī | celestial Ganges | KS passim
+सरस्वती | sarasvatī | Sarasvatī river | LS passim
+सिन्धु | sindhu | Indus | KS passim
+श्रीचक्र / श्रीयन्त्र | śrīcakra / śrīyantra | the sacred diagram | LS 56+ (cakrarājanilaya)
+चिन्तामणि | cintāmaṇi | wish-fulfilling jewel | LS 57; KS passim
+कल्पलता / कल्पवृक्ष | kalpalatā / kalpavṛkṣa | wish-fulfilling vine/tree | KKS 367-369, 526-530; KS passim
+कामधेनु | kāmadhenu | wish-fulfilling cow | KKS 637; KS passim
+पारिजात | pārijāta | celestial tree | LS passim
+अमृत | amṛta | nectar of immortality | headword | n. · stem: amṛta- · a-stem · VS passim
+सुधा | sudhā | nectar | headword | f. · stem: sudhā- · ā-stem · LS 61
+पीठ | pīṭha | sacred seat (śākta) | headword | n. · stem: pīṭha- · a-stem · LS passim
+यज्ञोपवीत | yajñopavīta | sacred thread | headword | n. · stem: yajñopavīta- · a-stem · KS passim
+कपाल | kapāla | skull-bowl | headword | n. · stem: kapāla- · a-stem · KKS 137+
+रुद्राक्ष | rudrākṣa | Rudra's eye (prayer bead) | headword | m. · stem: rudrākṣa- · a-stem · KS passim
+कलश | kalaśa | sacred pot | headword | m. · stem: kalaśa- · a-stem · KKS 520
+दीप | dīpa | sacred lamp | headword | m. · stem: dīpa- · a-stem · KKS 140
+पद्म / कमल / अरविन्द | padma / kamala / aravinda | lotus | LS passim; KKS passim; VS passim
+कदम्ब | kadamba | kadamba (Neolamarckia cadamba) | LS 60; KKS 196-205
+कदली | kadalī | plantain | KKS 187-195
+करवीर | karavīra | oleander | KKS 512-514
+करञ्ज | karañja | Indian beech (Pongamia) | KKS 111-115
+केतकी | ketakī | screw-pine (Pandanus) | KKS 929-930
+कुङ्कुम | kuṅkuma | saffron (Crocus) | KKS 747, 839-842
+कर्पूर | karpūra | camphor (Cinnamomum camphora) | KKS 531-537
+कस्तूरी | kastūrī | musk | KKS 225-280
+चन्दन | candana | sandalwood | KS passim
+तुलसी | tulasī | sacred basil | KS passim
+बिल्व | bilva | wood-apple (for Śiva) | —
+दूर्वा | dūrvā | sacred grass | —
+कुश | kuśa | darbha grass | KKS 759
+कुन्द | kunda | jasmine | KKS 751-753
+चम्पक | campaka | Champaka (Magnolia) | LS 12
+पुण्णाग | puṇṇāga | Calophyllum | LS 12
+अशोक | aśoka | Saraca asoca | LS 12
+सौगन्धिक | saugandhika | fragrant lotus | LS 12
+किंशुक | kiṃśuka | flame of the forest (Butea) | KKS 921
+कालागुरु | kālāguru | aloe/agarwood | KKS 701-704
+पायसान्न | pāyasānna | milk-rice pudding | LS 401
+मोदक / मोदन | modaka / modana | sweet dumpling | LS passim
+मुद्गौदन | mudgaudana | mung-rice | LS passim
+दध्यन्न | dadhyanna | yogurt-rice | LS passim
+गुडान्न | guḍānna | jaggery-rice | LS passim
+हरिद्रान्न | haridrānna | turmeric-rice | LS passim
+मधु | madhu | honey | VS passim; KS passim
+घृत | ghṛta | clarified butter | VS passim
+मांस | māṃsa | meat (offered to Kālī) | KS passim
+एकार्णव | ekārṇava | the single primordial ocean | DM 1.64
+क्षीरसागर / क्षीरोद | kṣīrasāgara / kṣīroda | ocean of milk | VS passim
+नाभिकमल | nābhikamala | navel-lotus (of Viṣṇu) | DM 1.46
+कैलास | kailāsa | Śiva's mountain | LS passim
+वैकुण्ठ | vaikuṇṭha | Viṣṇu's abode | VS passim
+मणिद्वीप | maṇidvīpa | jewel-island (Devī's abode) | LS passim
+श्रीपुर / श्रीनगर | śrīpura / śrīnagara | the auspicious city | LS 56 (śrīmannagara)
+
+# V21 · Deity vibhakti — the eight baseplates   @stage 5
+रामः | rāmaḥ | Rāma — prathamā ekavacana | prathamā | nom. sg. · m. · stem: rāma- · a-stem
+रामौ | rāmau | Rāma — prathamā/dvitīyā/sambodhana dvivacana | prathamā/dvitīyā/sambodhana | nom./acc./voc. du. · m. · stem: rāma- · a-stem
+रामाः | rāmāḥ | Rāma — prathamā/sambodhana bahuvacana | prathamā/sambodhana | nom./voc. pl. · m. · stem: rāma- · a-stem
+रामम् | rāmam | Rāma — dvitīyā ekavacana | dvitīyā | acc. sg. · m. · stem: rāma- · a-stem
+रामान् | rāmān | Rāma — dvitīyā bahuvacana | dvitīyā | acc. pl. · m. · stem: rāma- · a-stem
+रामेण | rāmeṇa | Rāma — tṛtīyā ekavacana | tṛtīyā | instr. sg. · m. · stem: rāma- · a-stem
+रामाभ्याम् | rāmābhyām | Rāma — tṛtīyā/caturthī/pañcamī dvivacana | tṛtīyā/caturthī/pañcamī | instr./dat./abl. du. · m. · stem: rāma- · a-stem
+रामैः | rāmaiḥ | Rāma — tṛtīyā bahuvacana | tṛtīyā | instr. pl. · m. · stem: rāma- · a-stem
+रामाय | rāmāya | Rāma — caturthī ekavacana | caturthī | dat. sg. · m. · stem: rāma- · a-stem
+रामेभ्यः | rāmebhyaḥ | Rāma — caturthī/pañcamī bahuvacana | caturthī/pañcamī | dat./abl. pl. · m. · stem: rāma- · a-stem
+रामात् | rāmāt | Rāma — pañcamī ekavacana | pañcamī | abl. sg. · m. · stem: rāma- · a-stem
+रामस्य | rāmasya | Rāma — ṣaṣṭhī ekavacana | ṣaṣṭhī | gen. sg. · m. · stem: rāma- · a-stem
+रामयोः | rāmayoḥ | Rāma — ṣaṣṭhī/saptamī dvivacana | ṣaṣṭhī/saptamī | gen./loc. du. · m. · stem: rāma- · a-stem
+रामाणाम् | rāmāṇām | Rāma — ṣaṣṭhī bahuvacana | ṣaṣṭhī | gen. pl. · m. · stem: rāma- · a-stem
+रामे | rāme | Rāma — saptamī ekavacana | saptamī | loc. sg. · m. · stem: rāma- · a-stem
+रामेषु | rāmeṣu | Rāma — saptamī bahuvacana | saptamī | loc. pl. · m. · stem: rāma- · a-stem
+राम | rāma | Rāma — sambodhana ekavacana | sambodhana | voc. sg. · m. · stem: rāma- · a-stem
+दुर्गा | durgā | Durgā — prathamā ekavacana | prathamā | nom. sg. · f. · stem: durgā- · ā-stem
+दुर्गे | durge | Durgā — prathamā/dvitīyā/sambodhana dvivacana, sambodhana ekavacana | prathamā/dvitīyā/sambodhana | nom./acc./voc. du. · f. · sambodhana | voc. sg. · stem: durgā- · ā-stem
+दुर्गाः | durgāḥ | Durgā — prathamā/dvitīyā/sambodhana bahuvacana | prathamā/dvitīyā/sambodhana | nom./acc./voc. pl. · f. · stem: durgā- · ā-stem
+दुर्गाम् | durgām | Durgā — dvitīyā ekavacana | dvitīyā | acc. sg. · f. · stem: durgā- · ā-stem
+दुर्गया | durgayā | Durgā — tṛtīyā ekavacana | tṛtīyā | instr. sg. · f. · stem: durgā- · ā-stem
+दुर्गाभ्याम् | durgābhyām | Durgā — tṛtīyā/caturthī/pañcamī dvivacana | tṛtīyā/caturthī/pañcamī | instr./dat./abl. du. · f. · stem: durgā- · ā-stem
+दुर्गाभिः | durgābhiḥ | Durgā — tṛtīyā bahuvacana | tṛtīyā | instr. pl. · f. · stem: durgā- · ā-stem
+दुर्गायै | durgāyai | Durgā — caturthī ekavacana | caturthī | dat. sg. · f. · stem: durgā- · ā-stem
+दुर्गाभ्यः | durgābhyaḥ | Durgā — caturthī/pañcamī bahuvacana | caturthī/pañcamī | dat./abl. pl. · f. · stem: durgā- · ā-stem
+दुर्गायाः | durgāyāḥ | Durgā — pañcamī/ṣaṣṭhī ekavacana | pañcamī/ṣaṣṭhī | abl./gen. sg. · f. · stem: durgā- · ā-stem
+दुर्गयोः | durgayoḥ | Durgā — ṣaṣṭhī/saptamī dvivacana | ṣaṣṭhī/saptamī | gen./loc. du. · f. · stem: durgā- · ā-stem
+दुर्गाणाम् | durgāṇām | Durgā — ṣaṣṭhī bahuvacana | ṣaṣṭhī | gen. pl. · f. · stem: durgā- · ā-stem
+दुर्गायाम् | durgāyām | Durgā — saptamī ekavacana | saptamī | loc. sg. · f. · stem: durgā- · ā-stem
+दुर्गासु | durgāsu | Durgā — saptamī bahuvacana | saptamī | loc. pl. · f. · stem: durgā- · ā-stem
+हरिः | hariḥ | Hari — prathamā ekavacana | prathamā | nom. sg. · m. · stem: hari- · i-stem
+हरी | harī | Hari — prathamā/dvitīyā/sambodhana dvivacana | prathamā/dvitīyā/sambodhana | nom./acc./voc. du. · m. · stem: hari- · i-stem
+हरयः | harayaḥ | Hari — prathamā/sambodhana bahuvacana | prathamā/sambodhana | nom./voc. pl. · m. · stem: hari- · i-stem
+हरिम् | harim | Hari — dvitīyā ekavacana | dvitīyā | acc. sg. · m. · stem: hari- · i-stem
+हरीन् | harīn | Hari — dvitīyā bahuvacana | dvitīyā | acc. pl. · m. · stem: hari- · i-stem
+हरिणा | hariṇā | Hari — tṛtīyā ekavacana | tṛtīyā | instr. sg. · m. · stem: hari- · i-stem
+हरिभ्याम् | haribhyām | Hari — tṛtīyā/caturthī/pañcamī dvivacana | tṛtīyā/caturthī/pañcamī | instr./dat./abl. du. · m. · stem: hari- · i-stem
+हरिभिः | haribhiḥ | Hari — tṛtīyā bahuvacana | tṛtīyā | instr. pl. · m. · stem: hari- · i-stem
+हरये | haraye | Hari — caturthī ekavacana | caturthī | dat. sg. · m. · stem: hari- · i-stem
+हरिभ्यः | haribhyaḥ | Hari — caturthī/pañcamī bahuvacana | caturthī/pañcamī | dat./abl. pl. · m. · stem: hari- · i-stem
+हरेः | hareḥ | Hari — pañcamī/ṣaṣṭhī ekavacana | pañcamī/ṣaṣṭhī | abl./gen. sg. · m. · stem: hari- · i-stem
+हर्योः | haryoḥ | Hari — ṣaṣṭhī/saptamī dvivacana | ṣaṣṭhī/saptamī | gen./loc. du. · m. · stem: hari- · i-stem
+हरीणाम् | harīṇām | Hari — ṣaṣṭhī bahuvacana | ṣaṣṭhī | gen. pl. · m. · stem: hari- · i-stem
+हरौ | harau | Hari — saptamī ekavacana | saptamī | loc. sg. · m. · stem: hari- · i-stem
+हरिषु | hariṣu | Hari — saptamī bahuvacana | saptamī | loc. pl. · m. · stem: hari- · i-stem
+हरे | hare | Hari — sambodhana ekavacana | sambodhana | voc. sg. · m. · stem: hari- · i-stem
+लक्ष्मीः | lakṣmīḥ | Lakṣmī — prathamā ekavacana, dvitīyā bahuvacana | prathamā | nom. sg. · f. · dvitīyā | acc. pl. · stem: lakṣmī- · ī-stem
+लक्ष्म्यौ | lakṣmyau | Lakṣmī — prathamā/dvitīyā/sambodhana dvivacana | prathamā/dvitīyā/sambodhana | nom./acc./voc. du. · f. · stem: lakṣmī- · ī-stem
+लक्ष्म्यः | lakṣmyaḥ | Lakṣmī — prathamā/sambodhana bahuvacana | prathamā/sambodhana | nom./voc. pl. · f. · stem: lakṣmī- · ī-stem
+लक्ष्मीम् | lakṣmīm | Lakṣmī — dvitīyā ekavacana | dvitīyā | acc. sg. · f. · stem: lakṣmī- · ī-stem
+लक्ष्म्या | lakṣmyā | Lakṣmī — tṛtīyā ekavacana | tṛtīyā | instr. sg. · f. · stem: lakṣmī- · ī-stem
+लक्ष्मीभ्याम् | lakṣmībhyām | Lakṣmī — tṛtīyā/caturthī/pañcamī dvivacana | tṛtīyā/caturthī/pañcamī | instr./dat./abl. du. · f. · stem: lakṣmī- · ī-stem
+लक्ष्मीभिः | lakṣmībhiḥ | Lakṣmī — tṛtīyā bahuvacana | tṛtīyā | instr. pl. · f. · stem: lakṣmī- · ī-stem
+लक्ष्म्यै | lakṣmyai | Lakṣmī — caturthī ekavacana | caturthī | dat. sg. · f. · stem: lakṣmī- · ī-stem
+लक्ष्मीभ्यः | lakṣmībhyaḥ | Lakṣmī — caturthī/pañcamī bahuvacana | caturthī/pañcamī | dat./abl. pl. · f. · stem: lakṣmī- · ī-stem
+लक्ष्म्याः | lakṣmyāḥ | Lakṣmī — pañcamī/ṣaṣṭhī ekavacana | pañcamī/ṣaṣṭhī | abl./gen. sg. · f. · stem: lakṣmī- · ī-stem
+लक्ष्म्योः | lakṣmyoḥ | Lakṣmī — ṣaṣṭhī/saptamī dvivacana | ṣaṣṭhī/saptamī | gen./loc. du. · f. · stem: lakṣmī- · ī-stem
+लक्ष्मीणाम् | lakṣmīṇām | Lakṣmī — ṣaṣṭhī bahuvacana | ṣaṣṭhī | gen. pl. · f. · stem: lakṣmī- · ī-stem
+लक्ष्म्याम् | lakṣmyām | Lakṣmī — saptamī ekavacana | saptamī | loc. sg. · f. · stem: lakṣmī- · ī-stem
+लक्ष्मीषु | lakṣmīṣu | Lakṣmī — saptamī bahuvacana | saptamī | loc. pl. · f. · stem: lakṣmī- · ī-stem
+लक्ष्मि | lakṣmi | Lakṣmī — sambodhana ekavacana | sambodhana | voc. sg. · f. · stem: lakṣmī- · ī-stem
+विष्णुः | viṣṇuḥ | Viṣṇu — prathamā ekavacana | prathamā | nom. sg. · m. · stem: viṣṇu- · u-stem
+विष्णू | viṣṇū | Viṣṇu — prathamā/dvitīyā/sambodhana dvivacana | prathamā/dvitīyā/sambodhana | nom./acc./voc. du. · m. · stem: viṣṇu- · u-stem
+विष्णवः | viṣṇavaḥ | Viṣṇu — prathamā/sambodhana bahuvacana | prathamā/sambodhana | nom./voc. pl. · m. · stem: viṣṇu- · u-stem
+विष्णुम् | viṣṇum | Viṣṇu — dvitīyā ekavacana | dvitīyā | acc. sg. · m. · stem: viṣṇu- · u-stem
+विष्णून् | viṣṇūn | Viṣṇu — dvitīyā bahuvacana | dvitīyā | acc. pl. · m. · stem: viṣṇu- · u-stem
+विष्णुना | viṣṇunā | Viṣṇu — tṛtīyā ekavacana | tṛtīyā | instr. sg. · m. · stem: viṣṇu- · u-stem
+विष्णुभ्याम् | viṣṇubhyām | Viṣṇu — tṛtīyā/caturthī/pañcamī dvivacana | tṛtīyā/caturthī/pañcamī | instr./dat./abl. du. · m. · stem: viṣṇu- · u-stem
+विष्णुभिः | viṣṇubhiḥ | Viṣṇu — tṛtīyā bahuvacana | tṛtīyā | instr. pl. · m. · stem: viṣṇu- · u-stem
+विष्णवे | viṣṇave | Viṣṇu — caturthī ekavacana | caturthī | dat. sg. · m. · stem: viṣṇu- · u-stem
+विष्णुभ्यः | viṣṇubhyaḥ | Viṣṇu — caturthī/pañcamī bahuvacana | caturthī/pañcamī | dat./abl. pl. · m. · stem: viṣṇu- · u-stem
+विष्णोः | viṣṇoḥ | Viṣṇu — pañcamī/ṣaṣṭhī ekavacana | pañcamī/ṣaṣṭhī | abl./gen. sg. · m. · stem: viṣṇu- · u-stem
+विष्ण्वोः | viṣṇvoḥ | Viṣṇu — ṣaṣṭhī/saptamī dvivacana | ṣaṣṭhī/saptamī | gen./loc. du. · m. · stem: viṣṇu- · u-stem
+विष्णूनाम् | viṣṇūnām | Viṣṇu — ṣaṣṭhī bahuvacana | ṣaṣṭhī | gen. pl. · m. · stem: viṣṇu- · u-stem
+विष्णौ | viṣṇau | Viṣṇu — saptamī ekavacana | saptamī | loc. sg. · m. · stem: viṣṇu- · u-stem
+विष्णुषु | viṣṇuṣu | Viṣṇu — saptamī bahuvacana | saptamī | loc. pl. · m. · stem: viṣṇu- · u-stem
+विष्णो | viṣṇo | Viṣṇu — sambodhana ekavacana | sambodhana | voc. sg. · m. · stem: viṣṇu- · u-stem
+भगवान् | bhagavān | Bhagavat — prathamā ekavacana | prathamā | nom. sg. · m. · stem: bhagavat- · at-stem
+भगवन्तौ | bhagavantau | Bhagavat — prathamā/dvitīyā/sambodhana dvivacana | prathamā/dvitīyā/sambodhana | nom./acc./voc. du. · m. · stem: bhagavat- · at-stem
+भगवन्तः | bhagavantaḥ | Bhagavat — prathamā/sambodhana bahuvacana | prathamā/sambodhana | nom./voc. pl. · m. · stem: bhagavat- · at-stem
+भगवन्तम् | bhagavantam | Bhagavat — dvitīyā ekavacana | dvitīyā | acc. sg. · m. · stem: bhagavat- · at-stem
+भगवतः | bhagavataḥ | Bhagavat — dvitīyā bahuvacana, pañcamī/ṣaṣṭhī ekavacana | dvitīyā | acc. pl. · m. · pañcamī/ṣaṣṭhī | abl./gen. sg. · stem: bhagavat- · at-stem
+भगवता | bhagavatā | Bhagavat — tṛtīyā ekavacana | tṛtīyā | instr. sg. · m. · stem: bhagavat- · at-stem
+भगवद्भ्याम् | bhagavadbhyām | Bhagavat — tṛtīyā/caturthī/pañcamī dvivacana | tṛtīyā/caturthī/pañcamī | instr./dat./abl. du. · m. · stem: bhagavat- · at-stem
+भगवद्भिः | bhagavadbhiḥ | Bhagavat — tṛtīyā bahuvacana | tṛtīyā | instr. pl. · m. · stem: bhagavat- · at-stem
+भगवते | bhagavate | Bhagavat — caturthī ekavacana | caturthī | dat. sg. · m. · stem: bhagavat- · at-stem
+भगवद्भ्यः | bhagavadbhyaḥ | Bhagavat — caturthī/pañcamī bahuvacana | caturthī/pañcamī | dat./abl. pl. · m. · stem: bhagavat- · at-stem
+भगवतोः | bhagavatoḥ | Bhagavat — ṣaṣṭhī/saptamī dvivacana | ṣaṣṭhī/saptamī | gen./loc. du. · m. · stem: bhagavat- · at-stem
+भगवताम् | bhagavatām | Bhagavat — ṣaṣṭhī bahuvacana | ṣaṣṭhī | gen. pl. · m. · stem: bhagavat- · at-stem
+भगवति | bhagavati | Bhagavat — saptamī ekavacana | saptamī | loc. sg. · m. · stem: bhagavat- · at-stem
+भगवत्सु | bhagavatsu | Bhagavat — saptamī bahuvacana | saptamī | loc. pl. · m. · stem: bhagavat- · at-stem
+भगवन् | bhagavan | Bhagavat — sambodhana ekavacana | sambodhana | voc. sg. · m. · stem: bhagavat- · at-stem
+आत्मा | ātmā | Ātman — prathamā ekavacana | prathamā | nom. sg. · m. · stem: ātman- · an-stem
+आत्मानौ | ātmānau | Ātman — prathamā/dvitīyā/sambodhana dvivacana | prathamā/dvitīyā/sambodhana | nom./acc./voc. du. · m. · stem: ātman- · an-stem
+आत्मानः | ātmānaḥ | Ātman — prathamā/sambodhana bahuvacana | prathamā/sambodhana | nom./voc. pl. · m. · stem: ātman- · an-stem
+आत्मानम् | ātmānam | Ātman — dvitīyā ekavacana | dvitīyā | acc. sg. · m. · stem: ātman- · an-stem
+आत्मनः | ātmanaḥ | Ātman — dvitīyā bahuvacana, pañcamī/ṣaṣṭhī ekavacana | dvitīyā | acc. pl. · m. · pañcamī/ṣaṣṭhī | abl./gen. sg. · stem: ātman- · an-stem
+आत्मना | ātmanā | Ātman — tṛtīyā ekavacana | tṛtīyā | instr. sg. · m. · stem: ātman- · an-stem
+आत्मभ्याम् | ātmabhyām | Ātman — tṛtīyā/caturthī/pañcamī dvivacana | tṛtīyā/caturthī/pañcamī | instr./dat./abl. du. · m. · stem: ātman- · an-stem
+आत्मभिः | ātmabhiḥ | Ātman — tṛtīyā bahuvacana | tṛtīyā | instr. pl. · m. · stem: ātman- · an-stem
+आत्मने | ātmane | Ātman — caturthī ekavacana | caturthī | dat. sg. · m. · stem: ātman- · an-stem
+आत्मभ्यः | ātmabhyaḥ | Ātman — caturthī/pañcamī bahuvacana | caturthī/pañcamī | dat./abl. pl. · m. · stem: ātman- · an-stem
+आत्मनोः | ātmanoḥ | Ātman — ṣaṣṭhī/saptamī dvivacana | ṣaṣṭhī/saptamī | gen./loc. du. · m. · stem: ātman- · an-stem
+आत्मनाम् | ātmanām | Ātman — ṣaṣṭhī bahuvacana | ṣaṣṭhī | gen. pl. · m. · stem: ātman- · an-stem
+आत्मनि | ātmani | Ātman — saptamī ekavacana | saptamī | loc. sg. · m. · stem: ātman- · an-stem
+आत्मसु | ātmasu | Ātman — saptamī bahuvacana | saptamī | loc. pl. · m. · stem: ātman- · an-stem
+आत्मन् | ātman | Ātman — sambodhana ekavacana | sambodhana | voc. sg. · m. · stem: ātman- · an-stem
+माता | mātā | Mātṛ — prathamā ekavacana | prathamā | nom. sg. · f. · stem: mātṛ- · ṛ-stem
+मातरौ | mātarau | Mātṛ — prathamā/dvitīyā/sambodhana dvivacana | prathamā/dvitīyā/sambodhana | nom./acc./voc. du. · f. · stem: mātṛ- · ṛ-stem
+मातरः | mātaraḥ | Mātṛ — prathamā/sambodhana bahuvacana | prathamā/sambodhana | nom./voc. pl. · f. · stem: mātṛ- · ṛ-stem
+मातरम् | mātaram | Mātṛ — dvitīyā ekavacana | dvitīyā | acc. sg. · f. · stem: mātṛ- · ṛ-stem
+मातॄः | mātṝḥ | Mātṛ — dvitīyā bahuvacana | dvitīyā | acc. pl. · f. · stem: mātṛ- · ṛ-stem
+मात्रा | mātrā | Mātṛ — tṛtīyā ekavacana | tṛtīyā | instr. sg. · f. · stem: mātṛ- · ṛ-stem
+मातृभ्याम् | mātṛbhyām | Mātṛ — tṛtīyā/caturthī/pañcamī dvivacana | tṛtīyā/caturthī/pañcamī | instr./dat./abl. du. · f. · stem: mātṛ- · ṛ-stem
+मातृभिः | mātṛbhiḥ | Mātṛ — tṛtīyā bahuvacana | tṛtīyā | instr. pl. · f. · stem: mātṛ- · ṛ-stem
+मात्रे | mātre | Mātṛ — caturthī ekavacana | caturthī | dat. sg. · f. · stem: mātṛ- · ṛ-stem
+मातृभ्यः | mātṛbhyaḥ | Mātṛ — caturthī/pañcamī bahuvacana | caturthī/pañcamī | dat./abl. pl. · f. · stem: mātṛ- · ṛ-stem
+मातुः | mātuḥ | Mātṛ — pañcamī/ṣaṣṭhī ekavacana | pañcamī/ṣaṣṭhī | abl./gen. sg. · f. · stem: mātṛ- · ṛ-stem
+मात्रोः | mātroḥ | Mātṛ — ṣaṣṭhī/saptamī dvivacana | ṣaṣṭhī/saptamī | gen./loc. du. · f. · stem: mātṛ- · ṛ-stem
+मातॄणाम् | mātṝṇām | Mātṛ — ṣaṣṭhī bahuvacana | ṣaṣṭhī | gen. pl. · f. · stem: mātṛ- · ṛ-stem
+मातरि | mātari | Mātṛ — saptamī ekavacana | saptamī | loc. sg. · f. · stem: mātṛ- · ṛ-stem
+मातृषु | mātṛṣu | Mātṛ — saptamī bahuvacana | saptamī | loc. pl. · f. · stem: mātṛ- · ṛ-stem
+मातः | mātaḥ | Mātṛ — sambodhana ekavacana | sambodhana | voc. sg. · f. · stem: mātṛ- · ṛ-stem
+पिता | pitā | Pitṛ — prathamā ekavacana | prathamā | nom. sg. · m. · stem: pitṛ- · ṛ-stem
+पितरौ | pitarau | Pitṛ — prathamā/dvitīyā dvivacana | prathamā/dvitīyā | nom./acc. du. · m. · stem: pitṛ- · ṛ-stem
+पितरः | pitaraḥ | Pitṛ — prathamā bahuvacana | prathamā | nom. pl. · m. · stem: pitṛ- · ṛ-stem
+पितरम् | pitaram | Pitṛ — dvitīyā ekavacana | dvitīyā | acc. sg. · m. · stem: pitṛ- · ṛ-stem
+पितॄन् | pitṝn | Pitṛ — dvitīyā bahuvacana | dvitīyā | acc. pl. · m. · stem: pitṛ- · ṛ-stem
+पित्रा | pitrā | Pitṛ — tṛtīyā ekavacana | tṛtīyā | instr. sg. · m. · stem: pitṛ- · ṛ-stem
+पितृभ्याम् | pitṛbhyām | Pitṛ — tṛtīyā/caturthī/pañcamī dvivacana | tṛtīyā/caturthī/pañcamī | instr./dat./abl. du. · m. · stem: pitṛ- · ṛ-stem
+पितृभिः | pitṛbhiḥ | Pitṛ — tṛtīyā bahuvacana | tṛtīyā | instr. pl. · m. · stem: pitṛ- · ṛ-stem
+पित्रे | pitre | Pitṛ — caturthī ekavacana | caturthī | dat. sg. · m. · stem: pitṛ- · ṛ-stem
+पितृभ्यः | pitṛbhyaḥ | Pitṛ — caturthī/pañcamī bahuvacana | caturthī/pañcamī | dat./abl. pl. · m. · stem: pitṛ- · ṛ-stem
+पितुः | pituḥ | Pitṛ — pañcamī/ṣaṣṭhī ekavacana | pañcamī/ṣaṣṭhī | abl./gen. sg. · m. · stem: pitṛ- · ṛ-stem
+पित्रोः | pitroḥ | Pitṛ — ṣaṣṭhī/saptamī dvivacana | ṣaṣṭhī/saptamī | gen./loc. du. · m. · stem: pitṛ- · ṛ-stem
+पितॄणाम् | pitṝṇām | Pitṛ — ṣaṣṭhī bahuvacana | ṣaṣṭhī | gen. pl. · m. · stem: pitṛ- · ṛ-stem
+पितरि | pitari | Pitṛ — saptamī ekavacana | saptamī | loc. sg. · m. · stem: pitṛ- · ṛ-stem
+पितृषु | pitṛṣu | Pitṛ — saptamī bahuvacana | saptamī | loc. pl. · m. · stem: pitṛ- · ṛ-stem
+</script>
+
+<script src="app.js"></script>
+</body>
+</html>
