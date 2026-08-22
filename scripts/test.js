@@ -1378,14 +1378,14 @@ const open = async (browser, opts = {}) => {
         JSON.stringify(['Scoreboard', 'Trouble cards']),
       rows.map(r => r.name).join(' | '));
     ok('the scoreboard row counts what it holds',
-      /\d+ of \d+ lists finished/.test(rows[0].sub), rows[0].sub);
+      /\d+ of \d+ lists completed/.test(rows[0].sub), rows[0].sub);
     ok('the trouble row says what is on the list',
       /cleared/.test(rows[1].sub), rows[1].sub);
 
     // and every one of them still opens and renders
     for (const [btn, id, want] of [
-      ['#dr-board', 'board', /lists finished/],
-      ['#dr-prog', 'reviewpanel', /drawing from \d+ cards/],
+      ['#dr-board', 'board', /lists completed/],
+      ['#dr-prog', 'reviewpanel', /Reviewing \d+ cards from \d+ completed lists?/],
       ['#dr-trouble', 'trouble', /cleared/],
     ]) {
       await p.click('#nav');
@@ -1595,10 +1595,10 @@ const open = async (browser, opts = {}) => {
   }
 
   // ── Abhyāsa is the drawer's opening section, not one row of three ──
-  // The mastery mode carries the app's own name and the rank is read off it,
-  // so it is lifted out of the mode list into the section the drawer opens
-  // with: the name, what it demonstrates, the figure, and the draw behind a
-  // tap.  Devanagari and the mark stay out — that part has not changed.
+  // The mastery mode carries the app's own name and the figure is read off
+  // it, so it is lifted out of the mode list into the section the drawer
+  // opens with.  Every number there is labelled before it is given: the UI
+  // states the meaning, and the multiplication behind it never surfaces.
   {
     const p = await open(browser);
     const r = await p.evaluate(() => {
@@ -1609,7 +1609,13 @@ const open = async (browser, opts = {}) => {
       const out = {
         first: document.querySelector('#drawer .dr-prog, #drawer .dr-mode') === sec,
         name: document.getElementById('dp-label').textContent,
-        what: document.getElementById('dp-what').textContent,
+        what: document.querySelector('.dp-what').textContent,
+        heads: [...document.querySelectorAll('#drawer .dp-h')].map(x => x.textContent),
+        pct: document.getElementById('dp-pct').textContent,
+        sub: document.getElementById('dp-sub').textContent,
+        /* the arithmetic is not the interface */
+        formula: /[×x]\s*\d+%|cold recall|cards drawn|lists finished/i
+                   .test(document.getElementById('drawer').textContent),
         stat: document.getElementById('dp-cards').textContent,
         modes: modes,
         notAMode: !modes.some(x => /abhy/i.test(x)),
@@ -1624,82 +1630,110 @@ const open = async (browser, opts = {}) => {
 
     ok('the drawer opens with the Abhyāsa section',
       r.first && /abhy[aā]sa/i.test(r.name), r.name);
-    ok('and says what it demonstrates', r.what.startsWith('consistent mastery'), r.what);
+    ok('and says what the mode is for', /Review what you/.test(r.what), r.what);
+    ok('every figure is labelled before it is given',
+      JSON.stringify(r.heads) === JSON.stringify(['Overall mastery', 'Course progress']),
+      r.heads.join(' | '));
+    ok('the mastery figure reads as a rank, not a fraction',
+      /^(Unranked|\d+% · [A-Z])/.test(r.pct), r.pct);
+    ok('and its two readings are named, not multiplied',
+      !r.formula && /review accuracy|course coverage|unlock|Ready/.test(r.sub), r.sub);
     ok('it is the draw, one tap away', r.tappable && r.opens && r.heading === 'Abhyāsa',
       r.heading);
     ok('so it is no longer one of the mode rows', r.notAMode, r.modes.join(' | '));
     await p.close();
   }
 
-  // ── the rank: cold recall against how much has been mastered ──────
-  // Review is the mastery system, so the drawer's headline is what review
-  // produces.  Neither half is mastery alone — 95% recall over fifty cards is
-  // not a mastered course, and neither is the whole course at 40% recall — so
-  // the two multiply rather than averaging.
+  // ── overall mastery: review accuracy against course coverage ──────
+  // Neither half is mastery alone — 95% accuracy over fifty cards is not a
+  // mastered course, and neither is the whole course at 40% accuracy — so the
+  // two combine rather than averaging.  Coverage is material that has ENTERED
+  // review, which is the same act the learner already understands: finish a
+  // list and it starts coming back.
   {
     const p = await open(browser);
     const r = await p.evaluate(() => {
       const out = {};
-      const set = (right, seen) => { SAVED.review = { runs: 1, right: right, seen: seen }; };
+      const acc = (right, seen) => { SAVED.review = { runs: 1, right: right, seen: seen }; };
+      /* a list enters review by being completed, which is what records a best */
+      const complete = names => {
+        SAVED.decks = {};
+        names.forEach(n => { SAVED.decks[n] = { best: [DECKS[n].length, DECKS[n].length], pile: [] }; });
+      };
+      const all = Object.keys(DECKS);
+      const upTo = frac => {
+        const want = ALL_IDS.size * frac, taken = [];
+        let n = 0;
+        for (const d of all) { if (n >= want) break; taken.push(d); n += DECKS[d].length; }
+        return taken;
+      };
 
-      /* before any draw there is no rank, and the drawer says why */
-      set(0, 0);
+      /* before any review there is no figure, and the section says why */
+      complete([]); acc(0, 0);
       openDrawer();
-      out.unranked = { label: document.getElementById('dp-label').textContent,
-                       pct: document.getElementById('dp-pct').textContent,
+      out.unranked = { pct: document.getElementById('dp-pct').textContent,
                        sub: document.getElementById('dp-sub').textContent,
                        bar: document.getElementById('dp-bar').style.width };
       closeDrawer();
 
-      const ids = []; ALL_IDS.forEach(k => ids.push(k));
-      const master = n => { SAVED.mastered = {}; for (let i = 0; i < n; i++) SAVED.mastered[ids[i]] = 1; };
-
-      /* the arithmetic itself, over the real card total */
-      master(Math.floor(ids.length * 0.4));
-      out.cov = progressOf(ALL_IDS).pct;
-      set(8, 10);
+      complete(upTo(0.4)); acc(8, 10);
+      out.cov = coverageOf().pct;
       out.acc80 = rankOf();
 
-      /* both halves move it, and neither can carry it alone */
+      complete(all);
+      acc(10, 10); out.perfect = rankOf();
+      acc(4, 10);  out.lowAccuracy = rankOf();
+      complete(upTo(0.5));
+      acc(10, 10); out.halfCovered = rankOf();
+      complete([all.find(n => DECKS[n].length < 10)]);
+      acc(10, 10); out.barely = rankOf();
 
-      master(ids.length);            // everything mastered
-      set(10, 10); out.perfect = rankOf();
-      set(4, 10);  out.halfRecall = rankOf();
-      master(Math.floor(ids.length / 2));
-      set(10, 10); out.halfCourse = rankOf();
-      master(1);
-      set(10, 10); out.barely = rankOf();
-
-      /* the two guards: no rounding up to a finished rank, none away to zero */
-      out.notRounded = out.halfRecall.score < 100 && out.halfCourse.score < 100;
+      out.notRounded = out.lowAccuracy.score < 100 && out.halfCovered.score < 100;
       out.notZeroed = out.barely.score >= 1;
 
-      /* and the review panel shows where the number came from */
-      master(Math.floor(ids.length / 2)); set(8, 10);
+      /* and the panel states the figure in the same words as the drawer */
+      complete(upTo(0.5)); acc(8, 10);
       openPanel('reviewpanel');
-      out.panel = document.getElementById('rp-rank').textContent;
+      out.panelTop = document.getElementById('rp-rank-top').textContent;
+      out.panelSub = document.getElementById('rp-rank-sub').textContent;
+      out.panelNote = document.getElementById('rp-note').textContent;
+      out.panelWhat = document.getElementById('rp-what').textContent;
+      out.panelScore = document.getElementById('rp-sub').textContent;
       return out;
     });
 
-    ok('no rank before a draw', r.unranked.pct === '\u2014' && r.unranked.bar === '0%',
+    ok('no figure before the first review',
+      r.unranked.pct === 'Unranked' && r.unranked.bar === '0%',
       r.unranked.pct + ' · ' + r.unranked.sub);
-    ok('and the section says why rather than showing a figure',
-      /^(locked|ready) · /.test(r.unranked.sub), r.unranked.sub);
-    ok('the rank is cold recall times coverage',
+    ok('and the section says what to do instead',
+      /^Complete more lists to unlock · /.test(r.unranked.sub), r.unranked.sub);
+    ok('mastery is accuracy against coverage',
       r.acc80.score === Math.round(80 * r.cov / 100) && r.acc80.acc === 80,
-      '80% × ' + r.cov + '% = ' + r.acc80.score + '%');
-    ok('a perfect course at perfect recall is 100%',
+      '80% accuracy, ' + r.cov + '% covered → ' + r.acc80.score + '%');
+    ok('a fully covered course at full accuracy is 100%',
       r.perfect.score === 100 && r.perfect.name === 'Mastered', JSON.stringify(r.perfect));
-    ok('recall alone does not carry it', r.halfCourse.score <= 51 && r.halfCourse.acc === 100,
-      JSON.stringify(r.halfCourse));
-    ok('nor does coverage alone', r.halfRecall.score === 40,
-      JSON.stringify(r.halfRecall));
+    ok('coverage alone does not carry it', r.lowAccuracy.score === 40,
+      JSON.stringify(r.lowAccuracy));
+    ok('nor does accuracy alone', r.halfCovered.score <= 51 && r.halfCovered.acc === 100,
+      JSON.stringify(r.halfCovered));
     ok('neither rounds up to finished nor away to nothing',
-      r.notRounded && r.notZeroed,
-      'barely ' + r.barely.score + '% · ' + r.barely.name);
-    ok('the review panel shows the arithmetic',
-      /\d+% recalled cold × \d+% of the course mastered/.test(r.panel),
-      r.panel.slice(0, 70));
+      r.notRounded && r.notZeroed, 'barely ' + r.barely.score + '% · ' + r.barely.name);
+
+    /* the panel says what a review is and what it costs, in plain words */
+    ok('the review card states the score plainly',
+      /^\d+% correct on first try$/.test(r.panelScore), r.panelScore);
+    ok('and what it is drawing on',
+      /^Reviewing \d+ cards from \d+ completed lists?$/.test(r.panelWhat), r.panelWhat);
+    ok('the explanation describes the mode, not the arithmetic',
+      /^Review mixes material you’ve already studied\./.test(r.panelNote)
+        && /strengthen mastery/.test(r.panelNote) && !/[×x] \d/.test(r.panelNote),
+      r.panelNote.slice(0, 48));
+    ok('the panel names the figure exactly as the drawer does',
+      /^Overall mastery \d+% · [A-Z]/.test(r.panelTop)
+        && /^\d+% review accuracy · \d+% course coverage$/.test(r.panelSub),
+      r.panelTop + ' / ' + r.panelSub);
+    ok('and never shows the multiplication',
+      !/[×x]\s*\d+%/.test(r.panelTop + r.panelSub + r.panelNote));
     await p.close();
   }
 
@@ -1756,13 +1790,14 @@ const open = async (browser, opts = {}) => {
       r.drawShown && leads(r.reviewRows, 'rp-actions'), r.reviewRows.join(' | '));
     ok('so does the trouble drill', leads(r.troubleRows, 't-actions'),
       r.troubleRows.join(' | '));
-    ok('an unlocked draw names the action, not the mode',
-      /^ready · draw \d+ cards$/.test(r.rowBefore), JSON.stringify(r.rowBefore));
-    /* the compact form: accuracy weighed against the cards actually complete */
-    ok('and weighs accuracy against the cards complete once there is a figure',
+    ok('unlocked and unused, the section names the action',
+      /^Ready · review \d+ cards$/.test(r.rowBefore), JSON.stringify(r.rowBefore));
+    /* the two plain readings, never the multiplication that combines them */
+    ok('and names both readings once there is a figure',
       r.mastery !== null
-        && new RegExp('^' + r.mastery + '% cold × \\d+ of \\d+ cards$').test(r.rowAfter)
-        && r.subAfter.startsWith(r.mastery + '% cold recall'),
+        && new RegExp('^' + r.mastery + '% review accuracy · \\d+% course coverage$')
+             .test(r.rowAfter)
+        && r.subAfter === r.mastery + '% correct on first try',
       JSON.stringify(r.rowAfter) + ' / ' + JSON.stringify(r.subAfter));
     await p.close();
   }
@@ -2184,8 +2219,8 @@ const open = async (browser, opts = {}) => {
       opened.lessons + ' lessons, ' + opened.decks + ' decks');
     /* The section's own statistic is lists carried to 100%, not a card count
        already folded into the figure above it. */
-    ok('the section counts lists finished outright',
-      /^\d+ of \d+ lists complete$/.test(opened.cards), opened.cards);
+    ok('course progress is counted in lists, not cards',
+      /^\d+ \/ \d+ lists complete$/.test(opened.cards), opened.cards);
 
     const reach = await p.evaluate(() => {
       // shut everything, then walk down: track -> lesson -> deck

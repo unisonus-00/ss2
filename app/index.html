@@ -89,10 +89,15 @@
   <div class="board" id="reviewpanel">
     <h2>Abhyāsa</h2>
     <div class="score" id="rp-sub"></div>
+    <div class="rp-what" id="rp-what"></div>
     <div class="note" id="rp-note"></div>
-    <!-- The rank is read off this mode, so its arithmetic is shown where it
-         is produced rather than only in the drawer. -->
-    <div class="rank" id="rp-rank"></div>
+    <!-- The mastery figure is read off this mode, so it is stated here as
+         well as in the drawer — as its two named readings, never as the
+         multiplication that produces it. -->
+    <div class="rank" id="rp-rank">
+      <span class="rank-top" id="rp-rank-top"></span>
+      <span class="rank-sub" id="rp-rank-sub"></span>
+    </div>
   </div>
 
   <div class="board" id="trouble">
@@ -115,7 +120,7 @@
   <div class="board" id="board">
     <h2>Scoreboard</h2>
     <div class="mastery" id="b-mastery" hidden>
-      <span class="m-label">cold recall</span>
+      <span class="m-label">review accuracy</span>
       <span class="m-pct" id="b-mpct"></span>
       <span class="m-sub" id="b-msub"></span>
     </div>
@@ -190,14 +195,24 @@
        row among three: it is the section the drawer opens with, and the rank
        it produces is the drawer's headline figure.  Tapping it opens the
        draw. -->
-  <button class="dr-prog" id="dr-prog" aria-label="Abhyāsa — the mastery draw">
+  <button class="dr-prog" id="dr-prog" aria-label="Abhyāsa — review what you have learned">
     <span class="dp-label" id="dp-label">abhyāsa</span>
+    <span class="dp-what">Review what you've learned</span>
+    <!-- Overall mastery: one figure, its name above it and the two plain
+         readings it is made of below.  The UI states the meaning; the
+         arithmetic that combines them stays in rankOf(). -->
+    <span class="dp-h">Overall mastery</span>
     <span class="dp-pct" id="dp-pct"></span>
-    <span class="dp-what" id="dp-what">consistent mastery</span>
-    <span class="dp-sub" id="dp-sub"></span>
-    <span class="dp-sub dp-cards" id="dp-cards"></span>
     <span class="bar"><i id="dp-bar"></i></span>
+    <span class="dp-sub" id="dp-sub"></span>
   </button>
+
+  <!-- A separate signal, and the learner-facing unit of completion: cards are
+       the evidence underneath, lists are what you finish. -->
+  <div class="dr-course">
+    <span class="dp-h">Course progress</span>
+    <span class="dp-cards" id="dp-cards"></span>
+  </div>
 
   <div class="dr-modes">
     <button id="dr-board" class="dr-mode">

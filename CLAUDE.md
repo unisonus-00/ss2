@@ -530,70 +530,103 @@ the obvious question without being opened into:
 | `Scoreboard` | *best scores · 3 of 153 lists finished* |
 | `Trouble cards` | *7 cards to clear · 2 cleared* |
 
-### Abhyāsa, and the rank
+### Abhyāsa, and overall mastery
 
 **The mastery mode carries the app's own name**, so it is not one row among
-three: it is the section the drawer opens with, and the rank is read off it.
-Tapping it opens the draw.
+three: it is the section the drawer opens with. Tapping it opens the review.
 
 ```
-ABHYĀSA                                                    3%
-consistent mastery · Beginning
-79% cold × 74 of 2079 cards        5 of 153 lists complete
-▬▬▬───────────────────────────────────────────────────────
+ABHYĀSA
+Review what you've learned
+
+OVERALL MASTERY
+3% · Beginning
+▬▬▬───────────────────────────────────────────
+65% review accuracy · 5% course coverage
+
+COURSE PROGRESS
+7 / 153 lists complete
 ```
 
-Four things, in the order a reader wants them: the name, **what it
-demonstrates**, the figure in compact form — accuracy weighed against the
-cards actually complete — and the section's own statistic, which is **lists
-carried all the way to 100%**. That last line used to read *873 of 2079 cards
-mastered*, which restated a number already inside the figure above it; a
-finished list is a different fact.
+**The interface states the meaning; it never exposes the calculation.** Every
+figure is labelled before it is given, and the two readings the mastery number
+is made of are *named* rather than multiplied. `65% × 4%` and `cold recall`
+made the learner reverse-engineer the system to find out what they were
+looking at. The multiplication lives in `rankOf()` and appears nowhere on
+screen — a test asserts that.
 
-Before there is a figure the same line says why instead: *locked · 12 of 40
-cards*, then *ready · draw 20 cards* once it unlocks. **The mode's own name is
-never the thing being explained** — "a 20-card draw" described Abhyāsa to
-someone who had just read what it was.
+The whole model is one sentence:
 
-Naming it in Sanskrit is the one exception to the rule two sections down, and
-it earns the exception by being the project's own name rather than a term
-looked up for the occasion: nobody hunting for a scoreboard has to guess that
-`Aṅkāḥ` is one, but the app is *Abhyāsa* and this is what Abhyāsa is. The
-round it starts is labelled `abhyāsa` too, in the selector and the status row,
-where it used to read `mixed review`.
+> Practise a list → complete it → it enters Abhyāsa → review performance
+> maintains its mastery.
 
-The rank itself:
-
-Two things have to be true to know the forms, and **neither is mastery on its
-own**:
+Every number follows from it:
 
 | | |
 |:--|:--|
-| **accuracy** | how much comes back cold in a review draw, where cards arrive shuffled out of their decks, days after the round that taught them |
-| **coverage** | how much of the course has been mastered at all |
+| **review accuracy** | correct on the first try, across everything reviewed |
+| **course coverage** | how much of the material has actually entered review — which is the cards of the lists you have completed |
+| **overall mastery** | the two together, as one figure with a rank beside it |
+| **course progress** | lists complete, out of all of them |
 
-A learner who recalls 95% of the fifty cards they have seen has not mastered
-the course, and one who has been through everything at 40% recall has not
-either. So the two **multiply** rather than averaging: neither half can carry
-the figure by itself, and a test asserts each in turn.
+Coverage used to be *cards mastered*, which was a second and invisible notion
+of progress sitting next to the visible one. Reading it off the review pool
+instead makes it the same act the learner already understands — finish a list
+and it starts coming back — and it is why completing a list moves two numbers
+at once.
 
-`rankOf()` reads `masteryPct()` and `progressOf(ALL_IDS)` — both figures the
-app already kept and already displayed — so the rank adds **no stored state
-and nothing to migrate**. It carries the same two guards `progressOf` does: it
-will not round up to a finished rank, and will not round a real start away to
-nothing. Before the first draw there is no rank at all: the block reads
-`Unranked · —` and says *a review draw sets your rank*, which is the point —
-mastery is not something a deck can award itself.
+**Cards are the evidence; lists are the unit of completion.** The top
+statistic was *873 of 2079 cards mastered*, which competed with the mastery
+figure above it and named the wrong unit. Cards still drive the per-lesson and
+per-track percentages down the drawer, where fine grain is what is wanted.
+
+Before there is a figure the accuracy line says what to do instead —
+*Complete more lists to unlock · 12 of 40 cards*, then *Ready · review 20
+cards* — and the mastery figure reads `Unranked`. **The mode's own name is
+never the thing being explained.**
+
+The review window says the same things in the same words:
+
+```
+Abhyāsa
+65% correct on first try
+Reviewing 20 cards from 7 completed lists
+
+Review mixes material you've already studied. Correct first answers
+strengthen mastery; misses lower it and return to practice.
+────────────────────────────────────────────────
+Overall mastery 3% · Beginning
+65% review accuracy · 5% course coverage
+```
 
 The ladder is `RANKS` in `app.js`, in English like the modes rather than in
 Sanskrit like the curriculum: Starting out, Beginning (1), Familiar (10),
 Practised (25), Fluent (45), Accomplished (65), Mastered (85).
 
-**"Mastery" now names the rank, so the draw's figure is called cold recall**
-wherever it appears — the drawer row, the review window, the scoreboard's
-label and the shared score. The arithmetic is printed in the review window
-itself, where it is produced, rather than being a number that turns up in the
-drawer for no visible reason.
+Naming the mode in Sanskrit is the one exception to the rule above, and it
+earns the exception by being the project's own name rather than a term looked
+up for the occasion: nobody hunting for a scoreboard has to guess that
+`Aṅkāḥ` is one, but the app is *Abhyāsa* and this is what Abhyāsa is. The
+round it starts is labelled `abhyāsa` too, in the selector and the status row,
+where it used to read `mixed review`.
+
+**The vocabulary is fixed and shared across every surface** — drawer, review
+window, scoreboard, shared score:
+
+| was | is |
+|:--|:--|
+| cold recall | correct on first try |
+| cold recall (as a metric) | review accuracy |
+| cards drawn | cards reviewed |
+| finished lists | completed lists |
+| consistent mastery | overall mastery |
+| % of the course mastered | % course coverage |
+| Draw 20 cards | Review 20 cards |
+
+`rankOf()` reads `masteryPct()` and `coverageOf()`, both derived from state the
+app already kept, so this adds **no stored state and nothing to migrate**. It
+carries the same two guards `progressOf` does: it will not round up to a
+finished figure, and will not round a real start away to nothing.
 
 Two things are deliberately absent from the drawer, and tests assert both:
 

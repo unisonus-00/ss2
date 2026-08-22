@@ -489,27 +489,44 @@
   .dr-x:hover { color: var(--leaf); }
 
   /* the course figure, over every card the app carries */
-  /* Abhyāsa's own section: the app's name, what it demonstrates, and the
-     figure it produces.  A button, not a panel heading — it opens the draw. */
-  .dr-prog { display: grid; grid-template-columns: 1fr auto; gap: .1rem .6rem;
-             width: 100%; min-height: 0; text-align: left; font: inherit;
-             padding: .7rem 0 .8rem; margin-bottom: .5rem; cursor: pointer;
-             background: transparent; border: 0; border-radius: 0;
-             border-bottom: 1px solid rgba(125,112,92,.45); }
-  .dp-label { font-size: .72rem; letter-spacing: .18em; text-transform: uppercase;
-              color: var(--kumkuma); align-self: end; }
-  .dp-pct { font-size: 1.5rem; font-variant-numeric: tabular-nums; color: var(--leaf);
-            grid-row: span 2; align-self: center; }
-  /* what the mode demonstrates, directly under its name */
-  .dp-what { font-size: .74rem; color: var(--leaf); opacity: .85; }
-  .dp-sub { font-size: .7rem; color: var(--faded); margin-top: .25rem; }
-  .dp-cards { font-size: .7rem; color: var(--faded); }
-  .dr-prog .bar { grid-column: 1 / -1; margin-top: .45rem; }
+  /* Abhyāsa's own section: the app's name, what the mode is for, and the one
+     figure it produces.  A button, not a heading — it opens the review. */
+  .dr-prog { display: block; width: 100%; min-height: 0; text-align: left;
+             font: inherit; padding: .7rem 0 .2rem; cursor: pointer;
+             background: transparent; border: 0; border-radius: 0; }
+  .dp-label { display: block; font-size: .72rem; letter-spacing: .18em;
+              text-transform: uppercase; color: var(--kumkuma); }
+  /* what the mode is for, directly under its name */
+  .dp-what { display: block; font-size: .8rem; color: var(--leaf); opacity: .85;
+             margin-top: .1rem; }
+  /* Each figure is labelled before it is given, so nothing has to be
+     reverse-engineered from the number. */
+  .dp-h { display: block; font-size: .6rem; letter-spacing: .14em;
+          text-transform: uppercase; color: var(--faded); margin-top: 1rem; }
+  .dp-pct { display: block; font-size: 1.4rem; color: var(--leaf);
+            font-variant-numeric: tabular-nums; margin-top: .05rem; }
+  .dp-sub { display: block; font-size: .72rem; color: var(--faded); margin-top: .4rem; }
+  .dr-prog .bar { margin-top: .5rem; }
   .dr-prog:hover .dp-label, .dr-prog.on .dp-label { color: var(--leaf); }
 
-  /* the rank's arithmetic, on the panel that produces it */
-  .rank { margin-top: .9rem; padding-top: .8rem; font-size: .84rem;
+  /* the learner-facing unit of completion, kept apart from the mastery figure
+     so the two signals do not compete */
+  .dr-course { padding: 0 0 .8rem; margin-bottom: .5rem;
+               border-bottom: 1px solid rgba(125,112,92,.45); }
+  .dp-cards { display: block; font-size: .88rem; color: var(--leaf);
+              opacity: .9; margin-top: .1rem; font-variant-numeric: tabular-nums; }
+
+  /* the mastery figure, on the panel that produces it */
+  .rank { margin-top: .9rem; padding-top: .8rem;
           border-top: 1px solid var(--leaf-edge); color: var(--ink); }
+  .rank-top { display: block; font-size: .95rem; }
+  .rank-sub { display: block; font-size: .8rem; color: var(--faded); margin-top: .15rem; }
+  /* What this review is drawing on, directly under the score.  .note pulls
+     itself up under .score by a negative margin, so both are respaced here
+     rather than letting the note land on top of this line. */
+  #reviewpanel .score { margin-bottom: .2rem; }
+  .rp-what { font-size: .82rem; color: var(--faded); margin-bottom: 1.1rem; }
+  #reviewpanel .note { margin-top: 0; }
 
   /* one progress bar, used at every level */
   .bar { display: block; height: 2px; background: rgba(125,112,92,.4); }

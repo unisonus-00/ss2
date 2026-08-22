@@ -703,19 +703,13 @@ function lessonRow(L) {
 
 function renderDrawer() {
   const r = rankOf(), all = Object.keys(DECKS).length;
-  /* Lists carried all the way to 100%, which is what the drawer's ticks mean
-     — not lists merely played to the end, which is the scoreboard's count. */
-  const lists = Object.keys(DECKS).filter(n => progressOf(DECK_IDS[n]).full).length;
   fillRow(document, {
-    '#dp-pct': r.score === null ? '\u2014' : r.score + '%',
-    /* what the mode demonstrates, and — once there is one — the rank that
-       demonstration has reached */
-    '#dp-what': 'consistent mastery' + (r.score === null ? '' : ' \u00b7 ' + r.name),
+    '#dp-pct': r.score === null ? 'Unranked' : r.score + '% \u00b7 ' + r.name,
     '#dp-sub': abhyasaState(),
-    /* The section's own statistic is lists carried all the way to 100%.
-       "N of M cards mastered" restated a number already inside the figure
-       above it; a finished list is a different fact. */
-    '#dp-cards': lists + ' of ' + all + ' lists complete'
+    /* Lists, not cards.  A card is the evidence underneath; a list is what a
+       learner finishes, and it is the same act that puts the list into
+       review — so one number carries the whole model. */
+    '#dp-cards': finishedDecks().length + ' / ' + all + ' lists complete'
   });
   $('dp-bar').style.width = (r.score === null ? 0 : r.score) + '%';
 
@@ -810,18 +804,16 @@ function openFromDrawer(fn) {
 /* The row is live from the first load whether the mode is or not: a locked
    one opens the panel that says what it is and what unlocks it, exactly as
    the trouble row does with an empty list. */
-/* Abhyāsa's own line in the drawer's opening section: the figure once there
-   is one, and before that the reason there is not.  "a 20-card draw"
-   described the mode to someone who had just been told what it was; unlocked
-   and unused, it names the action instead. */
+/* Abhyāsa's line under the bar: the two plain figures the mastery number is
+   made of, named rather than multiplied.  The UI states the meaning; the
+   arithmetic stays inside rankOf(). */
 function abhyasaState() {
   const pool = reviewPool().length, m = masteryPct();
-  if (pool < REVIEW_MIN) return 'locked \u00b7 ' + pool + ' of ' + REVIEW_MIN + ' cards';
-  if (m === null) return 'ready \u00b7 draw ' + REVIEW_SIZE + ' cards';
-  const cov = progressOf(ALL_IDS);
-  /* accuracy weighed against how much of the course is complete — the two
-     halves of the rank, in the compact form the section has room for */
-  return m + '% cold \u00d7 ' + cov.done + ' of ' + cov.total + ' cards';
+  if (pool < REVIEW_MIN) {
+    return 'Complete more lists to unlock \u00b7 ' + pool + ' of ' + REVIEW_MIN + ' cards';
+  }
+  if (m === null) return 'Ready \u00b7 review ' + REVIEW_SIZE + ' cards';
+  return m + '% review accuracy \u00b7 ' + coverageOf().pct + '% course coverage';
 }
 
 function syncReviewUI() {
@@ -833,29 +825,30 @@ function syncReviewUI() {
 function renderReviewPanel() {
   const pool = reviewPool().length, ready = pool >= REVIEW_MIN;
   const lists = finishedDecks().length, s = lists > 1 ? "s" : "";
-  /* The figure the mode exists to produce leads its own window too, once
-     there is one — the drawer row should not be the only place it shows. */
+  /* What just happened, and what a review is: two plain statements rather
+     than a figure the learner has to reverse-engineer. */
   const m = masteryPct();
-  $('rp-sub').textContent = !ready
-    ? "locked \u00b7 " + pool + " of " + REVIEW_MIN + " cards finished"
-    : (m === null ? "ready" : m + "% cold recall")
-      + " \u00b7 drawing from " + pool + " cards across " + lists + " finished list" + s;
-  $('rp-note').textContent = REVIEW_SIZE + " cards drawn at random from every list you "
-    + "have finished, shuffled out of their decks so nothing is guessable from its "
-    + "neighbour. No list's best score changes \u2014 what comes back cold here is what "
-    + "your rank is built from."
-    + (ready ? "" : " Unlocks at " + REVIEW_MIN + " unique cards finished.");
-  /* The rank is produced here, so the arithmetic is shown here rather than
-     being a number that appears in the drawer for no visible reason. */
+  $('rp-sub').textContent = !ready ? "Not yet unlocked"
+    : m === null ? "Ready to review"
+    : m + "% correct on first try";
+  $('rp-what').textContent = !ready
+    ? "Complete more lists \u2014 " + pool + " of " + REVIEW_MIN + " cards so far"
+    : "Reviewing " + REVIEW_SIZE + " cards from " + lists + " completed list" + s;
+  $('rp-note').textContent = "Review mixes material you\u2019ve already studied. "
+    + "Correct first answers strengthen mastery; misses lower it and return to "
+    + "practice.";
+  /* Stated here as well as in the drawer, and in the same words: the figure
+     and its two readings.  Never the multiplication. */
   const r = rankOf();
-  $('rp-rank').textContent = r.acc === null
-    ? "Unranked \u00b7 a draw sets it: cold recall against how much of the course "
-      + "you have mastered."
-    : r.name + " \u00b7 " + r.score + "%  \u2014  " + r.acc + "% recalled cold \u00d7 "
-      + r.cov + "% of the course mastered.";
+  $('rp-rank-top').textContent = r.acc === null
+    ? "Overall mastery \u2014 \u00b7 Unranked"
+    : "Overall mastery " + r.score + "% \u00b7 " + r.name;
+  $('rp-rank-sub').textContent = r.acc === null
+    ? "A review sets it."
+    : r.acc + "% review accuracy \u00b7 " + r.cov + "% course coverage";
   $('rp-actions').hidden = false;
   $('rp-draw').hidden = !ready;
-  $('rp-draw').textContent = "Draw " + REVIEW_SIZE
+  $('rp-draw').textContent = "Review " + REVIEW_SIZE
     + (mixed && !trouble ? " more" : " cards");
 }
 
@@ -1715,8 +1708,8 @@ function finish() {
   let scoreLine = (reviewing ? "Cleared on the first showing this time: " : "Known on the first showing: ")
     + "<b>" + firstPass + " of " + total + "</b>";
   if (mixed && !reviewing && !trouble)
-    scoreLine += "<br>Cold recall: <b>" + masteryPct() + "%</b> over "
-               + SAVED.review.seen + " cards drawn";
+    scoreLine += "<br>Review accuracy: <b>" + masteryPct() + "%</b> over "
+               + SAVED.review.seen + " cards reviewed";
   if (justCleared)
     scoreLine += "<br><b>" + justCleared + "</b> left the trouble list";
   $('r-score').innerHTML = scoreLine;
@@ -1853,13 +1846,25 @@ const RANKS = [
   [10, 'Familiar'], [1, 'Beginning'], [0, 'Starting out']
 ];
 
+/* Course coverage: how much of the material has actually entered review.
+   A list enters when it is completed, so this is the pool over everything —
+   the same act the learner already understands ("finish a list and it starts
+   coming back"), rather than a second, invisible notion of mastery. */
+function coverageOf() {
+  const done = reviewPool().length, total = ALL_IDS.size;
+  let pct = total ? Math.round(done / total * 100) : 0;
+  if (pct === 100 && done < total) pct = 99;
+  if (pct === 0 && done > 0) pct = 1;
+  return { done: done, total: total, pct: pct, full: total > 0 && done === total };
+}
+
 function rankOf() {
-  const acc = masteryPct();                  // null until the first review draw
-  const cov = progressOf(ALL_IDS);
+  const acc = masteryPct();                  // null until the first review
+  const cov = coverageOf();
   if (acc === null) return { acc: null, cov: cov.pct, score: null, name: 'Unranked' };
   let score = Math.round(acc * cov.pct / 100);
-  /* the same two guards progressOf uses: a rank may not round up to finished,
-     nor round a real start away to nothing */
+  /* the same two guards progressOf uses: a figure may not round up to
+     finished, nor round a real start away to nothing */
   if (score === 100 && !(acc === 100 && cov.full)) score = 99;
   if (score === 0 && acc > 0 && cov.done > 0) score = 1;
   return { acc: acc, cov: cov.pct, score: score,
@@ -1881,13 +1886,13 @@ function renderBoard() {
   if (mastery !== null) {
     const r = SAVED.review;
     $('b-mpct').textContent = mastery + "%";
-    $('b-msub').textContent = r.right + " of " + r.seen + " cards \u00b7 "
-                            + r.runs + " draw" + (r.runs > 1 ? "s" : "");
+    $('b-msub').textContent = r.right + " of " + r.seen + " cards reviewed \u00b7 "
+                            + r.runs + " session" + (r.runs > 1 ? "s" : "");
   } else {
     $('b-mpct').textContent = "";
     $('b-msub').textContent = pool >= REVIEW_MIN
-      ? "unlocked \u00b7 use review mode below"
-      : "locked \u00b7 " + pool + " of " + REVIEW_MIN + " cards finished";
+      ? "unlocked \u00b7 open Abhyāsa from the drawer"
+      : "locked \u00b7 " + pool + " of " + REVIEW_MIN + " cards from completed lists";
   }
 
   const rows = Object.keys(DECKS)
@@ -1897,7 +1902,7 @@ function renderBoard() {
                  || a.name.localeCompare(b.name));
 
   $('b-sub').textContent = rows.length
-    ? rows.length + " of " + Object.keys(DECKS).length + " lists finished"
+    ? rows.length + " of " + Object.keys(DECKS).length + " lists completed"
     : "";
 
   const list = $('b-list');
@@ -1934,7 +1939,7 @@ let panelWas = null, panelOpen = null;
 function syncBoardUI() {
   const done = finishedDecks().length, all = Object.keys(DECKS).length;
   $('dm-board').textContent = done
-    ? 'best scores \u00b7 ' + done + ' of ' + all + ' lists finished'
+    ? 'best scores \u00b7 ' + done + ' of ' + all + ' lists completed'
     : 'best scores \u00b7 no list finished yet';
   $('dr-board').classList.toggle('on', panelOpen === 'board');
 }
@@ -2119,7 +2124,7 @@ $('study-btn').addEventListener('click',
   () => panelOpen === 'study' ? closePanel() : openPanel('study'));
 $('p-back').addEventListener('click', closePanel);
 $('rp-draw').addEventListener('click', async () => {
-  if (roundInProgress() && !await ask('Leave this round for a review draw?', 'Leave it')) return;
+  if (roundInProgress() && !await ask('Leave this round to review?', 'Leave it')) return;
   startMixedReview();
 });
 $('restart').addEventListener('click',
