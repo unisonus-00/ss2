@@ -143,9 +143,18 @@ into the single-page `index.html` at the repository root. It already knows the
 absent, so adding `bricks.md` to a lesson needs no build change. Run it with
 `python3 build.py`.
 
-**Abhyāsaḥ** — not yet in the repository. The working artifact to date is a
-single self-contained page whose cards live in a
-`<script id="cards" type="text/plain">` block as pipe-delimited rows:
+**Abhyāsaḥ** — the primary project file, at `dist/abhyasah.html`. It is one
+self-contained page with no external references of any kind: no CDN, no fonts,
+no `fetch`, no stylesheets. It opens from `file://` and works offline, and it
+must stay that way.
+
+There is no `app/` or `scripts/build.js` yet — the page is currently hand-
+maintained rather than built, so `dist/abhyasah.html` is both source and
+distribution. Splitting it into the layout under **Architecture** is the next
+structural step; until then, edit the page directly.
+
+Its cards live in a `<script id="cards" type="text/plain">` block as
+pipe-delimited rows:
 
 ```
 # deck name @stage N
@@ -166,9 +175,14 @@ Two details there are load-bearing for the compatibility list above:
   chain when renaming; every `localStorage` touch stays guarded, since it can
   be absent or full.
 
-Moving this into the repository means the `app/` + `scripts/build.js` +
-`dist/abhyasah.html` layout described under **Architecture**, with card data
-migrating out of the page and into each lesson's `practice.json`.
+The page carries 58 decks. Each deck header may end with `@stage N`, which ties
+it to a numbered lesson directory; these stage numbers already agree with the
+directories, so use them, not README's table, when in doubt. Roughly the last
+third are generated from the `vocab/` bank and marked as such in the source.
+
+Card data still lives in the page rather than in per-lesson `practice.json`
+files. Migrating it out — one `practice.json` beside each lesson, assembled at
+build time — is the other half of the architecture work above.
 
 ### Known conflicts
 

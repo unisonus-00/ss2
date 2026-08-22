@@ -84,11 +84,22 @@ The curriculum has two complementary tracks:
 
 ## Usage
 
-Open `index.html` directly in a browser, or serve locally:
+**Practice — `dist/abhyasah.html`**
+
+अभ्यासः, the flashcard layer. Open it directly in a browser; it is a single
+self-contained file with no network dependencies, so it works offline and from
+`file://` — including on a phone. Decks are tied to the numbered stages, and
+progress, trouble cards, and scores are saved in the browser.
+
+**Reading — `index.html`**
+
+The full curriculum as one page. Open it directly, or serve locally:
 
 ```bash
 python3 -m http.server 8080
 ```
+
+Rebuild it from the markdown sources with `python3 build.py`.
 
 <br>
 
