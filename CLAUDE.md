@@ -224,25 +224,51 @@ fails the build rather than shipping.
 
 ### Navigation and progress
 
-The app opens on a card, not on a menu. Navigation is a **left drawer** — the
-button where the deck picker used to sit names the list in play and opens it —
-and inside it the curriculum's own shape: **track → lesson → deck**.
+The app opens on a card, not on a menu. Navigation is a **left drawer**, opened
+from a selector at the top left — aligned with the card, not centred over it —
+which names the lesson and list in play. Inside is the curriculum's own shape:
+**track → lesson → deck**.
 
-The five tracks are the course:
+The five tracks are the course. Stage ranges are given here because this is a
+maintainer's file; **they are not shown in the app**:
 
-| Track | Stages | |
-|:------|:-------|:--|
-| Language Acquisition | 1–13 | nouns → free composition, in devotional context |
-| Poetic Composition | 14–16, 18–19, 21–26 | stotra, chandas, alaṅkāra, rasa, darśana |
-| Pūjā-Vāk — ritual literacy | 17 | saṅkalpa, nyāsa, dhyāna, upacāra grammar |
-| Svara-Vidyā — Vedic literacy | 20 | udātta / anudātta / svarita, vikṛtis |
-| Avadhāna | 27–36 | eight challenges → full Aṣṭāvadhāna |
+| Track | | Stages |
+|:------|:--|:-------|
+| Bhāṣā-Vidyā | *Language Acquisition* | 1–13 |
+| Kāvya-Racanā | *Poetic Composition* | 14–16, 18–19, 21–26 |
+| Pūjā-Vāk | *Ritual Literacy* | 17 |
+| Svara-Vidyā | *Vedic Literacy* | 20 |
+| Avadhāna | *Attention Under Pressure* | 27–36 |
 
 `TRACKS` in `app.js` is the only place this lives, and the drawer is built from
 it alone, so navigation cannot drift from the curriculum. Cross-cutting
 vyākaraṇam practice is **not a sixth track**: it is listed after the five and
 counts towards no track's percentage. A track with no practice yet is left out
-rather than shown as an empty 0% — the drawer navigates what exists.
+rather than shown as an empty 0% — the drawer navigates what exists, and a
+track's subheading counts the lessons actually in it, not the stages it spans.
+
+**Pūjā-Vāk, Svara-Vidyā and Avadhāna are the curriculum's own names.
+Bhāṣā-Vidyā and Kāvya-Racanā are not** — nothing in the repository names those
+two groupings, so they were coined to match the other three. Rename them
+freely; `TRACKS` is the only place either appears.
+
+**Everything in the drawer is named the same way:** the Sanskrit in IAST as the
+heading, the English as an italic subheading beside a count. It holds at all
+three levels and for the mode rows too — `Pūjā-Vāk` / *Ritual Literacy · 1
+lesson*, `Rūpa` / *Case, Number, and Gender · 3 lists*, `Parīkṣā` / *proof of
+mastery*. A lesson's pair is read straight out of its `theory.md` heading,
+which always has the shape `Stage N: Name — English`, so the two cannot drift
+from the curriculum either.
+
+Two things are deliberately absent from the drawer, and tests assert both:
+
+- **No Devanagari.** It is chrome, not content; Devanagari belongs on the
+  cards, where it is the thing being learnt.
+- **No stage numbers.** A stage number is how this repository orders its
+  directories. It is gone from the header caption, the scoreboard rows and the
+  shared score summary as well, replaced in each by the lesson's own name —
+  which still tells a `Practice` deck in Rūpa from one in Kriyā. `DECK_STAGE`
+  survives only to map a lesson to its track.
 
 Review, trouble and the scoreboard live in the drawer too, above the tracks,
 with the scoreboard first. A panel is opened from the drawer, which then

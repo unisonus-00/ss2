@@ -35,19 +35,33 @@ const CARD_TYPES = new Set(['reveal', 'choice', 'sequence']);
 
 /* ── discover ───────────────────────────────────────────────────────── */
 
-/* A lesson's display name, taken from its own theory.md so the picker and
-   the curriculum cannot drift apart: "Stage 6: Kriyā — Verbs" -> "6 · Kriyā". */
-function lessonLabel(dir, stage) {
-  if (dir === '00-overview') return 'Vyākaraṇam · cross-cutting';
+/* A lesson's name and its English gloss, both taken from its own theory.md
+   heading so the navigation and the curriculum cannot drift apart.  Every
+   heading has the same shape:
+ *
+ *     # Stage 6: Kriyā — Verbs
+ *                 ^^^^^   ^^^^^
+ *                 label   gloss
+ *
+ * The stage number is dropped here rather than displayed: it is how this
+ * repository orders its directories, not something a learner needs to read.
+ * A trailing parenthetical is dropped too — "Case, Number, and Gender
+ * (Declension)" is longer than a subheading can carry. */
+function lessonTitle(dir) {
+  if (dir === '00-overview') {
+    return { label: 'Vyākaraṇam', gloss: 'Terminology Used Throughout' };
+  }
   const p = path.join(ROOT, dir, 'theory.md');
-  let title = dir.slice(3);
+  let label = dir.slice(3), gloss = '';
   if (fs.existsSync(p)) {
     const h = fs.readFileSync(p, 'utf8').split('\n').find(l => l.startsWith('#'));
     if (h) {
-      title = h.replace(/^#+\s*/, '').replace(/^Stage\s+\d+\s*:\s*/i, '').split(/\s+—\s+/)[0].trim();
+      const parts = h.replace(/^#+\s*/, '').replace(/^Stage\s+\d+\s*:\s*/i, '').split(/\s+—\s+/);
+      label = parts[0].trim();
+      gloss = (parts[1] || '').replace(/\s*\([^)]*\)\s*$/, '').trim();
     }
   }
-  return `${stage} · ${title}`;
+  return { label, gloss };
 }
 
 function discover() {
@@ -149,7 +163,7 @@ function loadPractice() {
       decks++;
     });
 
-    lessons.push({ lesson: dir, stage, label: lessonLabel(dir, stage), decks: outDecks });
+    lessons.push({ lesson: dir, stage, ...lessonTitle(dir), decks: outDecks });
   }
 
   /* A practice.json somewhere it does not belong is a silent no-op otherwise:

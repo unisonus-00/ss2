@@ -12,9 +12,10 @@
    Cards with no `type` are `reveal`, which is what every migrated card is. */
 const CARD_TYPES = ["reveal", "choice", "sequence"];
 
-const [DECKS, DECK_STAGE, DECK_LESSON, LESSON_LABEL, PARSE] = (() => {
-  const decks = {}, stages = {}, lessons = {}, labels = {}, skipped = [];
-  const fail = why => [decks, stages, lessons, labels, { count: 0, decks: 0, skipped, fatal: why }];
+const [DECKS, DECK_STAGE, DECK_LESSON, LESSON_LABEL, LESSON_GLOSS, PARSE] = (() => {
+  const decks = {}, stages = {}, lessons = {}, labels = {}, glosses = {}, skipped = [];
+  const fail = why => [decks, stages, lessons, labels, glosses,
+                       { count: 0, decks: 0, skipped, fatal: why }];
 
   const src = document.getElementById('practice');
   if (!src) return fail("the <script id=\"practice\"> block is missing");
@@ -25,6 +26,7 @@ const [DECKS, DECK_STAGE, DECK_LESSON, LESSON_LABEL, PARSE] = (() => {
 
   (data.lessons || []).forEach(L => {
     labels[L.lesson] = L.label || L.lesson;
+    glosses[L.lesson] = L.gloss || '';
     (L.decks || []).forEach(d => {
       if (!d.name || !Array.isArray(d.cards) || !d.cards.length) return;
       const cards = d.cards.filter(c => {
@@ -45,7 +47,8 @@ const [DECKS, DECK_STAGE, DECK_LESSON, LESSON_LABEL, PARSE] = (() => {
   });
 
   const count = Object.values(decks).reduce((a, b) => a + b.length, 0);
-  return [decks, stages, lessons, labels, { count, decks: Object.keys(decks).length, skipped }];
+  return [decks, stages, lessons, labels, glosses,
+          { count, decks: Object.keys(decks).length, skipped }];
 })();
 
 /* Which list a card came from.  Card objects are made once, per line, so
@@ -272,6 +275,16 @@ function unmarkMastered(card) {
    belongs to exactly one track, and the drawer is built from this table and
    nothing else, so the navigation cannot drift from the curriculum.
 
+   Each track is named as the lessons are: the Sanskrit in IAST, with the
+   English as its gloss.  Stage ranges are deliberately not among the fields
+   — which directory numbers a track spans is how this repository is laid
+   out, not something a learner has any use for.
+
+   Pūjā-Vāk, Svara-Vidyā and Avadhāna are the curriculum's own names.
+   Bhāṣā-Vidyā and Kāvya-Racanā are not: nothing in the repository names
+   those two groupings, so they were coined here to match. Rename them
+   freely — this table is the only place either appears.
+
    Stage 20 is the one place the source diagram is ambiguous: Svara-Vidyā is
    drawn as a track in its own right, yet the poetic track's range is written
    "18–26", which contains it.  Stage 17 is carved out of its neighbouring
@@ -280,28 +293,22 @@ function unmarkMastered(card) {
    lifted out of the range around it — is what the diagram means, so it is
    excluded from the poetic track here rather than counted twice. */
 const TRACKS = [
-  { id: 'bhasha',   name: 'Language Acquisition', range: 'stages 1–13',
-    blurb: 'Nouns → free composition, grounded in devotional context',
+  { id: 'bhasha',   name: 'Bhāṣā-Vidyā',  gloss: 'Language Acquisition',
     has: s => s >= 1 && s <= 13 },
-  { id: 'kavya',    name: 'Poetic Composition', range: 'stages 14–16, 18–26',
-    blurb: 'Stotra, chandas, alaṅkāra, rasa, darśana',
+  { id: 'kavya',    name: 'Kāvya-Racanā', gloss: 'Poetic Composition',
     has: s => (s >= 14 && s <= 16) || (s >= 18 && s <= 26 && s !== 20) },
-  { id: 'puja',     name: 'Pūjā-Vāk — ritual literacy', range: 'stage 17',
-    blurb: 'Saṅkalpa, nyāsa, dhyāna, upacāra grammar',
+  { id: 'puja',     name: 'Pūjā-Vāk',     gloss: 'Ritual Literacy',
     has: s => s === 17 },
-  { id: 'svara',    name: 'Svara-Vidyā — Vedic literacy', range: 'stage 20',
-    blurb: 'Udātta / anudātta / svarita, vikṛtis',
+  { id: 'svara',    name: 'Svara-Vidyā',  gloss: 'Vedic Literacy',
     has: s => s === 20 },
-  { id: 'avadhana', name: 'Avadhāna', range: 'stages 27–36',
-    blurb: 'Eight challenges → full Aṣṭāvadhāna; stage 36, mastery as living practice',
+  { id: 'avadhana', name: 'Avadhāna',     gloss: 'Attention Under Pressure',
     has: s => s >= 27 && s <= 36 }
 ];
 /* Cross-cutting practice sits outside the stage sequence, so it is not a
    sixth track: it is listed after the five, and belongs to no track's
    percentage.  The five are the course; this is what runs alongside it. */
 const CROSS_TRACK = {
-  id: 'vyakaranam', name: 'Vyākaraṇam', range: 'cross-cutting',
-  blurb: 'Formal grammar, alongside the stages rather than inside them'
+  id: 'vyakaranam', name: 'Vyākaraṇam', gloss: 'Formal Grammar'
 };
 const trackOf = stage => TRACKS.find(t => t.has(stage)) || CROSS_TRACK;
 
@@ -441,7 +448,7 @@ const toggleIn = (set, key) => { set.has(key) ? set.delete(key) : set.add(key); 
    called "Practice" and "Table mastery", so the deck name on its own would
    not say whose practice you are in. */
 function syncNav() {
-  const label = deckName ? LESSON_LABEL[DECK_LESSON[deckName]] : '';
+  const label = deckName ? LESSON_LABEL[DECK_LESSON[deckName]] : '';   // the lesson, in IAST
   $('nav-label').textContent =
       deckName === MIX     ? 'mixed review'
     : deckName === TROUBLE ? 'trouble cards'
@@ -482,8 +489,14 @@ function lessonRow(L) {
   head.className = 'ls-head';
   head.setAttribute('aria-expanded', open ? 'true' : 'false');
   head.innerHTML = '<span class="ls-name"></span><span class="ls-pct"></span>'
-                 + '<span class="bar"><i></i></span>';
-  fillRow(head, { '.ls-name': L.label, '.ls-pct': p.full ? '✓' : p.pct + '%' });
+                 + '<span class="ls-sub"></span><span class="bar"><i></i></span>';
+  fillRow(head, {
+    '.ls-name': L.label,
+    '.ls-pct': p.full ? '✓' : p.pct + '%',
+    '.ls-sub': [LESSON_GLOSS[L.lesson],
+                L.decks.length + ' list' + (L.decks.length > 1 ? 's' : '')]
+               .filter(Boolean).join(' · ')
+  });
   setBar(head, p.pct);
   head.addEventListener('click', () => { toggleIn(openLessons, L.lesson); renderDrawer(); });
   wrap.appendChild(head);
@@ -512,11 +525,14 @@ function renderDrawer() {
     const head = document.createElement('button');
     head.className = 'tr-head';
     head.setAttribute('aria-expanded', open ? 'true' : 'false');
-    head.innerHTML = '<span class="tr-range"></span><span class="tr-pct"></span>'
-                   + '<span class="tr-name"></span><span class="tr-blurb"></span>'
-                   + '<span class="bar"><i></i></span>';
-    fillRow(head, { '.tr-range': t.range, '.tr-name': t.name,
-                    '.tr-blurb': t.blurb, '.tr-pct': p.pct + '%' });
+    head.innerHTML = '<span class="tr-name"></span><span class="tr-pct"></span>'
+                   + '<span class="tr-sub"></span><span class="bar"><i></i></span>';
+    fillRow(head, {
+      '.tr-name': t.name,
+      '.tr-pct': p.pct + '%',
+      '.tr-sub': t.gloss + ' · ' + row.lessons.length
+               + ' lesson' + (row.lessons.length > 1 ? 's' : '')
+    });
     setBar(head, p.pct);
     head.addEventListener('click', () => { toggleIn(openTracks, t.id); renderDrawer(); });
     wrap.appendChild(head);
@@ -577,8 +593,8 @@ function openFromDrawer(fn) {
    the trouble row does with an empty list. */
 function syncReviewUI() {
   const pool = reviewPool().length;
-  $('dm-review').textContent = '\u092A\u0930\u0940\u0915\u094D\u0937\u093E \u2014 review mode'
-    + (pool >= REVIEW_MIN ? '' : ' \u00b7 ' + pool + ' of ' + REVIEW_MIN);
+  $('dm-review').textContent = 'proof of mastery'
+    + (pool >= REVIEW_MIN ? '' : ' \u00b7 ' + pool + ' of ' + REVIEW_MIN + ' cards');
   $('dr-review').classList.toggle('on', panelOpen === 'reviewpanel');
 }
 
@@ -651,11 +667,13 @@ function loadDeck(name) {
   relabelAll();
   $('restart').textContent = "Whole deck again";
   const src = DECKS[name];
-  const st = DECK_STAGE[name];
   const best = deckState(name).best;
+  /* The lesson is named by the selector directly above this line, and a
+     stage number — how this repository orders its directories — used to be
+     printed here and tells a learner nothing.  So the caption is left with
+     what neither of those says. */
   $('stage').textContent = [
     DECK_DESC(name),
-    st === 0 ? "vyākaraṇam track" : st ? "stage " + st : "",
     src.length + " cards",
     best ? "best " + best[0] + "/" + best[1] : ""
   ].filter(Boolean).join(" · ");
@@ -1383,7 +1401,7 @@ function finish() {
   const total = roundSource.length;
   const firstPass = total - missed.length;
   const justCleared = SAVED.cleared - clearedAt;
-  lastRound = { deck: deckName, stage: DECK_STAGE[deckName], firstPass, total,
+  lastRound = { deck: deckName, lesson: LESSON_LABEL[DECK_LESSON[deckName]], firstPass, total,
                 reviewing, mixed, trouble, justCleared,
                 lists: mixed && !trouble ? finishedDecks().length : 0 };
 
@@ -1498,10 +1516,8 @@ function scoreText() {
          + "\u25cf".repeat(filled) + "\u25cb".repeat(10 - filled)
          + (m === null ? "" : "\nReview mastery: " + m + "%");
   }
-  const place = r.stage === 0 ? "vyākaraṇam track"
-              : r.stage       ? "stage " + r.stage : "";
   return "अभ्यासः · sanskrit flashcards\n"
-       + r.deck + (place ? "  (" + place + ")" : "") + "\n"
+       + r.deck + (r.lesson ? "  (" + r.lesson + ")" : "") + "\n"
        + (r.reviewing ? "Review cleared: " : "Known on the first showing: ")
        + r.firstPass + " of " + r.total + " · " + pct + "%\n"
        + "\u25cf".repeat(filled) + "\u25cb".repeat(10 - filled);
@@ -1589,17 +1605,17 @@ function renderBoard() {
   }
   rows.forEach(d => {
     const pct = Math.round(d.best[0] / d.best[1] * 100);
-    const st = DECK_STAGE[d.name];
+    const lesson = LESSON_LABEL[DECK_LESSON[d.name]];
     const row = document.createElement('div');
     row.className = 'brow' + (pct === 100 ? ' full' : '');
     row.innerHTML = '<span class="b-name"></span>'
                   + '<span class="b-score"></span><span class="b-pct"></span>';
     const nm = row.querySelector('.b-name');
     nm.textContent = DECK_SHORT(d.name);
-    if (st !== undefined) {
+    if (lesson) {
       const tag = document.createElement('span');
       tag.className = 'b-stage';
-      tag.textContent = st === 0 ? 'vyākaraṇam' : 'stage ' + st;
+      tag.textContent = lesson;
       nm.appendChild(tag);
     }
     row.querySelector('.b-score').textContent = d.best[0] + " / " + d.best[1];
@@ -1713,8 +1729,8 @@ function troubleText() {
 
 function syncTroubleUI() {
   const n = troubleCards().length;
-  $('dm-trouble').textContent = '\u0915\u094D\u0932\u093F\u0937\u094D\u091F\u093E\u0928\u093F \u2014 trouble cards'
-    + (n ? ' (' + n + ')' : '');
+  $('dm-trouble').textContent = 'repeat offenders'
+    + (n ? ' \u00b7 ' + n + ' card' + (n > 1 ? 's' : '') : '');
   $('dr-trouble').classList.toggle('on', panelOpen === 'trouble');
 }
 

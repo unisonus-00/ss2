@@ -8,12 +8,19 @@
 </head>
 <body>
 
+<!-- The selector sits on the left, aligned with the card below it, rather
+     than centred in the header the way the old dropdown was. -->
+<div class="topbar">
+  <button id="nav" class="navbtn" aria-haspopup="dialog" aria-expanded="false" aria-controls="drawer">
+    <span class="bars" aria-hidden="true"></span>
+    <span id="nav-label">lists</span>
+    <span class="nav-caret" aria-hidden="true"></span>
+  </button>
+</div>
+
 <header>
   <h1>अभ्यासः</h1>
   <div class="sub">abhyāsaḥ</div>
-  <button id="nav" class="navbtn" aria-haspopup="dialog" aria-expanded="false" aria-controls="drawer">
-    <span class="bars" aria-hidden="true"></span><span id="nav-label">lists</span>
-  </button>
   <div class="controls">
     <button id="dir" title="Tap to reverse"><span class="swap" aria-hidden="true">⇄</span><span id="dir-label">word → meaning</span></button>
     <label class="check" for="iast-on"><input type="checkbox" id="iast-on" checked> IAST</label>
@@ -123,7 +130,7 @@
 <nav class="drawer" id="drawer" role="dialog" aria-modal="true"
      aria-label="Lists and progress" hidden>
   <div class="dr-top">
-    <div class="dr-title">अभ्यासः</div>
+    <div class="dr-title">abhyāsaḥ</div>
     <button id="dr-close" class="dr-x" aria-label="Close">×</button>
   </div>
 
@@ -136,16 +143,16 @@
 
   <div class="dr-modes">
     <button id="dr-board" class="dr-mode board">
-      <span class="dm-name">अङ्काः — scoreboard</span>
+      <span class="dm-name">Aṅkāḥ</span>
       <span class="dm-sub">best scores and review mastery</span>
     </button>
     <button id="dr-review" class="dr-mode">
-      <span class="dm-name" id="dm-review">परीक्षा — review mode</span>
-      <span class="dm-sub">proof of mastery</span>
+      <span class="dm-name">Parīkṣā</span>
+      <span class="dm-sub" id="dm-review">proof of mastery</span>
     </button>
     <button id="dr-trouble" class="dr-mode">
-      <span class="dm-name" id="dm-trouble">क्लिष्टानि — trouble cards</span>
-      <span class="dm-sub">repeat offenders</span>
+      <span class="dm-name">Kliṣṭāni</span>
+      <span class="dm-sub" id="dm-trouble">repeat offenders</span>
     </button>
   </div>
 

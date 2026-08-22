@@ -26,18 +26,24 @@
   /* left lowercase: IAST is written lowercase, and at this size an
      uppercased ṚḤ hides its own underdots */
   .sub { font-size: .88rem; letter-spacing: .22em; font-style: italic; color: var(--faded); }
-  /* Where the deck picker used to sit, at the same width: it names the list
-     in play and opens the drawer that changes it. */
+  /* The selector, left-aligned with the card rather than centred in the
+     header: it is a way in to the drawer, not a title.  Its own row, so its
+     width follows the list it names instead of a fixed picker width. */
+  .topbar { width: 100%; max-width: 440px; display: flex; margin-bottom: 1rem; }
   .navbtn {
-    margin-top: .9rem; background: transparent; color: var(--leaf);
-    border: 1px solid var(--faded); border-radius: 2px;
-    padding: .5rem .7rem; font-family: inherit; font-size: .95rem;
-    width: min(92vw, 21rem); min-height: 44px;
-    display: inline-flex; align-items: center; gap: .6rem;
-    cursor: pointer; text-align: left;
+    display: inline-flex; align-items: center; gap: .55rem;
+    max-width: 100%; min-height: 44px; padding: .45rem .75rem .45rem .65rem;
+    background: transparent; color: var(--leaf);
+    border: 1px solid rgba(125,112,92,.55); border-radius: 2px;
+    font-family: inherit; font-size: .88rem; text-align: left; cursor: pointer;
   }
-  .navbtn:hover { border-color: var(--leaf); }
-  #nav-label { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .navbtn:hover { border-color: var(--faded); }
+  #nav-label { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .nav-caret {
+    width: 5px; height: 5px; flex: none; margin-left: .05rem;
+    border-right: 1px solid var(--faded); border-bottom: 1px solid var(--faded);
+    transform: rotate(-45deg);
+  }
   /* drawn rather than typed: a ☰ glyph is missing from some Devanagari-first
      font stacks, and this page ships no font of its own */
   .bars { width: 15px; height: 11px; flex: none; position: relative; }
@@ -346,8 +352,8 @@
     padding: 1rem .85rem 2.5rem;
   }
   .dr-top { display: flex; align-items: center; gap: .6rem; }
-  .dr-title { flex: 1; font-size: 1.15rem;
-              font-family: "Noto Serif Devanagari", "Kohinoor Devanagari", serif; }
+  .dr-title { flex: 1; font-size: .9rem; font-style: italic;
+              letter-spacing: .18em; color: var(--faded); }
   .dr-x { background: none; border: 0; color: var(--faded); font-size: 1.6rem;
           line-height: 1; width: 44px; height: 44px; cursor: pointer; padding: 0; }
   .dr-x:hover { color: var(--leaf); }
@@ -380,8 +386,8 @@
   /* the scoreboard leads, and is the one row drawn in full */
   .dr-mode.board { border-color: var(--kumkuma); }
   .dr-mode.on { border-color: var(--leaf); }
-  .dm-name { display: block; font-size: .92rem; }
-  .dm-sub { display: block; margin-top: .1rem; font-size: .68rem;
+  .dm-name { display: block; font-size: .95rem; }
+  .dm-sub { display: block; margin-top: .1rem; font-size: .69rem;
             font-style: italic; color: var(--faded); }
 
   /* a track: its stage range, its name, what it covers, how much is back */
@@ -390,15 +396,13 @@
   .tr-head {
     display: grid; width: 100%; text-align: left; cursor: pointer;
     grid-template-columns: 1fr auto; gap: .1rem .6rem;
-    grid-template-areas: "range pct" "name pct" "blurb blurb" "bar bar";
+    grid-template-areas: "name pct" "sub sub" "bar bar";
     background: none; border: 0; font-family: inherit; color: var(--leaf);
     padding: .75rem .2rem .8rem; min-height: 48px;
   }
-  .tr-range { grid-area: range; font-size: .62rem; letter-spacing: .14em;
-              text-transform: uppercase; color: var(--kumkuma); }
-  .tr-name { grid-area: name; font-size: 1rem; }
-  .tr-blurb { grid-area: blurb; font-size: .71rem; font-style: italic;
-              line-height: 1.45; color: var(--faded); margin-top: .15rem; }
+  .tr-name { grid-area: name; font-size: 1.05rem; }
+  .tr-sub { grid-area: sub; font-size: .73rem; font-style: italic;
+            line-height: 1.45; color: var(--faded); margin-top: .1rem; }
   .tr-pct { grid-area: pct; align-self: center; font-size: .85rem;
             color: var(--faded); font-variant-numeric: tabular-nums; }
   .tr-head .bar { grid-area: bar; margin-top: .5rem; }
@@ -411,11 +415,13 @@
   .ls-head {
     display: grid; width: 100%; text-align: left; cursor: pointer;
     grid-template-columns: 1fr auto; gap: .1rem .6rem;
-    grid-template-areas: "name pct" "bar bar";
+    grid-template-areas: "name pct" "sub sub" "bar bar";
     background: none; border: 0; font-family: inherit; color: var(--leaf);
-    padding: .55rem .2rem; min-height: 44px;
+    padding: .5rem .2rem; min-height: 44px;
   }
-  .ls-name { grid-area: name; font-size: .88rem; }
+  .ls-name { grid-area: name; font-size: .9rem; }
+  .ls-sub { grid-area: sub; font-size: .66rem; font-style: italic;
+            line-height: 1.4; color: var(--faded); margin-top: .05rem; }
   .ls-pct { grid-area: pct; align-self: center; font-size: .78rem;
             color: var(--faded); font-variant-numeric: tabular-nums; }
   .ls-head .bar { grid-area: bar; margin-top: .35rem; }

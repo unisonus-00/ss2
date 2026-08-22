@@ -76,6 +76,7 @@ const open = async (browser, opts = {}) => {
       groups: LESSONS.map(L => L.label),
       options: LESSONS.reduce((a, L) => a + L.decks.length, 0),
       tracks: TRACK_ROWS.map(r => r.track.name),
+      glossed: LESSONS.filter(L => LESSON_GLOSS[L.lesson]).length,
       idsOnCards: Object.values(DECKS).every(cs => cs.every(c => typeof c.id === 'string' && c.id.includes(':'))),
     }));
 
@@ -92,11 +93,16 @@ const open = async (browser, opts = {}) => {
       r.groups.length + ' of ' + EXPECTED.lessons + ' lessons');
     ok('groups are curriculum-ordered',
       JSON.stringify(r.groups.slice(0, 4)) ===
-      JSON.stringify(['1 · Nāma', '2 · Varṇa-Vidyā', '3 · Sandhi', '4 · Guṇa']),
+      JSON.stringify(['Nāma', 'Varṇa-Vidyā', 'Sandhi', 'Guṇa']),
       r.groups.slice(0, 4).join(' | '));
     ok('cross-cutting practice comes last',
-      r.groups[r.groups.length - 1] === 'Vyākaraṇam · cross-cutting',
+      r.groups[r.groups.length - 1] === 'Vyākaraṇam',
       r.groups[r.groups.length - 1]);
+    // a stage number is repository layout, not something a learner reads
+    ok('no lesson name carries a stage number',
+      r.groups.every(g => !/^\d+\s*·/.test(g)), r.groups.filter(g => /^\d+\s*·/.test(g)).join(' | '));
+    ok('every lesson has an English gloss beside its name',
+      r.glossed === r.groups.length, r.glossed + ' of ' + r.groups.length);
     ok('every deck reachable from the drawer', r.options === EXPECTED.decks,
       r.options + ' of ' + EXPECTED.decks);
     console.log('        groups: ' + r.groups.join(' | '));
@@ -906,6 +912,7 @@ const open = async (browser, opts = {}) => {
       for (let n = 1; n <= 36; n++) stages.push({ n, hits: TRACKS.filter(t => t.has(n)).map(t => t.id) });
       return {
         names: TRACKS.map(t => t.name),
+        glosses: TRACKS.map(t => t.gloss),
         doubled: stages.filter(x => x.hits.length > 1).map(x => x.n),
         homeless: stages.filter(x => !x.hits.length).map(x => x.n),
         stage20: TRACKS.filter(t => t.has(20)).map(t => t.id),
@@ -916,10 +923,10 @@ const open = async (browser, opts = {}) => {
       };
     });
     ok('there are five course tracks', r.names.length === 5, r.names.join(' | '));
-    ok('the tracks are the curriculum’s own five',
+    ok('the five tracks are named in IAST, glossed in English',
       JSON.stringify(r.names) === JSON.stringify([
-        'Language Acquisition', 'Poetic Composition', 'Pūjā-Vāk — ritual literacy',
-        'Svara-Vidyā — Vedic literacy', 'Avadhāna']), r.names.join(' | '));
+        'Bhāṣā-Vidyā', 'Kāvya-Racanā', 'Pūjā-Vāk', 'Svara-Vidyā', 'Avadhāna'])
+      && r.glosses.every(Boolean), r.names.join(' | '));
     ok('no stage belongs to two tracks', !r.doubled.length, r.doubled.join(', '));
     ok('every stage 1–36 has a track', !r.homeless.length, r.homeless.join(', '));
     // the one ambiguity in the source diagram, resolved the way stage 17 is
@@ -1027,6 +1034,31 @@ const open = async (browser, opts = {}) => {
     ok('the deck dropdown is gone', shut.noSelect);
     ok('the drawer starts shut', shut.hidden);
     ok('the handle names the list in play', !!shut.label && shut.label !== 'lists', shut.label);
+
+    // the drawer is chrome, not content: IAST there, Devanagari on the cards
+    await p.click('#nav');
+    const script = await p.evaluate(() => {
+      openTracks.clear(); openLessons.clear(); renderDrawer();
+      TRACK_ROWS.forEach(r => openTracks.add(r.track.id));
+      LESSONS.forEach(L => openLessons.add(L.lesson));
+      renderDrawer();
+      const text = document.getElementById('drawer').textContent;
+      return {
+        devanagari: (text.match(/[ऀ-ॿ]+/g) || []).join(' '),
+        // a curriculum stage, not the derivation stages a sandhi deck drills
+        stages: (text.match(/\bstages?\b(?:\s+\d[\d–\s-]*)?/gi) || [])
+          .filter(m => /\d/.test(m) || /\bthe stages?\b/i.test(m)).join(' | '),
+        numbered: [...document.querySelectorAll('.ls-name, .tr-name')]
+          .map(e => e.textContent).filter(t => /\d/.test(t)).join(' | '),
+        subs: [...document.querySelectorAll('.tr-sub')].map(e => e.textContent),
+      };
+    });
+    ok('no Devanagari in the drawer', !script.devanagari, script.devanagari);
+    ok('no stage numbers in the drawer', !script.stages && !script.numbered,
+      [script.stages, script.numbered].filter(Boolean).join(' | '));
+    ok('a track subheading glosses it and counts its lessons',
+      script.subs.every(t => / · \d+ lessons?$/.test(t)), script.subs[0]);
+    await p.evaluate(() => closeDrawer());
 
     await p.click('#nav');
     const opened = await p.evaluate(() => ({
