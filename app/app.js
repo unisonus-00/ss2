@@ -132,6 +132,24 @@ const DECK_RENAMES = {
   'Suffix practice — kṛt and taddhita':          'Practice — kṛt and taddhita',
   'Chandas practice — scan and name':            'Practice — scan and name',
   'Vṛtta practice — name the metre':             'Practice — name the metre',
+  /* "Practice" led every one of these, which told a learner nothing: the word
+     is not used consistently enough across the lessons to mean anything on its
+     own, and it buried the skill the list actually drills.  The skill leads
+     now and "practice" is the descriptor.  Applied in order, so a deck renamed
+     twice still finds its way — these run after the entries above. */
+  'Practice — pratyāhāras':                        'Pratyāhāras — practice',
+  'Practice · joins — combine the two words':      'Joins — practice, combine the two words',
+  'Practice · splits & rules — take apart and name': 'Splits & rules — practice, take apart and name',
+  'Practice — agreement':                          'Agreement — practice',
+  'Practice — case and form':                      'Case and form — practice',
+  'Practice — person, tense and mood':             'Person, tense and mood — practice',
+  'Practice — roles in a sentence':                'Roles in a sentence — practice',
+  'Practice — direct address':                     'Direct address — practice',
+  'Practice — kṛt and taddhita':                   'Kṛt and taddhita — practice',
+  'Practice — name the compound':                  'Name the compound — practice',
+  'Practice — case, form and connector':           'Case, form and connector — practice',
+  'Practice — scan and name':                      'Scan and name — practice',
+  'Practice — name the metre':                     'Name the metre — practice',
 };
 /* A SPLIT is not a rename and has no entry here.  When a long list is broken
    into chunks, no one chunk is the old deck, so its best score and missed pile
@@ -522,40 +540,60 @@ function fillRow(el, parts) {
 }
 const setBar = (el, pct) => { const i = el.querySelector('.bar i'); if (i) i.style.width = pct + '%'; };
 
-function deckRow(name) {
-  const p = progressOf(DECK_IDS[name]);
+/* A level that has one child adds a step without adding information: a track
+   with a single lesson repeats itself (Pūjā-Vāk inside Pūjā-Vāk), and a lesson
+   with a single list is just that list wearing a second name.  Both are folded
+   away here.
+
+   Folded by what exists, never by a list of exceptions — so the level comes
+   back on its own the moment a second lesson or a second list does, and the
+   curriculum's own shape is still the only thing driving the drawer. */
+const soleLesson = row => row.lessons.length === 1 ? row.lessons[0] : null;
+const soleDeck   = L   => L.decks.length === 1 ? L.decks[0] : null;
+const count = (n, word) => n + ' ' + word + (n === 1 ? '' : 's');
+
+/* One row of the drawer.  `cls` is the level it is drawn at, so a list
+   standing in for its lesson keeps the lesson's size and indent. */
+function rowButton(cls, { name, pct, sub, full, on, bar, title }) {
   const b = document.createElement('button');
-  b.className = 'dk' + (name === deckName ? ' on' : '') + (p.full ? ' full' : '');
-  b.innerHTML = '<span class="dk-name"></span><span class="dk-pct"></span>'
-              + '<span class="dk-sub"></span>';
-  fillRow(b, {
-    '.dk-name': DECK_SHORT(name),
-    '.dk-pct': p.full ? '✓' : p.pct + '%',
-    '.dk-sub': [DECK_DESC(name), DECKS[name].length + ' cards'].filter(Boolean).join(' · ')
+  /* a deck row is `.dk`; the two levels above it are `.tr-head` / `.ls-head` */
+  b.className = (cls === 'dk' ? 'dk' : cls + '-head') + (on ? ' on' : '');
+  b.innerHTML = `<span class="${cls}-name"></span><span class="${cls}-pct"></span>`
+              + `<span class="${cls}-sub"></span>` + (bar ? '<span class="bar"><i></i></span>' : '');
+  fillRow(b, { ['.' + cls + '-name']: name,
+               ['.' + cls + '-pct']: full ? '✓' : pct + '%',
+               ['.' + cls + '-sub']: sub });
+  if (bar) setBar(b, pct);
+  if (title) b.title = title;
+  return b;
+}
+
+/* A list, drawn at whatever level it has been folded up to. */
+function deckRow(name, cls) {
+  cls = cls || 'dk';
+  const p = progressOf(DECK_IDS[name]);
+  const b = rowButton(cls, {
+    name: DECK_SHORT(name), pct: p.pct, full: p.full, on: name === deckName,
+    bar: cls !== 'dk', title: name,
+    sub: [DECK_DESC(name), DECKS[name].length + ' cards'].filter(Boolean).join(' · ')
   });
-  b.title = name;                        // the full name, where there is a pointer
+  b.classList.add('leaf');
   b.addEventListener('click', () => chooseDeck(name));
   return b;
 }
 
 function lessonRow(L) {
+  const one = soleDeck(L);
+  if (one) return deckRow(one, 'ls');       // the lesson IS that list
+
   const p = progressOf(L.ids), open = openLessons.has(L.lesson);
   const wrap = document.createElement('div');
   wrap.className = 'ls' + (p.full ? ' full' : '');
-
-  const head = document.createElement('button');
-  head.className = 'ls-head';
-  head.setAttribute('aria-expanded', open ? 'true' : 'false');
-  head.innerHTML = '<span class="ls-name"></span><span class="ls-pct"></span>'
-                 + '<span class="ls-sub"></span><span class="bar"><i></i></span>';
-  fillRow(head, {
-    '.ls-name': L.label,
-    '.ls-pct': p.full ? '✓' : p.pct + '%',
-    '.ls-sub': [LESSON_GLOSS[L.lesson],
-                L.decks.length + ' list' + (L.decks.length > 1 ? 's' : '')]
-               .filter(Boolean).join(' · ')
+  const head = rowButton('ls', {
+    name: L.label, pct: p.pct, full: p.full, bar: true,
+    sub: [LESSON_GLOSS[L.lesson], count(L.decks.length, 'list')].filter(Boolean).join(' · ')
   });
-  setBar(head, p.pct);
+  head.setAttribute('aria-expanded', open ? 'true' : 'false');
   head.addEventListener('click', () => { toggleIn(openLessons, L.lesson); renderDrawer(); });
   wrap.appendChild(head);
 
@@ -577,28 +615,41 @@ function renderDrawer() {
   host.innerHTML = '';
   TRACK_ROWS.forEach(row => {
     const t = row.track, p = progressOf(row.ids), open = openTracks.has(t.id);
+    const only = soleLesson(row);
+    const onlyDeck = only && soleDeck(only);
     const wrap = document.createElement('div');
     wrap.className = 'tr' + (p.full ? ' full' : '');
 
-    const head = document.createElement('button');
-    head.className = 'tr-head';
-    head.setAttribute('aria-expanded', open ? 'true' : 'false');
-    head.innerHTML = '<span class="tr-name"></span><span class="tr-pct"></span>'
-                   + '<span class="tr-sub"></span><span class="bar"><i></i></span>';
-    fillRow(head, {
-      '.tr-name': t.name,
-      '.tr-pct': p.pct + '%',
-      '.tr-sub': t.gloss + ' · ' + row.lessons.length
-               + ' lesson' + (row.lessons.length > 1 ? 's' : '')
+    /* A track that comes down to a single list is that list: no heading of
+       its own to expand, since there is nothing underneath to reveal. */
+    if (onlyDeck) {
+      const head = deckRow(onlyDeck, 'tr');
+      /* the track's own name and gloss lead.  The list's descriptor is left
+         off: at this level it only ever restates the gloss it sits beside. */
+      fillRow(head, { '.tr-name': t.name,
+        '.tr-sub': t.gloss + ' · ' + DECKS[onlyDeck].length + ' cards' });
+      wrap.appendChild(head);
+      host.appendChild(wrap);
+      return;
+    }
+
+    const head = rowButton('tr', {
+      name: t.name, pct: p.pct, full: p.full, bar: true,
+      /* one lesson: name it here rather than saying "1 lesson" and repeating
+         the track's own name on the row below */
+      sub: only
+        ? (only.label === t.name ? t.gloss : only.label) + ' · ' + count(only.decks.length, 'list')
+        : t.gloss + ' · ' + count(row.lessons.length, 'lesson')
     });
-    setBar(head, p.pct);
+    head.setAttribute('aria-expanded', open ? 'true' : 'false');
     head.addEventListener('click', () => { toggleIn(openTracks, t.id); renderDrawer(); });
     wrap.appendChild(head);
 
     const body = document.createElement('div');
     body.className = 'tr-body';
     body.hidden = !open;
-    row.lessons.forEach(L => body.appendChild(lessonRow(L)));
+    if (only) only.decks.forEach(n => body.appendChild(deckRow(n)));
+    else row.lessons.forEach(L => body.appendChild(lessonRow(L)));
     wrap.appendChild(body);
     host.appendChild(wrap);
   });

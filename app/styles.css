@@ -456,6 +456,15 @@
   .ls.full .ls-pct { color: var(--patra); font-size: .95rem; }
   .ls-body { padding: .1rem 0 .5rem .55rem; }
 
+  /* A list standing in for the level above it — a track that is one list, or a
+     lesson that is one — keeps that level's size and indent, and takes the
+     current-list outline a deck row gets instead of an expander's caret. */
+  .tr-head.leaf, .ls-head.leaf { cursor: pointer; }
+  .tr-head.on, .ls-head.on {
+    border: 1px solid var(--leaf); border-radius: 2px;
+  }
+  .ls-head.leaf .ls-sub, .tr-head.leaf .tr-sub { font-style: normal; }
+
   /* a deck: the row that actually starts a round */
   .dk {
     display: grid; width: 100%; text-align: left; cursor: pointer;

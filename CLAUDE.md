@@ -342,6 +342,24 @@ future card needs no flag to be handled correctly.
 
 ### Navigation and progress
 
+**One child is folded away.** A level that has a single child adds a step
+without adding information, so the drawer skips it:
+
+| | |
+|:--|:--|
+| a track with one lesson | shows that lesson's lists directly — `Pūjā-Vāk` inside `Pūjā-Vāk` was the same name twice |
+| a lesson with one list | *is* that list; the row loads it instead of expanding |
+| both at once | the track row loads the list — `Svara-Vidyā`, `Avadhāna` |
+
+**Folded by what exists, never by a list of exceptions.** `soleLesson` and
+`soleDeck` read the tree, so the level reappears by itself the moment a second
+lesson or a second list does, and the curriculum stays the only thing driving
+the drawer. A track that folds counts what it actually holds — `· 11 lists`,
+`· 12 cards` — rather than `· 1 lesson`.
+
+Where a folded lesson's name differs from its track's, the subheading keeps it
+(`Avadhāna` / *Samasyāpūraṇa · 1 list*) so nothing is silently lost.
+
 The app opens on a card, not on a menu. Navigation is a **left drawer**, opened
 from a selector at the top left — aligned with the card, not centred over it —
 which names the lesson and list in play. Inside is the curriculum's own shape:
@@ -535,10 +553,18 @@ Three things here are load-bearing for the compatibility list above:
   once on load, the same way `OLD_KEYS` rescues state from an earlier storage
   key. **Never rename a deck without adding a line there.** Vocab-bank decks
   still carry their `V01 ·` prefixes; the drawer hides them from display.
-- **Deck names carry the product structure.** Within a lesson the drawer reads
-  `Practice`, then `Table mastery` / `Conjugation mastery`, then the rest —
-  because `DECK_SHORT` displays the text before the em dash. Practice prepares
-  generalisation; mastery closes known finite gaps.
+- **Deck order carries the product structure.** Within a lesson the drawer
+  reads the exercises first, then `Table mastery` / `Conjugation mastery`, then
+  the recall lists — because that is the order they sit in `practice.json`,
+  which the build preserves. Practice prepares generalisation; mastery closes
+  known finite gaps. A test walks every lesson and fails if a set of
+  interactive cards ends up below a recall list.
+- **The skill leads a name, not the word "Practice".** Every exercise list was
+  once called `Practice — <skill>`, which put an uninformative word in the one
+  slot the drawer displays, and the word is not applied consistently enough
+  across the lessons to mean anything on its own. They read
+  `Case and form — practice`, `Name the metre — practice` now: the skill in the
+  heading, `practice` as the descriptor beside the card count.
 - **Progress lives in `localStorage`** under the key `abhyāsaḥ` — chosen before
   the brand settled on the bare stem **Abhyāsa**, and left alone: it is
   invisible plumbing, not displayed text, and renaming it would only add

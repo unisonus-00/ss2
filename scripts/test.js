@@ -19,7 +19,7 @@ const { chromium } = require('playwright-core');
 const path = require('path');
 const FILE = 'file://' + path.resolve(__dirname, '..', 'dist', 'abhyasah.html');
 const EXE = process.env.CHROME || '/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
-const DECK = 'Practice — person, tense and mood';
+const DECK = 'Person, tense and mood — practice';
 
 /* Expected counts come from the practice files themselves, so adding a
    lesson's practice does not break the suite — what is checked is that the
@@ -356,7 +356,7 @@ const open = async (browser, opts = {}) => {
     const p = await open(browser);
     const r = await p.evaluate(() => {
       // build a round mixing the choice deck with a reveal deck
-      const mix = [...DECKS['Practice — person, tense and mood'].slice(0, 3),
+      const mix = [...DECKS['Person, tense and mood — practice'].slice(0, 3),
                    ...DECKS['10 · Kriyā — verbs in form'].slice(0, 3)];
       startRound(mix, {});
       const kinds = [];
@@ -409,7 +409,7 @@ const open = async (browser, opts = {}) => {
     const p = await open(browser);
     const r = await p.evaluate(() => {
       // fail a short round outright
-      startRound(DECKS['Practice — person, tense and mood'].slice(0, 3), {});
+      startRound(DECKS['Person, tense and mood — practice'].slice(0, 3), {});
       let g = 0;
       while (current && g++ < 30) {
         [...document.querySelectorAll('#choices .opt')].find(x => x.textContent !== current.card.answer).click();
@@ -432,7 +432,7 @@ const open = async (browser, opts = {}) => {
   {
     const p = await open(browser);
     const r = await p.evaluate(() => {
-      const card = DECKS['Practice — person, tense and mood'][0];
+      const card = DECKS['Person, tense and mood — practice'][0];
       SAVED.trouble[card.id] = { w: 3, r: 0, s: '' }; save();
       const onList = troubleCards().some(c => c.id === card.id);
       startTroubleDrill();
@@ -742,7 +742,7 @@ const open = async (browser, opts = {}) => {
     const p = await browser.newPage();
     await p.goto(FILE, { waitUntil: 'load' });
     const r = await p.evaluate(() => {
-      const d = DECKS['Practice — roles in a sentence'] || [];
+      const d = DECKS['Roles in a sentence — practice'] || [];
       const sentence = d.filter(c => c.id.startsWith('07-karaka:role:'));
       return {
         n: sentence.length,
@@ -885,10 +885,10 @@ const open = async (browser, opts = {}) => {
     const r = await p.evaluate(() => {
       const raw = JSON.parse(localStorage.getItem('abhyāsaḥ'));
       return {
-        moved: raw.decks['Practice — case and form'],
-        movedKriya: raw.decks['Practice — person, tense and mood'],
+        moved: raw.decks['Case and form — practice'],
+        movedKriya: raw.decks['Person, tense and mood — practice'],
         oldGone: !raw.decks['Rūpa practice — case and form'],
-        lastDeckMoved: raw.deck === 'Practice — case and form',
+        lastDeckMoved: raw.deck === 'Case and form — practice',
         finished: finishedDecks().length,
       };
     });
@@ -1002,6 +1002,94 @@ const open = async (browser, opts = {}) => {
       ok('no list name is truncated at ' + width + 'px',
         !narrow.clipped, (narrow.clipped || '') + ' · logo ' + narrow.logoH + 'px tall');
     }
+    await p.close();
+  }
+
+  // ── one child is folded away, and comes back on its own ────────────
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      openTracks.clear(); openLessons.clear();
+      TRACK_ROWS.forEach(x => openTracks.add(x.track.id));
+      renderDrawer();
+      const rows = [...document.querySelectorAll('#dr-tracks .tr')].map(tr => {
+        const h = tr.querySelector('.tr-head');
+        const body = tr.querySelector('.tr-body');
+        return {
+          name: h.querySelector('.tr-name').textContent,
+          leaf: h.classList.contains('leaf'),
+          /* a child is a deck button, a lesson-level leaf button, or a
+             wrapper holding a lesson heading */
+          kids: body ? [...body.children].map(c =>
+            (c.matches('.dk, .ls-head') ? c : c.querySelector('.ls-head'))
+              .querySelector('.dk-name, .ls-name').textContent) : [],
+        };
+      });
+      return {
+        rows,
+        /* the levels are folded from what exists, not from a hardcoded list */
+        derived: typeof soleLesson === 'function' && typeof soleDeck === 'function',
+        singleLessonTracks: TRACK_ROWS.filter(x => x.lessons.length === 1)
+          .map(x => x.track.name),
+        singleDeckLessons: LESSONS.filter(L => L.decks.length === 1).map(L => L.label),
+      };
+    });
+
+    // a track whose one lesson repeats its own name must not show it twice
+    const dup = r.rows.filter(x => x.kids.includes(x.name));
+    ok('no track repeats its own name one level down', !dup.length,
+      dup.map(x => x.name).join(' | '));
+
+    // a track that comes down to a single list is that list
+    const leaves = r.rows.filter(x => x.leaf).map(x => x.name);
+    ok('a track of one list is the list itself',
+      leaves.includes('Svara-Vidyā') && leaves.includes('Avadhāna'), leaves.join(' | '));
+
+    // a track with one lesson shows that lesson's lists directly
+    const puja = r.rows.find(x => x.name === 'Pūjā-Vāk');
+    ok('a track of one lesson shows its lists directly',
+      puja && puja.kids.length === 11 && !puja.kids.includes('Pūjā-Vāk'),
+      puja ? puja.kids.length + ' rows' : 'missing');
+
+    // a lesson holding one list is that list, not a heading over it
+    const kavya = r.rows.find(x => x.name === 'Kāvya-Racanā');
+    ok('a lesson of one list is the list itself',
+      kavya && kavya.kids.includes('Alaṅkāra') && kavya.kids.includes('Rasa'),
+      kavya ? kavya.kids.join(' | ') : 'missing');
+
+    ok('the folding is derived, not a list of exceptions', r.derived);
+    console.log('        folded: ' + r.singleLessonTracks.join(', ')
+      + ' · one-list lessons: ' + r.singleDeckLessons.join(', '));
+    await p.close();
+  }
+
+  // ── a deck renamed twice still finds its score ─────────────────────
+  {
+    const p = await browser.newPage();
+    p.on('pageerror', e => { console.log('  PAGEERROR ' + e.message); fail.push('pageerror'); });
+    await p.addInitScript(() => {
+      try {
+        // the name this deck carried two renames ago
+        localStorage.setItem('abhyāsaḥ', JSON.stringify({
+          v: 3, deck: 'Kriyā practice — person, tense and mood',
+          decks: { 'Kriyā practice — person, tense and mood': { best: [17, 21], pile: [] } },
+          review: { runs: 0, right: 0, seen: 0 }, trouble: {}, cleared: 0, mastered: {},
+        }));
+      } catch (e) {}
+    });
+    await p.goto(FILE, { waitUntil: 'load' });
+    const r = await p.evaluate(() => {
+      const raw = JSON.parse(localStorage.getItem('abhyāsaḥ'));
+      return { landed: raw.decks['Person, tense and mood — practice'],
+               oldGone: !raw.decks['Kriyā practice — person, tense and mood']
+                     && !raw.decks['Practice — person, tense and mood'],
+               deck: raw.deck };
+    });
+    ok('a score survives two renames in one chain',
+      r.landed && r.landed.best[0] === 17, JSON.stringify(r.landed));
+    ok('and leaves no stale key behind', r.oldGone);
+    ok('the remembered list follows the whole chain',
+      r.deck === 'Person, tense and mood — practice', r.deck);
     await p.close();
   }
 
@@ -1389,7 +1477,7 @@ const open = async (browser, opts = {}) => {
   {
     const p = await open(browser);
     const r = await p.evaluate(() => {
-      const deck = DECKS['Practice — person, tense and mood'];
+      const deck = DECKS['Person, tense and mood — practice'];
       const ids = new Set(deck.map(c => c.id));
       startRound(deck.slice(0, 3), {});
       const first = current.card.id;
@@ -1474,8 +1562,12 @@ const open = async (browser, opts = {}) => {
     ok('no Devanagari in the drawer', !script.devanagari, script.devanagari);
     ok('no stage numbers in the drawer', !script.stages && !script.numbered,
       [script.stages, script.numbered].filter(Boolean).join(' | '));
-    ok('a track subheading glosses it and counts its lessons',
-      script.subs.every(t => / · \d+ lessons?$/.test(t)), script.subs[0]);
+    /* A track counts whatever it actually holds: lessons, or lists where a
+       single lesson has been folded away, or cards where it comes down to one
+       list. */
+    ok('a track subheading ends in a count of what it holds',
+      script.subs.every(t => / · \d+ (lessons?|lists?|cards)$/.test(t)),
+      script.subs.find(t => !/ · \d+ (lessons?|lists?|cards)$/.test(t)) || '');
     await p.evaluate(() => closeDrawer());
 
     await p.click('#nav');
@@ -1553,11 +1645,11 @@ const open = async (browser, opts = {}) => {
           v: 2,
           decks: {
             // perfect, and the deck is still that size: every card was cold
-            'Practice — person, tense and mood': { best: [21, 21], pile: [] },
+            'Person, tense and mood — practice': { best: [21, 21], pile: [] },
             // perfect, but set when the deck was smaller — cannot be attributed
-            'Practice — case and form': { best: [9, 9], pile: [] },
+            'Case and form — practice': { best: [9, 9], pile: [] },
             // not perfect: which cards were cold is simply not recorded
-            'Practice · joins — combine the two words': { best: [19, 20], pile: [] },
+            'Joins — practice, combine the two words': { best: [19, 20], pile: [] },
           },
           trouble: {}, cleared: 0,
         }));
@@ -1568,9 +1660,9 @@ const open = async (browser, opts = {}) => {
       const of = n => progressOf(new Set(DECKS[n].map(c => c.id)));
       return {
         v: JSON.parse(localStorage.getItem('abhyāsaḥ')).v,
-        exact: of('Practice — person, tense and mood'),
-        resized: of('Practice — case and form'),
-        partial: of('Practice · joins — combine the two words'),
+        exact: of('Person, tense and mood — practice'),
+        resized: of('Case and form — practice'),
+        partial: of('Joins — practice, combine the two words'),
       };
     });
     ok('a perfect round on the deck as it stands seeds mastery',
