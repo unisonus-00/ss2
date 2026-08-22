@@ -703,15 +703,21 @@ function lessonRow(L) {
 
 function renderDrawer() {
   const r = rankOf(), all = Object.keys(DECKS).length;
+  /* Lists, not cards.  A card is the evidence underneath; a list is what a
+     learner finishes, and it is the same act that puts the list into review —
+     so one number carries the whole model. */
+  const done = finishedDecks().length;
+  let cpct = all ? Math.round(done / all * 100) : 0;
+  if (cpct === 100 && done < all) cpct = 99;
+  if (cpct === 0 && done > 0) cpct = 1;
   fillRow(document, {
+    /* the figure and its rank, and nothing else: what it is made of is on
+       the card this button opens */
     '#dp-pct': r.score === null ? 'Unranked' : r.score + '% \u00b7 ' + r.name,
-    '#dp-sub': abhyasaState(),
-    /* Lists, not cards.  A card is the evidence underneath; a list is what a
-       learner finishes, and it is the same act that puts the list into
-       review — so one number carries the whole model. */
-    '#dp-cards': finishedDecks().length + ' / ' + all + ' lists complete'
+    '#dp-cpct': cpct + '%',
+    '#dp-cards': done + ' / ' + all + ' lists complete'
   });
-  $('dp-bar').style.width = (r.score === null ? 0 : r.score) + '%';
+  $('dp-bar').style.width = cpct + '%';
 
   const host = $('dr-tracks');
   host.innerHTML = '';
@@ -804,18 +810,6 @@ function openFromDrawer(fn) {
 /* The row is live from the first load whether the mode is or not: a locked
    one opens the panel that says what it is and what unlocks it, exactly as
    the trouble row does with an empty list. */
-/* Abhyāsa's line under the bar: the two plain figures the mastery number is
-   made of, named rather than multiplied.  The UI states the meaning; the
-   arithmetic stays inside rankOf(). */
-function abhyasaState() {
-  const pool = reviewPool().length, m = masteryPct();
-  if (pool < REVIEW_MIN) {
-    return 'Complete more lists to unlock \u00b7 ' + pool + ' of ' + REVIEW_MIN + ' cards';
-  }
-  if (m === null) return 'Ready \u00b7 review ' + REVIEW_SIZE + ' cards';
-  return m + '% review accuracy \u00b7 ' + coverageOf().pct + '% course coverage';
-}
-
 function syncReviewUI() {
   $('dr-prog').classList.toggle('on', panelOpen === 'reviewpanel');
 }
@@ -1842,8 +1836,7 @@ const masteryPct = () => {
    Both halves already exist and are already displayed elsewhere — this adds
    no new stored state, and nothing to migrate. */
 const RANKS = [
-  [85, 'Mastered'], [65, 'Accomplished'], [45, 'Fluent'], [25, 'Practised'],
-  [10, 'Familiar'], [1, 'Beginning'], [0, 'Starting out']
+  [80, 'Master'], [55, 'Expert'], [30, 'Skilled'], [10, 'Learner'], [0, 'Novice']
 ];
 
 /* Course coverage: how much of the material has actually entered review.

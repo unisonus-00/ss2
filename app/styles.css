@@ -489,32 +489,50 @@
   .dr-x:hover { color: var(--leaf); }
 
   /* the course figure, over every card the app carries */
-  /* Abhyāsa's own section: the app's name, what the mode is for, and the one
-     figure it produces.  A button, not a heading — it opens the review. */
-  .dr-prog { display: block; width: 100%; min-height: 0; text-align: left;
-             font: inherit; padding: .7rem 0 .2rem; cursor: pointer;
-             background: transparent; border: 0; border-radius: 0; }
-  .dp-label { display: block; font-size: .72rem; letter-spacing: .18em;
+  /* Abhyāsa is the one thing in the drawer you ACT on rather than navigate to,
+     so it is a raised panel with the accent pigment and an arrow — visibly a
+     different kind of thing from the rows below it, which are a list. */
+  .dr-prog { position: relative; display: grid; width: 100%; min-height: 0;
+             grid-template-columns: 1fr auto; align-items: center;
+             gap: 0 .8rem; text-align: left; font: inherit; cursor: pointer;
+             padding: .85rem 1rem .9rem; margin: .2rem 0 1.1rem;
+             background: rgba(199,91,58,.10);
+             border: 1px solid var(--kumkuma); border-radius: 3px; }
+  .dr-prog:hover, .dr-prog.on { background: rgba(199,91,58,.18); }
+  /* :not(.dp-go) matters — the arrow is a span too, and this selector
+     outweighs its own grid-column if it catches it. */
+  .dr-prog > span:not(.dp-go) { grid-column: 1; }
+  .dp-label { display: block; font-size: .78rem; letter-spacing: .2em;
               text-transform: uppercase; color: var(--kumkuma); }
   /* what the mode is for, directly under its name */
-  .dp-what { display: block; font-size: .8rem; color: var(--leaf); opacity: .85;
-             margin-top: .1rem; }
+  .dp-what { display: block; font-size: .78rem; color: var(--leaf); opacity: .8;
+             margin-top: .15rem; }
+  /* the figure and its rank — the whole of what the drawer says about it */
+  .dp-pct { display: block; font-size: 1.15rem; color: var(--leaf);
+            font-variant-numeric: tabular-nums; margin-top: .55rem; }
+  /* the affordance: this row goes somewhere */
+  /* `1 / -1` would resolve against the EXPLICIT grid, which has one row line
+     here, so the arrow would pin to the first row instead of centring. */
+  .dp-go { width: 9px; height: 9px; grid-column: 2; grid-row: 1 / span 3;
+           align-self: center; justify-self: end;
+           border-top: 1.5px solid var(--kumkuma); border-right: 1.5px solid var(--kumkuma);
+           transform: rotate(45deg); }
+
   /* Each figure is labelled before it is given, so nothing has to be
      reverse-engineered from the number. */
-  .dp-h { display: block; font-size: .6rem; letter-spacing: .14em;
-          text-transform: uppercase; color: var(--faded); margin-top: 1rem; }
-  .dp-pct { display: block; font-size: 1.4rem; color: var(--leaf);
-            font-variant-numeric: tabular-nums; margin-top: .05rem; }
-  .dp-sub { display: block; font-size: .72rem; color: var(--faded); margin-top: .4rem; }
-  .dr-prog .bar { margin-top: .5rem; }
-  .dr-prog:hover .dp-label, .dr-prog.on .dp-label { color: var(--leaf); }
-
+  .dp-h { font-size: .6rem; letter-spacing: .14em;
+          text-transform: uppercase; color: var(--faded); }
   /* the learner-facing unit of completion, kept apart from the mastery figure
-     so the two signals do not compete */
-  .dr-course { padding: 0 0 .8rem; margin-bottom: .5rem;
+     so the two signals do not compete.  The bar lives here, where it measures
+     one plain countable thing. */
+  .dr-course { display: grid; grid-template-columns: 1fr auto; gap: .1rem .6rem;
+               padding: 0 0 .85rem; margin-bottom: .5rem;
                border-bottom: 1px solid rgba(125,112,92,.45); }
-  .dp-cards { display: block; font-size: .88rem; color: var(--leaf);
-              opacity: .9; margin-top: .1rem; font-variant-numeric: tabular-nums; }
+  .dp-cpct { font-size: .78rem; color: var(--faded); text-align: right;
+             font-variant-numeric: tabular-nums; }
+  .dp-cards { font-size: .88rem; color: var(--leaf); opacity: .9;
+              font-variant-numeric: tabular-nums; }
+  .dr-course .bar { grid-column: 1 / -1; margin-top: .45rem; }
 
   /* the mastery figure, on the panel that produces it */
   .rank { margin-top: .9rem; padding-top: .8rem;

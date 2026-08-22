@@ -195,23 +195,26 @@
        row among three: it is the section the drawer opens with, and the rank
        it produces is the drawer's headline figure.  Tapping it opens the
        draw. -->
-  <button class="dr-prog" id="dr-prog" aria-label="Abhyāsa — review what you have learned">
+  <!-- Abhyāsa is the one thing in the drawer you ACT on rather than navigate
+       to, so it is drawn as a raised panel with its own accent and an arrow,
+       not as another row of the list.  It carries the figure and its rank and
+       nothing else; what the figure is made of belongs on the card the button
+       opens. -->
+  <button class="dr-prog" id="dr-prog" aria-label="Abhyāsa — master what you have learned">
     <span class="dp-label" id="dp-label">abhyāsa</span>
-    <span class="dp-what">Review what you've learned</span>
-    <!-- Overall mastery: one figure, its name above it and the two plain
-         readings it is made of below.  The UI states the meaning; the
-         arithmetic that combines them stays in rankOf(). -->
-    <span class="dp-h">Overall mastery</span>
+    <span class="dp-what">master what you've learned</span>
     <span class="dp-pct" id="dp-pct"></span>
-    <span class="bar"><i id="dp-bar"></i></span>
-    <span class="dp-sub" id="dp-sub"></span>
+    <span class="dp-go" aria-hidden="true"></span>
   </button>
 
   <!-- A separate signal, and the learner-facing unit of completion: cards are
-       the evidence underneath, lists are what you finish. -->
+       the evidence underneath, lists are what you finish.  The bar belongs
+       here, where it measures one plain countable thing. -->
   <div class="dr-course">
     <span class="dp-h">Course progress</span>
+    <span class="dp-cpct" id="dp-cpct"></span>
     <span class="dp-cards" id="dp-cards"></span>
+    <span class="bar"><i id="dp-bar"></i></span>
   </div>
 
   <div class="dr-modes">

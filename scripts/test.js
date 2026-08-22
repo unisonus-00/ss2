@@ -1612,10 +1612,14 @@ const open = async (browser, opts = {}) => {
         what: document.querySelector('.dp-what').textContent,
         heads: [...document.querySelectorAll('#drawer .dp-h')].map(x => x.textContent),
         pct: document.getElementById('dp-pct').textContent,
-        sub: document.getElementById('dp-sub').textContent,
-        /* the arithmetic is not the interface */
-        formula: /[×x]\s*\d+%|cold recall|cards drawn|lists finished/i
+        cpct: document.getElementById('dp-cpct').textContent,
+        /* neither the arithmetic nor the readings it combines: the drawer
+           carries the figure, the card carries what it is made of */
+        formula: /[×x]\s*\d+%|cold recall|cards drawn|lists finished|accuracy|coverage/i
                    .test(document.getElementById('drawer').textContent),
+        /* the button reads as a button, not as another row */
+        raised: getComputedStyle(sec).borderTopWidth !== '0px'
+             && !!sec.querySelector('.dp-go'),
         stat: document.getElementById('dp-cards').textContent,
         modes: modes,
         notAMode: !modes.some(x => /abhy/i.test(x)),
@@ -1630,14 +1634,13 @@ const open = async (browser, opts = {}) => {
 
     ok('the drawer opens with the Abhyāsa section',
       r.first && /abhy[aā]sa/i.test(r.name), r.name);
-    ok('and says what the mode is for', /Review what you/.test(r.what), r.what);
-    ok('every figure is labelled before it is given',
-      JSON.stringify(r.heads) === JSON.stringify(['Overall mastery', 'Course progress']),
-      r.heads.join(' | '));
-    ok('the mastery figure reads as a rank, not a fraction',
-      /^(Unranked|\d+% · [A-Z])/.test(r.pct), r.pct);
-    ok('and its two readings are named, not multiplied',
-      !r.formula && /review accuracy|course coverage|unlock|Ready/.test(r.sub), r.sub);
+    ok('and says what the mode is for', /master what you/i.test(r.what), r.what);
+    ok('it is drawn as a button, not another row', r.raised);
+    ok('the course-progress bar is labelled and counted in lists',
+      JSON.stringify(r.heads) === JSON.stringify(['Course progress'])
+        && /^\d+%$/.test(r.cpct), r.heads.join(' | ') + ' · ' + r.cpct);
+    ok('the drawer carries the figure and its rank alone',
+      /^(Unranked|\d+% · [A-Z])/.test(r.pct) && !r.formula, r.pct);
     ok('it is the draw, one tap away', r.tappable && r.opens && r.heading === 'Abhyāsa',
       r.heading);
     ok('so it is no longer one of the mode rows', r.notAMode, r.modes.join(' | '));
@@ -1672,9 +1675,12 @@ const open = async (browser, opts = {}) => {
       complete([]); acc(0, 0);
       openDrawer();
       out.unranked = { pct: document.getElementById('dp-pct').textContent,
-                       sub: document.getElementById('dp-sub').textContent,
                        bar: document.getElementById('dp-bar').style.width };
       closeDrawer();
+      /* the detail lives on the card the button opens, not in the drawer */
+      openPanel('reviewpanel');
+      out.unranked.card = document.getElementById('rp-what').textContent;
+      closePanel();
 
       complete(upTo(0.4)); acc(8, 10);
       out.cov = coverageOf().pct;
@@ -1702,16 +1708,16 @@ const open = async (browser, opts = {}) => {
       return out;
     });
 
-    ok('no figure before the first review',
-      r.unranked.pct === 'Unranked' && r.unranked.bar === '0%',
-      r.unranked.pct + ' · ' + r.unranked.sub);
-    ok('and the section says what to do instead',
-      /^Complete more lists to unlock · /.test(r.unranked.sub), r.unranked.sub);
+    ok('no figure before the first review', r.unranked.pct === 'Unranked',
+      r.unranked.pct);
+    ok('and the card says what to do instead',
+      /^Complete more lists — \d+ of \d+ cards so far$/.test(r.unranked.card),
+      r.unranked.card);
     ok('mastery is accuracy against coverage',
       r.acc80.score === Math.round(80 * r.cov / 100) && r.acc80.acc === 80,
       '80% accuracy, ' + r.cov + '% covered → ' + r.acc80.score + '%');
     ok('a fully covered course at full accuracy is 100%',
-      r.perfect.score === 100 && r.perfect.name === 'Mastered', JSON.stringify(r.perfect));
+      r.perfect.score === 100 && r.perfect.name === 'Master', JSON.stringify(r.perfect));
     ok('coverage alone does not carry it', r.lowAccuracy.score === 40,
       JSON.stringify(r.lowAccuracy));
     ok('nor does accuracy alone', r.halfCovered.score <= 51 && r.halfCovered.acc === 100,
@@ -1760,10 +1766,8 @@ const open = async (browser, opts = {}) => {
       out.reviewRows = rows();
       out.drawShown = !document.getElementById('rp-draw').hidden;
       out.reviewSub = document.getElementById('rp-sub').textContent;
-      /* unlocked but never drawn: the row names the action, not the mode */
-      openDrawer();
-      out.rowBefore = document.getElementById('dp-sub').textContent;
-      closeDrawer();
+      /* unlocked but never reviewed: the card says what it will draw on */
+      out.cardBefore = document.getElementById('rp-what').textContent;
 
       openPanel('trouble');
       out.troubleRows = rows();
@@ -1776,9 +1780,10 @@ const open = async (browser, opts = {}) => {
       let g = 0;
       while (current && g++ < 60) (g % 3 ? knew : didntKnow)();
       openDrawer();
-      out.rowAfter = document.getElementById('dp-sub').textContent;
+      out.rankRow = document.getElementById('dp-pct').textContent;
       closeDrawer();
       openPanel('reviewpanel');
+      out.rowAfter = document.getElementById('rp-rank-sub').textContent;
       out.subAfter = document.getElementById('rp-sub').textContent;
       out.mastery = masteryPct();
       return out;
@@ -1790,10 +1795,14 @@ const open = async (browser, opts = {}) => {
       r.drawShown && leads(r.reviewRows, 'rp-actions'), r.reviewRows.join(' | '));
     ok('so does the trouble drill', leads(r.troubleRows, 't-actions'),
       r.troubleRows.join(' | '));
-    ok('unlocked and unused, the section names the action',
-      /^Ready · review \d+ cards$/.test(r.rowBefore), JSON.stringify(r.rowBefore));
+    ok('unlocked and unused, the card says what it draws on',
+      /^Reviewing \d+ cards from \d+ completed lists?$/.test(r.cardBefore),
+      JSON.stringify(r.cardBefore));
+    ok('the drawer carries only the figure and its rank',
+      /^\d+% · (Novice|Learner|Skilled|Expert|Master)$/.test(r.rankRow),
+      JSON.stringify(r.rankRow));
     /* the two plain readings, never the multiplication that combines them */
-    ok('and names both readings once there is a figure',
+    ok('and the card names both readings once there is a figure',
       r.mastery !== null
         && new RegExp('^' + r.mastery + '% review accuracy · \\d+% course coverage$')
              .test(r.rowAfter)
@@ -2211,7 +2220,6 @@ const open = async (browser, opts = {}) => {
       lessons: document.querySelectorAll('.tr-body:not([hidden]) .ls-head').length,
       decks: document.querySelectorAll('.ls-body:not([hidden]) .dk').length,
       cards: document.getElementById('dp-cards').textContent,
-      rank: document.getElementById('dp-sub').textContent,
     }));
     ok('the handle opens the drawer', opened.open && opened.veil);
     ok('every track is a heading', opened.tracks === 6, opened.tracks + ' headings');

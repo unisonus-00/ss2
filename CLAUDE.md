@@ -536,17 +536,32 @@ the obvious question without being opened into:
 three: it is the section the drawer opens with. Tapping it opens the review.
 
 ```
-ABHYĀSA
-Review what you've learned
-
-OVERALL MASTERY
-3% · Beginning
-▬▬▬───────────────────────────────────────────
-65% review accuracy · 5% course coverage
-
-COURSE PROGRESS
+┌──────────────────────────────────────────┐
+│ ABHYĀSA                                  │
+│ master what you've learned            ›  │
+│ 3% · Novice                              │
+└──────────────────────────────────────────┘
+COURSE PROGRESS                          5%
 7 / 153 lists complete
+▬▬▬───────────────────────────────────────
 ```
+
+**It is drawn as a button, not as another row.** Abhyāsa is the one thing in
+the drawer you *act on* rather than navigate to, so it is a raised panel in
+the accent pigment with an arrow on it — visibly a different kind of object
+from the rows below, which are a list. A test asserts the border and the
+arrow.
+
+**The drawer carries the figure and its rank; the card carries what they are
+made of.** Two numbers side by side, each needing its own explanation, is the
+same crowding the old layout had. So `65% review accuracy · 5% course
+coverage` lives on the card the button opens, and a test fails if either word
+appears in the drawer at all.
+
+**The bar belongs to course progress**, where it measures one plain countable
+thing — lists — and carries its own percentage. Sitting under the mastery
+figure it implied that a percentage of cards and a rank were the same
+quantity.
 
 **The interface states the meaning; it never exposes the calculation.** Every
 figure is labelled before it is given, and the two readings the mastery number
@@ -580,10 +595,10 @@ statistic was *873 of 2079 cards mastered*, which competed with the mastery
 figure above it and named the wrong unit. Cards still drive the per-lesson and
 per-track percentages down the drawer, where fine grain is what is wanted.
 
-Before there is a figure the accuracy line says what to do instead —
-*Complete more lists to unlock · 12 of 40 cards*, then *Ready · review 20
-cards* — and the mastery figure reads `Unranked`. **The mode's own name is
-never the thing being explained.**
+Before there is a figure the drawer reads `Unranked`, and the card says what
+to do instead — *Complete more lists — 12 of 40 cards so far*, then *Reviewing
+20 cards from 4 completed lists*. **The mode's own name is never the thing
+being explained.**
 
 The review window says the same things in the same words:
 
@@ -595,13 +610,15 @@ Reviewing 20 cards from 7 completed lists
 Review mixes material you've already studied. Correct first answers
 strengthen mastery; misses lower it and return to practice.
 ────────────────────────────────────────────────
-Overall mastery 3% · Beginning
+Overall mastery 3% · Novice
 65% review accuracy · 5% course coverage
 ```
 
 The ladder is `RANKS` in `app.js`, in English like the modes rather than in
-Sanskrit like the curriculum: Starting out, Beginning (1), Familiar (10),
-Practised (25), Fluent (45), Accomplished (65), Mastered (85).
+Sanskrit like the curriculum: **Novice, Learner (10), Skilled (30), Expert
+(55), Master (80)**. Five steps, each one a plain word for how far along
+someone is — the earlier seven included two ("Starting out", "Beginning")
+that named the same place.
 
 Naming the mode in Sanskrit is the one exception to the rule above, and it
 earns the exception by being the project's own name rather than a term looked
@@ -620,6 +637,7 @@ window, scoreboard, shared score:
 | cards drawn | cards reviewed |
 | finished lists | completed lists |
 | consistent mastery | overall mastery |
+| Review what you've learned | master what you've learned |
 | % of the course mastered | % course coverage |
 | Draw 20 cards | Review 20 cards |
 
