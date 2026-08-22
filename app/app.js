@@ -810,6 +810,14 @@ function openPop(btn) {
 function paint() {
   const c = current.card;
   closePop();                            // the chip about to be replaced
+  if ((c.type || 'reveal') === 'choice') { paintChoice(c); return; }
+
+  $('card').classList.remove('choice');
+  $('choices').hidden = true;
+  $('choices').textContent = '';
+  $('keys').textContent = KEYS_REVEAL;
+  $('dir').disabled = false;
+  $('src').textContent = '';
   if (DIR === 'produce') {
     $('dn').textContent    = c.gloss;
     $('iast').textContent  = '';
@@ -823,11 +831,80 @@ function paint() {
   }
 }
 
+/* \u2500\u2500 choice cards \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+   One renderer for every use of the interaction: recognition ("which
+   analysis?") and controlled transformation ("make it 'I'") differ only in
+   the prompt, never in the machinery.
+
+   Grading is not a separate scheme.  Tapping the right option is a cold
+   recall and ends as knew(); tapping a wrong one ends as didntKnow().  So
+   the trouble list, the missed pile, review mastery and the scoreboard all
+   see a choice card as exactly one retrieval event, the same as a reveal.
+
+   The direction toggle does not apply: a transformation only runs one way,
+   and the IAST toggle does not either, because here the IAST *is* the
+   content rather than a transliteration of it. */
+let choiceRight = null;                  // null until answered, then true/false
+const KEYS_REVEAL = $('keys').textContent;
+
+function paintChoice(c) {
+  choiceRight = null;
+  $('card').classList.add('choice');
+  $('card').setAttribute('aria-label', 'Choose the answer');
+  $('dn').textContent   = c.front || '';
+  $('iast').textContent = '';
+  $('gloss').textContent = '';
+  renderTag(c.note);
+  $('src').textContent = c.source || '';
+  /* Flipping a transformation makes no sense \u2014 it only runs one way. */
+  $('dir').disabled = true;
+  $('keys').textContent = 'tap an answer \u00b7 1\u2013' + c.options.length + ' \u2014 choose';
+
+  const box = $('choices');
+  box.textContent = '';
+  box.hidden = false;
+  /* Shuffled per showing, so the answer's position is never the thing
+     remembered \u2014 on the second look within a round especially. */
+  shuffle([...c.options]).forEach(opt => {
+    const b = document.createElement('button');
+    b.className = 'opt';
+    b.type = 'button';
+    b.textContent = opt;
+    b.addEventListener('click', () => answerChoice(c, opt));
+    box.appendChild(b);
+  });
+}
+
+function answerChoice(c, picked) {
+  if (choiceRight !== null) return;      // already answered; the card is locked
+  choiceRight = picked === c.answer;
+
+  [...$('choices').children].forEach(b => {
+    b.disabled = true;
+    if (b.textContent === c.answer) b.classList.add('right');
+    else if (b.textContent === picked) b.classList.add('wrong');
+  });
+
+  $('card').classList.add('open');       // uncovers the rule and the note
+  $('choice-next').hidden = false;
+  $('c-next').focus();
+}
+
+function choiceNext() {
+  if (choiceRight === null) return;
+  $('choice-next').hidden = true;
+  const right = choiceRight;
+  choiceRight = null;
+  if (right) knew(); else didntKnow();
+}
+
 function next() {
   $('card').classList.remove('open');
   $('card').setAttribute('aria-label',
     DIR === 'produce' ? 'Show the word' : 'Show the meaning');
   $('grade').hidden = true;
+  $('choice-next').hidden = true;
+  choiceRight = null;
   if (!queue.length) { current = null; finish(); return; }
   current = queue.shift();
   $('relearn').hidden = !current.missedThisRound;
@@ -837,6 +914,9 @@ function next() {
 
 function reveal() {
   if (!current || $('card').classList.contains('open')) return;
+  /* A choice card is uncovered by answering it, not by flipping it — a tap
+     anywhere else on the panel must not hand over the answer. */
+  if ((current.card.type || 'reveal') === 'choice') return;
   $('card').classList.add('open');
   $('card').setAttribute('aria-label', 'Answer shown — grade yourself');
   $('grade').hidden = false;
@@ -1227,6 +1307,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closePop(); 
 window.addEventListener('resize', () => { if (popFor) placePop(popFor); });
 window.addEventListener('scroll', () => { if (popFor) placePop(popFor); }, { passive: true });
 $('knew').addEventListener('click', knew);
+$('c-next').addEventListener('click', choiceNext);
 $('miss').addEventListener('click', didntKnow);
 $('again-missed').addEventListener('click', () => {
   if (!missed.length) return;          // nothing to review — should be unreachable
@@ -1308,6 +1389,20 @@ document.addEventListener('keydown', e => {
   }
   const t = e.target.tagName;
   if (t === 'BUTTON' || t === 'SELECT' || t === 'INPUT' || t === 'TEXTAREA') return;   // let native activation work
+
+  /* On a choice card the number keys pick an option rather than grade a
+     flip, so this arm runs first and returns. */
+  if (current && (current.card.type || 'reveal') === 'choice') {
+    if (choiceRight === null) {
+      const n = +e.key;
+      const opts = $('choices').children;
+      if (n >= 1 && n <= opts.length) { e.preventDefault(); opts[n - 1].click(); }
+    } else if (e.key === ' ' || e.key === 'Enter') {
+      e.preventDefault(); choiceNext();
+    }
+    return;
+  }
+
   if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); reveal(); }
   if (!$('grade').hidden && e.key === '1') didntKnow();
   if (!$('grade').hidden && e.key === '2') knew();

@@ -31,10 +31,12 @@
     <div class="seen-before" id="relearn" hidden>second look</div>
     <div class="dn" id="dn">…</div>
     <div class="iast" id="iast"></div>
+    <div class="choices" id="choices" role="group" aria-label="Choose the answer" hidden></div>
     <div class="rule"></div>
     <div class="back" aria-live="polite">
       <div class="gloss" id="gloss"></div>
       <div class="tag" id="tag"></div>
+      <div class="src" id="src"></div>
     </div>
   </div>
 
@@ -72,6 +74,12 @@
 <div class="actions" id="grade" hidden>
   <button id="miss" class="miss">Didn't know it</button>
   <button id="knew" class="primary">Knew it</button>
+</div>
+
+<!-- A choice card grades itself from the option that was tapped, so it needs
+     one button where a reveal card needs two. -->
+<div class="actions" id="choice-next" hidden>
+  <button id="c-next" class="primary">Next</button>
 </div>
 
 <div class="actions" id="rp-actions" hidden>

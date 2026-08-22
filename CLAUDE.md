@@ -196,9 +196,37 @@ fails the build rather than shipping.
 }
 ```
 
-A card with no `type` is `reveal`, which is what all 1871 migrated cards are.
-`choice` adds `front`, `options`, `answer`; `sequence` adds `front`, `parts`,
-`answer` (an array). Add nothing else without a demonstrated need.
+A card with no `type` is `reveal`. `choice` adds `front`, `options`, `answer`
+and an optional `source`; `sequence` will add `front`, `parts`, `answer` (an
+array) when it lands. Add nothing else without a demonstrated need.
+
+```json
+{
+  "id": "06-kriya:person:nam-1sg",
+  "type": "choice",
+  "front": "namati → make it “I”",
+  "options": ["namāmi", "namasi", "namanti"],
+  "answer": "namāmi",
+  "note": "1 sg. laṭ · √nam · parasmaipada",
+  "source": "workbook A2"
+}
+```
+
+**`choice` is one renderer, not one per lesson.** Recognition ("which
+analysis?") and controlled transformation ("make it 'I'") differ only in the
+prompt. Options are shuffled per showing, so position is never what gets
+remembered. Grading is not a separate scheme: the right option ends as
+`knew()`, a wrong one as `didntKnow()`, so the trouble list, missed pile,
+review mastery and scoreboard all see one retrieval event — the same as a
+reveal. Neither the direction toggle nor the IAST toggle applies, since a
+transformation runs one way and the IAST here *is* the content.
+
+Distractors must be other forms of the same verb or paradigm. A learner's real
+confusion is person, number or lakāra, never a random unrelated word.
+
+`source` is provenance and renders on its own line, deliberately outside the
+morphology annotation chip — `renderTag` turns a whole note into one tappable
+popover, and "workbook F1" is not morphology.
 
 Three things here are load-bearing for the compatibility list above:
 
@@ -215,8 +243,17 @@ Three things here are load-bearing for the compatibility list above:
   lifts state out of earlier storage key names. Keep both chains; every
   `localStorage` touch stays guarded, since it can be absent or full.
 
-The app carries 23 lessons, 57 decks, and 1871 cards. Roughly the last third of
-the decks are generated from the `vocab/` bank and marked as such.
+The app carries 23 lessons, 58 decks, and 1892 cards — 1871 `reveal` and 21
+`choice`, the latter a curated pilot set in `06-kriya`. Roughly the last third
+of the decks are generated from the `vocab/` bank and marked as such.
+
+**Testing** — `node scripts/test.js` drives the built file in headless
+Chromium from `file://` and checks the compatibility list above: saved
+progress and its migration, trouble cards, review replay, the IAST toggle,
+morphology, mobile touch targets, and the choice interaction. It needs
+`playwright-core` on the path but is deliberately not in a `package.json`; the
+app itself has no dependencies and should keep none. Run it after any change
+to `app/`.
 
 **Publishing a testable demo** — `node scripts/demo.js` rewrites
 `dist/abhyasah.html` into `dist/abhyasah.demo.html`, stripping the

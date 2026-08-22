@@ -2,6 +2,284 @@
   "lesson": "06-kriya",
   "decks": [
     {
+      "name": "Kriyā practice — person, tense and mood",
+      "cards": [
+        {
+          "id": "06-kriya:person:nam-1sg",
+          "type": "choice",
+          "front": "namati → make it “I”",
+          "options": [
+            "namāmi",
+            "namasi",
+            "namanti"
+          ],
+          "answer": "namāmi",
+          "note": "1 sg. laṭ · √nam · parasmaipada",
+          "source": "theory · all three persons"
+        },
+        {
+          "id": "06-kriya:person:puj-3sg",
+          "type": "choice",
+          "front": "pūjayāmi → make it “he/she”",
+          "options": [
+            "pūjayati",
+            "pūjayasi",
+            "pūjayanti"
+          ],
+          "answer": "pūjayati",
+          "note": "3 sg. laṭ · √pūj (10P)",
+          "source": "workbook A1"
+        },
+        {
+          "id": "06-kriya:person:gam-2sg",
+          "type": "choice",
+          "front": "gacchati → make it “you”",
+          "options": [
+            "gacchasi",
+            "gacchāmi",
+            "gacchatha"
+          ],
+          "answer": "gacchasi",
+          "note": "2 sg. laṭ · √gam",
+          "source": "workbook A1"
+        },
+        {
+          "id": "06-kriya:person:bhaj-1sg",
+          "type": "choice",
+          "front": "bhajati → make it “I”",
+          "options": [
+            "bhajāmi",
+            "bhajasi",
+            "bhajanti"
+          ],
+          "answer": "bhajāmi",
+          "note": "1 sg. laṭ · √bhaj",
+          "source": "workbook A2"
+        },
+        {
+          "id": "06-kriya:person:smr-2sg",
+          "type": "choice",
+          "front": "smarati → make it “you”",
+          "options": [
+            "smarasi",
+            "smarāmi",
+            "smaranti"
+          ],
+          "answer": "smarasi",
+          "note": "2 sg. laṭ · √smṛ",
+          "source": "workbook A3"
+        },
+        {
+          "id": "06-kriya:person:drs-3pl",
+          "type": "choice",
+          "front": "paśyati → make it “they”",
+          "options": [
+            "paśyanti",
+            "paśyataḥ",
+            "paśyāmaḥ"
+          ],
+          "answer": "paśyanti",
+          "note": "3 pl. laṭ · √dṛś → paśya-",
+          "source": "workbook A1"
+        },
+        {
+          "id": "06-kriya:person:da-1sg",
+          "type": "choice",
+          "front": "dadāti → make it “I”",
+          "options": [
+            "dadāmi",
+            "dadāsi",
+            "dadati"
+          ],
+          "answer": "dadāmi",
+          "note": "1 sg. laṭ · √dā (3P, reduplicating)",
+          "source": "workbook A1"
+        },
+        {
+          "id": "06-kriya:parse:namami",
+          "type": "choice",
+          "front": "namāmi — which analysis?",
+          "options": [
+            "1 sg. present",
+            "3 sg. present",
+            "2 sg. imperative"
+          ],
+          "answer": "1 sg. present",
+          "note": "uttama puruṣa ekavacana · laṭ-lakāra",
+          "source": "theory · laṭ endings"
+        },
+        {
+          "id": "06-kriya:parse:gacchasi",
+          "type": "choice",
+          "front": "gacchasi — which analysis?",
+          "options": [
+            "2 sg. present",
+            "1 sg. present",
+            "3 sg. present"
+          ],
+          "answer": "2 sg. present",
+          "note": "madhyama puruṣa ekavacana · laṭ · -si",
+          "source": "theory · laṭ endings"
+        },
+        {
+          "id": "06-kriya:parse:raksantu",
+          "type": "choice",
+          "front": "rakṣantu — which analysis?",
+          "options": [
+            "3 pl. imperative",
+            "3 pl. present",
+            "3 pl. past"
+          ],
+          "answer": "3 pl. imperative",
+          "note": "loṭ-lakāra · -antu · “may they protect”",
+          "source": "theory · loṭ paradigm"
+        },
+        {
+          "id": "06-kriya:parse:abhavat",
+          "type": "choice",
+          "front": "abhavat — which analysis?",
+          "options": [
+            "3 sg. past",
+            "3 sg. present",
+            "3 sg. imperative"
+          ],
+          "answer": "3 sg. past",
+          "note": "laṅ-lakāra · the augment a- is the giveaway",
+          "source": "theory · laṅ paradigm"
+        },
+        {
+          "id": "06-kriya:past:nam-1sg",
+          "type": "choice",
+          "front": "namāmi → put it in the past",
+          "options": [
+            "anamam",
+            "anamat",
+            "anamaḥ"
+          ],
+          "answer": "anamam",
+          "note": "1 sg. laṅ · augment a- · √nam",
+          "source": "theory · laṅ paradigm"
+        },
+        {
+          "id": "06-kriya:past:puj-3sg",
+          "type": "choice",
+          "front": "pūjayati → put it in the past",
+          "options": [
+            "apūjayat",
+            "apūjayam",
+            "apūjayaḥ"
+          ],
+          "answer": "apūjayat",
+          "note": "3 sg. laṅ · √pūj · bhaktaḥ devam apūjayat",
+          "source": "workbook F1"
+        },
+        {
+          "id": "06-kriya:past:gam-1sg",
+          "type": "choice",
+          "front": "gacchāmi → put it in the past",
+          "options": [
+            "agaccham",
+            "agacchat",
+            "agacchaḥ"
+          ],
+          "answer": "agaccham",
+          "note": "1 sg. laṅ · √gam · aham mandiram agaccham",
+          "source": "workbook F3"
+        },
+        {
+          "id": "06-kriya:past:raks-3pl",
+          "type": "choice",
+          "front": "rakṣanti → put it in the past",
+          "options": [
+            "arakṣan",
+            "arakṣat",
+            "arakṣam"
+          ],
+          "answer": "arakṣan",
+          "note": "3 pl. laṅ · -an · devāḥ arakṣan",
+          "source": "workbook F1"
+        },
+        {
+          "id": "06-kriya:past:bhu-2sg",
+          "type": "choice",
+          "front": "bhavasi → put it in the past",
+          "options": [
+            "abhavaḥ",
+            "abhavat",
+            "abhavam"
+          ],
+          "answer": "abhavaḥ",
+          "note": "2 sg. laṅ · -aḥ · √bhū",
+          "source": "theory · laṅ paradigm"
+        },
+        {
+          "id": "06-kriya:imperative:raks-2sg",
+          "type": "choice",
+          "front": "rakṣati → “protect!” (to one person)",
+          "options": [
+            "rakṣa",
+            "rakṣatu",
+            "rakṣāṇi"
+          ],
+          "answer": "rakṣa",
+          "note": "2 sg. loṭ · rakṣa mām — protect me!",
+          "source": "workbook G1"
+        },
+        {
+          "id": "06-kriya:imperative:puj-3sg",
+          "type": "choice",
+          "front": "pūjayati → “let him worship”",
+          "options": [
+            "pūjayatu",
+            "pūjaya",
+            "pūjayāni"
+          ],
+          "answer": "pūjayatu",
+          "note": "3 sg. loṭ · -tu",
+          "source": "workbook G1"
+        },
+        {
+          "id": "06-kriya:imperative:bhu-3pl",
+          "type": "choice",
+          "front": "bhavanti → “let them be”",
+          "options": [
+            "bhavantu",
+            "bhavatu",
+            "bhavata"
+          ],
+          "answer": "bhavantu",
+          "note": "3 pl. loṭ · -antu · devāḥ rakṣantu naḥ",
+          "source": "workbook G1"
+        },
+        {
+          "id": "06-kriya:optative:puj-3sg",
+          "type": "choice",
+          "front": "pūjayati → “one should worship”",
+          "options": [
+            "pūjayet",
+            "pūjayeyam",
+            "pūjayatu"
+          ],
+          "answer": "pūjayet",
+          "note": "3 sg. vidhiliṅ · nityam devam pūjayet",
+          "source": "workbook G3"
+        },
+        {
+          "id": "06-kriya:optative:raks-1sg",
+          "type": "choice",
+          "front": "rakṣati → “I should protect”",
+          "options": [
+            "rakṣeyam",
+            "rakṣet",
+            "rakṣāmi"
+          ],
+          "answer": "rakṣeyam",
+          "note": "1 sg. vidhiliṅ · -eyam",
+          "source": "workbook G3"
+        }
+      ]
+    },
+    {
       "name": "10 · Kriyā — verbs in form",
       "cards": [
         {
