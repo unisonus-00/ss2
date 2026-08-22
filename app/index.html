@@ -27,6 +27,19 @@
 <!-- What the list is, and how the round is going.  Wraps to two lines only
      where it has to. -->
 <div class="statusbar">
+  <!-- Study: this lesson's reference.md, for looking something up mid-round.
+       It sits on this row and not beside the selector because the top row is
+       genuinely full — below 375px no logo size leaves room for a fourth
+       control AND the longest list name, and the list name is what that row
+       is for.  Here it reads as what it is: the lesson's own reference,
+       beside the lesson's own descriptor.  Icon only, and hidden outright
+       when the lesson has no reference.md. -->
+  <button id="study-btn" class="studybtn" title="Study this lesson's reference"
+          aria-label="Study this lesson's reference" hidden>
+    <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+      <path d="M3 4.2c2.3-.9 4.4-.9 6.6.4v11c-2.2-1.3-4.3-1.3-6.6-.4zM17 4.2c-2.3-.9-4.4-.9-6.6.4v11c2.2-1.3 4.3-1.3 6.6-.4z"/>
+    </svg>
+  </button>
   <div class="stage" id="stage"></div>
   <div class="tally" id="tally">
     <span><b id="t-left">0</b>left</span>
@@ -84,6 +97,16 @@
     <div class="score" id="t-sub"></div>
     <div class="note" id="t-note"></div>
     <div id="t-list"></div>
+  </div>
+
+  <!-- Study is a reference VIEWER: the lesson's own reference.md, rendered at
+       build time and shown as written.  Not a second learning system — it
+       holds no cards, tracks no progress and grades nothing. -->
+  <div class="board study" id="study">
+    <h2 id="st-title">Study</h2>
+    <div class="score" id="st-sub">reference</div>
+    <nav class="st-toc" id="st-toc" aria-label="Sections" hidden></nav>
+    <div class="st-body" id="st-body"></div>
   </div>
 
   <div class="board" id="board">
@@ -198,6 +221,11 @@
 <!-- Practice data, inlined by scripts/build.js from every lesson's practice.json.
      Empty here so this file still opens directly for layout work. -->
 <script id="practice" type="application/json">{"lessons":[]}</script>
+
+<!-- Every loaded lesson's reference.md, rendered to HTML at build time.  It is
+     inlined for the same reason the practice is: the page must open from
+     file:// with nothing to fetch. -->
+<script id="references" type="application/json">{}</script>
 
 <script src="app.js"></script>
 </body>

@@ -1539,6 +1539,135 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
+  // ── the Study renderer drops nothing ──────────────────────────────
+  // Study preserves the reference essentially verbatim: it may strip the
+  // markup that makes a heading a heading, and nothing else.  Checked line by
+  // line against the source rather than by eye, because a renderer that
+  // quietly eats a table row would look perfectly fine on screen.
+  {
+    const fs = require('fs');
+    const markdown = require('./markdown');
+    const root = path.resolve(__dirname, '..');
+    const squash = x => x.replace(/\s+/g, '');
+    const text = h => h.replace(/<[^>]+>/g, '\n')
+      .replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+      .replace(/&quot;/g, '"').replace(/&amp;/g, '&');
+
+    const lost = [];
+    let files = 0, fragments = 0;
+    for (const d of fs.readdirSync(root).filter(x => /^\d\d-/.test(x))) {
+      const f = path.join(root, d, 'reference.md');
+      if (!fs.existsSync(f)) continue;
+      const md = fs.readFileSync(f, 'utf8');
+      const got = squash(text(markdown.render(md).html));
+      files++;
+      let fence = false;
+      md.split('\n').forEach((raw, n) => {
+        if (/^\s*```/.test(raw)) { fence = !fence; return; }
+        /* a table's rule and a horizontal rule are markup, not content */
+        if (!fence && /^\s*\|[\s|:-]*\|?\s*$/.test(raw) && raw.includes('-')) return;
+        if (!fence && /^\s*(-{3,}|\*{3,}|_{3,})\s*$/.test(raw)) return;
+        const line = fence ? raw : raw
+          .replace(/^(\s*)#{1,6}\s+/, '$1').replace(/^(\s*)>\s?/, '$1')
+          .replace(/^(\s*)[-*+]\s+/, '$1').replace(/^(\s*)\d+\.\s+/, '$1');
+        /* a table row's cells are separate fragments; everything else is one */
+        /* emphasis markers become tags, so they are markup too — but a lone
+           escaped star is content and comes through as one */
+        const plain = x => squash(x.replace(/\\\*/g, '\u0001')
+                                   .replace(/\*/g, '')
+                                   .replace(/\u0001/g, '*'));
+        const parts = (!fence && /^\s*\|/.test(line) ? line.split('|') : [line])
+          .map(x => fence ? squash(x) : plain(x))
+          .filter(Boolean);
+        parts.forEach(x => {
+          fragments++;
+          if (!got.includes(x)) lost.push(d + ':' + (n + 1) + ' ' + JSON.stringify(x.slice(0, 40)));
+        });
+      });
+    }
+    ok('the Study renderer loses no reference text', !lost.length,
+      lost.length ? lost.slice(0, 3).join(' | ')
+                  : fragments + ' fragments across ' + files + ' references');
+  }
+
+  // ── Study: the lesson's reference, and nothing more ───────────────
+  // A reference VIEWER, not a second learning system.  It shows the lesson's
+  // own reference.md, rendered at build time and inlined, and it holds no
+  // cards, tracks nothing and grades nothing.
+  {
+    const p = await open(browser, { viewport: { width: 360, height: 740 } });
+    const r = await p.evaluate(() => {
+      const el = id => document.getElementById(id);
+      const out = {};
+
+      /* a lesson that has one: the button is offered and opens its reference */
+      loadDeck('S \u00b7 Ac sandhi — vowel joins');
+      out.offered = !el('study-btn').hidden;
+      el('study-btn').click();
+      const body = el('st-body');
+      out.opened = el('study').style.display === 'block';
+      out.title = el('st-title').textContent;
+      out.tables = body.querySelectorAll('table').length;
+      out.pre = body.querySelectorAll('pre').length;
+      /* the file's own h1 is the panel heading, so it is not repeated below */
+      out.h1 = body.querySelectorAll('h1').length;
+      /* it reads inside itself rather than pushing the app off the bottom */
+      out.scrolls = body.scrollHeight > body.clientHeight + 10;
+      out.sideways = document.documentElement.scrollWidth > window.innerWidth;
+      out.back = !el('panel-back').hidden;
+      /* a long reference gets a contents list, and it addresses real headings */
+      out.toc = [...document.querySelectorAll('.st-link')].length;
+      out.tocHits = [...document.querySelectorAll('.st-body h2')].length;
+      /* Study holds no exercise: no card, no grading, no toggles */
+      out.noCard = el('card').style.display === 'none'
+                && el('grade').hidden && el('controls').hidden;
+
+      /* and closing it puts the round back exactly as it was */
+      const was = el('dn').textContent;
+      el('p-back').click();
+      out.restored = el('dn').textContent === was && el('card').style.display !== 'none';
+
+      /* a short reference gets no contents list */
+      loadDeck(Object.keys(DECKS).find(n => DECK_LESSON[n] === '09-dhatu'));
+      el('study-btn').click();
+      out.shortToc = el('st-toc').hidden;
+      el('p-back').click();
+
+      /* hidden where there is nothing to look up */
+      const cross = Object.keys(DECKS).find(n => DECK_LESSON[n] === '00-overview');
+      loadDeck(cross);
+      out.hiddenNoRef = el('study-btn').hidden;
+      startMixedReview();
+      out.hiddenMixed = el('study-btn').hidden;
+
+      /* every loaded lesson with a reference offers one, and none is empty */
+      const empty = [];
+      Object.keys(REFERENCES).forEach(k => {
+        if (!REFERENCES[k].html || REFERENCES[k].html.length < 200) empty.push(k);
+      });
+      out.refs = Object.keys(REFERENCES).length;
+      out.empty = empty;
+      return out;
+    });
+
+    ok('Study is offered for a lesson that has a reference', r.offered);
+    ok('and opens that lesson\'s reference', r.opened && r.tables >= 3, r.tables + ' tables');
+    ok('titled from the lesson, not the file\'s own heading',
+      r.title === 'Sandhi', JSON.stringify(r.title));
+    ok('the file heading is not repeated inside it', r.h1 === 0);
+    ok('it reads inside itself, not down the page', r.scrolls && !r.sideways);
+    ok('a long reference gets a contents list', r.toc >= 5 && r.toc <= r.tocHits,
+      r.toc + ' of ' + r.tocHits + ' sections');
+    ok('a short one does not', r.shortToc);
+    ok('Study holds no exercise', r.noCard);
+    ok('and leaves the round untouched', r.restored && r.back);
+    ok('hidden where there is nothing to look up',
+      r.hiddenNoRef && r.hiddenMixed);
+    ok('every carried reference has content', !r.empty.length,
+      r.refs + ' references' + (r.empty.length ? ', empty: ' + r.empty.join(', ') : ''));
+    await p.close();
+  }
+
   // ── every reveal card names the operation before it is answered ────
   // A reveal card shows an item and nothing else, so the task lived only in
   // the direction button below the card.  The cue is derived from the deck's

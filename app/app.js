@@ -569,6 +569,26 @@ const drawerOpen = () => !$('drawer').hidden;
 
 const toggleIn = (set, key) => { set.has(key) ? set.delete(key) : set.add(key); };
 
+function syncStudyUI() {
+  $('study-btn').classList.toggle('on', panelOpen === 'study');
+}
+
+/* Study material: every loaded lesson's reference.md, rendered to HTML at
+   build time and inlined here.  A reference VIEWER, not a second learning
+   system — it holds no cards, tracks nothing and grades nothing.  Practice is
+   retrieval, Study is lookup, the workbook is production and the badge is the
+   demonstration; this keeps to its own job. */
+const REFERENCES = (() => {
+  const src = document.getElementById('references');
+  if (!src) return {};
+  try { return JSON.parse(src.textContent) || {}; }
+  catch (e) { return {}; }
+})();
+/* A mixed or trouble round belongs to no one lesson, so there is nothing to
+   look up and the button is not offered. */
+const studyFor = () => (deckName && deckName !== MIX && deckName !== TROUBLE
+  ? REFERENCES[DECK_LESSON[deckName]] : null) || null;
+
 /* The button where the picker used to be, naming the list in play.  It
    carries the lesson as well as the deck: within a lesson the decks are
    called "Practice" and "Table mastery", so the deck name on its own would
@@ -580,6 +600,13 @@ function syncNav() {
     : deckName === TROUBLE ? 'trouble cards'
     : deckName             ? [label, DECK_SHORT(deckName)].filter(Boolean).join(' \u00b7 ')
     :                        'lists';
+  /* Hidden outright rather than greyed: a lesson with no reference.md has
+     nothing behind the button, and a disabled control still takes the room
+     the list name needs on a phone. */
+  const ref = studyFor();
+  $('study-btn').hidden = !ref;
+  if (ref) $('study-btn').title =
+    'Study \u00b7 ' + LESSON_LABEL[DECK_LESSON[deckName]] + ' reference';
 }
 
 function fillRow(el, parts) {
@@ -1850,6 +1877,7 @@ function syncBoardUI() {
    that belongs to it.  Every relabel() runs on every open and close, so a
    button can never be left reading "back to the cards" for a shut panel. */
 const PANELS = {
+  study:       { render: renderStudy,       relabel: syncStudyUI },
   board:       { render: renderBoard,       relabel: syncBoardUI },
   reviewpanel: { render: renderReviewPanel, relabel: syncReviewUI,  actions: 'rp-actions' },
   trouble:     { render: renderTrouble,     relabel: syncTroubleUI, actions: 't-actions' }
@@ -1899,6 +1927,41 @@ function openPanel(which) {
   relabelAll();
   PANELS[which].render();
 }
+/* ── Study ──────────────────────────────────────────────────
+   The lesson's own reference.md, as written.  Everything here was decided at
+   build time; this only puts it on screen, so an inconsistency in a reference
+   is a content bug to fix in the lesson rather than something to reinterpret
+   in the reader. */
+function renderStudy() {
+  const ref = studyFor();
+  const key = deckName ? DECK_LESSON[deckName] : null;
+  /* Titled from the lesson, not from the reference's own h1: the drawer and
+     Study then cannot disagree about what a lesson is called, whatever a
+     given reference file happens to head itself with. */
+  $('st-title').textContent = key ? LESSON_LABEL[key] : 'Study';
+  $('st-sub').textContent = key && LESSON_GLOSS[key]
+    ? LESSON_GLOSS[key] + ' \u00b7 reference' : 'reference';
+  $('st-body').innerHTML = ref ? ref.html : '';
+
+  /* A contents list is built only for a reference long enough to need one —
+     the build decides, and hands over an empty list otherwise. */
+  const toc = $('st-toc');
+  toc.innerHTML = '';
+  toc.hidden = !ref || !ref.toc.length;
+  if (toc.hidden) return;
+  ref.toc.forEach(t => {
+    const a = document.createElement('button');
+    a.className = 'st-link';
+    a.textContent = t.text;
+    a.addEventListener('click', () => {
+      const h = document.getElementById(t.id);
+      if (h) h.scrollIntoView({ block: 'start' });
+    });
+    toc.appendChild(a);
+  });
+  $('st-body').scrollTop = 0;
+}
+
 /* ── the trouble window ─────────────────────────────────────
    The list, what it takes to get off it, and how many have. */
 function renderTrouble() {
@@ -1986,6 +2049,8 @@ $('dveil').addEventListener('click', closeDrawer);
 $('dr-board').addEventListener('click', () => openFromDrawer(() => openPanel('board')));
 $('dr-review').addEventListener('click', () => openFromDrawer(() => openPanel('reviewpanel')));
 $('dr-trouble').addEventListener('click', () => openFromDrawer(() => openPanel('trouble')));
+$('study-btn').addEventListener('click',
+  () => panelOpen === 'study' ? closePanel() : openPanel('study'));
 $('p-back').addEventListener('click', closePanel);
 $('rp-draw').addEventListener('click', async () => {
   if (roundInProgress() && !await ask('Leave this round for a review draw?', 'Leave it')) return;

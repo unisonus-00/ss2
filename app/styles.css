@@ -61,6 +61,26 @@
   /* the deck's descriptor on the left, the round's state on the right */
   .statusbar { display: flex; align-items: baseline; justify-content: space-between;
                gap: .3rem .9rem; flex-wrap: wrap; margin-bottom: 1.15rem; }
+  /* Study, on the status row rather than the top one — see index.html.  The
+     glyph is small so the row keeps its height; the tap area is widened with
+     padding, which costs nothing vertically because the row's other content
+     is taller than the icon. */
+  .studybtn {
+    flex: none; align-self: center; order: -1;
+    display: inline-flex; align-items: center; justify-content: center;
+    /* min-height beats height, so the shared button rule's 44px has to be
+       cleared explicitly or this control would set the row's height. */
+    position: relative; width: 34px; height: 17px; min-height: 0;
+    margin: 0 .1rem 0 -.5rem; padding: 0;
+    background: transparent; border: 0; color: var(--faded); cursor: pointer;
+  }
+  .studybtn svg { width: 17px; height: 17px; fill: currentColor; }
+  /* The glyph is 17px so the status row keeps its height; the tap area is a
+     44px box laid over it, which takes no space in the flow. */
+  .studybtn::after { content: ""; position: absolute; left: 50%; top: 50%;
+                     width: 44px; height: 44px; transform: translate(-50%, -50%); }
+  .studybtn:hover, .studybtn.on { color: var(--leaf); }
+  .studybtn[hidden] { display: none; }
   /* The selector, left-aligned with the card.  It is a way in to the drawer,
      not a title, so it is a row control rather than a boxed imitation of the
      dropdown it replaced — the border would only add height here. */
@@ -334,6 +354,49 @@
   .b-pct { font-size: .8rem; color: var(--faded);
            min-width: 3.2em; text-align: right; font-variant-numeric: tabular-nums; }
   .brow.full .b-score, .brow.full .b-pct { color: var(--kumkuma); }
+
+  /* ── Study ────────────────────────────────────────────────────────────
+     A reading surface, not a card — but it sits on the same palm-leaf panel
+     every window here does, so it is dark ink on light ground, not the app's
+     chrome palette.  It scrolls inside itself rather than pushing the rest of
+     the app off the bottom.  Everything in .st-body was produced by
+     scripts/markdown.js from the lesson's own reference.md. */
+  .study { padding-bottom: 1.2rem; }
+  .st-toc { display: flex; flex-wrap: wrap; column-gap: .9rem; row-gap: .1rem;
+            margin: .9rem 0 0; padding-bottom: .7rem;
+            border-bottom: 1px solid var(--leaf-edge); }
+  .st-link { background: transparent; border: 0; padding: .15rem 0; min-height: 0;
+             cursor: pointer; color: var(--faded); font: inherit; font-size: .74rem;
+             letter-spacing: .03em; text-align: left; }
+  .st-link:hover { color: var(--ink); }
+  .st-body { max-height: 62vh; overflow-y: auto; overscroll-behavior: contain;
+             padding-right: .5rem; margin-top: .9rem;
+             font-size: .86rem; line-height: 1.6; color: var(--ink); }
+  .st-body > :first-child { margin-top: 0; }
+  .st-body h1, .st-body h2 { font-size: .98rem; font-weight: 600; margin: 1.5rem 0 .5rem; }
+  .st-body h3, .st-body h4, .st-body h5, .st-body h6 {
+    font-size: .8rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--faded); margin: 1.2rem 0 .35rem; }
+  .st-body p { margin: .5rem 0; }
+  .st-body ul, .st-body ol { margin: .5rem 0; padding-left: 1.2rem; }
+  .st-body li { margin: .15rem 0; }
+  .st-body blockquote { margin: .6rem 0; padding-left: .8rem;
+                        border-left: 2px solid var(--leaf-edge); }
+  .st-body pre { margin: .6rem 0; padding: .6rem .7rem; overflow-x: auto;
+                 background: rgba(50,42,32,.06); border: 1px solid var(--leaf-edge);
+                 border-radius: 3px; }
+  .st-body code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+                  font-size: .76rem; line-height: 1.5; white-space: pre; }
+  .st-body hr { border: 0; border-top: 1px solid var(--leaf-edge); margin: 1.1rem 0; }
+  .st-body strong { font-weight: 600; }
+  /* A reference table is often wider than a phone.  It scrolls inside its own
+     box rather than making the whole page scroll sideways. */
+  .st-body .tw { overflow-x: auto; margin: .6rem 0; }
+  .st-body table { border-collapse: collapse; font-size: .78rem; }
+  .st-body th, .st-body td { padding: .28rem .6rem; text-align: left; vertical-align: top;
+                             border-bottom: 1px solid var(--leaf-edge); white-space: nowrap; }
+  .st-body th { color: var(--faded); font-weight: 500; font-size: .66rem;
+                letter-spacing: .08em; text-transform: uppercase; }
 
   /* a case name inside the red annotation, tappable for the long version.
      Inherits everything from .tag so it reads as part of the line; the

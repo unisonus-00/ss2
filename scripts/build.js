@@ -20,6 +20,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const markdown = require('./markdown');
 
 const ROOT = path.resolve(__dirname, '..');
 const APP = path.join(ROOT, 'app');
@@ -30,6 +31,10 @@ const read = f => fs.readFileSync(path.join(APP, f), 'utf8');
 const LINK = '<link rel="stylesheet" href="styles.css">';
 const SCRIPT = '<script src="app.js"></script>';
 const PRACTICE = /<script id="practice" type="application\/json">[\s\S]*?<\/script>/;
+const REFERENCE = /<script id="references" type="application\/json">[\s\S]*?<\/script>/;
+/* A contents list earns its place on a long reference and clutters a short
+   one.  Five top-level sections is where these files start needing one. */
+const TOC_FROM = 5;
 /* The brand mark is a separate source file so it can be redrawn or replaced
    without touching the markup, and is inlined here — the distributable has to
    stay one file with nothing to fetch. */
@@ -85,6 +90,31 @@ function discover() {
   if (fs.existsSync(root)) found.push({ dir: '00-overview', stage: 0, file: root });
 
   return found;
+}
+
+/* A lesson's reference.md, rendered.  Study is a reference viewer, so the
+   content goes through essentially verbatim: no summarising, no extraction,
+   no cards made from it.  A lesson with no reference.md simply gets none, and
+   the app hides the button rather than opening an empty panel. */
+function loadReferences(lessons) {
+  const out = {};
+  for (const { lesson } of lessons) {
+    const f = path.join(ROOT, lesson, 'reference.md');
+    if (!fs.existsSync(f)) continue;
+    const { html, toc } = markdown.render(fs.readFileSync(f, 'utf8'));
+    /* A reference opens with its own title — "Stage 5: Rūpa — Reference
+       Guide" — and the panel already has a heading, so the h1 would be the
+       same words twice.  Dropped here rather than hidden in CSS, so the
+       contents list underneath cannot pick it up either.  The panel titles
+       itself from the LESSON, which keeps Study and the drawer agreeing and
+       does not depend on how a given reference happens to head itself. */
+    const sections = toc.filter(t => t.level === 2);
+    out[lesson] = {
+      html: html.replace(/^<h1[^>]*>[\s\S]*?<\/h1>\n?/, ''),
+      toc: sections.length >= TOC_FROM ? sections : []
+    };
+  }
+  return out;
 }
 
 /* ── validate ───────────────────────────────────────────────────────── */
@@ -203,8 +233,17 @@ function build() {
     process.exit(1);
   }
   if (!PRACTICE.test(html)) throw new Error('index.html has no <script id="practice"> block');
+  /* "</script>" inside a JSON island would end the island.  \\/ is a legal
+     JSON escape for /, so this survives the round trip unchanged. */
+  const island = o => JSON.stringify(o).replace(/<\//g, '<\\/');
+
   html = html.replace(PRACTICE,
-    '<script id="practice" type="application/json">' + JSON.stringify({ lessons }) + '</script>');
+    '<script id="practice" type="application/json">' + island({ lessons }) + '</script>');
+
+  const references = loadReferences(lessons);
+  if (!REFERENCE.test(html)) throw new Error('index.html has no <script id="references"> block');
+  html = html.replace(REFERENCE,
+    '<script id="references" type="application/json">' + island(references) + '</script>');
 
   for (const [tag, file, open, close] of [
     [LINK, 'styles.css', '<style>', '</style>'],
@@ -225,7 +264,7 @@ function build() {
     }
     html = html.replace(tag, open + '\n' + read(file).replace(/\s*$/, '') + '\n' + close);
   }
-  return { html, lessons, cards, decks };
+  return { html, lessons, cards, decks, refs: Object.keys(references).length };
 }
 
 /* A page that reaches the network is a broken page here, so the build refuses
@@ -248,7 +287,7 @@ function assertSelfContained(html) {
   }
 }
 
-const { html, lessons, cards, decks } = build();
+const { html, lessons, cards, decks, refs } = build();
 assertSelfContained(html);
 
 if (process.argv.includes('--check')) {
@@ -265,5 +304,5 @@ fs.mkdirSync(path.dirname(OUT), { recursive: true });
 fs.writeFileSync(OUT, html);
 console.log(
   `build: dist/abhyasah.html  ${(html.length / 1024).toFixed(0)} KB  ` +
-  `${lessons.length} lessons, ${decks} decks, ${cards} cards`
+  `${lessons.length} lessons, ${decks} decks, ${cards} cards, ${refs} references`
 );

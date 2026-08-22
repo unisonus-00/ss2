@@ -207,8 +207,10 @@ app/logo.svg           app/logo.png, base64-wrapped for the build
 app/styles.css
 app/app.js
 scripts/build.js       discovers, validates and inlines -> dist/abhyasah.html
+scripts/markdown.js    reference.md -> HTML, at build time, for Study
 scripts/demo.js        repackages the distributable for publishing as an Artifact
 NN-lesson/practice.json   the lesson's curated practice
+NN-lesson/reference.md    the lesson's reference, shown by Study
 practice.json             cross-cutting practice, beside 00-overview.md
 ```
 
@@ -409,6 +411,53 @@ This is a fact about the **card**, not the list: `28 · Vṛtta` holds twelve
 pattern cards and two ordinary headwords (`उपजातिः`, `आर्या`), and each
 behaves as what it is. A per-deck flag would have got that deck wrong, and a
 future card needs no flag to be handled correctly.
+
+### Study
+
+**Practice is retrieval, Study is lookup, the workbook is production, the badge
+is the demonstration.** Study is a reference *viewer* and holds to that: it
+carries no cards, tracks no progress, grades nothing, and generates nothing
+from what it shows.
+
+A book icon opens the lesson's own `reference.md` in a panel, rendered at build
+time by `scripts/markdown.js` and inlined like everything else — the page still
+has nothing to fetch. `theory.md` is deliberately not carried: teaching is not
+lookup.
+
+- **The renderer is narrow on purpose.** Headings, paragraphs, pipe tables,
+  bullet and numbered lists, blockquotes, fenced blocks, rules and `**`/`*`
+  emphasis — exactly what the reference files use. Anything else falls through
+  as paragraph text rather than being guessed at. **An inconsistency in a
+  reference is a content bug to fix in the lesson**, never something the reader
+  reinterprets.
+- **Line breaks inside a paragraph are kept.** Every multi-line paragraph in
+  these files is line-significant — verse pādas, parallel epithet lists — so
+  reflowing them the way Markdown normally would is not "verbatim".
+  `scripts/test.js` checks 6256 fragments across all 36 references against the
+  rendered output and fails if any goes missing.
+- **The panel is titled from the lesson, not from the file's own `h1`**, so
+  Study and the drawer cannot disagree about what a lesson is called. The `h1`
+  is dropped from the body, since it would be the same words twice.
+- **A contents list appears at five top-level sections**, which is where these
+  files start needing one. Thirteen of the twenty-three get one.
+- **Hidden, not greyed, where there is nothing to look up** — a lesson with no
+  `reference.md`, and mixed or trouble rounds, which belong to no one lesson.
+- **The button sits on the status row, not beside the selector.** The top row
+  is genuinely full: below 375px *no* logo size leaves room for a fourth
+  control **and** the longest list name, and the list name is what that row is
+  for. On the status row it reads as what it is — the lesson's reference beside
+  the lesson's descriptor — and it costs no height, because the glyph is 17px
+  with a 44px tap area laid over it. (`min-height` beats `height`, so the
+  shared `button` rule's 44px has to be cleared explicitly or the control sets
+  the row's height.)
+
+Three reference headings disagree with the directory scheme and are **left for
+upstream**: `03-sandhi` heads itself `Chapter 2: Sandhi -- Reference Guide`
+(the vyākaraṇam numbering, and an ASCII dash), while `02-varna-vidya`,
+`17-puja-vak` and `20-svara-vidya` carry no `Stage N:` at all. None reaches the
+reader, because the panel titles itself from the lesson. `03-sandhi` cannot be
+fixed on its own in any case: `build.py` holds it byte-identical to
+`vyakaranam/ch02-sandhi/reference.md`, where "Chapter 2" is correct.
 
 ### Navigation and progress
 
