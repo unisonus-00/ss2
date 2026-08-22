@@ -66,20 +66,20 @@
   </div>
 
   <div class="board" id="reviewpanel">
-    <h2>परीक्षा — review mode</h2>
+    <h2>Review</h2>
     <div class="score" id="rp-sub"></div>
     <div class="note" id="rp-note"></div>
   </div>
 
   <div class="board" id="trouble">
-    <h2>क्लिष्टानि — trouble cards</h2>
+    <h2>Trouble cards</h2>
     <div class="score" id="t-sub"></div>
     <div class="note" id="t-note"></div>
     <div id="t-list"></div>
   </div>
 
   <div class="board" id="board">
-    <h2>अङ्काः — best scores</h2>
+    <h2>Scoreboard</h2>
     <div class="mastery" id="b-mastery" hidden>
       <span class="m-label">review mastery</span>
       <span class="m-pct" id="b-mpct"></span>
@@ -129,7 +129,7 @@
 
 <!-- Below the card, centred: these change how a card is shown, so they
      belong under the thing they change rather than above it. -->
-<div class="controls">
+<div class="controls" id="controls">
   <button id="dir" title="Tap to reverse"><span class="swap" aria-hidden="true">⇄</span><span id="dir-label">word → meaning</span></button>
   <label class="check" for="iast-on"><input type="checkbox" id="iast-on" checked> IAST</label>
 </div>
@@ -155,15 +155,15 @@
 
   <div class="dr-modes">
     <button id="dr-board" class="dr-mode board">
-      <span class="dm-name">Aṅkāḥ</span>
-      <span class="dm-sub">best scores and review mastery</span>
+      <span class="dm-name">Scoreboard</span>
+      <span class="dm-sub" id="dm-board">best scores</span>
     </button>
     <button id="dr-review" class="dr-mode">
-      <span class="dm-name">Parīkṣā</span>
+      <span class="dm-name">Review</span>
       <span class="dm-sub" id="dm-review">proof of mastery</span>
     </button>
     <button id="dr-trouble" class="dr-mode">
-      <span class="dm-name">Kliṣṭāni</span>
+      <span class="dm-name">Trouble cards</span>
       <span class="dm-sub" id="dm-trouble">repeat offenders</span>
     </button>
   </div>

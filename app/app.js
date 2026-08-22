@@ -640,9 +640,13 @@ function openFromDrawer(fn) {
    one opens the panel that says what it is and what unlocks it, exactly as
    the trouble row does with an empty list. */
 function syncReviewUI() {
-  const pool = reviewPool().length;
-  $('dm-review').textContent = 'proof of mastery'
-    + (pool >= REVIEW_MIN ? '' : ' \u00b7 ' + pool + ' of ' + REVIEW_MIN + ' cards');
+  const pool = reviewPool().length, m = masteryPct();
+  /* The figure the mode exists to produce, on the row that opens it — it
+     used to be visible only after opening the scoreboard. */
+  $('dm-review').textContent =
+      pool < REVIEW_MIN ? 'locked \u00b7 ' + pool + ' of ' + REVIEW_MIN + ' cards'
+    : m === null        ? 'ready \u00b7 a ' + REVIEW_SIZE + '-card draw'
+    :                     m + '% mastery \u00b7 ' + SAVED.review.seen + ' cards drawn';
   $('dr-review').classList.toggle('on', panelOpen === 'reviewpanel');
 }
 
@@ -1686,6 +1690,10 @@ function renderBoard() {
    untouched, so closing it puts you back exactly where you were. */
 let panelWas = null, panelOpen = null;
 function syncBoardUI() {
+  const done = finishedDecks().length, all = Object.keys(DECKS).length;
+  $('dm-board').textContent = done
+    ? 'best scores \u00b7 ' + done + ' of ' + all + ' lists finished'
+    : 'best scores \u00b7 no list finished yet';
   $('dr-board').classList.toggle('on', panelOpen === 'board');
 }
 
@@ -1713,6 +1721,7 @@ function closePanel() {
   $('grade').hidden = panelWas.grade;
   $('after').hidden = panelWas.after;
   $('keys').hidden = panelWas.keys;
+  $('controls').hidden = panelWas.controls;
   panelWas = null;
 }
 
@@ -1725,7 +1734,8 @@ function openPanel(which) {
   panelWas = {
     card: $('card').style.display, review: $('review').style.display,
     tally: $('tally').style.visibility, grade: $('grade').hidden,
-    after: $('after').hidden, keys: $('keys').hidden
+    after: $('after').hidden, keys: $('keys').hidden,
+    controls: $('controls').hidden
   };
   $('card').style.display = 'none';
   $('review').style.display = 'none';
@@ -1733,6 +1743,7 @@ function openPanel(which) {
   $('grade').hidden = true;
   $('after').hidden = true;
   $('keys').hidden = true;
+  $('controls').hidden = true;      // they change a card; none is showing
   $(which).style.display = 'block';
   $('panel-back').hidden = false;
   panelOpen = which;
@@ -1787,8 +1798,9 @@ function troubleText() {
 
 function syncTroubleUI() {
   const n = troubleCards().length;
-  $('dm-trouble').textContent = 'repeat offenders'
-    + (n ? ' \u00b7 ' + n + ' card' + (n > 1 ? 's' : '') : '');
+  $('dm-trouble').textContent =
+    (n ? n + ' card' + (n > 1 ? 's' : '') + ' to clear' : 'nothing on the list')
+    + (SAVED.cleared ? ' \u00b7 ' + SAVED.cleared + ' cleared' : '');
   $('dr-trouble').classList.toggle('on', panelOpen === 'trouble');
 }
 

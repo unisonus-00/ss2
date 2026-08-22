@@ -991,6 +991,82 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
+  // ── the three modes are findable, and say what they hold ───────────
+  // These carried their Sanskrit names — Aṅkāḥ, Parīkṣā, Kliṣṭāni — which
+  // named the concepts but meant nobody scanning the drawer for a
+  // "Scoreboard" could find one.  Curriculum items are named in Sanskrit;
+  // the app's own functions are named in English.
+  {
+    const p = await browser.newPage();
+    p.on('pageerror', e => { console.log('  PAGEERROR ' + e.message); fail.push('pageerror'); });
+    await p.addInitScript(st => {
+      try { localStorage.setItem('abhyāsaḥ', JSON.stringify(st)); } catch (e) {}
+    }, { v: 3,
+         decks: { '20 · Bhāva — inner states': { best: [13, 15], pile: [] },
+                  '01 · Devī — goddess names': { best: [15, 15], pile: [] },
+                  'V09 · Emotions & mind — DM · LS': { best: [50, 61], pile: [] } },
+         review: { runs: 4, right: 63, seen: 80 }, trouble: {}, cleared: 2, mastered: {} });
+    await p.goto(FILE, { waitUntil: 'load' });
+
+    const rows = await p.evaluate(() => [...document.querySelectorAll('.dr-mode')].map(x => ({
+      name: x.querySelector('.dm-name').textContent,
+      sub: x.querySelector('.dm-sub').textContent,
+    })));
+    ok('the modes are named in English',
+      JSON.stringify(rows.map(r => r.name)) ===
+        JSON.stringify(['Scoreboard', 'Review', 'Trouble cards']),
+      rows.map(r => r.name).join(' | '));
+    ok('the scoreboard row counts what it holds',
+      /\d+ of \d+ lists finished/.test(rows[0].sub), rows[0].sub);
+    // the figure the mode exists to produce, on the row that opens it
+    ok('the review row shows the mastery percentage',
+      /^\d+% mastery/.test(rows[1].sub), rows[1].sub);
+    ok('the trouble row says what is on the list',
+      /cleared/.test(rows[2].sub), rows[2].sub);
+
+    // and every one of them still opens and renders
+    for (const [btn, id, want] of [
+      ['#dr-board', 'board', /lists finished/],
+      ['#dr-review', 'reviewpanel', /drawing from \d+ cards/],
+      ['#dr-trouble', 'trouble', /cleared/],
+    ]) {
+      await p.click('#nav');
+      await p.click(btn);
+      const r = await p.evaluate(([id]) => ({
+        open: panelOpen === id,
+        shown: getComputedStyle(document.getElementById(id)).display !== 'none',
+        heading: document.querySelector('#' + id + ' h2').textContent,
+        text: document.getElementById(id).textContent,
+        rows: document.querySelectorAll('#' + id + ' .brow, #' + id + ' .row').length,
+        /* the toggles change how a card is shown, and none is */
+        controlsHidden: document.getElementById('controls').hidden,
+      }), [id]);
+      ok(id + ' opens and renders its state', r.open && r.shown && want.test(r.text),
+        r.text.replace(/\s+/g, ' ').slice(0, 56));
+      ok(id + ' is headed in English', !/[ऀ-ॿ]/.test(r.heading), r.heading);
+      ok(id + ' hides the card toggles', r.controlsHidden);
+      await p.click('#p-back');
+    }
+
+    const back = await p.evaluate(() => ({
+      controls: document.getElementById('controls').hidden,
+      card: document.getElementById('card').style.display,
+    }));
+    ok('the toggles come back with the cards', !back.controls && back.card !== 'none');
+
+    // the scoreboard lists the finished decks, best first
+    await p.click('#nav');
+    await p.click('#dr-board');
+    const board = await p.evaluate(() => ({
+      rows: [...document.querySelectorAll('#board .brow')].map(r => r.textContent),
+      mastery: document.getElementById('b-mpct').textContent,
+    }));
+    ok('the scoreboard lists every finished deck', board.rows.length === 3,
+      board.rows.length + ' rows');
+    ok('and still carries the review mastery figure', board.mastery === '79%', board.mastery);
+    await p.close();
+  }
+
   // ── the IAST toggle governs a transliteration, and only that ───────
   // Two bugs lived here.  In the produce direction the transliteration was
   // appended to the morphology annotation instead of being shown on the

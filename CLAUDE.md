@@ -370,13 +370,32 @@ Bhāṣā-Vidyā and Kāvya-Racanā are not** — nothing in the repository name
 two groupings, so they were coined to match the other three. Rename them
 freely; `TRACKS` is the only place either appears.
 
-**Everything in the drawer is named the same way:** the Sanskrit in IAST as the
-heading, the English as an italic subheading beside a count. It holds at all
-three levels and for the mode rows too — `Pūjā-Vāk` / *Ritual Literacy · 1
-lesson*, `Rūpa` / *Case, Number, and Gender · 3 lists*, `Parīkṣā` / *proof of
-mastery*. A lesson's pair is read straight out of its `theory.md` heading,
-which always has the shape `Stage N: Name — English`, so the two cannot drift
-from the curriculum either.
+**Curriculum items are named in Sanskrit; the app's own functions are named in
+English.** A track or a lesson takes the Sanskrit in IAST as its heading and
+the English as an italic subheading beside a count — `Pūjā-Vāk` / *Ritual
+Literacy · 1 lesson*, `Rūpa` / *Case, Number, and Gender · 3 lists*. A
+lesson's pair is read straight out of its `theory.md` heading, which always
+has the shape `Stage N: Name — English`, so the two cannot drift from the
+curriculum.
+
+The three mode rows are **not** curriculum, and were briefly given the same
+treatment: `Aṅkāḥ`, `Parīkṣā`, `Kliṣṭāni`. That named the concepts correctly
+and made the features unfindable — nobody scanning for a scoreboard finds
+`Aṅkāḥ`, and the scoreboard read as simply missing. They are `Scoreboard`,
+`Review` and `Trouble cards`, in English, and so are the headings of the
+panels they open.
+
+Each row's subheading carries that mode's live state, so the drawer answers
+the obvious question without being opened into:
+
+| | |
+|:--|:--|
+| `Scoreboard` | *best scores · 3 of 71 lists finished* |
+| `Review` | *79% mastery · 80 cards drawn* — or *locked · 12 of 40 cards* |
+| `Trouble cards` | *7 cards to clear · 2 cleared* |
+
+The review mastery figure in particular used to be reachable only by opening
+the scoreboard, which is not where anyone looked for it.
 
 Two things are deliberately absent from the drawer, and tests assert both:
 
