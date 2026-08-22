@@ -965,8 +965,11 @@ const open = async (browser, opts = {}) => {
           && Math.abs((ctl.left + ctl.right) / 2 - (card.left + card.right) / 2) <= 1,
         // no centred logo during practice
         centred: !document.querySelector('h1'),
-        // branding is out of the drawer entirely
-        drawerBranded: /abhyāsa|अभ्यास/i.test(drawer.textContent)
+        /* The MARK is out of the drawer, and so is Devanagari — that is
+           chrome, and Devanagari belongs on the cards where it is the thing
+           being learnt.  The word "Abhyāsa" itself now names the mastery
+           mode there, which is a mode name and not branding. */
+        drawerBranded: /[\u0900-\u097F]/.test(drawer.textContent)
                        || !!drawer.querySelector('.brand, .brand-logo'),
         clipped,
       };
@@ -1368,23 +1371,21 @@ const open = async (browser, opts = {}) => {
       name: x.querySelector('.dm-name').textContent,
       sub: x.querySelector('.dm-sub').textContent,
     })));
-    /* Review leads: it is the mastery system the rank is read off. */
-    ok('the modes are named in English, review first',
+    /* Abhyāsa is lifted out of the mode rows into the section the drawer
+       opens with; what is left is named in English. */
+    ok('the mode rows are named in English',
       JSON.stringify(rows.map(r => r.name)) ===
-        JSON.stringify(['Review', 'Scoreboard', 'Trouble cards']),
+        JSON.stringify(['Scoreboard', 'Trouble cards']),
       rows.map(r => r.name).join(' | '));
-    // the figure the mode exists to produce, on the row that opens it
-    ok('the review row shows the cold-recall percentage',
-      /^\d+% cold recall/.test(rows[0].sub), rows[0].sub);
     ok('the scoreboard row counts what it holds',
-      /\d+ of \d+ lists finished/.test(rows[1].sub), rows[1].sub);
+      /\d+ of \d+ lists finished/.test(rows[0].sub), rows[0].sub);
     ok('the trouble row says what is on the list',
-      /cleared/.test(rows[2].sub), rows[2].sub);
+      /cleared/.test(rows[1].sub), rows[1].sub);
 
     // and every one of them still opens and renders
     for (const [btn, id, want] of [
       ['#dr-board', 'board', /lists finished/],
-      ['#dr-review', 'reviewpanel', /drawing from \d+ cards/],
+      ['#dr-prog', 'reviewpanel', /drawing from \d+ cards/],
       ['#dr-trouble', 'trouble', /cleared/],
     ]) {
       await p.click('#nav');
@@ -1400,7 +1401,9 @@ const open = async (browser, opts = {}) => {
       }), [id]);
       ok(id + ' opens and renders its state', r.open && r.shown && want.test(r.text),
         r.text.replace(/\s+/g, ' ').slice(0, 56));
-      ok(id + ' is headed in English', !/[ऀ-ॿ]/.test(r.heading), r.heading);
+      /* Devanagari is chrome here; the panels head themselves in Latin
+         script, whether the word is English or the mode's own name. */
+      ok(id + ' heads itself in Latin script', !/[ऀ-ॿ]/.test(r.heading), r.heading);
       ok(id + ' hides the card toggles', r.controlsHidden);
       await p.click('#p-back');
     }
@@ -1591,6 +1594,43 @@ const open = async (browser, opts = {}) => {
                   : fragments + ' fragments across ' + files + ' references');
   }
 
+  // ── Abhyāsa is the drawer's opening section, not one row of three ──
+  // The mastery mode carries the app's own name and the rank is read off it,
+  // so it is lifted out of the mode list into the section the drawer opens
+  // with: the name, what it demonstrates, the figure, and the draw behind a
+  // tap.  Devanagari and the mark stay out — that part has not changed.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      openDrawer();
+      const sec = document.getElementById('dr-prog');
+      const modes = [...document.querySelectorAll('.dr-mode .dm-name')]
+        .map(x => x.textContent);
+      const out = {
+        first: document.querySelector('#drawer .dr-prog, #drawer .dr-mode') === sec,
+        name: document.getElementById('dp-label').textContent,
+        what: document.getElementById('dp-what').textContent,
+        stat: document.getElementById('dp-cards').textContent,
+        modes: modes,
+        notAMode: !modes.some(x => /abhy/i.test(x)),
+        tappable: sec.tagName === 'BUTTON',
+      };
+      sec.click();
+      out.opens = document.getElementById('reviewpanel').style.display === 'block';
+      out.heading = document.querySelector('#reviewpanel h2').textContent;
+      closePanel();
+      return out;
+    });
+
+    ok('the drawer opens with the Abhyāsa section',
+      r.first && /abhy[aā]sa/i.test(r.name), r.name);
+    ok('and says what it demonstrates', r.what.startsWith('consistent mastery'), r.what);
+    ok('it is the draw, one tap away', r.tappable && r.opens && r.heading === 'Abhyāsa',
+      r.heading);
+    ok('so it is no longer one of the mode rows', r.notAMode, r.modes.join(' | '));
+    await p.close();
+  }
+
   // ── the rank: cold recall against how much has been mastered ──────
   // Review is the mastery system, so the drawer's headline is what review
   // produces.  Neither half is mastery alone — 95% recall over fifty cards is
@@ -1641,10 +1681,10 @@ const open = async (browser, opts = {}) => {
       return out;
     });
 
-    ok('no rank before a review draw',
-      r.unranked.pct === '—' && r.unranked.label === 'Unranked'
-        && /draw/.test(r.unranked.sub) && r.unranked.bar === '0%',
-      r.unranked.label + ' ' + r.unranked.pct + ' · ' + r.unranked.sub);
+    ok('no rank before a draw', r.unranked.pct === '\u2014' && r.unranked.bar === '0%',
+      r.unranked.pct + ' · ' + r.unranked.sub);
+    ok('and the section says why rather than showing a figure',
+      /^(locked|ready) · /.test(r.unranked.sub), r.unranked.sub);
     ok('the rank is cold recall times coverage',
       r.acc80.score === Math.round(80 * r.cov / 100) && r.acc80.acc === 80,
       '80% × ' + r.cov + '% = ' + r.acc80.score + '%');
@@ -1688,7 +1728,7 @@ const open = async (browser, opts = {}) => {
       out.reviewSub = document.getElementById('rp-sub').textContent;
       /* unlocked but never drawn: the row names the action, not the mode */
       openDrawer();
-      out.rowBefore = document.getElementById('dm-review').textContent;
+      out.rowBefore = document.getElementById('dp-sub').textContent;
       closeDrawer();
 
       openPanel('trouble');
@@ -1702,7 +1742,7 @@ const open = async (browser, opts = {}) => {
       let g = 0;
       while (current && g++ < 60) (g % 3 ? knew : didntKnow)();
       openDrawer();
-      out.rowAfter = document.getElementById('dm-review').textContent;
+      out.rowAfter = document.getElementById('dp-sub').textContent;
       closeDrawer();
       openPanel('reviewpanel');
       out.subAfter = document.getElementById('rp-sub').textContent;
@@ -1716,10 +1756,12 @@ const open = async (browser, opts = {}) => {
       r.drawShown && leads(r.reviewRows, 'rp-actions'), r.reviewRows.join(' | '));
     ok('so does the trouble drill', leads(r.troubleRows, 't-actions'),
       r.troubleRows.join(' | '));
-    ok('an unlocked review names the action, not the mode',
+    ok('an unlocked draw names the action, not the mode',
       /^ready · draw \d+ cards$/.test(r.rowBefore), JSON.stringify(r.rowBefore));
-    ok('and shows its mastery once there is one',
-      r.mastery !== null && r.rowAfter.startsWith(r.mastery + '% cold recall')
+    /* the compact form: accuracy weighed against the cards actually complete */
+    ok('and weighs accuracy against the cards complete once there is a figure',
+      r.mastery !== null
+        && new RegExp('^' + r.mastery + '% cold × \\d+ of \\d+ cards$').test(r.rowAfter)
         && r.subAfter.startsWith(r.mastery + '% cold recall'),
       JSON.stringify(r.rowAfter) + ' / ' + JSON.stringify(r.subAfter));
     await p.close();
@@ -2140,8 +2182,10 @@ const open = async (browser, opts = {}) => {
     ok('every track is a heading', opened.tracks === 6, opened.tracks + ' headings');
     ok('the drawer lands on the current lesson', opened.lessons > 0 && opened.decks > 0,
       opened.lessons + ' lessons, ' + opened.decks + ' decks');
-    ok('the course figure is over cards', /\d+ of \d+ cards mastered/.test(opened.cards),
-      opened.cards);
+    /* The section's own statistic is lists carried to 100%, not a card count
+       already folded into the figure above it. */
+    ok('the section counts lists finished outright',
+      /^\d+ of \d+ lists complete$/.test(opened.cards), opened.cards);
 
     const reach = await p.evaluate(() => {
       // shut everything, then walk down: track -> lesson -> deck
@@ -2235,7 +2279,7 @@ const open = async (browser, opts = {}) => {
     const p = await open(browser);
     for (const [btn, panel, name] of [
       ['#dr-board', 'board', 'the scoreboard'],
-      ['#dr-review', 'reviewpanel', 'review mode'],
+      ['#dr-prog', 'reviewpanel', 'the abhyāsa draw'],
       ['#dr-trouble', 'trouble', 'trouble cards'],
     ]) {
       await p.click('#nav');

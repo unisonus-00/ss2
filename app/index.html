@@ -87,7 +87,7 @@
   </div>
 
   <div class="board" id="reviewpanel">
-    <h2>Review</h2>
+    <h2>Abhyāsa</h2>
     <div class="score" id="rp-sub"></div>
     <div class="note" id="rp-note"></div>
     <!-- The rank is read off this mode, so its arithmetic is shown where it
@@ -186,24 +186,20 @@
     <button id="dr-close" class="dr-x" aria-label="Close">×</button>
   </div>
 
-  <!-- Rank, not "course progress".  Review is the mastery system, so the
-       headline figure is the one it produces: how well cold recall goes in a
-       review draw, against how much of the course has been mastered. -->
-  <div class="dr-prog" id="dr-prog">
-    <span class="dp-label" id="dp-label">rank</span>
+  <!-- Abhyāsa is the mastery system and the app's own name, so it is not one
+       row among three: it is the section the drawer opens with, and the rank
+       it produces is the drawer's headline figure.  Tapping it opens the
+       draw. -->
+  <button class="dr-prog" id="dr-prog" aria-label="Abhyāsa — the mastery draw">
+    <span class="dp-label" id="dp-label">abhyāsa</span>
     <span class="dp-pct" id="dp-pct"></span>
+    <span class="dp-what" id="dp-what">consistent mastery</span>
     <span class="dp-sub" id="dp-sub"></span>
     <span class="dp-sub dp-cards" id="dp-cards"></span>
     <span class="bar"><i id="dp-bar"></i></span>
-  </div>
+  </button>
 
   <div class="dr-modes">
-    <!-- Review leads: it is the mastery system the rank above is read off,
-         and the one thing here that is worth opening first. -->
-    <button id="dr-review" class="dr-mode board">
-      <span class="dm-name">Review</span>
-      <span class="dm-sub" id="dm-review">proof of mastery</span>
-    </button>
     <button id="dr-board" class="dr-mode">
       <span class="dm-name">Scoreboard</span>
       <span class="dm-sub" id="dm-board">best scores</span>

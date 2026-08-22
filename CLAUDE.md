@@ -515,36 +515,54 @@ lesson's pair is read straight out of its `theory.md` heading, which always
 has the shape `Stage N: Name — English`, so the two cannot drift from the
 curriculum.
 
-The three mode rows are **not** curriculum, and were briefly given the same
+The mode rows are **not** curriculum, and were briefly given the same
 treatment: `Aṅkāḥ`, `Parīkṣā`, `Kliṣṭāni`. That named the concepts correctly
 and made the features unfindable — nobody scanning for a scoreboard finds
-`Aṅkāḥ`, and the scoreboard read as simply missing. They are `Scoreboard`,
-`Review` and `Trouble cards`, in English, and so are the headings of the
-panels they open.
+`Aṅkāḥ`, and the scoreboard read as simply missing. They are `Scoreboard` and
+`Trouble cards`, in English, and so are the headings of the panels they open.
+Abhyāsa is the deliberate exception, and the section above says why.
 
-**Review leads the three**, because the rank at the top of the drawer is read
-off it. Each row's subheading carries that mode's live state, so the drawer
-answers the obvious question without being opened into:
+Each row's subheading carries that mode's live state, so the drawer answers
+the obvious question without being opened into:
 
 | | |
 |:--|:--|
-| `Review` | *79% cold recall · 80 cards drawn* — or *locked · 12 of 40 cards*, or *ready · draw 20 cards* before the first draw |
-| `Scoreboard` | *best scores · 3 of 71 lists finished* |
+| `Scoreboard` | *best scores · 3 of 153 lists finished* |
 | `Trouble cards` | *7 cards to clear · 2 cleared* |
 
-The cold-recall figure in particular used to be reachable only by opening the
-scoreboard, which is not where anyone looked for it.
+### Abhyāsa, and the rank
 
-### Rank
-
-Review is the mastery system, so the drawer's headline figure is what review
-produces — not a bare card count:
+**The mastery mode carries the app's own name**, so it is not one row among
+three: it is the section the drawer opens with, and the rank is read off it.
+Tapping it opens the draw.
 
 ```
-PRACTISED                                                  33%
-79% recalled cold · 42% of the course mastered
-873 of 2079 cards mastered
+ABHYĀSA                                                    3%
+consistent mastery · Beginning
+79% cold × 74 of 2079 cards        5 of 153 lists complete
+▬▬▬───────────────────────────────────────────────────────
 ```
+
+Four things, in the order a reader wants them: the name, **what it
+demonstrates**, the figure in compact form — accuracy weighed against the
+cards actually complete — and the section's own statistic, which is **lists
+carried all the way to 100%**. That last line used to read *873 of 2079 cards
+mastered*, which restated a number already inside the figure above it; a
+finished list is a different fact.
+
+Before there is a figure the same line says why instead: *locked · 12 of 40
+cards*, then *ready · draw 20 cards* once it unlocks. **The mode's own name is
+never the thing being explained** — "a 20-card draw" described Abhyāsa to
+someone who had just read what it was.
+
+Naming it in Sanskrit is the one exception to the rule two sections down, and
+it earns the exception by being the project's own name rather than a term
+looked up for the occasion: nobody hunting for a scoreboard has to guess that
+`Aṅkāḥ` is one, but the app is *Abhyāsa* and this is what Abhyāsa is. The
+round it starts is labelled `abhyāsa` too, in the selector and the status row,
+where it used to read `mixed review`.
+
+The rank itself:
 
 Two things have to be true to know the forms, and **neither is mastery on its
 own**:
@@ -571,7 +589,7 @@ The ladder is `RANKS` in `app.js`, in English like the modes rather than in
 Sanskrit like the curriculum: Starting out, Beginning (1), Familiar (10),
 Practised (25), Fluent (45), Accomplished (65), Mastered (85).
 
-**"Mastery" now names the rank, so the review figure is called cold recall**
+**"Mastery" now names the rank, so the draw's figure is called cold recall**
 wherever it appears — the drawer row, the review window, the scoreboard's
 label and the shared score. The arithmetic is printed in the review window
 itself, where it is produced, rather than being a number that turns up in the

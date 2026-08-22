@@ -596,7 +596,7 @@ const studyFor = () => (deckName && deckName !== MIX && deckName !== TROUBLE
 function syncNav() {
   const label = deckName ? LESSON_LABEL[DECK_LESSON[deckName]] : '';   // the lesson, in IAST
   $('nav-label').textContent =
-      deckName === MIX     ? 'mixed review'
+      deckName === MIX     ? 'abhyāsa'
     : deckName === TROUBLE ? 'trouble cards'
     : deckName             ? [label, DECK_SHORT(deckName)].filter(Boolean).join(' \u00b7 ')
     :                        'lists';
@@ -702,14 +702,20 @@ function lessonRow(L) {
 }
 
 function renderDrawer() {
-  const all = progressOf(ALL_IDS), r = rankOf();
+  const r = rankOf(), all = Object.keys(DECKS).length;
+  /* Lists carried all the way to 100%, which is what the drawer's ticks mean
+     — not lists merely played to the end, which is the scoreboard's count. */
+  const lists = Object.keys(DECKS).filter(n => progressOf(DECK_IDS[n]).full).length;
   fillRow(document, {
-    '#dp-label': r.name,
-    '#dp-pct': r.score === null ? '—' : r.score + '%',
-    '#dp-sub': r.acc === null
-      ? 'a review draw sets your rank'
-      : r.acc + '% recalled cold \u00b7 ' + r.cov + '% of the course mastered',
-    '#dp-cards': all.done + ' of ' + all.total + ' cards mastered'
+    '#dp-pct': r.score === null ? '\u2014' : r.score + '%',
+    /* what the mode demonstrates, and — once there is one — the rank that
+       demonstration has reached */
+    '#dp-what': 'consistent mastery' + (r.score === null ? '' : ' \u00b7 ' + r.name),
+    '#dp-sub': abhyasaState(),
+    /* The section's own statistic is lists carried all the way to 100%.
+       "N of M cards mastered" restated a number already inside the figure
+       above it; a finished list is a different fact. */
+    '#dp-cards': lists + ' of ' + all + ' lists complete'
   });
   $('dp-bar').style.width = (r.score === null ? 0 : r.score) + '%';
 
@@ -804,18 +810,22 @@ function openFromDrawer(fn) {
 /* The row is live from the first load whether the mode is or not: a locked
    one opens the panel that says what it is and what unlocks it, exactly as
    the trouble row does with an empty list. */
-function syncReviewUI() {
+/* Abhyāsa's own line in the drawer's opening section: the figure once there
+   is one, and before that the reason there is not.  "a 20-card draw"
+   described the mode to someone who had just been told what it was; unlocked
+   and unused, it names the action instead. */
+function abhyasaState() {
   const pool = reviewPool().length, m = masteryPct();
-  /* The figure the mode exists to produce, on the row that opens it — it
-     used to be visible only after opening the scoreboard. */
-  $('dm-review').textContent =
-      pool < REVIEW_MIN ? 'locked \u00b7 ' + pool + ' of ' + REVIEW_MIN + ' cards'
-    /* Unlocked but never used: name the action, not the mode.  "a 20-card
-       draw" described what review is to someone who had just been told, and
-       read as one more definition rather than something to start. */
-    : m === null        ? 'ready \u00b7 draw ' + REVIEW_SIZE + ' cards'
-    :                     m + '% cold recall \u00b7 ' + SAVED.review.seen + ' cards drawn';
-  $('dr-review').classList.toggle('on', panelOpen === 'reviewpanel');
+  if (pool < REVIEW_MIN) return 'locked \u00b7 ' + pool + ' of ' + REVIEW_MIN + ' cards';
+  if (m === null) return 'ready \u00b7 draw ' + REVIEW_SIZE + ' cards';
+  const cov = progressOf(ALL_IDS);
+  /* accuracy weighed against how much of the course is complete — the two
+     halves of the rank, in the compact form the section has room for */
+  return m + '% cold \u00d7 ' + cov.done + ' of ' + cov.total + ' cards';
+}
+
+function syncReviewUI() {
+  $('dr-prog').classList.toggle('on', panelOpen === 'reviewpanel');
 }
 
 /* ── the review window ──────────────────────────────────────
@@ -871,7 +881,7 @@ function startRound(cards, opt) {
   missed = []; learned = 0;
   if (trouble)            $('stage').textContent = "trouble cards \u00b7 " + cards.length
                                                  + (reviewing ? " you missed" : " to clear");
-  else if (reviewing && mixed) $('stage').textContent = "mixed review \u00b7 " + cards.length + " you missed in the draw";
+  else if (reviewing && mixed) $('stage').textContent = "abhyāsa \u00b7 " + cards.length + " you missed in the draw";
   else if (reviewing)     $('stage').textContent = "review \u00b7 " + cards.length + " cards you missed";
   $('review').style.display = 'none';
   $('card').style.display = 'flex';
@@ -955,7 +965,7 @@ function startMixedReview() {
   const cards = mixCards();
   deckName = MIX;
   relabelAll();
-  $('stage').textContent = ["mixed review", cards.length + " cards",
+  $('stage').textContent = ["abhyāsa", cards.length + " cards",
                             lists + " list" + (lists > 1 ? "s" : "")].join(" \u00b7 ");
   $('pile').hidden = true;
   $('restart').textContent = "Draw " + REVIEW_SIZE + " more";
@@ -2103,7 +2113,7 @@ $('nav').addEventListener('click', () => drawerOpen() ? closeDrawer() : openDraw
 $('dr-close').addEventListener('click', closeDrawer);
 $('dveil').addEventListener('click', closeDrawer);
 $('dr-board').addEventListener('click', () => openFromDrawer(() => openPanel('board')));
-$('dr-review').addEventListener('click', () => openFromDrawer(() => openPanel('reviewpanel')));
+$('dr-prog').addEventListener('click', () => openFromDrawer(() => openPanel('reviewpanel')));
 $('dr-trouble').addEventListener('click', () => openFromDrawer(() => openPanel('trouble')));
 $('study-btn').addEventListener('click',
   () => panelOpen === 'study' ? closePanel() : openPanel('study'));
