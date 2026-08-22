@@ -92,6 +92,8 @@
   .card.choice .dn {
     font-family: inherit; font-size: 1.25rem; font-style: italic;
     line-height: 1.55; max-width: 22rem;
+    /* a prompt may put the English meaning above the Sanskrit frame */
+    white-space: pre-line;
   }
   .choices {
     display: flex; flex-direction: column; gap: .5rem;

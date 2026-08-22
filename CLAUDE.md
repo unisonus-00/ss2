@@ -51,26 +51,40 @@ is:
 - **Mixed review draws round-robin across lists**, so a table is covered over
   many sessions rather than dumped into one.
 
-Prefer the smallest interaction that tests the actual skill:
+### `sequence` is only for orders the grammar forces
 
-- **reveal** — recall
-- **choice** — recognition or controlled transformation
-- **sequence** — assemble supplied pieces
+Sanskrit constituent order is free. An exercise that hands the learner every
+correct word and asks only for the workbook's arrangement tests nothing that
+can be graded honestly — no case to choose, no verb to conjugate, no
+distractor to reject — and marking a grammatical alternative wrong asserts
+something false. That is interaction without learning, which **Keep it simple**
+forbids.
 
-If the learner ultimately needs to *do* something, test the operation rather
-than only its name.
+> Use `sequence` only where the order is **forced by the grammar**, not by
+> convention.
 
-Examples:
+Sandhi derivation is such a place: `jagat` cannot reach `jagan` without
+passing through `jagad`, because the nasal cannot apply to `t` directly. There
+the order is determinate, so a misplaced stage really is misplaced and is
+marked so.
 
-- Sandhi: `nara + indraḥ → narendraḥ`
-- Kriyā: `namati → "I" → namāmi`
-- Rūpa: stem + case/number → form
-- Guṇa: adjective agreement
-- Kāraka: sentence → semantic role
-- Chandas: pattern → gaṇa/metre
+**Ordinary sentence building belongs to `choice`,** testing the decision the
+sentence actually turns on:
 
-Leave unrestricted composition and other open-ended production to workbooks
-and badges.
+```
+"The guru teaches the students."
+guruḥ śiṣyān ___
+    pāṭhayati ✓    pāṭhayāmi    pāṭhayanti
+```
+
+Case selection, agreement, conjugation, connector, completion — these are the
+prerequisites for constructing a sentence. Producing the whole sentence, where
+alternative orders are naturally acceptable, is the workbook's job, and a human
+reader can accept what a stored string cannot.
+
+Any note on a card must describe what the card actually stores: one removed
+card claimed "subject → object → verb" over an answer that was
+subject → recipient → object → verb.
 
 ## Keep it simple
 
@@ -302,8 +316,8 @@ Three things here are load-bearing for the compatibility list above:
   lifts state out of earlier storage key names. Keep both chains; every
   `localStorage` touch stays guarded, since it can be absent or full.
 
-The app carries 23 lessons, 71 decks, and 2030 cards — 1876 `reveal`, 142
-`choice` and 12 `sequence`, spread over 13 interactive decks in 11 lessons,
+The app carries 23 lessons, 71 decks, and 2041 cards — 1876 `reveal`, 160
+`choice` and 5 `sequence`, spread over 14 interactive decks in 11 lessons,
 plus two mastery decks holding complete paradigms.
 They are curated practice, not conversions of the reference tables:
 
@@ -339,9 +353,13 @@ They are curated practice, not conversions of the reference tables:
   Scansion is the operation the lesson exists to teach.
 - `21-chandas-ii` — 4 cards: name the metre from its gaṇa sequence. No metre
   engine; full scansion and composition stay in the workbook.
-- `06-kriya` and `12-vakya` — 5 and 7 `sequence` cards: sentence building,
-  taken from the two workbooks' own "form a sentence from these elements"
-  exercises, which is the sequence interaction already written on paper.
+- `12-vakya` — 18 cards: a sentence with a hole in it, and options that force
+  a grammatical decision — case, agreement, verb form, connector. Constituent
+  order is deliberately *not* tested; see **`sequence` is only for orders the
+  grammar forces**.
+- `03-sandhi` — 5 `sequence` cards: order the stages of a derivation. The only
+  use of `sequence` in the app, because it is the only place where the order
+  is determinate.
 
 Roughly the last third of the decks are generated from the `vocab/` bank and
 marked as such.

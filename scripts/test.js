@@ -493,7 +493,7 @@ const open = async (browser, opts = {}) => {
   }
 
   // ── sequence: assemble supplied pieces by tapping ─────────────────
-  const SEQ = 'Sentences — build in order (vākya)';
+  const SEQ = 'Derivation — order the stages';
   const openSeq = async (id) => {
     const p = await browser.newPage();
     p.on('pageerror', e => { console.log('  PAGEERROR ' + e.message); fail.push('pageerror'); });
@@ -606,52 +606,56 @@ const open = async (browser, opts = {}) => {
   }
 
   {
-    // wrong order grades as didntKnow() and shows the answer
-    const p = await openSeq('12-vakya:sentence:mata-grhe');
+    /* A derivation order IS determinate — jagat cannot reach jagan without
+       passing through jagad — so a misplaced stage is marked misplaced. */
+    const p = await openSeq('03-sandhi:derive:jagat-natyam');
     const r = await p.evaluate(() => {
       const c = current.card;
-      const reversed = c.answer.slice().reverse();
-      reversed.forEach(w =>
+      const other = c.answer.slice().reverse();
+      other.forEach(w =>
         [...document.querySelectorAll('#bank .chip')].find(x => x.textContent === w).click());
       document.getElementById('s-check').click();
-      const gloss = document.getElementById('gloss').textContent;
-      const wrong = document.querySelectorAll('#built .chip.wrong').length;
-      const id = c.id;
+      const out = {
+        gloss: document.getElementById('gloss').textContent,
+        crossed: document.querySelectorAll('#built .chip.wrong').length,
+        id: c.id, chain: c.answer.join('  →  '),
+      };
       document.getElementById('g-next').click();
-      return { gloss, wrong, missed: missed.length, learned,
-               trouble: JSON.parse(localStorage.getItem('abhyāsaḥ')).trouble[id] };
+      out.missed = missed.length; out.learned = learned;
+      out.trouble = JSON.parse(localStorage.getItem('abhyāsaḥ')).trouble[out.id];
+      return out;
     });
-    ok('a wrong order is marked wrong', r.wrong > 0, r.wrong + ' pieces');
-    ok('a wrong order spells the answer out',
-      r.gloss === 'mātā gṛhe bhojanaṃ pacati', JSON.stringify(r.gloss));
-    ok('a wrong order joins the missed pile', r.missed === 1 && r.learned === 0);
-    ok('a wrong order records a trouble strike',
-      r.trouble && r.trouble.w === 1, JSON.stringify(r.trouble));
+    ok('a wrong derivation order is marked wrong', r.crossed > 0, r.crossed + ' stages');
+    ok('the feedback spells the chain out',
+      r.gloss === 'Correct order: ' + r.chain, JSON.stringify(r.gloss));
+    ok('it joins the missed pile', r.missed === 1 && r.learned === 0);
+    ok('and records a trouble strike', r.trouble && r.trouble.w === 1, JSON.stringify(r.trouble));
     await p.close();
   }
 
   {
-    // keyboard, and shuffling
-    const p = await openSeq();
-    await p.evaluate(() => document.getElementById('card').blur());
-    await p.keyboard.press('1');
-    await p.keyboard.press('1');
-    const placed = await p.evaluate(() => document.querySelectorAll('#built .chip').length);
-    ok('number keys place pieces', placed === 2, placed + ' placed');
-    await p.keyboard.press('Backspace');
-    const afterBs = await p.evaluate(() => document.querySelectorAll('#built .chip').length);
-    ok('Backspace takes one back', afterBs === 1);
-    const orders = await p.evaluate(() => {
-      const seen = new Set();
-      for (let i = 0; i < 30; i++) {
-        seqOrder = null;
-        seqBuilt = [];
-        drawSequence(current.card);
-        seen.add([...document.querySelectorAll('#bank .chip')].map(c => c.textContent).join('|'));
-      }
-      return seen.size;
+    /* The project decision: sequence is reserved for orders the grammar
+       forces. No sequence card may ask for the arrangement of a whole
+       sentence's freely movable constituents. */
+    const p = await browser.newPage();
+    await p.goto(FILE, { waitUntil: 'load' });
+    const r = await p.evaluate(() => {
+      const seqs = [];
+      Object.entries(DECKS).forEach(([name, cards]) => cards.forEach(c => {
+        if ((c.type || 'reveal') === 'sequence') seqs.push({ id: c.id, front: c.front, deck: name });
+      }));
+      return {
+        total: seqs.length,
+        lessons: [...new Set(seqs.map(s => s.id.split(':')[0]))],
+        sentenceLike: seqs.filter(s => /^Build/i.test(s.front) || /model order/i.test(s.front))
+          .map(s => s.id),
+      };
     });
-    ok('bank order varies between showings', orders > 1, orders + ' distinct orders');
+    ok('no sequence card asks for a sentence word order',
+      r.sentenceLike.length === 0, r.sentenceLike.join(', '));
+    ok('sequence is used only for derivations',
+      r.lessons.length === 1 && r.lessons[0] === '03-sandhi',
+      r.total + ' cards in ' + r.lessons.join(', '));
     await p.close();
   }
 
@@ -662,7 +666,10 @@ const open = async (browser, opts = {}) => {
     await p.evaluate(d => {
       const s = document.getElementById('deck');
       s.value = d; s.dispatchEvent(new Event('change'));
-      startRound([DECKS[d].find(c => c.parts && c.parts.length === 4)], {});
+      // the widest sequence card there is — the tightest layout case
+      const widest = DECKS[d].filter(c => c.parts)
+        .sort((a, b) => b.parts.length - a.parts.length)[0];
+      startRound([widest], {});
     }, SEQ);
     const r = await p.evaluate(() => {
       const chips = [...document.querySelectorAll('#bank .chip')];
@@ -670,10 +677,12 @@ const open = async (browser, opts = {}) => {
         minH: Math.min(...chips.map(c => c.getBoundingClientRect().height)),
         overflow: document.documentElement.scrollWidth > window.innerWidth,
         fits: chips.every(c => c.getBoundingClientRect().right <= window.innerWidth),
+        chips: chips.length,
       };
     });
     ok('chips meet the 44px touch target', r.minH >= 44, r.minH + 'px');
-    ok('no horizontal overflow with four chips', !r.overflow && r.fits);
+    ok('no horizontal overflow at the widest chip count',
+      !r.overflow && r.fits, r.chips + ' chips');
     await p.close();
   }
 

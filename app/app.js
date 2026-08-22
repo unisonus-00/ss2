@@ -110,8 +110,10 @@ const DECK_RENAMES = {
   'Rūpa practice — case and form':               'Practice — case and form',
   'V21 · Deity vibhakti — the eight baseplates': 'Table mastery — the eight baseplates',
   'Kriyā practice — person, tense and mood':     'Practice — person, tense and mood',
-  'Kriyā sentences — build in order':            'Sentences — build in order',
-  'Vākya sentences — build in order':            'Sentences — build in order (vākya)',
+  /* The sentence-order sequence decks were removed, not renamed: handing the
+     learner every correct word and asking only for the workbook's arrangement
+     tested nothing that can be graded honestly. Their scores are deliberately
+     left orphaned rather than carried onto different practice. */
   'Sandhi practice — joins and splits':          'Practice — joins and splits',
   'Guṇa practice — agreement':                   'Practice — agreement',
   'Kāraka practice — roles in a sentence':       'Practice — roles in a sentence',
@@ -1012,6 +1014,10 @@ function drawSequence(c) {
       b.addEventListener('click', () => { seqBuilt.splice(pos, 1); drawSequence(c); });
     } else {
       b.disabled = true;
+      /* `sequence` is only ever used where the order is forced by the
+         grammar — derivational stages — so a misplaced piece really is
+         misplaced and is marked as such. Free constituent order is not
+         tested by this interaction at all; see CLAUDE.md. */
       b.classList.add(c.parts[partIdx] === c.answer[pos] ? 'right' : 'wrong');
     }
     built.appendChild(b);
@@ -1039,9 +1045,9 @@ function seqCheck() {
   const got = seqBuilt.map(i => c.parts[i]);
   seqRight = got.length === c.answer.length && got.every((w, i) => w === c.answer[i]);
 
-  /* Spell the answer out when it was wrong — seeing the right order is the
-     whole lesson, and a chip line marked red does not give it. */
-  $('gloss').textContent = seqRight ? '' : c.answer.join(' ');
+  /* Spell the chain out when it was wrong — seeing which stage feeds which
+     is the whole lesson, and a marked-up chip line does not give it. */
+  $('gloss').textContent = seqRight ? '' : 'Correct order: ' + c.answer.join('  →  ');
   $('card').classList.add('open');
   $('keys').textContent = KEYS_REVEAL;
   $('seq-actions').hidden = true;

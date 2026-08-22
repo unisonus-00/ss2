@@ -410,6 +410,96 @@
       ]
     },
     {
+      "name": "Derivation — order the stages",
+      "cards": [
+        {
+          "id": "03-sandhi:derive:jagat-natyam",
+          "type": "sequence",
+          "front": "Derive jagat + nāṭyam — put the stages in order",
+          "parts": [
+            "jagat nāṭyam",
+            "jagad nāṭyam",
+            "jagan nāṭyam"
+          ],
+          "answer": [
+            "jagat nāṭyam",
+            "jagad nāṭyam",
+            "jagan nāṭyam"
+          ],
+          "note": "jaśtva t → d, then anunāsika d → n · the nasal cannot apply to t directly",
+          "source": "workbook D2"
+        },
+        {
+          "id": "03-sandhi:derive:ramah-ca",
+          "type": "sequence",
+          "front": "Derive rāmaḥ + ca — put the stages in order",
+          "parts": [
+            "rāmaḥ ca",
+            "rāmas ca",
+            "rāmaś ca"
+          ],
+          "answer": [
+            "rāmaḥ ca",
+            "rāmas ca",
+            "rāmaś ca"
+          ],
+          "note": "sakārādeśa ḥ → s, then śchutva s → ś before c",
+          "source": "workbook D2"
+        },
+        {
+          "id": "03-sandhi:derive:mahan-surah",
+          "type": "sequence",
+          "front": "Derive mahān + śūraḥ — put the stages in order",
+          "parts": [
+            "mahān śūraḥ",
+            "mahāṁs śūraḥ",
+            "mahāṁś śūraḥ"
+          ],
+          "answer": [
+            "mahān śūraḥ",
+            "mahāṁs śūraḥ",
+            "mahāṁś śūraḥ"
+          ],
+          "note": "satva n → ṁs before ś, then śchutva s → ś",
+          "source": "workbook D2"
+        },
+        {
+          "id": "03-sandhi:derive:namah-sivaya",
+          "type": "sequence",
+          "front": "Derive namaḥ + śivāya — put the stages in order",
+          "parts": [
+            "namaḥ śivāya",
+            "namas śivāya",
+            "namaś śivāya"
+          ],
+          "answer": [
+            "namaḥ śivāya",
+            "namas śivāya",
+            "namaś śivāya"
+          ],
+          "note": "sakārādeśa ḥ → s, then śchutva s → ś before ś",
+          "source": "theory · sakārādeśa"
+        },
+        {
+          "id": "03-sandhi:derive:ramah-asti",
+          "type": "sequence",
+          "front": "Derive rāmaḥ + asti — put the stages in order",
+          "parts": [
+            "rāmaḥ asti",
+            "rāmo asti",
+            "rāmo’sti"
+          ],
+          "answer": [
+            "rāmaḥ asti",
+            "rāmo asti",
+            "rāmo’sti"
+          ],
+          "note": "ukārādeśa aḥ → o, then pūrvarūpa o + a → o with avagraha",
+          "source": "workbook D1"
+        }
+      ]
+    },
+    {
       "name": "S · Sandhi — all 27 rules (vyākaraṇam ch. 2)",
       "cards": [
         {

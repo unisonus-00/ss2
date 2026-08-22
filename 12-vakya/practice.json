@@ -2,132 +2,241 @@
   "lesson": "12-vakya",
   "decks": [
     {
-      "name": "Sentences — build in order (vākya)",
+      "name": "Practice — case, form and connector",
       "cards": [
         {
-          "id": "12-vakya:sentence:pratah-uttisthami",
-          "type": "sequence",
-          "front": "Build: “I get up in the morning.”",
-          "parts": [
-            "aham",
-            "prātaḥ",
-            "uttiṣṭhāmi"
+          "id": "12-vakya:case:devam",
+          "type": "choice",
+          "front": "“I worship the deity.”\naham ___ pūjayāmi",
+          "options": [
+            "devam",
+            "devena",
+            "devāya"
           ],
-          "answer": [
-            "aham",
-            "prātaḥ",
-            "uttiṣṭhāmi"
-          ],
-          "note": "subject → object → verb · the unmarked order; Sanskrit permits others · an adverb sits before the verb",
-          "source": "workbook A1"
-        },
-        {
-          "id": "12-vakya:sentence:balah-jalam",
-          "type": "sequence",
-          "front": "Build: “The child drinks water.”",
-          "parts": [
-            "bālaḥ",
-            "jalam",
-            "pibati"
-          ],
-          "answer": [
-            "bālaḥ",
-            "jalam",
-            "pibati"
-          ],
-          "note": "subject → object → verb · the unmarked order; Sanskrit permits others",
-          "source": "workbook A1"
-        },
-        {
-          "id": "12-vakya:sentence:guruh-sisyan",
-          "type": "sequence",
-          "front": "Build: “The guru teaches the students.”",
-          "parts": [
-            "guruḥ",
-            "śiṣyān",
-            "pāṭhayati"
-          ],
-          "answer": [
-            "guruḥ",
-            "śiṣyān",
-            "pāṭhayati"
-          ],
-          "note": "subject → object → verb · the unmarked order; Sanskrit permits others",
-          "source": "workbook A1"
-        },
-        {
-          "id": "12-vakya:sentence:bhaktah-puspena",
-          "type": "sequence",
-          "front": "Build: “The devotee worships with a flower.”",
-          "parts": [
-            "bhaktaḥ",
-            "puṣpeṇa",
-            "pūjayati"
-          ],
-          "answer": [
-            "bhaktaḥ",
-            "puṣpeṇa",
-            "pūjayati"
-          ],
-          "note": "subject → object → verb · the unmarked order; Sanskrit permits others · tṛtīyā (instrument) before the verb",
+          "answer": "devam",
+          "note": "dvitīyā · the deity is what is worshipped",
           "source": "workbook A2"
         },
         {
-          "id": "12-vakya:sentence:mata-grhe",
-          "type": "sequence",
-          "front": "Build: “Mother cooks food at home.”",
-          "parts": [
-            "mātā",
-            "gṛhe",
-            "bhojanaṃ",
-            "pacati"
-          ],
-          "answer": [
-            "mātā",
-            "gṛhe",
-            "bhojanaṃ",
-            "pacati"
-          ],
-          "note": "subject → object → verb · the unmarked order; Sanskrit permits others · saptamī (place) before the object",
-          "source": "workbook A1"
-        },
-        {
-          "id": "12-vakya:sentence:sayam-mandiram",
-          "type": "sequence",
-          "front": "Build: “I go to the temple in the evening.”",
-          "parts": [
-            "aham",
-            "sāyam",
-            "mandiraṃ",
-            "gacchāmi"
-          ],
-          "answer": [
-            "aham",
-            "sāyam",
-            "mandiraṃ",
-            "gacchāmi"
-          ],
-          "note": "subject → object → verb · the unmarked order; Sanskrit permits others · time before place",
-          "source": "workbook A1"
-        },
-        {
-          "id": "12-vakya:sentence:guruh-katham",
-          "type": "sequence",
-          "front": "Build: “The guru tells a story to the student.”",
-          "parts": [
-            "guruḥ",
+          "id": "12-vakya:case:sisyaya",
+          "type": "choice",
+          "front": "“The guru tells a story to the student.”\nguruḥ ___ kathāṃ kathayati",
+          "options": [
             "śiṣyāya",
-            "kathāṃ",
-            "kathayati"
+            "śiṣyam",
+            "śiṣyeṇa"
           ],
-          "answer": [
-            "guruḥ",
-            "śiṣyāya",
-            "kathāṃ",
-            "kathayati"
-          ],
-          "note": "subject → object → verb · the unmarked order; Sanskrit permits others · caturthī (recipient) before the object",
+          "answer": "śiṣyāya",
+          "note": "caturthī · the one told to",
           "source": "workbook A2"
+        },
+        {
+          "id": "12-vakya:case:grhe",
+          "type": "choice",
+          "front": "“I read at home.”\naham ___ paṭhāmi",
+          "options": [
+            "gṛhe",
+            "gṛham",
+            "gṛhasya"
+          ],
+          "answer": "gṛhe",
+          "note": "saptamī · where the reading happens",
+          "source": "workbook A2"
+        },
+        {
+          "id": "12-vakya:case:puspena",
+          "type": "choice",
+          "front": "“The devotee worships with a flower.”\nbhaktaḥ ___ pūjayati",
+          "options": [
+            "puṣpeṇa",
+            "puṣpam",
+            "puṣpāya"
+          ],
+          "answer": "puṣpeṇa",
+          "note": "tṛtīyā · the instrument",
+          "source": "workbook A2"
+        },
+        {
+          "id": "12-vakya:case:bhaktam",
+          "type": "choice",
+          "front": "“The goddess protects the devotee.”\ndevī ___ rakṣati",
+          "options": [
+            "bhaktam",
+            "bhaktāya",
+            "bhaktasya"
+          ],
+          "answer": "bhaktam",
+          "note": "dvitīyā · the one protected",
+          "source": "workbook A2"
+        },
+        {
+          "id": "12-vakya:case:katham",
+          "type": "choice",
+          "front": "“The guru tells a story.”\nguruḥ ___ kathayati",
+          "options": [
+            "kathām",
+            "kathayā",
+            "kathāyāḥ"
+          ],
+          "answer": "kathām",
+          "note": "dvitīyā · what is told",
+          "source": "workbook A2"
+        },
+        {
+          "id": "12-vakya:case:which-to-the-student",
+          "type": "choice",
+          "front": "Which form means “to the student”?",
+          "options": [
+            "śiṣyāya",
+            "śiṣyam",
+            "śiṣyeṇa"
+          ],
+          "answer": "śiṣyāya",
+          "note": "caturthī · “to / for” · śiṣyam is the object, śiṣyeṇa the instrument",
+          "source": "workbook A2"
+        },
+        {
+          "id": "12-vakya:verb:pathayati",
+          "type": "choice",
+          "front": "“The guru teaches the students.”\nguruḥ śiṣyān ___",
+          "options": [
+            "pāṭhayati",
+            "pāṭhayāmi",
+            "pāṭhayanti"
+          ],
+          "answer": "pāṭhayati",
+          "note": "3 sg. · guruḥ is singular — śiṣyān being plural does not change the verb",
+          "source": "workbook A1"
+        },
+        {
+          "id": "12-vakya:verb:vasasi",
+          "type": "choice",
+          "front": "“Where do you live?”\ntvam kutra ___ ?",
+          "options": [
+            "vasasi",
+            "vasāmi",
+            "vasati"
+          ],
+          "answer": "vasasi",
+          "note": "2 sg. · tvam takes madhyama puruṣa",
+          "source": "workbook B1"
+        },
+        {
+          "id": "12-vakya:verb:janami",
+          "type": "choice",
+          "front": "“I do not know.”\naham na ___",
+          "options": [
+            "jānāmi",
+            "jānāti",
+            "jānāsi"
+          ],
+          "answer": "jānāmi",
+          "note": "1 sg. · na simply precedes the verb",
+          "source": "workbook B1"
+        },
+        {
+          "id": "12-vakya:verb:agacchati",
+          "type": "choice",
+          "front": "“Who is coming?”\nkaḥ ___ ?",
+          "options": [
+            "āgacchati",
+            "āgacchāmi",
+            "āgacchanti"
+          ],
+          "answer": "āgacchati",
+          "note": "3 sg. · kaḥ is singular",
+          "source": "workbook B1"
+        },
+        {
+          "id": "12-vakya:verb:udeti",
+          "type": "choice",
+          "front": "“The sun rises in the morning.”\nprātaḥ sūryaḥ ___",
+          "options": [
+            "udeti",
+            "udayati",
+            "udenti"
+          ],
+          "answer": "udeti",
+          "note": "ud + √i · 3 sg.",
+          "source": "workbook B1"
+        },
+        {
+          "id": "12-vakya:verb:raksanti",
+          "type": "choice",
+          "front": "“The gods protect.”\ndevāḥ ___",
+          "options": [
+            "rakṣanti",
+            "rakṣati",
+            "rakṣāmi"
+          ],
+          "answer": "rakṣanti",
+          "note": "3 pl. · the verb follows the subject’s number",
+          "source": "workbook B1"
+        },
+        {
+          "id": "12-vakya:verb:pacati",
+          "type": "choice",
+          "front": "“Mother cooks food at home.”\nmātā gṛhe bhojanaṃ ___",
+          "options": [
+            "pacati",
+            "pacāmi",
+            "pacanti"
+          ],
+          "answer": "pacati",
+          "note": "3 sg. · mātā is singular",
+          "source": "workbook A1"
+        },
+        {
+          "id": "12-vakya:join:ca",
+          "type": "choice",
+          "front": "“I read and write.”\naham paṭhāmi likhāmi ___",
+          "options": [
+            "ca",
+            "vā",
+            "tu"
+          ],
+          "answer": "ca",
+          "note": "ca means “and” and follows what it joins",
+          "source": "workbook A3"
+        },
+        {
+          "id": "12-vakya:join:tu",
+          "type": "choice",
+          "front": "“You go, but I stay.”\ntvam gacchasi, aham ___ tiṣṭhāmi",
+          "options": [
+            "tu",
+            "ca",
+            "tataḥ"
+          ],
+          "answer": "tu",
+          "note": "tu marks contrast",
+          "source": "workbook A3"
+        },
+        {
+          "id": "12-vakya:join:tatah",
+          "type": "choice",
+          "front": "“I rise at dawn, then I bathe.”\nprātaḥ uttiṣṭhāmi, ___ snānam karomi",
+          "options": [
+            "tataḥ",
+            "tadā",
+            "tu"
+          ],
+          "answer": "tataḥ",
+          "note": "tataḥ is sequence — “after that”",
+          "source": "workbook A3"
+        },
+        {
+          "id": "12-vakya:join:yada-tada",
+          "type": "choice",
+          "front": "“When the sun rises, the stars are not seen.”\n___ sūryaḥ udeti ___ tārakāḥ na dṛśyante",
+          "options": [
+            "yadā … tadā",
+            "yadi … tadā",
+            "yaḥ … saḥ"
+          ],
+          "answer": "yadā … tadā",
+          "note": "yadā/tadā is time · yadi/tadā is condition · yaḥ/saḥ is relative",
+          "source": "workbook A3"
         }
       ]
     },
