@@ -1539,6 +1539,62 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
+  // ── every reveal card names the operation before it is answered ────
+  // A reveal card shows an item and nothing else, so the task lived only in
+  // the direction button below the card.  The cue is derived from the deck's
+  // pair rather than written on each card, which means it can only be right
+  // for every list if the table covers every destination half in use.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const missing = [], onInteractive = [];
+      Object.keys(DECKS).forEach(n => {
+        const cards = DECKS[n];
+        const interactive = cards.every(c => (c.type || 'reveal') !== 'reveal');
+        loadDeck(n);
+        ['reveal', 'produce'].forEach(d => {
+          setDir(d);
+          const c = interactive ? cards[0]
+                                : cards.find(x => (x.type || 'reveal') === 'reveal');
+          startRound([c], {});
+          const cue = document.getElementById('cue').textContent;
+          if (interactive || (c.type || 'reveal') !== 'reveal') {
+            if (cue) onInteractive.push(n + ' / ' + d);
+          } else if (!cue) missing.push(n + ' / ' + d);
+        });
+      });
+      /* the cue names the destination half, so it must differ by direction */
+      loadDeck('28 · Vṛtta — the classical metres');
+      const card = DECKS['28 · Vṛtta — the classical metres'][0];
+      const both = ['reveal', 'produce'].map(d => {
+        setDir(d); startRound([card], {});
+        return document.getElementById('cue').textContent;
+      });
+      /* and it must sit above the item, not below it */
+      const cue = document.getElementById('cue');
+      const dn = document.getElementById('dn');
+      const above = cue.getBoundingClientRect().bottom
+                 <= dn.getBoundingClientRect().top + 1;
+      const quiet = parseFloat(getComputedStyle(cue).fontSize)
+                  < parseFloat(getComputedStyle(dn).fontSize);
+      return { missing: missing.slice(0, 4), nMissing: missing.length,
+               onInteractive: onInteractive.slice(0, 4),
+               nOn: onInteractive.length, both, above, quiet,
+               cues: new Set(Object.values(CUES)).size };
+    });
+
+    ok('every reveal list names its task, both ways round',
+      r.nMissing === 0, r.nMissing + ' without a cue, eg ' + r.missing.join(' | '));
+    ok('an interactive card gets no cue over its own prompt',
+      r.nOn === 0, r.nOn + ' doubled up, eg ' + r.onInteractive.join(' | '));
+    ok('the cue names the direction, not the list',
+      r.both[0] === 'Identify the metre' && r.both[1] === 'Recall the pattern',
+      r.both.join(' / '));
+    ok('the cue sits above the item and stays secondary', r.above && r.quiet);
+    console.log('        ' + r.cues + ' distinct cues across every pair in use');
+    await p.close();
+  }
+
   // ── the direction toggle means something on every list ─────────────
   // "word → meaning" was printed over lists that hold no meanings: a
   // paradigm cell answers with an analysis, a sandhi rule with the result of

@@ -321,12 +321,50 @@ string** — the reverse is the halves swapped:
 
 `pair` is optional and defaults to `word → meaning`, which is right for most
 of the app. The build rejects a `pair` that is not exactly `front → back`.
-Twenty-four decks carry one: `form → analysis`, `join → result`,
-`term → definition`, `pattern → name`, `pattern → metre`, `parts → compound`,
-`compound → vigraha`, `sūtra → sounds`, `root → meaning`, `affix → sense`.
+Fifty-five decks carry one: `form → analysis`, `join → result`,
+`term → definition`, `pattern → gaṇa`, `pattern → metre`, `parts → compound`,
+`compound → vigraha`, `sūtra → sounds`, `root → meaning`, `affix → sense`,
+`affix → form`, `form → sense`, `line → relation`, `line → vibhakti`.
+
+It now carries a second job: the task cue on the card is read off it.
 
 Reversing is worth having on all of them — `analysis → form` is the drill a
 paradigm table exists for, and `result → join` is the split exercise.
+
+### The task cue
+
+A reveal card shows an item and nothing else, so the operation being asked for
+lived only in the direction button *below* the card — and the same front wants
+quite different things in different lists: `रामाय` asks for an analysis in a
+paradigm table and a translation in a vocabulary list. One quiet line above the
+item names it.
+
+```
+ANALYZE THE FORM              PRODUCE THE FORM
+रामम्                          rāma- · dvitīyā · ekavacana
+rāmam
+```
+
+**It is derived from the deck's `pair`, not written on 2000 cards**, and it
+keys off the pair's **destination** half — the thing the learner has to produce
+— so both directions fall out of one table and a list that already names its
+pair needs nothing added to it. `CUES` in `app.js` holds one entry per
+destination noun actually in use; `meaning`, `definition` and `sense` share a
+cue, because they ask for the same act of recall. A destination the table does
+not know shows no cue at all, which is the right failure: better silent than
+wrong.
+
+- **Interactive cards get none.** A `choice` or `sequence` prompt already names
+  its task — `Join: nara + indraḥ`, `Identify the case: śivam` — and a cue over
+  the top would only repeat it.
+- **A cross-list draw falls back with the pair.** Review and trouble rounds run
+  on `word → meaning`, so they cue `Recall the meaning` / `Produce the word`.
+- `29 · Gaṇa` was re-paired `pattern → name` → **`pattern → gaṇa`**: the cue is
+  read off the destination noun, and `name` names nothing.
+
+`scripts/test.js` walks every list in both directions and fails if a reveal
+card shows no cue, if an interactive one does, or if the cue is not above the
+item and smaller than it.
 
 Two rules beyond that:
 

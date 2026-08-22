@@ -39,6 +39,9 @@
 <div class="panel">
   <div class="card" id="card" tabindex="0" role="button" aria-label="Show meaning">
     <div class="seen-before" id="relearn" hidden>second look</div>
+    <!-- What the card is asking for.  Derived from the deck's `pair`, so it
+         is one line per list rather than a field on every card. -->
+    <div class="cue" id="cue"></div>
     <div class="dn" id="dn">…</div>
     <div class="iast" id="iast"></div>
     <div class="choices" id="choices" role="group" aria-label="Choose the answer" hidden></div>

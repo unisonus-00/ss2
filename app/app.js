@@ -440,6 +440,42 @@ function dirLabel() {
                            : half[0] + ' \u2192 ' + half[1];
 }
 
+/* The task cue.
+   A reveal card shows an item and nothing else, so the operation being asked
+   for lived only in the direction button under the card — and the same front
+   can want quite different things: `ramaya` asks for an analysis in one list
+   and a translation in another.  One line above the item names it.
+
+   The cue is DECK-level and derived, not written on 2000 cards.  It keys off
+   the pair's DESTINATION half — the thing the learner has to produce — so
+   both directions fall out of the one table, and a list that already names
+   its pair needs nothing added to it at all.
+
+   Deliberately small: one entry per destination noun actually in use, with
+   `meaning`, `definition` and `sense` sharing a cue because they ask for the
+   same act of recall.  A pair naming a destination not in the table shows no
+   cue, which is the right failure — better silent than wrong. */
+const CUES = {
+  meaning: 'Recall the meaning', definition: 'Recall the meaning',
+  sense:   'Recall the meaning', word:      'Produce the word',
+  analysis: 'Analyze the form',  form:      'Produce the form',
+  metre:   'Identify the metre', pattern:   'Recall the pattern',
+  'ga\u1e47a': 'Name the ga\u1e47a',
+  compound: 'Form the compound', vigraha:   'Give the vigraha',
+  parts:   'Split the compound', term:      'Name the term',
+  result:  'Join them',          join:      'Split the join',
+  root:    'Give the root',      affix:     'Give the affix',
+  's\u016btra': 'Name the s\u016btra', sounds: 'List the sounds',
+  line:    'Recall the line',    relation:  'Give the relation',
+  vibhakti: 'Name the vibhakti'
+};
+/* The half the learner is being asked FOR, which is the back in the forward
+   direction and the front in the reverse one. */
+function cueText() {
+  const half = currentPair().split(' \u2192 ');
+  return CUES[DIR === 'produce' ? half[0] : half[1]] || '';
+}
+
 /* The IAST toggle hides a TRANSLITERATION.  A card whose front carries no
    Devanagari has none to hide: its second line is content in its own right.
    A gaṇa's "laghu guru guru" reads a pattern of marks, it does not
@@ -1308,6 +1344,7 @@ function paint() {
      round the card is running.  A metre is identified by its gaṇa formula as
      much as by its name; putting the formula on the front handed the learner
      the answer they were being asked for. */
+  $('cue').textContent         = cueText();
   $('detail').textContent      = c.detail || '';
   $('detail-iast').textContent = c.detail && showDetailIast(c) ? c.detailIast || '' : '';
   renderTag(c.note);
@@ -1340,6 +1377,9 @@ function paintChoice(c) {
   $('card').setAttribute('aria-label', 'Choose the answer');
   $('dn').textContent   = c.front || '';
   $('iast').textContent = '';
+  /* An interactive card carries its task in its own prompt — "Join: nara +
+     indrah" — so a cue over the top would only repeat it. */
+  $('cue').textContent = '';
   $('gloss').textContent = '';
   $('iast-back').textContent = '';
   $('detail').textContent = '';
@@ -1409,6 +1449,9 @@ function paintSequence(c) {
   $('card').setAttribute('aria-label', 'Build the answer by tapping pieces');
   $('dn').textContent = c.front || '';
   $('iast').textContent = '';
+  /* An interactive card carries its task in its own prompt — "Join: nara +
+     indrah" — so a cue over the top would only repeat it. */
+  $('cue').textContent = '';
   $('gloss').textContent = '';
   $('iast-back').textContent = '';
   $('detail').textContent = '';

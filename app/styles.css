@@ -117,6 +117,12 @@
   }
   .card::before { left: 14px; }
   .card::after { right: 14px; }
+  /* What the card is asking for, over the item it asks it of.  Deliberately
+     quiet — it is an instruction, not the exercise, and it is on every card
+     of a list, so it has to stay out of the way of the thing being learnt. */
+  .cue { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase;
+         color: var(--faded); margin-bottom: .55rem; }
+  .cue:empty { display: none; }
   .dn { font-family: "Noto Serif Devanagari", "Kohinoor Devanagari", serif;
         font-size: 2.5rem; line-height: 1.5; }
   .iast { font-size: 1.3rem; font-style: italic; margin-top: .3rem; }
