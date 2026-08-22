@@ -3,11 +3,20 @@
 Produced before any restructuring, per the refinement plan's instruction to
 report discrepancies rather than guess at corrections.
 
-> **Status: findings 1–2 and decisions 1–4 have since been applied.** The
-> tables below describe the repository *as audited*, which is why they are
-> written in the past tense where something has been fixed. §7 records what
-> was decided. Decisions 5 and 6 are still open, and the body-cross-reference
-> problem in §3a was discovered during the repair and remains open.
+> **Status: all six decisions in §7 have been acted on.** The tables below
+> describe the repository *as audited*, which is why they are written in the
+> past tense where something has been fixed.
+>
+> Two things remain open, and neither was in the original audit — both surfaced
+> while repairing it:
+>
+> - **§2a-bis** — lesson prose cites stages by number, mixing old and new
+>   schemes with no mechanical rule to separate them.
+> - **§3a** — roughly 110 KB of unique vyākaraṇam material that no build
+>   publishes, while the documentation promises a Grammar section.
+>
+> §3 also carries a **correction** to this audit's own earlier claim about the
+> `vyakaranam/` tree.
 
 ## 1. Canonical stage order
 
@@ -119,17 +128,46 @@ Sandhi", not "Stage 3". The `bricks.md` files legitimately keep chapter titles
 (they *are* the chapters), but the sandhi reference and workbooks were adopted
 wholesale as the stage's own material while keeping chapter identity.
 
-**`vyakaranam/` duplicates the merged content byte-for-byte.** Verified by
-checksum:
+**Part of `vyakaranam/` duplicates the merged content byte-for-byte** — but
+only part. Checksumming all 22 files in the tree against every lesson file
+gives **6 duplicates and 16 unique files**:
 
-| Chapter file | Lesson file | |
-|:---|:---|:---|
-| `vyakaranam/ch01-varnavicharah/theory.md` | `02-varna-vidya/bricks.md` | identical |
-| `vyakaranam/ch03-sarvanaamani/theory.md` | `05-rupa/bricks.md` | identical |
-| `vyakaranam/ch04-kriyapada/theory.md` | `06-kriya/bricks.md` | identical |
-| `vyakaranam/ch02-sandhi/reference.md` | `03-sandhi/reference.md` | identical |
+| Chapter file | Lesson file |
+|:---|:---|
+| `vyakaranam/ch01-varnavicharah/theory.md` | `02-varna-vidya/bricks.md` |
+| `vyakaranam/ch02-sandhi/reference.md` | `03-sandhi/reference.md` |
+| `vyakaranam/ch02-sandhi/workbook-questions.md` | `03-sandhi/workbook-questions.md` |
+| `vyakaranam/ch02-sandhi/workbook-answers.md` | `03-sandhi/workbook-answers.md` |
+| `vyakaranam/ch03-sarvanaamani/theory.md` | `05-rupa/bricks.md` |
+| `vyakaranam/ch04-kriyapada/theory.md` | `06-kriya/bricks.md` |
 
-Two copies of the same text, either of which could drift from the other.
+> **Correction.** An earlier revision of this audit called the whole tree a
+> byte-identical duplicate. That was wrong: it generalised from four spot
+> checks. Two thirds of the tree is unique material.
+
+**Resolved** — both copies are wanted where they sit, so the risk was never
+duplication itself but silent drift. `build.py` now fails if any of the six
+pairs stops matching; the lesson copy is canonical, because it is the one the
+reader ships.
+
+### 3a. The bigger finding underneath it — still open
+
+The 16 unique files are roughly **110 KB of formal Pāṇinian grammar that
+nothing publishes**. `build.py` never reads `vyakaranam/` — it collects
+`stages` and `vocab` only, and there is no Grammar section in the built
+`index.html` at all. The largest single file in the tree,
+`vyakaranam/ch02-sandhi/theory.md` at 35 KB, has no reader.
+
+Both `README.md` and `00-overview.md` describe vyākaraṇam to the learner as a
+complementary track — the overview even says "The **Grammar** section covers
+Pāṇinian vyākaraṇam" — so the documentation promises a section the build does
+not produce.
+
+Publishing it means a third top-level section in the reader alongside Stages
+and Vocab, with its own navigation, search and ordering, plus a decision about
+how chapters relate to the stages that already absorbed four of their files.
+That is a curriculum-publishing decision, not a mechanical fix, and it is left
+for the maintainer.
 
 ## 4. Current Abhyāsaḥ decks and their lesson mapping
 
@@ -239,12 +277,15 @@ each needs a judgement in the maintainer's own voice — and are untouched.
 4. **The four `@stage 0` decks** — *done.* Lakāra moved into `06-kriya`; Kṛt
    and Taddhita into `09-dhatu`; grammar terminology stayed cross-cutting, in a
    root `practice.json` beside `00-overview.md`.
-5. **`08-sambodhana`'s badge name** — *open.* It still awards Prārthanākāra,
-   which collides with stage 16's Prārthanā. A replacement needs to be your
-   choice of word, not a guess.
-6. **`vyakaranam/`** — *open.* Still a byte-identical duplicate of the merged
-   `bricks.md` files. `README.md` now at least documents which chapter is
-   merged where, so the duplication is visible rather than silent.
+5. **`08-sambodhana`'s badge name** — *done.* Renamed from Prārthanākāra,
+   which collided with stage 16's Prārthanā, to **Sambodhanavit** ("Invoker").
+   It now echoes its own stage like every other badge, and follows the `-vit`
+   pattern used by Nāmavit, Guṇavit, Rūpavit, Kriyāvit and Kārakavit. The
+   Discord role of the old name will need renaming to match.
+6. **`vyakaranam/`** — *duplication resolved, publication still open.* Only 6
+   of its 22 files were duplicates; `build.py` now guards those six against
+   drift. The 16 unique files remain unpublished — see §3a, which is the real
+   problem and needs a maintainer's decision.
 
 ### Discovered during the repair
 

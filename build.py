@@ -8,6 +8,45 @@ import re
 SCHOOL_DIR = os.path.dirname(os.path.abspath(__file__))
 OUTPUT = os.path.join(SCHOOL_DIR, "index.html")
 
+# ── Guard the vyākaraṇam duplicates ──
+#
+# Six files under vyakaranam/ are byte-identical copies of material merged
+# into the numbered lessons.  Both copies are wanted where they sit, so the
+# risk is not duplication itself but silent drift: edit one and the other
+# quietly disagrees.  The lesson copy is canonical — it is the one this build
+# ships — so a mismatch fails here rather than shipping two truths.
+#
+# The rest of vyakaranam/ is NOT duplicated; it is unique material that this
+# build does not yet read at all.  See AUDIT.md.
+
+MERGED_PAIRS = [
+    ("vyakaranam/ch01-varnavicharah/theory.md",           "02-varna-vidya/bricks.md"),
+    ("vyakaranam/ch02-sandhi/reference.md",               "03-sandhi/reference.md"),
+    ("vyakaranam/ch02-sandhi/workbook-questions.md",      "03-sandhi/workbook-questions.md"),
+    ("vyakaranam/ch02-sandhi/workbook-answers.md",        "03-sandhi/workbook-answers.md"),
+    ("vyakaranam/ch03-sarvanaamani/theory.md",            "05-rupa/bricks.md"),
+    ("vyakaranam/ch04-kriyapada/theory.md",               "06-kriya/bricks.md"),
+]
+
+def check_merged_pairs():
+    drifted = []
+    for chapter, lesson in MERGED_PAIRS:
+        cp = os.path.join(SCHOOL_DIR, chapter)
+        lp = os.path.join(SCHOOL_DIR, lesson)
+        if not (os.path.exists(cp) and os.path.exists(lp)):
+            continue                      # a deliberate removal is not drift
+        with open(cp, encoding="utf-8") as a, open(lp, encoding="utf-8") as b:
+            if a.read() != b.read():
+                drifted.append((chapter, lesson))
+    if drifted:
+        print("build.py: merged vyakaranam copies have drifted apart —")
+        for chapter, lesson in drifted:
+            print("  %s  !=  %s" % (chapter, lesson))
+        print("  The lesson copy is canonical; reconcile them before building.")
+        raise SystemExit(1)
+
+check_merged_pairs()
+
 # ── Collect lesson stages ──
 
 stages = []

@@ -331,10 +331,17 @@ correct. Everything else disagrees somewhere:
   numbers and were deliberately left alone.
 - `00-overview.md` lists 36 slots but a different *set*: no Sandhi, plus a
   phantom `Sva-Avadhāna` at 35 with no directory.
-- `README.md` mixes both schemes.
-- `vyakaranam/` is a byte-identical duplicate of the `bricks.md` files merged
-  into lessons 02, 05, 06 and of `03-sandhi/reference.md`.
+- `README.md` mixed both schemes. **Repaired.**
+- `vyakaranam/` holds 6 files that duplicate merged lesson material and 16 that
+  are unique. `build.py` now **fails if any of the six pairs drifts**; the
+  lesson copy is canonical.
 
-None of this has been corrected — the audit holds six decisions that need a
-maintainer's judgement. Do not perform broad metadata corrections until they
-are answered.
+All six decisions in `AUDIT.md` §7 have been acted on. Two problems remain
+open, both found while repairing the others:
+
+- Lesson **prose** cites stages by number, mixing old and new schemes. There is
+  no mechanical rule separating them, so they were deliberately left alone.
+  Read each reference against what it points at before touching it.
+- The 16 unique `vyakaranam/` files — about 110 KB — are **published nowhere**.
+  `build.py` collects `stages` and `vocab` only, so there is no Grammar section
+  in `index.html`, though `README.md` and `00-overview.md` both promise one.
