@@ -136,13 +136,6 @@
       "name": "V15 · Indeclinables & particles — DM",
       "cards": [
         {
-          "id": "12-vakya:indeclinables-particles:ca",
-          "devanagari": "च",
-          "iast": "ca",
-          "gloss": "and",
-          "note": "indeclinable · all texts, highest frequency"
-        },
-        {
           "id": "12-vakya:indeclinables-particles:tu",
           "devanagari": "तु",
           "iast": "tu",
@@ -150,24 +143,10 @@
           "note": "indeclinable · DM passim"
         },
         {
-          "id": "12-vakya:indeclinables-particles:va",
-          "devanagari": "वा",
-          "iast": "vā",
-          "gloss": "or",
-          "note": "indeclinable · DM passim"
-        },
-        {
           "id": "12-vakya:indeclinables-particles:athava",
           "devanagari": "अथवा",
           "iast": "athavā",
           "gloss": "or else",
-          "note": "indeclinable · DM passim"
-        },
-        {
-          "id": "12-vakya:indeclinables-particles:api",
-          "devanagari": "अपि",
-          "iast": "api",
-          "gloss": "also, even",
           "note": "indeclinable · DM passim"
         },
         {
@@ -225,13 +204,6 @@
           "iast": "vai",
           "gloss": "truly, indeed",
           "note": "indeclinable · DM passim"
-        },
-        {
-          "id": "12-vakya:indeclinables-particles:na",
-          "devanagari": "न",
-          "iast": "na",
-          "gloss": "not",
-          "note": "indeclinable · DM throughout"
         },
         {
           "id": "12-vakya:indeclinables-particles:ma",
@@ -357,13 +329,6 @@
           "devanagari": "चिरात् / चिरम्",
           "iast": "cirāt / ciram",
           "gloss": "for a long time",
-          "note": "indeclinable · DM passim"
-        },
-        {
-          "id": "12-vakya:indeclinables-particles:atra",
-          "devanagari": "अत्र",
-          "iast": "atra",
-          "gloss": "here",
           "note": "indeclinable · DM passim"
         },
         {

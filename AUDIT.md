@@ -219,6 +219,16 @@ A third of the entire app — 625 of 1871 cards — sits on `01-nama`, while the
 operational lessons the refinement targets hold 27 (Sandhi), 75 (Kriyā), and 90
 (Guṇa).
 
+**Addressed, in part.** The operational lessons now carry curated `choice` and
+`sequence` practice, so the imbalance is no longer one of *kind*. On volume,
+99 cards were removed: 23 exact duplicates that appeared twice within a single
+lesson, and the 76 dual and plural forms of `V21`, the only exhaustive
+paradigm deck in the app.
+
+`01-nama`'s remaining bulk was examined and deliberately kept. A vocabulary
+list is not a reference table, and cutting words to make a number smaller
+would have been vandalism dressed as curation.
+
 `03-sandhi` is the clearest illustration of the problem the refinement is meant
 to solve: 27 cards that name the rules, and not one that performs a join. Its
 workbook, by contrast, is richly operational.

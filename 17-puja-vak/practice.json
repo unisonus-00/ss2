@@ -837,13 +837,6 @@
       "name": "V12 · Ritual & worship — DM · LS",
       "cards": [
         {
-          "id": "17-puja-vak:ritual-worship:puja",
-          "devanagari": "पूजा",
-          "iast": "pūjā",
-          "gloss": "worship",
-          "note": "headword | f. · stem: pūjā- · ā-stem · DM 4.30"
-        },
-        {
           "id": "17-puja-vak:ritual-worship:arcana-arcana",
           "devanagari": "अर्चन / अर्चना",
           "iast": "arcana / arcanā",
@@ -996,34 +989,6 @@
           "iast": "ācamanīya",
           "gloss": "sipping water",
           "note": "headword | n. · stem: ācamanīya- · a-stem · VS passim"
-        },
-        {
-          "id": "17-puja-vak:ritual-worship:candana",
-          "devanagari": "चन्दन",
-          "iast": "candana",
-          "gloss": "sandalwood",
-          "note": "headword | n. · stem: candana- · a-stem · KS passim"
-        },
-        {
-          "id": "17-puja-vak:ritual-worship:kasturi",
-          "devanagari": "कस्तूरी",
-          "iast": "kastūrī",
-          "gloss": "musk",
-          "note": "headword | f. · stem: kastūrī- · ī-stem · KKS 225-280"
-        },
-        {
-          "id": "17-puja-vak:ritual-worship:kunkuma",
-          "devanagari": "कुङ्कुम",
-          "iast": "kuṅkuma",
-          "gloss": "saffron",
-          "note": "headword | n. · stem: kuṅkuma- · a-stem · KKS 747"
-        },
-        {
-          "id": "17-puja-vak:ritual-worship:karpura",
-          "devanagari": "कर्पूर",
-          "iast": "karpūra",
-          "gloss": "camphor",
-          "note": "headword | n. · stem: karpūra- · a-stem · KKS 531-537"
         },
         {
           "id": "17-puja-vak:ritual-worship:tambula",

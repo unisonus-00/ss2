@@ -796,13 +796,6 @@
           "note": "headword | f. · stem: durgā- · ā-stem · dur + gā · DM 4.11"
         },
         {
-          "id": "01-nama:goddess-names:candika",
-          "devanagari": "चण्डिका",
-          "iast": "caṇḍikā",
-          "gloss": "the fierce one",
-          "note": "headword | f. · stem: caṇḍikā- · ā-stem · from caṇḍa · DM 2.35"
-        },
-        {
           "id": "01-nama:goddess-names:ambika",
           "devanagari": "अम्बिका",
           "iast": "ambikā",
@@ -1053,13 +1046,6 @@
           "iast": "ugratārā",
           "gloss": "fierce Tārā",
           "note": "headword | f. · stem: ugratārā- · ā-stem · KS passim"
-        },
-        {
-          "id": "01-nama:goddess-names:tripurasundari",
-          "devanagari": "त्रिपुरसुन्दरी",
-          "iast": "tripurasundarī",
-          "gloss": "beauty of the three cities",
-          "note": "headword | f. · stem: tripurasundarī- · ī-stem · KS passim"
         },
         {
           "id": "01-nama:goddess-names:srimata",
@@ -1599,13 +1585,6 @@
       "name": "V02 · God names & celestials — VS · DM",
       "cards": [
         {
-          "id": "01-nama:god-names-celestials:brahma",
-          "devanagari": "ब्रह्मा",
-          "iast": "brahmā",
-          "gloss": "the creator",
-          "note": "headword | m. · stem: brahmā- · ā-stem · from √bṛh · DM 1.46+"
-        },
-        {
           "id": "01-nama:god-names-celestials:visnu",
           "devanagari": "विष्णु",
           "iast": "viṣṇu",
@@ -1863,13 +1842,6 @@
           "iast": "ajita",
           "gloss": "unconquered",
           "note": "VS 438"
-        },
-        {
-          "id": "01-nama:god-names-celestials:ananta",
-          "devanagari": "अनन्त",
-          "iast": "ananta",
-          "gloss": "endless",
-          "note": "VS 659"
         },
         {
           "id": "01-nama:god-names-celestials:amita",
@@ -2526,13 +2498,6 @@
           "note": "headword | n. · stem: cakra- · a-stem · from √car · DM 2.21"
         },
         {
-          "id": "01-nama:weapons-battle-gear:gada",
-          "devanagari": "गदा",
-          "iast": "gadā",
-          "gloss": "mace",
-          "note": "headword | f. · stem: gadā- · ā-stem · DM 2.21"
-        },
-        {
           "id": "01-nama:weapons-battle-gear:dhanus",
           "devanagari": "धनुस्",
           "iast": "dhanus",
@@ -2764,13 +2729,6 @@
           "note": "headword | adj. · stem: sarvāyudhadhara- · a-stem · KS passim"
         },
         {
-          "id": "01-nama:weapons-battle-gear:ghanta",
-          "devanagari": "घण्टा",
-          "iast": "ghaṇṭā",
-          "gloss": "bell",
-          "note": "headword | f. · stem: ghaṇṭā- · ā-stem · DM 2.26"
-        },
-        {
           "id": "01-nama:weapons-battle-gear:sankha",
           "devanagari": "शङ्ख",
           "iast": "śaṅkha",
@@ -2935,13 +2893,6 @@
           "iast": "sāgara / samudra / arṇava / sindhu",
           "gloss": "ocean",
           "note": "m. · DM 4.10"
-        },
-        {
-          "id": "01-nama:nature-cosmos:nadi",
-          "devanagari": "नदी",
-          "iast": "nadī",
-          "gloss": "river",
-          "note": "headword | f. · stem: nadī- · ī-stem · KS passim"
         },
         {
           "id": "01-nama:nature-cosmos:ganga",
@@ -4079,13 +4030,6 @@
           "note": "KKS 705-706"
         },
         {
-          "id": "01-nama:sacred-geography-plants:mandakini",
-          "devanagari": "मन्दाकिनी",
-          "iast": "mandākinī",
-          "gloss": "celestial Ganges",
-          "note": "KS passim"
-        },
-        {
           "id": "01-nama:sacred-geography-plants:sarasvati",
           "devanagari": "सरस्वती",
           "iast": "sarasvatī",
@@ -4191,13 +4135,6 @@
           "note": "headword | m. · stem: dīpa- · a-stem · KKS 140"
         },
         {
-          "id": "01-nama:sacred-geography-plants:padma-kamala-aravinda",
-          "devanagari": "पद्म / कमल / अरविन्द",
-          "iast": "padma / kamala / aravinda",
-          "gloss": "lotus",
-          "note": "LS passim; KKS passim; VS passim"
-        },
-        {
           "id": "01-nama:sacred-geography-plants:kadamba",
           "devanagari": "कदम्ब",
           "iast": "kadamba",
@@ -4210,13 +4147,6 @@
           "iast": "kadalī",
           "gloss": "plantain",
           "note": "KKS 187-195"
-        },
-        {
-          "id": "01-nama:sacred-geography-plants:karavira",
-          "devanagari": "करवीर",
-          "iast": "karavīra",
-          "gloss": "oleander",
-          "note": "KKS 512-514"
         },
         {
           "id": "01-nama:sacred-geography-plants:karanja",
@@ -4258,13 +4188,6 @@
           "devanagari": "चन्दन",
           "iast": "candana",
           "gloss": "sandalwood",
-          "note": "KS passim"
-        },
-        {
-          "id": "01-nama:sacred-geography-plants:tulasi",
-          "devanagari": "तुलसी",
-          "iast": "tulasī",
-          "gloss": "sacred basil",
           "note": "KS passim"
         },
         {
@@ -4420,13 +4343,6 @@
           "iast": "nābhikamala",
           "gloss": "navel-lotus (of Viṣṇu)",
           "note": "DM 1.46"
-        },
-        {
-          "id": "01-nama:sacred-geography-plants:kailasa",
-          "devanagari": "कैलास",
-          "iast": "kailāsa",
-          "gloss": "Śiva's mountain",
-          "note": "LS passim"
         },
         {
           "id": "01-nama:sacred-geography-plants:vaikuntha",

@@ -739,6 +739,76 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
+  // ── curation must not destroy learner history ─────────────────────
+  // Cards removed from a deck leave records behind in localStorage. Those
+  // records are deliberately kept, so a card that comes back brings its
+  // history with it — and a stale key must never break the page.
+  {
+    const p = await browser.newPage();
+    p.on('pageerror', e => { console.log('  PAGEERROR ' + e.message); fail.push('pageerror'); });
+    await p.addInitScript(() => {
+      try {
+        localStorage.setItem('abhyāsaḥ', JSON.stringify({
+          v: 2,
+          decks: { 'V21 · Deity vibhakti — the eight baseplates':
+                   { best: [130, 139], pile: ['05-rupa:deity-vibhakti:ramau'] } },
+          trouble: { '05-rupa:deity-vibhakti:ramau': { w: 4, r: 0, s: '' } },
+          cleared: 7,
+        }));
+      } catch (e) {}
+    });
+    await p.goto(FILE, { waitUntil: 'load' });
+    const r = await p.evaluate(() => {
+      const name = 'V21 · Deity vibhakti — the eight baseplates';
+      const s = document.getElementById('deck');
+      s.value = name; s.dispatchEvent(new Event('change'));
+      const raw = JSON.parse(localStorage.getItem('abhyāsaḥ'));
+      return {
+        best: raw.decks[name].best,
+        cleared: raw.cleared,
+        staleKept: !!raw.trouble['05-rupa:deity-vibhakti:ramau'],
+        pile: pileCards().length,
+        trouble: troubleCards().length,
+        round: queue.length + 1,
+      };
+    });
+    ok('a removed card keeps its trouble record', r.staleKept);
+    ok('a best score set on the old, larger deck survives',
+      r.best && r.best[0] === 130 && r.best[1] === 139, JSON.stringify(r.best));
+    ok('the cleared tally survives curation', r.cleared === 7);
+    ok('stale pile keys resolve to nothing rather than breaking', r.pile === 0);
+    ok('stale trouble keys do not enter the drill', r.trouble === 0);
+    await p.close();
+  }
+
+  // ── no exhaustive paradigm decks, and no duplicate card in one lesson ──
+  {
+    const p = await browser.newPage();
+    await p.goto(FILE, { waitUntil: 'load' });
+    const r = await p.evaluate(() => {
+      const dumps = [], dupes = [];
+      const perLesson = {};
+      Object.entries(DECKS).forEach(([name, cards]) => {
+        const lesson = DECK_LESSON[name];
+        const nonSingular = cards.filter(c => (c.type || 'reveal') === 'reveal'
+          && /dvivacana|bahuvacana/.test(c.gloss || '') && !/ekavacana/.test(c.gloss || ''));
+        if (nonSingular.length) dumps.push(name + ': ' + nonSingular.length);
+        cards.forEach(c => {
+          if ((c.type || 'reveal') !== 'reveal') return;
+          const k = lesson + '|' + c.devanagari + '|' + c.gloss;
+          if (perLesson[k]) dupes.push(c.id + ' == ' + perLesson[k]);
+          else perLesson[k] = c.id;
+        });
+      });
+      return { dumps, dupes };
+    });
+    ok('no deck reproduces a full declension paradigm',
+      r.dumps.length === 0, r.dumps.join(' | '));
+    ok('no card appears twice within one lesson',
+      r.dupes.length === 0, r.dupes.slice(0, 4).join(' | '));
+    await p.close();
+  }
+
   await browser.close();
   console.log(fail.length ? `\n${fail.length} FAILED: ${fail.join(', ')}` : '\nall checks passed');
   process.exit(fail.length ? 1 : 0);

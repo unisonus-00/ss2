@@ -274,7 +274,7 @@ Three things here are load-bearing for the compatibility list above:
   lifts state out of earlier storage key names. Keep both chains; every
   `localStorage` touch stays guarded, since it can be absent or full.
 
-The app carries 23 lessons, 70 decks, and 2025 cards — 1871 `reveal`, 142
+The app carries 23 lessons, 70 decks, and 1926 cards — 1772 `reveal`, 142
 `choice` and 12 `sequence`, spread over 13 interactive decks in 11 lessons.
 They are curated practice, not conversions of the reference tables:
 
@@ -316,6 +316,23 @@ They are curated practice, not conversions of the reference tables:
 
 Roughly the last third of the decks are generated from the `vocab/` bank and
 marked as such.
+
+**On deck size.** A large vocabulary deck is not bloat — a word list is not a
+reference table, and nobody learns Sanskrit from fifteen nouns. `01-nama`
+legitimately holds a third of the app. What *is* forbidden is reproducing a
+paradigm: `V21 · Deity vibhakti` was nine complete declension tables at 139
+cards and is now 63, the singular alone, which is where the contrast between
+the eight baseplates actually lives. The full tables remain in
+`05-rupa/reference.md` and `vocab/21-deity-vibhakti.md`, where reference
+belongs. `scripts/test.js` asserts no deck reproduces a full paradigm and that
+no card appears twice within one lesson.
+
+**Removing a card does not destroy its history.** The v1→v2 migration leaves
+records it does not recognise alone, `pileCards()` resolves a pile against the
+deck rather than the other way round, and `ds.best` is compared as a ratio —
+so a best score set on a larger version of a deck stays meaningful. A card
+that is removed and later restored brings its trouble history back with it.
+Tests cover all four.
 
 A choice note is not uppercased the way a reveal card's morphology chip is —
 a sandhi rule prints vowel values (`guṇa · a + i → e`), and IAST is written
