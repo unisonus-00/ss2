@@ -909,21 +909,33 @@ const open = async (browser, opts = {}) => {
     await p.goto(FILE, { waitUntil: 'load' });
     const r = await p.evaluate(() => {
       const box = s => { const e = document.querySelector(s); return e && e.getBoundingClientRect(); };
-      const brand = box('.brand'), card = box('.panel'), mark = box('.brand .mark');
+      const brand = box('.brand'), card = box('.panel'), logo = box('.brand-logo');
       const nav = box('#nav'), ctl = box('.controls'), drawer = document.getElementById('drawer');
       /* the longest list name is what decides whether the bar is wide enough */
-      let clipped = null;
-      for (const n of Object.keys(DECKS)) {
-        loadDeck(n);
-        const e = document.getElementById('nav-label');
-        if (e.scrollWidth > Math.ceil(e.getBoundingClientRect().width) + 1) { clipped = n; break; }
-      }
+      const clipAt = () => {
+        for (const n of Object.keys(DECKS)) {
+          loadDeck(n);
+          const e = document.getElementById('nav-label');
+          if (e.scrollWidth > Math.ceil(e.getBoundingClientRect().width) + 1) return n;
+        }
+        return null;
+      };
+      const clipped = clipAt();
+      window.__clipAt = clipAt;
       return {
-        hasMark: !!mark && mark.width > 0,
-        markInline: !document.querySelector('.brand img, .brand [src]'),
+        hasLogo: !!logo && logo.width > 0 && logo.height > 0,
+        /* nothing to fetch: the artwork is a data: URI, not a URL */
+        logoInline: [...document.querySelectorAll('.brand [href], .brand [src]')]
+          .every(e => /^data:/.test(e.getAttribute('href') || e.getAttribute('src'))),
+        /* The lockup is one image, so the box must size to the image as
+           rendered.  A .brand far wider than its logo means stray markup has
+           leaked into it — which is exactly what a malformed comment did. */
+        logoFits: !!logo && !!brand && Math.round(brand.width) <= Math.round(logo.width) + 2,
         navLeft: nav && Math.round(nav.left),
         navTop: nav && Math.round(nav.top),
         brandRight: brand && Math.round(brand.right),
+        brandWidth: brand && brand.width,
+        logoWidth: logo && logo.width,
         brandTop: brand && Math.round(brand.top),
         brandHeight: brand && Math.round(brand.height),
         cardLeft: card && Math.round(card.left),
@@ -937,15 +949,21 @@ const open = async (browser, opts = {}) => {
         centred: !document.querySelector('h1'),
         // branding is out of the drawer entirely
         drawerBranded: /abhyāsa|अभ्यास/i.test(drawer.textContent)
-                       || !!drawer.querySelector('.mark, .wordmark'),
+                       || !!drawer.querySelector('.brand, .brand-logo'),
         clipped,
       };
     });
-    ok('the mark is drawn inline, with nothing to fetch', r.hasMark && r.markInline);
+    ok('the logo renders, with nothing to fetch', r.hasLogo && r.logoInline);
+    /* Regression guard.  logo.svg's header comment once quoted index.html's
+       own logo placeholder literally; an HTML comment ends at its first
+       "--" + ">" whatever the nesting, so the rest of the comment escaped
+       into the page as visible text and blew the brand box out to 457px. */
+    ok('no stray markup leaks into the brand box', r.logoFits,
+      'brand ' + Math.round(r.brandWidth) + 'px vs logo ' + Math.round(r.logoWidth) + 'px');
     ok('navigation is in the top left corner',
       r.navLeft === r.cardLeft && r.navTop < 30,
       'nav x' + r.navLeft + ' y' + r.navTop + ' · card x' + r.cardLeft);
-    ok('the mark is in the top right corner',
+    ok('the logo is in the top right corner',
       r.brandRight === r.cardRight && r.brandTop < 30,
       'brand right ' + r.brandRight + ' · card right ' + r.cardRight);
     ok('no centred logo during practice', r.centred);
@@ -957,6 +975,19 @@ const open = async (browser, opts = {}) => {
     ok('the toggles sit below the card, centred',
       r.controlsTop > r.cardBottom && r.controlsCentred,
       'controls at ' + r.controlsTop + ', card ends ' + r.cardBottom);
+
+    /* The lockup steps down a size at each phone breakpoint rather than
+       dropping any part of itself, so check the narrow ones actually buy
+       back enough room for the longest name. */
+    for (const width of [375, 360]) {
+      await p.setViewportSize({ width, height: 844 });
+      const narrow = await p.evaluate(() => ({
+        clipped: window.__clipAt(),
+        logoH: Math.round(document.querySelector('.brand-logo').getBoundingClientRect().height),
+      }));
+      ok('no list name is truncated at ' + width + 'px',
+        !narrow.clipped, (narrow.clipped || '') + ' · logo ' + narrow.logoH + 'px tall');
+    }
     await p.close();
   }
 

@@ -4,5 +4,5 @@ dist/abhyasah.demo.html
 
 # Screenshots from scripts/test.js when run with SHOTS=1
 *.png
-# ...except the brand mark's own artwork, which is a tracked source asset.
-!app/logo-mark.png
+# ...except the brand logo's own artwork, which is a tracked source asset.
+!app/logo.png

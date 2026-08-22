@@ -195,8 +195,8 @@ content lives beside its lesson:
 
 ```
 app/index.html         markup only — ~190 lines, no card data
-app/logo-mark.png      the brand mark artwork — edit this
-app/logo.svg           app/logo-mark.png, base64-wrapped for the build
+app/logo.png           the brand logo artwork — edit this
+app/logo.svg           app/logo.png, base64-wrapped for the build
 app/styles.css
 app/app.js
 scripts/build.js       discovers, validates and inlines -> dist/abhyasah.html
@@ -232,8 +232,8 @@ asserts the card starts within 165px, because this is the kind of thing that
 creeps back.
 
 ```
-☰ Sandhi · Practice ›                       अभ्यास  [◎]
-                                            abhyāsa
+☰ Sandhi · Practice ›                    अभ्यास  (◎)
+                                         ABHYĀSA
 JOINS AND SPLITS            31 LEFT  0 LEARNED  0 MISSED
 ┌──────────────────────────────────────────────────────┐
 │                       the card                        │
@@ -242,25 +242,35 @@ JOINS AND SPLITS            31 LEFT  0 LEARNED  0 MISSED
                  ⇄ join → result    ☑ IAST
 ```
 
-- **Navigation top left, the mark top right**, on one row. There is no centred
+- **Navigation top left, the logo top right**, on one row. There is no centred
   logo during practice; a test asserts there is no `h1` at all.
-- **The branding is secondary.** A 30px mark and the name in two small lines.
-  Below 400px the wordmark drops and the mark holds the corner alone: the bar
-  is not wide enough on a phone for both the lockup and the longest list name,
-  and the list name is what the bar is for. A test walks every deck at 390px
-  and fails if any name is clipped.
+- **The branding is secondary.** The lockup runs 30px tall, stepping down to
+  22px below 400px and 17px below 360px. It shrinks rather than shedding any
+  part of itself — it is one image, so there is no "mark alone" to fall back
+  to. The bar is not wide enough on a phone for the full-size lockup *and* the
+  longest list name, and the list name is what the bar is for: a test walks
+  every deck at 390, 375 and 360px and fails if any name is clipped.
 - **The two toggles sit below the card, centred.** They change how a card is
   shown, so they belong under the thing they change; above it they competed
   with the prompt.
-- **The mark's artwork is `app/logo-mark.png`** — the project's own logo,
-  cropped to the circular mark alone (not the wordmark, which is set as type
-  beside it), background keyed to transparent and recoloured to the app's
-  `--leaf` token so it sits on the palette exactly rather than the source
-  photo's own tan. `app/logo.svg` just base64-wraps that PNG in an
-  `<svg class="mark"><image .../></svg>` so the build can inline one small
+- **The artwork is `app/logo.png`** — the project's own logo lockup entire,
+  Devanagari wordmark, small-caps ABHYĀSA and ring mark together, exactly as
+  the logo sets them. Nothing is re-set as type beside it. The background is
+  keyed to transparent and the ink recoloured to the app's `--leaf` token, so
+  it sits on the palette exactly rather than carrying the source image's own
+  tan. `app/logo.svg` base64-wraps that PNG in an
+  `<svg class="brand-logo"><image .../></svg>` so the build can inline one
   piece of text at the `<!--logo-->` placeholder; regenerate it (a one-line
-  `base64.b64encode`, in the file's own header comment) if the artwork ever
+  `base64.b64encode`, given in the file's own header comment) if the artwork
   changes.
+
+  **An inlined file must never quote the placeholder it is inlined at.** An
+  HTML comment ends at its first `-->` whatever the nesting, so a `logo.svg`
+  whose header comment mentioned `<!--logo-->` literally closed that comment
+  early and spilled the rest of its own prose into the page as visible text —
+  which also blew the brand box out to 457px and clipped every list name. The
+  build now refuses such a file by name, and a test asserts the brand box
+  stays as wide as its logo and no wider.
 - **The selector gets a row to itself.** Sharing one with the tally clipped the
   list name to an ellipsis on a phone, and the list name is the point of it.
 - **The tally is one line**, paired with the deck's descriptor. It was three

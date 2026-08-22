@@ -212,6 +212,14 @@ function build() {
     [LOGO, 'logo.svg', '', ''],
   ]) {
     if (!html.includes(tag)) throw new Error(`index.html has no ${tag}`);
+    /* An inlined file must not quote the placeholder it is inlined at.  An
+       HTML comment ends at its first "--" + ">" whatever the nesting, so a
+       logo.svg whose header comment mentions <!--logo--> literally closes
+       that comment early and spills its own prose into the page as text. */
+    if (tag !== LINK && tag !== SCRIPT && read(file).includes(tag)) {
+      throw new Error(`app/${file} quotes its own placeholder ${tag}; `
+        + 'an HTML comment would end there and leak the rest into the page');
+    }
     if (html.indexOf(tag) !== html.lastIndexOf(tag)) {
       throw new Error(`index.html repeats ${tag}; the build would inline it twice`);
     }
