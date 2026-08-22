@@ -1097,6 +1097,41 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
+  // ── the card survives a browser's own dark mode ────────────────────
+  // Chrome and Brave auto-darken pages that do not declare a colour scheme,
+  // and they repainted the palm-leaf card a muddy olive with inverted text.
+  // Nothing in the cascade changes when they do it — getComputedStyle still
+  // reports the right colour — so this reads the pixel that was painted.
+  {
+    const zlib = require('zlib');
+    const firstPixel = png => {            // the one pixel of a 1×1 screenshot
+      let i = 8; const idat = [];
+      while (i < png.length) {
+        const len = png.readUInt32BE(i);
+        if (png.toString('ascii', i + 4, i + 8) === 'IDAT') idat.push(png.subarray(i + 8, i + 8 + len));
+        i += 12 + len;
+      }
+      const raw = zlib.inflateSync(Buffer.concat(idat));
+      return [raw[1], raw[2], raw[3]];     // byte 0 is the scanline filter
+    };
+    const LEAF = [233, 220, 190];          // --leaf, #e9dcbe
+
+    for (const [args, tag] of [[[], 'left alone'],
+                               [['--enable-features=WebContentsForceDark'], 'forced dark']]) {
+      const b2 = await chromium.launch({ executablePath: EXE, args: ['--no-sandbox', ...args] });
+      const p = await b2.newPage({ viewport: { width: 390, height: 600 }, colorScheme: 'dark' });
+      await p.goto(FILE, { waitUntil: 'load' });
+      const at = await p.evaluate(() => {
+        const r = document.querySelector('.panel').getBoundingClientRect();
+        return { x: Math.round(r.x + 8), y: Math.round(r.y + 8) };
+      });
+      const got = firstPixel(await p.screenshot({ clip: { ...at, width: 1, height: 1 } }));
+      ok('the card is painted --leaf with the browser ' + tag,
+        got.every((v, i) => Math.abs(v - LEAF[i]) <= 2), 'rgb(' + got.join(', ') + ')');
+      await b2.close();
+    }
+  }
+
   // ── no choice card repeats a reveal card ───────────────────────────
   // A choice card that hands over the same operation and the same answer as
   // a reveal card in the same lesson is strictly the weaker of the two: the

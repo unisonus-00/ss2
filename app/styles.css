@@ -1,4 +1,11 @@
   :root {
+    /* This page paints its own dark ground and puts a deliberately light,
+       palm-leaf card on top of it.  Without a declared scheme Chrome and
+       Brave treat it as a light page they are free to auto-darken, and they
+       repaint that card a muddy olive with inverted text.  Declaring the
+       scheme opts the page out: the colours below are already the dark
+       design, and nothing should second-guess them. */
+    color-scheme: dark;
     --ground: #241f19;
     --leaf: #e9dcbe;
     --leaf-edge: #cdbb95;

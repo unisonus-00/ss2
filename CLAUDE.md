@@ -224,6 +224,21 @@ is never loaded. It then scans its own output for `<script src>`, `fetch`,
 `@import`, remote `url()` and the like, so an accidental network dependency
 fails the build rather than shipping.
 
+### The page declares its own colour scheme
+
+`:root { color-scheme: dark; }` is load-bearing, not decoration. Chrome and
+Brave auto-darken any page that does not declare a scheme, and this one looks
+to them like a light page worth darkening — so they repainted the palm-leaf
+card a muddy olive with inverted text, on the phone where the app is mostly
+used. The page paints its own dark ground and puts a deliberately light card
+on it; declaring the scheme says so and opts out of being second-guessed.
+
+Nothing in the cascade changes when a browser does this — `getComputedStyle`
+still reports `#e9dcbe` — so no ordinary test could see it. `scripts/test.js`
+launches Chromium a second time with `--enable-features=WebContentsForceDark`
+and reads the pixel actually painted at the card's corner. Without the
+declaration it reads `rgb(60, 51, 28)`.
+
 ### The practice screen
 
 The exercise is the page. Everything above the card is small, left-aligned on
