@@ -227,7 +227,7 @@
       ]
     },
     {
-      "name": "V08 · Sound & speech — DM · LS",
+      "name": "V08 · Sounds and cries — DM · LS",
       "cards": [
         {
           "id": "08-sambodhana:sound-speech:nada",
@@ -326,7 +326,12 @@
           "iast": "dhvani",
           "gloss": "sound",
           "note": "headword | m. · stem: dhvani- · i-stem · KKS 671"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V08 · Saying and speech — DM · LS",
+      "cards": [
         {
           "id": "08-sambodhana:sound-speech:uvaca",
           "devanagari": "उवाच",
@@ -466,7 +471,12 @@
           "iast": "kavitva",
           "gloss": "poetic skill",
           "note": "headword | n. · stem: kavitva- · a-stem · KKS 150-162"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V08 · Praise and recitation — DM · LS",
+      "cards": [
         {
           "id": "08-sambodhana:sound-speech:stuti",
           "devanagari": "स्तुति",
@@ -543,7 +553,12 @@
           "iast": "śravaṇa",
           "gloss": "listening",
           "note": "headword | n. · stem: śravaṇa- · a-stem · from √śru · DM 12.3"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V08 · Speech formulae — DM",
+      "cards": [
         {
           "id": "08-sambodhana:sound-speech:rsir-uvaca",
           "devanagari": "ऋषिर् उवाच",

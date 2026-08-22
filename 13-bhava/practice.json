@@ -112,7 +112,7 @@
       ]
     },
     {
-      "name": "V09 · Emotions & mind — DM · LS",
+      "name": "V09 · Anger and fear — DM · LS",
       "cards": [
         {
           "id": "13-bhava:emotions-mind:kopa",
@@ -225,7 +225,12 @@
           "iast": "bhayāpaha",
           "gloss": "fear-removing",
           "note": "headword | adj. · stem: bhayāpaha- · a-stem · LS 117"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V09 · Joy and sorrow — DM · LS",
+      "cards": [
         {
           "id": "13-bhava:emotions-mind:harsa",
           "devanagari": "हर्ष",
@@ -344,7 +349,12 @@
           "iast": "santāpa",
           "gloss": "intense suffering",
           "note": "headword | m. · stem: santāpa- · a-stem · LS 331"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V09 · Delusion and desire — DM · LS",
+      "cards": [
         {
           "id": "13-bhava:emotions-mind:moha",
           "devanagari": "मोह",
@@ -449,7 +459,12 @@
           "iast": "ahaṅkāra",
           "gloss": "ego-sense",
           "note": "headword | m. · stem: ahaṅkāra- · a-stem · LS 162"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V09 · Virtues of the heart — LS",
+      "cards": [
         {
           "id": "13-bhava:emotions-mind:bhakti",
           "devanagari": "भक्ति",

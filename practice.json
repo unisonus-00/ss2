@@ -2,7 +2,7 @@
   "lesson": "00-overview",
   "decks": [
     {
-      "name": "13 · Vyākaraṇam — grammar terms",
+      "name": "13 · Vyākaraṇam I — bricks and rules",
       "pair": "term → definition",
       "cards": [
         {
@@ -144,7 +144,13 @@
           "iast": "akṣaram",
           "gloss": "syllable",
           "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: akṣara- · a-stem"
-        },
+        }
+      ]
+    },
+    {
+      "name": "13 · Vyākaraṇam II — words and meta-terms",
+      "pair": "term → definition",
+      "cards": [
         {
           "id": "00-overview:vyakaranam:karakam",
           "devanagari": "कारकम्",

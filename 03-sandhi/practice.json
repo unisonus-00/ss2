@@ -2,7 +2,7 @@
   "lesson": "03-sandhi",
   "decks": [
     {
-      "name": "Practice — joins and splits",
+      "name": "Practice · joins — combine the two words",
       "cards": [
         {
           "id": "03-sandhi:join:nara-indrah",
@@ -263,7 +263,12 @@
           "answer": "devā vadanti",
           "note": "lopa · āḥ → ā before a voiced consonant",
           "source": "theory · lopa examples"
-        },
+        }
+      ]
+    },
+    {
+      "name": "Practice · splits & rules — take apart and name",
+      "cards": [
         {
           "id": "03-sandhi:split:narendrah",
           "type": "choice",
@@ -500,7 +505,7 @@
       ]
     },
     {
-      "name": "S · Sandhi — all 27 rules (vyākaraṇam ch. 2)",
+      "name": "S · Ac sandhi — vowel joins",
       "pair": "join → result",
       "cards": [
         {
@@ -551,7 +556,13 @@
           "iast": "upa + ajati",
           "gloss": "उपजति · upajati",
           "note": "sandhi rule · pararūpa · a + a → a"
-        },
+        }
+      ]
+    },
+    {
+      "name": "S · Hal sandhi — consonant joins",
+      "pair": "join → result",
+      "cards": [
         {
           "id": "03-sandhi:sandhi:sat-cit",
           "devanagari": "सत् + चित्",
@@ -635,7 +646,13 @@
           "iast": "tān + ca",
           "gloss": "तांश्च · tāṃśca",
           "note": "sandhi rule · satva · final n + c → ṃś"
-        },
+        }
+      ]
+    },
+    {
+      "name": "S · Visarga sandhi — visarga joins",
+      "pair": "join → result",
+      "cards": [
         {
           "id": "03-sandhi:sandhi:devah-vadanti",
           "devanagari": "देवाः + वदन्ति",

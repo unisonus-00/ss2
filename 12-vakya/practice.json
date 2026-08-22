@@ -372,7 +372,7 @@
       ]
     },
     {
-      "name": "V15 · Indeclinables & particles — DM",
+      "name": "V15 · Particles and emphatics — DM",
       "cards": [
         {
           "id": "12-vakya:indeclinables-particles:tu",
@@ -478,7 +478,12 @@
           "iast": "samam",
           "gloss": "equally, like",
           "note": "indeclinable · DM passim"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V15 · Time adverbs — DM",
+      "cards": [
         {
           "id": "12-vakya:indeclinables-particles:tatah",
           "devanagari": "ततः",
@@ -569,7 +574,12 @@
           "iast": "cirāt / ciram",
           "gloss": "for a long time",
           "note": "indeclinable · DM passim"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V15 · Place adverbs — DM",
+      "cards": [
         {
           "id": "12-vakya:indeclinables-particles:tatra",
           "devanagari": "तत्र",
@@ -639,7 +649,12 @@
           "iast": "antare",
           "gloss": "within, between",
           "note": "indeclinable · DM passim"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V15 · Questions and connectives — DM",
+      "cards": [
         {
           "id": "12-vakya:indeclinables-particles:kim",
           "devanagari": "किम्",

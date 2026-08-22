@@ -280,7 +280,7 @@
       ]
     },
     {
-      "name": "Conjugation mastery — laṭ parasmaipada",
+      "name": "Conjugation mastery · √nam — laṭ, all 9 forms",
       "pair": "form → analysis",
       "cards": [
         {
@@ -345,7 +345,13 @@
           "iast": "namāmaḥ",
           "gloss": "√nam laṭ — uttama bahuvacana",
           "note": "1st pl. pres. · √nam (1P) · parasmaipada · to bow"
-        },
+        }
+      ]
+    },
+    {
+      "name": "Conjugation mastery · √bhū — laṭ, all 9 forms",
+      "pair": "form → analysis",
+      "cards": [
         {
           "id": "06-kriya:lat-bhu:prathama-eka",
           "devanagari": "भवति",
@@ -408,7 +414,13 @@
           "iast": "bhavāmaḥ",
           "gloss": "√bhū laṭ — uttama bahuvacana",
           "note": "1st pl. pres. · √bhū (1P) · parasmaipada · to be, become"
-        },
+        }
+      ]
+    },
+    {
+      "name": "Conjugation mastery · √pūj — laṭ, all 9 forms",
+      "pair": "form → analysis",
+      "cards": [
         {
           "id": "06-kriya:lat-puj:prathama-eka",
           "devanagari": "पूजयति",
@@ -682,7 +694,7 @@
       ]
     },
     {
-      "name": "V10 · High-frequency verbs — text forms",
+      "name": "V10 · Motion and position — DM",
       "pair": "root → meaning",
       "cards": [
         {
@@ -768,7 +780,13 @@
           "iast": "√ud-gam",
           "gloss": "to rise",
           "note": "dhātu · udagāt, udgata · DM passim"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V10 · Perception and speech — DM",
+      "pair": "root → meaning",
+      "cards": [
         {
           "id": "06-kriya:high-frequency-verbs:drs",
           "devanagari": "√दृश्",
@@ -859,7 +877,13 @@
           "iast": "√kathay",
           "gloss": "to narrate",
           "note": "dhātu · kathayāmāsa · DM 1.4"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V10 · Giving, living and dying — DM",
+      "pair": "root → meaning",
+      "cards": [
         {
           "id": "06-kriya:high-frequency-verbs:da",
           "devanagari": "√दा",
@@ -943,7 +967,13 @@
           "iast": "√jīv",
           "gloss": "to live",
           "note": "dhātu · jīvati, jīvana · DM passim"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V10 · Worship and pleasing — DM",
+      "pair": "root → meaning",
+      "cards": [
         {
           "id": "06-kriya:high-frequency-verbs:stu",
           "devanagari": "√स्तु",
@@ -1013,7 +1043,13 @@
           "iast": "√prī",
           "gloss": "to please",
           "note": "dhātu · prīta, prīṇāti · DM passim"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V10 · Protecting and dwelling — DM",
+      "pair": "root → meaning",
+      "cards": [
         {
           "id": "06-kriya:high-frequency-verbs:raks",
           "devanagari": "√रक्ष्",

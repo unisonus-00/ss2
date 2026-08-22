@@ -455,9 +455,16 @@ const open = async (browser, opts = {}) => {
     const p = await browser.newPage();
     await p.goto(FILE, { waitUntil: 'load' });
     const r = await p.evaluate(() => {
-      const name = 'Practice — joins and splits';
-      const d = DECKS[name];
-      if (!d) return { missing: true };
+      /* The practice set spans more than one deck since it was chunked, so
+         it is gathered from the lesson rather than named — a test that names
+         a deck breaks the next time one is split. */
+      const d = [];
+      Object.keys(DECKS).forEach(n => {
+        if (DECK_LESSON[n] === '03-sandhi') DECKS[n].forEach(c => {
+          if ((c.type || 'reveal') === 'choice') d.push(c);
+        });
+      });
+      if (!d.length) return { missing: true };
       const kinds = { join: 0, split: 0, name: 0, category: 0 };
       d.forEach(c => { const g = c.id.split(':')[1]; if (g in kinds) kinds[g]++; });
       // every card is a choice with a well-formed option set
@@ -474,8 +481,9 @@ const open = async (browser, opts = {}) => {
       startRound([split], {});
       const splitPrompt = document.getElementById('dn').textContent;
       const splitOpts = [...document.querySelectorAll('#choices .opt')].map(b => b.textContent);
+      const home = DECK_OF.get(d[0]);
       return { kinds, bad: bad.map(c => c.id), joinPrompt, joinNote, splitPrompt, splitOpts,
-               stage: DECK_STAGE[name], lesson: DECK_LESSON[name] };
+               stage: DECK_STAGE[home], lesson: DECK_LESSON[home] };
     });
     ok('the sandhi practice deck is present', !r.missing);
     ok('it sits in lesson 03-sandhi', r.lesson === '03-sandhi' && r.stage === 3,
@@ -803,7 +811,10 @@ const open = async (browser, opts = {}) => {
     const r = await p.evaluate(() => {
       const VIB = ['prathamā','dvitīyā','tṛtīyā','caturthī','pañcamī','ṣaṣṭhī','saptamī','sambodhana'];
       const NUM = { ekavacana: 'sg', dvivacana: 'du', bahuvacana: 'pl' };
-      const table = DECKS['Table mastery — the eight baseplates'] || [];
+      const table = [];
+      Object.keys(DECKS).forEach(n => {
+        if (n.startsWith('Table mastery')) table.push(...DECKS[n]);
+      });
       const cells = {};
       table.forEach(c => {
         const note = c.note || '';
@@ -819,7 +830,10 @@ const open = async (browser, opts = {}) => {
         .filter(([, set]) => set.size !== 24)
         .map(([stem, set]) => stem + ':' + set.size);
 
-      const conj = DECKS['Conjugation mastery — laṭ parasmaipada'] || [];
+      const conj = [];
+      Object.keys(DECKS).forEach(n => {
+        if (n.startsWith('Conjugation mastery')) conj.push(...DECKS[n]);
+      });
       const byRoot = {};
       conj.forEach(c => {
         const root = c.id.split(':')[1];
@@ -860,9 +874,9 @@ const open = async (browser, opts = {}) => {
       try {
         localStorage.setItem('abhyāsaḥ', JSON.stringify({
           v: 2,
-          deck: 'V21 · Deity vibhakti — the eight baseplates',
-          decks: { 'V21 · Deity vibhakti — the eight baseplates': { best: [130, 139], pile: [] },
-                   'Practice — person, tense and mood': { best: [18, 21], pile: [] } },
+          deck: 'Rūpa practice — case and form',
+          decks: { 'Rūpa practice — case and form': { best: [13, 15], pile: [] },
+                   'Kriyā practice — person, tense and mood': { best: [18, 21], pile: [] } },
           trouble: {}, cleared: 0,
         }));
       } catch (e) {}
@@ -871,15 +885,15 @@ const open = async (browser, opts = {}) => {
     const r = await p.evaluate(() => {
       const raw = JSON.parse(localStorage.getItem('abhyāsaḥ'));
       return {
-        moved: raw.decks['Table mastery — the eight baseplates'],
+        moved: raw.decks['Practice — case and form'],
         movedKriya: raw.decks['Practice — person, tense and mood'],
-        oldGone: !raw.decks['V21 · Deity vibhakti — the eight baseplates'],
-        lastDeckMoved: raw.deck === 'Table mastery — the eight baseplates',
+        oldGone: !raw.decks['Rūpa practice — case and form'],
+        lastDeckMoved: raw.deck === 'Practice — case and form',
         finished: finishedDecks().length,
       };
     });
     ok('a renamed deck keeps its best score',
-      r.moved && r.moved.best[0] === 130 && r.movedKriya && r.movedKriya.best[0] === 18,
+      r.moved && r.moved.best[0] === 13 && r.movedKriya && r.movedKriya.best[0] === 18,
       JSON.stringify(r.moved && r.moved.best));
     ok('the old deck name is cleared away', r.oldGone);
     ok('the remembered deck follows the rename', r.lastDeckMoved);
@@ -891,12 +905,12 @@ const open = async (browser, opts = {}) => {
       for (let i = 0; i < 25; i++) {
         const drawn = mixCards();
         const fromTable = drawn.filter(c =>
-          DECK_OF.get(c) === 'Table mastery — the eight baseplates').length;
+          (DECK_OF.get(c) || '').startsWith('Table mastery')).length;
         counts.push(fromTable / drawn.length);
       }
       return { worst: Math.max(...counts), size: mixCards().length };
     });
-    ok('a 139-card table never dominates a 20-card draw',
+    ok('no one list dominates a 20-card draw',
       spread.worst <= 0.65, 'worst share ' + Math.round(spread.worst * 100) + '%');
     ok('the draw still fills a session', spread.size === 20, spread.size + ' cards');
     await p.close();
@@ -991,6 +1005,68 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
+  // ── every list is a chunk a learner can finish ─────────────────────
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const big = Object.entries(DECKS)
+        .filter(([, cs]) => cs.length > 25)
+        .map(([n, cs]) => n + ':' + cs.length);
+      // and no two lists in one lesson look the same in the drawer
+      const clash = [];
+      const byLesson = {};
+      Object.keys(DECKS).forEach(n => {
+        const L = DECK_LESSON[n];
+        (byLesson[L] = byLesson[L] || []).push(n);
+      });
+      Object.entries(byLesson).forEach(([L, names]) => {
+        const seen = {};
+        names.forEach(n => {
+          const short = DECK_SHORT(n);
+          if (seen[short]) clash.push(L + ' · ' + short);
+          seen[short] = n;
+        });
+      });
+      /* Guards against a chunking pass leaving a stray fragment behind.  The
+         floor is 4, not something larger: the smallest lists here are the 5
+         sandhi derivations and the 4 metres worth naming, and both are that
+         size because the content is, not because a split went wrong. */
+      const tiny = Object.entries(DECKS)
+        .filter(([, cs]) => cs.length < 4).map(([n, cs]) => n + ':' + cs.length);
+      return { big, clash, tiny, decks: Object.keys(DECKS).length,
+               cards: Object.values(DECKS).reduce((a, b) => a + b.length, 0) };
+    });
+    ok('no list runs past 25 cards', !r.big.length, r.big.slice(0, 4).join(' | '));
+    ok('no two lists in a lesson share a display name',
+      !r.clash.length, r.clash.slice(0, 4).join(' | '));
+    ok('no list is a stray fragment', !r.tiny.length, r.tiny.join(' | '));
+    console.log('        ' + r.decks + ' lists · ' + r.cards + ' cards');
+    await p.close();
+  }
+
+  // ── the curriculum's own 50 core dhātus are all present ────────────
+  // 09-dhatu/reference.md names them; the app carried 14.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const roots = new Set();
+      Object.keys(DECKS).forEach(n => {
+        if (!n.startsWith('Dhātu ')) return;
+        DECKS[n].forEach(c => roots.add((c.iast || '').replace(/^√/, '')));
+      });
+      return { roots: [...roots], n: roots.size };
+    });
+    const REF = require('fs').readFileSync(
+      require('path').resolve(__dirname, '..', '09-dhatu', 'reference.md'), 'utf8');
+    const core = [...REF.matchAll(/^\|\s*\d+\s*\|\s*√(\S+)\s*\|/gm)].map(m => m[1]);
+    const missing = core.filter(x => !r.roots.includes(x));
+    ok('the reference still lists 50 core dhātus', core.length === 50, core.length + '');
+    ok('every core dhātu is in the app', !missing.length,
+      missing.length + ' missing: ' + missing.slice(0, 6).join(', '));
+    console.log('        ' + r.n + ' roots across the Dhātu lists');
+    await p.close();
+  }
+
   // ── the three modes are findable, and say what they hold ───────────
   // These carried their Sanskrit names — Aṅkāḥ, Parīkṣā, Kliṣṭāni — which
   // named the concepts but meant nobody scanning the drawer for a
@@ -1004,7 +1080,7 @@ const open = async (browser, opts = {}) => {
     }, { v: 3,
          decks: { '20 · Bhāva — inner states': { best: [13, 15], pile: [] },
                   '01 · Devī — goddess names': { best: [15, 15], pile: [] },
-                  'V09 · Emotions & mind — DM · LS': { best: [50, 61], pile: [] } },
+                  'V09 · Anger and fear — DM · LS': { best: [12, 16], pile: [] } },
          review: { runs: 4, right: 63, seen: 80 }, trouble: {}, cleared: 2, mastered: {} });
     await p.goto(FILE, { waitUntil: 'load' });
 
@@ -1481,7 +1557,7 @@ const open = async (browser, opts = {}) => {
             // perfect, but set when the deck was smaller — cannot be attributed
             'Practice — case and form': { best: [9, 9], pile: [] },
             // not perfect: which cards were cold is simply not recorded
-            'Practice — joins and splits': { best: [30, 31], pile: [] },
+            'Practice · joins — combine the two words': { best: [19, 20], pile: [] },
           },
           trouble: {}, cleared: 0,
         }));
@@ -1494,7 +1570,7 @@ const open = async (browser, opts = {}) => {
         v: JSON.parse(localStorage.getItem('abhyāsaḥ')).v,
         exact: of('Practice — person, tense and mood'),
         resized: of('Practice — case and form'),
-        partial: of('Practice — joins and splits'),
+        partial: of('Practice · joins — combine the two words'),
       };
     });
     ok('a perfect round on the deck as it stands seeds mastery',

@@ -105,7 +105,7 @@
       ]
     },
     {
-      "name": "V18 · Refrains & formulae — DM · LS",
+      "name": "V18 · Speech tags and fury — DM",
       "cards": [
         {
           "id": "14-stotra-i:refrains-formulae:rsir-uvaca",
@@ -218,7 +218,12 @@
           "iast": "amarṣapūritaḥ",
           "gloss": "filled with indignation",
           "note": "DM 6.2"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V18 · Refrains and colophons — DM · LS",
+      "cards": [
         {
           "id": "14-stotra-i:refrains-formulae:ya-devi-sarvabhutesu-x-rupena-samsthita",
           "devanagari": "या देवी सर्वभूतेषु X-रूपेण संस्थिता",

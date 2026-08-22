@@ -551,7 +551,7 @@ Three things here are load-bearing for the compatibility list above:
   chain, and keep each step stamping its own version rather than the newest;
   every `localStorage` touch stays guarded, since it can be absent or full.
 
-The app carries 23 lessons, 71 decks, and 2041 cards — 1876 `reveal`, 160
+The app carries 23 lessons, 150 decks, and 2077 cards — 1876 `reveal`, 160
 `choice` and 5 `sequence`, spread over 14 interactive decks in 11 lessons,
 plus two mastery decks holding complete paradigms.
 They are curated practice, not conversions of the reference tables:
@@ -578,6 +578,13 @@ They are curated practice, not conversions of the reference tables:
   formed. No articulation widget, as the plan forbids.
 - `08-sambodhana` — 9 cards: form the vocative across five stem types. The
   confusable pair is i-stems (`agne`) against u-stems (`viṣṇo`).
+- `09-dhatu` — the curriculum's **50 core dhātus**, all of them. The
+  reference's own table names 50; the app carried 14, so 36 were added from it
+  with their class and present 3sg (`dhātu · 1P · bhavati · bhava, bhūta`),
+  and a test now fails if the reference lists a root the app does not carry.
+  They sit in four lists by what the root does — being and motion, knowing and
+  speaking, worship and offering, doing and holding — plus `√vad` and `√vand`,
+  which the app already taught and which the reference's fifty do not include.
 - `09-dhatu` — 11 cards: kṛt and taddhita suffixes as operations
   (`√gam + ktvā → gatvā`). Kṛt/Taddhita has no lesson of its own, so it lives
   here beside the upasarga material, per the audit's decision 4.
@@ -599,11 +606,25 @@ They are curated practice, not conversions of the reference tables:
 Roughly the last third of the decks are generated from the `vocab/` bank and
 marked as such.
 
-**On deck size.** A large deck is not automatically bloat. A word list is not
-a reference table, and nobody learns Sanskrit from fifteen nouns — `01-nama`
-legitimately holds a third of the app. A paradigm deck is large for a
-different and equally good reason: the table is finite and the badge wants all
-of it.
+**On deck size.** A list is a sitting, and **no list runs past 25 cards** — a
+test asserts it. That is not a limit on how much a lesson may hold; it is a
+limit on how much is handed over at once. `01-nama` still legitimately holds a
+third of the app, but as 41 lists rather than 15, and the paradigm table still
+holds every cell the badge asks for, as nine complete paradigms rather than one
+deck of 140.
+
+**Chunks are categorical, never arithmetic.** A list is cut where its own
+content divides — one model stem per declension list, one dhātu per
+conjugation list, the three badge categories for the sandhi rules, semantic
+fields for vocabulary (`Weapons`, `Arrows and archery`, `Emblems and
+instruments`). Cutting `V01` into five equal piles of 23 would have satisfied
+the number and taught nothing.
+
+**A split is not a rename.** No chunk is the old deck, so the old deck's best
+score and missed pile are orphaned rather than carried onto practice they were
+not earned on, and `DECK_RENAMES` gets no entry. Nothing else moves: mastery
+and trouble history are keyed by card id, every id survives a split untouched,
+and lesson and track percentages therefore do not change at all.
 
 What is bloat is the same card twice in one lesson, and unbounded expansion of
 the *curated* sets. `scripts/test.js` asserts that no card appears twice

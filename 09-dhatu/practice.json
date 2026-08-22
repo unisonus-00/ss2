@@ -150,43 +150,168 @@
       ]
     },
     {
-      "name": "09 · Dhātu — roots",
+      "name": "Dhātu I — being, motion and dwelling",
       "pair": "root → meaning",
       "cards": [
-        {
-          "id": "09-dhatu:dhatu:nam",
-          "devanagari": "√नम्",
-          "iast": "√nam",
-          "gloss": "to bow",
-          "note": "dhātu · namati"
-        },
-        {
-          "id": "09-dhatu:dhatu:kr",
-          "devanagari": "√कृ",
-          "iast": "√kṛ",
-          "gloss": "to do, make",
-          "note": "dhātu · karoti"
-        },
         {
           "id": "09-dhatu:dhatu:bhu",
           "devanagari": "√भू",
           "iast": "√bhū",
           "gloss": "to be, become",
-          "note": "dhātu · bhavati"
+          "note": "dhātu · 1P · bhavati · bhava, bhūta"
         },
         {
-          "id": "09-dhatu:dhatu:stu",
-          "devanagari": "√स्तु",
-          "iast": "√stu",
-          "gloss": "to praise",
-          "note": "dhātu · stauti"
+          "id": "09-dhatu:dhatu:as",
+          "devanagari": "√अस्",
+          "iast": "√as",
+          "gloss": "to be",
+          "note": "dhātu · 2P · asti · sat, astitva"
+        },
+        {
+          "id": "09-dhatu:dhatu:jan",
+          "devanagari": "√जन्",
+          "iast": "√jan",
+          "gloss": "to be born",
+          "note": "dhātu · 4Ā · jāyate · janma, jāta"
+        },
+        {
+          "id": "09-dhatu:dhatu:mr",
+          "devanagari": "√मृ",
+          "iast": "√mṛ",
+          "gloss": "to die",
+          "note": "dhātu · 6Ā · mriyate · mṛtyu, mṛta"
+        },
+        {
+          "id": "09-dhatu:dhatu:vrt",
+          "devanagari": "√वृत्",
+          "iast": "√vṛt",
+          "gloss": "to turn, exist",
+          "note": "dhātu · 1Ā · vartate · vṛtti, vṛtta"
         },
         {
           "id": "09-dhatu:dhatu:gam",
           "devanagari": "√गम्",
           "iast": "√gam",
           "gloss": "to go",
-          "note": "dhātu · gacchati"
+          "note": "dhātu · 1P · gacchati · gati, gata"
+        },
+        {
+          "id": "09-dhatu:dhatu:car",
+          "devanagari": "√चर्",
+          "iast": "√car",
+          "gloss": "to move, act",
+          "note": "dhātu · 1P · carati · carya, carita"
+        },
+        {
+          "id": "09-dhatu:dhatu:kram",
+          "devanagari": "√क्रम्",
+          "iast": "√kram",
+          "gloss": "to step",
+          "note": "dhātu · 1U · krāmati · krama"
+        },
+        {
+          "id": "09-dhatu:dhatu:pat",
+          "devanagari": "√पत्",
+          "iast": "√pat",
+          "gloss": "to fall",
+          "note": "dhātu · 1P · patati · pāta, patita"
+        },
+        {
+          "id": "09-dhatu:dhatu:stha",
+          "devanagari": "√स्था",
+          "iast": "√sthā",
+          "gloss": "to stand",
+          "note": "dhātu · 1P · tiṣṭhati · sthāna, sthita"
+        },
+        {
+          "id": "09-dhatu:dhatu:sad",
+          "devanagari": "√सद्",
+          "iast": "√sad",
+          "gloss": "to sit",
+          "note": "dhātu · 1P · sīdati · sādana"
+        },
+        {
+          "id": "09-dhatu:dhatu:si",
+          "devanagari": "√शी",
+          "iast": "√śī",
+          "gloss": "to lie, sleep",
+          "note": "dhātu · 2Ā · śete · śayana"
+        },
+        {
+          "id": "09-dhatu:dhatu:vas",
+          "devanagari": "√वस्",
+          "iast": "√vas",
+          "gloss": "to dwell",
+          "note": "dhātu · 1P · vasati · vāsa"
+        }
+      ]
+    },
+    {
+      "name": "Dhātu II — knowing and speaking",
+      "pair": "root → meaning",
+      "cards": [
+        {
+          "id": "09-dhatu:dhatu:jna",
+          "devanagari": "√ज्ञा",
+          "iast": "√jñā",
+          "gloss": "to know",
+          "note": "dhātu · 9U · jānāti · jñāna, jñāta"
+        },
+        {
+          "id": "09-dhatu:dhatu:vid",
+          "devanagari": "√विद्",
+          "iast": "√vid",
+          "gloss": "to know",
+          "note": "dhātu · 2P · vetti · vidyā, vidita"
+        },
+        {
+          "id": "09-dhatu:dhatu:budh",
+          "devanagari": "√बुध्",
+          "iast": "√budh",
+          "gloss": "to know, wake",
+          "note": "dhātu · 1P · bodhati · bodha, buddha"
+        },
+        {
+          "id": "09-dhatu:dhatu:man",
+          "devanagari": "√मन्",
+          "iast": "√man",
+          "gloss": "to think",
+          "note": "dhātu · 4Ā · manyate · manas, mata"
+        },
+        {
+          "id": "09-dhatu:dhatu:smr",
+          "devanagari": "√स्मृ",
+          "iast": "√smṛ",
+          "gloss": "to remember",
+          "note": "dhātu · 1P · smarati · smṛti, smṛta"
+        },
+        {
+          "id": "09-dhatu:dhatu:drs",
+          "devanagari": "√दृश्",
+          "iast": "√dṛś",
+          "gloss": "to see",
+          "note": "dhātu · 1P · paśyati · darśana, dṛṣṭa"
+        },
+        {
+          "id": "09-dhatu:dhatu:sru",
+          "devanagari": "√श्रु",
+          "iast": "√śru",
+          "gloss": "to hear",
+          "note": "dhātu · 5P · śṛṇoti · śruti, śruta"
+        },
+        {
+          "id": "09-dhatu:dhatu:vac",
+          "devanagari": "√वच्",
+          "iast": "√vac",
+          "gloss": "to speak",
+          "note": "dhātu · 2P · vakti · vāc, ukta"
+        },
+        {
+          "id": "09-dhatu:dhatu:bru",
+          "devanagari": "√ब्रू",
+          "iast": "√brū",
+          "gloss": "to say",
+          "note": "dhātu · 2U · bravīti"
         },
         {
           "id": "09-dhatu:dhatu:vad",
@@ -196,60 +321,38 @@
           "note": "dhātu · vadati"
         },
         {
-          "id": "09-dhatu:dhatu:drs",
-          "devanagari": "√दृश्",
-          "iast": "√dṛś",
-          "gloss": "to see",
-          "note": "dhātu · paśyati"
-        },
-        {
-          "id": "09-dhatu:dhatu:sru",
-          "devanagari": "√श्रु",
-          "iast": "√śru",
-          "gloss": "to hear",
-          "note": "dhātu · śṛṇoti"
+          "id": "09-dhatu:dhatu:prach",
+          "devanagari": "√प्रच्छ्",
+          "iast": "√prach",
+          "gloss": "to ask",
+          "note": "dhātu · 6P · pṛcchati · praśna, pṛṣṭa"
         },
         {
           "id": "09-dhatu:dhatu:path",
           "devanagari": "√पठ्",
           "iast": "√paṭh",
           "gloss": "to recite, read",
-          "note": "dhātu · paṭhati"
+          "note": "dhātu · 1P · paṭhati · pāṭha"
         },
         {
-          "id": "09-dhatu:dhatu:da",
-          "devanagari": "√दा",
-          "iast": "√dā",
-          "gloss": "to give",
-          "note": "dhātu · dadāti"
-        },
+          "id": "09-dhatu:dhatu:likh",
+          "devanagari": "√लिख्",
+          "iast": "√likh",
+          "gloss": "to write",
+          "note": "dhātu · 6P · likhati · lekha, likhita"
+        }
+      ]
+    },
+    {
+      "name": "Dhātu III — worship and offering",
+      "pair": "root → meaning",
+      "cards": [
         {
-          "id": "09-dhatu:dhatu:stha",
-          "devanagari": "√स्था",
-          "iast": "√sthā",
-          "gloss": "to stand",
-          "note": "dhātu · tiṣṭhati"
-        },
-        {
-          "id": "09-dhatu:dhatu:bhaj",
-          "devanagari": "√भज्",
-          "iast": "√bhaj",
-          "gloss": "to worship, share",
-          "note": "dhātu · bhajati"
-        },
-        {
-          "id": "09-dhatu:dhatu:jna",
-          "devanagari": "√ज्ञा",
-          "iast": "√jñā",
-          "gloss": "to know",
-          "note": "dhātu · jānāti"
-        },
-        {
-          "id": "09-dhatu:dhatu:as",
-          "devanagari": "√अस्",
-          "iast": "√as",
-          "gloss": "to be",
-          "note": "dhātu · asti"
+          "id": "09-dhatu:dhatu:nam",
+          "devanagari": "√नम्",
+          "iast": "√nam",
+          "gloss": "to bow",
+          "note": "dhātu · 1P · namati · namas, nata"
         },
         {
           "id": "09-dhatu:dhatu:vand",
@@ -259,11 +362,178 @@
           "note": "dhātu · vandate"
         },
         {
+          "id": "09-dhatu:dhatu:bhaj",
+          "devanagari": "√भज्",
+          "iast": "√bhaj",
+          "gloss": "to worship, share",
+          "note": "dhātu · 1U · bhajati · bhakti, bhakta"
+        },
+        {
           "id": "09-dhatu:dhatu:puj",
           "devanagari": "√पूज्",
           "iast": "√pūj",
           "gloss": "to worship",
-          "note": "dhātu · pūjayati"
+          "note": "dhātu · 10U · pūjayati · pūjā, pūjita"
+        },
+        {
+          "id": "09-dhatu:dhatu:stu",
+          "devanagari": "√स्तु",
+          "iast": "√stu",
+          "gloss": "to praise",
+          "note": "dhātu · 2U · stauti · stuti, stuta"
+        },
+        {
+          "id": "09-dhatu:dhatu:sev",
+          "devanagari": "√सेव्",
+          "iast": "√sev",
+          "gloss": "to serve",
+          "note": "dhātu · 1Ā · sevate · sevā, sevita"
+        },
+        {
+          "id": "09-dhatu:dhatu:yaj",
+          "devanagari": "√यज्",
+          "iast": "√yaj",
+          "gloss": "to sacrifice",
+          "note": "dhātu · 1U · yajati · yajña, iṣṭa"
+        },
+        {
+          "id": "09-dhatu:dhatu:hu",
+          "devanagari": "√हु",
+          "iast": "√hu",
+          "gloss": "to pour (oblation)",
+          "note": "dhātu · 3P · juhoti · homa, huta"
+        },
+        {
+          "id": "09-dhatu:dhatu:dhyai",
+          "devanagari": "√ध्यै",
+          "iast": "√dhyai",
+          "gloss": "to meditate",
+          "note": "dhātu · 1P · dhyāyati · dhyāna"
+        },
+        {
+          "id": "09-dhatu:dhatu:jap",
+          "devanagari": "√जप्",
+          "iast": "√jap",
+          "gloss": "to chant",
+          "note": "dhātu · 1P · japati · japa"
+        },
+        {
+          "id": "09-dhatu:dhatu:gai",
+          "devanagari": "√गै",
+          "iast": "√gai",
+          "gloss": "to sing",
+          "note": "dhātu · 1P · gāyati · gāna, gīta"
+        },
+        {
+          "id": "09-dhatu:dhatu:is",
+          "devanagari": "√ईश्",
+          "iast": "√īś",
+          "gloss": "to rule",
+          "note": "dhātu · 2Ā · īṣṭe · īśvara"
+        },
+        {
+          "id": "09-dhatu:dhatu:ksam",
+          "devanagari": "√क्षम्",
+          "iast": "√kṣam",
+          "gloss": "to forgive",
+          "note": "dhātu · 1Ā · kṣamate · kṣamā"
+        }
+      ]
+    },
+    {
+      "name": "Dhātu IV — doing, giving and holding",
+      "pair": "root → meaning",
+      "cards": [
+        {
+          "id": "09-dhatu:dhatu:kr",
+          "devanagari": "√कृ",
+          "iast": "√kṛ",
+          "gloss": "to do, make",
+          "note": "dhātu · 8U · karoti · karma, kṛta"
+        },
+        {
+          "id": "09-dhatu:dhatu:dha",
+          "devanagari": "√धा",
+          "iast": "√dhā",
+          "gloss": "to place, hold",
+          "note": "dhātu · 3U · dadhāti · dhāman, hita"
+        },
+        {
+          "id": "09-dhatu:dhatu:da",
+          "devanagari": "√दा",
+          "iast": "√dā",
+          "gloss": "to give",
+          "note": "dhātu · 3P · dadāti · dāna, datta"
+        },
+        {
+          "id": "09-dhatu:dhatu:grah",
+          "devanagari": "√ग्रह्",
+          "iast": "√grah",
+          "gloss": "to grasp",
+          "note": "dhātu · 9U · gṛhṇāti · graha, gṛhīta"
+        },
+        {
+          "id": "09-dhatu:dhatu:hr",
+          "devanagari": "√हृ",
+          "iast": "√hṛ",
+          "gloss": "to take, seize",
+          "note": "dhātu · 1U · harati · haraṇa, hṛta"
+        },
+        {
+          "id": "09-dhatu:dhatu:labh",
+          "devanagari": "√लभ्",
+          "iast": "√labh",
+          "gloss": "to obtain",
+          "note": "dhātu · 1Ā · labhate · lābha, labdha"
+        },
+        {
+          "id": "09-dhatu:dhatu:muc",
+          "devanagari": "√मुच्",
+          "iast": "√muc",
+          "gloss": "to release",
+          "note": "dhātu · 6P · muñcati · mokṣa, mukta"
+        },
+        {
+          "id": "09-dhatu:dhatu:tyaj",
+          "devanagari": "√त्यज्",
+          "iast": "√tyaj",
+          "gloss": "to abandon",
+          "note": "dhātu · 1P · tyajati · tyāga, tyakta"
+        },
+        {
+          "id": "09-dhatu:dhatu:ni",
+          "devanagari": "√नी",
+          "iast": "√nī",
+          "gloss": "to lead",
+          "note": "dhātu · 1U · nayati · nīti, nīta"
+        },
+        {
+          "id": "09-dhatu:dhatu:raks",
+          "devanagari": "√रक्ष्",
+          "iast": "√rakṣ",
+          "gloss": "to protect",
+          "note": "dhātu · 1P · rakṣati · rakṣā, rakṣita"
+        },
+        {
+          "id": "09-dhatu:dhatu:pa",
+          "devanagari": "√पा",
+          "iast": "√pā",
+          "gloss": "to protect",
+          "note": "dhātu · 2P · pāti · pāla, pālita"
+        },
+        {
+          "id": "09-dhatu:dhatu:ji",
+          "devanagari": "√जि",
+          "iast": "√ji",
+          "gloss": "to conquer",
+          "note": "dhātu · 1P · jayati · jaya, jita"
+        },
+        {
+          "id": "09-dhatu:dhatu:yuj",
+          "devanagari": "√युज्",
+          "iast": "√yuj",
+          "gloss": "to join",
+          "note": "dhātu · 7U · yunakti · yoga, yukta"
         }
       ]
     },
@@ -413,7 +683,7 @@
       ]
     },
     {
-      "name": "V16 · Upasargas & suffixes",
+      "name": "V16 · Upasargas — the verbal prefixes",
       "pair": "affix → sense",
       "cards": [
         {
@@ -520,7 +790,13 @@
           "iast": "su-",
           "gloss": "good, well, easy",
           "note": "upasarga · sundara (beautiful), sulabha (easy to attain), sukha (happiness) · LS passim"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V16 · Feminine suffixes — LS",
+      "pair": "affix → sense",
+      "cards": [
         {
           "id": "09-dhatu:upasargas-suffixes:a-2",
           "devanagari": "-आ",
@@ -604,7 +880,13 @@
           "iast": "-dā / -dāyinī",
           "gloss": "giving (f.)",
           "note": "suffix · varadā, abhayapradā, siddhidāyinī · LS passim"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V16 · Suffix forms — kṛt and taddhita",
+      "pair": "affix → sense",
+      "cards": [
         {
           "id": "09-dhatu:upasargas-suffixes:ta",
           "devanagari": "-त",

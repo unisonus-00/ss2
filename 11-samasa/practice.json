@@ -198,7 +198,7 @@
       ]
     },
     {
-      "name": "V17 · Compounds broken down — LS · DM",
+      "name": "V17 · Tatpuruṣa — X of Y",
       "pair": "compound → vigraha",
       "cards": [
         {
@@ -284,7 +284,13 @@
           "iast": "phala-śruti",
           "gloss": "phalasya śrutiḥ",
           "note": "hearing of the fruit/merit · DM Ch.12"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V17 · Karmadhāraya — X which is Y",
+      "pair": "compound → vigraha",
+      "cards": [
         {
           "id": "11-samasa:compounds-broken-down:maha-maya",
           "devanagari": "महा-माया",
@@ -333,7 +339,13 @@
           "iast": "nīla-sarasvatī",
           "gloss": "nīlā ca sā sarasvatī ca",
           "note": "the blue Sarasvatī · KS passim"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V17 · Bahuvrīhi — one who has X",
+      "pair": "compound → vigraha",
+      "cards": [
         {
           "id": "11-samasa:compounds-broken-down:raktabija",
           "devanagari": "रक्तबीज",
@@ -410,7 +422,13 @@
           "iast": "prasphuritādhara",
           "gloss": "prasphuritaḥ adharaḥ yasya saḥ",
           "note": "he whose lip quivers · DM 6.21"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V17 · Dvandva — X and Y",
+      "pair": "compound → vigraha",
+      "cards": [
         {
           "id": "11-samasa:compounds-broken-down:devasura",
           "devanagari": "देवासुर",
@@ -452,7 +470,13 @@
           "iast": "icchā-jñāna-kriyā-śakti",
           "gloss": "icchā ca jñānaṃ ca kriyā ca",
           "note": "will, knowledge, and action powers · LS passim"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V17 · Avyayībhāva and address — LS",
+      "pair": "compound → vigraha",
+      "cards": [
         {
           "id": "11-samasa:compounds-broken-down:khandasah",
           "devanagari": "खण्डशः",

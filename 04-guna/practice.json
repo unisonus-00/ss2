@@ -260,7 +260,7 @@
       ]
     },
     {
-      "name": "V11 · Adjectives of power & beauty",
+      "name": "V11 · Fierce and terrible — DM",
       "cards": [
         {
           "id": "04-guna:adjectives-of-power-beauty:ugra",
@@ -359,7 +359,12 @@
           "iast": "durdharṣa",
           "gloss": "unassailable",
           "note": "headword | adj. · stem: durdharṣa- · a-stem · VS 220"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V11 · Beautiful and radiant — DM · LS",
+      "cards": [
         {
           "id": "04-guna:adjectives-of-power-beauty:sundara-ramya-rucira-manohara",
           "devanagari": "सुन्दर / रम्य / रुचिर / मनोहर",
@@ -443,7 +448,12 @@
           "iast": "sphurad / sphurat",
           "gloss": "glittering, throbbing",
           "note": "LS 16; KS passim"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V11 · Vast, pure and auspicious — LS",
+      "cards": [
         {
           "id": "04-guna:adjectives-of-power-beauty:maha-mahat",
           "devanagari": "महा / महत्",
@@ -597,7 +607,12 @@
           "iast": "satya",
           "gloss": "true, truthful",
           "note": "headword | adj. · stem: satya- · a-stem · KS passim; VS 107, 212"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V11 · The negations — LS",
+      "cards": [
         {
           "id": "04-guna:adjectives-of-power-beauty:niradhara",
           "devanagari": "निराधार",
@@ -723,7 +738,12 @@
           "iast": "aśeṣa",
           "gloss": "without remainder, total",
           "note": "headword | adj. · stem: aśeṣa- · a-stem · DM 6.19"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V11 · Colours — DM · LS",
+      "cards": [
         {
           "id": "04-guna:adjectives-of-power-beauty:krsna-syama",
           "devanagari": "कृष्ण / श्याम",

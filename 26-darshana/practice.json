@@ -148,7 +148,7 @@
       ]
     },
     {
-      "name": "V13 · Philosophy & tattvas — LS · VS",
+      "name": "V13 · Brahman and māyā — LS · VS",
       "cards": [
         {
           "id": "26-darshana:philosophy-tattvas:brahman",
@@ -268,7 +268,12 @@
           "iast": "vivarta",
           "gloss": "transformation/illusion",
           "note": "headword | m. · stem: vivarta- · a-stem · LS passim"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V13 · Guṇas and the five acts — LS",
+      "cards": [
         {
           "id": "26-darshana:philosophy-tattvas:guna",
           "devanagari": "गुण",
@@ -366,7 +371,12 @@
           "iast": "jagatsṛṣṭi",
           "gloss": "world-creation",
           "note": "headword | f. · stem: jagatsṛṣṭi- · i-stem · DM 11.5"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V13 · Knowledge and bondage — LS · VS",
+      "cards": [
         {
           "id": "26-darshana:philosophy-tattvas:jnana",
           "devanagari": "ज्ञान",
@@ -492,7 +502,12 @@
           "iast": "manas",
           "gloss": "mind",
           "note": "headword | n. · stem: manas- · as-stem · LS passim"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V13 · Śakti and Śrīvidyā — LS",
+      "cards": [
         {
           "id": "26-darshana:philosophy-tattvas:sakti",
           "devanagari": "शक्ति",

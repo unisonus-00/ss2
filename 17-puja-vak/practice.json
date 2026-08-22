@@ -360,7 +360,7 @@
       ]
     },
     {
-      "name": "V05 · Body & adornment — DM · LS",
+      "name": "V05 · Head and face — DM · LS",
       "cards": [
         {
           "id": "17-puja-vak:body-adornment:siras-murdhan-mastaka",
@@ -508,7 +508,12 @@
           "iast": "sūkṣmakeśī",
           "gloss": "fine-haired",
           "note": "headword | f. · stem: sūkṣmakeśī- · ī-stem · KS passim"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V05 · Limbs and body — DM · LS",
+      "cards": [
         {
           "id": "17-puja-vak:body-adornment:bhuja-bahu",
           "devanagari": "भुज / बाहु",
@@ -683,7 +688,12 @@
           "iast": "śirodhara",
           "gloss": "neck (lit. head-bearer)",
           "note": "headword | n. · stem: śirodhara- · a-stem · DM 6.18"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V05 · Ornament and adornment — DM · LS",
+      "cards": [
         {
           "id": "17-puja-vak:body-adornment:abharana-bhusana-alankara",
           "devanagari": "आभरण / भूषण / अलङ्कार",
@@ -834,7 +844,7 @@
       ]
     },
     {
-      "name": "V12 · Ritual & worship — DM · LS",
+      "name": "V12 · Rites and observances — DM · LS",
       "cards": [
         {
           "id": "17-puja-vak:ritual-worship:arcana-arcana",
@@ -926,7 +936,12 @@
           "iast": "upāsana",
           "gloss": "meditation/worship",
           "note": "headword | n. · stem: upāsana- · a-stem · VS passim"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V12 · Upacāra offerings — DM · LS",
+      "cards": [
         {
           "id": "17-puja-vak:ritual-worship:puspa-kusuma",
           "devanagari": "पुष्प / कुसुम",
@@ -996,7 +1011,12 @@
           "iast": "tāmbūla",
           "gloss": "betel",
           "note": "headword | n. · stem: tāmbūla- · a-stem · LS 472"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V12 · Mantra and bīja — LS",
+      "cards": [
         {
           "id": "17-puja-vak:ritual-worship:mantra",
           "devanagari": "मन्त्र",
@@ -1073,7 +1093,12 @@
           "iast": "phaṭ",
           "gloss": "astra-bīja (missile)",
           "note": "indecl. · KKS 928"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V12 · Texts and knowledge — LS",
+      "cards": [
         {
           "id": "17-puja-vak:ritual-worship:sukta",
           "devanagari": "सूक्त",
@@ -1157,7 +1182,12 @@
           "iast": "āgama",
           "gloss": "revealed scripture",
           "note": "headword | m. · stem: āgama- · a-stem · KKS 19"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V12 · Fruits and grace — DM · LS",
+      "cards": [
         {
           "id": "17-puja-vak:ritual-worship:patha",
           "devanagari": "पाठ",

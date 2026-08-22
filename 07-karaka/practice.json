@@ -254,7 +254,7 @@
       ]
     },
     {
-      "name": "V07 · War & combat — DM",
+      "name": "V07 · Battle and warriors — DM",
       "cards": [
         {
           "id": "07-karaka:war-combat:yuddha",
@@ -339,7 +339,12 @@
           "iast": "sārathi",
           "gloss": "charioteer",
           "note": "headword | m. · stem: sārathi- · i-stem · DM 2.53"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V07 · Verbs of striking — DM",
+      "cards": [
         {
           "id": "07-karaka:war-combat:prahara",
           "devanagari": "प्रहार",
@@ -458,7 +463,12 @@
           "iast": "√lū",
           "gloss": "to cut",
           "note": "dhātu · — · DM passim"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V07 · Rage and devouring — DM",
+      "cards": [
         {
           "id": "07-karaka:war-combat:vrasc",
           "devanagari": "√व्रश्च्",
@@ -528,7 +538,12 @@
           "iast": "√bhakṣ",
           "gloss": "to eat",
           "note": "dhātu · bhakṣita (pp.) · DM 9.41"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V07 · Destruction — DM",
+      "cards": [
         {
           "id": "07-karaka:war-combat:vadha",
           "devanagari": "वध",

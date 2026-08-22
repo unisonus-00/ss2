@@ -113,6 +113,10 @@ SAVED.decks = SAVED.decks || {};
    storage key.  Never rename a deck without adding a line here. */
 const DECK_RENAMES = {
   'Rūpa practice — case and form':               'Practice — case and form',
+  /* Both of these targets were later split into chunks of 25 cards or fewer,
+     so the score this rescues now names a deck that no longer exists and sits
+     inert.  The entries stay: they are the record of what was renamed, and a
+     split has no single successor to carry a score onto — see below. */
   'V21 · Deity vibhakti — the eight baseplates': 'Table mastery — the eight baseplates',
   'Kriyā practice — person, tense and mood':     'Practice — person, tense and mood',
   /* The sentence-order sequence decks were removed, not renamed: handing the
@@ -129,6 +133,12 @@ const DECK_RENAMES = {
   'Chandas practice — scan and name':            'Practice — scan and name',
   'Vṛtta practice — name the metre':             'Practice — name the metre',
 };
+/* A SPLIT is not a rename and has no entry here.  When a long list is broken
+   into chunks, no one chunk is the old deck, so its best score and missed pile
+   are deliberately orphaned rather than carried onto practice they were not
+   earned on.  Nothing else is lost: mastery and trouble history are keyed by
+   card id, and every id survives a split untouched, so lesson and track
+   percentages do not move at all. */
 Object.entries(DECK_RENAMES).forEach(([from, to]) => {
   if (SAVED.decks[from] && !SAVED.decks[to]) SAVED.decks[to] = SAVED.decks[from];
   delete SAVED.decks[from];

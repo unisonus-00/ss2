@@ -779,7 +779,7 @@
       ]
     },
     {
-      "name": "V01 · Goddess names — DM · LS · KS",
+      "name": "V01 · Goddess names I — the great names",
       "cards": [
         {
           "id": "01-nama:goddess-names:devi",
@@ -885,7 +885,12 @@
           "iast": "mahāsarasvatī",
           "gloss": "the great Sarasvatī",
           "note": "headword | f. · stem: mahāsarasvatī- · ī-stem · DM Ch.5-13 presiding deity"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V01 · Goddess names II — Kālī and Tantric forms",
+      "cards": [
         {
           "id": "01-nama:goddess-names:narayani",
           "devanagari": "नारायणी",
@@ -976,7 +981,12 @@
           "iast": "kālarātri",
           "gloss": "night of dissolution",
           "note": "headword | f. · stem: kālarātri- · i-stem · KS 11"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V01 · Lalitā epithets — LS",
+      "cards": [
         {
           "id": "01-nama:goddess-names:kamakhya",
           "devanagari": "कामाख्या",
@@ -1151,7 +1161,12 @@
           "iast": "kāmeśvaraprāṇanāḍī",
           "gloss": "life-breath of Kāmeśvara",
           "note": "headword | f. · stem: kāmeśvaraprāṇanāḍī- · ī-stem · LS 372"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V01 · Cosmic functions — creatrix and protectress",
+      "cards": [
         {
           "id": "01-nama:goddess-names:srstikartri",
           "devanagari": "सृष्टिकर्त्रि",
@@ -1235,7 +1250,12 @@
           "iast": "trailokyarakṣiṇī",
           "gloss": "protectress of three worlds",
           "note": "headword | f. · stem: trailokyarakṣiṇī- · ī-stem · DM 11.12"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V01 · The all-pervading — sarva- epithets",
+      "cards": [
         {
           "id": "01-nama:goddess-names:sarvabhutahiterata",
           "devanagari": "सर्वभूतहितेरता",
@@ -1333,7 +1353,12 @@
           "iast": "ameyā",
           "gloss": "immeasurable",
           "note": "headword | f. · stem: ameyā- · ā-stem · KS passim"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V01 · The eight Mātṛkās — the śaktis",
+      "cards": [
         {
           "id": "01-nama:goddess-names:brahmi-brahmani",
           "devanagari": "ब्राह्मी / ब्रह्माणी",
@@ -1389,7 +1414,12 @@
           "iast": "śivadūtī",
           "gloss": "she who sent Śiva as envoy",
           "note": "headword | f. · stem: śivadūtī- · ī-stem · DM 8.28"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V01 · Abiding forms I — DM 5 litany",
+      "cards": [
         {
           "id": "01-nama:goddess-names:buddhi",
           "devanagari": "बुद्धि",
@@ -1480,7 +1510,12 @@
           "iast": "vṛtti",
           "gloss": "activity/occupation",
           "note": "DM 5.43-44"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V01 · Abiding forms II — DM 5 litany",
+      "cards": [
         {
           "id": "01-nama:goddess-names:smrti",
           "devanagari": "स्मृति",
@@ -1582,7 +1617,7 @@
       ]
     },
     {
-      "name": "V02 · God names & celestials — VS · DM",
+      "name": "V02 · Viṣṇu names — VS",
       "cards": [
         {
           "id": "01-nama:god-names-celestials:visnu",
@@ -1709,7 +1744,12 @@
           "iast": "puruṣottama",
           "gloss": "supreme person",
           "note": "headword | m. · stem: puruṣottama- · a-stem · VS 24"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V02 · Cosmic epithets — VS",
+      "cards": [
         {
           "id": "01-nama:god-names-celestials:visvam",
           "devanagari": "विश्वम्",
@@ -1807,7 +1847,12 @@
           "iast": "sundara",
           "gloss": "beautiful",
           "note": "VS 591"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V02 · Maker and orderer — VS",
+      "cards": [
         {
           "id": "01-nama:god-names-celestials:satya",
           "devanagari": "सत्य",
@@ -1926,7 +1971,12 @@
           "iast": "svayambhū",
           "gloss": "self-born",
           "note": "VS 37"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V02 · The devas — VS · DM",
+      "cards": [
         {
           "id": "01-nama:god-names-celestials:indra-sakra",
           "devanagari": "इन्द्र / शक्र",
@@ -2024,7 +2074,12 @@
           "iast": "devagaṇa / suragaṇa",
           "gloss": "host of gods",
           "note": "headword | m. · stem: devagaṇa- · a-stem · DM 2.9"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V02 · Sages and celestials — DM",
+      "cards": [
         {
           "id": "01-nama:god-names-celestials:rsi",
           "devanagari": "ऋषि",
@@ -2140,7 +2195,7 @@
       ]
     },
     {
-      "name": "V03 · Asuras & demon vocabulary — DM",
+      "name": "V03 · Demon kinds — DM",
       "cards": [
         {
           "id": "01-nama:asuras-demon-vocabulary:asura",
@@ -2225,7 +2280,12 @@
           "iast": "amarāri",
           "gloss": "foe of immortals",
           "note": "headword | m. · stem: amarāri- · i-stem · DM 9.34"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V03 · Named demons — DM",
+      "cards": [
         {
           "id": "01-nama:asuras-demon-vocabulary:madhu",
           "devanagari": "मधु",
@@ -2379,7 +2439,12 @@
           "iast": "bhaṇḍāsura",
           "gloss": "the jester-demon",
           "note": "headword | m. · stem: bhaṇḍāsura- · a-stem · LS 67+"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V03 · Demon hosts and slayings — DM",
+      "cards": [
         {
           "id": "01-nama:asuras-demon-vocabulary:bhandaputra",
           "devanagari": "भण्डपुत्र",
@@ -2481,7 +2546,7 @@
       ]
     },
     {
-      "name": "V04 · Weapons & battle gear — DM",
+      "name": "V04 · Weapons — DM",
       "cards": [
         {
           "id": "01-nama:weapons-battle-gear:trisula-sula",
@@ -2636,7 +2701,12 @@
           "iast": "khaḍgapāṇi",
           "gloss": "sword-in-hand",
           "note": "m./f. · KS 131"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V04 · Arrows and archery — DM",
+      "cards": [
         {
           "id": "01-nama:weapons-battle-gear:saravrsti",
           "devanagari": "शरवृष्टि",
@@ -2727,7 +2797,12 @@
           "iast": "sarvāyudhadhara",
           "gloss": "wielder of all weapons",
           "note": "headword | adj. · stem: sarvāyudhadhara- · a-stem · KS passim"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V04 · Emblems and instruments — DM",
+      "cards": [
         {
           "id": "01-nama:weapons-battle-gear:sankha",
           "devanagari": "शङ्ख",
@@ -2808,7 +2883,7 @@
       ]
     },
     {
-      "name": "V06 · Nature & cosmos — DM · LS",
+      "name": "V06 · Earth, sky and waters — DM · LS",
       "cards": [
         {
           "id": "01-nama:nature-cosmos:prthivi-bhumi-dhara-ksma-avani-mahi",
@@ -2935,7 +3010,12 @@
           "iast": "taraṅgiṇī",
           "gloss": "flowing with waves (river)",
           "note": "headword | f. · stem: taraṅgiṇī- · ī-stem · KS passim"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V06 · Fire, light and mountains — DM · LS",
+      "cards": [
         {
           "id": "01-nama:nature-cosmos:agni-vahni-anala-pavaka-hutasana",
           "devanagari": "अग्नि / वह्नि / अनल / पावक / हुताशन",
@@ -3054,7 +3134,12 @@
           "iast": "śṛṅga",
           "gloss": "peak, summit",
           "note": "headword | n. · stem: śṛṅga- · a-stem · LS 55"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V06 · Trees and flowers — DM · LS",
+      "cards": [
         {
           "id": "01-nama:nature-cosmos:vana-aranya-kanana",
           "devanagari": "वन / अरण्य / कानन",
@@ -3138,7 +3223,12 @@
           "iast": "bīja",
           "gloss": "seed",
           "note": "headword | n. · stem: bīja- · a-stem · DM 8.40 (raktabīja)"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V06 · Directions and realms — DM · LS",
+      "cards": [
         {
           "id": "01-nama:nature-cosmos:dis-kakubh",
           "devanagari": "दिश् / ककुभ्",
@@ -3247,7 +3337,7 @@
       ]
     },
     {
-      "name": "V14 · Animals & mounts — DM",
+      "name": "V14 · Beasts and birds — DM",
       "cards": [
         {
           "id": "01-nama:animals-mounts:simha-kesarin-kesari",
@@ -3353,7 +3443,12 @@
           "iast": "nāgayajñopavīta",
           "gloss": "serpent as sacred thread",
           "note": "headword | adj. · stem: nāgayajñopavīta- · a-stem · KS passim"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V14 · More creatures — DM",
+      "cards": [
         {
           "id": "01-nama:animals-mounts:mrga",
           "devanagari": "मृग",
@@ -3444,7 +3539,12 @@
           "iast": "śarabha",
           "gloss": "mythical eight-legged beast",
           "note": "headword | m. · stem: śarabha- · a-stem · KS passim"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V14 · Mounts and chariots — DM · LS",
+      "cards": [
         {
           "id": "01-nama:animals-mounts:ratha",
           "devanagari": "रथ",
@@ -3504,7 +3604,7 @@
       ]
     },
     {
-      "name": "V19 · Numbers, time, space — DM",
+      "name": "V19 · Numbers — DM",
       "cards": [
         {
           "id": "01-nama:numbers-time-space:eka",
@@ -3659,7 +3759,12 @@
           "iast": "ṣaṣṭi sahasra",
           "gloss": "60,000",
           "note": "ṣaṣṭyā sahasrāṇām (60,000 demons) · DM 6.7"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V19 · Ordinals and multiples — DM",
+      "cards": [
         {
           "id": "01-nama:numbers-time-space:prathama",
           "devanagari": "प्रथम",
@@ -3729,7 +3834,12 @@
           "iast": "koṭiśaḥ",
           "gloss": "by millions",
           "note": "KS passim"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V19 · Time — DM",
+      "cards": [
         {
           "id": "01-nama:numbers-time-space:kala",
           "devanagari": "काल",
@@ -3834,7 +3944,12 @@
           "iast": "sthiti",
           "gloss": "maintenance-time",
           "note": "headword | f. · stem: sthiti- · i-stem · LS 265"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V19 · Place and seat — DM",
+      "cards": [
         {
           "id": "01-nama:numbers-time-space:madhya-madhyastha",
           "devanagari": "मध्य / मध्यस्थ",
@@ -3908,7 +4023,7 @@
       ]
     },
     {
-      "name": "V20 · Sacred geography & plants — DM · LS",
+      "name": "V20 · Sacred places and rivers — DM · LS",
       "cards": [
         {
           "id": "01-nama:sacred-geography-plants:kasi",
@@ -4042,7 +4157,12 @@
           "iast": "sindhu",
           "gloss": "Indus",
           "note": "KS passim"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V20 · Sacred objects — LS",
+      "cards": [
         {
           "id": "01-nama:sacred-geography-plants:sricakra-sriyantra",
           "devanagari": "श्रीचक्र / श्रीयन्त्र",
@@ -4133,7 +4253,12 @@
           "iast": "dīpa",
           "gloss": "sacred lamp",
           "note": "headword | m. · stem: dīpa- · a-stem · KKS 140"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V20 · Plants and fragrances — DM · LS",
+      "cards": [
         {
           "id": "01-nama:sacred-geography-plants:kadamba",
           "devanagari": "कदम्ब",
@@ -4259,7 +4384,12 @@
           "iast": "kālāguru",
           "gloss": "aloe/agarwood",
           "note": "KKS 701-704"
-        },
+        }
+      ]
+    },
+    {
+      "name": "V20 · Offerings and abodes — LS",
+      "cards": [
         {
           "id": "01-nama:sacred-geography-plants:payasanna",
           "devanagari": "पायसान्न",
