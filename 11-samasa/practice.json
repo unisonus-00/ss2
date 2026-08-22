@@ -2,6 +2,154 @@
   "lesson": "11-samasa",
   "decks": [
     {
+      "name": "Samāsa practice — name the compound",
+      "cards": [
+        {
+          "id": "11-samasa:type:nilakantha",
+          "type": "choice",
+          "front": "nīlakaṇṭha — which compound?",
+          "options": [
+            "bahuvrīhi",
+            "karmadhāraya",
+            "dvandva"
+          ],
+          "answer": "bahuvrīhi",
+          "note": "“he whose throat is blue” · it names someone outside itself",
+          "source": "workbook A1"
+        },
+        {
+          "id": "11-samasa:type:mahadeva",
+          "type": "choice",
+          "front": "mahādeva — which compound?",
+          "options": [
+            "karmadhāraya",
+            "bahuvrīhi",
+            "tatpuruṣa"
+          ],
+          "answer": "karmadhāraya",
+          "note": "“great god” · adjective + noun in apposition",
+          "source": "workbook A1"
+        },
+        {
+          "id": "11-samasa:type:rama-laksmanau",
+          "type": "choice",
+          "front": "rāma-lakṣmaṇau — which compound?",
+          "options": [
+            "dvandva",
+            "dvigu",
+            "tatpuruṣa"
+          ],
+          "answer": "dvandva",
+          "note": "“Rāma and Lakṣmaṇa” · the members are joined by “and”",
+          "source": "workbook A1"
+        },
+        {
+          "id": "11-samasa:type:rajaputra",
+          "type": "choice",
+          "front": "rāja-putra — which compound?",
+          "options": [
+            "tatpuruṣa",
+            "bahuvrīhi",
+            "karmadhāraya"
+          ],
+          "answer": "tatpuruṣa",
+          "note": "“king’s son” · ṣaṣṭhī relation between the members",
+          "source": "workbook A1"
+        },
+        {
+          "id": "11-samasa:type:triloka",
+          "type": "choice",
+          "front": "tri-loka — which compound?",
+          "options": [
+            "dvigu",
+            "dvandva",
+            "bahuvrīhi"
+          ],
+          "answer": "dvigu",
+          "note": "“three worlds” · a numeral tatpuruṣa",
+          "source": "workbook A1"
+        },
+        {
+          "id": "11-samasa:type:pratidinam",
+          "type": "choice",
+          "front": "prati-dinam — which compound?",
+          "options": [
+            "avyayībhāva",
+            "tatpuruṣa",
+            "dvigu"
+          ],
+          "answer": "avyayībhāva",
+          "note": "“every day” · indeclinable, adverbial",
+          "source": "workbook A1"
+        },
+        {
+          "id": "11-samasa:type:caturbhuja",
+          "type": "choice",
+          "front": "caturbhuja — which compound?",
+          "options": [
+            "bahuvrīhi",
+            "dvigu",
+            "karmadhāraya"
+          ],
+          "answer": "bahuvrīhi",
+          "note": "“having four arms” · Viṣṇu, not the arms themselves",
+          "source": "workbook A1"
+        },
+        {
+          "id": "11-samasa:type:pitambara",
+          "type": "choice",
+          "front": "pīta-ambara — which compound?",
+          "options": [
+            "bahuvrīhi",
+            "karmadhāraya",
+            "dvandva"
+          ],
+          "answer": "bahuvrīhi",
+          "note": "“he who wears yellow cloth” — again someone outside the compound",
+          "source": "workbook A1"
+        },
+        {
+          "id": "11-samasa:vibhakti:vanavasa",
+          "type": "choice",
+          "front": "vana-vāsa unpacks with which vibhakti?",
+          "options": [
+            "saptamī",
+            "ṣaṣṭhī",
+            "pañcamī"
+          ],
+          "answer": "saptamī",
+          "note": "“dwelling *in* the forest” · vane vāsaḥ",
+          "source": "workbook A2"
+        },
+        {
+          "id": "11-samasa:vibhakti:devadatta",
+          "type": "choice",
+          "front": "deva-datta unpacks with which vibhakti?",
+          "options": [
+            "tṛtīyā",
+            "caturthī",
+            "ṣaṣṭhī"
+          ],
+          "answer": "tṛtīyā",
+          "note": "“given *by* god” · devena dattaḥ",
+          "source": "workbook A2"
+        },
+        {
+          "id": "11-samasa:vibhakti:yajnasala",
+          "type": "choice",
+          "front": "yajña-śālā unpacks with which vibhakti?",
+          "options": [
+            "caturthī",
+            "saptamī",
+            "tṛtīyā"
+          ],
+          "answer": "caturthī",
+          "note": "“hall *for* sacrifice” · yajñāya śālā",
+          "source": "workbook A2"
+        }
+      ]
+    },
+    {
       "name": "14 · Samāsa — compound types",
       "cards": [
         {

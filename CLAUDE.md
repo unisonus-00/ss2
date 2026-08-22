@@ -274,9 +274,9 @@ Three things here are load-bearing for the compatibility list above:
   lifts state out of earlier storage key names. Keep both chains; every
   `localStorage` touch stays guarded, since it can be absent or full.
 
-The app carries 23 lessons, 64 decks, and 1972 cards — 1871 `reveal`, 89
-`choice` and 12 `sequence`. The interactive sets are curated practice, not
-conversions of the reference tables:
+The app carries 23 lessons, 70 decks, and 2025 cards — 1871 `reveal`, 142
+`choice` and 12 `sequence`, spread over 13 interactive decks in 11 lessons.
+They are curated practice, not conversions of the reference tables:
 
 - `06-kriya` — 21 cards: person, tense, imperative, optative, and parsing.
 - `03-sandhi` — 31 cards: joins, splits, naming the rule, and the
@@ -296,6 +296,20 @@ conversions of the reference tables:
   answer names **both** the semantic role and the morphological case
   (`karaṇa · instrument · tṛtīyā · instr. sg.`), which is the distinction the
   lesson exists to teach.
+- `02-varna-vidya` — 7 cards: what each pratyāhāra covers, and how one is
+  formed. No articulation widget, as the plan forbids.
+- `08-sambodhana` — 9 cards: form the vocative across five stem types. The
+  confusable pair is i-stems (`agne`) against u-stems (`viṣṇo`).
+- `09-dhatu` — 11 cards: kṛt and taddhita suffixes as operations
+  (`√gam + ktvā → gatvā`). Kṛt/Taddhita has no lesson of its own, so it lives
+  here beside the upasarga material, per the audit's decision 4.
+- `11-samasa` — 11 cards: name the compound type, and the vibhakti a
+  tatpuruṣa unpacks with. `choice` before any compound builder, as the plan
+  requires.
+- `19-chandas-i` — 11 cards: scan a word into laghu/guru, then name the gaṇa.
+  Scansion is the operation the lesson exists to teach.
+- `21-chandas-ii` — 4 cards: name the metre from its gaṇa sequence. No metre
+  engine; full scansion and composition stay in the workbook.
 - `06-kriya` and `12-vakya` — 5 and 7 `sequence` cards: sentence building,
   taken from the two workbooks' own "form a sentence from these elements"
   exercises, which is the sequence interaction already written on paper.

@@ -677,37 +677,53 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
-  // ── Milestone 7 decks: Guṇa, Rūpa, Kāraka ─────────────────────────
+  // ── every interactive deck, checked generically ───────────────────
+  // Structural, not a hardcoded list, so a deck added later is covered
+  // without touching this file.
   {
-    const specs = [
-      ['Guṇa practice — agreement', '04-guna', 4, 11],
-      ['Rūpa practice — case and form', '05-rupa', 5, 15],
-      ['Kāraka practice — roles in a sentence', '07-karaka', 7, 11],
-    ];
     const p = await browser.newPage();
     p.on('pageerror', e => { console.log('  PAGEERROR ' + e.message); fail.push('pageerror'); });
     await p.goto(FILE, { waitUntil: 'load' });
-    const r = await p.evaluate(ss => ss.map(([deck, lesson, stage, n]) => {
-      const d = DECKS[deck];
-      if (!d) return { deck, missing: true };
-      const bad = d.filter(c => c.type !== 'choice' || !c.options.includes(c.answer)
-        || new Set(c.options).size !== c.options.length || !c.note || !c.source);
-      return { deck, lesson: DECK_LESSON[deck], stage: DECK_STAGE[deck],
-               n: d.length, wantLesson: lesson, wantStage: stage, wantN: n,
-               bad: bad.map(c => c.id) };
-    }), specs);
-    r.forEach(x => {
-      ok('deck present: ' + x.deck, !x.missing);
-      if (x.missing) return;
-      ok('  sits in ' + x.wantLesson,
-        x.lesson === x.wantLesson && x.stage === x.wantStage, x.lesson + ' / stage ' + x.stage);
-      ok('  ' + x.wantN + ' well-formed choice cards',
-        x.n === x.wantN && x.bad.length === 0, x.n + ' cards; bad: ' + x.bad.join(', '));
+    const r = await p.evaluate(() => {
+      const bad = [];
+      const stats = { choice: 0, sequence: 0, reveal: 0, decks: 0 };
+      Object.entries(DECKS).forEach(([name, cards]) => {
+        const kinds = new Set(cards.map(c => c.type || 'reveal'));
+        cards.forEach(c => stats[c.type || 'reveal']++);
+        if (kinds.has('reveal') && kinds.size === 1) return;   // plain deck
+        stats.decks++;
+        const lesson = DECK_LESSON[name];
+        cards.forEach(c => {
+          const t = c.type || 'reveal';
+          const why =
+            !c.id.startsWith(lesson + ':') ? 'id does not start with its lesson'
+            : !c.front ? 'no front'
+            : !c.note ? 'no note'
+            : !c.source ? 'no source'
+            : t === 'choice' && (!Array.isArray(c.options) || c.options.length < 2 || c.options.length > 4) ? 'bad option count'
+            : t === 'choice' && !c.options.includes(c.answer) ? 'answer not among options'
+            : t === 'choice' && new Set(c.options).size !== c.options.length ? 'repeated option'
+            : t === 'sequence' && (!Array.isArray(c.parts) || c.parts.length > 4) ? 'bad parts'
+            : t === 'sequence' && !Array.isArray(c.answer) ? 'sequence answer not an array'
+            : null;
+          if (why) bad.push(c.id + ': ' + why);
+        });
+      });
+      return { bad, stats, lessons: [...new Set(Object.values(DECK_LESSON))].length };
     });
+    ok('every interactive card is well-formed', r.bad.length === 0, r.bad.slice(0, 6).join(' | '));
+    ok('interactive decks exist across the curriculum', r.stats.decks >= 10, r.stats.decks + ' decks');
+    console.log('        ' + r.stats.choice + ' choice · ' + r.stats.sequence
+      + ' sequence · ' + r.stats.reveal + ' reveal');
+    await p.close();
+  }
 
-    // the karaka notes must carry BOTH the semantic role and the case
-    const roles = await p.evaluate(() => {
-      const d = DECKS['Kāraka practice — roles in a sentence'];
+  // ── karaka notes must carry BOTH the role and the case ────────────
+  {
+    const p = await browser.newPage();
+    await p.goto(FILE, { waitUntil: 'load' });
+    const r = await p.evaluate(() => {
+      const d = DECKS['Kāraka practice — roles in a sentence'] || [];
       const sentence = d.filter(c => c.id.startsWith('07-karaka:role:'));
       return {
         n: sentence.length,
@@ -718,8 +734,8 @@ const open = async (browser, opts = {}) => {
       };
     });
     ok('karaka cards ask about a word in a real sentence',
-      roles.n >= 5 && roles.askAboutAWord, roles.n + ' role cards');
-    ok('karaka notes name both the role and the vibhakti', roles.bothNamed);
+      r.n >= 5 && r.askAboutAWord, r.n + ' role cards');
+    ok('karaka notes name both the role and the vibhakti', r.bothNamed);
     await p.close();
   }
 

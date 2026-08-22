@@ -2,6 +2,102 @@
   "lesson": "02-varna-vidya",
   "decks": [
     {
+      "name": "Pratyāhāra practice — what each covers",
+      "cards": [
+        {
+          "id": "02-varna-vidya:praty:ik",
+          "type": "choice",
+          "front": "ik covers which sounds?",
+          "options": [
+            "i, u, ṛ, ḷ",
+            "ya, va, ra, la",
+            "all the vowels"
+          ],
+          "answer": "i, u, ṛ, ḷ",
+          "note": "the “high” vowels",
+          "source": "theory · how pratyāhāras work"
+        },
+        {
+          "id": "02-varna-vidya:praty:ac",
+          "type": "choice",
+          "front": "ac covers which sounds?",
+          "options": [
+            "all the vowels",
+            "all the consonants",
+            "i, u, ṛ, ḷ"
+          ],
+          "answer": "all the vowels",
+          "note": "a, i, u, ṛ, ḷ, e, o, ai, au — nine letters in two",
+          "source": "theory · how pratyāhāras work"
+        },
+        {
+          "id": "02-varna-vidya:praty:hal",
+          "type": "choice",
+          "front": "hal covers which sounds?",
+          "options": [
+            "all the consonants",
+            "all the vowels",
+            "the semivowels only"
+          ],
+          "answer": "all the consonants",
+          "note": "ha, ya, va, ra … through to ha",
+          "source": "theory · how pratyāhāras work"
+        },
+        {
+          "id": "02-varna-vidya:praty:an",
+          "type": "choice",
+          "front": "aṇ covers which sounds?",
+          "options": [
+            "a, i, u",
+            "a, i, u, ṛ, ḷ",
+            "e, o"
+          ],
+          "answer": "a, i, u",
+          "note": "the three basic vowels",
+          "source": "theory · how pratyāhāras work"
+        },
+        {
+          "id": "02-varna-vidya:praty:eng",
+          "type": "choice",
+          "front": "eṅ covers which sounds?",
+          "options": [
+            "e, o",
+            "e, o, ai, au",
+            "a, i, u"
+          ],
+          "answer": "e, o",
+          "note": "the simple compound vowels — ai and au are not included",
+          "source": "theory · how pratyāhāras work"
+        },
+        {
+          "id": "02-varna-vidya:praty:which-vowels",
+          "type": "choice",
+          "front": "Which pratyāhāra means “all the vowels”?",
+          "options": [
+            "ac",
+            "hal",
+            "ik"
+          ],
+          "answer": "ac",
+          "note": "ac vs hal is the basic vowel/consonant split of the whole system",
+          "source": "theory · how pratyāhāras work"
+        },
+        {
+          "id": "02-varna-vidya:praty:rule",
+          "type": "choice",
+          "front": "How is a pratyāhāra formed?",
+          "options": [
+            "first sound + a later it-marker, covering everything between",
+            "first sound + last sound of the same sūtra",
+            "any two sounds that share a place of articulation"
+          ],
+          "answer": "first sound + a later it-marker, covering everything between",
+          "note": "ādir antyena sahetā · Pāṇini 1.1.71",
+          "source": "theory · how pratyāhāras work"
+        }
+      ]
+    },
+    {
       "name": "15 · Varṇa — sounds and articulation",
       "cards": [
         {

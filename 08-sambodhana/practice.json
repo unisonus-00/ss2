@@ -2,6 +2,128 @@
   "lesson": "08-sambodhana",
   "decks": [
     {
+      "name": "Sambodhana practice — direct address",
+      "cards": [
+        {
+          "id": "08-sambodhana:voc:siva",
+          "type": "choice",
+          "front": "śivaḥ → direct address",
+          "options": [
+            "he śiva!",
+            "he śive!",
+            "he śivo!"
+          ],
+          "answer": "he śiva!",
+          "note": "a-stem m. · drop the visarga, keep the -a",
+          "source": "workbook A1"
+        },
+        {
+          "id": "08-sambodhana:voc:devi",
+          "type": "choice",
+          "front": "devī → direct address",
+          "options": [
+            "he devi!",
+            "he devī!",
+            "he deve!"
+          ],
+          "answer": "he devi!",
+          "note": "ī-stem f. · long -ī shortens to -i",
+          "source": "workbook A1"
+        },
+        {
+          "id": "08-sambodhana:voc:durga",
+          "type": "choice",
+          "front": "durgā → direct address",
+          "options": [
+            "he durge!",
+            "he durga!",
+            "he durgi!"
+          ],
+          "answer": "he durge!",
+          "note": "ā-stem f. · -ā becomes -e",
+          "source": "workbook A1"
+        },
+        {
+          "id": "08-sambodhana:voc:visnu",
+          "type": "choice",
+          "front": "viṣṇuḥ → direct address",
+          "options": [
+            "he viṣṇo!",
+            "he viṣṇu!",
+            "he viṣṇe!"
+          ],
+          "answer": "he viṣṇo!",
+          "note": "u-stem m. · -uḥ becomes -o",
+          "source": "workbook A1"
+        },
+        {
+          "id": "08-sambodhana:voc:agni",
+          "type": "choice",
+          "front": "agniḥ → direct address",
+          "options": [
+            "he agne!",
+            "he agno!",
+            "he agni!"
+          ],
+          "answer": "he agne!",
+          "note": "i-stem m. · -iḥ becomes -e · contrast viṣṇo from an u-stem",
+          "source": "workbook A1"
+        },
+        {
+          "id": "08-sambodhana:voc:jagadamba",
+          "type": "choice",
+          "front": "jagadambā → direct address",
+          "options": [
+            "he jagadambe!",
+            "he jagadamba!",
+            "he jagadambi!"
+          ],
+          "answer": "he jagadambe!",
+          "note": "ā-stem f. · a compound behaves as its final member does",
+          "source": "workbook A2"
+        },
+        {
+          "id": "08-sambodhana:voc:bhagavan",
+          "type": "choice",
+          "front": "bhagavān → direct address",
+          "options": [
+            "he bhagavan!",
+            "he bhagavān!",
+            "he bhagave!"
+          ],
+          "answer": "he bhagavan!",
+          "note": "consonant stem · the long ā shortens",
+          "source": "workbook A2"
+        },
+        {
+          "id": "08-sambodhana:voc:sundari",
+          "type": "choice",
+          "front": "sundarī (devī) → direct address",
+          "options": [
+            "he sundari!",
+            "he sundare!",
+            "he sundarī!"
+          ],
+          "answer": "he sundari!",
+          "note": "ī-stem f. · same shortening as devi",
+          "source": "workbook A2"
+        },
+        {
+          "id": "08-sambodhana:rule:i-vs-u",
+          "type": "choice",
+          "front": "Which ending does an i-stem take in the vocative?",
+          "options": [
+            "-e, as agniḥ → agne",
+            "-o, as agniḥ → agno",
+            "-i, as agniḥ → agni"
+          ],
+          "answer": "-e, as agniḥ → agne",
+          "note": "i-stems give -e, u-stems give -o · the two are easily swapped",
+          "source": "theory · vocative forms"
+        }
+      ]
+    },
+    {
       "name": "31 · Sambodhana — vocative forms",
       "cards": [
         {

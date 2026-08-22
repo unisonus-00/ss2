@@ -2,6 +2,154 @@
   "lesson": "19-chandas-i",
   "decks": [
     {
+      "name": "Chandas practice — scan and name",
+      "cards": [
+        {
+          "id": "19-chandas-i:scan:namami",
+          "type": "choice",
+          "front": "namāmi — scan it",
+          "options": [
+            "∪ – ∪",
+            "– ∪ –",
+            "∪ ∪ –"
+          ],
+          "answer": "∪ – ∪",
+          "note": "na-mā-mi · the long ā is guru, the short vowels laghu",
+          "source": "theory · examples"
+        },
+        {
+          "id": "19-chandas-i:scan:bhagavan",
+          "type": "choice",
+          "front": "bhagavān — scan it",
+          "options": [
+            "∪ ∪ –",
+            "∪ – ∪",
+            "– ∪ ∪"
+          ],
+          "answer": "∪ ∪ –",
+          "note": "bha-ga-vān · long ā is guru",
+          "source": "theory · examples"
+        },
+        {
+          "id": "19-chandas-i:scan:trisulam",
+          "type": "choice",
+          "front": "triśūlam — scan it",
+          "options": [
+            "∪ – –",
+            "∪ – ∪",
+            "– – ∪"
+          ],
+          "answer": "∪ – –",
+          "note": "tri-śū-lam · the last syllable of a pāda counts guru by convention",
+          "source": "theory · examples"
+        },
+        {
+          "id": "19-chandas-i:scan:padmam",
+          "type": "choice",
+          "front": "padmam — scan it",
+          "options": [
+            "– –",
+            "∪ –",
+            "∪ ∪"
+          ],
+          "answer": "– –",
+          "note": "pad-mam · a short vowel before a conjunct is guru",
+          "source": "theory · examples"
+        },
+        {
+          "id": "19-chandas-i:scan:namah",
+          "type": "choice",
+          "front": "namaḥ — scan it",
+          "options": [
+            "∪ –",
+            "– ∪",
+            "∪ ∪"
+          ],
+          "answer": "∪ –",
+          "note": "na-maḥ · a short vowel before visarga is guru",
+          "source": "theory · laghu and guru"
+        },
+        {
+          "id": "19-chandas-i:rule:conjunct",
+          "type": "choice",
+          "front": "A short vowel followed by a conjunct consonant is?",
+          "options": [
+            "guru",
+            "laghu",
+            "either, by position"
+          ],
+          "answer": "guru",
+          "note": "weight comes from what follows the vowel, not only from the vowel",
+          "source": "theory · laghu and guru"
+        },
+        {
+          "id": "19-chandas-i:gana:ya",
+          "type": "choice",
+          "front": "∪ – – is which gaṇa?",
+          "options": [
+            "ya",
+            "sa",
+            "ta"
+          ],
+          "answer": "ya",
+          "note": "ya-gaṇa · yamātā",
+          "source": "theory · gaṇas"
+        },
+        {
+          "id": "19-chandas-i:gana:ja",
+          "type": "choice",
+          "front": "∪ – ∪ is which gaṇa?",
+          "options": [
+            "ja",
+            "ra",
+            "ya"
+          ],
+          "answer": "ja",
+          "note": "ja-gaṇa · jabhalā",
+          "source": "theory · gaṇas"
+        },
+        {
+          "id": "19-chandas-i:gana:ra",
+          "type": "choice",
+          "front": "– ∪ – is which gaṇa?",
+          "options": [
+            "ra",
+            "ja",
+            "bha"
+          ],
+          "answer": "ra",
+          "note": "ra-gaṇa · rājabhā · the mirror of ja",
+          "source": "theory · gaṇas"
+        },
+        {
+          "id": "19-chandas-i:gana:sa",
+          "type": "choice",
+          "front": "∪ ∪ – is which gaṇa?",
+          "options": [
+            "sa",
+            "na",
+            "ya"
+          ],
+          "answer": "sa",
+          "note": "sa-gaṇa · salāgā",
+          "source": "theory · gaṇas"
+        },
+        {
+          "id": "19-chandas-i:gana:bha",
+          "type": "choice",
+          "front": "– ∪ ∪ is which gaṇa?",
+          "options": [
+            "bha",
+            "ta",
+            "ra"
+          ],
+          "answer": "bha",
+          "note": "bha-gaṇa · bhānasa",
+          "source": "theory · gaṇas"
+        }
+      ]
+    },
+    {
       "name": "17 · Chandas — metre",
       "cards": [
         {

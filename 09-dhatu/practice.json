@@ -2,6 +2,154 @@
   "lesson": "09-dhatu",
   "decks": [
     {
+      "name": "Suffix practice — kṛt and taddhita",
+      "cards": [
+        {
+          "id": "09-dhatu:suffix:gam-ktva",
+          "type": "choice",
+          "front": "√gam + ktvā → ?",
+          "options": [
+            "gatvā",
+            "gantum",
+            "gataḥ"
+          ],
+          "answer": "gatvā",
+          "note": "ktvā · absolutive — “having gone”",
+          "source": "deck 35 · kṛt suffixes"
+        },
+        {
+          "id": "09-dhatu:suffix:gam-tumun",
+          "type": "choice",
+          "front": "√gam + tumun → ?",
+          "options": [
+            "gantum",
+            "gatvā",
+            "gacchat"
+          ],
+          "answer": "gantum",
+          "note": "tumun · infinitive — “to go”",
+          "source": "deck 35 · kṛt suffixes"
+        },
+        {
+          "id": "09-dhatu:suffix:gam-kta",
+          "type": "choice",
+          "front": "√gam + kta → ?",
+          "options": [
+            "gataḥ",
+            "gatavān",
+            "gantum"
+          ],
+          "answer": "gataḥ",
+          "note": "kta · past participle — “gone”",
+          "source": "deck 35 · kṛt suffixes"
+        },
+        {
+          "id": "09-dhatu:suffix:kr-trc",
+          "type": "choice",
+          "front": "√kṛ + tṛc → ?",
+          "options": [
+            "kartā",
+            "kartavyam",
+            "karaṇīyam"
+          ],
+          "answer": "kartā",
+          "note": "tṛc · agent noun — “doer”",
+          "source": "deck 35 · kṛt suffixes"
+        },
+        {
+          "id": "09-dhatu:suffix:kr-tavya",
+          "type": "choice",
+          "front": "√kṛ + tavya → ?",
+          "options": [
+            "kartavyam",
+            "kartā",
+            "kṛtam"
+          ],
+          "answer": "kartavyam",
+          "note": "tavya · gerundive — “to be done”",
+          "source": "deck 35 · kṛt suffixes"
+        },
+        {
+          "id": "09-dhatu:suffix:agam-lyap",
+          "type": "choice",
+          "front": "ā-√gam + lyap → ?",
+          "options": [
+            "āgatya",
+            "āgatvā",
+            "āgantum"
+          ],
+          "answer": "āgatya",
+          "note": "lyap · the absolutive used after a prefix, where ktvā would be",
+          "source": "deck 35 · kṛt suffixes"
+        },
+        {
+          "id": "09-dhatu:suffix:dhana-matup",
+          "type": "choice",
+          "front": "dhana + matup → ?",
+          "options": [
+            "dhanavān",
+            "dhanatvam",
+            "dhanataraḥ"
+          ],
+          "answer": "dhanavān",
+          "note": "matup · possessive — “possessing wealth”",
+          "source": "deck 36 · taddhita suffixes"
+        },
+        {
+          "id": "09-dhatu:suffix:guru-tva",
+          "type": "choice",
+          "front": "guru + tva → ?",
+          "options": [
+            "gurutvam",
+            "gurutaraḥ",
+            "gurutamaḥ"
+          ],
+          "answer": "gurutvam",
+          "note": "tva · abstract noun — “heaviness”",
+          "source": "deck 36 · taddhita suffixes"
+        },
+        {
+          "id": "09-dhatu:suffix:patu-tarap",
+          "type": "choice",
+          "front": "paṭu + tarap → ?",
+          "options": [
+            "paṭutaraḥ",
+            "paṭutamaḥ",
+            "paṭutvam"
+          ],
+          "answer": "paṭutaraḥ",
+          "note": "tarap · comparative — “cleverer”",
+          "source": "deck 36 · taddhita suffixes"
+        },
+        {
+          "id": "09-dhatu:suffix:patu-tamap",
+          "type": "choice",
+          "front": "paṭu + tamap → ?",
+          "options": [
+            "paṭutamaḥ",
+            "paṭutaraḥ",
+            "paṭutvam"
+          ],
+          "answer": "paṭutamaḥ",
+          "note": "tamap · superlative — “cleverest”",
+          "source": "deck 36 · taddhita suffixes"
+        },
+        {
+          "id": "09-dhatu:suffix:krt-vs-taddhita",
+          "type": "choice",
+          "front": "A suffix put on a finished word rather than a root is called?",
+          "options": [
+            "taddhita",
+            "kṛt",
+            "upasarga"
+          ],
+          "answer": "taddhita",
+          "note": "kṛt goes straight on a root · taddhita on an already-formed word",
+          "source": "decks 35 / 36"
+        }
+      ]
+    },
+    {
       "name": "09 · Dhātu — roots",
       "cards": [
         {
