@@ -2,6 +2,414 @@
   "lesson": "03-sandhi",
   "decks": [
     {
+      "name": "Sandhi practice — joins and splits",
+      "cards": [
+        {
+          "id": "03-sandhi:join:nara-indrah",
+          "type": "choice",
+          "front": "nara + indraḥ → ?",
+          "options": [
+            "narendraḥ",
+            "narīndraḥ",
+            "narindraḥ"
+          ],
+          "answer": "narendraḥ",
+          "note": "guṇa · a + i → e",
+          "source": "workbook A3"
+        },
+        {
+          "id": "03-sandhi:join:kavi-indrah",
+          "type": "choice",
+          "front": "kavi + indraḥ → ?",
+          "options": [
+            "kavīndraḥ",
+            "kavendraḥ",
+            "kavyindraḥ"
+          ],
+          "answer": "kavīndraḥ",
+          "note": "savarṇadīrgha · i + i → ī · not guṇa, the vowels match",
+          "source": "workbook A2"
+        },
+        {
+          "id": "03-sandhi:join:maha-utsavah",
+          "type": "choice",
+          "front": "mahā + utsavaḥ → ?",
+          "options": [
+            "mahotsavaḥ",
+            "mahautsavaḥ",
+            "mahūtsavaḥ"
+          ],
+          "answer": "mahotsavaḥ",
+          "note": "guṇa · ā + u → o",
+          "source": "theory · guṇa examples"
+        },
+        {
+          "id": "03-sandhi:join:maha-rsih",
+          "type": "choice",
+          "front": "mahā + ṛṣiḥ → ?",
+          "options": [
+            "maharṣiḥ",
+            "mahārṣiḥ",
+            "mahaiṛṣiḥ"
+          ],
+          "answer": "maharṣiḥ",
+          "note": "guṇa · ā + ṛ → ar",
+          "source": "theory · guṇa examples"
+        },
+        {
+          "id": "03-sandhi:join:vidya-alayah",
+          "type": "choice",
+          "front": "vidyā + ālayaḥ → ?",
+          "options": [
+            "vidyālayaḥ",
+            "vidyelayaḥ",
+            "vidyailayaḥ"
+          ],
+          "answer": "vidyālayaḥ",
+          "note": "savarṇadīrgha · ā + ā → ā",
+          "source": "workbook A2"
+        },
+        {
+          "id": "03-sandhi:join:sada-eva",
+          "type": "choice",
+          "front": "sadā + eva → ?",
+          "options": [
+            "sadaiva",
+            "sadeva",
+            "sadauva"
+          ],
+          "answer": "sadaiva",
+          "note": "vṛddhi · ā + e → ai",
+          "source": "workbook D1"
+        },
+        {
+          "id": "03-sandhi:join:jala-oghah",
+          "type": "choice",
+          "front": "jala + oghaḥ → ?",
+          "options": [
+            "jalaughaḥ",
+            "jaloghaḥ",
+            "jalāghaḥ"
+          ],
+          "answer": "jalaughaḥ",
+          "note": "vṛddhi · a + o → au",
+          "source": "theory · vṛddhi examples"
+        },
+        {
+          "id": "03-sandhi:join:prati-ekam",
+          "type": "choice",
+          "front": "prati + ekam → ?",
+          "options": [
+            "pratyekam",
+            "pratekam",
+            "pratīkam"
+          ],
+          "answer": "pratyekam",
+          "note": "yan · i + e → y",
+          "source": "theory · yan examples"
+        },
+        {
+          "id": "03-sandhi:join:su-agatam",
+          "type": "choice",
+          "front": "su + āgatam → ?",
+          "options": [
+            "svāgatam",
+            "sāgatam",
+            "sūgatam"
+          ],
+          "answer": "svāgatam",
+          "note": "yan · u + ā → v",
+          "source": "workbook A1"
+        },
+        {
+          "id": "03-sandhi:join:sat-cit",
+          "type": "choice",
+          "front": "sat + cit → ?",
+          "options": [
+            "sac cit",
+            "sat cit",
+            "saj cit"
+          ],
+          "answer": "sac cit",
+          "note": "śchutva · t → c before c",
+          "source": "theory · śchutva examples"
+        },
+        {
+          "id": "03-sandhi:join:ramas-sete",
+          "type": "choice",
+          "front": "rāmas + śete → ?",
+          "options": [
+            "rāmaś śete",
+            "rāmas śete",
+            "rāmaṣ śete"
+          ],
+          "answer": "rāmaś śete",
+          "note": "śchutva · s → ś before ś",
+          "source": "theory · śchutva examples"
+        },
+        {
+          "id": "03-sandhi:join:vak-isah",
+          "type": "choice",
+          "front": "vāk + īśaḥ → ?",
+          "options": [
+            "vāg īśaḥ",
+            "vāk īśaḥ",
+            "vāṅ īśaḥ"
+          ],
+          "answer": "vāg īśaḥ",
+          "note": "jaśtva · k → g before a vowel",
+          "source": "theory · jaśtva examples"
+        },
+        {
+          "id": "03-sandhi:join:vak-mayam",
+          "type": "choice",
+          "front": "vāk + mayam → ?",
+          "options": [
+            "vāṅ mayam",
+            "vāg mayam",
+            "vāk mayam"
+          ],
+          "answer": "vāṅ mayam",
+          "note": "anunāsika · k → ṅ before a nasal",
+          "source": "theory · anunāsika examples"
+        },
+        {
+          "id": "03-sandhi:join:sat-mukhah",
+          "type": "choice",
+          "front": "ṣaṭ + mukhaḥ → ?",
+          "options": [
+            "ṣaṇ mukhaḥ",
+            "ṣaḍ mukhaḥ",
+            "ṣaṭ mukhaḥ"
+          ],
+          "answer": "ṣaṇ mukhaḥ",
+          "note": "anunāsika · ṭ → ṇ before a nasal",
+          "source": "theory · anunāsika examples"
+        },
+        {
+          "id": "03-sandhi:join:krsnam-vande",
+          "type": "choice",
+          "front": "kṛṣṇam + vande → ?",
+          "options": [
+            "kṛṣṇaṁ vande",
+            "kṛṣṇam vande",
+            "kṛṣṇan vande"
+          ],
+          "answer": "kṛṣṇaṁ vande",
+          "note": "anusvāra · final m → ṁ before a consonant",
+          "source": "theory · anusvāra examples"
+        },
+        {
+          "id": "03-sandhi:join:ramah-hasati",
+          "type": "choice",
+          "front": "rāmaḥ + hasati → ?",
+          "options": [
+            "rāmo hasati",
+            "rāmar hasati",
+            "rāmas hasati"
+          ],
+          "answer": "rāmo hasati",
+          "note": "ukārādeśa · aḥ + voiced → o",
+          "source": "theory · ukārādeśa examples"
+        },
+        {
+          "id": "03-sandhi:join:ramah-tatra",
+          "type": "choice",
+          "front": "rāmaḥ + tatra → ?",
+          "options": [
+            "rāmas tatra",
+            "rāmo tatra",
+            "rāmar tatra"
+          ],
+          "answer": "rāmas tatra",
+          "note": "sakārādeśa · ḥ → s before t",
+          "source": "theory · sakārādeśa examples"
+        },
+        {
+          "id": "03-sandhi:join:ramah-ca",
+          "type": "choice",
+          "front": "rāmaḥ + ca → ?",
+          "options": [
+            "rāmaś ca",
+            "rāmas ca",
+            "rāmo ca"
+          ],
+          "answer": "rāmaś ca",
+          "note": "sakārādeśa then śchutva · ḥ → s → ś before c",
+          "source": "theory · sakārādeśa examples"
+        },
+        {
+          "id": "03-sandhi:join:munih-agatah",
+          "type": "choice",
+          "front": "muniḥ + āgataḥ → ?",
+          "options": [
+            "munir āgataḥ",
+            "munio āgataḥ",
+            "munis āgataḥ"
+          ],
+          "answer": "munir āgataḥ",
+          "note": "rephādeśa · iḥ + voiced → r · not aḥ, so not o",
+          "source": "theory · rephādeśa examples"
+        },
+        {
+          "id": "03-sandhi:join:devah-vadanti",
+          "type": "choice",
+          "front": "devāḥ + vadanti → ?",
+          "options": [
+            "devā vadanti",
+            "devo vadanti",
+            "devār vadanti"
+          ],
+          "answer": "devā vadanti",
+          "note": "lopa · āḥ → ā before a voiced consonant",
+          "source": "theory · lopa examples"
+        },
+        {
+          "id": "03-sandhi:split:narendrah",
+          "type": "choice",
+          "front": "narendraḥ came from ?",
+          "options": [
+            "nara + indraḥ",
+            "naram + indraḥ",
+            "nara + rendraḥ"
+          ],
+          "answer": "nara + indraḥ",
+          "note": "guṇa · a + i → e",
+          "source": "workbook D1"
+        },
+        {
+          "id": "03-sandhi:split:pratyekam",
+          "type": "choice",
+          "front": "pratyekam came from ?",
+          "options": [
+            "prati + ekam",
+            "prati + akam",
+            "prati + ikam"
+          ],
+          "answer": "prati + ekam",
+          "note": "yan · i + e → y",
+          "source": "workbook D1"
+        },
+        {
+          "id": "03-sandhi:split:gurupadesah",
+          "type": "choice",
+          "front": "gurūpadeśaḥ came from ?",
+          "options": [
+            "guru + upadeśaḥ",
+            "guru + padeśaḥ",
+            "gurv + upadeśaḥ"
+          ],
+          "answer": "guru + upadeśaḥ",
+          "note": "savarṇadīrgha · u + u → ū",
+          "source": "workbook A7"
+        },
+        {
+          "id": "03-sandhi:split:jagannathah",
+          "type": "choice",
+          "front": "jagan nāthaḥ came from ?",
+          "options": [
+            "jagat + nāthaḥ",
+            "jagam + nāthaḥ",
+            "jagas + nāthaḥ"
+          ],
+          "answer": "jagat + nāthaḥ",
+          "note": "jaśtva t → d, then anunāsika d → n",
+          "source": "workbook B7"
+        },
+        {
+          "id": "03-sandhi:split:vanmayam",
+          "type": "choice",
+          "front": "vāṅ mayam came from ?",
+          "options": [
+            "vāk + mayam",
+            "vāt + mayam",
+            "vāp + mayam"
+          ],
+          "answer": "vāk + mayam",
+          "note": "anunāsika · each stop takes its own varga nasal",
+          "source": "theory · anunāsika examples"
+        },
+        {
+          "id": "03-sandhi:name:rama-isah",
+          "type": "choice",
+          "front": "rāma + īśaḥ → rāmeśaḥ. Which sandhi?",
+          "options": [
+            "guṇa",
+            "savarṇadīrgha",
+            "vṛddhi"
+          ],
+          "answer": "guṇa",
+          "note": "a + ī → e · dissimilar vowels, so not savarṇadīrgha",
+          "source": "workbook A7"
+        },
+        {
+          "id": "03-sandhi:name:iti-uvaca",
+          "type": "choice",
+          "front": "iti + uvāca → ityuvāca. Which sandhi?",
+          "options": [
+            "yan",
+            "guṇa",
+            "savarṇadīrgha"
+          ],
+          "answer": "yan",
+          "note": "i + u → y · i becomes its semivowel before a dissimilar vowel",
+          "source": "workbook A7"
+        },
+        {
+          "id": "03-sandhi:name:krsnam-vande",
+          "type": "choice",
+          "front": "kṛṣṇaṁ vande. Which sandhi?",
+          "options": [
+            "anusvāra",
+            "anunāsika",
+            "parasavarṇa"
+          ],
+          "answer": "anusvāra",
+          "note": "m → ṁ before v",
+          "source": "workbook B7"
+        },
+        {
+          "id": "03-sandhi:name:balakas-tiksnah",
+          "type": "choice",
+          "front": "bālakaḥ + tīkṣṇaḥ → bālakas tīkṣṇaḥ. Which sandhi?",
+          "options": [
+            "sakārādeśa",
+            "ukārādeśa",
+            "rephādeśa"
+          ],
+          "answer": "sakārādeśa",
+          "note": "ḥ → s before t · voiceless, so neither o nor r",
+          "source": "workbook C8"
+        },
+        {
+          "id": "03-sandhi:category:visarga",
+          "type": "choice",
+          "front": "Sandhi that changes a visarga belongs to which category?",
+          "options": [
+            "viśeṣa (visarga) sandhi",
+            "ac (svara) sandhi",
+            "hal (vyañjana) sandhi"
+          ],
+          "answer": "viśeṣa (visarga) sandhi",
+          "note": "ac changes vowels · hal changes consonants · viśeṣa handles visarga",
+          "source": "badge requirement 3"
+        },
+        {
+          "id": "03-sandhi:category:yan",
+          "type": "choice",
+          "front": "Yan, guṇa and vṛddhi all belong to which category?",
+          "options": [
+            "ac (svara) sandhi",
+            "hal (vyañjana) sandhi",
+            "viśeṣa (visarga) sandhi"
+          ],
+          "answer": "ac (svara) sandhi",
+          "note": "ac is the pratyāhāra for all vowels · these rules change vowels",
+          "source": "badge requirement 3"
+        }
+      ]
+    },
+    {
       "name": "S · Sandhi — all 27 rules (vyākaraṇam ch. 2)",
       "cards": [
         {

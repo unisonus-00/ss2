@@ -243,9 +243,23 @@ Three things here are load-bearing for the compatibility list above:
   lifts state out of earlier storage key names. Keep both chains; every
   `localStorage` touch stays guarded, since it can be absent or full.
 
-The app carries 23 lessons, 58 decks, and 1892 cards — 1871 `reveal` and 21
-`choice`, the latter a curated pilot set in `06-kriya`. Roughly the last third
-of the decks are generated from the `vocab/` bank and marked as such.
+The app carries 23 lessons, 59 decks, and 1923 cards — 1871 `reveal` and 52
+`choice`. The choice sets are curated practice, not conversions of the
+reference tables:
+
+- `06-kriya` — 21 cards: person, tense, imperative, optative, and parsing.
+- `03-sandhi` — 31 cards: joins, splits, naming the rule, and the
+  ac / hal / viśeṣa categories, mapping onto the three badge requirements.
+  The 27 rule-name `reveal` cards stay as their own deck; the plan keeps
+  terminology where terminology is the point, and the operation is now
+  drilled separately.
+
+Roughly the last third of the decks are generated from the `vocab/` bank and
+marked as such.
+
+A choice note is not uppercased the way a reveal card's morphology chip is —
+a sandhi rule prints vowel values (`guṇa · a + i → e`), and IAST is written
+lowercase.
 
 **Testing** — `node scripts/test.js` drives the built file in headless
 Chromium from `file://` and checks the compatibility list above: saved

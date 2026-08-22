@@ -21,6 +21,26 @@ const FILE = 'file://' + path.resolve(__dirname, '..', 'dist', 'abhyasah.html');
 const EXE = process.env.CHROME || '/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
 const DECK = 'Kriyā practice — person, tense and mood';
 
+/* Expected counts come from the practice files themselves, so adding a
+   lesson's practice does not break the suite — what is checked is that the
+   build carried across everything the sources declare. */
+const EXPECTED = (() => {
+  const fs = require('fs');
+  const root = path.resolve(__dirname, '..');
+  const files = [];
+  for (const d of fs.readdirSync(root).sort()) {
+    if (/^\d\d-/.test(d) && fs.existsSync(path.join(root, d, 'practice.json')))
+      files.push(path.join(root, d, 'practice.json'));
+  }
+  if (fs.existsSync(path.join(root, 'practice.json'))) files.push(path.join(root, 'practice.json'));
+  let decks = 0, cards = 0;
+  for (const f of files) {
+    const j = JSON.parse(fs.readFileSync(f, 'utf8'));
+    for (const d of j.decks) { decks++; cards += d.cards.length; }
+  }
+  return { lessons: files.length, decks, cards };
+})();
+
 const fail = [];
 const ok = (name, cond, detail) => {
   console.log((cond ? '  PASS  ' : '  FAIL  ') + name + (detail ? '  ' + detail : ''));
@@ -63,12 +83,15 @@ const open = async (browser, opts = {}) => {
 
     ok('no JS errors', errs.length === 0, errs.join('; '));
     ok('no network requests', net.length === 0, net.join('; '));
-    ok('58 decks', r.decks === 58, 'got ' + r.decks);
-    ok('1892 cards', r.cards === 1892, 'got ' + r.cards);
+    ok('every deck in the sources reached the build',
+      r.decks === EXPECTED.decks, r.decks + ' of ' + EXPECTED.decks);
+    ok('every card in the sources reached the build',
+      r.cards === EXPECTED.cards, r.cards + ' of ' + EXPECTED.cards);
     ok('nothing skipped', r.skipped === 0 && !r.fatal, r.fatal || '');
     ok('validation banner silent', !r.validateShown);
     ok('every card has an id', r.idsOnCards);
-    ok('picker grouped by lesson', r.groups.length === 23, r.groups.length + ' groups');
+    ok('picker grouped by lesson', r.groups.length === EXPECTED.lessons,
+      r.groups.length + ' of ' + EXPECTED.lessons + ' lessons');
     ok('groups are curriculum-ordered',
       JSON.stringify(r.groups.slice(0, 4)) ===
       JSON.stringify(['1 · Nāma', '2 · Varṇa-Vidyā', '3 · Sandhi', '4 · Guṇa']),
@@ -76,7 +99,7 @@ const open = async (browser, opts = {}) => {
     ok('cross-cutting practice comes last',
       r.groups[r.groups.length - 1] === 'Vyākaraṇam · cross-cutting',
       r.groups[r.groups.length - 1]);
-    ok('all decks in the picker', r.options === 58, 'got ' + r.options);
+    ok('all decks in the picker', r.options === EXPECTED.decks, r.options + ' of ' + EXPECTED.decks);
     console.log('        groups: ' + r.groups.join(' | '));
     await p.close();
   }
@@ -420,6 +443,52 @@ const open = async (browser, opts = {}) => {
     ok('the trouble drill renders choice cards', r.drill.started && r.drill.isChoice);
     ok('a right answer in the drill counts towards clearing',
       r.rec && r.rec.r === 1, JSON.stringify(r.rec));
+    await p.close();
+  }
+
+  // ── the sandhi set drills the operation, not the rule names ───────
+  {
+    const p = await browser.newPage();
+    await p.goto(FILE, { waitUntil: 'load' });
+    const r = await p.evaluate(() => {
+      const name = 'Sandhi practice — joins and splits';
+      const d = DECKS[name];
+      if (!d) return { missing: true };
+      const kinds = { join: 0, split: 0, name: 0, category: 0 };
+      d.forEach(c => { const g = c.id.split(':')[1]; if (g in kinds) kinds[g]++; });
+      // every card is a choice with a well-formed option set
+      const bad = d.filter(c => c.type !== 'choice' || !c.options.includes(c.answer)
+        || new Set(c.options).size !== c.options.length);
+      // drive one join and one split
+      const join = d.find(c => c.id.startsWith('03-sandhi:join:'));
+      startRound([join], {});
+      const joinPrompt = document.getElementById('dn').textContent;
+      [...document.querySelectorAll('#choices .opt')].find(b => b.textContent === join.answer).click();
+      const joinNote = document.getElementById('tag').textContent;
+      document.getElementById('c-next').click();
+      const split = d.find(c => c.id.startsWith('03-sandhi:split:'));
+      startRound([split], {});
+      const splitPrompt = document.getElementById('dn').textContent;
+      const splitOpts = [...document.querySelectorAll('#choices .opt')].map(b => b.textContent);
+      return { kinds, bad: bad.map(c => c.id), joinPrompt, joinNote, splitPrompt, splitOpts,
+               stage: DECK_STAGE[name], lesson: DECK_LESSON[name] };
+    });
+    ok('the sandhi practice deck is present', !r.missing);
+    ok('it sits in lesson 03-sandhi', r.lesson === '03-sandhi' && r.stage === 3,
+      r.lesson + ' / stage ' + r.stage);
+    ok('every sandhi card is a well-formed choice', r.bad && r.bad.length === 0, (r.bad || []).join(', '));
+    ok('it covers joins, splits, naming and category',
+      r.kinds && r.kinds.join >= 15 && r.kinds.split >= 5 && r.kinds.name >= 3 && r.kinds.category >= 2,
+      JSON.stringify(r.kinds));
+    ok('a join card asks for the combination',
+      / \+ .*→ \?$/.test(r.joinPrompt), JSON.stringify(r.joinPrompt));
+    ok('a join card names its rule on the answer',
+      /sandhi|guṇa|vṛddhi|savarṇa|yan|jaśtva|anusvāra|anunāsika|śchutva|ādeśa|lopa/i.test(r.joinNote),
+      JSON.stringify(r.joinNote));
+    ok('a split card asks where a form came from',
+      /came from \?$/.test(r.splitPrompt), JSON.stringify(r.splitPrompt));
+    ok('split options are word pairs',
+      r.splitOpts && r.splitOpts.every(o => o.includes(' + ')), JSON.stringify(r.splitOpts));
     await p.close();
   }
 

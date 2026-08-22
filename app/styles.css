@@ -116,6 +116,12 @@
     border-color: var(--kumkuma); color: var(--kumkuma);
     text-decoration: line-through; text-decoration-thickness: 1px;
   }
+  /* A choice note carries rule names and vowel equations — "guṇa · a + i → e"
+     — not the terse morphology chips a reveal card shows.  Uppercasing that
+     would print IAST vowels as "A + I → E", which is not how anyone writes
+     them, and at this size an uppercased ṚḤ hides its own underdots. */
+  .card.choice .tag { text-transform: none; letter-spacing: .06em; font-size: .78rem; }
+
   /* the mark reads without relying on colour alone */
   .opt.right::after  { content: " ✓"; }
   .opt.wrong::after  { content: " ✕"; }
