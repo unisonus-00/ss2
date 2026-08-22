@@ -175,10 +175,18 @@ Two details there are load-bearing for the compatibility list above:
   chain when renaming; every `localStorage` touch stays guarded, since it can
   be absent or full.
 
-The page carries 58 decks. Each deck header may end with `@stage N`, which ties
-it to a numbered lesson directory; these stage numbers already agree with the
-directories, so use them, not README's table, when in doubt. Roughly the last
-third are generated from the `vocab/` bank and marked as such in the source.
+The page carries 57 decks and 1871 cards, all `type: reveal`. Each deck header
+may end with `@stage N`, which ties it to a numbered lesson directory; these
+stage numbers already agree with the directories, so use them, not README's
+table, when in doubt. Roughly the last third are generated from the `vocab/`
+bank and marked as such in the source.
+
+**Publishing a testable demo** — `node scripts/demo.js` rewrites
+`dist/abhyasah.html` into `dist/abhyasah.demo.html`, stripping the
+`<!doctype>`/`<html>`/`<head>`/`<body>` wrapper that the Artifact host supplies
+itself. Publish that file to give the learner a live page to try on a phone.
+The demo is generated and git-ignored; `dist/abhyasah.html` remains the real
+distributable.
 
 Card data still lives in the page rather than in per-lesson `practice.json`
 files. Migrating it out — one `practice.json` beside each lesson, assembled at
@@ -186,19 +194,23 @@ build time — is the other half of the architecture work above.
 
 ### Known conflicts
 
-Reported rather than guessed, per **Curriculum hierarchy** above. The lesson
-directory names and `build.py`'s `stage_meta` agree with each other; `README.md`
-is the outlier in each case.
+**`AUDIT.md` is the full record** — read it before touching stage metadata. The
+short version:
 
-- README's cross-reference table places Guṇa at stage 3, Kāraka at 6, and Vākya
-  at 11. The directories are `03-sandhi`, `04-guna`, `06-kriya`, `07-karaka`,
-  `11-samasa`, `12-vakya` — so those three are each off by one.
-- README's curriculum map puts Pūjā-Vāk at stage 16 (`17-puja-vak`) and
-  Svara-Vidyā at 19 (`20-svara-vidya`), and gives the avadhāna block as stages
-  26–36 when `26-darshana` is still Darśana and avadhāna begins at
-  `27-samasyapurana`.
-- README's "Stage Format" section says each stage contains four files. All 36
-  carry a fifth, `badge.md`, and three also carry `bricks.md`.
+The **directory identifier is the canonical stage identity**, and `badge.md`
+agrees with it in all 36 lessons. Key on directory names and you are always
+correct. Everything else disagrees somewhere:
 
-Resolve these at the source before building practice sets that depend on stage
-numbers.
+- `theory.md`, `reference.md`, and both workbooks carry `Stage N` headings from
+  an earlier **32-stage** curriculum, drifting by −2, −3, or −4 in 32 of the 36
+  lessons. `06-kriya/theory.md` is titled "Stage 4"; `36-avadhana-seva/theory.md`
+  is titled "Stage 32".
+- `00-overview.md` lists 36 slots but a different *set*: no Sandhi, plus a
+  phantom `Sva-Avadhāna` at 35 with no directory.
+- `README.md` mixes both schemes.
+- `vyakaranam/` is a byte-identical duplicate of the `bricks.md` files merged
+  into lessons 02, 05, 06 and of `03-sandhi/reference.md`.
+
+None of this has been corrected — the audit holds six decisions that need a
+maintainer's judgement. Do not perform broad metadata corrections until they
+are answered.
