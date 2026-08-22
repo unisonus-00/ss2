@@ -810,9 +810,12 @@ function openPop(btn) {
 function paint() {
   const c = current.card;
   closePop();                            // the chip about to be replaced
-  if ((c.type || 'reveal') === 'choice') { paintChoice(c); return; }
+  const kind = c.type || 'reveal';
+  if (kind === 'choice')   { paintChoice(c); return; }
+  if (kind === 'sequence') { paintSequence(c); return; }
 
-  $('card').classList.remove('choice');
+  $('card').classList.remove('choice', 'seq-card');
+  $('seq').hidden = true;
   $('choices').hidden = true;
   $('choices').textContent = '';
   $('keys').textContent = KEYS_REVEAL;
@@ -849,6 +852,8 @@ const KEYS_REVEAL = $('keys').textContent;
 
 function paintChoice(c) {
   choiceRight = null;
+  $('seq').hidden = true;
+  $('card').classList.remove('seq-card');
   $('card').classList.add('choice');
   $('card').setAttribute('aria-label', 'Choose the answer');
   $('dn').textContent   = c.front || '';
@@ -886,16 +891,126 @@ function answerChoice(c, picked) {
   });
 
   $('card').classList.add('open');       // uncovers the rule and the note
-  $('choice-next').hidden = false;
-  $('c-next').focus();
+  $('graded-next').hidden = false;
+  $('g-next').focus();
 }
 
 function choiceNext() {
   if (choiceRight === null) return;
-  $('choice-next').hidden = true;
+  $('graded-next').hidden = true;
   const right = choiceRight;
   choiceRight = null;
   if (right) knew(); else didntKnow();
+}
+
+/* ── sequence cards ────────────────────────────────────────
+   Assemble supplied pieces in order.  The same shared grading as everything
+   else: a correct assembly ends as knew(), a wrong one as didntKnow(), so a
+   sequence card is one retrieval event to the trouble list and the
+   scoreboard like any other.
+
+   Built pieces are tracked by their INDEX in `parts`, not by their text, so
+   a card whose bank repeats a word (two `ca`, say) still knows which chip
+   came from where. */
+let seqBuilt = null;                     // array of part indices, or null
+let seqRight = null;                     // null until checked, then true/false
+
+function paintSequence(c) {
+  seqBuilt = [];
+  seqRight = null;
+  $('choices').hidden = true;
+  $('choices').textContent = '';
+  $('card').classList.remove('choice');
+  $('card').classList.add('seq-card');
+  $('card').setAttribute('aria-label', 'Build the answer by tapping pieces');
+  $('dn').textContent = c.front || '';
+  $('iast').textContent = '';
+  $('gloss').textContent = '';
+  renderTag(c.note);
+  $('src').textContent = c.source || '';
+  $('dir').disabled = true;
+  $('keys').textContent = 'tap the pieces in order';
+  $('seq').hidden = false;
+  $('seq-actions').hidden = false;
+  drawSequence(c);
+}
+
+/* The bank is drawn from whatever is not currently placed, shuffled once per
+   showing so the authored order is never the answer. */
+let seqOrder = null;
+
+function drawSequence(c) {
+  const built = $('built'), bank = $('bank');
+  built.textContent = '';
+  bank.textContent = '';
+
+  if (!seqOrder || seqOrder.length !== c.parts.length) {
+    seqOrder = shuffle(c.parts.map((_, i) => i));
+  }
+
+  seqBuilt.forEach((partIdx, pos) => {
+    const b = document.createElement('button');
+    b.className = 'chip';
+    b.type = 'button';
+    b.textContent = c.parts[partIdx];
+    if (seqRight === null) {
+      b.addEventListener('click', () => { seqBuilt.splice(pos, 1); drawSequence(c); });
+    } else {
+      b.disabled = true;
+      b.classList.add(c.parts[partIdx] === c.answer[pos] ? 'right' : 'wrong');
+    }
+    built.appendChild(b);
+  });
+
+  if (seqRight === null) {
+    seqOrder.filter(i => !seqBuilt.includes(i)).forEach(partIdx => {
+      const b = document.createElement('button');
+      b.className = 'chip';
+      b.type = 'button';
+      b.textContent = c.parts[partIdx];
+      b.addEventListener('click', () => { seqBuilt.push(partIdx); drawSequence(c); });
+      bank.appendChild(b);
+    });
+  }
+
+  $('s-back').disabled  = seqBuilt.length === 0;
+  $('s-reset').disabled = seqBuilt.length === 0;
+  $('s-check').disabled = seqBuilt.length === 0;
+}
+
+function seqCheck() {
+  if (!current || seqRight !== null || !seqBuilt.length) return;
+  const c = current.card;
+  const got = seqBuilt.map(i => c.parts[i]);
+  seqRight = got.length === c.answer.length && got.every((w, i) => w === c.answer[i]);
+
+  /* Spell the answer out when it was wrong — seeing the right order is the
+     whole lesson, and a chip line marked red does not give it. */
+  $('gloss').textContent = seqRight ? '' : c.answer.join(' ');
+  $('card').classList.add('open');
+  $('keys').textContent = KEYS_REVEAL;
+  $('seq-actions').hidden = true;
+  $('graded-next').hidden = false;
+  drawSequence(c);
+  $('g-next').focus();
+}
+
+function seqBack()  { if (seqRight === null && seqBuilt.length) { seqBuilt.pop(); drawSequence(current.card); } }
+function seqReset() { if (seqRight === null) { seqBuilt = []; drawSequence(current.card); } }
+
+function seqNext() {
+  if (seqRight === null) return;
+  $('graded-next').hidden = true;
+  const right = seqRight;
+  seqRight = null;
+  seqBuilt = null;
+  if (right) knew(); else didntKnow();
+}
+
+/* One button serves both interactive types. */
+function gradedNext() {
+  if (choiceRight !== null) return choiceNext();
+  if (seqRight !== null) return seqNext();
 }
 
 function next() {
@@ -903,8 +1018,12 @@ function next() {
   $('card').setAttribute('aria-label',
     DIR === 'produce' ? 'Show the word' : 'Show the meaning');
   $('grade').hidden = true;
-  $('choice-next').hidden = true;
+  $('graded-next').hidden = true;
+  $('seq-actions').hidden = true;
   choiceRight = null;
+  seqRight = null;
+  seqBuilt = null;
+  seqOrder = null;
   if (!queue.length) { current = null; finish(); return; }
   current = queue.shift();
   $('relearn').hidden = !current.missedThisRound;
@@ -914,9 +1033,9 @@ function next() {
 
 function reveal() {
   if (!current || $('card').classList.contains('open')) return;
-  /* A choice card is uncovered by answering it, not by flipping it — a tap
-     anywhere else on the panel must not hand over the answer. */
-  if ((current.card.type || 'reveal') === 'choice') return;
+  /* An interactive card is uncovered by answering it, not by flipping it — a
+     tap anywhere else on the panel must not hand over the answer. */
+  if ((current.card.type || 'reveal') !== 'reveal') return;
   $('card').classList.add('open');
   $('card').setAttribute('aria-label', 'Answer shown — grade yourself');
   $('grade').hidden = false;
@@ -1307,7 +1426,10 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closePop(); 
 window.addEventListener('resize', () => { if (popFor) placePop(popFor); });
 window.addEventListener('scroll', () => { if (popFor) placePop(popFor); }, { passive: true });
 $('knew').addEventListener('click', knew);
-$('c-next').addEventListener('click', choiceNext);
+$('g-next').addEventListener('click', gradedNext);
+$('s-back').addEventListener('click', seqBack);
+$('s-reset').addEventListener('click', seqReset);
+$('s-check').addEventListener('click', seqCheck);
 $('miss').addEventListener('click', didntKnow);
 $('again-missed').addEventListener('click', () => {
   if (!missed.length) return;          // nothing to review — should be unreachable
@@ -1390,9 +1512,11 @@ document.addEventListener('keydown', e => {
   const t = e.target.tagName;
   if (t === 'BUTTON' || t === 'SELECT' || t === 'INPUT' || t === 'TEXTAREA') return;   // let native activation work
 
-  /* On a choice card the number keys pick an option rather than grade a
-     flip, so this arm runs first and returns. */
-  if (current && (current.card.type || 'reveal') === 'choice') {
+  /* On an interactive card the keys drive the interaction rather than grade a
+     flip, so these arms run first and return. */
+  const kind = current ? (current.card.type || 'reveal') : 'reveal';
+
+  if (current && kind === 'choice') {
     if (choiceRight === null) {
       const n = +e.key;
       const opts = $('choices').children;
@@ -1400,6 +1524,19 @@ document.addEventListener('keydown', e => {
     } else if (e.key === ' ' || e.key === 'Enter') {
       e.preventDefault(); choiceNext();
     }
+    return;
+  }
+
+  if (current && kind === 'sequence') {
+    if (seqRight !== null) {
+      if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); seqNext(); }
+      return;
+    }
+    const n = +e.key;
+    const bank = $('bank').children;
+    if (n >= 1 && n <= bank.length) { e.preventDefault(); bank[n - 1].click(); return; }
+    if (e.key === 'Backspace') { e.preventDefault(); seqBack(); return; }
+    if (e.key === 'Enter') { e.preventDefault(); seqCheck(); return; }
     return;
   }
 

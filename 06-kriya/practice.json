@@ -895,6 +895,96 @@
           "note": "dhātu · vadati, vādin · KS passim"
         }
       ]
+    },
+    {
+      "name": "Kriyā sentences — build in order",
+      "cards": [
+        {
+          "id": "06-kriya:sentence:puj-devam",
+          "type": "sequence",
+          "front": "Build: “I worship the deity.”",
+          "parts": [
+            "aham",
+            "devam",
+            "pūjayāmi"
+          ],
+          "answer": [
+            "aham",
+            "devam",
+            "pūjayāmi"
+          ],
+          "note": "subject → object → verb · the unmarked order; Sanskrit permits others",
+          "source": "workbook C1"
+        },
+        {
+          "id": "06-kriya:sentence:gam-mandiram",
+          "type": "sequence",
+          "front": "Build: “The devotee goes to the temple.”",
+          "parts": [
+            "bhaktaḥ",
+            "mandiram",
+            "gacchati"
+          ],
+          "answer": [
+            "bhaktaḥ",
+            "mandiram",
+            "gacchati"
+          ],
+          "note": "subject → object → verb · the unmarked order; Sanskrit permits others",
+          "source": "workbook C1"
+        },
+        {
+          "id": "06-kriya:sentence:jap-mantram",
+          "type": "sequence",
+          "front": "Build: “You chant the mantra.”",
+          "parts": [
+            "tvam",
+            "mantram",
+            "japasi"
+          ],
+          "answer": [
+            "tvam",
+            "mantram",
+            "japasi"
+          ],
+          "note": "subject → object → verb · the unmarked order; Sanskrit permits others",
+          "source": "workbook C1"
+        },
+        {
+          "id": "06-kriya:sentence:raks-bhaktam",
+          "type": "sequence",
+          "front": "Build: “The goddess protects the devotee.”",
+          "parts": [
+            "devī",
+            "bhaktam",
+            "rakṣati"
+          ],
+          "answer": [
+            "devī",
+            "bhaktam",
+            "rakṣati"
+          ],
+          "note": "subject → object → verb · the unmarked order; Sanskrit permits others",
+          "source": "workbook C1"
+        },
+        {
+          "id": "06-kriya:sentence:gai-stotram",
+          "type": "sequence",
+          "front": "Build: “We sing the hymn.”",
+          "parts": [
+            "vayam",
+            "stotram",
+            "gāyāmaḥ"
+          ],
+          "answer": [
+            "vayam",
+            "stotram",
+            "gāyāmaḥ"
+          ],
+          "note": "subject → object → verb · the unmarked order; Sanskrit permits others",
+          "source": "workbook C1"
+        }
+      ]
     }
   ]
 }

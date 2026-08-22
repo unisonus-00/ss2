@@ -126,6 +126,52 @@
   .opt.right::after  { content: " ✓"; }
   .opt.wrong::after  { content: " ✕"; }
 
+  /* ── sequence cards ────────────────────────────────────────
+     Assemble supplied pieces by tapping: chips move from the bank into the
+     line above it, and tapping a placed chip sends it back.  No dragging —
+     it costs mobile precision, accessibility and state for nothing here. */
+  .seq { width: 100%; max-width: 21rem; margin-top: 1.2rem; }
+  .built {
+    display: flex; flex-wrap: wrap; gap: .4rem;
+    justify-content: center; align-items: center;
+    min-height: 3.2rem; padding: .5rem;
+    border-bottom: 1px solid var(--leaf-edge);
+  }
+  /* an empty line still has to read as somewhere to put things */
+  .built:empty::before {
+    content: "tap the pieces below, in order";
+    font-size: .78rem; font-style: italic; color: var(--faded);
+  }
+  .bank {
+    display: flex; flex-wrap: wrap; gap: .45rem;
+    justify-content: center; margin-top: .9rem; min-height: 2.9rem;
+  }
+  /* once the answer is checked the bank is empty — collapse it rather than
+     leaving a hole between the sentence and its note */
+  .bank:empty { min-height: 0; margin-top: 0; }
+  .chip {
+    background: transparent; color: var(--ink);
+    border: 1px solid var(--leaf-edge); border-radius: 2px;
+    font-family: inherit; font-size: 1rem; min-height: 44px;
+    padding: .5rem .8rem; cursor: pointer; touch-action: manipulation;
+  }
+  .chip:hover:not(:disabled) { border-color: var(--faded); }
+  .chip:focus-visible { outline: 2px solid var(--kumkuma); outline-offset: 2px; }
+  .chip:disabled { cursor: default; opacity: 1; }
+  .built .chip { border-color: var(--faded); }
+  .built .chip.right { border-color: var(--patra); color: var(--patra); }
+  .built .chip.wrong { border-color: var(--kumkuma); color: var(--kumkuma); }
+  .built .chip.right::after { content: " ✓"; }
+  .built .chip.wrong::after { content: " ✕"; }
+  /* the answer, spelled out, when the assembly was wrong */
+  .card.seq-card .gloss { font-size: 1rem; font-style: italic; }
+  .card.seq-card { cursor: default; }
+  .card.seq-card .dn {
+    font-family: inherit; font-size: 1.15rem; font-style: italic;
+    line-height: 1.5; max-width: 22rem;
+  }
+  .card.seq-card .tag { text-transform: none; letter-spacing: .06em; font-size: .78rem; }
+
   .actions { display: flex; gap: .7rem; margin-top: 1.4rem; flex-wrap: wrap; justify-content: center; }
   button {
     touch-action: manipulation;

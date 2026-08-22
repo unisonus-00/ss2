@@ -196,9 +196,9 @@ fails the build rather than shipping.
 }
 ```
 
-A card with no `type` is `reveal`. `choice` adds `front`, `options`, `answer`
-and an optional `source`; `sequence` will add `front`, `parts`, `answer` (an
-array) when it lands. Add nothing else without a demonstrated need.
+A card with no `type` is `reveal`. `choice` adds `front`, `options`, `answer`;
+`sequence` adds `front`, `parts`, `answer` (an array). Both take an optional
+`source`. Add nothing else without a demonstrated need.
 
 ```json
 {
@@ -228,6 +228,37 @@ confusion is person, number or lakāra, never a random unrelated word.
 morphology annotation chip — `renderTag` turns a whole note into one tappable
 popover, and "workbook F1" is not morphology.
 
+```json
+{
+  "id": "12-vakya:sentence:mata-grhe",
+  "type": "sequence",
+  "front": "Build: “Mother cooks food at home.”",
+  "parts": ["mātā", "gṛhe", "bhojanaṃ", "pacati"],
+  "answer": ["mātā", "gṛhe", "bhojanaṃ", "pacati"],
+  "note": "subject → object → verb · the unmarked order; Sanskrit permits others",
+  "source": "workbook A1"
+}
+```
+
+**`sequence` is tap-only.** Chips move from the bank into the line by tapping;
+tapping a placed chip sends it back; Back, Reset and Check sit below. There is
+no dragging and no typing — the plan rules both out, and the tests assert that
+nothing in the sequence UI is `draggable` and that it contains no input.
+Pieces are tracked by their **index in `parts`**, not by their text, so a bank
+that repeats a word still knows which chip came from where. The bank is
+shuffled per showing.
+
+A wrong assembly spells the correct sentence out; a right one does not need
+to. Grading is the same shared path: `knew()` or `didntKnow()`.
+
+**Word order is a real hazard here.** Sanskrit permits orders other than the
+one a card marks correct, so a `sequence` card must not imply its answer is
+the only grammatical one. `12-vakya/theory.md` tells the learner to "think in
+Subject-Object-Verb order" and every workbook answer follows it, so the cards
+ask for that order and the note says it is the *unmarked* one rather than the
+only one. Keep chip sets to three or four; beyond that the exercise stops
+being retrieval and becomes visual search.
+
 Three things here are load-bearing for the compatibility list above:
 
 - **`id` is the card's identity.** It is written in `practice.json`, never
@@ -243,9 +274,9 @@ Three things here are load-bearing for the compatibility list above:
   lifts state out of earlier storage key names. Keep both chains; every
   `localStorage` touch stays guarded, since it can be absent or full.
 
-The app carries 23 lessons, 59 decks, and 1923 cards — 1871 `reveal` and 52
-`choice`. The choice sets are curated practice, not conversions of the
-reference tables:
+The app carries 23 lessons, 61 decks, and 1935 cards — 1871 `reveal`, 52
+`choice` and 12 `sequence`. The interactive sets are curated practice, not
+conversions of the reference tables:
 
 - `06-kriya` — 21 cards: person, tense, imperative, optative, and parsing.
 - `03-sandhi` — 31 cards: joins, splits, naming the rule, and the
@@ -253,6 +284,10 @@ reference tables:
   The 27 rule-name `reveal` cards stay as their own deck; the plan keeps
   terminology where terminology is the point, and the operation is now
   drilled separately.
+
+- `06-kriya` and `12-vakya` — 5 and 7 `sequence` cards: sentence building,
+  taken from the two workbooks' own "form a sentence from these elements"
+  exercises, which is the sequence interaction already written on paper.
 
 Roughly the last third of the decks are generated from the `vocab/` bank and
 marked as such.

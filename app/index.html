@@ -32,6 +32,10 @@
     <div class="dn" id="dn">…</div>
     <div class="iast" id="iast"></div>
     <div class="choices" id="choices" role="group" aria-label="Choose the answer" hidden></div>
+    <div class="seq" id="seq" hidden>
+      <div class="built" id="built" role="group" aria-label="The sentence you are building"></div>
+      <div class="bank" id="bank" role="group" aria-label="Pieces to choose from"></div>
+    </div>
     <div class="rule"></div>
     <div class="back" aria-live="polite">
       <div class="gloss" id="gloss"></div>
@@ -76,10 +80,17 @@
   <button id="knew" class="primary">Knew it</button>
 </div>
 
-<!-- A choice card grades itself from the option that was tapped, so it needs
+<!-- A choice or sequence card grades itself from what was tapped, so it needs
      one button where a reveal card needs two. -->
-<div class="actions" id="choice-next" hidden>
-  <button id="c-next" class="primary">Next</button>
+<div class="actions" id="graded-next" hidden>
+  <button id="g-next" class="primary">Next</button>
+</div>
+
+<!-- Assembling is done entirely by tapping: no dragging, no typing. -->
+<div class="actions" id="seq-actions" hidden>
+  <button id="s-back">Back</button>
+  <button id="s-reset">Reset</button>
+  <button id="s-check" class="primary">Check</button>
 </div>
 
 <div class="actions" id="rp-actions" hidden>

@@ -563,6 +563,136 @@
           "note": "indeclinable · DM passim"
         }
       ]
+    },
+    {
+      "name": "Vākya sentences — build in order",
+      "cards": [
+        {
+          "id": "12-vakya:sentence:pratah-uttisthami",
+          "type": "sequence",
+          "front": "Build: “I get up in the morning.”",
+          "parts": [
+            "aham",
+            "prātaḥ",
+            "uttiṣṭhāmi"
+          ],
+          "answer": [
+            "aham",
+            "prātaḥ",
+            "uttiṣṭhāmi"
+          ],
+          "note": "subject → object → verb · the unmarked order; Sanskrit permits others · an adverb sits before the verb",
+          "source": "workbook A1"
+        },
+        {
+          "id": "12-vakya:sentence:balah-jalam",
+          "type": "sequence",
+          "front": "Build: “The child drinks water.”",
+          "parts": [
+            "bālaḥ",
+            "jalam",
+            "pibati"
+          ],
+          "answer": [
+            "bālaḥ",
+            "jalam",
+            "pibati"
+          ],
+          "note": "subject → object → verb · the unmarked order; Sanskrit permits others",
+          "source": "workbook A1"
+        },
+        {
+          "id": "12-vakya:sentence:guruh-sisyan",
+          "type": "sequence",
+          "front": "Build: “The guru teaches the students.”",
+          "parts": [
+            "guruḥ",
+            "śiṣyān",
+            "pāṭhayati"
+          ],
+          "answer": [
+            "guruḥ",
+            "śiṣyān",
+            "pāṭhayati"
+          ],
+          "note": "subject → object → verb · the unmarked order; Sanskrit permits others",
+          "source": "workbook A1"
+        },
+        {
+          "id": "12-vakya:sentence:bhaktah-puspena",
+          "type": "sequence",
+          "front": "Build: “The devotee worships with a flower.”",
+          "parts": [
+            "bhaktaḥ",
+            "puṣpeṇa",
+            "pūjayati"
+          ],
+          "answer": [
+            "bhaktaḥ",
+            "puṣpeṇa",
+            "pūjayati"
+          ],
+          "note": "subject → object → verb · the unmarked order; Sanskrit permits others · tṛtīyā (instrument) before the verb",
+          "source": "workbook A2"
+        },
+        {
+          "id": "12-vakya:sentence:mata-grhe",
+          "type": "sequence",
+          "front": "Build: “Mother cooks food at home.”",
+          "parts": [
+            "mātā",
+            "gṛhe",
+            "bhojanaṃ",
+            "pacati"
+          ],
+          "answer": [
+            "mātā",
+            "gṛhe",
+            "bhojanaṃ",
+            "pacati"
+          ],
+          "note": "subject → object → verb · the unmarked order; Sanskrit permits others · saptamī (place) before the object",
+          "source": "workbook A1"
+        },
+        {
+          "id": "12-vakya:sentence:sayam-mandiram",
+          "type": "sequence",
+          "front": "Build: “I go to the temple in the evening.”",
+          "parts": [
+            "aham",
+            "sāyam",
+            "mandiraṃ",
+            "gacchāmi"
+          ],
+          "answer": [
+            "aham",
+            "sāyam",
+            "mandiraṃ",
+            "gacchāmi"
+          ],
+          "note": "subject → object → verb · the unmarked order; Sanskrit permits others · time before place",
+          "source": "workbook A1"
+        },
+        {
+          "id": "12-vakya:sentence:guruh-katham",
+          "type": "sequence",
+          "front": "Build: “The guru tells a story to the student.”",
+          "parts": [
+            "guruḥ",
+            "śiṣyāya",
+            "kathāṃ",
+            "kathayati"
+          ],
+          "answer": [
+            "guruḥ",
+            "śiṣyāya",
+            "kathāṃ",
+            "kathayati"
+          ],
+          "note": "subject → object → verb · the unmarked order; Sanskrit permits others · caturthī (recipient) before the object",
+          "source": "workbook A2"
+        }
+      ]
     }
   ]
 }
