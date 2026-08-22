@@ -195,7 +195,8 @@ content lives beside its lesson:
 
 ```
 app/index.html         markup only — ~190 lines, no card data
-app/logo.svg           the brand mark, inlined by the build
+app/logo-mark.png      the brand mark artwork — edit this
+app/logo.svg           app/logo-mark.png, base64-wrapped for the build
 app/styles.css
 app/app.js
 scripts/build.js       discovers, validates and inlines -> dist/abhyasah.html
@@ -251,10 +252,15 @@ JOINS AND SPLITS            31 LEFT  0 LEARNED  0 MISSED
 - **The two toggles sit below the card, centred.** They change how a card is
   shown, so they belong under the thing they change; above it they competed
   with the prompt.
-- **The mark is `app/logo.svg`**, drawn rather than embedded so it stays a few
-  hundred bytes, scales, and takes the palette through `currentColor`. The
-  build inlines it at the `<!--logo-->` placeholder — a separate source file to
-  edit, one file to ship. Replace the file and the build picks it up.
+- **The mark's artwork is `app/logo-mark.png`** — the project's own logo,
+  cropped to the circular mark alone (not the wordmark, which is set as type
+  beside it), background keyed to transparent and recoloured to the app's
+  `--leaf` token so it sits on the palette exactly rather than the source
+  photo's own tan. `app/logo.svg` just base64-wraps that PNG in an
+  `<svg class="mark"><image .../></svg>` so the build can inline one small
+  piece of text at the `<!--logo-->` placeholder; regenerate it (a one-line
+  `base64.b64encode`, in the file's own header comment) if the artwork ever
+  changes.
 - **The selector gets a row to itself.** Sharing one with the tally clipped the
   list name to an ellipsis on a phone, and the list name is the point of it.
 - **The tally is one line**, paired with the deck's descriptor. It was three
