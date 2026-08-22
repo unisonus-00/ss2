@@ -1097,6 +1097,37 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
+  // ── the grade buttons are marks, and still say what they do ────────
+  {
+    const p = await open(browser, { viewport: { width: 360, height: 740 } });
+    const r = await p.evaluate(() => {
+      /* these two belong to a reveal card; a choice card grades itself and
+         shows a single Next instead */
+      loadDeck(Object.keys(DECKS).find(n =>
+        DECKS[n].every(c => (c.type || 'reveal') === 'reveal')));
+      reveal();
+      return ['miss', 'knew'].map(id => {
+        const e = document.getElementById(id), b = e.getBoundingClientRect();
+        return { id, text: e.textContent.trim(), label: e.getAttribute('aria-label'),
+                 w: b.width, h: b.height,
+                 /* the glyph itself must be hidden from a screen reader, or it
+                    reads the button twice — once as a name, once as content */
+                 glyphHidden: !!e.querySelector('[aria-hidden="true"]') };
+      });
+    });
+    const [miss, knew] = r;
+    ok('the grade buttons carry the marks', miss.text === '✕' && knew.text === '✓',
+      miss.text + ' / ' + knew.text);
+    ok('and are still named for a screen reader',
+      /didn/i.test(miss.label || '') && /knew/i.test(knew.label || ''),
+      JSON.stringify([miss.label, knew.label]));
+    ok('with the glyph itself hidden from it', miss.glyphHidden && knew.glyphHidden);
+    ok('a mark is a bigger target than the phrase was',
+      r.every(x => x.h >= 44 && x.w >= 64),
+      r.map(x => Math.round(x.w) + '×' + Math.round(x.h)).join(' '));
+    await p.close();
+  }
+
   // ── the card survives a browser's own dark mode ────────────────────
   // Chrome and Brave auto-darken pages that do not declare a colour scheme,
   // and they repainted the palm-leaf card a muddy olive with inverted text.

@@ -269,6 +269,12 @@
   .mode-produce .iast-back { font-size: 1.2rem; opacity: .85; }
   button.primary { border-color: var(--leaf); }
   button.miss { border-color: var(--kumkuma); color: #e2a08e; }
+  /* The two grade buttons carry the same ✕ and ✓ the choice options and the
+     sequence chips already use, so the mark means one thing everywhere.  Set
+     larger than the 44px minimum: they are hit on every single card, and a
+     glyph gives less to aim at than a phrase did. */
+  button.grade { min-width: 5.5rem; min-height: 52px; padding: .5rem 1.4rem;
+                 font-size: 1.45rem; line-height: 1; }
   button:focus-visible, .card:focus-visible { outline: 2px solid var(--kumkuma); outline-offset: 3px; }
   .stage { font-size: .66rem; letter-spacing: .1em;
            text-transform: uppercase; color: var(--faded); line-height: 1.55; }
@@ -601,8 +607,11 @@
 </div>
 
 <div class="actions" id="grade" hidden>
-  <button id="miss" class="miss">Didn't know it</button>
-  <button id="knew" class="primary">Knew it</button>
+  <!-- One bit each, and the most-tapped control in the app: the mark itself
+       rather than a sentence about it.  The glyph is decorative; the name a
+       screen reader reads is on the button. -->
+  <button id="miss" class="miss grade" aria-label="Didn't know it" title="Didn't know it"><span aria-hidden="true">✕</span></button>
+  <button id="knew" class="primary grade" aria-label="Knew it" title="Knew it"><span aria-hidden="true">✓</span></button>
 </div>
 
 <!-- A choice or sequence card grades itself from what was tapped, so it needs

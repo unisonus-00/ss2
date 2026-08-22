@@ -253,7 +253,7 @@ JOINS AND SPLITS            31 LEFT  0 LEARNED  0 MISSED
 ┌──────────────────────────────────────────────────────┐
 │                       the card                        │
 └──────────────────────────────────────────────────────┘
-              [ Didn't know it ]  [ Knew it ]
+                      [ ✕ ]      [ ✓ ]
                  ⇄ join → result    ☑ IAST
 ```
 
