@@ -489,8 +489,12 @@ const open = async (browser, opts = {}) => {
     ok('it sits in lesson 03-sandhi', r.lesson === '03-sandhi' && r.stage === 3,
       r.lesson + ' / stage ' + r.stage);
     ok('every sandhi card is a well-formed choice', r.bad && r.bad.length === 0, (r.bad || []).join(', '));
+    /* Splits sit at 3, not 5: two of them asked for a join the `S ·` rule
+       lists already carry, and those lists reverse into the same split with
+       free recall rather than three options.  The badge's three categories
+       are still all covered. */
     ok('it covers joins, splits, naming and category',
-      r.kinds && r.kinds.join >= 15 && r.kinds.split >= 5 && r.kinds.name >= 3 && r.kinds.category >= 2,
+      r.kinds && r.kinds.join >= 15 && r.kinds.split >= 3 && r.kinds.name >= 3 && r.kinds.category >= 2,
       JSON.stringify(r.kinds));
     ok('a join card asks for the combination',
       /^Join: .+ \+ /.test(r.joinPrompt), JSON.stringify(r.joinPrompt));
@@ -1090,6 +1094,39 @@ const open = async (browser, opts = {}) => {
     ok('and leaves no stale key behind', r.oldGone);
     ok('the remembered list follows the whole chain',
       r.deck === 'Person, tense and mood — practice', r.deck);
+    await p.close();
+  }
+
+  // ── no choice card repeats a reveal card ───────────────────────────
+  // A choice card that hands over the same operation and the same answer as
+  // a reveal card in the same lesson is strictly the weaker of the two: the
+  // reveal card asks for free recall and reverses into the opposite drill,
+  // while the choice card shows the answer among its options.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const norm = s => (s || '').replace(/[√!]/g, '').replace(/\s+/g, ' ').trim().toLowerCase();
+      const rev = [];
+      Object.keys(DECKS).forEach(n => DECKS[n].forEach(c => {
+        if ((c.type || 'reveal') !== 'reveal') return;
+        rev.push({ L: DECK_LESSON[n], deck: n, cue: norm(c.iast),
+                   out: (c.gloss || '').split(/[·—]/).map(norm).filter(Boolean) });
+      }));
+      const dupes = [];
+      Object.keys(DECKS).forEach(n => DECKS[n].forEach(c => {
+        if ((c.type || 'reveal') !== 'choice') return;
+        const L = DECK_LESSON[n];
+        const item = norm((c.front || '').split(/:\s/).slice(1).join(': '));
+        const ans = norm(c.answer);
+        if (!item) return;                       // a bare question, nothing handed over
+        const same = rev.find(x => x.L === L && x.cue === item && x.out.includes(ans));
+        const flip = rev.find(x => x.L === L && x.cue === ans && x.out.includes(item));
+        if (same || flip) dupes.push(c.id + ' ≡ ' + (same || flip).deck);
+      }));
+      return { dupes };
+    });
+    ok('no choice card repeats a reveal card of the same lesson',
+      !r.dupes.length, r.dupes.slice(0, 4).join(' | '));
     await p.close();
   }
 

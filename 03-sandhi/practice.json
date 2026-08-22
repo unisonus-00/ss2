@@ -5,19 +5,6 @@
       "name": "Joins — practice, combine the two words",
       "cards": [
         {
-          "id": "03-sandhi:join:nara-indrah",
-          "type": "choice",
-          "front": "Join: nara + indraḥ",
-          "options": [
-            "narendraḥ",
-            "narīndraḥ",
-            "narindraḥ"
-          ],
-          "answer": "narendraḥ",
-          "note": "guṇa · a + i → e",
-          "source": "workbook A3"
-        },
-        {
           "id": "03-sandhi:join:kavi-indrah",
           "type": "choice",
           "front": "Join: kavi + indraḥ",
@@ -57,32 +44,6 @@
           "source": "theory · guṇa examples"
         },
         {
-          "id": "03-sandhi:join:vidya-alayah",
-          "type": "choice",
-          "front": "Join: vidyā + ālayaḥ",
-          "options": [
-            "vidyālayaḥ",
-            "vidyelayaḥ",
-            "vidyailayaḥ"
-          ],
-          "answer": "vidyālayaḥ",
-          "note": "savarṇadīrgha · ā + ā → ā",
-          "source": "workbook A2"
-        },
-        {
-          "id": "03-sandhi:join:sada-eva",
-          "type": "choice",
-          "front": "Join: sadā + eva",
-          "options": [
-            "sadaiva",
-            "sadeva",
-            "sadauva"
-          ],
-          "answer": "sadaiva",
-          "note": "vṛddhi · ā + e → ai",
-          "source": "workbook D1"
-        },
-        {
           "id": "03-sandhi:join:jala-oghah",
           "type": "choice",
           "front": "Join: jala + oghaḥ",
@@ -94,19 +55,6 @@
           "answer": "jalaughaḥ",
           "note": "vṛddhi · a + o → au",
           "source": "theory · vṛddhi examples"
-        },
-        {
-          "id": "03-sandhi:join:prati-ekam",
-          "type": "choice",
-          "front": "Join: prati + ekam",
-          "options": [
-            "pratyekam",
-            "pratekam",
-            "pratīkam"
-          ],
-          "answer": "pratyekam",
-          "note": "yan · i + e → y",
-          "source": "theory · yan examples"
         },
         {
           "id": "03-sandhi:join:su-agatam",
@@ -250,51 +198,12 @@
           "answer": "munir āgataḥ",
           "note": "rephādeśa · iḥ + voiced → r · not aḥ, so not o",
           "source": "theory · rephādeśa examples"
-        },
-        {
-          "id": "03-sandhi:join:devah-vadanti",
-          "type": "choice",
-          "front": "Join: devāḥ + vadanti",
-          "options": [
-            "devā vadanti",
-            "devo vadanti",
-            "devār vadanti"
-          ],
-          "answer": "devā vadanti",
-          "note": "lopa · āḥ → ā before a voiced consonant",
-          "source": "theory · lopa examples"
         }
       ]
     },
     {
       "name": "Splits & rules — practice, take apart and name",
       "cards": [
-        {
-          "id": "03-sandhi:split:narendrah",
-          "type": "choice",
-          "front": "Split: narendraḥ",
-          "options": [
-            "nara + indraḥ",
-            "naram + indraḥ",
-            "nara + rendraḥ"
-          ],
-          "answer": "nara + indraḥ",
-          "note": "guṇa · a + i → e",
-          "source": "workbook D1"
-        },
-        {
-          "id": "03-sandhi:split:pratyekam",
-          "type": "choice",
-          "front": "Split: pratyekam",
-          "options": [
-            "prati + ekam",
-            "prati + akam",
-            "prati + ikam"
-          ],
-          "answer": "prati + ekam",
-          "note": "yan · i + e → y",
-          "source": "workbook D1"
-        },
         {
           "id": "03-sandhi:split:gurupadesah",
           "type": "choice",

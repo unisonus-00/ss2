@@ -2,63 +2,6 @@
   "lesson": "21-chandas-ii",
   "decks": [
     {
-      "name": "Name the metre — practice",
-      "cards": [
-        {
-          "id": "21-chandas-ii:metre:indravajra",
-          "type": "choice",
-          "front": "Name the metre: 11 syllables · ta ta ja ga ga",
-          "options": [
-            "indravajrā",
-            "upendravajrā",
-            "vasantatilakā"
-          ],
-          "answer": "indravajrā",
-          "note": "indravajrā opens on ta · upendravajrā opens on ja",
-          "source": "deck 28 · vṛtta"
-        },
-        {
-          "id": "21-chandas-ii:metre:upendravajra",
-          "type": "choice",
-          "front": "Name the metre: 11 syllables · ja ta ja ga ga",
-          "options": [
-            "upendravajrā",
-            "indravajrā",
-            "mālinī"
-          ],
-          "answer": "upendravajrā",
-          "note": "same length as indravajrā; only the first gaṇa differs",
-          "source": "deck 28 · vṛtta"
-        },
-        {
-          "id": "21-chandas-ii:metre:vasantatilaka",
-          "type": "choice",
-          "front": "Name the metre: 14 syllables · ta bha ja ja ga ga",
-          "options": [
-            "vasantatilakā",
-            "mālinī",
-            "indravajrā"
-          ],
-          "answer": "vasantatilakā",
-          "note": "fourteen syllables",
-          "source": "deck 28 · vṛtta"
-        },
-        {
-          "id": "21-chandas-ii:metre:malini",
-          "type": "choice",
-          "front": "Name the metre: 15 syllables · na na ma ya ya",
-          "options": [
-            "mālinī",
-            "vasantatilakā",
-            "upendravajrā"
-          ],
-          "answer": "mālinī",
-          "note": "fifteen syllables",
-          "source": "deck 28 · vṛtta"
-        }
-      ]
-    },
-    {
       "name": "28 · Vṛtta — the classical metres",
       "pair": "pattern → metre",
       "cards": [

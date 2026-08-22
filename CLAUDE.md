@@ -451,6 +451,30 @@ Every card the app carries counts towards the denominator. What is here is
 curated practice plus the paradigm tables the badges ask for whole — reference
 material was never brought in, so there is nothing to filter out.
 
+### A choice card must not repeat a reveal card
+
+A `choice` card that hands over the same item and expects the same answer as a
+`reveal` card in the same lesson is strictly the weaker of the two. The reveal
+card asks for free recall, and its `pair` reverses it into the opposite drill;
+the choice card shows the answer among three options. Twenty-one such pairs had
+accumulated, and every one of them was removed in favour of the reveal card:
+
+| | |
+|:--|:--|
+| `Build: √gam + ktvā` → `gatvā` | `35 · Kṛt` already held `gam + ktvā → gatvā` |
+| `Name the metre: 11 syllables · ta ta ja ga ga` | `28 · Vṛtta` already held that whole card |
+| `Join: nara + indraḥ` → `narendraḥ` | `S · Ac sandhi` already held the rule |
+| `Split: narendraḥ` → `nara + indraḥ` | the same card, reversed |
+
+Two whole decks went with them — `Kṛt and taddhita — practice` and `Name the
+metre — practice` — because every card in them was a duplicate. The lists that
+replaced them say so in their `pair`: `35 · Kṛt` and `36 · Taddhita` run
+`affix → form`, so reversing them *is* the build drill, and `28 · Vṛtta` runs
+`pattern → metre`, so its forward direction *is* naming the metre.
+
+`scripts/test.js` compares every choice card against every reveal card of its
+lesson, in both directions, and fails if one repeats the other.
+
 ### Card schema
 
 ```json
@@ -577,9 +601,9 @@ Three things here are load-bearing for the compatibility list above:
   chain, and keep each step stamping its own version rather than the newest;
   every `localStorage` touch stays guarded, since it can be absent or full.
 
-The app carries 23 lessons, 150 decks, and 2077 cards — 1876 `reveal`, 160
-`choice` and 5 `sequence`, spread over 14 interactive decks in 11 lessons,
-plus two mastery decks holding complete paradigms.
+The app carries 23 lessons, 149 decks, and 2055 cards — 1912 `reveal`, 138
+`choice` and 5 `sequence`, spread over 12 interactive decks in 9 lessons,
+plus the mastery decks holding complete paradigms.
 They are curated practice, not conversions of the reference tables:
 
 - `06-kriya` — 21 cards: person, tense, imperative, optative, and parsing.
@@ -611,16 +635,11 @@ They are curated practice, not conversions of the reference tables:
   They sit in four lists by what the root does — being and motion, knowing and
   speaking, worship and offering, doing and holding — plus `√vad` and `√vand`,
   which the app already taught and which the reference's fifty do not include.
-- `09-dhatu` — 11 cards: kṛt and taddhita suffixes as operations
-  (`√gam + ktvā → gatvā`). Kṛt/Taddhita has no lesson of its own, so it lives
-  here beside the upasarga material, per the audit's decision 4.
 - `11-samasa` — 11 cards: name the compound type, and the vibhakti a
   tatpuruṣa unpacks with. `choice` before any compound builder, as the plan
   requires.
 - `19-chandas-i` — 11 cards: scan a word into laghu/guru, then name the gaṇa.
   Scansion is the operation the lesson exists to teach.
-- `21-chandas-ii` — 4 cards: name the metre from its gaṇa sequence. No metre
-  engine; full scansion and composition stay in the workbook.
 - `12-vakya` — 18 cards: a sentence with a hole in it, and options that force
   a grammatical decision — case, agreement, verb form, connector. Constituent
   order is deliberately *not* tested; see **`sequence` is only for orders the
