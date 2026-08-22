@@ -1,0 +1,1044 @@
+{
+  "lesson": "05-rupa",
+  "decks": [
+    {
+      "name": "11 · Vibhakti — the seven cases",
+      "cards": [
+        {
+          "id": "05-rupa:vibhakti:prathama",
+          "devanagari": "प्रथमा",
+          "iast": "prathamā",
+          "gloss": "nominative — names the thing itself",
+          "note": "prātipadikārtha, 2.3.46"
+        },
+        {
+          "id": "05-rupa:vibhakti:dvitiya",
+          "devanagari": "द्वितीया",
+          "iast": "dvitīyā",
+          "gloss": "accusative — the object",
+          "note": "karma"
+        },
+        {
+          "id": "05-rupa:vibhakti:trtiya",
+          "devanagari": "तृतीया",
+          "iast": "tṛtīyā",
+          "gloss": "instrumental — by, with",
+          "note": "karaṇa"
+        },
+        {
+          "id": "05-rupa:vibhakti:caturthi",
+          "devanagari": "चतुर्थी",
+          "iast": "caturthī",
+          "gloss": "dative — to, for",
+          "note": "sampradāna"
+        },
+        {
+          "id": "05-rupa:vibhakti:pancami",
+          "devanagari": "पञ्चमी",
+          "iast": "pañcamī",
+          "gloss": "ablative — from",
+          "note": "apādāna"
+        },
+        {
+          "id": "05-rupa:vibhakti:sasthi",
+          "devanagari": "षष्ठी",
+          "iast": "ṣaṣṭhī",
+          "gloss": "genitive — of",
+          "note": "sambandha"
+        },
+        {
+          "id": "05-rupa:vibhakti:saptami",
+          "devanagari": "सप्तमी",
+          "iast": "saptamī",
+          "gloss": "locative — in, on",
+          "note": "adhikaraṇa"
+        },
+        {
+          "id": "05-rupa:vibhakti:sambodhanam",
+          "devanagari": "सम्बोधनम्",
+          "iast": "sambodhanam",
+          "gloss": "vocative — direct address",
+          "note": "O …!"
+        }
+      ]
+    },
+    {
+      "name": "V21 · Deity vibhakti — the eight baseplates",
+      "cards": [
+        {
+          "id": "05-rupa:deity-vibhakti:ramah",
+          "devanagari": "रामः",
+          "iast": "rāmaḥ",
+          "gloss": "Rāma — prathamā ekavacana",
+          "note": "prathamā | nom. sg. · m. · stem: rāma- · a-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:ramau",
+          "devanagari": "रामौ",
+          "iast": "rāmau",
+          "gloss": "Rāma — prathamā/dvitīyā/sambodhana dvivacana",
+          "note": "prathamā/dvitīyā/sambodhana | nom./acc./voc. du. · m. · stem: rāma- · a-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:ramah-2",
+          "devanagari": "रामाः",
+          "iast": "rāmāḥ",
+          "gloss": "Rāma — prathamā/sambodhana bahuvacana",
+          "note": "prathamā/sambodhana | nom./voc. pl. · m. · stem: rāma- · a-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:ramam",
+          "devanagari": "रामम्",
+          "iast": "rāmam",
+          "gloss": "Rāma — dvitīyā ekavacana",
+          "note": "dvitīyā | acc. sg. · m. · stem: rāma- · a-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:raman",
+          "devanagari": "रामान्",
+          "iast": "rāmān",
+          "gloss": "Rāma — dvitīyā bahuvacana",
+          "note": "dvitīyā | acc. pl. · m. · stem: rāma- · a-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:ramena",
+          "devanagari": "रामेण",
+          "iast": "rāmeṇa",
+          "gloss": "Rāma — tṛtīyā ekavacana",
+          "note": "tṛtīyā | instr. sg. · m. · stem: rāma- · a-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:ramabhyam",
+          "devanagari": "रामाभ्याम्",
+          "iast": "rāmābhyām",
+          "gloss": "Rāma — tṛtīyā/caturthī/pañcamī dvivacana",
+          "note": "tṛtīyā/caturthī/pañcamī | instr./dat./abl. du. · m. · stem: rāma- · a-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:ramaih",
+          "devanagari": "रामैः",
+          "iast": "rāmaiḥ",
+          "gloss": "Rāma — tṛtīyā bahuvacana",
+          "note": "tṛtīyā | instr. pl. · m. · stem: rāma- · a-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:ramaya",
+          "devanagari": "रामाय",
+          "iast": "rāmāya",
+          "gloss": "Rāma — caturthī ekavacana",
+          "note": "caturthī | dat. sg. · m. · stem: rāma- · a-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:ramebhyah",
+          "devanagari": "रामेभ्यः",
+          "iast": "rāmebhyaḥ",
+          "gloss": "Rāma — caturthī/pañcamī bahuvacana",
+          "note": "caturthī/pañcamī | dat./abl. pl. · m. · stem: rāma- · a-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:ramat",
+          "devanagari": "रामात्",
+          "iast": "rāmāt",
+          "gloss": "Rāma — pañcamī ekavacana",
+          "note": "pañcamī | abl. sg. · m. · stem: rāma- · a-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:ramasya",
+          "devanagari": "रामस्य",
+          "iast": "rāmasya",
+          "gloss": "Rāma — ṣaṣṭhī ekavacana",
+          "note": "ṣaṣṭhī | gen. sg. · m. · stem: rāma- · a-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:ramayoh",
+          "devanagari": "रामयोः",
+          "iast": "rāmayoḥ",
+          "gloss": "Rāma — ṣaṣṭhī/saptamī dvivacana",
+          "note": "ṣaṣṭhī/saptamī | gen./loc. du. · m. · stem: rāma- · a-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:ramanam",
+          "devanagari": "रामाणाम्",
+          "iast": "rāmāṇām",
+          "gloss": "Rāma — ṣaṣṭhī bahuvacana",
+          "note": "ṣaṣṭhī | gen. pl. · m. · stem: rāma- · a-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:rame",
+          "devanagari": "रामे",
+          "iast": "rāme",
+          "gloss": "Rāma — saptamī ekavacana",
+          "note": "saptamī | loc. sg. · m. · stem: rāma- · a-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:ramesu",
+          "devanagari": "रामेषु",
+          "iast": "rāmeṣu",
+          "gloss": "Rāma — saptamī bahuvacana",
+          "note": "saptamī | loc. pl. · m. · stem: rāma- · a-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:rama",
+          "devanagari": "राम",
+          "iast": "rāma",
+          "gloss": "Rāma — sambodhana ekavacana",
+          "note": "sambodhana | voc. sg. · m. · stem: rāma- · a-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:durga",
+          "devanagari": "दुर्गा",
+          "iast": "durgā",
+          "gloss": "Durgā — prathamā ekavacana",
+          "note": "prathamā | nom. sg. · f. · stem: durgā- · ā-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:durge",
+          "devanagari": "दुर्गे",
+          "iast": "durge",
+          "gloss": "Durgā — prathamā/dvitīyā/sambodhana dvivacana, sambodhana ekavacana",
+          "note": "prathamā/dvitīyā/sambodhana | nom./acc./voc. du. · f. · sambodhana | voc. sg. · stem: durgā- · ā-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:durgah",
+          "devanagari": "दुर्गाः",
+          "iast": "durgāḥ",
+          "gloss": "Durgā — prathamā/dvitīyā/sambodhana bahuvacana",
+          "note": "prathamā/dvitīyā/sambodhana | nom./acc./voc. pl. · f. · stem: durgā- · ā-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:durgam",
+          "devanagari": "दुर्गाम्",
+          "iast": "durgām",
+          "gloss": "Durgā — dvitīyā ekavacana",
+          "note": "dvitīyā | acc. sg. · f. · stem: durgā- · ā-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:durgaya",
+          "devanagari": "दुर्गया",
+          "iast": "durgayā",
+          "gloss": "Durgā — tṛtīyā ekavacana",
+          "note": "tṛtīyā | instr. sg. · f. · stem: durgā- · ā-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:durgabhyam",
+          "devanagari": "दुर्गाभ्याम्",
+          "iast": "durgābhyām",
+          "gloss": "Durgā — tṛtīyā/caturthī/pañcamī dvivacana",
+          "note": "tṛtīyā/caturthī/pañcamī | instr./dat./abl. du. · f. · stem: durgā- · ā-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:durgabhih",
+          "devanagari": "दुर्गाभिः",
+          "iast": "durgābhiḥ",
+          "gloss": "Durgā — tṛtīyā bahuvacana",
+          "note": "tṛtīyā | instr. pl. · f. · stem: durgā- · ā-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:durgayai",
+          "devanagari": "दुर्गायै",
+          "iast": "durgāyai",
+          "gloss": "Durgā — caturthī ekavacana",
+          "note": "caturthī | dat. sg. · f. · stem: durgā- · ā-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:durgabhyah",
+          "devanagari": "दुर्गाभ्यः",
+          "iast": "durgābhyaḥ",
+          "gloss": "Durgā — caturthī/pañcamī bahuvacana",
+          "note": "caturthī/pañcamī | dat./abl. pl. · f. · stem: durgā- · ā-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:durgayah",
+          "devanagari": "दुर्गायाः",
+          "iast": "durgāyāḥ",
+          "gloss": "Durgā — pañcamī/ṣaṣṭhī ekavacana",
+          "note": "pañcamī/ṣaṣṭhī | abl./gen. sg. · f. · stem: durgā- · ā-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:durgayoh",
+          "devanagari": "दुर्गयोः",
+          "iast": "durgayoḥ",
+          "gloss": "Durgā — ṣaṣṭhī/saptamī dvivacana",
+          "note": "ṣaṣṭhī/saptamī | gen./loc. du. · f. · stem: durgā- · ā-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:durganam",
+          "devanagari": "दुर्गाणाम्",
+          "iast": "durgāṇām",
+          "gloss": "Durgā — ṣaṣṭhī bahuvacana",
+          "note": "ṣaṣṭhī | gen. pl. · f. · stem: durgā- · ā-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:durgayam",
+          "devanagari": "दुर्गायाम्",
+          "iast": "durgāyām",
+          "gloss": "Durgā — saptamī ekavacana",
+          "note": "saptamī | loc. sg. · f. · stem: durgā- · ā-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:durgasu",
+          "devanagari": "दुर्गासु",
+          "iast": "durgāsu",
+          "gloss": "Durgā — saptamī bahuvacana",
+          "note": "saptamī | loc. pl. · f. · stem: durgā- · ā-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:harih",
+          "devanagari": "हरिः",
+          "iast": "hariḥ",
+          "gloss": "Hari — prathamā ekavacana",
+          "note": "prathamā | nom. sg. · m. · stem: hari- · i-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:hari",
+          "devanagari": "हरी",
+          "iast": "harī",
+          "gloss": "Hari — prathamā/dvitīyā/sambodhana dvivacana",
+          "note": "prathamā/dvitīyā/sambodhana | nom./acc./voc. du. · m. · stem: hari- · i-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:harayah",
+          "devanagari": "हरयः",
+          "iast": "harayaḥ",
+          "gloss": "Hari — prathamā/sambodhana bahuvacana",
+          "note": "prathamā/sambodhana | nom./voc. pl. · m. · stem: hari- · i-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:harim",
+          "devanagari": "हरिम्",
+          "iast": "harim",
+          "gloss": "Hari — dvitīyā ekavacana",
+          "note": "dvitīyā | acc. sg. · m. · stem: hari- · i-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:harin",
+          "devanagari": "हरीन्",
+          "iast": "harīn",
+          "gloss": "Hari — dvitīyā bahuvacana",
+          "note": "dvitīyā | acc. pl. · m. · stem: hari- · i-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:harina",
+          "devanagari": "हरिणा",
+          "iast": "hariṇā",
+          "gloss": "Hari — tṛtīyā ekavacana",
+          "note": "tṛtīyā | instr. sg. · m. · stem: hari- · i-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:haribhyam",
+          "devanagari": "हरिभ्याम्",
+          "iast": "haribhyām",
+          "gloss": "Hari — tṛtīyā/caturthī/pañcamī dvivacana",
+          "note": "tṛtīyā/caturthī/pañcamī | instr./dat./abl. du. · m. · stem: hari- · i-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:haribhih",
+          "devanagari": "हरिभिः",
+          "iast": "haribhiḥ",
+          "gloss": "Hari — tṛtīyā bahuvacana",
+          "note": "tṛtīyā | instr. pl. · m. · stem: hari- · i-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:haraye",
+          "devanagari": "हरये",
+          "iast": "haraye",
+          "gloss": "Hari — caturthī ekavacana",
+          "note": "caturthī | dat. sg. · m. · stem: hari- · i-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:haribhyah",
+          "devanagari": "हरिभ्यः",
+          "iast": "haribhyaḥ",
+          "gloss": "Hari — caturthī/pañcamī bahuvacana",
+          "note": "caturthī/pañcamī | dat./abl. pl. · m. · stem: hari- · i-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:hareh",
+          "devanagari": "हरेः",
+          "iast": "hareḥ",
+          "gloss": "Hari — pañcamī/ṣaṣṭhī ekavacana",
+          "note": "pañcamī/ṣaṣṭhī | abl./gen. sg. · m. · stem: hari- · i-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:haryoh",
+          "devanagari": "हर्योः",
+          "iast": "haryoḥ",
+          "gloss": "Hari — ṣaṣṭhī/saptamī dvivacana",
+          "note": "ṣaṣṭhī/saptamī | gen./loc. du. · m. · stem: hari- · i-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:harinam",
+          "devanagari": "हरीणाम्",
+          "iast": "harīṇām",
+          "gloss": "Hari — ṣaṣṭhī bahuvacana",
+          "note": "ṣaṣṭhī | gen. pl. · m. · stem: hari- · i-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:harau",
+          "devanagari": "हरौ",
+          "iast": "harau",
+          "gloss": "Hari — saptamī ekavacana",
+          "note": "saptamī | loc. sg. · m. · stem: hari- · i-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:harisu",
+          "devanagari": "हरिषु",
+          "iast": "hariṣu",
+          "gloss": "Hari — saptamī bahuvacana",
+          "note": "saptamī | loc. pl. · m. · stem: hari- · i-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:hare",
+          "devanagari": "हरे",
+          "iast": "hare",
+          "gloss": "Hari — sambodhana ekavacana",
+          "note": "sambodhana | voc. sg. · m. · stem: hari- · i-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:laksmih",
+          "devanagari": "लक्ष्मीः",
+          "iast": "lakṣmīḥ",
+          "gloss": "Lakṣmī — prathamā ekavacana, dvitīyā bahuvacana",
+          "note": "prathamā | nom. sg. · f. · dvitīyā | acc. pl. · stem: lakṣmī- · ī-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:laksmyau",
+          "devanagari": "लक्ष्म्यौ",
+          "iast": "lakṣmyau",
+          "gloss": "Lakṣmī — prathamā/dvitīyā/sambodhana dvivacana",
+          "note": "prathamā/dvitīyā/sambodhana | nom./acc./voc. du. · f. · stem: lakṣmī- · ī-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:laksmyah",
+          "devanagari": "लक्ष्म्यः",
+          "iast": "lakṣmyaḥ",
+          "gloss": "Lakṣmī — prathamā/sambodhana bahuvacana",
+          "note": "prathamā/sambodhana | nom./voc. pl. · f. · stem: lakṣmī- · ī-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:laksmim",
+          "devanagari": "लक्ष्मीम्",
+          "iast": "lakṣmīm",
+          "gloss": "Lakṣmī — dvitīyā ekavacana",
+          "note": "dvitīyā | acc. sg. · f. · stem: lakṣmī- · ī-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:laksmya",
+          "devanagari": "लक्ष्म्या",
+          "iast": "lakṣmyā",
+          "gloss": "Lakṣmī — tṛtīyā ekavacana",
+          "note": "tṛtīyā | instr. sg. · f. · stem: lakṣmī- · ī-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:laksmibhyam",
+          "devanagari": "लक्ष्मीभ्याम्",
+          "iast": "lakṣmībhyām",
+          "gloss": "Lakṣmī — tṛtīyā/caturthī/pañcamī dvivacana",
+          "note": "tṛtīyā/caturthī/pañcamī | instr./dat./abl. du. · f. · stem: lakṣmī- · ī-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:laksmibhih",
+          "devanagari": "लक्ष्मीभिः",
+          "iast": "lakṣmībhiḥ",
+          "gloss": "Lakṣmī — tṛtīyā bahuvacana",
+          "note": "tṛtīyā | instr. pl. · f. · stem: lakṣmī- · ī-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:laksmyai",
+          "devanagari": "लक्ष्म्यै",
+          "iast": "lakṣmyai",
+          "gloss": "Lakṣmī — caturthī ekavacana",
+          "note": "caturthī | dat. sg. · f. · stem: lakṣmī- · ī-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:laksmibhyah",
+          "devanagari": "लक्ष्मीभ्यः",
+          "iast": "lakṣmībhyaḥ",
+          "gloss": "Lakṣmī — caturthī/pañcamī bahuvacana",
+          "note": "caturthī/pañcamī | dat./abl. pl. · f. · stem: lakṣmī- · ī-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:laksmyah-2",
+          "devanagari": "लक्ष्म्याः",
+          "iast": "lakṣmyāḥ",
+          "gloss": "Lakṣmī — pañcamī/ṣaṣṭhī ekavacana",
+          "note": "pañcamī/ṣaṣṭhī | abl./gen. sg. · f. · stem: lakṣmī- · ī-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:laksmyoh",
+          "devanagari": "लक्ष्म्योः",
+          "iast": "lakṣmyoḥ",
+          "gloss": "Lakṣmī — ṣaṣṭhī/saptamī dvivacana",
+          "note": "ṣaṣṭhī/saptamī | gen./loc. du. · f. · stem: lakṣmī- · ī-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:laksminam",
+          "devanagari": "लक्ष्मीणाम्",
+          "iast": "lakṣmīṇām",
+          "gloss": "Lakṣmī — ṣaṣṭhī bahuvacana",
+          "note": "ṣaṣṭhī | gen. pl. · f. · stem: lakṣmī- · ī-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:laksmyam",
+          "devanagari": "लक्ष्म्याम्",
+          "iast": "lakṣmyām",
+          "gloss": "Lakṣmī — saptamī ekavacana",
+          "note": "saptamī | loc. sg. · f. · stem: lakṣmī- · ī-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:laksmisu",
+          "devanagari": "लक्ष्मीषु",
+          "iast": "lakṣmīṣu",
+          "gloss": "Lakṣmī — saptamī bahuvacana",
+          "note": "saptamī | loc. pl. · f. · stem: lakṣmī- · ī-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:laksmi",
+          "devanagari": "लक्ष्मि",
+          "iast": "lakṣmi",
+          "gloss": "Lakṣmī — sambodhana ekavacana",
+          "note": "sambodhana | voc. sg. · f. · stem: lakṣmī- · ī-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:visnuh",
+          "devanagari": "विष्णुः",
+          "iast": "viṣṇuḥ",
+          "gloss": "Viṣṇu — prathamā ekavacana",
+          "note": "prathamā | nom. sg. · m. · stem: viṣṇu- · u-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:visnu",
+          "devanagari": "विष्णू",
+          "iast": "viṣṇū",
+          "gloss": "Viṣṇu — prathamā/dvitīyā/sambodhana dvivacana",
+          "note": "prathamā/dvitīyā/sambodhana | nom./acc./voc. du. · m. · stem: viṣṇu- · u-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:visnavah",
+          "devanagari": "विष्णवः",
+          "iast": "viṣṇavaḥ",
+          "gloss": "Viṣṇu — prathamā/sambodhana bahuvacana",
+          "note": "prathamā/sambodhana | nom./voc. pl. · m. · stem: viṣṇu- · u-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:visnum",
+          "devanagari": "विष्णुम्",
+          "iast": "viṣṇum",
+          "gloss": "Viṣṇu — dvitīyā ekavacana",
+          "note": "dvitīyā | acc. sg. · m. · stem: viṣṇu- · u-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:visnun",
+          "devanagari": "विष्णून्",
+          "iast": "viṣṇūn",
+          "gloss": "Viṣṇu — dvitīyā bahuvacana",
+          "note": "dvitīyā | acc. pl. · m. · stem: viṣṇu- · u-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:visnuna",
+          "devanagari": "विष्णुना",
+          "iast": "viṣṇunā",
+          "gloss": "Viṣṇu — tṛtīyā ekavacana",
+          "note": "tṛtīyā | instr. sg. · m. · stem: viṣṇu- · u-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:visnubhyam",
+          "devanagari": "विष्णुभ्याम्",
+          "iast": "viṣṇubhyām",
+          "gloss": "Viṣṇu — tṛtīyā/caturthī/pañcamī dvivacana",
+          "note": "tṛtīyā/caturthī/pañcamī | instr./dat./abl. du. · m. · stem: viṣṇu- · u-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:visnubhih",
+          "devanagari": "विष्णुभिः",
+          "iast": "viṣṇubhiḥ",
+          "gloss": "Viṣṇu — tṛtīyā bahuvacana",
+          "note": "tṛtīyā | instr. pl. · m. · stem: viṣṇu- · u-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:visnave",
+          "devanagari": "विष्णवे",
+          "iast": "viṣṇave",
+          "gloss": "Viṣṇu — caturthī ekavacana",
+          "note": "caturthī | dat. sg. · m. · stem: viṣṇu- · u-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:visnubhyah",
+          "devanagari": "विष्णुभ्यः",
+          "iast": "viṣṇubhyaḥ",
+          "gloss": "Viṣṇu — caturthī/pañcamī bahuvacana",
+          "note": "caturthī/pañcamī | dat./abl. pl. · m. · stem: viṣṇu- · u-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:visnoh",
+          "devanagari": "विष्णोः",
+          "iast": "viṣṇoḥ",
+          "gloss": "Viṣṇu — pañcamī/ṣaṣṭhī ekavacana",
+          "note": "pañcamī/ṣaṣṭhī | abl./gen. sg. · m. · stem: viṣṇu- · u-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:visnvoh",
+          "devanagari": "विष्ण्वोः",
+          "iast": "viṣṇvoḥ",
+          "gloss": "Viṣṇu — ṣaṣṭhī/saptamī dvivacana",
+          "note": "ṣaṣṭhī/saptamī | gen./loc. du. · m. · stem: viṣṇu- · u-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:visnunam",
+          "devanagari": "विष्णूनाम्",
+          "iast": "viṣṇūnām",
+          "gloss": "Viṣṇu — ṣaṣṭhī bahuvacana",
+          "note": "ṣaṣṭhī | gen. pl. · m. · stem: viṣṇu- · u-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:visnau",
+          "devanagari": "विष्णौ",
+          "iast": "viṣṇau",
+          "gloss": "Viṣṇu — saptamī ekavacana",
+          "note": "saptamī | loc. sg. · m. · stem: viṣṇu- · u-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:visnusu",
+          "devanagari": "विष्णुषु",
+          "iast": "viṣṇuṣu",
+          "gloss": "Viṣṇu — saptamī bahuvacana",
+          "note": "saptamī | loc. pl. · m. · stem: viṣṇu- · u-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:visno",
+          "devanagari": "विष्णो",
+          "iast": "viṣṇo",
+          "gloss": "Viṣṇu — sambodhana ekavacana",
+          "note": "sambodhana | voc. sg. · m. · stem: viṣṇu- · u-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:bhagavan",
+          "devanagari": "भगवान्",
+          "iast": "bhagavān",
+          "gloss": "Bhagavat — prathamā ekavacana",
+          "note": "prathamā | nom. sg. · m. · stem: bhagavat- · at-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:bhagavantau",
+          "devanagari": "भगवन्तौ",
+          "iast": "bhagavantau",
+          "gloss": "Bhagavat — prathamā/dvitīyā/sambodhana dvivacana",
+          "note": "prathamā/dvitīyā/sambodhana | nom./acc./voc. du. · m. · stem: bhagavat- · at-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:bhagavantah",
+          "devanagari": "भगवन्तः",
+          "iast": "bhagavantaḥ",
+          "gloss": "Bhagavat — prathamā/sambodhana bahuvacana",
+          "note": "prathamā/sambodhana | nom./voc. pl. · m. · stem: bhagavat- · at-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:bhagavantam",
+          "devanagari": "भगवन्तम्",
+          "iast": "bhagavantam",
+          "gloss": "Bhagavat — dvitīyā ekavacana",
+          "note": "dvitīyā | acc. sg. · m. · stem: bhagavat- · at-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:bhagavatah",
+          "devanagari": "भगवतः",
+          "iast": "bhagavataḥ",
+          "gloss": "Bhagavat — dvitīyā bahuvacana, pañcamī/ṣaṣṭhī ekavacana",
+          "note": "dvitīyā | acc. pl. · m. · pañcamī/ṣaṣṭhī | abl./gen. sg. · stem: bhagavat- · at-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:bhagavata",
+          "devanagari": "भगवता",
+          "iast": "bhagavatā",
+          "gloss": "Bhagavat — tṛtīyā ekavacana",
+          "note": "tṛtīyā | instr. sg. · m. · stem: bhagavat- · at-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:bhagavadbhyam",
+          "devanagari": "भगवद्भ्याम्",
+          "iast": "bhagavadbhyām",
+          "gloss": "Bhagavat — tṛtīyā/caturthī/pañcamī dvivacana",
+          "note": "tṛtīyā/caturthī/pañcamī | instr./dat./abl. du. · m. · stem: bhagavat- · at-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:bhagavadbhih",
+          "devanagari": "भगवद्भिः",
+          "iast": "bhagavadbhiḥ",
+          "gloss": "Bhagavat — tṛtīyā bahuvacana",
+          "note": "tṛtīyā | instr. pl. · m. · stem: bhagavat- · at-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:bhagavate",
+          "devanagari": "भगवते",
+          "iast": "bhagavate",
+          "gloss": "Bhagavat — caturthī ekavacana",
+          "note": "caturthī | dat. sg. · m. · stem: bhagavat- · at-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:bhagavadbhyah",
+          "devanagari": "भगवद्भ्यः",
+          "iast": "bhagavadbhyaḥ",
+          "gloss": "Bhagavat — caturthī/pañcamī bahuvacana",
+          "note": "caturthī/pañcamī | dat./abl. pl. · m. · stem: bhagavat- · at-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:bhagavatoh",
+          "devanagari": "भगवतोः",
+          "iast": "bhagavatoḥ",
+          "gloss": "Bhagavat — ṣaṣṭhī/saptamī dvivacana",
+          "note": "ṣaṣṭhī/saptamī | gen./loc. du. · m. · stem: bhagavat- · at-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:bhagavatam",
+          "devanagari": "भगवताम्",
+          "iast": "bhagavatām",
+          "gloss": "Bhagavat — ṣaṣṭhī bahuvacana",
+          "note": "ṣaṣṭhī | gen. pl. · m. · stem: bhagavat- · at-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:bhagavati",
+          "devanagari": "भगवति",
+          "iast": "bhagavati",
+          "gloss": "Bhagavat — saptamī ekavacana",
+          "note": "saptamī | loc. sg. · m. · stem: bhagavat- · at-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:bhagavatsu",
+          "devanagari": "भगवत्सु",
+          "iast": "bhagavatsu",
+          "gloss": "Bhagavat — saptamī bahuvacana",
+          "note": "saptamī | loc. pl. · m. · stem: bhagavat- · at-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:bhagavan-2",
+          "devanagari": "भगवन्",
+          "iast": "bhagavan",
+          "gloss": "Bhagavat — sambodhana ekavacana",
+          "note": "sambodhana | voc. sg. · m. · stem: bhagavat- · at-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:atma",
+          "devanagari": "आत्मा",
+          "iast": "ātmā",
+          "gloss": "Ātman — prathamā ekavacana",
+          "note": "prathamā | nom. sg. · m. · stem: ātman- · an-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:atmanau",
+          "devanagari": "आत्मानौ",
+          "iast": "ātmānau",
+          "gloss": "Ātman — prathamā/dvitīyā/sambodhana dvivacana",
+          "note": "prathamā/dvitīyā/sambodhana | nom./acc./voc. du. · m. · stem: ātman- · an-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:atmanah",
+          "devanagari": "आत्मानः",
+          "iast": "ātmānaḥ",
+          "gloss": "Ātman — prathamā/sambodhana bahuvacana",
+          "note": "prathamā/sambodhana | nom./voc. pl. · m. · stem: ātman- · an-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:atmanam",
+          "devanagari": "आत्मानम्",
+          "iast": "ātmānam",
+          "gloss": "Ātman — dvitīyā ekavacana",
+          "note": "dvitīyā | acc. sg. · m. · stem: ātman- · an-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:atmanah-2",
+          "devanagari": "आत्मनः",
+          "iast": "ātmanaḥ",
+          "gloss": "Ātman — dvitīyā bahuvacana, pañcamī/ṣaṣṭhī ekavacana",
+          "note": "dvitīyā | acc. pl. · m. · pañcamī/ṣaṣṭhī | abl./gen. sg. · stem: ātman- · an-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:atmana",
+          "devanagari": "आत्मना",
+          "iast": "ātmanā",
+          "gloss": "Ātman — tṛtīyā ekavacana",
+          "note": "tṛtīyā | instr. sg. · m. · stem: ātman- · an-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:atmabhyam",
+          "devanagari": "आत्मभ्याम्",
+          "iast": "ātmabhyām",
+          "gloss": "Ātman — tṛtīyā/caturthī/pañcamī dvivacana",
+          "note": "tṛtīyā/caturthī/pañcamī | instr./dat./abl. du. · m. · stem: ātman- · an-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:atmabhih",
+          "devanagari": "आत्मभिः",
+          "iast": "ātmabhiḥ",
+          "gloss": "Ātman — tṛtīyā bahuvacana",
+          "note": "tṛtīyā | instr. pl. · m. · stem: ātman- · an-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:atmane",
+          "devanagari": "आत्मने",
+          "iast": "ātmane",
+          "gloss": "Ātman — caturthī ekavacana",
+          "note": "caturthī | dat. sg. · m. · stem: ātman- · an-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:atmabhyah",
+          "devanagari": "आत्मभ्यः",
+          "iast": "ātmabhyaḥ",
+          "gloss": "Ātman — caturthī/pañcamī bahuvacana",
+          "note": "caturthī/pañcamī | dat./abl. pl. · m. · stem: ātman- · an-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:atmanoh",
+          "devanagari": "आत्मनोः",
+          "iast": "ātmanoḥ",
+          "gloss": "Ātman — ṣaṣṭhī/saptamī dvivacana",
+          "note": "ṣaṣṭhī/saptamī | gen./loc. du. · m. · stem: ātman- · an-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:atmanam-2",
+          "devanagari": "आत्मनाम्",
+          "iast": "ātmanām",
+          "gloss": "Ātman — ṣaṣṭhī bahuvacana",
+          "note": "ṣaṣṭhī | gen. pl. · m. · stem: ātman- · an-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:atmani",
+          "devanagari": "आत्मनि",
+          "iast": "ātmani",
+          "gloss": "Ātman — saptamī ekavacana",
+          "note": "saptamī | loc. sg. · m. · stem: ātman- · an-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:atmasu",
+          "devanagari": "आत्मसु",
+          "iast": "ātmasu",
+          "gloss": "Ātman — saptamī bahuvacana",
+          "note": "saptamī | loc. pl. · m. · stem: ātman- · an-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:atman",
+          "devanagari": "आत्मन्",
+          "iast": "ātman",
+          "gloss": "Ātman — sambodhana ekavacana",
+          "note": "sambodhana | voc. sg. · m. · stem: ātman- · an-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:mata",
+          "devanagari": "माता",
+          "iast": "mātā",
+          "gloss": "Mātṛ — prathamā ekavacana",
+          "note": "prathamā | nom. sg. · f. · stem: mātṛ- · ṛ-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:matarau",
+          "devanagari": "मातरौ",
+          "iast": "mātarau",
+          "gloss": "Mātṛ — prathamā/dvitīyā/sambodhana dvivacana",
+          "note": "prathamā/dvitīyā/sambodhana | nom./acc./voc. du. · f. · stem: mātṛ- · ṛ-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:matarah",
+          "devanagari": "मातरः",
+          "iast": "mātaraḥ",
+          "gloss": "Mātṛ — prathamā/sambodhana bahuvacana",
+          "note": "prathamā/sambodhana | nom./voc. pl. · f. · stem: mātṛ- · ṛ-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:mataram",
+          "devanagari": "मातरम्",
+          "iast": "mātaram",
+          "gloss": "Mātṛ — dvitīyā ekavacana",
+          "note": "dvitīyā | acc. sg. · f. · stem: mātṛ- · ṛ-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:matrh",
+          "devanagari": "मातॄः",
+          "iast": "mātṝḥ",
+          "gloss": "Mātṛ — dvitīyā bahuvacana",
+          "note": "dvitīyā | acc. pl. · f. · stem: mātṛ- · ṛ-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:matra",
+          "devanagari": "मात्रा",
+          "iast": "mātrā",
+          "gloss": "Mātṛ — tṛtīyā ekavacana",
+          "note": "tṛtīyā | instr. sg. · f. · stem: mātṛ- · ṛ-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:matrbhyam",
+          "devanagari": "मातृभ्याम्",
+          "iast": "mātṛbhyām",
+          "gloss": "Mātṛ — tṛtīyā/caturthī/pañcamī dvivacana",
+          "note": "tṛtīyā/caturthī/pañcamī | instr./dat./abl. du. · f. · stem: mātṛ- · ṛ-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:matrbhih",
+          "devanagari": "मातृभिः",
+          "iast": "mātṛbhiḥ",
+          "gloss": "Mātṛ — tṛtīyā bahuvacana",
+          "note": "tṛtīyā | instr. pl. · f. · stem: mātṛ- · ṛ-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:matre",
+          "devanagari": "मात्रे",
+          "iast": "mātre",
+          "gloss": "Mātṛ — caturthī ekavacana",
+          "note": "caturthī | dat. sg. · f. · stem: mātṛ- · ṛ-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:matrbhyah",
+          "devanagari": "मातृभ्यः",
+          "iast": "mātṛbhyaḥ",
+          "gloss": "Mātṛ — caturthī/pañcamī bahuvacana",
+          "note": "caturthī/pañcamī | dat./abl. pl. · f. · stem: mātṛ- · ṛ-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:matuh",
+          "devanagari": "मातुः",
+          "iast": "mātuḥ",
+          "gloss": "Mātṛ — pañcamī/ṣaṣṭhī ekavacana",
+          "note": "pañcamī/ṣaṣṭhī | abl./gen. sg. · f. · stem: mātṛ- · ṛ-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:matroh",
+          "devanagari": "मात्रोः",
+          "iast": "mātroḥ",
+          "gloss": "Mātṛ — ṣaṣṭhī/saptamī dvivacana",
+          "note": "ṣaṣṭhī/saptamī | gen./loc. du. · f. · stem: mātṛ- · ṛ-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:matrnam",
+          "devanagari": "मातॄणाम्",
+          "iast": "mātṝṇām",
+          "gloss": "Mātṛ — ṣaṣṭhī bahuvacana",
+          "note": "ṣaṣṭhī | gen. pl. · f. · stem: mātṛ- · ṛ-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:matari",
+          "devanagari": "मातरि",
+          "iast": "mātari",
+          "gloss": "Mātṛ — saptamī ekavacana",
+          "note": "saptamī | loc. sg. · f. · stem: mātṛ- · ṛ-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:matrsu",
+          "devanagari": "मातृषु",
+          "iast": "mātṛṣu",
+          "gloss": "Mātṛ — saptamī bahuvacana",
+          "note": "saptamī | loc. pl. · f. · stem: mātṛ- · ṛ-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:matah",
+          "devanagari": "मातः",
+          "iast": "mātaḥ",
+          "gloss": "Mātṛ — sambodhana ekavacana",
+          "note": "sambodhana | voc. sg. · f. · stem: mātṛ- · ṛ-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:pita",
+          "devanagari": "पिता",
+          "iast": "pitā",
+          "gloss": "Pitṛ — prathamā ekavacana",
+          "note": "prathamā | nom. sg. · m. · stem: pitṛ- · ṛ-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:pitarau",
+          "devanagari": "पितरौ",
+          "iast": "pitarau",
+          "gloss": "Pitṛ — prathamā/dvitīyā dvivacana",
+          "note": "prathamā/dvitīyā | nom./acc. du. · m. · stem: pitṛ- · ṛ-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:pitarah",
+          "devanagari": "पितरः",
+          "iast": "pitaraḥ",
+          "gloss": "Pitṛ — prathamā bahuvacana",
+          "note": "prathamā | nom. pl. · m. · stem: pitṛ- · ṛ-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:pitaram",
+          "devanagari": "पितरम्",
+          "iast": "pitaram",
+          "gloss": "Pitṛ — dvitīyā ekavacana",
+          "note": "dvitīyā | acc. sg. · m. · stem: pitṛ- · ṛ-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:pitrn",
+          "devanagari": "पितॄन्",
+          "iast": "pitṝn",
+          "gloss": "Pitṛ — dvitīyā bahuvacana",
+          "note": "dvitīyā | acc. pl. · m. · stem: pitṛ- · ṛ-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:pitra",
+          "devanagari": "पित्रा",
+          "iast": "pitrā",
+          "gloss": "Pitṛ — tṛtīyā ekavacana",
+          "note": "tṛtīyā | instr. sg. · m. · stem: pitṛ- · ṛ-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:pitrbhyam",
+          "devanagari": "पितृभ्याम्",
+          "iast": "pitṛbhyām",
+          "gloss": "Pitṛ — tṛtīyā/caturthī/pañcamī dvivacana",
+          "note": "tṛtīyā/caturthī/pañcamī | instr./dat./abl. du. · m. · stem: pitṛ- · ṛ-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:pitrbhih",
+          "devanagari": "पितृभिः",
+          "iast": "pitṛbhiḥ",
+          "gloss": "Pitṛ — tṛtīyā bahuvacana",
+          "note": "tṛtīyā | instr. pl. · m. · stem: pitṛ- · ṛ-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:pitre",
+          "devanagari": "पित्रे",
+          "iast": "pitre",
+          "gloss": "Pitṛ — caturthī ekavacana",
+          "note": "caturthī | dat. sg. · m. · stem: pitṛ- · ṛ-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:pitrbhyah",
+          "devanagari": "पितृभ्यः",
+          "iast": "pitṛbhyaḥ",
+          "gloss": "Pitṛ — caturthī/pañcamī bahuvacana",
+          "note": "caturthī/pañcamī | dat./abl. pl. · m. · stem: pitṛ- · ṛ-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:pituh",
+          "devanagari": "पितुः",
+          "iast": "pituḥ",
+          "gloss": "Pitṛ — pañcamī/ṣaṣṭhī ekavacana",
+          "note": "pañcamī/ṣaṣṭhī | abl./gen. sg. · m. · stem: pitṛ- · ṛ-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:pitroh",
+          "devanagari": "पित्रोः",
+          "iast": "pitroḥ",
+          "gloss": "Pitṛ — ṣaṣṭhī/saptamī dvivacana",
+          "note": "ṣaṣṭhī/saptamī | gen./loc. du. · m. · stem: pitṛ- · ṛ-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:pitrnam",
+          "devanagari": "पितॄणाम्",
+          "iast": "pitṝṇām",
+          "gloss": "Pitṛ — ṣaṣṭhī bahuvacana",
+          "note": "ṣaṣṭhī | gen. pl. · m. · stem: pitṛ- · ṛ-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:pitari",
+          "devanagari": "पितरि",
+          "iast": "pitari",
+          "gloss": "Pitṛ — saptamī ekavacana",
+          "note": "saptamī | loc. sg. · m. · stem: pitṛ- · ṛ-stem"
+        },
+        {
+          "id": "05-rupa:deity-vibhakti:pitrsu",
+          "devanagari": "पितृषु",
+          "iast": "pitṛṣu",
+          "gloss": "Pitṛ — saptamī bahuvacana",
+          "note": "saptamī | loc. pl. · m. · stem: pitṛ- · ṛ-stem"
+        }
+      ]
+    }
+  ]
+}

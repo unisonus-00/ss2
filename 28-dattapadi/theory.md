@@ -1,4 +1,4 @@
-# Stage 24: Dattapadī — Forced Vocabulary
+# Stage 28: Dattapadī — Forced Vocabulary
 
 ## Goal
 Compose a stotra that naturally integrates four supplied words — words that may seem completely unrelated to devotion. This tests lexical creativity and the ability to find connections.

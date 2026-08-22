@@ -1,0 +1,94 @@
+{
+  "lesson": "25-rasa",
+  "decks": [
+    {
+      "name": "19 · Rasa — aesthetic flavour",
+      "cards": [
+        {
+          "id": "25-rasa:rasa:rasah",
+          "devanagari": "रसः",
+          "iast": "rasaḥ",
+          "gloss": "aesthetic flavour",
+          "note": "prathamā | nom. sg. · m. · stem: rasa- · a-stem"
+        },
+        {
+          "id": "25-rasa:rasa:srngarah",
+          "devanagari": "शृङ्गारः",
+          "iast": "śṛṅgāraḥ",
+          "gloss": "the erotic, the amorous",
+          "note": "rasa"
+        },
+        {
+          "id": "25-rasa:rasa:hasyah",
+          "devanagari": "हास्यः",
+          "iast": "hāsyaḥ",
+          "gloss": "the comic",
+          "note": "rasa"
+        },
+        {
+          "id": "25-rasa:rasa:karunah",
+          "devanagari": "करुणः",
+          "iast": "karuṇaḥ",
+          "gloss": "the compassionate, pathetic",
+          "note": "rasa"
+        },
+        {
+          "id": "25-rasa:rasa:raudrah",
+          "devanagari": "रौद्रः",
+          "iast": "raudraḥ",
+          "gloss": "the furious",
+          "note": "rasa"
+        },
+        {
+          "id": "25-rasa:rasa:virah",
+          "devanagari": "वीरः",
+          "iast": "vīraḥ",
+          "gloss": "the heroic",
+          "note": "rasa"
+        },
+        {
+          "id": "25-rasa:rasa:bhayanakah",
+          "devanagari": "भयानकः",
+          "iast": "bhayānakaḥ",
+          "gloss": "the fearful",
+          "note": "rasa"
+        },
+        {
+          "id": "25-rasa:rasa:bibhatsah",
+          "devanagari": "बीभत्सः",
+          "iast": "bībhatsaḥ",
+          "gloss": "the disgusting",
+          "note": "rasa"
+        },
+        {
+          "id": "25-rasa:rasa:adbhutah",
+          "devanagari": "अद्भुतः",
+          "iast": "adbhutaḥ",
+          "gloss": "the wondrous",
+          "note": "rasa"
+        },
+        {
+          "id": "25-rasa:rasa:santah",
+          "devanagari": "शान्तः",
+          "iast": "śāntaḥ",
+          "gloss": "the peaceful",
+          "note": "rasa"
+        },
+        {
+          "id": "25-rasa:rasa:sthayibhavah",
+          "devanagari": "स्थायिभावः",
+          "iast": "sthāyibhāvaḥ",
+          "gloss": "the abiding emotion",
+          "note": "prathamā | nom. sg. · m. · stem: sthāyibhāva- · a-stem"
+        },
+        {
+          "id": "25-rasa:rasa:vibhavah",
+          "devanagari": "विभावः",
+          "iast": "vibhāvaḥ",
+          "gloss": "the determinant cause",
+          "note": "prathamā | nom. sg. · m. · stem: vibhāva- · a-stem"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,624 @@
+{
+  "lesson": "26-darshana",
+  "decks": [
+    {
+      "name": "21 · Darśana — philosophical terms",
+      "cards": [
+        {
+          "id": "26-darshana:darsana:brahma",
+          "devanagari": "ब्रह्म",
+          "iast": "brahma",
+          "gloss": "the absolute",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: brahman- · an-stem"
+        },
+        {
+          "id": "26-darshana:darsana:atman",
+          "devanagari": "आत्मन्",
+          "iast": "ātman",
+          "gloss": "the self",
+          "note": "headword | m. · stem: ātman- · an-stem"
+        },
+        {
+          "id": "26-darshana:darsana:maya",
+          "devanagari": "माया",
+          "iast": "māyā",
+          "gloss": "the measuring power, illusion",
+          "note": "prathamā | nom. sg. · f. · stem: māyā- · ā-stem"
+        },
+        {
+          "id": "26-darshana:darsana:moksah",
+          "devanagari": "मोक्षः",
+          "iast": "mokṣaḥ",
+          "gloss": "liberation",
+          "note": "prathamā | nom. sg. · m. · stem: mokṣa- · a-stem"
+        },
+        {
+          "id": "26-darshana:darsana:dharmah",
+          "devanagari": "धर्मः",
+          "iast": "dharmaḥ",
+          "gloss": "duty, law, nature",
+          "note": "prathamā | nom. sg. · m. · stem: dharma- · a-stem"
+        },
+        {
+          "id": "26-darshana:darsana:jnanam",
+          "devanagari": "ज्ञानम्",
+          "iast": "jñānam",
+          "gloss": "knowledge",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: jñāna- · a-stem"
+        },
+        {
+          "id": "26-darshana:darsana:avidya",
+          "devanagari": "अविद्या",
+          "iast": "avidyā",
+          "gloss": "ignorance",
+          "note": "prathamā | nom. sg. · f. · stem: avidyā- · ā-stem"
+        },
+        {
+          "id": "26-darshana:darsana:sat",
+          "devanagari": "सत्",
+          "iast": "sat",
+          "gloss": "being",
+          "note": "t-stem n."
+        },
+        {
+          "id": "26-darshana:darsana:cit",
+          "devanagari": "चित्",
+          "iast": "cit",
+          "gloss": "consciousness",
+          "note": "t-stem f."
+        },
+        {
+          "id": "26-darshana:darsana:prakrtih",
+          "devanagari": "प्रकृतिः",
+          "iast": "prakṛtiḥ",
+          "gloss": "nature, matter",
+          "note": "prathamā | nom. sg. · f. · stem: prakṛti- · i-stem"
+        },
+        {
+          "id": "26-darshana:darsana:purusah",
+          "devanagari": "पुरुषः",
+          "iast": "puruṣaḥ",
+          "gloss": "the conscious principle",
+          "note": "prathamā | nom. sg. · m. · stem: puruṣa- · a-stem"
+        },
+        {
+          "id": "26-darshana:darsana:saktih",
+          "devanagari": "शक्तिः",
+          "iast": "śaktiḥ",
+          "gloss": "power",
+          "note": "prathamā | nom. sg. · f. · stem: śakti- · i-stem"
+        },
+        {
+          "id": "26-darshana:darsana:binduh",
+          "devanagari": "बिन्दुः",
+          "iast": "binduḥ",
+          "gloss": "the point",
+          "note": "prathamā | nom. sg. · m. · stem: bindu- · u-stem"
+        },
+        {
+          "id": "26-darshana:darsana:nadah",
+          "devanagari": "नादः",
+          "iast": "nādaḥ",
+          "gloss": "primal sound",
+          "note": "prathamā | nom. sg. · m. · stem: nāda- · a-stem"
+        },
+        {
+          "id": "26-darshana:darsana:mantrah",
+          "devanagari": "मन्त्रः",
+          "iast": "mantraḥ",
+          "gloss": "sacred formula",
+          "note": "prathamā | nom. sg. · m. · stem: mantra- · a-stem"
+        },
+        {
+          "id": "26-darshana:darsana:yantram",
+          "devanagari": "यन्त्रम्",
+          "iast": "yantram",
+          "gloss": "ritual diagram",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: yantra- · a-stem"
+        },
+        {
+          "id": "26-darshana:darsana:sabdabrahma",
+          "devanagari": "शब्दब्रह्म",
+          "iast": "śabdabrahma",
+          "gloss": "sound as the absolute",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: śabdabrahman- · an-stem"
+        },
+        {
+          "id": "26-darshana:darsana:darsanam",
+          "devanagari": "दर्शनम्",
+          "iast": "darśanam",
+          "gloss": "viewpoint; a school of philosophy",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: darśana- · a-stem"
+        },
+        {
+          "id": "26-darshana:darsana:istadevata",
+          "devanagari": "इष्टदेवता",
+          "iast": "iṣṭadevatā",
+          "gloss": "one's chosen deity",
+          "note": "prathamā | nom. sg. · f. · stem: iṣṭadevatā- · ā-stem"
+        },
+        {
+          "id": "26-darshana:darsana:srividya",
+          "devanagari": "श्रीविद्या",
+          "iast": "śrīvidyā",
+          "gloss": "the Śrī tradition of the goddess",
+          "note": "prathamā | nom. sg. · f. · stem: śrīvidyā- · ā-stem"
+        }
+      ]
+    },
+    {
+      "name": "V13 · Philosophy & tattvas — LS · VS",
+      "cards": [
+        {
+          "id": "26-darshana:philosophy-tattvas:brahman",
+          "devanagari": "ब्रह्मन्",
+          "iast": "brahman",
+          "gloss": "the absolute",
+          "note": "headword | n. · stem: brahman- · an-stem · LS passim"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:parabrahman",
+          "devanagari": "परब्रह्मन्",
+          "iast": "parabrahman",
+          "gloss": "supreme brahman",
+          "note": "headword | n. · stem: parabrahman- · an-stem · KS passim"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:atman",
+          "devanagari": "आत्मन्",
+          "iast": "ātman",
+          "gloss": "self",
+          "note": "headword | m. · stem: ātman- · an-stem · VS passim"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:paramatman",
+          "devanagari": "परमात्मन्",
+          "iast": "paramātman",
+          "gloss": "supreme self",
+          "note": "headword | m. · stem: paramātman- · an-stem · VS 10"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:purusa",
+          "devanagari": "पुरुष",
+          "iast": "puruṣa",
+          "gloss": "the cosmic person",
+          "note": "headword | m. · stem: puruṣa- · a-stem · VS 14"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:prakrti",
+          "devanagari": "प्रकृति",
+          "iast": "prakṛti",
+          "gloss": "primordial nature/matter",
+          "note": "headword | f. · stem: prakṛti- · i-stem · LS 397"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:para-parama",
+          "devanagari": "पर / परम",
+          "iast": "para / parama",
+          "gloss": "supreme, beyond",
+          "note": "headword | adj. · stem: para- · a-stem · DM passim"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:turiya",
+          "devanagari": "तुरीय",
+          "iast": "turīya",
+          "gloss": "the fourth (state beyond waking/dream/sleep)",
+          "note": "headword | adj. · stem: turīya- · a-stem · LS 262"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:advaita",
+          "devanagari": "अद्वैता",
+          "iast": "advaitā",
+          "gloss": "non-dual",
+          "note": "f./adj. · KS passim"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:nirdvaita",
+          "devanagari": "निर्द्वैता",
+          "iast": "nirdvaitā",
+          "gloss": "without duality",
+          "note": "headword | f. · stem: nirdvaitā- · ā-stem · LS passim"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:maya",
+          "devanagari": "माया",
+          "iast": "māyā",
+          "gloss": "creative illusion, cosmic power",
+          "note": "headword | f. · stem: māyā- · ā-stem · DM 1.40"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:mahamaya",
+          "devanagari": "महामाया",
+          "iast": "mahāmāyā",
+          "gloss": "the great māyā",
+          "note": "headword | f. · stem: mahāmāyā- · ā-stem · DM 1.40"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:moha",
+          "devanagari": "मोह",
+          "iast": "moha",
+          "gloss": "delusion",
+          "note": "headword | m. · stem: moha- · a-stem · from √muh · DM 1.40"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:mahamoha",
+          "devanagari": "महामोह",
+          "iast": "mahāmoha",
+          "gloss": "great delusion",
+          "note": "headword | m. · stem: mahāmoha- · a-stem · DM 11.43"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:avidya-ajnana",
+          "devanagari": "अविद्या / अज्ञान",
+          "iast": "avidyā / ajñāna",
+          "gloss": "ignorance",
+          "note": "f./n. · LS passim"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:mithya",
+          "devanagari": "मिथ्या",
+          "iast": "mithyā",
+          "gloss": "falsity",
+          "note": "f./adv. · LS passim"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:vivarta",
+          "devanagari": "विवर्त",
+          "iast": "vivarta",
+          "gloss": "transformation/illusion",
+          "note": "headword | m. · stem: vivarta- · a-stem · LS passim"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:guna",
+          "devanagari": "गुण",
+          "iast": "guṇa",
+          "gloss": "quality, strand",
+          "note": "headword | m. · stem: guṇa- · a-stem · DM 1.38"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:sattva",
+          "devanagari": "सत्त्व",
+          "iast": "sattva",
+          "gloss": "purity, being",
+          "note": "headword | n. · stem: sattva- · a-stem · DM 1.38"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:rajas",
+          "devanagari": "रजस्",
+          "iast": "rajas",
+          "gloss": "passion, activity",
+          "note": "headword | n. · stem: rajas- · as-stem · DM 1.38"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:tamas",
+          "devanagari": "तमस्",
+          "iast": "tamas",
+          "gloss": "darkness, inertia",
+          "note": "headword | n. · stem: tamas- · as-stem · DM 1.38"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:sattvarupini",
+          "devanagari": "सत्त्वरूपिणी",
+          "iast": "sattvarūpiṇī",
+          "gloss": "she whose form is sattva",
+          "note": "headword | f. · stem: sattvarūpiṇī- · ī-stem · LS passim"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:nirguna",
+          "devanagari": "निर्गुण",
+          "iast": "nirguṇa",
+          "gloss": "beyond the guṇas",
+          "note": "headword | adj. · stem: nirguṇa- · a-stem · LS 139"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:triguna-trigunatmika",
+          "devanagari": "त्रिगुणा / त्रिगुणात्मिका",
+          "iast": "triguṇā / triguṇātmikā",
+          "gloss": "she of three guṇas",
+          "note": "headword | f. · stem: triguṇā- · ā-stem · LS passim"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:srsti",
+          "devanagari": "सृष्टि",
+          "iast": "sṛṣṭi",
+          "gloss": "creation, emission",
+          "note": "headword | f. · stem: sṛṣṭi- · i-stem · from √sṛj · DM 11.5"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:sthiti",
+          "devanagari": "स्थिति",
+          "iast": "sthiti",
+          "gloss": "maintenance, preservation",
+          "note": "headword | f. · stem: sthiti- · i-stem · from √sthā · DM 11.5"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:samhara-laya-pralaya",
+          "devanagari": "संहार / लय / प्रलय",
+          "iast": "saṃhāra / laya / pralaya",
+          "gloss": "dissolution",
+          "note": "headword | m. · stem: saṃhāra- · a-stem · DM 11.5"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:tirodhana",
+          "devanagari": "तिरोधान",
+          "iast": "tirodhāna",
+          "gloss": "concealment",
+          "note": "headword | n. · stem: tirodhāna- · a-stem · LS 270"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:anugraha",
+          "devanagari": "अनुग्रह",
+          "iast": "anugraha",
+          "gloss": "grace, revelation",
+          "note": "headword | m. · stem: anugraha- · a-stem · LS 272"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:pancakrtya",
+          "devanagari": "पञ्चकृत्य",
+          "iast": "pañcakṛtya",
+          "gloss": "five cosmic acts",
+          "note": "headword | n. · stem: pañcakṛtya- · a-stem · LS 273"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:jagatsrsti",
+          "devanagari": "जगत्सृष्टि",
+          "iast": "jagatsṛṣṭi",
+          "gloss": "world-creation",
+          "note": "headword | f. · stem: jagatsṛṣṭi- · i-stem · DM 11.5"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:jnana",
+          "devanagari": "ज्ञान",
+          "iast": "jñāna",
+          "gloss": "knowledge",
+          "note": "headword | n. · stem: jñāna- · a-stem · from √jñā · DM 13.18"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:vijnana",
+          "devanagari": "विज्ञान",
+          "iast": "vijñāna",
+          "gloss": "discernment, higher knowledge",
+          "note": "headword | n. · stem: vijñāna- · a-stem · LS 253"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:vidya",
+          "devanagari": "विद्या",
+          "iast": "vidyā",
+          "gloss": "knowledge, mantra-knowledge",
+          "note": "headword | f. · stem: vidyā- · ā-stem · DM 1.55"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:moksa-mukti-kaivalya",
+          "devanagari": "मोक्ष / मुक्ति / कैवल्य",
+          "iast": "mokṣa / mukti / kaivalya",
+          "gloss": "liberation",
+          "note": "m./f./n. · DM 12.35"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:apavarga",
+          "devanagari": "अपवर्ग",
+          "iast": "apavarga",
+          "gloss": "liberation (final release)",
+          "note": "headword | m. · stem: apavarga- · a-stem · DM 13.5"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:bandha",
+          "devanagari": "बन्ध",
+          "iast": "bandha",
+          "gloss": "bondage",
+          "note": "headword | m. · stem: bandha- · a-stem · from √bandh · LS passim"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:samsara",
+          "devanagari": "संसार",
+          "iast": "saṃsāra",
+          "gloss": "cycle of rebirth",
+          "note": "headword | m. · stem: saṃsāra- · a-stem · DM 1.36"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:karma",
+          "devanagari": "कर्म",
+          "iast": "karma",
+          "gloss": "action, accumulated deeds",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: karman- · an-stem · KKS 317-345"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:dharma",
+          "devanagari": "धर्म",
+          "iast": "dharma",
+          "gloss": "righteousness, duty, cosmic law",
+          "note": "headword | m. · stem: dharma- · a-stem · from √dhṛ · DM passim"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:adharma",
+          "devanagari": "अधर्म",
+          "iast": "adharma",
+          "gloss": "unrighteousness",
+          "note": "headword | m. · stem: adharma- · a-stem · DM passim"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:cit-citi",
+          "devanagari": "चित् / चिति",
+          "iast": "cit / citi",
+          "gloss": "consciousness",
+          "note": "f. · LS 4 (cidagnikusambhūtā)"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:cetana-caitanya",
+          "devanagari": "चेतना / चैतन्य",
+          "iast": "cetanā / caitanya",
+          "gloss": "consciousness, awareness",
+          "note": "f./n. · DM 5.14"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:cidrupini",
+          "devanagari": "चिद्रूपिणी",
+          "iast": "cidrūpiṇī",
+          "gloss": "whose form is consciousness",
+          "note": "headword | f. · stem: cidrūpiṇī- · ī-stem · LS passim"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:cinmayi",
+          "devanagari": "चिन्मयी",
+          "iast": "cinmayī",
+          "gloss": "consisting of consciousness",
+          "note": "headword | f. · stem: cinmayī- · ī-stem · LS 251"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:jiva",
+          "devanagari": "जीव",
+          "iast": "jīva",
+          "gloss": "individual soul",
+          "note": "headword | m. · stem: jīva- · a-stem · VS passim"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:ahamkara",
+          "devanagari": "अहंकार",
+          "iast": "ahaṃkāra",
+          "gloss": "ego-sense",
+          "note": "headword | m. · stem: ahaṃkāra- · a-stem · LS 162"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:antahkarana",
+          "devanagari": "अन्तःकरण",
+          "iast": "antaḥkaraṇa",
+          "gloss": "inner instrument (mind)",
+          "note": "headword | n. · stem: antaḥkaraṇa- · a-stem · LS passim"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:manas",
+          "devanagari": "मनस्",
+          "iast": "manas",
+          "gloss": "mind",
+          "note": "headword | n. · stem: manas- · as-stem · LS passim"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:sakti",
+          "devanagari": "शक्ति",
+          "iast": "śakti",
+          "gloss": "power, energy, goddess",
+          "note": "headword | f. · stem: śakti- · i-stem · from √śak · DM 5.25"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:parasakti",
+          "devanagari": "पराशक्ति",
+          "iast": "parāśakti",
+          "gloss": "supreme power",
+          "note": "headword | f. · stem: parāśakti- · i-stem · LS passim"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:icchasakti",
+          "devanagari": "इच्छाशक्ति",
+          "iast": "icchāśakti",
+          "gloss": "will-power",
+          "note": "headword | f. · stem: icchāśakti- · i-stem · LS passim"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:jnanasakti",
+          "devanagari": "ज्ञानशक्ति",
+          "iast": "jñānaśakti",
+          "gloss": "knowledge-power",
+          "note": "headword | f. · stem: jñānaśakti- · i-stem · LS passim"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:kriyasakti",
+          "devanagari": "क्रियाशक्ति",
+          "iast": "kriyāśakti",
+          "gloss": "action-power",
+          "note": "headword | f. · stem: kriyāśakti- · i-stem · LS passim"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:kundalini",
+          "devanagari": "कुण्डलिनी",
+          "iast": "kuṇḍalinī",
+          "gloss": "the coiled one (serpent energy)",
+          "note": "headword | f. · stem: kuṇḍalinī- · ī-stem · LS 110"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:satcakra",
+          "devanagari": "षट्चक्र",
+          "iast": "ṣaṭcakra",
+          "gloss": "six energy centers",
+          "note": "headword | n. · stem: ṣaṭcakra- · a-stem · KS passim"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:muladhara",
+          "devanagari": "मूलाधार",
+          "iast": "mūlādhāra",
+          "gloss": "root center",
+          "note": "headword | n. · stem: mūlādhāra- · a-stem · LS passim"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:sahasrara",
+          "devanagari": "सहस्रार",
+          "iast": "sahasrāra",
+          "gloss": "thousand-petaled (crown)",
+          "note": "headword | n. · stem: sahasrāra- · a-stem · LS passim"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:srividya",
+          "devanagari": "श्रीविद्या",
+          "iast": "śrīvidyā",
+          "gloss": "the auspicious knowledge (15/16-syllable mantra)",
+          "note": "LS 585"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:trikona",
+          "devanagari": "त्रिकोण",
+          "iast": "trikoṇa",
+          "gloss": "triangle (of Śrīcakra)",
+          "note": "KS passim; LS passim"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:bindu",
+          "devanagari": "बिन्दु",
+          "iast": "bindu",
+          "gloss": "point (center of Śrīcakra)",
+          "note": "LS passim; KS passim"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:navacakra",
+          "devanagari": "नवचक्र",
+          "iast": "navacakra",
+          "gloss": "nine enclosures (of Śrīcakra)",
+          "note": "KS passim"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:pancadasi",
+          "devanagari": "पञ्चदशी",
+          "iast": "pañcadaśī",
+          "gloss": "fifteen-syllabled (mantra)",
+          "note": "KS passim"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:sodasi",
+          "devanagari": "षोडशी",
+          "iast": "ṣoḍaśī",
+          "gloss": "sixteen-syllabled (mantra)",
+          "note": "KS passim"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:kadi",
+          "devanagari": "कादि",
+          "iast": "kādi",
+          "gloss": "beginning with ka (Kādi school)",
+          "note": "KKS 586, 606-609"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:hadi",
+          "devanagari": "हादि",
+          "iast": "hādi",
+          "gloss": "beginning with ha (Hādi school)",
+          "note": "LS passim"
+        },
+        {
+          "id": "26-darshana:philosophy-tattvas:kamakala",
+          "devanagari": "कामकला",
+          "iast": "kāmakalā",
+          "gloss": "desire-digit",
+          "note": "KKS 583; LS passim"
+        }
+      ]
+    }
+  ]
+}

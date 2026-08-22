@@ -1,4 +1,4 @@
-# Stage 22: Darśana — Workbook (Questions)
+# Stage 26: Darśana — Workbook (Questions)
 
 ## Section A: Vocabulary (10 marks)
 Give the Sanskrit for: 1. non-dual  2. self-luminous  3. being-consciousness-bliss  4. formless  5. beyond time

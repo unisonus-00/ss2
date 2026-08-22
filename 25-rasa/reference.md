@@ -1,4 +1,4 @@
-# Stage 21: Rasa — Reference Guide
+# Stage 25: Rasa — Reference Guide
 
 ## Navarasa Vocabulary Banks
 

@@ -1,4 +1,4 @@
-# Stage 32: Avadhāna-Sevā — Reference Guide
+# Stage 36: Avadhāna-Sevā — Reference Guide
 
 ## Avadhāna Performance Checklist
 

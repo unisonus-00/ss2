@@ -1,0 +1,519 @@
+{
+  "lesson": "07-karaka",
+  "decks": [
+    {
+      "name": "12 · Kāraka — semantic roles",
+      "cards": [
+        {
+          "id": "07-karaka:karaka:karta",
+          "devanagari": "कर्ता",
+          "iast": "kartā",
+          "gloss": "the agent, the doer",
+          "note": "prathamā | nom. sg. · m. · stem: kartṛ- · ṛ-stem"
+        },
+        {
+          "id": "07-karaka:karaka:karma",
+          "devanagari": "कर्म",
+          "iast": "karma",
+          "gloss": "the object acted upon",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: karman- · an-stem"
+        },
+        {
+          "id": "07-karaka:karaka:karanam",
+          "devanagari": "करणम्",
+          "iast": "karaṇam",
+          "gloss": "the instrument",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: karaṇa- · a-stem"
+        },
+        {
+          "id": "07-karaka:karaka:sampradanam",
+          "devanagari": "सम्प्रदानम्",
+          "iast": "sampradānam",
+          "gloss": "the recipient",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: sampradāna- · a-stem"
+        },
+        {
+          "id": "07-karaka:karaka:apadanam",
+          "devanagari": "अपादानम्",
+          "iast": "apādānam",
+          "gloss": "the source of separation",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: apādāna- · a-stem"
+        },
+        {
+          "id": "07-karaka:karaka:adhikaranam",
+          "devanagari": "अधिकरणम्",
+          "iast": "adhikaraṇam",
+          "gloss": "the locus",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: adhikaraṇa- · a-stem"
+        },
+        {
+          "id": "07-karaka:karaka:sambandhah",
+          "devanagari": "सम्बन्धः",
+          "iast": "sambandhaḥ",
+          "gloss": "relation (not strictly a kāraka)",
+          "note": "prathamā | nom. sg. · m. · stem: sambandha- · a-stem"
+        },
+        {
+          "id": "07-karaka:karaka:hetuh",
+          "devanagari": "हेतुः",
+          "iast": "hetuḥ",
+          "gloss": "cause",
+          "note": "prathamā | nom. sg. · m. · stem: hetu- · u-stem"
+        },
+        {
+          "id": "07-karaka:karaka:ramah-banena-ravanam-hanti",
+          "devanagari": "[रामः] बाणेन रावणं हन्ति",
+          "iast": "[rāmaḥ] bāṇena rāvaṇaṃ hanti",
+          "gloss": "kartṛ — the agent",
+          "note": "kāraka · rāmaḥ is prathamā | nom. sg."
+        },
+        {
+          "id": "07-karaka:karaka:ramah-banena-ravanam-hanti-2",
+          "devanagari": "रामः बाणेन [रावणं] हन्ति",
+          "iast": "rāmaḥ bāṇena [rāvaṇaṃ] hanti",
+          "gloss": "karma — the object",
+          "note": "kāraka · rāvaṇam is dvitīyā | acc. sg."
+        },
+        {
+          "id": "07-karaka:karaka:ramah-banena-ravanam-hanti-3",
+          "devanagari": "रामः [बाणेन] रावणं हन्ति",
+          "iast": "rāmaḥ [bāṇena] rāvaṇaṃ hanti",
+          "gloss": "karaṇa — the instrument",
+          "note": "kāraka · bāṇena is tṛtīyā | instr. sg."
+        },
+        {
+          "id": "07-karaka:karaka:ramah-vipraya-dhanam-dadati",
+          "devanagari": "रामः [विप्राय] धनं ददाति",
+          "iast": "rāmaḥ [viprāya] dhanaṃ dadāti",
+          "gloss": "sampradāna — the recipient",
+          "note": "kāraka · viprāya is caturthī | dat. sg."
+        },
+        {
+          "id": "07-karaka:karaka:vrksat-patram-patati",
+          "devanagari": "[वृक्षात्] पत्रं पतति",
+          "iast": "[vṛkṣāt] patraṃ patati",
+          "gloss": "apādāna — the source",
+          "note": "kāraka · vṛkṣāt is pañcamī | abl. sg."
+        },
+        {
+          "id": "07-karaka:karaka:ramah-vane-vasati",
+          "devanagari": "रामः [वने] वसति",
+          "iast": "rāmaḥ [vane] vasati",
+          "gloss": "adhikaraṇa — the locus",
+          "note": "kāraka · vane is saptamī | loc. sg."
+        }
+      ]
+    },
+    {
+      "name": "V07 · War & combat — DM",
+      "cards": [
+        {
+          "id": "07-karaka:war-combat:yuddha",
+          "devanagari": "युद्ध",
+          "iast": "yuddha",
+          "gloss": "battle",
+          "note": "headword | n. · stem: yuddha- · a-stem · from √yudh · DM 2.3"
+        },
+        {
+          "id": "07-karaka:war-combat:samgrama",
+          "devanagari": "संग्राम",
+          "iast": "saṃgrāma",
+          "gloss": "battle",
+          "note": "headword | m. · stem: saṃgrāma- · a-stem · sam + grāma · DM 3.26"
+        },
+        {
+          "id": "07-karaka:war-combat:rana",
+          "devanagari": "रण",
+          "iast": "raṇa",
+          "gloss": "war, battlefield",
+          "note": "headword | n. · stem: raṇa- · a-stem · DM 3.5+"
+        },
+        {
+          "id": "07-karaka:war-combat:ahava",
+          "devanagari": "आहव",
+          "iast": "āhava",
+          "gloss": "battle, sacrifice",
+          "note": "headword | m. · stem: āhava- · a-stem · ā + √hu · DM 9.5"
+        },
+        {
+          "id": "07-karaka:war-combat:samara",
+          "devanagari": "समर",
+          "iast": "samara",
+          "gloss": "battle",
+          "note": "headword | n. · stem: samara- · a-stem · DM 3.25"
+        },
+        {
+          "id": "07-karaka:war-combat:sangarsa",
+          "devanagari": "सङ्गर्ष",
+          "iast": "saṅgarṣa",
+          "gloss": "conflict",
+          "note": "headword | m. · stem: saṅgarṣa- · a-stem · DM passim"
+        },
+        {
+          "id": "07-karaka:war-combat:vira",
+          "devanagari": "वीर",
+          "iast": "vīra",
+          "gloss": "hero, warrior",
+          "note": "headword | m. · stem: vīra- · a-stem · DM 3.3"
+        },
+        {
+          "id": "07-karaka:war-combat:yoddha-yodha",
+          "devanagari": "योद्ध / योध",
+          "iast": "yoddha / yodha",
+          "gloss": "fighter",
+          "note": "headword | m. · stem: yoddha- · a-stem · from √yudh · DM 2.55"
+        },
+        {
+          "id": "07-karaka:war-combat:sainya-sena-bala-anika",
+          "devanagari": "सैन्य / सेना / बल / अनीक",
+          "iast": "sainya / senā / bala / anīka",
+          "gloss": "army, force",
+          "note": "n./f./n./n. · DM 2.40+"
+        },
+        {
+          "id": "07-karaka:war-combat:vahini",
+          "devanagari": "वाहिनी",
+          "iast": "vāhinī",
+          "gloss": "division, battalion",
+          "note": "headword | f. · stem: vāhinī- · ī-stem · DM 2.55"
+        },
+        {
+          "id": "07-karaka:war-combat:ratha",
+          "devanagari": "रथ",
+          "iast": "ratha",
+          "gloss": "chariot",
+          "note": "headword | m. · stem: ratha- · a-stem · DM 2.52"
+        },
+        {
+          "id": "07-karaka:war-combat:sarathi",
+          "devanagari": "सारथि",
+          "iast": "sārathi",
+          "gloss": "charioteer",
+          "note": "headword | m. · stem: sārathi- · i-stem · DM 2.53"
+        },
+        {
+          "id": "07-karaka:war-combat:prahara",
+          "devanagari": "प्रहार",
+          "iast": "prahāra",
+          "gloss": "strike, blow",
+          "note": "headword | m. · stem: prahāra- · a-stem · pra + √hṛ · DM 3.24"
+        },
+        {
+          "id": "07-karaka:war-combat:praharana",
+          "devanagari": "प्रहरण",
+          "iast": "praharaṇa",
+          "gloss": "weapon/striking",
+          "note": "headword | n. · stem: praharaṇa- · a-stem · DM 2.20"
+        },
+        {
+          "id": "07-karaka:war-combat:han",
+          "devanagari": "√हन्",
+          "iast": "√han",
+          "gloss": "to strike, kill",
+          "note": "dhātu · jaghāna (perf.), hanti (pres.), hataḥ (pp.), ghnan (pres.p.) · DM 2.58"
+        },
+        {
+          "id": "07-karaka:war-combat:chid",
+          "devanagari": "√छिद्",
+          "iast": "√chid",
+          "gloss": "to cut, sever",
+          "note": "dhātu · ciccheda (perf.), chinna (pp.) · DM 3.18"
+        },
+        {
+          "id": "07-karaka:war-combat:bhid",
+          "devanagari": "√भिद्",
+          "iast": "√bhid",
+          "gloss": "to pierce, split",
+          "note": "dhātu · bibheda (perf.), bhinna (pp.) · DM 9.34"
+        },
+        {
+          "id": "07-karaka:war-combat:tad",
+          "devanagari": "√ताड्",
+          "iast": "√tāḍ",
+          "gloss": "to strike, beat",
+          "note": "dhātu · atāḍayat (impf.), tāḍita (pp.) · DM 3.21"
+        },
+        {
+          "id": "07-karaka:war-combat:ksip",
+          "devanagari": "√क्षिप्",
+          "iast": "√kṣip",
+          "gloss": "to hurl, throw",
+          "note": "dhātu · cikṣepa (perf.), kṣipta (pp.) · DM 3.18"
+        },
+        {
+          "id": "07-karaka:war-combat:pat",
+          "devanagari": "√पत्",
+          "iast": "√pat",
+          "gloss": "to fall",
+          "note": "dhātu · papāta (perf.), patita (pp.) · DM 3.33"
+        },
+        {
+          "id": "07-karaka:war-combat:pat-caus",
+          "devanagari": "√पात् (caus.)",
+          "iast": "√pāt (caus.)",
+          "gloss": "to cause to fall",
+          "note": "dhātu · apātayat (impf.) · DM 9.16"
+        },
+        {
+          "id": "07-karaka:war-combat:muc",
+          "devanagari": "√मुच्",
+          "iast": "√muc",
+          "gloss": "to release, shoot",
+          "note": "dhātu · mumoca (perf.), mukta (pp.) · DM 3.8"
+        },
+        {
+          "id": "07-karaka:war-combat:dhav",
+          "devanagari": "√धाव्",
+          "iast": "√dhāv",
+          "gloss": "to rush, charge",
+          "note": "dhātu · abhyadhāvat (impf.) · DM 6.13"
+        },
+        {
+          "id": "07-karaka:war-combat:viyadh",
+          "devanagari": "√वियध्",
+          "iast": "√viyadh",
+          "gloss": "to pierce",
+          "note": "dhātu · vivyādha (perf.), viddha (pp.) · DM 9.34"
+        },
+        {
+          "id": "07-karaka:war-combat:dal",
+          "devanagari": "√दल्",
+          "iast": "√dal",
+          "gloss": "to split, shatter",
+          "note": "dhātu · dālayāmāsa (periphr.perf.) · DM 3.25"
+        },
+        {
+          "id": "07-karaka:war-combat:curn",
+          "devanagari": "√चूर्ण्",
+          "iast": "√cūrṇ",
+          "gloss": "to crush to powder",
+          "note": "dhātu · acūrṇayat (impf., caus.) · DM 9.14"
+        },
+        {
+          "id": "07-karaka:war-combat:pid",
+          "devanagari": "√पीड्",
+          "iast": "√pīḍ",
+          "gloss": "to press, crush",
+          "note": "dhātu · pīḍayāmāsa · DM 3.24"
+        },
+        {
+          "id": "07-karaka:war-combat:bhanj",
+          "devanagari": "√भञ्ज्",
+          "iast": "√bhañj",
+          "gloss": "to break",
+          "note": "dhātu · babhañja (perf.) · DM 3.22"
+        },
+        {
+          "id": "07-karaka:war-combat:lu",
+          "devanagari": "√लू",
+          "iast": "√lū",
+          "gloss": "to cut",
+          "note": "dhātu · — · DM passim"
+        },
+        {
+          "id": "07-karaka:war-combat:vrasc",
+          "devanagari": "√व्रश्च्",
+          "iast": "√vraśc",
+          "gloss": "to tear, rip",
+          "note": "dhātu · — · DM passim"
+        },
+        {
+          "id": "07-karaka:war-combat:garj",
+          "devanagari": "√गर्ज्",
+          "iast": "√garj",
+          "gloss": "to roar",
+          "note": "dhātu · jagarje (perf.) · DM 3.31"
+        },
+        {
+          "id": "07-karaka:war-combat:nad",
+          "devanagari": "√नद्",
+          "iast": "√nad",
+          "gloss": "to resound",
+          "note": "dhātu · nanāda (perf.) · DM 3.31"
+        },
+        {
+          "id": "07-karaka:war-combat:kamp",
+          "devanagari": "√कम्प्",
+          "iast": "√kamp",
+          "gloss": "to tremble",
+          "note": "dhātu · cakampe (perf.) · DM 3.31"
+        },
+        {
+          "id": "07-karaka:war-combat:tras",
+          "devanagari": "√त्रस्",
+          "iast": "√tras",
+          "gloss": "to frighten",
+          "note": "dhātu · trāsayāmāsa (caus.) · DM passim"
+        },
+        {
+          "id": "07-karaka:war-combat:krudh",
+          "devanagari": "√क्रुध्",
+          "iast": "√krudh",
+          "gloss": "to be angry",
+          "note": "dhātu · cukrodha (perf.), kruddha (pp.) · DM 6.20"
+        },
+        {
+          "id": "07-karaka:war-combat:gras",
+          "devanagari": "√ग्रस्",
+          "iast": "√gras",
+          "gloss": "to swallow",
+          "note": "dhātu · grasati (pres.) · KS passim"
+        },
+        {
+          "id": "07-karaka:war-combat:khad",
+          "devanagari": "√खाद्",
+          "iast": "√khād",
+          "gloss": "to devour",
+          "note": "dhātu · cakhāda (perf.) · DM 9.37"
+        },
+        {
+          "id": "07-karaka:war-combat:pa",
+          "devanagari": "√पा",
+          "iast": "√pā",
+          "gloss": "to drink",
+          "note": "dhātu · papau (perf.) · DM 8.52+ (Kālī drinks blood)"
+        },
+        {
+          "id": "07-karaka:war-combat:bhaks",
+          "devanagari": "√भक्ष्",
+          "iast": "√bhakṣ",
+          "gloss": "to eat",
+          "note": "dhātu · bhakṣita (pp.) · DM 9.41"
+        },
+        {
+          "id": "07-karaka:war-combat:vadha",
+          "devanagari": "वध",
+          "iast": "vadha",
+          "gloss": "slaying",
+          "note": "headword | m. · stem: vadha- · a-stem · from √vadh · DM colophons: vadho nāma"
+        },
+        {
+          "id": "07-karaka:war-combat:samhara",
+          "devanagari": "संहार",
+          "iast": "saṃhāra",
+          "gloss": "annihilation",
+          "note": "headword | m. · stem: saṃhāra- · a-stem · sam + √hṛ · DM 11.5"
+        },
+        {
+          "id": "07-karaka:war-combat:nasa-vinasa",
+          "devanagari": "नाश / विनाश",
+          "iast": "nāśa / vināśa",
+          "gloss": "destruction",
+          "note": "headword | m. · stem: nāśa- · a-stem · from √naś · DM 11.5"
+        },
+        {
+          "id": "07-karaka:war-combat:ksaya",
+          "devanagari": "क्षय",
+          "iast": "kṣaya",
+          "gloss": "decay, destruction",
+          "note": "headword | m. · stem: kṣaya- · a-stem · from √kṣi · DM 6.19"
+        },
+        {
+          "id": "07-karaka:war-combat:bhasma",
+          "devanagari": "भस्म",
+          "iast": "bhasma",
+          "gloss": "ashes",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: bhasman- · an-stem · DM 6.13 (hūṃkāreṇa taṃ bhasma sā cakāra)"
+        },
+        {
+          "id": "07-karaka:war-combat:curna",
+          "devanagari": "चूर्ण",
+          "iast": "cūrṇa",
+          "gloss": "powder",
+          "note": "headword | n. · stem: cūrṇa- · a-stem · DM 9.14"
+        },
+        {
+          "id": "07-karaka:war-combat:pralaya",
+          "devanagari": "प्रलय",
+          "iast": "pralaya",
+          "gloss": "dissolution",
+          "note": "headword | m. · stem: pralaya- · a-stem · VS passim"
+        },
+        {
+          "id": "07-karaka:war-combat:nidhana",
+          "devanagari": "निधन",
+          "iast": "nidhana",
+          "gloss": "death, end",
+          "note": "headword | n. · stem: nidhana- · a-stem · DM passim"
+        },
+        {
+          "id": "07-karaka:war-combat:nipata",
+          "devanagari": "निपात",
+          "iast": "nipāta",
+          "gloss": "downfall",
+          "note": "headword | m. · stem: nipāta- · a-stem · ni + √pat · DM passim"
+        },
+        {
+          "id": "07-karaka:war-combat:nihata",
+          "devanagari": "निहत",
+          "iast": "nihata",
+          "gloss": "slain",
+          "note": "ni + √han · DM 2.57"
+        },
+        {
+          "id": "07-karaka:war-combat:vicchinna",
+          "devanagari": "विच्छिन्न",
+          "iast": "vicchinna",
+          "gloss": "severed",
+          "note": "vi + √chid · DM 3.18"
+        },
+        {
+          "id": "07-karaka:war-combat:bhinna",
+          "devanagari": "भिन्न",
+          "iast": "bhinna",
+          "gloss": "split, pierced",
+          "note": "√bhid · DM 9.39"
+        },
+        {
+          "id": "07-karaka:war-combat:curnita",
+          "devanagari": "चूर्णित",
+          "iast": "cūrṇita",
+          "gloss": "crushed",
+          "note": "√cūrṇ · DM passim"
+        },
+        {
+          "id": "07-karaka:war-combat:chinna",
+          "devanagari": "छिन्न",
+          "iast": "chinna",
+          "gloss": "cut off",
+          "note": "√chid · DM 3.18"
+        },
+        {
+          "id": "07-karaka:war-combat:patita",
+          "devanagari": "पतित",
+          "iast": "patita",
+          "gloss": "fallen",
+          "note": "√pat · DM passim"
+        },
+        {
+          "id": "07-karaka:war-combat:ksina",
+          "devanagari": "क्षीण",
+          "iast": "kṣīṇa",
+          "gloss": "diminished",
+          "note": "√kṣi · DM passim"
+        },
+        {
+          "id": "07-karaka:war-combat:khandasas",
+          "devanagari": "खण्डशस्",
+          "iast": "khaṇḍaśas",
+          "gloss": "into pieces",
+          "note": "adv. · DM passim"
+        },
+        {
+          "id": "07-karaka:war-combat:satasas",
+          "devanagari": "शतशस्",
+          "iast": "śataśas",
+          "gloss": "by hundreds",
+          "note": "adv. · DM 9.27"
+        },
+        {
+          "id": "07-karaka:war-combat:sahasrasas",
+          "devanagari": "सहस्रशस्",
+          "iast": "sahasraśas",
+          "gloss": "by thousands",
+          "note": "adv. · DM 8.45"
+        }
+      ]
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-# Stage 18: Chandas III — Reference Guide
+# Stage 22: Chandas III — Reference Guide
 
 ## Meter Patterns (Sama-vṛtta — all pādas identical)
 

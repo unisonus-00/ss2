@@ -1,4 +1,4 @@
-# Stage 15: Kathā — Reference Guide
+# Stage 18: Kathā — Reference Guide
 
 ## Past Tense (Laṅ) — 30 Essential Verbs
 

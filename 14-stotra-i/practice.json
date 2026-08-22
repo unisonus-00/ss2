@@ -1,0 +1,335 @@
+{
+  "lesson": "14-stotra-i",
+  "decks": [
+    {
+      "name": "32 · Stotra-vāk — hymn phrases",
+      "cards": [
+        {
+          "id": "14-stotra-i:stotra-vak:namas-te",
+          "devanagari": "नमस्ते",
+          "iast": "namas te",
+          "gloss": "salutation to you",
+          "note": "namas: nom. sg. · te: dat. sg. · enclitic of yuṣmad-"
+        },
+        {
+          "id": "14-stotra-i:stotra-vak:namo-namah",
+          "devanagari": "नमो नमः",
+          "iast": "namo namaḥ",
+          "gloss": "salutation upon salutation",
+          "note": "namaḥ: nom. sg. · stem: namas- · doubled for emphasis"
+        },
+        {
+          "id": "14-stotra-i:stotra-vak:jaya-jaya",
+          "devanagari": "जय जय",
+          "iast": "jaya jaya",
+          "gloss": "victory, victory!",
+          "note": "jaya: 2 sg. impv. · √ji · doubled"
+        },
+        {
+          "id": "14-stotra-i:stotra-vak:pahi-mam",
+          "devanagari": "पाहि माम्",
+          "iast": "pāhi mām",
+          "gloss": "protect me!",
+          "note": "pāhi: 2 sg. impv. · √pā · mām: acc. sg. · stem: asmad-"
+        },
+        {
+          "id": "14-stotra-i:stotra-vak:raksa-raksa",
+          "devanagari": "रक्ष रक्ष",
+          "iast": "rakṣa rakṣa",
+          "gloss": "protect, protect!",
+          "note": "rakṣa: 2 sg. impv. · √rakṣ · doubled"
+        },
+        {
+          "id": "14-stotra-i:stotra-vak:prasida",
+          "devanagari": "प्रसीद",
+          "iast": "prasīda",
+          "gloss": "be gracious!",
+          "note": "2 sg. impv. · pra + √sad · parasmaipada"
+        },
+        {
+          "id": "14-stotra-i:stotra-vak:saranam-gacchami",
+          "devanagari": "शरणं गच्छामि",
+          "iast": "śaraṇaṃ gacchāmi",
+          "gloss": "I go for refuge",
+          "note": "śaraṇam: acc. sg. n. · gacchāmi: 1 sg. pres. · √gam"
+        },
+        {
+          "id": "14-stotra-i:stotra-vak:tvam-eva",
+          "devanagari": "त्वामेव",
+          "iast": "tvām eva",
+          "gloss": "you alone",
+          "note": "dvitīyā | acc. sg. · stem: yuṣmad- · pronoun · eva: emphatic"
+        },
+        {
+          "id": "14-stotra-i:stotra-vak:dayam-kuru",
+          "devanagari": "दयां कुरु",
+          "iast": "dayāṃ kuru",
+          "gloss": "show compassion!",
+          "note": "dayām: acc. sg. f. · kuru: 2 sg. impv. · √kṛ"
+        },
+        {
+          "id": "14-stotra-i:stotra-vak:krpaya",
+          "devanagari": "कृपया",
+          "iast": "kṛpayā",
+          "gloss": "by your grace",
+          "note": "tṛtīyā | instr. sg. · f. · stem: kṛpā- · ā-stem"
+        },
+        {
+          "id": "14-stotra-i:stotra-vak:sada",
+          "devanagari": "सदा",
+          "iast": "sadā",
+          "gloss": "always",
+          "note": "indeclinable"
+        },
+        {
+          "id": "14-stotra-i:stotra-vak:bhajami",
+          "devanagari": "भजामि",
+          "iast": "bhajāmi",
+          "gloss": "I worship",
+          "note": "1 sg. pres. · √bhaj · parasmaipada"
+        },
+        {
+          "id": "14-stotra-i:stotra-vak:smarami",
+          "devanagari": "स्मरामि",
+          "iast": "smarāmi",
+          "gloss": "I remember, I call to mind",
+          "note": "1 sg. pres. · √smṛ · parasmaipada"
+        },
+        {
+          "id": "14-stotra-i:stotra-vak:om-santih",
+          "devanagari": "ॐ शान्तिः",
+          "iast": "oṃ śāntiḥ",
+          "gloss": "Om, peace",
+          "note": "śāntiḥ: prathamā | nom. sg. · stem: śānti- · i-stem f."
+        }
+      ]
+    },
+    {
+      "name": "V18 · Refrains & formulae — DM · LS",
+      "cards": [
+        {
+          "id": "14-stotra-i:refrains-formulae:rsir-uvaca",
+          "devanagari": "ऋषिर् उवाच",
+          "iast": "ṛṣir uvāca",
+          "gloss": "the sage said",
+          "note": "every chapter (narrator switch)"
+        },
+        {
+          "id": "14-stotra-i:refrains-formulae:rajovaca",
+          "devanagari": "राजोवाच",
+          "iast": "rājovāca",
+          "gloss": "the king said",
+          "note": "DM 1.3, 9.1, 13.1"
+        },
+        {
+          "id": "14-stotra-i:refrains-formulae:devyuvaca",
+          "devanagari": "देव्युवाच",
+          "iast": "devyuvāca",
+          "gloss": "the Goddess said",
+          "note": "DM 5.116, 6.10, 12.1"
+        },
+        {
+          "id": "14-stotra-i:refrains-formulae:deva-ucuh",
+          "devanagari": "देवा ऊचुः",
+          "iast": "devā ūcuḥ",
+          "gloss": "the gods said",
+          "note": "DM 4.1, 5.9"
+        },
+        {
+          "id": "14-stotra-i:refrains-formulae:markandeya-uvaca",
+          "devanagari": "मार्कण्डेय उवाच",
+          "iast": "mārkaṇḍeya uvāca",
+          "gloss": "Mārkaṇḍeya said",
+          "note": "DM 13.6, 13.26"
+        },
+        {
+          "id": "14-stotra-i:refrains-formulae:tatah",
+          "devanagari": "ततः",
+          "iast": "tataḥ",
+          "gloss": "then, thereupon",
+          "note": "most common connector (~100 times)"
+        },
+        {
+          "id": "14-stotra-i:refrains-formulae:ity-uktva",
+          "devanagari": "इत्य् उक्त्वा",
+          "iast": "ity uktvā",
+          "gloss": "having said thus",
+          "note": "speech→action transition"
+        },
+        {
+          "id": "14-stotra-i:refrains-formulae:iti-srutva",
+          "devanagari": "इति श्रुत्वा",
+          "iast": "iti śrutvā",
+          "gloss": "having heard thus",
+          "note": "hearing→response"
+        },
+        {
+          "id": "14-stotra-i:refrains-formulae:evam-stutva",
+          "devanagari": "एवं स्तुत्वा",
+          "iast": "evaṃ stutvā",
+          "gloss": "having praised thus",
+          "note": "stuti→result"
+        },
+        {
+          "id": "14-stotra-i:refrains-formulae:tan-tam-drstva",
+          "devanagari": "तान्/तां दृष्ट्वा",
+          "iast": "tān/tāṃ dṛṣṭvā",
+          "gloss": "having seen them/her",
+          "note": "vision→action"
+        },
+        {
+          "id": "14-stotra-i:refrains-formulae:tato-devi",
+          "devanagari": "ततो देवी",
+          "iast": "tato devī",
+          "gloss": "then the Goddess",
+          "note": "action pivot"
+        },
+        {
+          "id": "14-stotra-i:refrains-formulae:kopavista",
+          "devanagari": "कोपाविष्टा",
+          "iast": "kopāviṣṭā",
+          "gloss": "seized by anger",
+          "note": "DM 3.26"
+        },
+        {
+          "id": "14-stotra-i:refrains-formulae:samkruddha",
+          "devanagari": "संक्रुद्ध",
+          "iast": "saṃkruddha",
+          "gloss": "thoroughly enraged",
+          "note": "DM 9.17"
+        },
+        {
+          "id": "14-stotra-i:refrains-formulae:kopadhmata",
+          "devanagari": "कोपाध्मता",
+          "iast": "kopādhmatā",
+          "gloss": "swollen with rage",
+          "note": "DM 8.4"
+        },
+        {
+          "id": "14-stotra-i:refrains-formulae:prasphuritadhara",
+          "devanagari": "प्रस्फुरिताधर",
+          "iast": "prasphuritādhara",
+          "gloss": "with quivering lip",
+          "note": "DM 6.21"
+        },
+        {
+          "id": "14-stotra-i:refrains-formulae:amarsapuritah",
+          "devanagari": "अमर्षपूरितः",
+          "iast": "amarṣapūritaḥ",
+          "gloss": "filled with indignation",
+          "note": "DM 6.2"
+        },
+        {
+          "id": "14-stotra-i:refrains-formulae:ya-devi-sarvabhutesu-x-rupena-samsthita",
+          "devanagari": "या देवी सर्वभूतेषु X-रूपेण संस्थिता",
+          "iast": "yā devī sarvabhūteṣu X-rūpeṇa saṃsthitā",
+          "gloss": "She who in all beings is established as X"
+        },
+        {
+          "id": "14-stotra-i:refrains-formulae:namah-tasyai-namah-tasyai-namah-tasyai-namo-namah",
+          "devanagari": "नमः तस्यै नमः तस्यै नमः तस्यै नमो नमः",
+          "iast": "namaḥ tasyai namaḥ tasyai namaḥ tasyai namo namaḥ",
+          "gloss": "Salutation to her, to her, to her — salutations!"
+        },
+        {
+          "id": "14-stotra-i:refrains-formulae:narayani-namo-stu-te",
+          "devanagari": "नारायणि नमोऽस्तु ते",
+          "iast": "nārāyaṇi namo'stu te",
+          "gloss": "O Nārāyaṇī, salutations to you"
+        },
+        {
+          "id": "14-stotra-i:refrains-formulae:iti-srimarkandeyapurane-savarnike-manvantare-devimahatmye",
+          "devanagari": "इति श्रीमार्कण्डेयपुराणे सावर्णिके मन्वन्तरे देवीमाहात्म्ये",
+          "iast": "iti śrīmārkaṇḍeyapurāṇe sāvarṇike manvantare devīmāhātmye",
+          "gloss": "Thus in the Śrī Mārkaṇḍeya Purāṇa, in the Sāvarṇika Manvantara, in the Devī Māhātmya"
+        },
+        {
+          "id": "14-stotra-i:refrains-formulae:x-vadho-nama-y-o-dhyayah",
+          "devanagari": "X-वधो नाम Y-ओऽध्यायः",
+          "iast": "X-vadho nāma Y-o'dhyāyaḥ",
+          "gloss": "named \"the slaying of X\", the Y-th chapter"
+        },
+        {
+          "id": "14-stotra-i:refrains-formulae:om-x-aya-ai-namah",
+          "devanagari": "ओं X-आय/ऐ नमः",
+          "iast": "oṃ X-āya/ai namaḥ",
+          "gloss": "Oṃ, salutation to X",
+          "note": "VS/LS/KKS/KS throughout"
+        },
+        {
+          "id": "14-stotra-i:refrains-formulae:om-x-aya-namah",
+          "devanagari": "ओं X-आय नमः",
+          "iast": "oṃ X-āya namaḥ",
+          "gloss": "(masculine dative)",
+          "note": "caturthī | dat. sg. · m. · a-stem · VS throughout"
+        },
+        {
+          "id": "14-stotra-i:refrains-formulae:om-x-yai-namah",
+          "devanagari": "ओं X-यै नमः",
+          "iast": "oṃ X-yai namaḥ",
+          "gloss": "(feminine dative)",
+          "note": "caturthī | dat. sg. · f. · ā-/ī-stem · LS/KKS/KS throughout"
+        },
+        {
+          "id": "14-stotra-i:refrains-formulae:sri-bhagavan-uvaca",
+          "devanagari": "श्री भगवान् उवाच",
+          "iast": "śrī bhagavān uvāca",
+          "gloss": "the blessed Lord said"
+        },
+        {
+          "id": "14-stotra-i:refrains-formulae:yah-sarvatranavadyatma",
+          "devanagari": "यः सर्वत्रानवद्यात्मा",
+          "iast": "yaḥ sarvatrānavadyātmā",
+          "gloss": "he who is the blameless self everywhere"
+        },
+        {
+          "id": "14-stotra-i:refrains-formulae:hayagriva-uvaca",
+          "devanagari": "हयग्रीव उवाच",
+          "iast": "hayagrīva uvāca",
+          "gloss": "Hayagrīva said"
+        },
+        {
+          "id": "14-stotra-i:refrains-formulae:agastyaya-varam-dattva",
+          "devanagari": "अगस्त्याय वरं दत्त्वा",
+          "iast": "agastyāya varaṃ dattvā",
+          "gloss": "having given a boon to Agastya"
+        },
+        {
+          "id": "14-stotra-i:refrains-formulae:om-namah-sivaya",
+          "devanagari": "ओं नमः शिवाय",
+          "iast": "oṃ namaḥ śivāya",
+          "gloss": "Oṃ, salutation to Śiva",
+          "note": "KS/KKS contexts"
+        },
+        {
+          "id": "14-stotra-i:refrains-formulae:om-namo-narayanaya",
+          "devanagari": "ओं नमो नारायणाय",
+          "iast": "oṃ namo nārāyaṇāya",
+          "gloss": "Oṃ, salutation to Nārāyaṇa",
+          "note": "VS context"
+        },
+        {
+          "id": "14-stotra-i:refrains-formulae:om-aim-hrim-klim",
+          "devanagari": "ओं ऐं ह्रीं क्लीं",
+          "iast": "oṃ aiṃ hrīṃ klīṃ",
+          "gloss": "Bāla mantra seed",
+          "note": "LS/KKS contexts"
+        },
+        {
+          "id": "14-stotra-i:refrains-formulae:jayatu-jayatu-devi",
+          "devanagari": "जयतु जयतु देवी",
+          "iast": "jayatu jayatu devī",
+          "gloss": "victory, victory to the Goddess",
+          "note": "DM passim"
+        },
+        {
+          "id": "14-stotra-i:refrains-formulae:svasti",
+          "devanagari": "स्वस्ति",
+          "iast": "svasti",
+          "gloss": "well-being, auspiciousness",
+          "note": "KS passim; VS passim"
+        }
+      ]
+    }
+  ]
+}

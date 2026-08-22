@@ -1,4 +1,4 @@
-# Stage 27: Dhāraṇā I — Reference Guide
+# Stage 31: Dhāraṇā I — Reference Guide
 
 ## Memory Palace for 4 Compositions
 

@@ -1,4 +1,4 @@
-# Stage 27: Dhāraṇā I — Interrupted Memory
+# Stage 31: Dhāraṇā I — Interrupted Memory
 
 ## Goal
 Hold multiple unfinished compositions simultaneously in memory. Begin four different stotras, compose one pāda each, then return to complete them — maintaining each thread perfectly.

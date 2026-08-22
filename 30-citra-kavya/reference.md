@@ -1,4 +1,4 @@
-# Stage 26: Citra-kāvya — Reference Guide
+# Stage 30: Citra-kāvya — Reference Guide
 
 ## Multi-Constraint Planning Template
 

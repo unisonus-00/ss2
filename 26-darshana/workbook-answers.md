@@ -1,4 +1,4 @@
-# Stage 22: Darśana — Workbook (Answers)
+# Stage 26: Darśana — Workbook (Answers)
 
 ## Section A
 1. **advaita/advaya** 2. **svayam-prakāśa** 3. **saccidānanda** 4. **nirākāra** 5. **kālātīta**

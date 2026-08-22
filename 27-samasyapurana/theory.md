@@ -1,4 +1,4 @@
-# Stage 23: Samasyāpūraṇa — Backwards Composition
+# Stage 27: Samasyāpūraṇa — Backwards Composition
 
 ## Goal
 Given a strange, out-of-context pāda (line), construct the remaining pādas so the whole verse makes sense. This is the foundational avadhāna skill — deriving context creatively from a constraint.

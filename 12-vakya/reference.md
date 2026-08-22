@@ -1,4 +1,4 @@
-# Stage 10: Vākya — Reference Guide
+# Stage 12: Vākya — Reference Guide
 
 ## Sentence Templates
 

@@ -1,4 +1,4 @@
-# Stage 12: Stotra I — Workbook (Answers)
+# Stage 14: Stotra I — Workbook (Answers)
 
 ## Section A
 1. **śivam** 2. **devīm** 3. **viṣṇum** 4. **rāmam** 5. **durgām**

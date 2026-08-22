@@ -1,4 +1,4 @@
-# Stage 16: Chandas I — Syllables
+# Stage 19: Chandas I — Syllables
 
 ## Goal
 Understand the syllable system (akṣara, laghu/guru) that underlies all Sanskrit meter. Learn to hear and mark 8-syllable units.

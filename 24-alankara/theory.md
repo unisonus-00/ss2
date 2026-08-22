@@ -1,4 +1,4 @@
-# Stage 20: Alaṅkāra — Poetic Ornament
+# Stage 24: Alaṅkāra — Poetic Ornament
 
 ## Goal
 Transform correct verse into *beautiful* verse using alaṅkāras (figures of speech). Master upamā (simile), rūpaka (metaphor), anuprāsa (alliteration), and other ornaments.

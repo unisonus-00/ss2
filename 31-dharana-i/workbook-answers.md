@@ -1,4 +1,4 @@
-# Stage 27: Dhāraṇā I — Workbook (Answers)
+# Stage 31: Dhāraṇā I — Workbook (Answers)
 
 This stage is primarily practical and self-assessed. There are no fixed "correct" answers — the test is whether you can accurately recall and continue your own compositions.
 

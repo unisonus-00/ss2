@@ -1,0 +1,645 @@
+{
+  "lesson": "04-guna",
+  "decks": [
+    {
+      "name": "03 · Guṇa — adjectives",
+      "cards": [
+        {
+          "id": "04-guna:guna:karunamayi",
+          "devanagari": "करुणामयी",
+          "iast": "karuṇāmayī",
+          "gloss": "full of compassion",
+          "note": "prathamā | nom. sg. · f. · stem: karuṇāmayī- · ī-stem"
+        },
+        {
+          "id": "04-guna:guna:dayaluh",
+          "devanagari": "दयालुः",
+          "iast": "dayāluḥ",
+          "gloss": "compassionate",
+          "note": "prathamā | nom. sg. · stem: dayālu- · u-stem"
+        },
+        {
+          "id": "04-guna:guna:sundarah",
+          "devanagari": "सुन्दरः",
+          "iast": "sundaraḥ",
+          "gloss": "beautiful",
+          "note": "prathamā | nom. sg. · stem: sundara- · a-stem"
+        },
+        {
+          "id": "04-guna:guna:subhah",
+          "devanagari": "शुभः",
+          "iast": "śubhaḥ",
+          "gloss": "auspicious",
+          "note": "prathamā | nom. sg. · stem: śubha- · a-stem"
+        },
+        {
+          "id": "04-guna:guna:divyah",
+          "devanagari": "दिव्यः",
+          "iast": "divyaḥ",
+          "gloss": "divine",
+          "note": "prathamā | nom. sg. · stem: divya- · a-stem"
+        },
+        {
+          "id": "04-guna:guna:pavitrah",
+          "devanagari": "पवित्रः",
+          "iast": "pavitraḥ",
+          "gloss": "pure",
+          "note": "prathamā | nom. sg. · stem: pavitra- · a-stem"
+        },
+        {
+          "id": "04-guna:guna:nityah",
+          "devanagari": "नित्यः",
+          "iast": "nityaḥ",
+          "gloss": "eternal",
+          "note": "prathamā | nom. sg. · stem: nitya- · a-stem"
+        },
+        {
+          "id": "04-guna:guna:prasannah",
+          "devanagari": "प्रसन्नः",
+          "iast": "prasannaḥ",
+          "gloss": "gracious, serene",
+          "note": "prathamā | nom. sg. · stem: prasanna- · a-stem"
+        },
+        {
+          "id": "04-guna:guna:ugrah",
+          "devanagari": "उग्रः",
+          "iast": "ugraḥ",
+          "gloss": "fierce",
+          "note": "prathamā | nom. sg. · stem: ugra- · a-stem"
+        },
+        {
+          "id": "04-guna:guna:santah",
+          "devanagari": "शान्तः",
+          "iast": "śāntaḥ",
+          "gloss": "peaceful",
+          "note": "prathamā | nom. sg. · stem: śānta- · a-stem"
+        },
+        {
+          "id": "04-guna:guna:mangalah",
+          "devanagari": "मङ्गलः",
+          "iast": "maṅgalaḥ",
+          "gloss": "blessed",
+          "note": "prathamā | nom. sg. · stem: maṅgala- · a-stem"
+        },
+        {
+          "id": "04-guna:guna:mahan",
+          "devanagari": "महान्",
+          "iast": "mahān",
+          "gloss": "great",
+          "note": "prathamā | nom. sg. · stem: mahat- · at-stem"
+        },
+        {
+          "id": "04-guna:guna:svetah",
+          "devanagari": "श्वेतः",
+          "iast": "śvetaḥ",
+          "gloss": "white",
+          "note": "prathamā | nom. sg. · stem: śveta- · a-stem"
+        },
+        {
+          "id": "04-guna:guna:raktah",
+          "devanagari": "रक्तः",
+          "iast": "raktaḥ",
+          "gloss": "red",
+          "note": "prathamā | nom. sg. · stem: rakta- · a-stem"
+        },
+        {
+          "id": "04-guna:guna:krpaluh",
+          "devanagari": "कृपालुः",
+          "iast": "kṛpāluḥ",
+          "gloss": "merciful",
+          "note": "prathamā | nom. sg. · stem: kṛpālu- · u-stem"
+        }
+      ]
+    },
+    {
+      "name": "V11 · Adjectives of power & beauty",
+      "cards": [
+        {
+          "id": "04-guna:adjectives-of-power-beauty:ugra",
+          "devanagari": "उग्र",
+          "iast": "ugra",
+          "gloss": "fierce, formidable",
+          "note": "headword | adj. · stem: ugra- · a-stem · DM 8.5; KS 46; VS 340"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:ghora",
+          "devanagari": "घोर",
+          "iast": "ghora",
+          "gloss": "terrible, dreadful",
+          "note": "headword | adj. · stem: ghora- · a-stem · DM 7.11; KS 77"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:bhima",
+          "devanagari": "भीम",
+          "iast": "bhīma",
+          "gloss": "terrifying",
+          "note": "headword | adj. · stem: bhīma- · a-stem · KS passim; VS 209"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:bhisana",
+          "devanagari": "भीषण",
+          "iast": "bhīṣaṇa",
+          "gloss": "frightful",
+          "note": "headword | adj. · stem: bhīṣaṇa- · a-stem · DM 7.11; KS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:raudra",
+          "devanagari": "रौद्र",
+          "iast": "raudra",
+          "gloss": "wrathful",
+          "note": "headword | adj. · stem: raudra- · a-stem · DM passim; KS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:pracanda",
+          "devanagari": "प्रचण्ड",
+          "iast": "pracaṇḍa",
+          "gloss": "extremely fierce",
+          "note": "headword | adj. · stem: pracaṇḍa- · a-stem · DM 7.7; KS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:daruna",
+          "devanagari": "दारुण",
+          "iast": "dāruṇa",
+          "gloss": "cruel, harsh",
+          "note": "headword | adj. · stem: dāruṇa- · a-stem · DM passim; KS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:tiksna",
+          "devanagari": "तीक्ष्ण",
+          "iast": "tīkṣṇa",
+          "gloss": "sharp, keen",
+          "note": "headword | adj. · stem: tīkṣṇa- · a-stem · DM 3.7; KS passim; VS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:tivra",
+          "devanagari": "तीव्र",
+          "iast": "tīvra",
+          "gloss": "intense",
+          "note": "headword | adj. · stem: tīvra- · a-stem · KS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:canda",
+          "devanagari": "चण्ड",
+          "iast": "caṇḍa",
+          "gloss": "fierce",
+          "note": "headword | adj. · stem: caṇḍa- · a-stem · DM 7.1 (demon name); LS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:krura",
+          "devanagari": "क्रूर",
+          "iast": "krūra",
+          "gloss": "cruel",
+          "note": "headword | adj. · stem: krūra- · a-stem · KS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:durjaya",
+          "devanagari": "दुर्जय",
+          "iast": "durjaya",
+          "gloss": "hard to conquer",
+          "note": "headword | adj. · stem: durjaya- · a-stem · KS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:durlabha",
+          "devanagari": "दुर्लभ",
+          "iast": "durlabha",
+          "gloss": "hard to attain",
+          "note": "headword | adj. · stem: durlabha- · a-stem · LS 188; KS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:durdharsa",
+          "devanagari": "दुर्धर्ष",
+          "iast": "durdharṣa",
+          "gloss": "unassailable",
+          "note": "headword | adj. · stem: durdharṣa- · a-stem · VS 220"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:sundara-ramya-rucira-manohara",
+          "devanagari": "सुन्दर / रम्य / रुचिर / मनोहर",
+          "iast": "sundara / ramya / rucira / manohara",
+          "gloss": "beautiful",
+          "note": "headword | adj. · stem: sundara- · a-stem · LS passim; KS passim; VS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:divya",
+          "devanagari": "दिव्य",
+          "iast": "divya",
+          "gloss": "divine, celestial",
+          "note": "headword | adj. · stem: divya- · a-stem · DM 2.10; LS passim; KS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:sobhana-sobha",
+          "devanagari": "शोभन / शोभा",
+          "iast": "śobhana / śobhā",
+          "gloss": "splendid",
+          "note": "headword | adj. · stem: śobhana- · a-stem · KS 81; LS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:tejasvin",
+          "devanagari": "तेजस्विन्",
+          "iast": "tejasvin",
+          "gloss": "radiant, brilliant",
+          "note": "headword | adj. · stem: tejasvin- · in-stem · KS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:bhasvat-bhasura",
+          "devanagari": "भास्वत् / भासुर",
+          "iast": "bhāsvat / bhāsura",
+          "gloss": "shining",
+          "note": "LS passim; KKS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:kancana-hema-suvarna",
+          "devanagari": "काञ्चन / हेम / सुवर्ण",
+          "iast": "kāñcana / hema / suvarṇa",
+          "gloss": "golden",
+          "note": "headword | adj. · stem: kāñcana- · a-stem · LS 13; KKS 448+; KS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:rucira",
+          "devanagari": "रुचिर",
+          "iast": "rucira",
+          "gloss": "lustrous, beautiful",
+          "note": "headword | adj. · stem: rucira- · a-stem · LS passim; KS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:caru",
+          "devanagari": "चारु",
+          "iast": "cāru",
+          "gloss": "beautiful, lovely",
+          "note": "headword | adj. · stem: cāru- · u-stem · LS 201-203"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:lalita",
+          "devanagari": "ललित",
+          "iast": "lalita",
+          "gloss": "graceful, playful",
+          "note": "headword | adj. · stem: lalita- · a-stem · LS title name"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:komala",
+          "devanagari": "कोमल",
+          "iast": "komala",
+          "gloss": "soft, tender",
+          "note": "headword | adj. · stem: komala- · a-stem · KKS 951; LS 399"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:snigdha",
+          "devanagari": "स्निग्ध",
+          "iast": "snigdha",
+          "gloss": "smooth, tender",
+          "note": "headword | adj. · stem: snigdha- · a-stem · KS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:sphurad-sphurat",
+          "devanagari": "स्फुरद् / स्फुरत्",
+          "iast": "sphurad / sphurat",
+          "gloss": "glittering, throbbing",
+          "note": "LS 16; KS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:maha-mahat",
+          "devanagari": "महा / महत्",
+          "iast": "mahā / mahat",
+          "gloss": "great",
+          "note": "headword | adj. · stem: mahā- · ā-stem · DM throughout; VS/LS/KS throughout"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:visala",
+          "devanagari": "विशाल",
+          "iast": "viśāla",
+          "gloss": "vast, wide",
+          "note": "headword | adj. · stem: viśāla- · a-stem · KS 83; LS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:suksma",
+          "devanagari": "सूक्ष्म",
+          "iast": "sūkṣma",
+          "gloss": "subtle, minute",
+          "note": "headword | adj. · stem: sūkṣma- · a-stem · LS passim; KS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:sthula",
+          "devanagari": "स्थूल",
+          "iast": "sthūla",
+          "gloss": "gross, large",
+          "note": "headword | adj. · stem: sthūla- · a-stem · LS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:ananta",
+          "devanagari": "अनन्त",
+          "iast": "ananta",
+          "gloss": "endless, infinite",
+          "note": "headword | adj. · stem: ananta- · a-stem · VS 659; LS passim; KS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:atula",
+          "devanagari": "अतुल",
+          "iast": "atula",
+          "gloss": "incomparable",
+          "note": "headword | adj. · stem: atula- · a-stem · DM 9.14; KS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:amita",
+          "devanagari": "अमित",
+          "iast": "amita",
+          "gloss": "immeasurable",
+          "note": "headword | adj. · stem: amita- · a-stem · VS 174; LS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:ameya",
+          "devanagari": "अमेय",
+          "iast": "ameya",
+          "gloss": "beyond measure",
+          "note": "headword | adj. · stem: ameya- · a-stem · LS 406; KS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:apara",
+          "devanagari": "अपार",
+          "iast": "apāra",
+          "gloss": "boundless",
+          "note": "headword | adj. · stem: apāra- · a-stem · VS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:apramita-aprameya",
+          "devanagari": "अप्रमित / अप्रमेय",
+          "iast": "apramita / aprameya",
+          "gloss": "immeasurable",
+          "note": "headword | adj. · stem: apramita- · a-stem · LS 413; VS 248"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:nirupama",
+          "devanagari": "निरूपम",
+          "iast": "nirūpama",
+          "gloss": "without comparison",
+          "note": "headword | adj. · stem: nirūpama- · a-stem · LS passim; KS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:gambhira",
+          "devanagari": "गम्भीर",
+          "iast": "gambhīra",
+          "gloss": "deep, profound",
+          "note": "headword | adj. · stem: gambhīra- · a-stem · VS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:suddha-visuddha",
+          "devanagari": "शुद्ध / विशुद्ध",
+          "iast": "śuddha / viśuddha",
+          "gloss": "pure",
+          "note": "headword | adj. · stem: śuddha- · a-stem · LS passim; VS passim; KS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:pavitra-puta",
+          "devanagari": "पवित्र / पूत",
+          "iast": "pavitra / pūta",
+          "gloss": "sacred, purified",
+          "note": "headword | adj. · stem: pavitra- · a-stem · LS passim; KS 108; VS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:mangala",
+          "devanagari": "मङ्गल",
+          "iast": "maṅgala",
+          "gloss": "auspicious",
+          "note": "headword | adj. · stem: maṅgala- · a-stem · DM 11.10; KS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:subha",
+          "devanagari": "शुभ",
+          "iast": "śubha",
+          "gloss": "auspicious, good",
+          "note": "headword | adj. · stem: śubha- · a-stem · DM 12.12; KS 81; VS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:punya",
+          "devanagari": "पुण्य",
+          "iast": "puṇya",
+          "gloss": "meritorious",
+          "note": "headword | adj. · stem: puṇya- · a-stem · KS 106-108"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:kalyana",
+          "devanagari": "कल्याण",
+          "iast": "kalyāṇa",
+          "gloss": "auspicious, blessed",
+          "note": "headword | adj. · stem: kalyāṇa- · a-stem · KKS 3; LS 292; VS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:bhadra",
+          "devanagari": "भद्र",
+          "iast": "bhadra",
+          "gloss": "blessed, gentle",
+          "note": "headword | adj. · stem: bhadra- · a-stem · KS 63; VS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:srimat",
+          "devanagari": "श्रीमत्",
+          "iast": "śrīmat",
+          "gloss": "endowed with splendor",
+          "note": "VS 22, 178; LS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:sat",
+          "devanagari": "सत्",
+          "iast": "sat",
+          "gloss": "true, good, real",
+          "note": "VS 41; LS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:satya",
+          "devanagari": "सत्य",
+          "iast": "satya",
+          "gloss": "true, truthful",
+          "note": "headword | adj. · stem: satya- · a-stem · KS passim; VS 107, 212"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:niradhara",
+          "devanagari": "निराधार",
+          "iast": "nirādhāra",
+          "gloss": "without support",
+          "note": "headword | adj. · stem: nirādhāra- · a-stem · LS 133"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:niranjana",
+          "devanagari": "निरञ्जन",
+          "iast": "nirañjana",
+          "gloss": "unstained",
+          "note": "headword | adj. · stem: nirañjana- · a-stem · LS 134; KS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:nirlepa",
+          "devanagari": "निर्लेप",
+          "iast": "nirlepa",
+          "gloss": "without blemish",
+          "note": "headword | adj. · stem: nirlepa- · a-stem · LS 135"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:nirmala",
+          "devanagari": "निर्मल",
+          "iast": "nirmala",
+          "gloss": "spotless",
+          "note": "headword | adj. · stem: nirmala- · a-stem · LS 136; KS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:nitya",
+          "devanagari": "नित्या",
+          "iast": "nityā",
+          "gloss": "eternal",
+          "note": "headword | adj. · stem: nityā- · ā-stem · LS 137; KS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:nirakara",
+          "devanagari": "निराकार",
+          "iast": "nirākāra",
+          "gloss": "formless",
+          "note": "headword | adj. · stem: nirākāra- · a-stem · LS 138"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:nirguna",
+          "devanagari": "निर्गुण",
+          "iast": "nirguṇa",
+          "gloss": "quality-less",
+          "note": "headword | adj. · stem: nirguṇa- · a-stem · LS 139; KS passim; VS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:niskala",
+          "devanagari": "निष्कल",
+          "iast": "niṣkala",
+          "gloss": "partless",
+          "note": "headword | adj. · stem: niṣkala- · a-stem · LS 140"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:niskama",
+          "devanagari": "निष्काम",
+          "iast": "niṣkāma",
+          "gloss": "desireless",
+          "note": "headword | adj. · stem: niṣkāma- · a-stem · LS 142; KS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:nirmoha",
+          "devanagari": "निर्मोह",
+          "iast": "nirmoha",
+          "gloss": "without delusion",
+          "note": "headword | adj. · stem: nirmoha- · a-stem · LS 165"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:nirmama",
+          "devanagari": "निर्मम",
+          "iast": "nirmama",
+          "gloss": "without possessiveness",
+          "note": "headword | adj. · stem: nirmama- · a-stem · LS 167"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:nispapa",
+          "devanagari": "निष्पाप",
+          "iast": "niṣpāpa",
+          "gloss": "sinless",
+          "note": "headword | adj. · stem: niṣpāpa- · a-stem · LS 169"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:nirmaya",
+          "devanagari": "निर्माया",
+          "iast": "nirmāyā",
+          "gloss": "beyond illusion",
+          "note": "headword | adj. · stem: nirmāyā- · ā-stem · LS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:avyaya",
+          "devanagari": "अव्यय",
+          "iast": "avyaya",
+          "gloss": "imperishable",
+          "note": "headword | adj. · stem: avyaya- · a-stem · VS 13; LS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:avyakta",
+          "devanagari": "अव्यक्त",
+          "iast": "avyakta",
+          "gloss": "unmanifest",
+          "note": "headword | adj. · stem: avyakta- · a-stem · LS 398; VS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:acyuta",
+          "devanagari": "अच्युत",
+          "iast": "acyuta",
+          "gloss": "unfallen",
+          "note": "headword | adj. · stem: acyuta- · a-stem · VS 100, 318"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:ajita",
+          "devanagari": "अजित",
+          "iast": "ajita",
+          "gloss": "unconquered",
+          "note": "headword | adj. · stem: ajita- · a-stem · VS 438"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:asesa",
+          "devanagari": "अशेष",
+          "iast": "aśeṣa",
+          "gloss": "without remainder, total",
+          "note": "headword | adj. · stem: aśeṣa- · a-stem · DM 6.19"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:krsna-syama",
+          "devanagari": "कृष्ण / श्याम",
+          "iast": "kṛṣṇa / śyāma",
+          "gloss": "black, dark",
+          "note": "headword | adj. · stem: kṛṣṇa- · a-stem · KS 36, 991; KS 134-135"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:nila",
+          "devanagari": "नील",
+          "iast": "nīla",
+          "gloss": "blue-black",
+          "note": "headword | adj. · stem: nīla- · a-stem · KS 45; KS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:rakta-aruna-lohita",
+          "devanagari": "रक्त / अरुण / लोहित",
+          "iast": "rakta / aruṇa / lohita",
+          "gloss": "red",
+          "note": "headword | adj. · stem: rakta- · a-stem · KS passim; LS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:pita",
+          "devanagari": "पीत",
+          "iast": "pīta",
+          "gloss": "yellow",
+          "note": "headword | adj. · stem: pīta- · a-stem · LS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:sveta-dhavala-gaura",
+          "devanagari": "श्वेत / धवल / गौर",
+          "iast": "śveta / dhavala / gaura",
+          "gloss": "white, fair",
+          "note": "headword | adj. · stem: śveta- · a-stem · KS passim; LS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:sukla",
+          "devanagari": "शुक्ल",
+          "iast": "śukla",
+          "gloss": "white, bright",
+          "note": "headword | adj. · stem: śukla- · a-stem · LS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:dhumra",
+          "devanagari": "धूम्र",
+          "iast": "dhūmra",
+          "gloss": "smoky",
+          "note": "headword | adj. · stem: dhūmra- · a-stem · DM 6.3 (dhūmralocana)"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:pingala",
+          "devanagari": "पिङ्गल",
+          "iast": "piṅgala",
+          "gloss": "tawny, yellow-brown",
+          "note": "headword | adj. · stem: piṅgala- · a-stem · KS passim"
+        },
+        {
+          "id": "04-guna:adjectives-of-power-beauty:kapila",
+          "devanagari": "कपिल",
+          "iast": "kapila",
+          "gloss": "reddish-brown",
+          "note": "headword | adj. · stem: kapila- · a-stem · KKS 468; KS passim"
+        }
+      ]
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-# Stage 27: Dhāraṇā I — Workbook (Questions)
+# Stage 31: Dhāraṇā I — Workbook (Questions)
 
 ## Exercise 1: Two Threads (20 marks)
 **Round 1:** Compose pāda (a) for two stotras:

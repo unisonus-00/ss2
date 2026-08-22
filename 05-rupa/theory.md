@@ -1,4 +1,4 @@
-# Stage 3: Rūpa — Case, Number, and Gender (Declension)
+# Stage 5: Rūpa — Case, Number, and Gender (Declension)
 
 ## Goal
 Learn to transform nouns through all cases (vibhaktis), numbers, and genders. Decline devotional vocabulary actively so that words become usable in sentences.

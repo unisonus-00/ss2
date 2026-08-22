@@ -1,4 +1,4 @@
-# Stage 21: Rasa — Workbook (Answers)
+# Stage 25: Rasa — Workbook (Answers)
 
 ## Section A
 1. **Śānta** (dhyāna, nirañjana, nirguṇa = peace vocabulary)

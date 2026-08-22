@@ -1,4 +1,4 @@
-# Stage 30: Multi-devatā — Rapid Semantic Switching
+# Stage 34: Multi-devatā — Rapid Semantic Switching
 
 ## Goal
 Switch between deity lexical worlds instantly — Śiva → Lalitā → Kṛṣṇa → Sarasvatī — each requiring completely different vocabulary, rasa, epithets, and associations.

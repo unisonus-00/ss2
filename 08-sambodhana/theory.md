@@ -1,4 +1,4 @@
-# Stage 6: Sambodhana — Direct Address
+# Stage 8: Sambodhana — Direct Address
 
 ## Goal
 Learn to speak directly to the deity — vocative case, imperatives, and spontaneous prayer. Move from talking *about* the divine to talking *to* the divine.

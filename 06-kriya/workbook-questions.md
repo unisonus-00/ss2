@@ -1,4 +1,4 @@
-# Stage 4: Kriyā — Workbook (Questions)
+# Stage 6: Kriyā — Workbook (Questions)
 
 ## Section A: Conjugation (15 marks)
 

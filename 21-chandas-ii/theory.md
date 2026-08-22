@@ -1,4 +1,4 @@
-# Stage 17: Chandas II — Anuṣṭubh (Śloka)
+# Stage 21: Chandas II — Anuṣṭubh (Śloka)
 
 ## Goal
 Master the anuṣṭubh/śloka meter and compose spontaneous verses in it.

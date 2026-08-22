@@ -1,4 +1,4 @@
-# Stage 32: Avadhāna-Sevā — Mastery
+# Stage 36: Avadhāna-Sevā — Mastery
 
 ## Goal
 The performance itself becomes offering. You are now an Avadhānī — one whose attention is an act of worship.

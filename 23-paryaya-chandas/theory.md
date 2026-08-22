@@ -1,4 +1,4 @@
-# Stage 19: Paryāya-Chandas — Lexical Flexibility
+# Stage 23: Paryāya-Chandas — Lexical Flexibility
 
 ## Goal
 Develop the ability to swap synonyms instantly to save a meter — making lexical search automatic under metrical pressure.

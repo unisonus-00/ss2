@@ -1,4 +1,4 @@
-# Stage 11: Bhāva — Emotional Vocabulary
+# Stage 13: Bhāva — Emotional Vocabulary
 
 ## Goal
 Express inner emotional states — gratitude, longing, surrender, wonder, friendship — in Sanskrit without falling back to English. Develop the vocabulary of the heart.

@@ -1,4 +1,4 @@
-# Stage 32: Avadhāna-Sevā — Final Examination
+# Stage 36: Avadhāna-Sevā — Final Examination
 
 ## This is your final assessment. It is a complete, timed Aṣṭāvadhāna.
 

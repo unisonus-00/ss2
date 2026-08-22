@@ -1,4 +1,4 @@
-# Stage 9: Samāsa — Reference Guide
+# Stage 11: Samāsa — Reference Guide
 
 ## Compound Types at a Glance
 

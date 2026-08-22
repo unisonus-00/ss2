@@ -1,4 +1,4 @@
-# Stage 2: Guṇa — Adjectives
+# Stage 4: Guṇa — Adjectives
 
 ## Goal
 Learn to describe deities and sacred objects with qualities (guṇas). Generate 10 qualities for any deity spontaneously.

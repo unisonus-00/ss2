@@ -1,4 +1,4 @@
-# Stage 25: Niṣiddhākṣarī — Inhibition
+# Stage 29: Niṣiddhākṣarī — Inhibition
 
 ## Goal
 Compose devotional verse without using a forbidden sound (akṣara). This trains phonological awareness and lexical flexibility under constraint.

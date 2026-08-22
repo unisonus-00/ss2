@@ -1,4 +1,4 @@
-# Stage 28: Dhāraṇā II — Workbook (Questions)
+# Stage 32: Dhāraṇā II — Workbook (Questions)
 
 ## Section A: Flash Response (15 marks)
 Produce ONE pāda (8 syllables) for each cue. Time yourself — aim for under 30 seconds each.

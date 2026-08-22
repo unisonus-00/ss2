@@ -1,4 +1,4 @@
-# Stage 26: Citra-kāvya — Stacked Constraints
+# Stage 30: Citra-kāvya — Stacked Constraints
 
 ## Goal
 Compose verse under multiple simultaneous constraints: meter + deity + rasa + required word + prohibition. This is the culmination of all previous skills working together.

@@ -1,4 +1,4 @@
-# Stage 8: Paryāya — Workbook (Answers)
+# Stage 10: Paryāya — Workbook (Answers)
 
 ## Section A
 **A1.**

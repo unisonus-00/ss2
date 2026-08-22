@@ -1,0 +1,108 @@
+{
+  "lesson": "21-chandas-ii",
+  "decks": [
+    {
+      "name": "28 · Vṛtta — the classical metres",
+      "cards": [
+        {
+          "id": "21-chandas-ii:vrtta:11-syllables-ta-ta-ja-ga-ga",
+          "devanagari": "— — ◡ — — ◡ ◡ — ◡ — —",
+          "iast": "11 syllables · ta ta ja ga ga",
+          "gloss": "indravajrā · इन्द्रवज्रा",
+          "note": "vṛtta · triṣṭubh class"
+        },
+        {
+          "id": "21-chandas-ii:vrtta:11-syllables-ja-ta-ja-ga-ga",
+          "devanagari": "◡ — ◡ — — ◡ ◡ — ◡ — —",
+          "iast": "11 syllables · ja ta ja ga ga",
+          "gloss": "upendravajrā · उपेन्द्रवज्रा",
+          "note": "vṛtta · triṣṭubh class"
+        },
+        {
+          "id": "21-chandas-ii:vrtta:14-syllables-ta-bha-ja-ja-ga-ga",
+          "devanagari": "— — ◡ — ◡ ◡ ◡ — ◡ ◡ — ◡ — —",
+          "iast": "14 syllables · ta bha ja ja ga ga",
+          "gloss": "vasantatilakā · वसन्ततिलका",
+          "note": "vṛtta · śakvarī class"
+        },
+        {
+          "id": "21-chandas-ii:vrtta:15-syllables-na-na-ma-ya-ya",
+          "devanagari": "◡ ◡ ◡ ◡ ◡ ◡ — — — ◡ — — ◡ — —",
+          "iast": "15 syllables · na na ma ya ya",
+          "gloss": "mālinī · मालिनी",
+          "note": "vṛtta · atiśakvarī class"
+        },
+        {
+          "id": "21-chandas-ii:vrtta:17-syllables-ya-ma-na-sa-bha-la-ga",
+          "devanagari": "◡ — — — — — ◡ ◡ ◡ ◡ ◡ — — ◡ ◡ ◡ —",
+          "iast": "17 syllables · ya ma na sa bha la ga",
+          "gloss": "śikhariṇī · शिखरिणी",
+          "note": "vṛtta · atyaṣṭi class"
+        },
+        {
+          "id": "21-chandas-ii:vrtta:17-syllables-ma-bha-na-ta-ta-ga-ga",
+          "devanagari": "— — — — ◡ ◡ ◡ ◡ ◡ — — ◡ — — ◡ — —",
+          "iast": "17 syllables · ma bha na ta ta ga ga",
+          "gloss": "mandākrāntā · मन्दाक्रान्ता",
+          "note": "vṛtta · the Meghadūta metre"
+        },
+        {
+          "id": "21-chandas-ii:vrtta:17-syllables-ja-sa-ja-sa-ya-la-ga",
+          "devanagari": "◡ — ◡ ◡ ◡ — ◡ — ◡ ◡ ◡ — ◡ — — ◡ —",
+          "iast": "17 syllables · ja sa ja sa ya la ga",
+          "gloss": "pṛthvī · पृथ्वी",
+          "note": "vṛtta · atyaṣṭi class"
+        },
+        {
+          "id": "21-chandas-ii:vrtta:19-syllables-ma-sa-ja-sa-ta-ta-ga",
+          "devanagari": "— — — ◡ ◡ — ◡ — ◡ ◡ ◡ — — — ◡ — — ◡ —",
+          "iast": "19 syllables · ma sa ja sa ta ta ga",
+          "gloss": "śārdūlavikrīḍita · शार्दूलविक्रीडितम्",
+          "note": "vṛtta · atidhṛti class"
+        },
+        {
+          "id": "21-chandas-ii:vrtta:21-syllables-ma-ra-bha-na-ya-ya-ya",
+          "devanagari": "— — — — ◡ — — ◡ ◡ ◡ ◡ ◡ ◡ — — ◡ — — ◡ — —",
+          "iast": "21 syllables · ma ra bha na ya ya ya",
+          "gloss": "sragdharā · स्रग्धरा",
+          "note": "vṛtta · prakṛti class"
+        },
+        {
+          "id": "21-chandas-ii:vrtta:12-syllables-ya-ya-ya-ya",
+          "devanagari": "◡ — — ◡ — — ◡ — — ◡ — —",
+          "iast": "12 syllables · ya ya ya ya",
+          "gloss": "bhujaṅgaprayāta · भुजङ्गप्रयातम्",
+          "note": "vṛtta · jagatī class"
+        },
+        {
+          "id": "21-chandas-ii:vrtta:12-syllables-na-bha-bha-ra",
+          "devanagari": "◡ ◡ ◡ — ◡ ◡ — ◡ ◡ — ◡ —",
+          "iast": "12 syllables · na bha bha ra",
+          "gloss": "drutavilambita · द्रुतविलम्बितम्",
+          "note": "vṛtta · jagatī class"
+        },
+        {
+          "id": "21-chandas-ii:vrtta:12-syllables-sa-sa-sa-sa",
+          "devanagari": "◡ ◡ — ◡ ◡ — ◡ ◡ — ◡ ◡ —",
+          "iast": "12 syllables · sa sa sa sa",
+          "gloss": "toṭaka · तोटकम्",
+          "note": "vṛtta · jagatī class"
+        },
+        {
+          "id": "21-chandas-ii:vrtta:upajatih",
+          "devanagari": "उपजातिः",
+          "iast": "upajātiḥ",
+          "gloss": "indravajrā and upendravajrā mixed in one stanza",
+          "note": "vṛtta · triṣṭubh class"
+        },
+        {
+          "id": "21-chandas-ii:vrtta:arya",
+          "devanagari": "आर्या",
+          "iast": "āryā",
+          "gloss": "a mātrā metre, counted by weight not syllables",
+          "note": "vṛtta · 30 + 27 mātrās"
+        }
+      ]
+    }
+  ]
+}

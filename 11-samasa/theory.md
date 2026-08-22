@@ -1,4 +1,4 @@
-# Stage 9: Samāsa — Compounds
+# Stage 11: Samāsa — Compounds
 
 ## Goal
 Master Sanskrit compound formation — the engine behind divine epithets, philosophical terms, and poetic expression. Learn to build and decompose compounds, and invent grammatically valid new epithets.

@@ -1,8 +1,13 @@
 # Curriculum audit — Milestone 1
 
 Produced before any restructuring, per the refinement plan's instruction to
-report discrepancies rather than guess at corrections. Nothing in this audit
-has been *fixed*; every item below is a decision waiting on the maintainer.
+report discrepancies rather than guess at corrections.
+
+> **Status: findings 1–2 and decisions 1–4 have since been applied.** The
+> tables below describe the repository *as audited*, which is why they are
+> written in the past tense where something has been fixed. §7 records what
+> was decided. Decisions 5 and 6 are still open, and the body-cross-reference
+> problem in §3a was discovered during the repair and remains open.
 
 ## 1. Canonical stage order
 
@@ -33,15 +38,15 @@ the repository is measured against them.
 |:-------|:-------|:-------------------------|
 | Directory name | 36 | canonical |
 | `badge.md` | 36 | yes, all 36 |
-| `theory.md`, `reference.md`, both workbooks | 32 | **no — drifts in 32 of 36** |
+| `theory.md`, `reference.md`, both workbooks | 32 | **no — drifted in 31 of 36** |
 | `00-overview.md` build sequence | 36 slots | **no — different membership** |
 | `README.md` | mixed | no (reported previously) |
 
 ### 2a. The 32-stage drift
 
 `theory.md`, `reference.md`, `workbook-questions.md`, and `workbook-answers.md`
-carry `Stage N` headings from an **earlier 32-stage curriculum**. The offset is
-not random — it steps at exactly four points:
+carried `Stage N` headings from an **earlier 32-stage curriculum**, in 31 of the
+36 lessons. The offset was not random — it stepped at exactly four points:
 
 | Lessons | Heading offset | Because these were inserted |
 |:--------|:---------------|:----------------------------|
@@ -50,15 +55,39 @@ not random — it steps at exactly four points:
 | `18-katha` … `19-chandas-i` | −3 | + `17-puja-vak` |
 | `21-chandas-ii` … `36-avadhana-seva` | −4 | + `20-svara-vidya` |
 
-32 old stages + 4 inserted = 36 directories. The four inserted lessons carry no
-`Stage N` in their own headings at all (`02`, `17`, `20`) or were updated by
-hand (`03-sandhi`'s `theory.md` alone says "Stage 3").
+The 31 drifted lessons plus `01-nama` — which kept stage 1 either way — are the
+32 old stages; 32 + 4 inserted = 36 directories. The inserted lessons carry no
+`Stage N` in their headings at all (`02`, `17`, `20`) or were updated by hand
+(`03-sandhi`'s `theory.md` alone said "Stage 3").
 
-So `04-guna/theory.md` is titled "Stage 2: Guṇa", `06-kriya/theory.md` is titled
-"Stage 4: Kriyā", and `36-avadhana-seva/theory.md` is titled "Stage 32".
+So `04-guna/theory.md` was titled "Stage 2: Guṇa", `06-kriya/theory.md` "Stage
+4: Kriyā", and `36-avadhana-seva/theory.md` "Stage 32".
 
-**This is the single largest metadata problem in the repository.** A learner
-opening stage 6 reads "Stage 4" at the top of three of its files.
+**This was the single largest metadata problem in the repository.**
+
+**Resolved** — 124 headings across those 31 lessons now match their directory
+and badge. All 36 lessons agree.
+
+### 2a-bis. Body cross-references — still open
+
+Found while making the repair, and *not* corrected. Beyond the headings, the
+lesson prose refers to other stages by number ("apply sandhi rules from Stage
+3", "using everything learned through Stage 7"), and those references are
+**mixed**: most already use the new directory numbering, a few still use the
+old.
+
+New, and correct: `03-sandhi/theory.md` cites "letter-knowledge from Stage 2",
+which can only mean Varṇa-Vidyā, a lesson that did not exist in the 32-stage
+scheme. Every `badge.md` unlock line ("unlocks Stage N content") is likewise
+already correct.
+
+Old, and now wrong: `01-nama/theory.md` calls adjectives "(preview of Stage 2)"
+when Guṇa is stage 4; `05-rupa/theory.md` cites "a verb brick from Stage 4"
+when Kriyā is stage 6.
+
+There is no mechanical rule that separates the two — each reference has to be
+read against what it is actually pointing at. Left alone rather than
+blanket-remapped, which would have broken the many already-correct ones.
 
 ### 2b. `00-overview.md` has different membership
 
@@ -170,36 +199,60 @@ Savarṇadīrgha, Guṇa, Vṛddhi, Pūrvarūpa/Pararūpa, Śchutva/Ṣṭutva, 
 Anunāsika, Anusvāra, Parasavarṇa, Chartva, and six visarga varieties), each with
 a mixed-identification subsection. This is `choice` practice almost verbatim.
 
-## 6. Proposed minimal migration
+## 6. The minimal migration — completed
 
-Deliberately small, and in this order:
+Steps 1–5 are done; step 6 is Milestones 4–6 and has not started.
 
-1. **Change nothing about numbering yet.** The drift is in prose headings, not
-   in machine identity. The app can key on directory identifiers today and be
-   correct regardless of how §2 is resolved.
-2. Split the source mechanically (Milestone 2), no pedagogical change.
-3. Give each lesson a `practice.json`; the build discovers them by directory.
-4. Move existing decks into their `practice.json` as `type: reveal`, keeping
-   card identity so no learner history is lost.
-5. Assign stable IDs of the form `06-kriya:person:nam-1sg`, with a versioned
-   localStorage migration from the current `devanagari + '¦' + gloss` key.
-6. Only then add `choice` (Kriyā), then Sandhi, then `sequence`.
+1. ~~Change nothing about numbering yet~~ — superseded once decision 1 was
+   approved. The headings are now repaired, and the app keys on directory
+   identifiers regardless.
+2. **Split the source mechanically** (Milestone 2) — done, verified
+   byte-identical.
+3. **Give each lesson a `practice.json`; the build discovers them by
+   directory** — done. 23 files, discovered not listed, so a new lesson's
+   practice needs no build change.
+4. **Move existing decks in as `type: reveal`, keeping card identity** — done.
+   57 decks and 1871 cards moved with their deck names byte-for-byte, because
+   `SAVED.decks` is keyed by deck name and a rename would drop the best score.
+5. **Stable IDs plus a versioned localStorage migration** — done. Every card
+   carries an id like `19-chandas-i:gana:laghu-guru-guru`; on first load the
+   app lifts trouble history off the old `devanagari + '¦' + gloss` key onto
+   the id and stamps `v: 2`.
+6. Only then add `choice` (Kriyā), then Sandhi, then `sequence`. **Not
+   started.**
 
-## 7. Decisions needed before proceeding
+## 7. Decisions
 
-These are held deliberately — the plan forbids silent guessing.
+Decisions 1–4 were approved and applied. 5 and 6 carried no recommendation —
+each needs a judgement in the maintainer's own voice — and are untouched.
 
-1. **Repair the 32-stage drift?** Rewriting `Stage N` in four files across 32
-   lessons is mechanical and low-risk, but it is exactly the "broad metadata
-   correction" the plan says to hold until the audit is reviewed. Recommended:
-   yes, matching directory and badge numbers.
-2. **`Sva-Avadhāna`** — create `35-sva-avadhana` and renumber, or delete the row
-   from `00-overview.md`? Recommended: delete the row; the directories and
-   badges are self-consistent without it.
-3. **Sandhi in the overview** — add it as a numbered stage? Recommended: yes,
-   it is a full lesson everywhere else.
-4. **The four `@stage 0` decks** — adopt Lakāra into `06-kriya`, Kṛt and
-   Taddhita into `09-dhatu`, and leave grammar terminology cross-cutting?
-5. **`08-sambodhana`'s badge name** — rename from Prārthanākāra?
-6. **`vyakaranam/`** — keep the duplicate tree, or make the lesson copy
-   canonical and leave the chapter tree as a pointer?
+1. **Repair the 32-stage drift** — *done.* 124 headings across 31 lessons now
+   match directory and badge. Only the first heading of each file was touched;
+   body cross-references are a separate, genuinely ambiguous problem (§2a-bis)
+   and were left alone.
+2. **`Sva-Avadhāna`** — *done.* The row is gone from `00-overview.md`. The
+   directories and badges are self-consistent without it, and creating a stage
+   would have renumbered everything after 34.
+3. **Sandhi in the overview** — *done.* Added as stage 3, with the phase
+   ranges, the source cross-reference table, the file list, and the vocab count
+   all brought in line. `README.md` was corrected to match.
+4. **The four `@stage 0` decks** — *done.* Lakāra moved into `06-kriya`; Kṛt
+   and Taddhita into `09-dhatu`; grammar terminology stayed cross-cutting, in a
+   root `practice.json` beside `00-overview.md`.
+5. **`08-sambodhana`'s badge name** — *open.* It still awards Prārthanākāra,
+   which collides with stage 16's Prārthanā. A replacement needs to be your
+   choice of word, not a guess.
+6. **`vyakaranam/`** — *open.* Still a byte-identical duplicate of the merged
+   `bricks.md` files. `README.md` now at least documents which chapter is
+   merged where, so the duplication is visible rather than silent.
+
+### Discovered during the repair
+
+- **Body cross-references** mix old and new stage numbers (§2a-bis). Not
+  mechanically separable; left alone.
+- **`README.md` cited a vyākaraṇam "Ch. 5"** for Vākya. No `ch05` exists — the
+  tree stops at `ch04-kriyapada`. The phantom row was removed and the table
+  rewritten to show what is actually merged where.
+- **`README.md`'s chapter table mislabelled two rows**: "Stage 3 (Guṇa)" for
+  ch2 and "Stage 6 (Kāraka)" for ch4. The numbers were right but the names
+  belonged to different stages — stage 3 is Sandhi, stage 6 is Kriyā.

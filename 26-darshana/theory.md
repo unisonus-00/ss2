@@ -1,4 +1,4 @@
-# Stage 22: Darśana — Philosophical Expression
+# Stage 26: Darśana — Philosophical Expression
 
 ## Goal
 Describe the deity as consciousness, time, śakti, and other philosophical tattvas. Make philosophy become poetry.

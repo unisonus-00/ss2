@@ -1,4 +1,4 @@
-# Stage 12: Stotra I — Accusative Constructions (Namāmi Challenge)
+# Stage 14: Stotra I — Accusative Constructions (Namāmi Challenge)
 
 ## Goal
 Compose original praise verses using accusative (dvitīyā) constructions — the most natural structure for devotional poetry. Write a 4-line original stotra.

@@ -131,11 +131,15 @@ Accurate as of the last update to this file; verify before relying on it.
 lists, and `vyakaranam/` (formal Pāṇinian grammar, chapters `ch00`–`ch04`),
 which complements the numbered stages rather than replacing them.
 
-Every lesson directory currently carries `theory.md`, `reference.md`,
+Every lesson directory carries `theory.md`, `reference.md`,
 `workbook-questions.md`, `workbook-answers.md`, and `badge.md`. `bricks.md`
-exists only in `02-varna-vidya`, `05-rupa`, and `06-kriya`. **No lesson has a
-`practice.json` yet** — the curated practice sets described above are still to
-be written.
+exists only in `02-varna-vidya`, `05-rupa`, and `06-kriya`. 22 of the 36 carry
+a `practice.json`; the 14 without are mostly composition and avadhāna stages,
+where open-ended production is the point and the workbook is the right home.
+
+Stage numbering is now consistent: directory number, `badge.md`, and every
+lesson file heading agree across all 36. See `AUDIT.md` for what was repaired
+and what is still open.
 
 **Sanskrit School reader** — `build.py` concatenates every lesson's markdown
 into the single-page `index.html` at the repository root. It already knows the
@@ -148,51 +152,71 @@ It is one self-contained page with no external references of any kind: no CDN,
 no fonts, no `fetch`, no stylesheets. It opens from `file://` and works
 offline, and it must stay that way.
 
-Source lives in `app/`; **edit there, never in `dist/`**:
+Application code lives in `app/`; **edit there, never in `dist/`**. Curriculum
+content lives beside its lesson:
 
 ```
-app/index.html    markup, plus the card data block (until practice.json lands)
+app/index.html         markup only — ~120 lines, no card data
 app/styles.css
 app/app.js
-scripts/build.js  inlines the two into dist/abhyasah.html
-scripts/demo.js   repackages the distributable for publishing as an Artifact
+scripts/build.js       discovers, validates and inlines -> dist/abhyasah.html
+scripts/demo.js        repackages the distributable for publishing as an Artifact
+NN-lesson/practice.json   the lesson's curated practice
+practice.json             cross-cutting practice, beside 00-overview.md
 ```
 
-`app/index.html` links `styles.css` and `app.js` with ordinary relative paths,
-so it opens directly from `file://` during development. `node scripts/build.js`
-swaps those two tags for the inlined contents; `--check` builds in memory and
-fails if `dist/` is stale, without writing. The build refuses to emit a page
-that reaches the network — it scans its own output for `<script src>`, `fetch`,
-`@import`, remote `url()`, and the like, so an accidental dependency fails the
-build rather than shipping.
+`node scripts/build.js` inlines the CSS, the JS, and every `practice.json` into
+one file. `--check` builds in memory and fails if `dist/` is stale, without
+writing.
 
-Its cards live in a `<script id="cards" type="text/plain">` block as
-pipe-delimited rows:
+Practice files are **discovered, not listed** — any numbered lesson directory
+holding a `practice.json` is picked up, in directory order, so adding a
+lesson's practice needs no build change. Directory order *is* the app's
+navigation order: the deck picker groups decks under one optgroup per lesson,
+labelled from that lesson's own `theory.md` heading, so the picker and the
+curriculum cannot drift apart.
 
+The build refuses to ship a broken or non-offline page. It rejects duplicate
+card ids, unknown types, a `choice` without options or whose answer is not
+among them, a `sequence` whose answer uses pieces absent from `parts`, a
+`practice.json` naming a lesson it does not sit in, and one in a directory that
+is never loaded. It then scans its own output for `<script src>`, `fetch`,
+`@import`, remote `url()` and the like, so an accidental network dependency
+fails the build rather than shipping.
+
+### Card schema
+
+```json
+{
+  "id": "06-kriya:kriya:namami",
+  "devanagari": "नमामि",
+  "iast": "namāmi",
+  "gloss": "I bow",
+  "note": "1 sg. pres. · √nam · parasmaipada"
+}
 ```
-# deck name @stage N
-देवनागरी | iast | gloss | note
-```
 
-`FIELDS` in that page is the one place the column order is defined; the last
-field absorbs any further `|`, so a note may contain bars of its own. Rows
-missing devanāgarī, IAST, or gloss are skipped and reported rather than
-dropped silently.
+A card with no `type` is `reveal`, which is what all 1871 migrated cards are.
+`choice` adds `front`, `options`, `answer`; `sequence` adds `front`, `parts`,
+`answer` (an array). Add nothing else without a demonstrated need.
 
-Two details there are load-bearing for the compatibility list above:
+Three things here are load-bearing for the compatibility list above:
 
-- Card identity is `devanagari + '¦' + gloss`. That string is the stable card
-  ID — changing either field retires a learner's history for that card.
-- Progress lives in `localStorage` under the key `abhyāsaḥ`, with a migration
-  chain (`OLD_KEYS`) that lifts saved state out of earlier key names. Keep the
-  chain when renaming; every `localStorage` touch stays guarded, since it can
-  be absent or full.
+- **`id` is the card's identity.** It is written in `practice.json`, never
+  derived from what the card displays. Change an id and you retire that card's
+  history.
+- **Deck names key saved scores.** `SAVED.decks` is keyed by the deck's full
+  name, so renaming a deck silently drops its best score. The names still carry
+  their original `01 ·` / `V01 ·` prefixes for exactly this reason; the picker
+  hides them from display but the value keeps them.
+- **Progress lives in `localStorage`** under `abhyāsaḥ`, versioned by `SAVED.v`
+  (now 2). v1 keyed trouble history by `devanagari + '¦' + gloss`; the app
+  lifts those records onto stable ids on first load. `OLD_KEYS` separately
+  lifts state out of earlier storage key names. Keep both chains; every
+  `localStorage` touch stays guarded, since it can be absent or full.
 
-The page carries 57 decks and 1871 cards, all `type: reveal`. Each deck header
-may end with `@stage N`, which ties it to a numbered lesson directory; these
-stage numbers already agree with the directories, so use them, not README's
-table, when in doubt. Roughly the last third are generated from the `vocab/`
-bank and marked as such in the source.
+The app carries 23 lessons, 57 decks, and 1871 cards. Roughly the last third of
+the decks are generated from the `vocab/` bank and marked as such.
 
 **Publishing a testable demo** — `node scripts/demo.js` rewrites
 `dist/abhyasah.html` into `dist/abhyasah.demo.html`, stripping the
@@ -216,9 +240,9 @@ agrees with it in all 36 lessons. Key on directory names and you are always
 correct. Everything else disagrees somewhere:
 
 - `theory.md`, `reference.md`, and both workbooks carry `Stage N` headings from
-  an earlier **32-stage** curriculum, drifting by −2, −3, or −4 in 32 of the 36
-  lessons. `06-kriya/theory.md` is titled "Stage 4"; `36-avadhana-seva/theory.md`
-  is titled "Stage 32".
+  an earlier **32-stage** curriculum, drifting in 31 of the 36 lessons.
+  **Repaired** — all 36 now agree. Body cross-references still mix old and new
+  numbers and were deliberately left alone.
 - `00-overview.md` lists 36 slots but a different *set*: no Sandhi, plus a
   phantom `Sva-Avadhāna` at 35 with no directory.
 - `README.md` mixes both schemes.

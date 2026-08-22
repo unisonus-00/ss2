@@ -1,4 +1,4 @@
-# Stage 30: Multi-devatā — Workbook (Questions)
+# Stage 34: Multi-devatā — Workbook (Questions)
 
 ## Section A: Eight Darśanas (40 marks)
 Compose ONE pāda (8 syllables) for each deity. Time yourself — total should be under 5 minutes.

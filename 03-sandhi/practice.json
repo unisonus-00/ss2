@@ -1,0 +1,199 @@
+{
+  "lesson": "03-sandhi",
+  "decks": [
+    {
+      "name": "S · Sandhi — all 27 rules (vyākaraṇam ch. 2)",
+      "cards": [
+        {
+          "id": "03-sandhi:sandhi:stri-ai",
+          "devanagari": "स्त्रि + ऐ",
+          "iast": "stri + ai",
+          "gloss": "स्त्र्यै · stryai",
+          "note": "sandhi rule · yaṇtāvantādeśa · i + ai → yai"
+        },
+        {
+          "id": "03-sandhi:sandhi:prati-ekam",
+          "devanagari": "प्रति + एकम्",
+          "iast": "prati + ekam",
+          "gloss": "प्रत्येकम् · pratyekam",
+          "note": "sandhi rule · yaṇ · i + e → ye"
+        },
+        {
+          "id": "03-sandhi:sandhi:vidya-alayah",
+          "devanagari": "विद्या + आलयः",
+          "iast": "vidyā + ālayaḥ",
+          "gloss": "विद्यालयः · vidyālayaḥ",
+          "note": "sandhi rule · savarṇadīrgha · ā + ā → ā"
+        },
+        {
+          "id": "03-sandhi:sandhi:nara-indrah",
+          "devanagari": "नर + इन्द्रः",
+          "iast": "nara + indraḥ",
+          "gloss": "नरेन्द्रः · narendraḥ",
+          "note": "sandhi rule · guṇa · a + i → e"
+        },
+        {
+          "id": "03-sandhi:sandhi:sada-eva",
+          "devanagari": "सदा + एव",
+          "iast": "sadā + eva",
+          "gloss": "सदैव · sadaiva",
+          "note": "sandhi rule · vṛddhi · ā + e → ai"
+        },
+        {
+          "id": "03-sandhi:sandhi:hare-atra",
+          "devanagari": "हरे + अत्र",
+          "iast": "hare + atra",
+          "gloss": "हरेऽत्र · hare'tra",
+          "note": "sandhi rule · pūrvarūpa · e + a → e, the a dropped"
+        },
+        {
+          "id": "03-sandhi:sandhi:upa-ajati",
+          "devanagari": "उप + अजति",
+          "iast": "upa + ajati",
+          "gloss": "उपजति · upajati",
+          "note": "sandhi rule · pararūpa · a + a → a"
+        },
+        {
+          "id": "03-sandhi:sandhi:sat-cit",
+          "devanagari": "सत् + चित्",
+          "iast": "sat + cit",
+          "gloss": "सच्चित् · saccit",
+          "note": "sandhi rule · ścutva · t + c → c"
+        },
+        {
+          "id": "03-sandhi:sandhi:is-tah",
+          "devanagari": "इष् + तः",
+          "iast": "iṣ + taḥ",
+          "gloss": "इष्टः · iṣṭaḥ",
+          "note": "sandhi rule · ṣṭutva · s + t → ṣ ṭ"
+        },
+        {
+          "id": "03-sandhi:sandhi:vak-isah",
+          "devanagari": "वाक् + ईशः",
+          "iast": "vāk + īśaḥ",
+          "gloss": "वागीशः · vāgīśaḥ",
+          "note": "sandhi rule · jaśtva · k + vowel → g"
+        },
+        {
+          "id": "03-sandhi:sandhi:jagat-natyam",
+          "devanagari": "जगत् + नाट्यम्",
+          "iast": "jagat + nāṭyam",
+          "gloss": "जगन्नाट्यम् · jagannāṭyam",
+          "note": "sandhi rule · anunāsika · t + n → n"
+        },
+        {
+          "id": "03-sandhi:sandhi:vag-ca",
+          "devanagari": "वाग् + च",
+          "iast": "vāg + ca",
+          "gloss": "वाक् च · vāk ca",
+          "note": "sandhi rule · cartva · g + voiceless → k"
+        },
+        {
+          "id": "03-sandhi:sandhi:krsnam-vande",
+          "devanagari": "कृष्णम् + वन्दे",
+          "iast": "kṛṣṇam + vande",
+          "gloss": "कृष्णं वन्दे · kṛṣṇaṃ vande",
+          "note": "sandhi rule · anusvāra · final m + consonant → ṃ"
+        },
+        {
+          "id": "03-sandhi:sandhi:alam-cakara",
+          "devanagari": "अलं + चकार",
+          "iast": "alaṃ + cakāra",
+          "gloss": "अलञ्चकार · alañcakāra",
+          "note": "sandhi rule · parasavarṇa · ṃ + c → ñ"
+        },
+        {
+          "id": "03-sandhi:sandhi:anu-cheda",
+          "devanagari": "अनु + छेद",
+          "iast": "anu + cheda",
+          "gloss": "अनुच्छेद · anuccheda",
+          "note": "sandhi rule · chatva · short vowel + ch → cch"
+        },
+        {
+          "id": "03-sandhi:sandhi:vag-harati",
+          "devanagari": "वाग् + हरति",
+          "iast": "vāg + harati",
+          "gloss": "वाग् घरति · vāg gharati",
+          "note": "sandhi rule · pūrvasavarṇa · g + h → gh"
+        },
+        {
+          "id": "03-sandhi:sandhi:prasan-atma",
+          "devanagari": "प्रशान् + आत्मा",
+          "iast": "praśān + ātmā",
+          "gloss": "प्रशान्नात्मा · praśānnātmā",
+          "note": "sandhi rule · numāgama · short vowel + n + vowel → nn"
+        },
+        {
+          "id": "03-sandhi:sandhi:a-chadayati",
+          "devanagari": "आ + छादयति",
+          "iast": "ā + chādayati",
+          "gloss": "आच्छादयति · ācchādayati",
+          "note": "sandhi rule · tugāgama · vowel + ch → cch"
+        },
+        {
+          "id": "03-sandhi:sandhi:tan-ca",
+          "devanagari": "तान् + च",
+          "iast": "tān + ca",
+          "gloss": "तांश्च · tāṃśca",
+          "note": "sandhi rule · satva · final n + c → ṃś"
+        },
+        {
+          "id": "03-sandhi:sandhi:devah-vadanti",
+          "devanagari": "देवाः + वदन्ति",
+          "iast": "devāḥ + vadanti",
+          "gloss": "देवा वदन्ति · devā vadanti",
+          "note": "sandhi rule · lopa · āḥ + voiced → ā"
+        },
+        {
+          "id": "03-sandhi:sandhi:ramah-gacchati",
+          "devanagari": "रामः + गच्छति",
+          "iast": "rāmaḥ + gacchati",
+          "gloss": "रामो गच्छति · rāmo gacchati",
+          "note": "sandhi rule · ukārādeśa · aḥ + voiced → o"
+        },
+        {
+          "id": "03-sandhi:sandhi:munih-agatah",
+          "devanagari": "मुनिः + आगतः",
+          "iast": "muniḥ + āgataḥ",
+          "gloss": "मुनिरागतः · munirāgataḥ",
+          "note": "sandhi rule · rephādeśa · iḥ + vowel → ir"
+        },
+        {
+          "id": "03-sandhi:sandhi:ramah-tatra",
+          "devanagari": "रामः + तत्र",
+          "iast": "rāmaḥ + tatra",
+          "gloss": "रामस्तत्र · rāmastatra",
+          "note": "sandhi rule · sakārādeśa · aḥ + t → as"
+        },
+        {
+          "id": "03-sandhi:sandhi:ramah-karoti",
+          "devanagari": "रामः + करोति",
+          "iast": "rāmaḥ + karoti",
+          "gloss": "रामः करोति · rāmaḥ karoti",
+          "note": "sandhi rule · jihvāmūlīya · ḥ + k stays"
+        },
+        {
+          "id": "03-sandhi:sandhi:ramah-asti",
+          "devanagari": "रामः + अस्ति",
+          "iast": "rāmaḥ + asti",
+          "gloss": "रामोऽस्ति · rāmo'sti",
+          "note": "sandhi rule · visarga pūrvarūpa · aḥ + a → o'"
+        },
+        {
+          "id": "03-sandhi:sandhi:devah-gacchanti",
+          "devanagari": "देवाः + गच्छन्ति",
+          "iast": "devāḥ + gacchanti",
+          "gloss": "देवा गच्छन्ति · devā gacchanti",
+          "note": "sandhi rule · visarga lopa · āḥ + voiced → ā"
+        },
+        {
+          "id": "03-sandhi:sandhi:punah-api",
+          "devanagari": "पुनः + अपि",
+          "iast": "punaḥ + api",
+          "gloss": "पुनरपि · punarapi",
+          "note": "sandhi rule · visarga rephādeśa · avyaya ḥ + vowel → r"
+        }
+      ]
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-# Stage 13: Stotra II — Reference Guide
+# Stage 15: Stotra II — Reference Guide
 
 ## Deity Forms in All Cases (Singular)
 

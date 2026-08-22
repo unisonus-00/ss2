@@ -1,4 +1,4 @@
-# Stage 21: Rasa — Emotional Aesthetics
+# Stage 25: Rasa — Emotional Aesthetics
 
 ## Goal
 Consciously control the rasa (aesthetic flavor) of your devotional composition. Describe the same deity in śānta, vīra, adbhuta, karuṇa, and other rasas.

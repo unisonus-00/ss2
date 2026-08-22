@@ -1,4 +1,4 @@
-# Stage 3: Rūpa — Reference Guide
+# Stage 5: Rūpa — Reference Guide
 
 ## Vibhakti Summary Card
 

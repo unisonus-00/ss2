@@ -1,4 +1,4 @@
-# Stage 20: Alaṅkāra — Workbook (Questions)
+# Stage 24: Alaṅkāra — Workbook (Questions)
 
 ## Section A: Identification (15 marks)
 **A1.** Identify the alaṅkāra in each (10 marks):

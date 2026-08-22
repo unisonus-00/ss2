@@ -1,4 +1,4 @@
-# Stage 8: Paryāya — Workbook (Questions)
+# Stage 10: Paryāya — Workbook (Questions)
 
 ## Section A: Synonym Recall (15 marks)
 

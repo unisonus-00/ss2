@@ -1,0 +1,550 @@
+{
+  "lesson": "09-dhatu",
+  "decks": [
+    {
+      "name": "09 · Dhātu — roots",
+      "cards": [
+        {
+          "id": "09-dhatu:dhatu:nam",
+          "devanagari": "√नम्",
+          "iast": "√nam",
+          "gloss": "to bow",
+          "note": "dhātu · namati"
+        },
+        {
+          "id": "09-dhatu:dhatu:kr",
+          "devanagari": "√कृ",
+          "iast": "√kṛ",
+          "gloss": "to do, make",
+          "note": "dhātu · karoti"
+        },
+        {
+          "id": "09-dhatu:dhatu:bhu",
+          "devanagari": "√भू",
+          "iast": "√bhū",
+          "gloss": "to be, become",
+          "note": "dhātu · bhavati"
+        },
+        {
+          "id": "09-dhatu:dhatu:stu",
+          "devanagari": "√स्तु",
+          "iast": "√stu",
+          "gloss": "to praise",
+          "note": "dhātu · stauti"
+        },
+        {
+          "id": "09-dhatu:dhatu:gam",
+          "devanagari": "√गम्",
+          "iast": "√gam",
+          "gloss": "to go",
+          "note": "dhātu · gacchati"
+        },
+        {
+          "id": "09-dhatu:dhatu:vad",
+          "devanagari": "√वद्",
+          "iast": "√vad",
+          "gloss": "to speak",
+          "note": "dhātu · vadati"
+        },
+        {
+          "id": "09-dhatu:dhatu:drs",
+          "devanagari": "√दृश्",
+          "iast": "√dṛś",
+          "gloss": "to see",
+          "note": "dhātu · paśyati"
+        },
+        {
+          "id": "09-dhatu:dhatu:sru",
+          "devanagari": "√श्रु",
+          "iast": "√śru",
+          "gloss": "to hear",
+          "note": "dhātu · śṛṇoti"
+        },
+        {
+          "id": "09-dhatu:dhatu:path",
+          "devanagari": "√पठ्",
+          "iast": "√paṭh",
+          "gloss": "to recite, read",
+          "note": "dhātu · paṭhati"
+        },
+        {
+          "id": "09-dhatu:dhatu:da",
+          "devanagari": "√दा",
+          "iast": "√dā",
+          "gloss": "to give",
+          "note": "dhātu · dadāti"
+        },
+        {
+          "id": "09-dhatu:dhatu:stha",
+          "devanagari": "√स्था",
+          "iast": "√sthā",
+          "gloss": "to stand",
+          "note": "dhātu · tiṣṭhati"
+        },
+        {
+          "id": "09-dhatu:dhatu:bhaj",
+          "devanagari": "√भज्",
+          "iast": "√bhaj",
+          "gloss": "to worship, share",
+          "note": "dhātu · bhajati"
+        },
+        {
+          "id": "09-dhatu:dhatu:jna",
+          "devanagari": "√ज्ञा",
+          "iast": "√jñā",
+          "gloss": "to know",
+          "note": "dhātu · jānāti"
+        },
+        {
+          "id": "09-dhatu:dhatu:as",
+          "devanagari": "√अस्",
+          "iast": "√as",
+          "gloss": "to be",
+          "note": "dhātu · asti"
+        },
+        {
+          "id": "09-dhatu:dhatu:vand",
+          "devanagari": "√वन्द्",
+          "iast": "√vand",
+          "gloss": "to venerate",
+          "note": "dhātu · vandate"
+        },
+        {
+          "id": "09-dhatu:dhatu:puj",
+          "devanagari": "√पूज्",
+          "iast": "√pūj",
+          "gloss": "to worship",
+          "note": "dhātu · pūjayati"
+        }
+      ]
+    },
+    {
+      "name": "35 · Kṛt — primary suffixes",
+      "cards": [
+        {
+          "id": "09-dhatu:krt:krt",
+          "devanagari": "कृत्",
+          "iast": "kṛt",
+          "gloss": "a suffix put straight on a root to make a nominal",
+          "note": "kṛt suffix · 3.1.93"
+        },
+        {
+          "id": "09-dhatu:krt:gam-kta",
+          "devanagari": "गम् + क्त",
+          "iast": "gam + kta",
+          "gloss": "गतः · gataḥ — gone",
+          "note": "kṛt suffix · kta · past participle"
+        },
+        {
+          "id": "09-dhatu:krt:gam-ktavatu",
+          "devanagari": "गम् + क्तवतु",
+          "iast": "gam + ktavatu",
+          "gloss": "गतवान् · gatavān — having gone",
+          "note": "kṛt suffix · ktavatu · past active participle"
+        },
+        {
+          "id": "09-dhatu:krt:gam-satr",
+          "devanagari": "गम् + शतृ",
+          "iast": "gam + śatṛ",
+          "gloss": "गच्छत् · gacchat — going",
+          "note": "kṛt suffix · śatṛ · present participle, parasmaipada"
+        },
+        {
+          "id": "09-dhatu:krt:labh-sanac",
+          "devanagari": "लभ् + शानच्",
+          "iast": "labh + śānac",
+          "gloss": "लभमानः · labhamānaḥ — obtaining",
+          "note": "kṛt suffix · śānac · present participle, ātmanepada"
+        },
+        {
+          "id": "09-dhatu:krt:gam-tumun",
+          "devanagari": "गम् + तुमुन्",
+          "iast": "gam + tumun",
+          "gloss": "गन्तुम् · gantum — to go",
+          "note": "kṛt suffix · tumun · infinitive"
+        },
+        {
+          "id": "09-dhatu:krt:gam-ktva",
+          "devanagari": "गम् + क्त्वा",
+          "iast": "gam + ktvā",
+          "gloss": "गत्वा · gatvā — having gone",
+          "note": "kṛt suffix · ktvā · absolutive"
+        },
+        {
+          "id": "09-dhatu:krt:a-gam-lyap",
+          "devanagari": "आगम् + ल्यप्",
+          "iast": "ā-gam + lyap",
+          "gloss": "आगत्य · āgatya — having come",
+          "note": "kṛt suffix · lyap · absolutive after a prefix"
+        },
+        {
+          "id": "09-dhatu:krt:kr-tavya",
+          "devanagari": "कृ + तव्य",
+          "iast": "kṛ + tavya",
+          "gloss": "कर्तव्यम् · kartavyam — to be done",
+          "note": "kṛt suffix · tavya · gerundive"
+        },
+        {
+          "id": "09-dhatu:krt:kr-aniyar",
+          "devanagari": "कृ + अनीयर्",
+          "iast": "kṛ + anīyar",
+          "gloss": "करणीयम् · karaṇīyam — to be done",
+          "note": "kṛt suffix · anīyar · gerundive"
+        },
+        {
+          "id": "09-dhatu:krt:kr-trc",
+          "devanagari": "कृ + तृच्",
+          "iast": "kṛ + tṛc",
+          "gloss": "कर्ता · kartā — doer",
+          "note": "kṛt suffix · tṛc · agent noun"
+        }
+      ]
+    },
+    {
+      "name": "36 · Taddhita — secondary suffixes",
+      "cards": [
+        {
+          "id": "09-dhatu:taddhita:taddhitah",
+          "devanagari": "तद्धितः",
+          "iast": "taddhitaḥ",
+          "gloss": "a suffix put on a finished word, not on a root",
+          "note": "taddhita suffix · 4.1.76"
+        },
+        {
+          "id": "09-dhatu:taddhita:dhana-matup",
+          "devanagari": "धन + मतुप्",
+          "iast": "dhana + matup",
+          "gloss": "धनवान् · dhanavān — possessing wealth",
+          "note": "taddhita suffix · matup · possessive"
+        },
+        {
+          "id": "09-dhatu:taddhita:dasaratha-in",
+          "devanagari": "दशरथ + इञ्",
+          "iast": "daśaratha + iñ",
+          "gloss": "दाशरथिः · dāśarathiḥ — son of Daśaratha",
+          "note": "taddhita suffix · iñ · patronymic"
+        },
+        {
+          "id": "09-dhatu:taddhita:mathura-an",
+          "devanagari": "मथुरा + अण्",
+          "iast": "mathurā + aṇ",
+          "gloss": "माथुरः · māthuraḥ — of Mathurā",
+          "note": "taddhita suffix · aṇ · origin or relation"
+        },
+        {
+          "id": "09-dhatu:taddhita:patu-tarap",
+          "devanagari": "पटु + तरप्",
+          "iast": "paṭu + tarap",
+          "gloss": "पटुतरः · paṭutaraḥ — cleverer",
+          "note": "taddhita suffix · tarap · comparative"
+        },
+        {
+          "id": "09-dhatu:taddhita:patu-tamap",
+          "devanagari": "पटु + तमप्",
+          "iast": "paṭu + tamap",
+          "gloss": "पटुतमः · paṭutamaḥ — cleverest",
+          "note": "taddhita suffix · tamap · superlative"
+        },
+        {
+          "id": "09-dhatu:taddhita:guru-tva",
+          "devanagari": "गुरु + त्व",
+          "iast": "guru + tva",
+          "gloss": "गुरुत्वम् · gurutvam — heaviness",
+          "note": "taddhita suffix · tva · abstract noun"
+        },
+        {
+          "id": "09-dhatu:taddhita:deva-tal",
+          "devanagari": "देव + तल्",
+          "iast": "deva + tal",
+          "gloss": "देवता · devatā — divinity",
+          "note": "taddhita suffix · tal · abstract, feminine"
+        }
+      ]
+    },
+    {
+      "name": "V16 · Upasargas & suffixes",
+      "cards": [
+        {
+          "id": "09-dhatu:upasargas-suffixes:pra",
+          "devanagari": "प्र-",
+          "iast": "pra-",
+          "gloss": "forward, intensely, forth",
+          "note": "upasarga · prahāra (strike), praṇamya (prostrate), prabodhana (awakening) · DM 1.73"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:vi",
+          "devanagari": "वि-",
+          "iast": "vi-",
+          "gloss": "apart, away, intensely",
+          "note": "upasarga · vicchinna (severed), vināśa (destruction), vimukta (freed) · DM 3.18"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:sam",
+          "devanagari": "सम्-",
+          "iast": "sam-",
+          "gloss": "together, completely",
+          "note": "upasarga · saṃhāra (annihilation), saṃgrāma (battle), saṃpūjya (worshipping fully) · DM 3.26"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:upa",
+          "devanagari": "उप-",
+          "iast": "upa-",
+          "gloss": "near, toward, sub-",
+          "note": "upasarga · upāgamya (having approached), upāsana (worship) · DM passim"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:a",
+          "devanagari": "आ-",
+          "iast": "ā-",
+          "gloss": "toward, until",
+          "note": "upasarga · āgata (arrived), ākarṇya (hearing), ākṛṣya (dragging) · DM 6.2"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:ni",
+          "devanagari": "नि-",
+          "iast": "ni-",
+          "gloss": "down, into, completely",
+          "note": "upasarga · nipāta (downfall), nihata (slain), nilaya (abode) · DM passim"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:nis-nir",
+          "devanagari": "निस्- / निर्-",
+          "iast": "nis- / nir-",
+          "gloss": "out, without, away",
+          "note": "upasarga · nirgata (gone out), nirghāta (thunder), nirañjana (unstained) · DM 9.26"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:abhi",
+          "devanagari": "अभि-",
+          "iast": "abhi-",
+          "gloss": "toward, against, upon",
+          "note": "upasarga · abhyadhāvat (rushed toward), abhiṣeka (consecration) · DM 6.13"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:pari",
+          "devanagari": "परि-",
+          "iast": "pari-",
+          "gloss": "around, fully",
+          "note": "upasarga · parivṛta (surrounded), parikṣipta (encircled) · DM passim"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:anu",
+          "devanagari": "अनु-",
+          "iast": "anu-",
+          "gloss": "after, along, according to",
+          "note": "upasarga · anugraha (grace), anucara (follower) · LS 272"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:ati",
+          "devanagari": "अति-",
+          "iast": "ati-",
+          "gloss": "beyond, exceedingly",
+          "note": "upasarga · ativīrya (of great valor), atimatta (extremely intoxicated) · DM 2.57"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:ud-ut",
+          "devanagari": "उद्- / उत्-",
+          "iast": "ud- / ut-",
+          "gloss": "up, out",
+          "note": "upasarga · utthitā (risen), udgata (arisen), unmatta (mad) · DM passim"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:apa",
+          "devanagari": "अप-",
+          "iast": "apa-",
+          "gloss": "away, off",
+          "note": "upasarga · apavarga (liberation), apamṛtyu (untimely death) · DM 13.5"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:dur-dus",
+          "devanagari": "दुर्- / दुष्-",
+          "iast": "dur- / duṣ-",
+          "gloss": "bad, difficult",
+          "note": "upasarga · durgā (inaccessible), durlabha (hard to get), durjaya (hard to conquer) · DM 4.11"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:su",
+          "devanagari": "सु-",
+          "iast": "su-",
+          "gloss": "good, well, easy",
+          "note": "upasarga · sundara (beautiful), sulabha (easy to attain), sukha (happiness) · LS passim"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:a-2",
+          "devanagari": "-आ",
+          "iast": "-ā",
+          "gloss": "basic feminine",
+          "note": "suffix · durgā, kālī, ambikā, śivā · all texts"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:ini",
+          "devanagari": "-इनी",
+          "iast": "-inī",
+          "gloss": "possessive feminine",
+          "note": "suffix · yoginī, kāminī, vāsinī, dhāriṇī · LS/KKS/KS passim"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:ika",
+          "devanagari": "-इका",
+          "iast": "-ikā",
+          "gloss": "diminutive/descriptive feminine",
+          "note": "suffix · kālikā, caṇḍikā, nāyikā · DM passim"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:ini-2",
+          "devanagari": "-इणी",
+          "iast": "-iṇī",
+          "gloss": "agent feminine",
+          "note": "suffix · pāśinī, śūlinī, cakriṇī · KS passim"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:vati",
+          "devanagari": "-वती",
+          "iast": "-vatī",
+          "gloss": "possessing (feminine)",
+          "note": "suffix · kalavatī, bhagavatī, guṇavatī · KKS 6"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:mayi",
+          "devanagari": "-मयी",
+          "iast": "-mayī",
+          "gloss": "made of, consisting of (f.)",
+          "note": "suffix · cinmayī, sarvamayī, ānandamayī · LS 251"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:rupini",
+          "devanagari": "-रूपिणी",
+          "iast": "-rūpiṇī",
+          "gloss": "having the form of (f.)",
+          "note": "suffix · caitanyarūpiṇī, kāmarūpiṇī · DM 5.14"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:svarupini",
+          "devanagari": "-स्वरूपिणी",
+          "iast": "-svarūpiṇī",
+          "gloss": "whose essential nature is (f.)",
+          "note": "suffix · mantrarūpiṇī, sarvasvarūpiṇī · KS passim"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:parayana",
+          "devanagari": "-परायणा",
+          "iast": "-parāyaṇā",
+          "gloss": "devoted to (f.)",
+          "note": "suffix · kāmaparāyaṇā, dharmaparāyaṇā · KKS passim"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:priya",
+          "devanagari": "-प्रिया",
+          "iast": "-priyā",
+          "gloss": "fond of (f.)",
+          "note": "suffix · puṣpapriyā, madhupriyā · KKS passim"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:stha-sthita",
+          "devanagari": "-स्था / -स्थिता",
+          "iast": "-sthā / -sthitā",
+          "gloss": "situated in (f.)",
+          "note": "suffix · bindumaṇḍalavāsinī, padmasthā · LS passim"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:da-dayini",
+          "devanagari": "-दा / -दायिनी",
+          "iast": "-dā / -dāyinī",
+          "gloss": "giving (f.)",
+          "note": "suffix · varadā, abhayapradā, siddhidāyinī · LS passim"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:ta",
+          "devanagari": "-त",
+          "iast": "-ta",
+          "gloss": "past passive participle",
+          "note": "suffix · hata (slain), kṛta (done), stuta (praised) · all texts"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:tavat",
+          "devanagari": "-तवत्",
+          "iast": "-tavat",
+          "gloss": "one who has done",
+          "note": "suffix · kṛtavān, dṛṣṭavān · DM passim"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:mana",
+          "devanagari": "-मान",
+          "iast": "-māna",
+          "gloss": "being done",
+          "note": "suffix · stūyamāna (being praised) · DM 4.37"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:at-ant",
+          "devanagari": "-अत् / -अन्त्",
+          "iast": "-at / -ant",
+          "gloss": "doing",
+          "note": "suffix · gacchat, kurvat, jayat · DM passim"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:tr-tr",
+          "devanagari": "-तृ / -त्र्",
+          "iast": "-tṛ / -tr",
+          "gloss": "doer",
+          "note": "suffix · kartṛ, hartṛ, goptrī · LS 266"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:tva",
+          "devanagari": "-त्वा",
+          "iast": "-tvā",
+          "gloss": "having done",
+          "note": "suffix · hatvā, dṛṣṭvā, śrutvā, gatvā · DM throughout"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:ya",
+          "devanagari": "-य",
+          "iast": "-ya",
+          "gloss": "having done (w/ prefix)",
+          "note": "suffix · praṇamya, ākarṇya, samīkṣya · DM throughout"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:ana",
+          "devanagari": "-अन",
+          "iast": "-ana",
+          "gloss": "the act of",
+          "note": "suffix · vandana, tarpaṇa, pūjana · KKS passim"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:in",
+          "devanagari": "-इन्",
+          "iast": "-in",
+          "gloss": "having, possessing",
+          "note": "suffix · tejasvín, tapasvin, yogin · VS passim"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:eya",
+          "devanagari": "-एय",
+          "iast": "-eya",
+          "gloss": "son/descendant of",
+          "note": "suffix · kauṇḍinya, kātyāyanī, kaunteya · KKS 985"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:ika-2",
+          "devanagari": "-इक",
+          "iast": "-ika",
+          "gloss": "belonging to, connected with",
+          "note": "suffix · vaidika, tāntrika, sāttvikaḥ · LS passim"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:tva-2",
+          "devanagari": "-त्व",
+          "iast": "-tva",
+          "gloss": "-ness, -ship",
+          "note": "suffix · kavitva, devatva, mahattva · KKS 150+"
+        },
+        {
+          "id": "09-dhatu:upasargas-suffixes:ta-2",
+          "devanagari": "-ता",
+          "iast": "-tā",
+          "gloss": "-ness",
+          "note": "suffix · devatā, mahimatā · VS passim"
+        }
+      ]
+    }
+  ]
+}

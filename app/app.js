@@ -1,53 +1,51 @@
-/* Cards live in the <script id="cards" type="text/plain"> block above.
+/* Practice data lives in the <script id="practice" type="application/json">
+   block above, inlined by scripts/build.js from every lesson's practice.json.
+   Its shape:
 
-   ONE PLACE THE COLUMN ORDER IS DEFINED — change FIELDS and the whole
-   page follows.  Add a fifth field by adding a fifth name here; rows
-   that don't have it get "" and keep working.                         */
-const FIELDS = ["devanagari", "iast", "gloss", "note"];
+     { "lessons": [
+         { "lesson": "06-kriya", "stage": 6,
+           "decks": [ { "name": "...", "cards": [ … ] } ] } ] }
 
-/*   Line format:   देवनागरी | iast | meaning | note
-     # ...          starts a new deck
-     @stage N       optional, on a deck header — the curriculum stage
-     blank lines are ignored
+   Lessons arrive already ordered by curriculum directory, so deck order in
+   the picker is the curriculum's own order — the build owns that, not this
+   file.  A card carries a stable `id`; every other field is presentation.
+   Cards with no `type` are `reveal`, which is what every migrated card is. */
+const CARD_TYPES = ["reveal", "choice", "sequence"];
 
-     The last field keeps any further "|" of its own: a case annotation is
-     written "prathamā | nom. sg. · a-stem m." and that bar is part of the
-     note, not a column break.                                          */
-const REQUIRED = ["devanagari", "iast", "gloss"];
+const [DECKS, DECK_STAGE, DECK_LESSON, LESSON_LABEL, PARSE] = (() => {
+  const decks = {}, stages = {}, lessons = {}, labels = {}, skipped = [];
+  const fail = why => [decks, stages, lessons, labels, { count: 0, decks: 0, skipped, fatal: why }];
 
-const [DECKS, DECK_STAGE, PARSE] = (() => {
-  const decks = {}, stages = {}, skipped = [];
-  let deck = "uncategorised";
+  const src = document.getElementById('practice');
+  if (!src) return fail("the <script id=\"practice\"> block is missing");
 
-  const src = document.getElementById('cards');
-  if (!src) return [decks, stages, { count: 0, decks: 0, skipped, fatal: "the <script id=\"cards\"> block is missing" }];
+  let data;
+  try { data = JSON.parse(src.textContent); }
+  catch (e) { return fail("the practice block is not valid JSON: " + e.message); }
 
-  src.textContent.split("\n").forEach((line, n) => {
-    const t = line.trim();
-    if (!t) return;
-
-    if (t.startsWith("#")) {                       // deck header
-      let head = t.slice(1).trim();
-      const m = head.match(/@stage\s+(\d+)/);
-      if (m) { head = head.replace(m[0], "").trim(); stages[head] = +m[1]; }
-      deck = head;
-      decks[deck] = decks[deck] || [];
-      return;
-    }
-
-    const cols = t.split("|").map(x => x.trim());  // card row
-    const card = {};
-    const last = FIELDS.length - 1;
-    FIELDS.forEach((name, k) => card[name] =
-      (k === last ? cols.slice(k).join(" | ") : cols[k]) || "");
-    const missing = REQUIRED.filter(f => !card[f]);
-    if (missing.length) { skipped.push({ line: n + 1, why: "no " + missing.join("/"), text: t }); return; }
-    (decks[deck] = decks[deck] || []).push(card);
+  (data.lessons || []).forEach(L => {
+    labels[L.lesson] = L.label || L.lesson;
+    (L.decks || []).forEach(d => {
+      if (!d.name || !Array.isArray(d.cards) || !d.cards.length) return;
+      const cards = d.cards.filter(c => {
+        // The build validates far more strictly; this is the last line of
+        // defence so one bad card cannot blank the whole page.
+        const why = !c.id ? "no id"
+          : c.type && !CARD_TYPES.includes(c.type) ? "unknown type " + c.type
+          : !c.devanagari && !c.front ? "nothing to show"
+          : null;
+        if (why) { skipped.push({ id: c.id || "(none)", why, deck: d.name }); return false; }
+        return true;
+      });
+      if (!cards.length) return;
+      decks[d.name] = cards;
+      stages[d.name] = L.stage;
+      lessons[d.name] = L.lesson;
+    });
   });
 
-  Object.keys(decks).forEach(k => { if (!decks[k].length) delete decks[k]; });
   const count = Object.values(decks).reduce((a, b) => a + b.length, 0);
-  return [decks, stages, { count, decks: Object.keys(decks).length, skipped }];
+  return [decks, stages, lessons, labels, { count, decks: Object.keys(decks).length, skipped }];
 })();
 
 /* Which list a card came from.  Card objects are made once, per line, so
@@ -110,8 +108,36 @@ if (SAVED.deck === MIX) delete SAVED.deck;      // the review is no longer a pic
 function save() {
   try { localStorage.setItem(STORE_KEY, JSON.stringify(SAVED)); } catch (e) {}
 }
-const cardKey = c => c.devanagari + '\u00a6' + c.gloss;   // unique within a deck
+/* A card's stable identity, assigned in practice.json and never derived from
+   what the card happens to display.  Before ids existed the key was the
+   visible text, so trouble history is lifted across once, below. */
+const cardKey = c => c.id;
 const deckState = name => SAVED.decks[name] = SAVED.decks[name] || {};
+
+/* \u2500\u2500 saved-progress migration \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+   v1 keyed trouble history by devanagari + '\u00a6' + gloss.  Rebuild that key
+   for every card we now hold, and move the record onto the card's id.  Runs
+   once; a record whose card no longer exists is left where it is rather than
+   thrown away, in case a later build brings the card back.
+
+   SAVED.decks is keyed by deck NAME, and deck names did not change in the
+   migration, so per-deck best scores need no rescue. */
+const SAVED_VERSION = 2;
+if ((SAVED.v || 1) < 2) {
+  let moved = 0;
+  Object.values(DECKS).forEach(cards => cards.forEach(c => {
+    if (!c.devanagari || !c.gloss) return;
+    const old = c.devanagari + '\u00a6' + c.gloss;
+    if (SAVED.trouble[old] && !SAVED.trouble[c.id]) {
+      SAVED.trouble[c.id] = SAVED.trouble[old];
+      delete SAVED.trouble[old];
+      moved++;
+    }
+  }));
+  SAVED.v = SAVED_VERSION;
+  save();
+  if (moved) console.info("abhy\u0101sa\u1e25: carried " + moved + " trouble records onto stable ids");
+}
 
 /* ── trouble cards ─────────────────────────────────────────
    A card lands on the list after TROUBLE_WRONG wrong answers and leaves
@@ -209,31 +235,36 @@ const DECK_DESC = name => {
   return m ? m[1] : "";
 };
 const DECK_SHORT = name => {
+  /* The lesson optgroup now says which stage a deck belongs to, so the deck's
+     own leading number is dropped from the display — it buys nothing and
+     costs width on a phone.  The VALUE keeps it. */
   const m = name.match(/^((?:V?\d+|S)\s*·\s*)?(.*)$/);
-  const num = m[1] || "";
   let t = m[2].split(/\s+—\s+/)[0];
-  const room = 22 - num.length;
+  const room = 26;
   if (t.length > room && t.includes(" & ")) t = t.split(" & ")[0];
   if (t.length > room) t = t.slice(0, room).replace(/\s+\S*$/, "");
   t = t.replace(/[\s,&·—]+$/, "");
-  return (num + t) || name;
+  return t || name;
 };
 
-/* deck picker, grouped */
+/* Deck picker, grouped by curriculum lesson.
+
+   The repository's numbered lesson directories are the navigation: one
+   optgroup per lesson, in the order the build handed them over, which is
+   directory order.  Decks keep their full name as the option VALUE because
+   that is what keys DECKS and the saved per-deck scores. */
 (() => {
   const names = Object.keys(DECKS);
   if (!names.length) return;
-  const groups = [
-    ["Word Lists",    n => !/^V\d/.test(n) && DECK_STAGE[n] !== 0],
-    ["Grammar Track", n => !/^V\d/.test(n) && DECK_STAGE[n] === 0],
-    ["Vocab Bank",    n => /^V\d/.test(n) && !n.startsWith("V21")],
-    ["Declensions",   n => n.startsWith("V21")],
-  ];
-  groups.forEach(([label, match]) => {
-    const members = names.filter(match);
+
+  const seen = [];
+  names.forEach(n => { if (!seen.includes(DECK_LESSON[n])) seen.push(DECK_LESSON[n]); });
+
+  seen.forEach(lesson => {
+    const members = names.filter(n => DECK_LESSON[n] === lesson);
     if (!members.length) return;
     const g = document.createElement('optgroup');
-    g.label = label;
+    g.label = LESSON_LABEL[lesson] || lesson;
     members.forEach(name => {
       const o = document.createElement('option');
       o.value = name;                    // the real key — never abbreviated
@@ -1294,18 +1325,20 @@ relabelAll();
 (() => {
   const el = $('validate');
   if (PARSE.count && !PARSE.skipped.length) return;
-  el.textContent = PARSE.count + " cards \u00b7 " + PARSE.decks + " decks \u00b7 "
-                 + PARSE.skipped.length + " lines skipped";
-  {
-    el.classList.add('bad');
+  el.textContent = PARSE.fatal
+    ? PARSE.fatal
+    : PARSE.count + " cards \u00b7 " + PARSE.decks + " decks \u00b7 "
+      + PARSE.skipped.length + " cards skipped";
+  el.classList.add('bad');
+  if (PARSE.skipped.length) {
     const ul = document.createElement('div');
     ul.className = 'skiplist';
     PARSE.skipped.forEach(sk => {
       const d = document.createElement('div');
-      d.textContent = "line " + sk.line + " (" + sk.why + "): " + sk.text;
+      d.textContent = sk.id + " in \u201c" + sk.deck + "\u201d (" + sk.why + ")";
       ul.appendChild(d);
     });
     el.appendChild(ul);
-    console.warn("skipped lines", PARSE.skipped);
+    console.warn("skipped cards", PARSE.skipped);
   }
 })();

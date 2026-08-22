@@ -1,4 +1,4 @@
-# Stage 29: Aprastuta-prasaṅga — Wit and Context Switching
+# Stage 33: Aprastuta-prasaṅga — Wit and Context Switching
 
 ## Goal
 Respond intelligently to interruptions and distractions while retaining your ongoing devotional composition. Train resilient attention.

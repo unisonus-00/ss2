@@ -1,4 +1,4 @@
-# Stage 13: Stotra II — Workbook (Questions)
+# Stage 15: Stotra II — Workbook (Questions)
 
 ## Section A: Case Forms (10 marks)
 **A1.** Give the dative (4th) form and use in "X namaḥ" (5 marks):

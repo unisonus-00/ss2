@@ -1,4 +1,4 @@
-# Stage 10: Vākya — Free Composition
+# Stage 12: Vākya — Free Composition
 
 ## Goal
 Compose freely in Sanskrit — describe daily life, thoughts, and experiences. Begin thinking directly in Sanskrit without translating from English.

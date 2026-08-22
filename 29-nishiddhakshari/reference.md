@@ -1,4 +1,4 @@
-# Stage 25: Niṣiddhākṣarī — Reference Guide
+# Stage 29: Niṣiddhākṣarī — Reference Guide
 
 ## Substitute Words When Common Letters Are Forbidden
 

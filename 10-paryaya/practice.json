@@ -1,0 +1,115 @@
+{
+  "lesson": "10-paryaya",
+  "decks": [
+    {
+      "name": "30 · Paryāya — synonym sets",
+      "cards": [
+        {
+          "id": "10-paryaya:paryaya:jalam",
+          "devanagari": "जलम्",
+          "iast": "jalam",
+          "gloss": "water",
+          "note": "also: āpaḥ, toyam, salilam, vāri, ambu, payaḥ"
+        },
+        {
+          "id": "10-paryaya:paryaya:suryah",
+          "devanagari": "सूर्यः",
+          "iast": "sūryaḥ",
+          "gloss": "sun",
+          "note": "also: ravi, bhānu, arka, mārtaṇḍa, divākara"
+        },
+        {
+          "id": "10-paryaya:paryaya:padmam",
+          "devanagari": "पद्मम्",
+          "iast": "padmam",
+          "gloss": "lotus",
+          "note": "also: kamala, aravinda, paṅkaja, saroja, ambuja"
+        },
+        {
+          "id": "10-paryaya:paryaya:agnih",
+          "devanagari": "अग्निः",
+          "iast": "agniḥ",
+          "gloss": "fire",
+          "note": "also: vahni, anala, pāvaka, hutāśana"
+        },
+        {
+          "id": "10-paryaya:paryaya:candrah",
+          "devanagari": "चन्द्रः",
+          "iast": "candraḥ",
+          "gloss": "moon",
+          "note": "also: soma, indu, śaśin, niśākara"
+        },
+        {
+          "id": "10-paryaya:paryaya:raja",
+          "devanagari": "राजा",
+          "iast": "rājā",
+          "gloss": "king",
+          "note": "also: nṛpa, bhūpa, pārthiva, narendra"
+        },
+        {
+          "id": "10-paryaya:paryaya:akasah",
+          "devanagari": "आकाशः",
+          "iast": "ākāśaḥ",
+          "gloss": "sky, space",
+          "note": "also: gagana, vyoman, nabhas, ambara"
+        },
+        {
+          "id": "10-paryaya:paryaya:prthivi",
+          "devanagari": "पृथिवी",
+          "iast": "pṛthivī",
+          "gloss": "earth",
+          "note": "also: bhūmi, dharā, vasudhā, kṣiti"
+        },
+        {
+          "id": "10-paryaya:paryaya:vayuh",
+          "devanagari": "वायुः",
+          "iast": "vāyuḥ",
+          "gloss": "wind",
+          "note": "also: pavana, mārut, anila, samīraṇa"
+        },
+        {
+          "id": "10-paryaya:paryaya:gajah",
+          "devanagari": "गजः",
+          "iast": "gajaḥ",
+          "gloss": "elephant",
+          "note": "also: hastin, kuñjara, dvipa, nāga"
+        },
+        {
+          "id": "10-paryaya:paryaya:parvatah",
+          "devanagari": "पर्वतः",
+          "iast": "parvataḥ",
+          "gloss": "mountain",
+          "note": "also: giri, acala, śaila, adri"
+        },
+        {
+          "id": "10-paryaya:paryaya:samudrah",
+          "devanagari": "समुद्रः",
+          "iast": "samudraḥ",
+          "gloss": "ocean",
+          "note": "also: sāgara, jaladhi, arṇava, ambudhi"
+        },
+        {
+          "id": "10-paryaya:paryaya:ratrih",
+          "devanagari": "रात्रिः",
+          "iast": "rātriḥ",
+          "gloss": "night",
+          "note": "also: niśā, rajanī, yāminī, kṣapā"
+        },
+        {
+          "id": "10-paryaya:paryaya:vak",
+          "devanagari": "वाक्",
+          "iast": "vāk",
+          "gloss": "speech",
+          "note": "also: vāṇī, bhāratī, gīḥ, bhāṣā"
+        },
+        {
+          "id": "10-paryaya:paryaya:devah",
+          "devanagari": "देवः",
+          "iast": "devaḥ",
+          "gloss": "god",
+          "note": "also: sura, amara, vibudha, tridaśa"
+        }
+      ]
+    }
+  ]
+}

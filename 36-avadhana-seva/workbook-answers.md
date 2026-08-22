@@ -1,4 +1,4 @@
-# Stage 32: Avadhāna-Sevā — Final Examination (Answers)
+# Stage 36: Avadhāna-Sevā — Final Examination (Answers)
 
 ## Scoring Rubric (100 marks total)
 

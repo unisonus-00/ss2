@@ -1,4 +1,4 @@
-# Stage 29: Aprastuta-prasaṅga — Workbook (Answers)
+# Stage 33: Aprastuta-prasaṅga — Workbook (Answers)
 
 ## Exercise 1
 **Interruption answers:**

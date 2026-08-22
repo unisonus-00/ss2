@@ -1,4 +1,4 @@
-# Stage 8: Paryāya — Synonyms
+# Stage 10: Paryāya — Synonyms
 
 ## Goal
 Master synonyms (paryāyas) for key devotional concepts. Understand how divine epithets are built from attributes, and learn to generate names from qualities — the skill behind aṣṭottaraśatanāma (108 names).

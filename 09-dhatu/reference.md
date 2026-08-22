@@ -1,4 +1,4 @@
-# Stage 7: Dhātu — Reference Guide
+# Stage 9: Dhātu — Reference Guide
 
 ## 50 Core Dhātus
 

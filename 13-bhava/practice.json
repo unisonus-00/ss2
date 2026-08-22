@@ -1,0 +1,554 @@
+{
+  "lesson": "13-bhava",
+  "decks": [
+    {
+      "name": "20 · Bhāva — inner states",
+      "cards": [
+        {
+          "id": "13-bhava:bhava:bhaktih",
+          "devanagari": "भक्तिः",
+          "iast": "bhaktiḥ",
+          "gloss": "devotion",
+          "note": "prathamā | nom. sg. · f. · stem: bhakti- · i-stem"
+        },
+        {
+          "id": "13-bhava:bhava:prema",
+          "devanagari": "प्रेम",
+          "iast": "prema",
+          "gloss": "love",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: preman- · an-stem"
+        },
+        {
+          "id": "13-bhava:bhava:anandah",
+          "devanagari": "आनन्दः",
+          "iast": "ānandaḥ",
+          "gloss": "bliss",
+          "note": "prathamā | nom. sg. · m. · stem: ānanda- · a-stem"
+        },
+        {
+          "id": "13-bhava:bhava:sokah",
+          "devanagari": "शोकः",
+          "iast": "śokaḥ",
+          "gloss": "grief",
+          "note": "prathamā | nom. sg. · m. · stem: śoka- · a-stem"
+        },
+        {
+          "id": "13-bhava:bhava:bhayam",
+          "devanagari": "भयम्",
+          "iast": "bhayam",
+          "gloss": "fear",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: bhaya- · a-stem"
+        },
+        {
+          "id": "13-bhava:bhava:krodhah",
+          "devanagari": "क्रोधः",
+          "iast": "krodhaḥ",
+          "gloss": "anger",
+          "note": "prathamā | nom. sg. · m. · stem: krodha- · a-stem"
+        },
+        {
+          "id": "13-bhava:bhava:harsah",
+          "devanagari": "हर्षः",
+          "iast": "harṣaḥ",
+          "gloss": "joy",
+          "note": "prathamā | nom. sg. · m. · stem: harṣa- · a-stem"
+        },
+        {
+          "id": "13-bhava:bhava:karuna",
+          "devanagari": "करुणा",
+          "iast": "karuṇā",
+          "gloss": "compassion",
+          "note": "prathamā | nom. sg. · f. · stem: karuṇā- · ā-stem"
+        },
+        {
+          "id": "13-bhava:bhava:sraddha",
+          "devanagari": "श्रद्धा",
+          "iast": "śraddhā",
+          "gloss": "faith",
+          "note": "prathamā | nom. sg. · f. · stem: śraddhā- · ā-stem"
+        },
+        {
+          "id": "13-bhava:bhava:santih",
+          "devanagari": "शान्तिः",
+          "iast": "śāntiḥ",
+          "gloss": "peace",
+          "note": "prathamā | nom. sg. · f. · stem: śānti- · i-stem"
+        },
+        {
+          "id": "13-bhava:bhava:vismayah",
+          "devanagari": "विस्मयः",
+          "iast": "vismayaḥ",
+          "gloss": "wonder",
+          "note": "prathamā | nom. sg. · m. · stem: vismaya- · a-stem"
+        },
+        {
+          "id": "13-bhava:bhava:lajja",
+          "devanagari": "लज्जा",
+          "iast": "lajjā",
+          "gloss": "modesty, shame",
+          "note": "prathamā | nom. sg. · f. · stem: lajjā- · ā-stem"
+        },
+        {
+          "id": "13-bhava:bhava:utsahah",
+          "devanagari": "उत्साहः",
+          "iast": "utsāhaḥ",
+          "gloss": "energy, resolve",
+          "note": "prathamā | nom. sg. · m. · stem: utsāha- · a-stem"
+        },
+        {
+          "id": "13-bhava:bhava:bhavah",
+          "devanagari": "भावः",
+          "iast": "bhāvaḥ",
+          "gloss": "state of being, feeling",
+          "note": "prathamā | nom. sg. · m. · stem: bhāva- · a-stem"
+        },
+        {
+          "id": "13-bhava:bhava:vairagyam",
+          "devanagari": "वैराग्यम्",
+          "iast": "vairāgyam",
+          "gloss": "dispassion",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: vairāgya- · a-stem"
+        }
+      ]
+    },
+    {
+      "name": "V09 · Emotions & mind — DM · LS",
+      "cards": [
+        {
+          "id": "13-bhava:emotions-mind:kopa",
+          "devanagari": "कोप",
+          "iast": "kopa",
+          "gloss": "anger",
+          "note": "headword | m. · stem: kopa- · a-stem · DM 6.20"
+        },
+        {
+          "id": "13-bhava:emotions-mind:krodha",
+          "devanagari": "क्रोध",
+          "iast": "krodha",
+          "gloss": "wrath",
+          "note": "headword | m. · stem: krodha- · a-stem · from √krudh · DM 9.5"
+        },
+        {
+          "id": "13-bhava:emotions-mind:rosa",
+          "devanagari": "रोष",
+          "iast": "roṣa",
+          "gloss": "fury",
+          "note": "headword | m. · stem: roṣa- · a-stem · DM 3.24"
+        },
+        {
+          "id": "13-bhava:emotions-mind:amarsa",
+          "devanagari": "अमर्ष",
+          "iast": "amarṣa",
+          "gloss": "indignation",
+          "note": "headword | m. · stem: amarṣa- · a-stem · DM 6.2"
+        },
+        {
+          "id": "13-bhava:emotions-mind:kopavista",
+          "devanagari": "कोपाविष्टा",
+          "iast": "kopāviṣṭā",
+          "gloss": "seized by anger",
+          "note": "headword | f. · stem: kopāviṣṭā- · ā-stem · pp. · DM 3.26"
+        },
+        {
+          "id": "13-bhava:emotions-mind:kruddha-kupita",
+          "devanagari": "क्रुद्ध / कुपित",
+          "iast": "kruddha / kupita",
+          "gloss": "angered",
+          "note": "headword | pp. · stem: kruddha- · a-stem · DM 6.20"
+        },
+        {
+          "id": "13-bhava:emotions-mind:samkruddha",
+          "devanagari": "संक्रुद्ध",
+          "iast": "saṃkruddha",
+          "gloss": "thoroughly enraged",
+          "note": "headword | pp. · stem: saṃkruddha- · a-stem · DM 9.17"
+        },
+        {
+          "id": "13-bhava:emotions-mind:kopadhmata",
+          "devanagari": "कोपाध्मता",
+          "iast": "kopādhmatā",
+          "gloss": "swollen with rage",
+          "note": "headword | pp. · stem: kopādhmatā- · ā-stem · DM 8.4"
+        },
+        {
+          "id": "13-bhava:emotions-mind:prasphuritadhara",
+          "devanagari": "प्रस्फुरिताधर",
+          "iast": "prasphuritādhara",
+          "gloss": "with quivering lip (from rage)",
+          "note": "headword | adj. · stem: prasphuritādhara- · a-stem · DM 6.21"
+        },
+        {
+          "id": "13-bhava:emotions-mind:bhaya",
+          "devanagari": "भय",
+          "iast": "bhaya",
+          "gloss": "fear",
+          "note": "headword | n. · stem: bhaya- · a-stem · DM 4.28"
+        },
+        {
+          "id": "13-bhava:emotions-mind:trasa",
+          "devanagari": "त्रास",
+          "iast": "trāsa",
+          "gloss": "terror",
+          "note": "headword | m. · stem: trāsa- · a-stem · from √tras · DM passim"
+        },
+        {
+          "id": "13-bhava:emotions-mind:bhiti",
+          "devanagari": "भीति",
+          "iast": "bhīti",
+          "gloss": "dread",
+          "note": "headword | f. · stem: bhīti- · i-stem · DM passim"
+        },
+        {
+          "id": "13-bhava:emotions-mind:bhita-trasta",
+          "devanagari": "भीत / त्रस्त",
+          "iast": "bhīta / trasta",
+          "gloss": "frightened",
+          "note": "headword | pp. · stem: bhīta- · a-stem · DM 8.3"
+        },
+        {
+          "id": "13-bhava:emotions-mind:bhayankara",
+          "devanagari": "भयङ्कर",
+          "iast": "bhayaṅkara",
+          "gloss": "fear-causing",
+          "note": "headword | adj. · stem: bhayaṅkara- · a-stem · DM passim"
+        },
+        {
+          "id": "13-bhava:emotions-mind:bhisana",
+          "devanagari": "भीषण",
+          "iast": "bhīṣaṇa",
+          "gloss": "terrifying",
+          "note": "headword | adj. · stem: bhīṣaṇa- · a-stem · DM 7.11"
+        },
+        {
+          "id": "13-bhava:emotions-mind:bhayapaha",
+          "devanagari": "भयापह",
+          "iast": "bhayāpaha",
+          "gloss": "fear-removing",
+          "note": "headword | adj. · stem: bhayāpaha- · a-stem · LS 117"
+        },
+        {
+          "id": "13-bhava:emotions-mind:harsa",
+          "devanagari": "हर्ष",
+          "iast": "harṣa",
+          "gloss": "joy",
+          "note": "headword | m. · stem: harṣa- · a-stem · DM 3.43"
+        },
+        {
+          "id": "13-bhava:emotions-mind:priti",
+          "devanagari": "प्रीति",
+          "iast": "prīti",
+          "gloss": "delight, love",
+          "note": "headword | f. · stem: prīti- · i-stem · from √prī · DM 4.30"
+        },
+        {
+          "id": "13-bhava:emotions-mind:ananda",
+          "devanagari": "आनन्द",
+          "iast": "ānanda",
+          "gloss": "bliss",
+          "note": "headword | m. · stem: ānanda- · a-stem · LS 216 (paramānanda)"
+        },
+        {
+          "id": "13-bhava:emotions-mind:tusti",
+          "devanagari": "तुष्टि",
+          "iast": "tuṣṭi",
+          "gloss": "contentment",
+          "note": "headword | f. · stem: tuṣṭi- · i-stem · from √tuṣ · DM 5.49"
+        },
+        {
+          "id": "13-bhava:emotions-mind:sukha",
+          "devanagari": "सुख",
+          "iast": "sukha",
+          "gloss": "happiness, comfort",
+          "note": "headword | n. · stem: sukha- · a-stem · DM passim"
+        },
+        {
+          "id": "13-bhava:emotions-mind:santosa",
+          "devanagari": "सन्तोष",
+          "iast": "santoṣa",
+          "gloss": "satisfaction",
+          "note": "headword | m. · stem: santoṣa- · a-stem · KKS passim"
+        },
+        {
+          "id": "13-bhava:emotions-mind:hlada-ahlada",
+          "devanagari": "ह्लाद / आह्लाद",
+          "iast": "hlāda / āhlāda",
+          "gloss": "delight",
+          "note": "headword | m. · stem: hlāda- · a-stem · LS passim"
+        },
+        {
+          "id": "13-bhava:emotions-mind:ullasa",
+          "devanagari": "उल्लास",
+          "iast": "ullāsa",
+          "gloss": "joy, exuberance",
+          "note": "headword | m. · stem: ullāsa- · a-stem · KKS passim"
+        },
+        {
+          "id": "13-bhava:emotions-mind:duhkha",
+          "devanagari": "दुःख",
+          "iast": "duḥkha",
+          "gloss": "suffering, sorrow",
+          "note": "headword | n. · stem: duḥkha- · a-stem · DM 4.22"
+        },
+        {
+          "id": "13-bhava:emotions-mind:soka",
+          "devanagari": "शोक",
+          "iast": "śoka",
+          "gloss": "grief",
+          "note": "headword | m. · stem: śoka- · a-stem · from √śuc · DM 1.8"
+        },
+        {
+          "id": "13-bhava:emotions-mind:dina",
+          "devanagari": "दीन",
+          "iast": "dīna",
+          "gloss": "wretched, miserable",
+          "note": "headword | adj. · stem: dīna- · a-stem · DM 1.10"
+        },
+        {
+          "id": "13-bhava:emotions-mind:nirvinna",
+          "devanagari": "निर्विण्ण",
+          "iast": "nirviṇṇa",
+          "gloss": "dejected, disgusted",
+          "note": "headword | pp. · stem: nirviṇṇa- · a-stem · DM 1.28"
+        },
+        {
+          "id": "13-bhava:emotions-mind:pida",
+          "devanagari": "पीडा",
+          "iast": "pīḍā",
+          "gloss": "affliction",
+          "note": "headword | f. · stem: pīḍā- · ā-stem · DM 12.9"
+        },
+        {
+          "id": "13-bhava:emotions-mind:arti",
+          "devanagari": "आर्ति",
+          "iast": "ārti",
+          "gloss": "distress",
+          "note": "headword | f. · stem: ārti- · i-stem · LS (durgārtināśinī)"
+        },
+        {
+          "id": "13-bhava:emotions-mind:klesa",
+          "devanagari": "क्लेश",
+          "iast": "kleśa",
+          "gloss": "affliction",
+          "note": "headword | m. · stem: kleśa- · a-stem · KS passim"
+        },
+        {
+          "id": "13-bhava:emotions-mind:tapa",
+          "devanagari": "ताप",
+          "iast": "tāpa",
+          "gloss": "heat, suffering",
+          "note": "headword | m. · stem: tāpa- · a-stem · LS passim"
+        },
+        {
+          "id": "13-bhava:emotions-mind:santapa",
+          "devanagari": "सन्ताप",
+          "iast": "santāpa",
+          "gloss": "intense suffering",
+          "note": "headword | m. · stem: santāpa- · a-stem · LS 331"
+        },
+        {
+          "id": "13-bhava:emotions-mind:moha",
+          "devanagari": "मोह",
+          "iast": "moha",
+          "gloss": "delusion",
+          "note": "headword | m. · stem: moha- · a-stem · from √muh · DM 1.40"
+        },
+        {
+          "id": "13-bhava:emotions-mind:mohita",
+          "devanagari": "मोहित",
+          "iast": "mohita",
+          "gloss": "deluded",
+          "note": "headword | pp. · stem: mohita- · a-stem · DM 1.42"
+        },
+        {
+          "id": "13-bhava:emotions-mind:mahamoha",
+          "devanagari": "महामोह",
+          "iast": "mahāmoha",
+          "gloss": "great delusion",
+          "note": "headword | m. · stem: mahāmoha- · a-stem · DM 11.43"
+        },
+        {
+          "id": "13-bhava:emotions-mind:bhranti",
+          "devanagari": "भ्रान्ति",
+          "iast": "bhrānti",
+          "gloss": "error, confusion",
+          "note": "headword | f. · stem: bhrānti- · i-stem · DM 5.53"
+        },
+        {
+          "id": "13-bhava:emotions-mind:ajnana-avidya",
+          "devanagari": "अज्ञान / अविद्या",
+          "iast": "ajñāna / avidyā",
+          "gloss": "ignorance",
+          "note": "n./f. · LS passim"
+        },
+        {
+          "id": "13-bhava:emotions-mind:maya",
+          "devanagari": "माया",
+          "iast": "māyā",
+          "gloss": "illusion",
+          "note": "headword | f. · stem: māyā- · ā-stem · DM 1.40+"
+        },
+        {
+          "id": "13-bhava:emotions-mind:kama",
+          "devanagari": "काम",
+          "iast": "kāma",
+          "gloss": "desire, love",
+          "note": "headword | m. · stem: kāma- · a-stem · DM passim"
+        },
+        {
+          "id": "13-bhava:emotions-mind:trsna",
+          "devanagari": "तृष्णा",
+          "iast": "tṛṣṇā",
+          "gloss": "thirst, craving",
+          "note": "headword | f. · stem: tṛṣṇā- · ā-stem · DM 5.27"
+        },
+        {
+          "id": "13-bhava:emotions-mind:asa",
+          "devanagari": "आशा",
+          "iast": "āśā",
+          "gloss": "hope, expectation",
+          "note": "headword | f. · stem: āśā- · ā-stem · KS passim"
+        },
+        {
+          "id": "13-bhava:emotions-mind:raga",
+          "devanagari": "राग",
+          "iast": "rāga",
+          "gloss": "passion, attachment",
+          "note": "headword | m. · stem: rāga- · a-stem · LS 8"
+        },
+        {
+          "id": "13-bhava:emotions-mind:lobha",
+          "devanagari": "लोभ",
+          "iast": "lobha",
+          "gloss": "greed",
+          "note": "headword | m. · stem: lobha- · a-stem · LS 175 (nir-lobhā)"
+        },
+        {
+          "id": "13-bhava:emotions-mind:garva-darpa-mada",
+          "devanagari": "गर्व / दर्प / मद",
+          "iast": "garva / darpa / mada",
+          "gloss": "pride, arrogance, intoxication",
+          "note": "headword | m. · stem: garva- · a-stem · DM passim"
+        },
+        {
+          "id": "13-bhava:emotions-mind:matsara",
+          "devanagari": "मत्सर",
+          "iast": "matsara",
+          "gloss": "jealousy",
+          "note": "headword | m. · stem: matsara- · a-stem · LS passim"
+        },
+        {
+          "id": "13-bhava:emotions-mind:mamata-mamata",
+          "devanagari": "ममत / ममता",
+          "iast": "mamata / mamatā",
+          "gloss": "possessiveness, \"my-ness\"",
+          "note": "f. · DM 1.39"
+        },
+        {
+          "id": "13-bhava:emotions-mind:ahankara",
+          "devanagari": "अहङ्कार",
+          "iast": "ahaṅkāra",
+          "gloss": "ego-sense",
+          "note": "headword | m. · stem: ahaṅkāra- · a-stem · LS 162"
+        },
+        {
+          "id": "13-bhava:emotions-mind:sraddha",
+          "devanagari": "श्रद्धा",
+          "iast": "śraddhā",
+          "gloss": "faith",
+          "note": "headword | f. · stem: śraddhā- · ā-stem · DM 5.37"
+        },
+        {
+          "id": "13-bhava:emotions-mind:bhakti",
+          "devanagari": "भक्ति",
+          "iast": "bhakti",
+          "gloss": "devotion",
+          "note": "headword | f. · stem: bhakti- · i-stem · from √bhaj · DM passim"
+        },
+        {
+          "id": "13-bhava:emotions-mind:dhrti",
+          "devanagari": "धृति",
+          "iast": "dhṛti",
+          "gloss": "steadfastness",
+          "note": "headword | f. · stem: dhṛti- · i-stem · from √dhṛ · DM 5.57"
+        },
+        {
+          "id": "13-bhava:emotions-mind:ksanti-ksama",
+          "devanagari": "क्षान्ति / क्षमा",
+          "iast": "kṣānti / kṣamā",
+          "gloss": "patience, forbearance",
+          "note": "f. · DM 5.29"
+        },
+        {
+          "id": "13-bhava:emotions-mind:daya-karuna",
+          "devanagari": "दया / करुणा",
+          "iast": "dayā / karuṇā",
+          "gloss": "compassion",
+          "note": "headword | f. · stem: dayā- · ā-stem · DM 5.47"
+        },
+        {
+          "id": "13-bhava:emotions-mind:lajja",
+          "devanagari": "लज्जा",
+          "iast": "lajjā",
+          "gloss": "modesty",
+          "note": "headword | f. · stem: lajjā- · ā-stem · DM 5.33"
+        },
+        {
+          "id": "13-bhava:emotions-mind:medha",
+          "devanagari": "मेधा",
+          "iast": "medhā",
+          "gloss": "wisdom, intelligence",
+          "note": "headword | f. · stem: medhā- · ā-stem · DM 5.55"
+        },
+        {
+          "id": "13-bhava:emotions-mind:buddhi-mati",
+          "devanagari": "बुद्धि / मति",
+          "iast": "buddhi / mati",
+          "gloss": "intellect",
+          "note": "headword | f. · stem: buddhi- · i-stem · DM 5.17"
+        },
+        {
+          "id": "13-bhava:emotions-mind:smrti",
+          "devanagari": "स्मृति",
+          "iast": "smṛti",
+          "gloss": "memory",
+          "note": "headword | f. · stem: smṛti- · i-stem · from √smṛ · DM 5.45"
+        },
+        {
+          "id": "13-bhava:emotions-mind:santi",
+          "devanagari": "शान्ति",
+          "iast": "śānti",
+          "gloss": "peace",
+          "note": "headword | f. · stem: śānti- · i-stem · from √śam · DM 5.35"
+        },
+        {
+          "id": "13-bhava:emotions-mind:vairagya",
+          "devanagari": "वैराग्य",
+          "iast": "vairāgya",
+          "gloss": "dispassion",
+          "note": "headword | n. · stem: vairāgya- · a-stem · DM 1.27"
+        },
+        {
+          "id": "13-bhava:emotions-mind:dhairya",
+          "devanagari": "धैर्य",
+          "iast": "dhairya",
+          "gloss": "courage, fortitude",
+          "note": "headword | n. · stem: dhairya- · a-stem · KS passim"
+        },
+        {
+          "id": "13-bhava:emotions-mind:niti",
+          "devanagari": "नीति",
+          "iast": "nīti",
+          "gloss": "right conduct, ethics",
+          "note": "headword | f. · stem: nīti- · i-stem · KS passim"
+        },
+        {
+          "id": "13-bhava:emotions-mind:vinaya",
+          "devanagari": "विनय",
+          "iast": "vinaya",
+          "gloss": "humility",
+          "note": "headword | m. · stem: vinaya- · a-stem · VS passim"
+        }
+      ]
+    }
+  ]
+}

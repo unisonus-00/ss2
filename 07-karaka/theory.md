@@ -1,4 +1,4 @@
-# Stage 5: Kāraka — Semantic Relations
+# Stage 7: Kāraka — Semantic Relations
 
 ## Goal
 Understand the kāraka system — the deep semantic roles that map to vibhaktis — and build complete devotional sentences with multiple participants.

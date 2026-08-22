@@ -26,23 +26,23 @@ Work through the stages sequentially. Master each milestone before moving on.
 
 ```
  ┌──────────────────────────────────────────────────────────┐
- │  STAGES 1–12    Language Acquisition                     │
+ │  STAGES 1–13    Language Acquisition                     │
  │                 Nouns → free composition,                │
- │                 grounded in devotional context            │
+ │                 grounded in devotional context           │
  ├──────────────────────────────────────────────────────────┤
- │  STAGES 13–15   Poetic Composition                       │
- │  STAGES 17–25   Stotra, chandas, alaṅkāra, rasa, darśana │
+ │  STAGES 14–16   Poetic Composition                       │
+ │  STAGES 18–26   Stotra, chandas, alaṅkāra, rasa, darśana │
  ├──────────────────────────────────────────────────────────┤
- │  STAGE 16       Pūjā-Vāk: Ritual Literacy                │
+ │  STAGE 17       Pūjā-Vāk: Ritual Literacy                │
  │                 Saṅkalpa, nyāsa, dhyāna, upacāra grammar │
  ├──────────────────────────────────────────────────────────┤
- │  STAGE 19       Svara-Vidyā: Vedic Literacy               │
- │                 Udātta / anudātta / svarita, vikṛtis      │
+ │  STAGE 20       Svara-Vidyā: Vedic Literacy              │
+ │                 Udātta / anudātta / svarita, vikṛtis     │
  ├──────────────────────────────────────────────────────────┤
- │  STAGES 26–36   Avadhāna                                  │
- │                 Eight challenges → full Aṣṭāvadhāna       │
- │                 Stage 36: Avadhāna-Sevā — Mastery as       │
- │                 Living Practice                             │
+ │  STAGES 27–36   Avadhāna                                 │
+ │                 Eight challenges → full Aṣṭāvadhāna      │
+ │                 Stage 36: Avadhāna-Sevā — Mastery as     │
+ │                 Living Practice                          │
  └──────────────────────────────────────────────────────────┘
 ```
 
@@ -50,16 +50,19 @@ Work through the stages sequentially. Master each milestone before moving on.
 
 ## Stage Format
 
-Each stage contains four files:
+Each stage contains:
 
 | File | Purpose |
 |:-----|:--------|
 | `theory.md` | Concepts, explanations, examples |
 | `reference.md` | Quick-lookup tables, paradigms, lists |
+| `bricks.md` | Deeper formal analysis, where present |
 | `workbook-questions.md` | Exercises |
 | `workbook-answers.md` | Answer key |
+| `badge.md` | The mastery target for the stage |
+| `practice.json` | Curated Abhyāsaḥ practice |
 
-A `vocab/` library provides 20 thematic word lists — goddess names, weapons, nature, ritual, philosophy, and more.
+A `vocab/` library provides 22 thematic word lists — goddess names, weapons, nature, ritual, philosophy, and more.
 
 <br>
 
@@ -73,12 +76,17 @@ The curriculum has two complementary tracks:
 
 **Cross-references between tracks:**
 
-| Stage | vyākaraṇam chapter |
-|:------|:-------------------|
-| Stage 2 (Varṇa-Vidyā) | Ch. 1 |
-| Stage 3 (Guṇa) | Ch. 2 |
-| Stage 6 (Kāraka) | Ch. 4 |
-| Stage 11 (Vākya) | Ch. 5 |
+Each chapter below is merged into its stage — as `bricks.md`, or in Sandhi's
+case as the stage's own reference and workbooks.
+
+| Stage | vyākaraṇam chapter | Merged as |
+|:------|:-------------------|:----------|
+| Stage 2 (Varṇa-Vidyā) | Ch. 1 — Varṇavicāraḥ | `02-varna-vidya/bricks.md` |
+| Stage 3 (Sandhi) | Ch. 2 — Sandhi | `03-sandhi/reference.md`, workbooks |
+| Stage 5 (Rūpa) | Ch. 3 — Sarvanāmāni | `05-rupa/bricks.md` |
+| Stage 6 (Kriyā) | Ch. 4 — Kriyāpada | `06-kriya/bricks.md` |
+
+`vyakaranam/ch00-introduction` belongs to no stage.
 
 <br>
 

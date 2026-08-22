@@ -1,4 +1,4 @@
-# Stage 26: Citra-kāvya — Workbook (Questions)
+# Stage 30: Citra-kāvya — Workbook (Questions)
 
 ## Section A: 3-Constraint Verse (20 marks)
 **A1.** Compose a 4-line verse with: Meter = anuṣṭubh, Deity = Devī, Required word = padma (10 marks):

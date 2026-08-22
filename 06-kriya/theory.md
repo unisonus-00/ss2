@@ -1,4 +1,4 @@
-# Stage 4: Kriyā — Verbs
+# Stage 6: Kriyā — Verbs
 
 ## Goal
 Learn Sanskrit verbs to describe acts of worship, devotion, and daily spiritual practice. Describe your own worship in Sanskrit.

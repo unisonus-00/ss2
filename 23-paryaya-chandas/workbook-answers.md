@@ -1,4 +1,4 @@
-# Stage 19: Paryāya-Chandas — Workbook (Answers)
+# Stage 23: Paryāya-Chandas — Workbook (Answers)
 
 ## Section A
 **A1.**

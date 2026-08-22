@@ -1,4 +1,4 @@
-# Stage 29: Aprastuta-prasaṅga — Reference Guide
+# Stage 33: Aprastuta-prasaṅga — Reference Guide
 
 ## Witty Response Templates
 

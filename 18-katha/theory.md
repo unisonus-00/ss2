@@ -1,4 +1,4 @@
-# Stage 15: Kathā — Narration
+# Stage 18: Kathā — Narration
 
 ## Goal
 Narrate a deity's story (līlā) in Sanskrit for 2-3 minutes. Master past tense, sequence markers, and narrative structure.

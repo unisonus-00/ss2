@@ -1,4 +1,4 @@
-# Stage 7: Dhātu — Roots and Upasargas
+# Stage 9: Dhātu — Roots and Upasargas
 
 ## Goal
 Understand verbal roots (dhātus) as the atomic units of Sanskrit meaning, and learn how upasargas (prefixes) transform them systematically. See the semantic architecture hidden inside sacred vocabulary.

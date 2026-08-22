@@ -1,4 +1,4 @@
-# Stage 4: Kriyā — Reference Guide
+# Stage 6: Kriyā — Reference Guide
 
 ## Parasmaipada Present Tense Endings
 

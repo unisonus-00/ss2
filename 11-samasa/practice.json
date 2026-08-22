@@ -1,0 +1,372 @@
+{
+  "lesson": "11-samasa",
+  "decks": [
+    {
+      "name": "14 · Samāsa — compound types",
+      "cards": [
+        {
+          "id": "11-samasa:samasa:raja-purusah",
+          "devanagari": "राज + पुरुषः",
+          "iast": "rāja + puruṣaḥ",
+          "gloss": "राजपुरुषः · tatpuruṣa — \"the king's man\"",
+          "note": "samāsa · the first member stands in a case relation to the second"
+        },
+        {
+          "id": "11-samasa:samasa:nila-utpalam",
+          "devanagari": "नील + उत्पलम्",
+          "iast": "nīla + utpalam",
+          "gloss": "नीलोत्पलम् · karmadhāraya — \"blue lotus\"",
+          "note": "samāsa · adjective and noun in the same case"
+        },
+        {
+          "id": "11-samasa:samasa:tri-lokam",
+          "devanagari": "त्रि + लोकम्",
+          "iast": "tri + lokam",
+          "gloss": "त्रिलोकम् · dvigu — \"the three worlds\"",
+          "note": "samāsa · a karmadhāraya whose first member is a number"
+        },
+        {
+          "id": "11-samasa:samasa:pita-ambarah",
+          "devanagari": "पीत + अम्बरः",
+          "iast": "pīta + ambaraḥ",
+          "gloss": "पीताम्बरः · bahuvrīhi — \"he whose garment is yellow\"",
+          "note": "samāsa · names something outside itself"
+        },
+        {
+          "id": "11-samasa:samasa:rama-laksmanau",
+          "devanagari": "राम + लक्ष्मणौ",
+          "iast": "rāma + lakṣmaṇau",
+          "gloss": "रामलक्ष्मणौ · dvandva — \"Rāma and Lakṣmaṇa\"",
+          "note": "samāsa · and-compound, the members equal"
+        },
+        {
+          "id": "11-samasa:samasa:upa-nadi",
+          "devanagari": "उप + नदी",
+          "iast": "upa + nadī",
+          "gloss": "उपनदि · avyayībhāva — \"near the river\"",
+          "note": "samāsa · indeclinable, the first member governs"
+        }
+      ]
+    },
+    {
+      "name": "V17 · Compounds broken down — LS · DM",
+      "cards": [
+        {
+          "id": "11-samasa:compounds-broken-down:mahisasura-mardani",
+          "devanagari": "महिषासुर-मर्दनी",
+          "iast": "mahiṣāsura-mardanī",
+          "gloss": "mahiṣāsuraṃ mardayati iti",
+          "note": "crusher of the buffalo-demon · DM 3.44"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:durgarti-nasini",
+          "devanagari": "दुर्गार्ति-नाशिनी",
+          "iast": "durgārti-nāśinī",
+          "gloss": "durgām ārtim nāśayati iti",
+          "note": "destroyer of dire suffering · LS"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:trisula-dharini",
+          "devanagari": "त्रिशूल-धारिणी",
+          "iast": "triśūla-dhāriṇī",
+          "gloss": "triśūlaṃ dhārayati iti",
+          "note": "wielder of the trident · DM passim"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:simha-vahini",
+          "devanagari": "सिंह-वाहिनी",
+          "iast": "siṃha-vāhinī",
+          "gloss": "siṃho vāhanam yasyāḥ sā",
+          "note": "she whose vehicle is the lion · DM 2.29"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:sarvadaitya-kulantaka",
+          "devanagari": "सर्वदैत्य-कुलान्तक",
+          "iast": "sarvadaitya-kulāntaka",
+          "gloss": "sarveṣāṃ daityakulānāṃ antakaḥ",
+          "note": "ender of all demon clans · DM 11.14"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:sarvadeva-sariraja",
+          "devanagari": "सर्वदेव-शरीरजा",
+          "iast": "sarvadeva-śarīrajā",
+          "gloss": "sarveṣāṃ devānāṃ śarīrebhyaḥ jātā",
+          "note": "born from all gods' bodies · DM 2.10"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:kesa-akarsana-vihvala",
+          "devanagari": "केश-आकर्षण-विह्वला",
+          "iast": "keśa-ākarṣaṇa-vihvalā",
+          "gloss": "keśānām ākarṣaṇena vihvalā",
+          "note": "distraught from hair-dragging · DM 6.4"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:kapala-malyam",
+          "devanagari": "कपाल-माल्यम्",
+          "iast": "kapāla-mālyam",
+          "gloss": "kapālānāṃ mālyam",
+          "note": "garland of skulls · KS passim"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:cintamani-grha",
+          "devanagari": "चिन्तामणि-गृह",
+          "iast": "cintāmaṇi-gṛha",
+          "gloss": "cintāmaṇeḥ gṛham",
+          "note": "wish-jewel palace · LS 57"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:puspa-vrsti",
+          "devanagari": "पुष्प-वृष्टि",
+          "iast": "puṣpa-vṛṣṭi",
+          "gloss": "puṣpāṇāṃ vṛṣṭiḥ",
+          "note": "rain of flowers · DM 4.30"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:sara-vrsti",
+          "devanagari": "शर-वृष्टि",
+          "iast": "śara-vṛṣṭi",
+          "gloss": "śarāṇāṃ vṛṣṭiḥ",
+          "note": "rain of arrows · DM 3.7"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:phala-sruti",
+          "devanagari": "फल-श्रुति",
+          "iast": "phala-śruti",
+          "gloss": "phalasya śrutiḥ",
+          "note": "hearing of the fruit/merit · DM Ch.12"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:maha-maya",
+          "devanagari": "महा-माया",
+          "iast": "mahā-māyā",
+          "gloss": "mahātī ca sā māyā ca",
+          "note": "the great illusion · DM 1.40"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:maha-devi",
+          "devanagari": "महा-देवी",
+          "iast": "mahā-devī",
+          "gloss": "mahātī ca sā devī ca",
+          "note": "the great goddess · DM passim"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:maha-vidya",
+          "devanagari": "महा-विद्या",
+          "iast": "mahā-vidyā",
+          "gloss": "mahātī ca sā vidyā ca",
+          "note": "the great knowledge · DM 1.55"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:maha-kali",
+          "devanagari": "महा-काली",
+          "iast": "mahā-kālī",
+          "gloss": "mahātī ca sā kālī ca",
+          "note": "the great Kālī · DM Ch.1"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:para-brahman",
+          "devanagari": "पर-ब्रह्मन्",
+          "iast": "para-brahman",
+          "gloss": "paraṃ ca tat brahma ca",
+          "note": "the supreme absolute · LS passim"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:sad-guru",
+          "devanagari": "सद्-गुरु",
+          "iast": "sad-guru",
+          "gloss": "sat ca asau guruḥ ca",
+          "note": "the true teacher · LS passim"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:nila-sarasvati",
+          "devanagari": "नील-सरस्वती",
+          "iast": "nīla-sarasvatī",
+          "gloss": "nīlā ca sā sarasvatī ca",
+          "note": "the blue Sarasvatī · KS passim"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:raktabija",
+          "devanagari": "रक्तबीज",
+          "iast": "raktabīja",
+          "gloss": "raktaṃ bījaṃ yasya saḥ",
+          "note": "he whose seed is blood · DM 8.40"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:dhumra-locana",
+          "devanagari": "धूम्र-लोचन",
+          "iast": "dhūmra-locana",
+          "gloss": "dhūmre locane yasya saḥ",
+          "note": "he whose eyes are smoky · DM 6.3"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:astadasa-bhuja",
+          "devanagari": "अष्टादश-भुजा",
+          "iast": "aṣṭādaśa-bhujā",
+          "gloss": "aṣṭādaśa bhujāḥ yasyāḥ sā",
+          "note": "she of eighteen arms · DM 2.12"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:catur-bhuja",
+          "devanagari": "चतुर्-भुजा",
+          "iast": "catur-bhujā",
+          "gloss": "catvāraḥ bhujāḥ yasyāḥ sā",
+          "note": "she of four arms · LS 7"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:tri-netra-tri-locana",
+          "devanagari": "त्रि-नेत्रा / त्रि-लोचना",
+          "iast": "tri-netrā / tri-locanā",
+          "gloss": "trīṇi netrāṇi yasyāḥ sā",
+          "note": "she of three eyes · DM 2.13"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:padma-nayana",
+          "devanagari": "पद्म-नयना",
+          "iast": "padma-nayanā",
+          "gloss": "padme iva nayane yasyāḥ sā",
+          "note": "she whose eyes are like lotuses · LS 207"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:pinonnata-stani",
+          "devanagari": "पीनोन्नत-स्तनी",
+          "iast": "pīnonnata-stanī",
+          "gloss": "pīnau unnatau stanau yasyāḥ sā",
+          "note": "she of full upraised breasts · KS 127"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:mukta-kesi",
+          "devanagari": "मुक्त-केशी",
+          "iast": "mukta-keśī",
+          "gloss": "muktāḥ keśāḥ yasyāḥ sā",
+          "note": "she of loose/unbound hair · KS 101"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:digambara",
+          "devanagari": "दिगम्बरा",
+          "iast": "digambarā",
+          "gloss": "diśaḥ eva ambaraṃ yasyāḥ sā",
+          "note": "she whose garment is the sky (naked) · KS 128"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:nrmunda-sragvini",
+          "devanagari": "नृमुण्ड-स्रग्विणी",
+          "iast": "nṛmuṇḍa-sragviṇī",
+          "gloss": "nṛmuṇḍānāṃ srak yasyāḥ sā",
+          "note": "she garlanded with human heads · KS passim"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:prasphuritadhara",
+          "devanagari": "प्रस्फुरिताधर",
+          "iast": "prasphuritādhara",
+          "gloss": "prasphuritaḥ adharaḥ yasya saḥ",
+          "note": "he whose lip quivers · DM 6.21"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:devasura",
+          "devanagari": "देवासुर",
+          "iast": "devāsura",
+          "gloss": "devāḥ ca asurāḥ ca",
+          "note": "gods and demons · DM 2.3"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:sumbha-nisumbha",
+          "devanagari": "शुम्भ-निशुम्भ",
+          "iast": "śumbha-niśumbha",
+          "gloss": "śumbhaḥ ca niśumbhaḥ ca",
+          "note": "Śumbha and Niśumbha · DM 5.4+"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:canda-munda",
+          "devanagari": "चण्ड-मुण्ड",
+          "iast": "caṇḍa-muṇḍa",
+          "gloss": "caṇḍaḥ ca muṇḍaḥ ca",
+          "note": "Caṇḍa and Muṇḍa · DM 7.1"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:madhu-kaitabha",
+          "devanagari": "मधु-कैटभ",
+          "iast": "madhu-kaiṭabha",
+          "gloss": "madhuḥ ca kaiṭabhaḥ ca",
+          "note": "Madhu and Kaiṭabha · DM 1.72"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:bhoga-svarga-apavarga",
+          "devanagari": "भोग-स्वर्ग-अपवर्ग",
+          "iast": "bhoga-svarga-apavarga",
+          "gloss": "bhogaḥ ca svargaḥ ca apavargaḥ ca",
+          "note": "enjoyment, heaven, and liberation · DM 13.5"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:iccha-jnana-kriya-sakti",
+          "devanagari": "इच्छा-ज्ञान-क्रिया-शक्ति",
+          "iast": "icchā-jñāna-kriyā-śakti",
+          "gloss": "icchā ca jñānaṃ ca kriyā ca",
+          "note": "will, knowledge, and action powers · LS passim"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:khandasah",
+          "devanagari": "खण्डशः",
+          "iast": "khaṇḍaśaḥ",
+          "gloss": "into pieces",
+          "note": "DM passim"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:satasah",
+          "devanagari": "शतशः",
+          "iast": "śataśaḥ",
+          "gloss": "by hundreds",
+          "note": "DM 9.27"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:sahasrasah",
+          "devanagari": "सहस्रशः",
+          "iast": "sahasraśaḥ",
+          "gloss": "by thousands",
+          "note": "DM 8.45, 9.27"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:yathavidhi",
+          "devanagari": "यथाविधि",
+          "iast": "yathāvidhi",
+          "gloss": "according to rule",
+          "note": "DM passim"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:samantatah",
+          "devanagari": "समन्ततः",
+          "iast": "samantataḥ",
+          "gloss": "all around",
+          "note": "DM passim"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:sarvamangalamangalye",
+          "devanagari": "सर्वमङ्गलमाङ्गल्ये",
+          "iast": "sarvamaṅgalamāṅgalye",
+          "gloss": "O auspicious of all auspicious things",
+          "note": "sambodhana | voc. sg. · f. · stem: sarvamaṅgalamāṅgalyā- · ā-stem · DM 11.10"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:sive-sarvarthasadhike",
+          "devanagari": "शिवे सर्वार्थसाधिके",
+          "iast": "śive sarvārthasādhike",
+          "gloss": "O auspicious one, accomplisher of all goals",
+          "note": "sambodhana | voc. sg. · f. · stem: śivā-, sarvārthasādhikā- · ā-stem · DM 11.10"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:saranye-tryambake-gauri",
+          "devanagari": "शरण्ये त्र्यम्बके गौरि",
+          "iast": "śaraṇye tryambake gauri",
+          "gloss": "O refuge, three-eyed Gaurī",
+          "note": "sambodhana | voc. sg. · f. · stem: śaraṇyā-, tryambakā-, gaurī- · ā-/ī-stem · DM 11.10"
+        },
+        {
+          "id": "11-samasa:compounds-broken-down:narayani-namo-stu-te",
+          "devanagari": "नारायणि नमोऽस्तु ते",
+          "iast": "nārāyaṇi namo'stu te",
+          "gloss": "O Nārāyaṇī, salutations to you",
+          "note": "DM 11.12+ (refrain)"
+        }
+      ]
+    }
+  ]
+}

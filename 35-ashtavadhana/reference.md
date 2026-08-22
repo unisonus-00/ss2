@@ -1,4 +1,4 @@
-# Stage 31: Aṣṭāvadhāna — Reference Guide
+# Stage 35: Aṣṭāvadhāna — Reference Guide
 
 ## 8-Slot Tracking Sheet
 

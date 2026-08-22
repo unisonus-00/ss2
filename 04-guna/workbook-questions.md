@@ -1,4 +1,4 @@
-# Stage 2: Guṇa — Workbook (Questions)
+# Stage 4: Guṇa — Workbook (Questions)
 
 ## Section A: Gender Agreement (15 marks)
 

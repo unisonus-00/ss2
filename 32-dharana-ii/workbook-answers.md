@@ -1,4 +1,4 @@
-# Stage 28: Dhāraṇā II — Workbook (Answers)
+# Stage 32: Dhāraṇā II — Workbook (Answers)
 
 This stage is performance-based. Answers are self-generated and self-timed.
 

@@ -1,4 +1,4 @@
-# Stage 30: Multi-devatā — Reference Guide
+# Stage 34: Multi-devatā — Reference Guide
 
 ## Deity Vocabulary Quick Cards
 

@@ -1,4 +1,4 @@
-# Stage 28: Dhāraṇā II — Associative Retrieval
+# Stage 32: Dhāraṇā II — Associative Retrieval
 
 ## Goal
 Retrieve poetic states from cues. Given a deity → instantly recall the bhāva → select the meter → apply the constraint → produce the pāda. Build rapid associative chains.

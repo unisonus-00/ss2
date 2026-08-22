@@ -1,0 +1,213 @@
+{
+  "lesson": "00-overview",
+  "decks": [
+    {
+      "name": "13 · Vyākaraṇam — grammar terms",
+      "cards": [
+        {
+          "id": "00-overview:vyakaranam:dhatuh",
+          "devanagari": "धातुः",
+          "iast": "dhātuḥ",
+          "gloss": "verbal root",
+          "note": "prathamā | nom. sg. · m. · stem: dhātu- · u-stem"
+        },
+        {
+          "id": "00-overview:vyakaranam:pratyayah",
+          "devanagari": "प्रत्ययः",
+          "iast": "pratyayaḥ",
+          "gloss": "suffix",
+          "note": "prathamā | nom. sg. · m. · stem: pratyaya- · a-stem"
+        },
+        {
+          "id": "00-overview:vyakaranam:upasargah",
+          "devanagari": "उपसर्गः",
+          "iast": "upasargaḥ",
+          "gloss": "prefix",
+          "note": "prathamā | nom. sg. · m. · stem: upasarga- · a-stem"
+        },
+        {
+          "id": "00-overview:vyakaranam:pratipadikam",
+          "devanagari": "प्रातिपदिकम्",
+          "iast": "prātipadikam",
+          "gloss": "nominal stem",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: prātipadika- · a-stem"
+        },
+        {
+          "id": "00-overview:vyakaranam:sandhih",
+          "devanagari": "सन्धिः",
+          "iast": "sandhiḥ",
+          "gloss": "euphonic junction",
+          "note": "prathamā | nom. sg. · m. · stem: sandhi- · i-stem"
+        },
+        {
+          "id": "00-overview:vyakaranam:samasah",
+          "devanagari": "समासः",
+          "iast": "samāsaḥ",
+          "gloss": "compound",
+          "note": "prathamā | nom. sg. · m. · stem: samāsa- · a-stem"
+        },
+        {
+          "id": "00-overview:vyakaranam:lingam",
+          "devanagari": "लिङ्गम्",
+          "iast": "liṅgam",
+          "gloss": "gender",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: liṅga- · a-stem"
+        },
+        {
+          "id": "00-overview:vyakaranam:vacanam",
+          "devanagari": "वचनम्",
+          "iast": "vacanam",
+          "gloss": "number",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: vacana- · a-stem"
+        },
+        {
+          "id": "00-overview:vyakaranam:vibhaktih",
+          "devanagari": "विभक्तिः",
+          "iast": "vibhaktiḥ",
+          "gloss": "case ending",
+          "note": "prathamā | nom. sg. · f. · stem: vibhakti- · i-stem"
+        },
+        {
+          "id": "00-overview:vyakaranam:sutram",
+          "devanagari": "सूत्रम्",
+          "iast": "sūtram",
+          "gloss": "aphoristic rule",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: sūtra- · a-stem"
+        },
+        {
+          "id": "00-overview:vyakaranam:vrttih",
+          "devanagari": "वृत्तिः",
+          "iast": "vṛttiḥ",
+          "gloss": "commentary, gloss",
+          "note": "prathamā | nom. sg. · f. · stem: vṛtti- · i-stem"
+        },
+        {
+          "id": "00-overview:vyakaranam:gunah",
+          "devanagari": "गुणः",
+          "iast": "guṇaḥ",
+          "gloss": "the a-grade of a vowel",
+          "note": "a, e, o"
+        },
+        {
+          "id": "00-overview:vyakaranam:vrddhih",
+          "devanagari": "वृद्धिः",
+          "iast": "vṛddhiḥ",
+          "gloss": "the lengthened grade",
+          "note": "ā, ai, au"
+        },
+        {
+          "id": "00-overview:vyakaranam:lopah",
+          "devanagari": "लोपः",
+          "iast": "lopaḥ",
+          "gloss": "elision",
+          "note": "prathamā | nom. sg. · m. · stem: lopa- · a-stem"
+        },
+        {
+          "id": "00-overview:vyakaranam:agamah",
+          "devanagari": "आगमः",
+          "iast": "āgamaḥ",
+          "gloss": "augment",
+          "note": "prathamā | nom. sg. · m. · stem: āgama- · a-stem"
+        },
+        {
+          "id": "00-overview:vyakaranam:avyayam",
+          "devanagari": "अव्ययम्",
+          "iast": "avyayam",
+          "gloss": "indeclinable",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: avyaya- · a-stem"
+        },
+        {
+          "id": "00-overview:vyakaranam:tin",
+          "devanagari": "तिङ्",
+          "iast": "tiṅ",
+          "gloss": "verbal ending",
+          "note": "vs. sup, the noun endings"
+        },
+        {
+          "id": "00-overview:vyakaranam:padam",
+          "devanagari": "पदम्",
+          "iast": "padam",
+          "gloss": "a finished, inflected word",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: pada- · a-stem"
+        },
+        {
+          "id": "00-overview:vyakaranam:sabdah",
+          "devanagari": "शब्दः",
+          "iast": "śabdaḥ",
+          "gloss": "word, sound",
+          "note": "prathamā | nom. sg. · m. · stem: śabda- · a-stem"
+        },
+        {
+          "id": "00-overview:vyakaranam:aksaram",
+          "devanagari": "अक्षरम्",
+          "iast": "akṣaram",
+          "gloss": "syllable",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: akṣara- · a-stem"
+        },
+        {
+          "id": "00-overview:vyakaranam:karakam",
+          "devanagari": "कारकम्",
+          "iast": "kārakam",
+          "gloss": "a noun's relation to the action",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: kāraka- · a-stem"
+        },
+        {
+          "id": "00-overview:vyakaranam:nama",
+          "devanagari": "नाम",
+          "iast": "nāma",
+          "gloss": "name; noun",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: nāman- · an-stem"
+        },
+        {
+          "id": "00-overview:vyakaranam:rupam",
+          "devanagari": "रूपम्",
+          "iast": "rūpam",
+          "gloss": "form; a declined shape",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: rūpa- · a-stem"
+        },
+        {
+          "id": "00-overview:vyakaranam:vakyam",
+          "devanagari": "वाक्यम्",
+          "iast": "vākyam",
+          "gloss": "sentence",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: vākya- · a-stem"
+        },
+        {
+          "id": "00-overview:vyakaranam:katha",
+          "devanagari": "कथा",
+          "iast": "kathā",
+          "gloss": "story, narrative",
+          "note": "prathamā | nom. sg. · f. · stem: kathā- · ā-stem"
+        },
+        {
+          "id": "00-overview:vyakaranam:kriya",
+          "devanagari": "क्रिया",
+          "iast": "kriyā",
+          "gloss": "action; the verb",
+          "note": "prathamā | nom. sg. · f. · stem: kriyā- · ā-stem"
+        },
+        {
+          "id": "00-overview:vyakaranam:paryayah",
+          "devanagari": "पर्यायः",
+          "iast": "paryāyaḥ",
+          "gloss": "synonym",
+          "note": "prathamā | nom. sg. · m. · stem: paryāya- · a-stem"
+        },
+        {
+          "id": "00-overview:vyakaranam:it",
+          "devanagari": "इत्",
+          "iast": "it",
+          "gloss": "indicatory letter, then deleted",
+          "note": "tasya lopaḥ, 1.3.9"
+        },
+        {
+          "id": "00-overview:vyakaranam:pratyaharah",
+          "devanagari": "प्रत्याहारः",
+          "iast": "pratyāhāraḥ",
+          "gloss": "abbreviation spanning the Śiva sūtras",
+          "note": "e.g. ac, hal"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,477 @@
+{
+  "lesson": "08-sambodhana",
+  "decks": [
+    {
+      "name": "31 · Sambodhana — vocative forms",
+      "cards": [
+        {
+          "id": "08-sambodhana:sambodhana:rama",
+          "devanagari": "राम",
+          "iast": "rāma",
+          "gloss": "O Rāma!",
+          "note": "sambodhana | voc. sg. · m. · stem: rāma- · a-stem"
+        },
+        {
+          "id": "08-sambodhana:sambodhana:deva",
+          "devanagari": "देव",
+          "iast": "deva",
+          "gloss": "O god!",
+          "note": "sambodhana | voc. sg. · m. · stem: deva- · a-stem"
+        },
+        {
+          "id": "08-sambodhana:sambodhana:devi",
+          "devanagari": "देवि",
+          "iast": "devi",
+          "gloss": "O goddess!",
+          "note": "sambodhana | voc. sg. · f. · stem: devī- · ī-stem"
+        },
+        {
+          "id": "08-sambodhana:sambodhana:amba",
+          "devanagari": "अम्ब",
+          "iast": "amba",
+          "gloss": "O mother!",
+          "note": "sambodhana | voc. sg. · f. · stem: ambā- · ā-stem"
+        },
+        {
+          "id": "08-sambodhana:sambodhana:matah",
+          "devanagari": "मातः",
+          "iast": "mātaḥ",
+          "gloss": "O mother!",
+          "note": "sambodhana | voc. sg. · f. · stem: mātṛ- · ṛ-stem"
+        },
+        {
+          "id": "08-sambodhana:sambodhana:hare",
+          "devanagari": "हरे",
+          "iast": "hare",
+          "gloss": "O Hari!",
+          "note": "sambodhana | voc. sg. · m. · stem: hari- · i-stem"
+        },
+        {
+          "id": "08-sambodhana:sambodhana:visno",
+          "devanagari": "विष्णो",
+          "iast": "viṣṇo",
+          "gloss": "O Viṣṇu!",
+          "note": "sambodhana | voc. sg. · m. · stem: viṣṇu- · u-stem"
+        },
+        {
+          "id": "08-sambodhana:sambodhana:laksmi",
+          "devanagari": "लक्ष्मि",
+          "iast": "lakṣmi",
+          "gloss": "O Lakṣmī!",
+          "note": "sambodhana | voc. sg. · f. · stem: lakṣmī- · ī-stem"
+        },
+        {
+          "id": "08-sambodhana:sambodhana:bhagavan",
+          "devanagari": "भगवन्",
+          "iast": "bhagavan",
+          "gloss": "O blessed one!",
+          "note": "sambodhana | voc. sg. · m. · stem: bhagavat- · at-stem"
+        },
+        {
+          "id": "08-sambodhana:sambodhana:atman",
+          "devanagari": "आत्मन्",
+          "iast": "ātman",
+          "gloss": "O self!",
+          "note": "sambodhana | voc. sg. · m. · stem: ātman- · an-stem"
+        },
+        {
+          "id": "08-sambodhana:sambodhana:guro",
+          "devanagari": "गुरो",
+          "iast": "guro",
+          "gloss": "O teacher!",
+          "note": "sambodhana | voc. sg. · m. · stem: guru- · u-stem"
+        },
+        {
+          "id": "08-sambodhana:sambodhana:sive",
+          "devanagari": "शिवे",
+          "iast": "śive",
+          "gloss": "O Śivā!",
+          "note": "sambodhana | voc. sg. · f. · stem: śivā- · ā-stem"
+        },
+        {
+          "id": "08-sambodhana:sambodhana:matar-devi",
+          "devanagari": "मातर्देवि",
+          "iast": "mātar devi",
+          "gloss": "O mother goddess!",
+          "note": "sambodhana | voc. sg. · two vocatives together"
+        },
+        {
+          "id": "08-sambodhana:sambodhana:bho",
+          "devanagari": "भो",
+          "iast": "bho",
+          "gloss": "O! (general call)",
+          "note": "indeclinable"
+        }
+      ]
+    },
+    {
+      "name": "V08 · Sound & speech — DM · LS",
+      "cards": [
+        {
+          "id": "08-sambodhana:sound-speech:nada",
+          "devanagari": "नाद",
+          "iast": "nāda",
+          "gloss": "sound, roar",
+          "note": "headword | m. · stem: nāda- · a-stem · from √nad · DM 3.31"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:simhanada",
+          "devanagari": "सिंहनाद",
+          "iast": "siṃhanāda",
+          "gloss": "lion-roar, battle cry",
+          "note": "headword | m. · stem: siṃhanāda- · a-stem · DM 2.36"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:humkara",
+          "devanagari": "हुंकार",
+          "iast": "huṃkāra",
+          "gloss": "the sound \"huṃ\"",
+          "note": "headword | m. · stem: huṃkāra- · a-stem · DM 6.13 (kills Dhūmralocana)"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:attahasa",
+          "devanagari": "अट्टहास",
+          "iast": "aṭṭahāsa",
+          "gloss": "loud terrible laughter",
+          "note": "headword | m. · stem: aṭṭahāsa- · a-stem · DM 7.11"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:ghosa",
+          "devanagari": "घोष",
+          "iast": "ghoṣa",
+          "gloss": "noise, proclamation",
+          "note": "headword | m. · stem: ghoṣa- · a-stem · DM 3.30"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:nihsvana-nissvana",
+          "devanagari": "निःस्वन / निस्स्वन",
+          "iast": "niḥsvana / nissvana",
+          "gloss": "sound, resonance",
+          "note": "headword | m. · stem: niḥsvana- · a-stem · DM 9.26"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:nirghosa-nirghata",
+          "devanagari": "निर्घोष / निर्घात",
+          "iast": "nirghoṣa / nirghāta",
+          "gloss": "thunder, crash",
+          "note": "headword | m. · stem: nirghoṣa- · a-stem · DM 9.26"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:jyasabda",
+          "devanagari": "ज्याशब्द",
+          "iast": "jyāśabda",
+          "gloss": "twang of bowstring",
+          "note": "headword | m. · stem: jyāśabda- · a-stem · DM 9.19"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:ghantasvana",
+          "devanagari": "घण्टास्वन",
+          "iast": "ghaṇṭāsvana",
+          "gloss": "bell-sound",
+          "note": "headword | m. · stem: ghaṇṭāsvana- · a-stem · DM 9.20"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:dundubhisvana",
+          "devanagari": "दुन्दुभिस्वन",
+          "iast": "dundubhisvana",
+          "gloss": "war-drum sound",
+          "note": "headword | m. · stem: dundubhisvana- · a-stem · DM 3.42"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:kolahala",
+          "devanagari": "कोलाहल",
+          "iast": "kolāhala",
+          "gloss": "uproar",
+          "note": "headword | m. · stem: kolāhala- · a-stem · DM passim"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:rava-rava",
+          "devanagari": "रव / राव",
+          "iast": "rava / rāva",
+          "gloss": "cry, sound",
+          "note": "headword | m. · stem: rava- · a-stem · DM 7.9"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:ninada",
+          "devanagari": "निनाद",
+          "iast": "nināda",
+          "gloss": "resonant sound",
+          "note": "headword | m. · stem: nināda- · a-stem · DM 9.22"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:dhvani",
+          "devanagari": "ध्वनि",
+          "iast": "dhvani",
+          "gloss": "sound",
+          "note": "headword | m. · stem: dhvani- · i-stem · KKS 671"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:uvaca",
+          "devanagari": "उवाच",
+          "iast": "uvāca",
+          "gloss": "said (perf. of √vac)",
+          "note": "DM throughout (narrative marker)"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:aha",
+          "devanagari": "आह",
+          "iast": "āha",
+          "gloss": "said (perf. of √ah)",
+          "note": "DM passim"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:abravit",
+          "devanagari": "अब्रवीत्",
+          "iast": "abravīt",
+          "gloss": "spoke (impf. of √brū)",
+          "note": "DM passim"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:jagada",
+          "devanagari": "जगाद",
+          "iast": "jagāda",
+          "gloss": "spoke (perf. of √gad)",
+          "note": "DM 6.8"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:praha",
+          "devanagari": "प्राह",
+          "iast": "prāha",
+          "gloss": "spoke forth (perf. of pra + √ah)",
+          "note": "DM 6.3"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:abhyadhat",
+          "devanagari": "अभ्यधात्",
+          "iast": "abhyadhāt",
+          "gloss": "addressed",
+          "note": "DM passim"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:vyajahara",
+          "devanagari": "व्याजहार",
+          "iast": "vyājahāra",
+          "gloss": "spoke forth (perf. of vi + ā + √hṛ)",
+          "note": "DM 10.24"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:samacasta",
+          "devanagari": "समाचष्ट",
+          "iast": "samācaṣṭa",
+          "gloss": "reported (perf. of sam + ā + √cakṣ)",
+          "note": "DM 6.2"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:vac-vak",
+          "devanagari": "वाच् / वाक्",
+          "iast": "vāc / vāk",
+          "gloss": "speech",
+          "note": "f. from √vac · DM passim"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:vacana-vakya",
+          "devanagari": "वचन / वाक्य",
+          "iast": "vacana / vākya",
+          "gloss": "word, statement",
+          "note": "headword | n. · stem: vacana- · a-stem · DM 6.2"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:ajna",
+          "devanagari": "आज्ञा",
+          "iast": "ājñā",
+          "gloss": "command",
+          "note": "headword | f. · stem: ājñā- · ā-stem · ā + √jñā · DM 6.7"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:sloka",
+          "devanagari": "श्लोक",
+          "iast": "śloka",
+          "gloss": "verse",
+          "note": "headword | m. · stem: śloka- · a-stem · DM colophons"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:gita-gita",
+          "devanagari": "गीत / गीता",
+          "iast": "gīta / gītā",
+          "gloss": "song",
+          "note": "n./f. · KS passim"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:vani-sarasvati",
+          "devanagari": "वाणी / सरस्वती",
+          "iast": "vāṇī / sarasvatī",
+          "gloss": "speech (personified)",
+          "note": "headword | f. · stem: vāṇī- · ī-stem · LS passim"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:matruka",
+          "devanagari": "मात्रुका",
+          "iast": "mātrukā",
+          "gloss": "alphabet/letters",
+          "note": "headword | f. · stem: mātrukā- · ā-stem · KS passim"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:varna",
+          "devanagari": "वर्ण",
+          "iast": "varṇa",
+          "gloss": "letter, syllable, color",
+          "note": "headword | m. · stem: varṇa- · a-stem · KKS 25+"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:sabda",
+          "devanagari": "शब्द",
+          "iast": "śabda",
+          "gloss": "sound, word",
+          "note": "headword | m. · stem: śabda- · a-stem · KKS 32"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:katha",
+          "devanagari": "कथा",
+          "iast": "kathā",
+          "gloss": "story, narration",
+          "note": "headword | f. · stem: kathā- · ā-stem · KKS 384"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:kavya",
+          "devanagari": "काव्य",
+          "iast": "kāvya",
+          "gloss": "poetry",
+          "note": "headword | n. · stem: kāvya- · a-stem · KKS 24"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:kavitva",
+          "devanagari": "कवित्व",
+          "iast": "kavitva",
+          "gloss": "poetic skill",
+          "note": "headword | n. · stem: kavitva- · a-stem · KKS 150-162"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:stuti",
+          "devanagari": "स्तुति",
+          "iast": "stuti",
+          "gloss": "praise",
+          "note": "headword | f. · stem: stuti- · i-stem · from √stu · DM 4.1"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:stotra",
+          "devanagari": "स्तोत्र",
+          "iast": "stotra",
+          "gloss": "hymn of praise",
+          "note": "headword | n. · stem: stotra- · a-stem · from √stu · DM 12.2"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:stava",
+          "devanagari": "स्तव",
+          "iast": "stava",
+          "gloss": "praise",
+          "note": "headword | m. · stem: stava- · a-stem · from √stu · DM 12.2"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:stu",
+          "devanagari": "√स्तु",
+          "iast": "√stu",
+          "gloss": "to praise — tuṣṭuvu (perf. 3pl), stūyate (pass.), stuta (pp.)",
+          "note": "dhātu · DM 3.44, 4.1"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:namaskara",
+          "devanagari": "नमस्कार",
+          "iast": "namaskāra",
+          "gloss": "salutation",
+          "note": "headword | m. · stem: namaskāra- · a-stem · DM 11.12+"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:vandana",
+          "devanagari": "वन्दन",
+          "iast": "vandana",
+          "gloss": "worship, praise",
+          "note": "headword | n. · stem: vandana- · a-stem · KS passim"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:kirtana",
+          "devanagari": "कीर्तन",
+          "iast": "kīrtana",
+          "gloss": "glorification",
+          "note": "headword | n. · stem: kīrtana- · a-stem · from √kīrt · DM 12.10"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:sukta",
+          "devanagari": "सूक्त",
+          "iast": "sūkta",
+          "gloss": "hymn",
+          "note": "headword | n. · stem: sūkta- · a-stem · su + ukta · DM 13.10 (devīsūktam)"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:mahatmya",
+          "devanagari": "माहात्म्य",
+          "iast": "māhātmya",
+          "gloss": "glorification text",
+          "note": "headword | n. · stem: māhātmya- · a-stem · from mahātman · DM colophons"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:patha",
+          "devanagari": "पाठ",
+          "iast": "pāṭha",
+          "gloss": "recitation",
+          "note": "headword | m. · stem: pāṭha- · a-stem · from √paṭh · DM 12.3+"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:sravana",
+          "devanagari": "श्रवण",
+          "iast": "śravaṇa",
+          "gloss": "listening",
+          "note": "headword | n. · stem: śravaṇa- · a-stem · from √śru · DM 12.3"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:rsir-uvaca",
+          "devanagari": "ऋषिर् उवाच",
+          "iast": "ṛṣir uvāca",
+          "gloss": "the sage said",
+          "note": "narrator transition · DM every chapter"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:rajovaca",
+          "devanagari": "राजोवाच",
+          "iast": "rājovāca",
+          "gloss": "the king said",
+          "note": "interlocutor · DM 1.3"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:devyuvaca",
+          "devanagari": "देव्युवाच",
+          "iast": "devyuvāca",
+          "gloss": "the Goddess said",
+          "note": "Devī speaks · DM 6.10"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:deva-ucuh",
+          "devanagari": "देवा ऊचुः",
+          "iast": "devā ūcuḥ",
+          "gloss": "the gods said",
+          "note": "collective speech · DM 4.1"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:markandeya-uvaca",
+          "devanagari": "मार्कण्डेय उवाच",
+          "iast": "mārkaṇḍeya uvāca",
+          "gloss": "Mārkaṇḍeya said",
+          "note": "frame narrator · DM 13.6"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:ity-uktva",
+          "devanagari": "इत्य् उक्त्वा",
+          "iast": "ity uktvā",
+          "gloss": "having said thus",
+          "note": "speech→action · DM passim"
+        },
+        {
+          "id": "08-sambodhana:sound-speech:iti-srutva",
+          "devanagari": "इति श्रुत्वा",
+          "iast": "iti śrutvā",
+          "gloss": "having heard thus",
+          "note": "hearing→response · DM passim"
+        }
+      ]
+    }
+  ]
+}

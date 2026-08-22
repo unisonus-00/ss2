@@ -1,4 +1,4 @@
-# Stage 18: Chandas III — Multiple Meters
+# Stage 22: Chandas III — Multiple Meters
 
 ## Goal
 Learn 5+ meters beyond anuṣṭubh. Match meter to devotional mood. Compose in several meters.

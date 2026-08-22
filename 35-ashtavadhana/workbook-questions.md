@@ -1,4 +1,4 @@
-# Stage 31: Aṣṭāvadhāna — Workbook (Simulated Test)
+# Stage 35: Aṣṭāvadhāna — Workbook (Simulated Test)
 
 ## Instructions
 This is a simulated Aṣṭāvadhāna. Work through the 4 rounds sequentially. For each round, attend to all 8 challenges in order. Do NOT look back at previous rounds while working on the current one.

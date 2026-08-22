@@ -1,4 +1,4 @@
-# Stage 14: Prārthanā — Workbook (Questions)
+# Stage 16: Prārthanā — Workbook (Questions)
 
 ## Section A: Imperative Forms (10 marks)
 **A1.** Give the 2P sg imperative (5 marks): 1. pā →  2. dā →  3. kṛ →  4. kṣam →  5. śru →

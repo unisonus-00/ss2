@@ -1,4 +1,4 @@
-# Stage 23: Samasyāpūraṇa — Workbook (Questions)
+# Stage 27: Samasyāpūraṇa — Workbook (Questions)
 
 ## Section A: Analysis (10 marks)
 **A1.** For each "problem pāda," suggest a mythological context that makes it sensible (5 marks):

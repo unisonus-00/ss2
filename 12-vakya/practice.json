@@ -1,0 +1,568 @@
+{
+  "lesson": "12-vakya",
+  "decks": [
+    {
+      "name": "24 · Sarvanāma-avyaya — pronouns and particles",
+      "cards": [
+        {
+          "id": "12-vakya:sarvanama-avyaya:aham",
+          "devanagari": "अहम्",
+          "iast": "aham",
+          "gloss": "I",
+          "note": "prathamā | nom. sg. · stem: asmad- · pronoun"
+        },
+        {
+          "id": "12-vakya:sarvanama-avyaya:tvam",
+          "devanagari": "त्वम्",
+          "iast": "tvam",
+          "gloss": "you",
+          "note": "prathamā | nom. sg. · stem: yuṣmad- · pronoun"
+        },
+        {
+          "id": "12-vakya:sarvanama-avyaya:sah",
+          "devanagari": "सः",
+          "iast": "saḥ",
+          "gloss": "he, that one",
+          "note": "prathamā | nom. sg. · m. · stem: tad- · pronoun"
+        },
+        {
+          "id": "12-vakya:sarvanama-avyaya:sa",
+          "devanagari": "सा",
+          "iast": "sā",
+          "gloss": "she, that one",
+          "note": "prathamā | nom. sg. · f. · stem: tad- · pronoun"
+        },
+        {
+          "id": "12-vakya:sarvanama-avyaya:tat",
+          "devanagari": "तत्",
+          "iast": "tat",
+          "gloss": "that, it",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: tad- · pronoun"
+        },
+        {
+          "id": "12-vakya:sarvanama-avyaya:ayam",
+          "devanagari": "अयम्",
+          "iast": "ayam",
+          "gloss": "this one",
+          "note": "prathamā | nom. sg. · m. · stem: idam- · pronoun"
+        },
+        {
+          "id": "12-vakya:sarvanama-avyaya:idam",
+          "devanagari": "इदम्",
+          "iast": "idam",
+          "gloss": "this",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: idam- · pronoun"
+        },
+        {
+          "id": "12-vakya:sarvanama-avyaya:kim",
+          "devanagari": "किम्",
+          "iast": "kim",
+          "gloss": "what?",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: kim- · interrogative pronoun"
+        },
+        {
+          "id": "12-vakya:sarvanama-avyaya:ca",
+          "devanagari": "च",
+          "iast": "ca",
+          "gloss": "and",
+          "note": "indeclinable · enclitic"
+        },
+        {
+          "id": "12-vakya:sarvanama-avyaya:va",
+          "devanagari": "वा",
+          "iast": "vā",
+          "gloss": "or",
+          "note": "indeclinable · enclitic"
+        },
+        {
+          "id": "12-vakya:sarvanama-avyaya:na",
+          "devanagari": "न",
+          "iast": "na",
+          "gloss": "not",
+          "note": "indecl."
+        },
+        {
+          "id": "12-vakya:sarvanama-avyaya:eva",
+          "devanagari": "एव",
+          "iast": "eva",
+          "gloss": "indeed, only",
+          "note": "indeclinable · emphatic"
+        },
+        {
+          "id": "12-vakya:sarvanama-avyaya:api",
+          "devanagari": "अपि",
+          "iast": "api",
+          "gloss": "also, even",
+          "note": "indecl."
+        },
+        {
+          "id": "12-vakya:sarvanama-avyaya:iti",
+          "devanagari": "इति",
+          "iast": "iti",
+          "gloss": "thus (end of quotation)",
+          "note": "indecl."
+        },
+        {
+          "id": "12-vakya:sarvanama-avyaya:atra",
+          "devanagari": "अत्र",
+          "iast": "atra",
+          "gloss": "here",
+          "note": "indecl."
+        },
+        {
+          "id": "12-vakya:sarvanama-avyaya:kutra",
+          "devanagari": "कुत्र",
+          "iast": "kutra",
+          "gloss": "where?",
+          "note": "indecl."
+        },
+        {
+          "id": "12-vakya:sarvanama-avyaya:tatha",
+          "devanagari": "तथा",
+          "iast": "tathā",
+          "gloss": "thus, so",
+          "note": "indecl."
+        },
+        {
+          "id": "12-vakya:sarvanama-avyaya:yadi",
+          "devanagari": "यदि",
+          "iast": "yadi",
+          "gloss": "if",
+          "note": "indecl."
+        }
+      ]
+    },
+    {
+      "name": "V15 · Indeclinables & particles — DM",
+      "cards": [
+        {
+          "id": "12-vakya:indeclinables-particles:ca",
+          "devanagari": "च",
+          "iast": "ca",
+          "gloss": "and",
+          "note": "indeclinable · all texts, highest frequency"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:tu",
+          "devanagari": "तु",
+          "iast": "tu",
+          "gloss": "but, however",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:va",
+          "devanagari": "वा",
+          "iast": "vā",
+          "gloss": "or",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:athava",
+          "devanagari": "अथवा",
+          "iast": "athavā",
+          "gloss": "or else",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:api",
+          "devanagari": "अपि",
+          "iast": "api",
+          "gloss": "also, even",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:atha",
+          "devanagari": "अथ",
+          "iast": "atha",
+          "gloss": "now, then (opening particle)",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:tatha",
+          "devanagari": "तथा",
+          "iast": "tathā",
+          "gloss": "so, likewise",
+          "note": "indeclinable · DM passim (paired with yathā)"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:eva",
+          "devanagari": "एव",
+          "iast": "eva",
+          "gloss": "indeed, only, precisely",
+          "note": "indeclinable · DM throughout"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:hi",
+          "devanagari": "हि",
+          "iast": "hi",
+          "gloss": "indeed, for (causal)",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:khalu",
+          "devanagari": "खलु",
+          "iast": "khalu",
+          "gloss": "indeed, certainly",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:nunam",
+          "devanagari": "नूनम्",
+          "iast": "nūnam",
+          "gloss": "certainly, surely",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:sma",
+          "devanagari": "स्म",
+          "iast": "sma",
+          "gloss": "(emphatic past particle)",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:vai",
+          "devanagari": "वै",
+          "iast": "vai",
+          "gloss": "truly, indeed",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:na",
+          "devanagari": "न",
+          "iast": "na",
+          "gloss": "not",
+          "note": "indeclinable · DM throughout"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:ma",
+          "devanagari": "मा",
+          "iast": "mā",
+          "gloss": "don't (prohibitive)",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:na-na",
+          "devanagari": "न... न",
+          "iast": "na... na",
+          "gloss": "neither... nor",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:iva",
+          "devanagari": "इव",
+          "iast": "iva",
+          "gloss": "like, as if (simile marker)",
+          "note": "indeclinable · DM 9.9; LS passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:yatha",
+          "devanagari": "यथा",
+          "iast": "yathā",
+          "gloss": "as, just as",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:samam",
+          "devanagari": "समम्",
+          "iast": "samam",
+          "gloss": "equally, like",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:tatah",
+          "devanagari": "ततः",
+          "iast": "tataḥ",
+          "gloss": "then, thereupon",
+          "note": "indeclinable · DM most frequent connector"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:tada",
+          "devanagari": "तदा",
+          "iast": "tadā",
+          "gloss": "then, at that time",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:yada",
+          "devanagari": "यदा",
+          "iast": "yadā",
+          "gloss": "when",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:idanim",
+          "devanagari": "इदानीम्",
+          "iast": "idānīm",
+          "gloss": "now",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:pura",
+          "devanagari": "पुरा",
+          "iast": "purā",
+          "gloss": "formerly",
+          "note": "indeclinable · DM 2.3"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:purvam",
+          "devanagari": "पूर्वम्",
+          "iast": "pūrvam",
+          "gloss": "before",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:pascat",
+          "devanagari": "पश्चात्",
+          "iast": "paścāt",
+          "gloss": "afterward",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:sada-nityam-sarvada",
+          "devanagari": "सदा / नित्यम् / सर्वदा",
+          "iast": "sadā / nityam / sarvadā",
+          "gloss": "always",
+          "note": "indeclinable · DM passim; KKS passim; KS passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:muhur-muhur",
+          "devanagari": "मुहुर् मुहुर्",
+          "iast": "muhur muhur",
+          "gloss": "again and again",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:punar",
+          "devanagari": "पुनर्",
+          "iast": "punar",
+          "gloss": "again",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:sighram-drutam-asu-tvaritam-laghu",
+          "devanagari": "शीघ्रम् / द्रुतम् / आशु / त्वरितम् / लघु",
+          "iast": "śīghram / drutam / āśu / tvaritam / laghu",
+          "gloss": "quickly",
+          "note": "indeclinable · DM 6.7, 6.22"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:sahasa",
+          "devanagari": "सहसा",
+          "iast": "sahasā",
+          "gloss": "suddenly",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:cirat-ciram",
+          "devanagari": "चिरात् / चिरम्",
+          "iast": "cirāt / ciram",
+          "gloss": "for a long time",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:atra",
+          "devanagari": "अत्र",
+          "iast": "atra",
+          "gloss": "here",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:tatra",
+          "devanagari": "तत्र",
+          "iast": "tatra",
+          "gloss": "there",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:yatra",
+          "devanagari": "यत्र",
+          "iast": "yatra",
+          "gloss": "where",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:sarvatra",
+          "devanagari": "सर्वत्र",
+          "iast": "sarvatra",
+          "gloss": "everywhere",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:samantat",
+          "devanagari": "समन्तात्",
+          "iast": "samantāt",
+          "gloss": "all around",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:upari",
+          "devanagari": "उपरि",
+          "iast": "upari",
+          "gloss": "above",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:adhah",
+          "devanagari": "अधः",
+          "iast": "adhaḥ",
+          "gloss": "below",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:agratah",
+          "devanagari": "अग्रतः",
+          "iast": "agrataḥ",
+          "gloss": "in front",
+          "note": "indeclinable · DM 9.7"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:prsthatah",
+          "devanagari": "पृष्ठतः",
+          "iast": "pṛṣṭhataḥ",
+          "gloss": "behind",
+          "note": "indeclinable · DM 9.7"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:durat-duratah",
+          "devanagari": "दूरात् / दूरतः",
+          "iast": "dūrāt / dūrataḥ",
+          "gloss": "from afar",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:antare",
+          "devanagari": "अन्तरे",
+          "iast": "antare",
+          "gloss": "within, between",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:kim",
+          "devanagari": "किम्",
+          "iast": "kim",
+          "gloss": "what? why?",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: kim- · interrogative pronoun"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:katham",
+          "devanagari": "कथम्",
+          "iast": "katham",
+          "gloss": "how?",
+          "note": "indeclinable · DM 1.31"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:kutah",
+          "devanagari": "कुतः",
+          "iast": "kutaḥ",
+          "gloss": "whence? why?",
+          "note": "indeclinable · DM 1.31"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:kah-ka-kim",
+          "devanagari": "कः / का / किम्",
+          "iast": "kaḥ / kā / kim",
+          "gloss": "who? which? what?",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:kvacit",
+          "devanagari": "क्वचित्",
+          "iast": "kvacit",
+          "gloss": "somewhere, sometimes",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:iti",
+          "devanagari": "इति",
+          "iast": "iti",
+          "gloss": "thus (closes quotation/speech)",
+          "note": "indeclinable · DM throughout"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:evam",
+          "devanagari": "एवम्",
+          "iast": "evam",
+          "gloss": "thus, in this way",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:svayam",
+          "devanagari": "स्वयम्",
+          "iast": "svayam",
+          "gloss": "by oneself",
+          "note": "indeclinable · DM 5.88 (svayameva)"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:balat",
+          "devanagari": "बलात्",
+          "iast": "balāt",
+          "gloss": "forcibly",
+          "note": "indeclinable · DM 6.4, 6.9"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:samkhye",
+          "devanagari": "संख्ये",
+          "iast": "saṃkhye",
+          "gloss": "in battle (loc. of saṃkhyā)",
+          "note": "saptamī | loc. sg. · f. · stem: saṃkhyā- · ā-stem · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:aho",
+          "devanagari": "अहो",
+          "iast": "aho",
+          "gloss": "ah! (exclamation)",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:hanta",
+          "devanagari": "हन्त",
+          "iast": "hanta",
+          "gloss": "alas! come!",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:param",
+          "devanagari": "परम्",
+          "iast": "param",
+          "gloss": "but, however; beyond",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:prabhrti",
+          "devanagari": "प्रभृति",
+          "iast": "prabhṛti",
+          "gloss": "from (starting from)",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:prayah",
+          "devanagari": "प्रायः",
+          "iast": "prāyaḥ",
+          "gloss": "mostly",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:kimu-kim-punar",
+          "devanagari": "किमु / किं पुनर्",
+          "iast": "kimu / kiṃ punar",
+          "gloss": "how much more / what then",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:vina",
+          "devanagari": "विना",
+          "iast": "vinā",
+          "gloss": "without",
+          "note": "indeclinable · DM passim"
+        },
+        {
+          "id": "12-vakya:indeclinables-particles:saha",
+          "devanagari": "सह",
+          "iast": "saha",
+          "gloss": "with, together",
+          "note": "indeclinable · DM passim"
+        }
+      ]
+    }
+  ]
+}

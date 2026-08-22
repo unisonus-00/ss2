@@ -1,0 +1,80 @@
+{
+  "lesson": "24-alankara",
+  "decks": [
+    {
+      "name": "18 · Alaṅkāra — poetic ornament",
+      "cards": [
+        {
+          "id": "24-alankara:alankara:alankarah",
+          "devanagari": "अलङ्कारः",
+          "iast": "alaṅkāraḥ",
+          "gloss": "ornament of speech",
+          "note": "prathamā | nom. sg. · m. · stem: alaṅkāra- · a-stem"
+        },
+        {
+          "id": "24-alankara:alankara:upama",
+          "devanagari": "उपमा",
+          "iast": "upamā",
+          "gloss": "simile",
+          "note": "prathamā | nom. sg. · f. · stem: upamā- · ā-stem"
+        },
+        {
+          "id": "24-alankara:alankara:rupakam",
+          "devanagari": "रूपकम्",
+          "iast": "rūpakam",
+          "gloss": "metaphor",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: rūpaka- · a-stem"
+        },
+        {
+          "id": "24-alankara:alankara:yamakam",
+          "devanagari": "यमकम्",
+          "iast": "yamakam",
+          "gloss": "repetition of sound, different sense",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: yamaka- · a-stem"
+        },
+        {
+          "id": "24-alankara:alankara:anuprasah",
+          "devanagari": "अनुप्रासः",
+          "iast": "anuprāsaḥ",
+          "gloss": "alliteration",
+          "note": "prathamā | nom. sg. · m. · stem: anuprāsa- · a-stem"
+        },
+        {
+          "id": "24-alankara:alankara:slesah",
+          "devanagari": "श्लेषः",
+          "iast": "śleṣaḥ",
+          "gloss": "double meaning, pun",
+          "note": "prathamā | nom. sg. · m. · stem: śleṣa- · a-stem"
+        },
+        {
+          "id": "24-alankara:alankara:atisayoktih",
+          "devanagari": "अतिशयोक्तिः",
+          "iast": "atiśayoktiḥ",
+          "gloss": "hyperbole",
+          "note": "prathamā | nom. sg. · f. · stem: atiśayokti- · i-stem"
+        },
+        {
+          "id": "24-alankara:alankara:utpreksa",
+          "devanagari": "उत्प्रेक्षा",
+          "iast": "utprekṣā",
+          "gloss": "poetic fancy",
+          "note": "prathamā | nom. sg. · f. · stem: utprekṣā- · ā-stem"
+        },
+        {
+          "id": "24-alankara:alankara:arthantaranyasah",
+          "devanagari": "अर्थान्तरन्यासः",
+          "iast": "arthāntaranyāsaḥ",
+          "gloss": "corroboration by a general truth",
+          "note": "prathamā | nom. sg. · m. · stem: arthāntaranyāsa- · a-stem"
+        },
+        {
+          "id": "24-alankara:alankara:virodhah",
+          "devanagari": "विरोधः",
+          "iast": "virodhaḥ",
+          "gloss": "apparent contradiction",
+          "note": "prathamā | nom. sg. · m. · stem: virodha- · a-stem"
+        }
+      ]
+    }
+  ]
+}

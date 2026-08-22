@@ -1,0 +1,267 @@
+{
+  "lesson": "02-varna-vidya",
+  "decks": [
+    {
+      "name": "15 · Varṇa — sounds and articulation",
+      "cards": [
+        {
+          "id": "02-varna-vidya:varna:varnah",
+          "devanagari": "वर्णः",
+          "iast": "varṇaḥ",
+          "gloss": "phoneme, letter",
+          "note": "prathamā | nom. sg. · m. · stem: varṇa- · a-stem"
+        },
+        {
+          "id": "02-varna-vidya:varna:svarah",
+          "devanagari": "स्वरः",
+          "iast": "svaraḥ",
+          "gloss": "vowel",
+          "note": "prathamā | nom. sg. · m. · stem: svara- · a-stem"
+        },
+        {
+          "id": "02-varna-vidya:varna:vyanjanam",
+          "devanagari": "व्यञ्जनम्",
+          "iast": "vyañjanam",
+          "gloss": "consonant",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: vyañjana- · a-stem"
+        },
+        {
+          "id": "02-varna-vidya:varna:sthanam",
+          "devanagari": "स्थानम्",
+          "iast": "sthānam",
+          "gloss": "place of articulation",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: sthāna- · a-stem"
+        },
+        {
+          "id": "02-varna-vidya:varna:prayatnah",
+          "devanagari": "प्रयत्नः",
+          "iast": "prayatnaḥ",
+          "gloss": "effort of articulation",
+          "note": "prathamā | nom. sg. · m. · stem: prayatna- · a-stem"
+        },
+        {
+          "id": "02-varna-vidya:varna:anusvarah",
+          "devanagari": "अनुस्वारः",
+          "iast": "anusvāraḥ",
+          "gloss": "the nasal after-sound ṃ",
+          "note": "prathamā | nom. sg. · m. · stem: anusvāra- · a-stem"
+        },
+        {
+          "id": "02-varna-vidya:varna:visargah",
+          "devanagari": "विसर्गः",
+          "iast": "visargaḥ",
+          "gloss": "the released breath ḥ",
+          "note": "prathamā | nom. sg. · m. · stem: visarga- · a-stem"
+        },
+        {
+          "id": "02-varna-vidya:varna:hrasvah",
+          "devanagari": "ह्रस्वः",
+          "iast": "hrasvaḥ",
+          "gloss": "short (one mātrā)",
+          "note": "prathamā | nom. sg. · stem: hrasva- · a-stem"
+        },
+        {
+          "id": "02-varna-vidya:varna:dirghah",
+          "devanagari": "दीर्घः",
+          "iast": "dīrghaḥ",
+          "gloss": "long (two mātrās)",
+          "note": "prathamā | nom. sg. · stem: dīrgha- · a-stem"
+        },
+        {
+          "id": "02-varna-vidya:varna:plutah",
+          "devanagari": "प्लुतः",
+          "iast": "plutaḥ",
+          "gloss": "protracted (three mātrās)",
+          "note": "prathamā | nom. sg. · stem: pluta- · a-stem"
+        },
+        {
+          "id": "02-varna-vidya:varna:bijam",
+          "devanagari": "बीजम्",
+          "iast": "bījam",
+          "gloss": "seed-syllable",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: bīja- · a-stem"
+        },
+        {
+          "id": "02-varna-vidya:varna:ka-kha-ga-gha-na",
+          "devanagari": "क ख ग घ ङ",
+          "iast": "ka kha ga gha ṅa",
+          "gloss": "kaṇṭhya · कण्ठ्यः — guttural",
+          "note": "sthāna · from the throat; also a, ā, h, ḥ"
+        },
+        {
+          "id": "02-varna-vidya:varna:ca-cha-ja-jha-na",
+          "devanagari": "च छ ज झ ञ",
+          "iast": "ca cha ja jha ña",
+          "gloss": "tālavya · तालव्यः — palatal",
+          "note": "sthāna · from the palate; also i, ī, y, ś"
+        },
+        {
+          "id": "02-varna-vidya:varna:ta-tha-da-dha-na",
+          "devanagari": "ट ठ ड ढ ण",
+          "iast": "ṭa ṭha ḍa ḍha ṇa",
+          "gloss": "mūrdhanya · मूर्धन्यः — retroflex",
+          "note": "sthāna · from the roof of the mouth; also ṛ, r, ṣ"
+        },
+        {
+          "id": "02-varna-vidya:varna:ta-tha-da-dha-na-2",
+          "devanagari": "त थ द ध न",
+          "iast": "ta tha da dha na",
+          "gloss": "dantya · दन्त्यः — dental",
+          "note": "sthāna · from the teeth; also ḷ, l, s"
+        },
+        {
+          "id": "02-varna-vidya:varna:pa-pha-ba-bha-ma",
+          "devanagari": "प फ ब भ म",
+          "iast": "pa pha ba bha ma",
+          "gloss": "oṣṭhya · ओष्ठ्यः — labial",
+          "note": "sthāna · from the lips; also u, ū"
+        }
+      ]
+    },
+    {
+      "name": "27 · Pratyāhāra — the Maheśvara sūtras",
+      "cards": [
+        {
+          "id": "02-varna-vidya:pratyahara:a-i-u-n",
+          "devanagari": "अइउण्",
+          "iast": "a i u ṇ",
+          "gloss": "sūtra 1 — the simple vowels",
+          "note": "gives aṇ, ak, ac"
+        },
+        {
+          "id": "02-varna-vidya:pratyahara:r-l-k",
+          "devanagari": "ऋऌक्",
+          "iast": "ṛ ḷ k",
+          "gloss": "sūtra 2 — the liquid vowels",
+          "note": "with 1 gives ik"
+        },
+        {
+          "id": "02-varna-vidya:pratyahara:e-o-n",
+          "devanagari": "एओङ्",
+          "iast": "e o ṅ",
+          "gloss": "sūtra 3 — the simple diphthongs",
+          "note": "gives eṅ, ec"
+        },
+        {
+          "id": "02-varna-vidya:pratyahara:ai-au-c",
+          "devanagari": "ऐऔच्",
+          "iast": "ai au c",
+          "gloss": "sūtra 4 — the compound diphthongs",
+          "note": "closes ac, ec"
+        },
+        {
+          "id": "02-varna-vidya:pratyahara:ha-ya-va-ra-t",
+          "devanagari": "हयवरट्",
+          "iast": "ha ya va ra ṭ",
+          "gloss": "sūtra 5 — the semivowels with h",
+          "note": "gives yaṇ, yaṭ"
+        },
+        {
+          "id": "02-varna-vidya:pratyahara:la-n",
+          "devanagari": "लण्",
+          "iast": "la ṇ",
+          "gloss": "sūtra 6 — l",
+          "note": "closes yaṇ"
+        },
+        {
+          "id": "02-varna-vidya:pratyahara:na-ma-na-na-na-m",
+          "devanagari": "ञमङणनम्",
+          "iast": "ña ma ṅa ṇa na m",
+          "gloss": "sūtra 7 — the nasals",
+          "note": "gives yam, ñam"
+        },
+        {
+          "id": "02-varna-vidya:pratyahara:jha-bha-n",
+          "devanagari": "झभञ्",
+          "iast": "jha bha ñ",
+          "gloss": "sūtra 8 — voiced aspirates",
+          "note": "opens jhal, jhaś"
+        },
+        {
+          "id": "02-varna-vidya:pratyahara:gha-dha-dha-s",
+          "devanagari": "घढधष्",
+          "iast": "gha ḍha dha ṣ",
+          "gloss": "sūtra 9 — voiced aspirates",
+          "note": "closes jhaṣ"
+        },
+        {
+          "id": "02-varna-vidya:pratyahara:ja-ba-ga-da-da-s",
+          "devanagari": "जबगडदश्",
+          "iast": "ja ba ga ḍa da ś",
+          "gloss": "sūtra 10 — voiced unaspirates",
+          "note": "closes jaś, baś"
+        },
+        {
+          "id": "02-varna-vidya:pratyahara:kha-pha-cha-tha-tha-ca-ta-ta-v",
+          "devanagari": "खफछठथचटतव्",
+          "iast": "kha pha cha ṭha tha ca ṭa ta v",
+          "gloss": "sūtra 11 — voiceless stops",
+          "note": "gives khay, cay"
+        },
+        {
+          "id": "02-varna-vidya:pratyahara:ka-pa-y",
+          "devanagari": "कपय्",
+          "iast": "ka pa y",
+          "gloss": "sūtra 12 — k and p",
+          "note": "closes yay, jhay"
+        },
+        {
+          "id": "02-varna-vidya:pratyahara:sa-sa-sa-r",
+          "devanagari": "शषसर्",
+          "iast": "śa ṣa sa r",
+          "gloss": "sūtra 13 — the sibilants",
+          "note": "gives śal, śar"
+        },
+        {
+          "id": "02-varna-vidya:pratyahara:ha-l",
+          "devanagari": "हल्",
+          "iast": "ha l",
+          "gloss": "sūtra 14 — h",
+          "note": "closes hal, jhal, val"
+        },
+        {
+          "id": "02-varna-vidya:pratyahara:a-i-u-r-l-e-o-ai-au",
+          "devanagari": "अ इ उ ऋ ऌ ए ओ ऐ औ",
+          "iast": "a i u ṛ ḷ e o ai au",
+          "gloss": "ac · अच्",
+          "note": "pratyāhāra · all vowels · sūtras 1–4"
+        },
+        {
+          "id": "02-varna-vidya:pratyahara:all-thirty-three-consonants",
+          "devanagari": "य व र ल ञ म ङ ण न झ भ घ ढ ध ज ब ग ड द ख फ छ ठ थ च ट त क प श ष स ह",
+          "iast": "all thirty-three consonants",
+          "gloss": "hal · हल्",
+          "note": "pratyāhāra · sūtras 5–14"
+        },
+        {
+          "id": "02-varna-vidya:pratyahara:i-u-r-l",
+          "devanagari": "इ उ ऋ ऌ",
+          "iast": "i u ṛ ḷ",
+          "gloss": "ik · इक्",
+          "note": "pratyāhāra · the yaṇ-sandhi inputs"
+        },
+        {
+          "id": "02-varna-vidya:pratyahara:ya-va-ra-la",
+          "devanagari": "य व र ल",
+          "iast": "ya va ra la",
+          "gloss": "yaṇ · यण्",
+          "note": "pratyāhāra · the yaṇ-sandhi outputs"
+        },
+        {
+          "id": "02-varna-vidya:pratyahara:all-stops-and-sibilants",
+          "devanagari": "झ भ घ ढ ध ज ब ग ड द ख फ छ ठ थ च ट त क प श ष स",
+          "iast": "all stops and sibilants",
+          "gloss": "jhal · झल्",
+          "note": "pratyāhāra · the jaśtva inputs"
+        },
+        {
+          "id": "02-varna-vidya:pratyahara:ja-ba-ga-da-da",
+          "devanagari": "ज ब ग ड द",
+          "iast": "ja ba ga ḍa da",
+          "gloss": "jaś · जश्",
+          "note": "pratyāhāra · the jaśtva outputs"
+        }
+      ]
+    }
+  ]
+}

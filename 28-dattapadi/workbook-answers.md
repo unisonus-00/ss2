@@ -1,4 +1,4 @@
-# Stage 24: Dattapadī — Workbook (Answers)
+# Stage 28: Dattapadī — Workbook (Answers)
 
 ## Section A
 1. megha: a) **Viṣṇu's complexion** (megha-varṇa) b) **grace raining like a cloud**

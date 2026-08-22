@@ -1,4 +1,4 @@
-# Stage 13: Stotra II — Varied Cases (Vibhakti Stotram)
+# Stage 15: Stotra II — Varied Cases (Vibhakti Stotram)
 
 ## Goal
 Compose stotras using intentionally varied vibhaktis. Move beyond the accusative to express devotion through all cases — dative, instrumental, genitive, locative, ablative.

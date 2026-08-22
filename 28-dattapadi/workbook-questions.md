@@ -1,4 +1,4 @@
-# Stage 24: Dattapadī — Workbook (Questions)
+# Stage 28: Dattapadī — Workbook (Questions)
 
 ## Section A: Brainstorming (10 marks)
 For each word, give 2 possible devotional connections (10 marks):
