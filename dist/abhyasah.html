@@ -46,24 +46,28 @@
   /* Navigation left, mark right, on one row.  The list name is what the row
      is for, so it takes the space that is left and the brand never shrinks. */
   .topbar { display: flex; align-items: center; justify-content: space-between;
-            gap: .6rem; margin-bottom: .5rem; }
+            gap: .6rem; margin-bottom: .8rem; }
 
   /* Present, but secondary to the exercise: about a fifth of the height the
      centred header took, and never in the way of the card.  One image now —
      the project's own logo lockup, wordmark and ring together — rather than
      a hand-set wordmark beside a cropped mark. */
   .brand { flex: none; }
-  .brand-logo { display: block; height: 30px; width: auto; opacity: .92; }
+  .brand-logo { display: block; height: 34px; width: auto; opacity: .92; }
   /* On a phone the bar is not wide enough for the full-size lockup and the
      longest list name, and the list name is what the bar is for.  Shrinking
      the lockup buys back the room rather than dropping any part of it — it
      is one image now, so there is no "mark alone" to fall back to. */
-  @media (max-width: 400px) { .brand-logo { height: 22px; } }
+  @media (max-width: 400px) { .brand-logo { height: 26px; }
+                              /* three per cent off the list name buys the
+                                 lockup four pixels; both still fit whole */
+                              .navbtn { font-size: .92rem; } }
+  @media (max-width: 385px) { .brand-logo { height: 22px; } }
   @media (max-width: 360px) { .brand-logo { height: 17px; } }
 
   /* the deck's descriptor on the left, the round's state on the right */
   .statusbar { display: flex; align-items: baseline; justify-content: space-between;
-               gap: .3rem .9rem; flex-wrap: wrap; margin-bottom: .8rem; }
+               gap: .3rem .9rem; flex-wrap: wrap; margin-bottom: 1.15rem; }
   /* The selector, left-aligned with the card.  It is a way in to the drawer,
      not a title, so it is a row control rather than a boxed imitation of the
      dropdown it replaced — the border would only add height here. */

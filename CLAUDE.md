@@ -259,8 +259,10 @@ JOINS AND SPLITS            31 LEFT  0 LEARNED  0 MISSED
 
 - **Navigation top left, the logo top right**, on one row. There is no centred
   logo during practice; a test asserts there is no `h1` at all.
-- **The branding is secondary.** The lockup runs 30px tall, stepping down to
-  22px below 400px and 17px below 360px. It shrinks rather than shedding any
+- **The branding is secondary.** The lockup runs 34px tall, stepping down to
+  26px below 400px, 22px below 385px and 17px below 360px. At 360px the bar is
+  genuinely full — the longest list name leaves room for nothing taller — so
+  the increase lands at 375px and above. It shrinks rather than shedding any
   part of itself — it is one image, so there is no "mark alone" to fall back
   to. The bar is not wide enough on a phone for the full-size lockup *and* the
   longest list name, and the list name is what the bar is for: a test walks
