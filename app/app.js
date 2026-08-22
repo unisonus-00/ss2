@@ -726,9 +726,10 @@ function renderDrawer() {
     /* the figure and its rank, and nothing else: what it is made of is on
        the card this button opens */
     '#dp-pct': r.score === null ? 'Unranked' : r.score + '% \u00b7 ' + r.name,
-    '#dp-cards': done + ' of ' + all + ' lists complete'
+    '#dp-cards': done + ' of ' + all
   });
   $('dp-bar').style.width = (r.score === null ? 0 : r.score) + '%';
+  $('dp-lbar').style.width = (all ? done / all * 100 : 0) + '%';
 
   const host = $('dr-tracks');
   host.innerHTML = '';

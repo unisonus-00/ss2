@@ -538,12 +538,22 @@ three: it is the section the drawer opens with. Tapping it opens the review.
 ```
 ┌──────────────────────────────────────────┐
 │ ABHYĀSA                                  │
-│ OVERALL MASTERY                       ›  │
-│ 3% · Novice                              │
+│                                          │
+│ OVERALL MASTERY             3% · Novice  │
+│ ▬▬───────────────────────────────     ›  │
+│                                          │
+│ LISTS COMPLETE                 5 of 153  │
 │ ▬▬▬──────────────────────────────────    │
-│ 5 of 153 lists complete                  │
 └──────────────────────────────────────────┘
 ```
+
+**Two measures, two bars.** Each is a labelled row with its value on the same
+line and its own bar directly beneath it. One bar sitting *between* two
+figures belongs to neither, and that is exactly how it read.
+
+**The figure is kept to the drawer's own scale.** At `1.15rem` `3% · Novice`
+was the largest type in the panel and behaved like a headline over everything
+under it; it is `.92rem` now, and a test fails if it grows past a list name.
 
 **It is drawn as a button, not as another row.** Abhyāsa is the one thing in
 the drawer you *act on* rather than navigate to, so it is a raised panel with
@@ -551,11 +561,6 @@ an arrow on it — visibly a different kind of object from the rows below, which
 are a list. A test asserts the border and the arrow. It is **palm-leaf, barely
 tinted, not kumkuma**: the accent is the app's *wrong* colour, and a block of
 it at this size reads as an alarm rather than an invitation.
-
-**The bar is overall mastery**, and the line under it is the concrete thing
-that moves it: lists complete. One block, so a learner reads the figure, sees
-how far along the bar it is, and sees what it is built from without a second
-heading competing for the same space.
 
 **The drawer carries the figure and its rank; the card carries what they are
 made of.** Two numbers side by side, each needing its own explanation, is the

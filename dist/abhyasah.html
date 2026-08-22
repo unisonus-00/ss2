@@ -503,41 +503,38 @@
   /* Abhyāsa is the one thing in the drawer you ACT on rather than navigate to,
      so it is a raised panel with an arrow on it — visibly a different kind of
      object from the rows below, which are a list.  Palm-leaf rather than the
-     accent pigment: kumkuma is the app's "wrong" colour and reads as an
-     alarm at this size, and the panel is barely tinted so it sits behind its
-     own contents rather than shouting over the navigation. */
-  .dr-prog { position: relative; display: grid; width: 100%; min-height: 0;
-             grid-template-columns: 1fr auto; align-items: center;
-             gap: 0 .8rem; text-align: left; font: inherit; cursor: pointer;
-             padding: .8rem 1rem .9rem; margin: .2rem 0 1.1rem;
+     accent pigment: kumkuma is the app's "wrong" colour and a block of it at
+     this size reads as an alarm, and the panel is barely tinted so it sits
+     behind its own contents rather than shouting over the navigation. */
+  .dr-prog { position: relative; display: block; width: 100%; min-height: 0;
+             text-align: left; font: inherit; cursor: pointer;
+             padding: .8rem 2.1rem .85rem 1rem; margin: .2rem 0 1.1rem;
              background: rgba(233,220,190,.045);
              border: 1px solid rgba(205,187,149,.42); border-radius: 3px; }
   .dr-prog:hover, .dr-prog.on { background: rgba(233,220,190,.09);
                                 border-color: rgba(205,187,149,.7); }
-  /* :not(.dp-go) matters — the arrow is a span too, and this selector
-     outweighs its own grid-column if it catches it. */
-  .dr-prog > span:not(.dp-go) { grid-column: 1; }
   .dp-label { display: block; font-size: .78rem; letter-spacing: .2em;
               text-transform: uppercase; color: var(--leaf); }
-  /* the figure and its rank — the whole of what the drawer says about it */
-  .dp-pct { display: block; font-size: 1.15rem; color: var(--leaf);
-            font-variant-numeric: tabular-nums; margin-top: .1rem; }
-  .dr-prog .bar { margin-top: .5rem; }
-  .dp-cards { display: block; font-size: .74rem; color: var(--faded);
-              margin-top: .45rem; font-variant-numeric: tabular-nums; }
-  /* the affordance: this panel goes somewhere.  `1 / -1` would resolve
-     against the EXPLICIT grid, which has one row line here, so the arrow
-     would pin to the first row instead of centring. */
-  .dp-go { width: 9px; height: 9px; grid-column: 2; grid-row: 1 / span 5;
-           align-self: center; justify-self: end;
-           border-top: 1.5px solid var(--faded); border-right: 1.5px solid var(--faded);
-           transform: rotate(45deg); }
-  .dr-prog:hover .dp-go, .dr-prog.on .dp-go { border-color: var(--leaf); }
 
-  /* Each figure is labelled before it is given, so nothing has to be
-     reverse-engineered from the number. */
-  .dp-h { display: block; font-size: .6rem; letter-spacing: .14em;
-          text-transform: uppercase; color: var(--faded); margin-top: .7rem; }
+  /* One measure: its name and its value on one line, its bar directly under
+     them.  A single bar sitting between two figures belongs to neither, which
+     is exactly how it read. */
+  .dp-metric { display: flex; align-items: baseline; justify-content: space-between;
+               gap: .8rem; margin-top: 1rem; }
+  .dp-metric + .bar { margin-top: .3rem; }
+  .dp-h { font-size: .6rem; letter-spacing: .14em;
+          text-transform: uppercase; color: var(--faded); }
+  /* Kept to the drawer's own scale.  At 1.15rem this was the largest type in
+     the panel and read as a headline over everything below it. */
+  .dp-v { font-size: .92rem; color: var(--leaf); font-variant-numeric: tabular-nums;
+          white-space: nowrap; }
+
+  /* the affordance: this panel goes somewhere.  Positioned rather than laid
+     out, so it centres against the whole panel however many rows it has. */
+  .dp-go { position: absolute; right: 1rem; top: 50%; width: 9px; height: 9px;
+           border-top: 1.5px solid var(--faded); border-right: 1.5px solid var(--faded);
+           transform: translateY(-50%) rotate(45deg); }
+  .dr-prog:hover .dp-go, .dr-prog.on .dp-go { border-color: var(--leaf); }
 
   /* the mastery figure, on the panel that produces it */
   .rank { margin-top: .9rem; padding-top: .8rem;
@@ -857,14 +854,24 @@
        opens. -->
   <button class="dr-prog" id="dr-prog" aria-label="Abhyāsa — the mastery review">
     <span class="dp-label" id="dp-label">abhyāsa</span>
-    <span class="dp-h">Overall mastery</span>
-    <span class="dp-pct" id="dp-pct"></span>
-    <span class="bar"><i id="dp-bar"></i></span>
-    <!-- The concrete thing under the figure, in the unit the learner
-         finishes: cards are the evidence, lists are what you complete and
-         what puts material into review. -->
-    <span class="dp-cards" id="dp-cards"></span>
     <span class="dp-go" aria-hidden="true"></span>
+
+    <!-- Two measures, each a labelled row with its own value and its own bar
+         directly beneath it.  One bar between two figures belongs to neither:
+         it has to sit with the thing it measures. -->
+    <span class="dp-metric">
+      <span class="dp-h">Overall mastery</span>
+      <span class="dp-v" id="dp-pct"></span>
+    </span>
+    <span class="bar"><i id="dp-bar"></i></span>
+
+    <!-- The unit the learner finishes: cards are the evidence, lists are what
+         you complete and what puts material into review. -->
+    <span class="dp-metric">
+      <span class="dp-h">Lists complete</span>
+      <span class="dp-v" id="dp-cards"></span>
+    </span>
+    <span class="bar"><i id="dp-lbar"></i></span>
   </button>
 
   <div class="dr-modes">
@@ -1632,9 +1639,10 @@ function renderDrawer() {
     /* the figure and its rank, and nothing else: what it is made of is on
        the card this button opens */
     '#dp-pct': r.score === null ? 'Unranked' : r.score + '% \u00b7 ' + r.name,
-    '#dp-cards': done + ' of ' + all + ' lists complete'
+    '#dp-cards': done + ' of ' + all
   });
   $('dp-bar').style.width = (r.score === null ? 0 : r.score) + '%';
+  $('dp-lbar').style.width = (all ? done / all * 100 : 0) + '%';
 
   const host = $('dr-tracks');
   host.innerHTML = '';

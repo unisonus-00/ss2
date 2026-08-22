@@ -203,14 +203,24 @@
        opens. -->
   <button class="dr-prog" id="dr-prog" aria-label="Abhyāsa — the mastery review">
     <span class="dp-label" id="dp-label">abhyāsa</span>
-    <span class="dp-h">Overall mastery</span>
-    <span class="dp-pct" id="dp-pct"></span>
-    <span class="bar"><i id="dp-bar"></i></span>
-    <!-- The concrete thing under the figure, in the unit the learner
-         finishes: cards are the evidence, lists are what you complete and
-         what puts material into review. -->
-    <span class="dp-cards" id="dp-cards"></span>
     <span class="dp-go" aria-hidden="true"></span>
+
+    <!-- Two measures, each a labelled row with its own value and its own bar
+         directly beneath it.  One bar between two figures belongs to neither:
+         it has to sit with the thing it measures. -->
+    <span class="dp-metric">
+      <span class="dp-h">Overall mastery</span>
+      <span class="dp-v" id="dp-pct"></span>
+    </span>
+    <span class="bar"><i id="dp-bar"></i></span>
+
+    <!-- The unit the learner finishes: cards are the evidence, lists are what
+         you complete and what puts material into review. -->
+    <span class="dp-metric">
+      <span class="dp-h">Lists complete</span>
+      <span class="dp-v" id="dp-cards"></span>
+    </span>
+    <span class="bar"><i id="dp-lbar"></i></span>
   </button>
 
   <div class="dr-modes">

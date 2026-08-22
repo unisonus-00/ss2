@@ -496,41 +496,38 @@
   /* Abhyāsa is the one thing in the drawer you ACT on rather than navigate to,
      so it is a raised panel with an arrow on it — visibly a different kind of
      object from the rows below, which are a list.  Palm-leaf rather than the
-     accent pigment: kumkuma is the app's "wrong" colour and reads as an
-     alarm at this size, and the panel is barely tinted so it sits behind its
-     own contents rather than shouting over the navigation. */
-  .dr-prog { position: relative; display: grid; width: 100%; min-height: 0;
-             grid-template-columns: 1fr auto; align-items: center;
-             gap: 0 .8rem; text-align: left; font: inherit; cursor: pointer;
-             padding: .8rem 1rem .9rem; margin: .2rem 0 1.1rem;
+     accent pigment: kumkuma is the app's "wrong" colour and a block of it at
+     this size reads as an alarm, and the panel is barely tinted so it sits
+     behind its own contents rather than shouting over the navigation. */
+  .dr-prog { position: relative; display: block; width: 100%; min-height: 0;
+             text-align: left; font: inherit; cursor: pointer;
+             padding: .8rem 2.1rem .85rem 1rem; margin: .2rem 0 1.1rem;
              background: rgba(233,220,190,.045);
              border: 1px solid rgba(205,187,149,.42); border-radius: 3px; }
   .dr-prog:hover, .dr-prog.on { background: rgba(233,220,190,.09);
                                 border-color: rgba(205,187,149,.7); }
-  /* :not(.dp-go) matters — the arrow is a span too, and this selector
-     outweighs its own grid-column if it catches it. */
-  .dr-prog > span:not(.dp-go) { grid-column: 1; }
   .dp-label { display: block; font-size: .78rem; letter-spacing: .2em;
               text-transform: uppercase; color: var(--leaf); }
-  /* the figure and its rank — the whole of what the drawer says about it */
-  .dp-pct { display: block; font-size: 1.15rem; color: var(--leaf);
-            font-variant-numeric: tabular-nums; margin-top: .1rem; }
-  .dr-prog .bar { margin-top: .5rem; }
-  .dp-cards { display: block; font-size: .74rem; color: var(--faded);
-              margin-top: .45rem; font-variant-numeric: tabular-nums; }
-  /* the affordance: this panel goes somewhere.  `1 / -1` would resolve
-     against the EXPLICIT grid, which has one row line here, so the arrow
-     would pin to the first row instead of centring. */
-  .dp-go { width: 9px; height: 9px; grid-column: 2; grid-row: 1 / span 5;
-           align-self: center; justify-self: end;
-           border-top: 1.5px solid var(--faded); border-right: 1.5px solid var(--faded);
-           transform: rotate(45deg); }
-  .dr-prog:hover .dp-go, .dr-prog.on .dp-go { border-color: var(--leaf); }
 
-  /* Each figure is labelled before it is given, so nothing has to be
-     reverse-engineered from the number. */
-  .dp-h { display: block; font-size: .6rem; letter-spacing: .14em;
-          text-transform: uppercase; color: var(--faded); margin-top: .7rem; }
+  /* One measure: its name and its value on one line, its bar directly under
+     them.  A single bar sitting between two figures belongs to neither, which
+     is exactly how it read. */
+  .dp-metric { display: flex; align-items: baseline; justify-content: space-between;
+               gap: .8rem; margin-top: 1rem; }
+  .dp-metric + .bar { margin-top: .3rem; }
+  .dp-h { font-size: .6rem; letter-spacing: .14em;
+          text-transform: uppercase; color: var(--faded); }
+  /* Kept to the drawer's own scale.  At 1.15rem this was the largest type in
+     the panel and read as a headline over everything below it. */
+  .dp-v { font-size: .92rem; color: var(--leaf); font-variant-numeric: tabular-nums;
+          white-space: nowrap; }
+
+  /* the affordance: this panel goes somewhere.  Positioned rather than laid
+     out, so it centres against the whole panel however many rows it has. */
+  .dp-go { position: absolute; right: 1rem; top: 50%; width: 9px; height: 9px;
+           border-top: 1.5px solid var(--faded); border-right: 1.5px solid var(--faded);
+           transform: translateY(-50%) rotate(45deg); }
+  .dr-prog:hover .dp-go, .dr-prog.on .dp-go { border-color: var(--leaf); }
 
   /* the mastery figure, on the panel that produces it */
   .rank { margin-top: .9rem; padding-top: .8rem;

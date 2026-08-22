@@ -1612,6 +1612,9 @@ const open = async (browser, opts = {}) => {
         heads: [...document.querySelectorAll('#drawer .dp-h')].map(x => x.textContent),
         pct: document.getElementById('dp-pct').textContent,
         cards: document.getElementById('dp-cards').textContent,
+        bars: document.querySelectorAll('#dr-prog .bar').length,
+        valueSize: parseFloat(getComputedStyle(document.getElementById('dp-pct')).fontSize),
+        nameSize: parseFloat(getComputedStyle(document.querySelector('.dm-name')).fontSize),
         /* neither the arithmetic nor the readings it combines: the drawer
            carries the figure, the card carries what it is made of */
         formula: /[×x]\s*\d+%|cold recall|cards drawn|lists finished|accuracy|coverage/i
@@ -1634,9 +1637,14 @@ const open = async (browser, opts = {}) => {
     ok('the drawer opens with the Abhyāsa section',
       r.first && /abhy[aā]sa/i.test(r.name), r.name);
     ok('it is drawn as a button, not another row', r.raised);
-    ok('the mastery bar is labelled and paired with list progress',
-      JSON.stringify(r.heads) === JSON.stringify(['Overall mastery'])
-        && /^\d+ of \d+ lists complete$/.test(r.cards), r.heads.join(' | ') + ' · ' + r.cards);
+    /* Each measure owns its own bar: one bar between two figures belongs to
+       neither, which is exactly how it read. */
+    ok('each measure is labelled, valued and barred separately',
+      JSON.stringify(r.heads) === JSON.stringify(['Overall mastery', 'Lists complete'])
+        && r.bars === 2 && /^\d+ of \d+$/.test(r.cards),
+      r.heads.join(' | ') + ' · ' + r.cards + ' · ' + r.bars + ' bars');
+    ok('the mastery figure is not the biggest type in the drawer',
+      r.valueSize <= r.nameSize, r.valueSize + 'px vs ' + r.nameSize + 'px on a list name');
     ok('the drawer carries the figure and its rank alone',
       /^(Unranked|\d+% · [A-Z])/.test(r.pct) && !r.formula, r.pct);
     ok('it is the draw, one tap away', r.tappable && r.opens && r.heading === 'Abhyāsa',
@@ -2367,6 +2375,7 @@ const open = async (browser, opts = {}) => {
       lessons: document.querySelectorAll('.tr-body:not([hidden]) .ls-head').length,
       decks: document.querySelectorAll('.ls-body:not([hidden]) .dk').length,
       cards: document.getElementById('dp-cards').textContent,
+      heads: [...document.querySelectorAll('#dr-prog .dp-h')].map(x => x.textContent).join(' | '),
     }));
     ok('the handle opens the drawer', opened.open && opened.veil);
     ok('every track is a heading', opened.tracks === 6, opened.tracks + ' headings');
@@ -2375,7 +2384,8 @@ const open = async (browser, opts = {}) => {
     /* The section's own statistic is lists carried to 100%, not a card count
        already folded into the figure above it. */
     ok('course progress is counted in lists, not cards',
-      /^\d+ of \d+ lists complete$/.test(opened.cards), opened.cards);
+      /^\d+ of \d+$/.test(opened.cards) && /Lists complete/.test(opened.heads),
+      opened.heads + ' · ' + opened.cards);
 
     const reach = await p.evaluate(() => {
       // shut everything, then walk down: track -> lesson -> deck
