@@ -1609,7 +1609,9 @@ function renderTrack(id) {
   $('s-stages').textContent = stages + ' of ' + row.lessons.length;
   /* Nothing left to finish here: the track's own next step is the review,
      not its first list over again. */
-  const next = names.find(n => finishedDecks().indexOf(n) < 0);
+  /* The same order the end-of-round handoff uses: the course first, then the
+     vocabulary that widens it. */
+  const next = recommendOrder(row).find(n => finishedDecks().indexOf(n) < 0);
   const go = $('s-go');
   if (next) {
     go.textContent = (begun ? 'Continue — ' : 'Begin — ') + DECK_SHORT(next);
@@ -2694,14 +2696,42 @@ function renderAwards() {
   });
 }
 
+/* ── the order the app RECOMMENDS a track in ────────────────
+   Not the same as the order it navigates one in.  The drawer is the
+   curriculum's own shape and stays exactly as it is; this is only what
+   "Continue —" points at next.
+
+   A lesson's own lists teach it.  Beside them sit the vocab-bank lists,
+   which widen the vocabulary rather than carrying the course — 82 of the
+   176, and 34 of them in Nāma alone.  Taken in flat curriculum order, the
+   recommendation therefore walked all 41 lists of Stage 1, 609 cards and a
+   quarter of the whole app, before Varṇa-Vidyā so much as introduced the
+   sound system.  A learner following the one instruction the app gives them
+   met several hundred deity names before their first grammatical idea, which
+   is not what the track's own prose promises them.
+
+   So the spine leads and the breadth follows: every list that carries the
+   course, in curriculum order, and then the vocabulary that widens it.  Now
+   seven lists — about a hundred cards — reach the alphabet.
+
+   Nothing is hidden or locked by this.  Every breadth list is in the drawer
+   from the start, at its own place in the curriculum, and a learner who
+   wants deity names can take them whenever they like; this decides one
+   button's target, and the button is a recommendation. */
+const isBreadth = name => DECK_ROLE[name] === 'breadth';
+const recommendOrder = row => {
+  const names = trackDecks(row);
+  return names.filter(n => !isBreadth(n)).concat(names.filter(isBreadth));
+};
+
 /* The next list worth opening after this one: the first unfinished list in
-   the same track, taken in curriculum order from where you are.  A track you
-   have finished has none, and neither does a cross-list round — a draw does
-   not belong to a list, so there is nothing to be "next" to. */
+   the same track, taken in RECOMMENDATION order from where you are.  A track
+   you have finished has none, and neither does a cross-list round — a draw
+   does not belong to a list, so there is nothing to be "next" to. */
 function nextList(name) {
   const row = TRACK_ROWS.find(r => r.track.id === trackIdOf(name));
   if (!row) return null;
-  const names = trackDecks(row);
+  const names = recommendOrder(row);
   const here = names.indexOf(name);
   const done = finishedDecks();
   const after = names.slice(here + 1).find(n => done.indexOf(n) < 0);

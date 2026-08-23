@@ -229,6 +229,7 @@
     },
     {
       "name": "V08 · Nāda — sounds and cries · DM · LS",
+      "role": "breadth",
       "cards": [
         {
           "id": "08-sambodhana:sound-speech:nada",
@@ -332,6 +333,7 @@
     },
     {
       "name": "V08 · Vacana — saying and speech · DM · LS",
+      "role": "breadth",
       "cards": [
         {
           "id": "08-sambodhana:sound-speech:uvaca",
@@ -477,6 +479,7 @@
     },
     {
       "name": "V08 · Stuti — praise and recitation · DM · LS",
+      "role": "breadth",
       "cards": [
         {
           "id": "08-sambodhana:sound-speech:stuti",
@@ -552,6 +555,7 @@
     },
     {
       "name": "V08 · Uvāca — speech formulae · DM",
+      "role": "breadth",
       "cards": [
         {
           "id": "08-sambodhana:sound-speech:rsir-uvaca",

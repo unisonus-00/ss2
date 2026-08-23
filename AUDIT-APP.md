@@ -207,6 +207,19 @@ certified in both directions without new state. *Pedagogy · effort medium.*
 
 ### H5. The guided path is a 609-card vocabulary wall
 
+> **Resolved.** Navigation and recommendation are now two different orders.
+> The drawer is unchanged — the curriculum's own shape, every list at its own
+> place — while `recommendOrder()` puts the spine first and the vocabulary
+> that widens it after. The 82 vocab-bank lists carry an explicit
+> `"role": "breadth"` in their `practice.json`, beside the existing
+> `"role": "core"`, so the property is a fact about the source rather than a
+> name prefix read at runtime (a test asserts the two have not drifted). The
+> recommended path now reaches Varṇa-Vidyā in 7 lists and 106 cards instead of
+> 41 and 609, and sandhi four lists later. Nothing is hidden, locked or
+> dropped: the order is a permutation of the track, every breadth list stays
+> drawn and unlocked, and this decides one button's target. Seven checks
+> added; the suite is now 455.
+
 Stage 1 holds 41 lists / 609 cards (26% of the course; Bhāṣā-Vidyā overall
 is 137 of 176 lists). `nextList()` recommends strictly the first unfinished
 list in track order, so the "Continue —" path walks all 41 deity-name lists
@@ -404,7 +417,7 @@ per-deck pairs and cues correct. Recurring smaller issues:
 | H2 | Session-counted spacing; "retained" attainable in one sitting | ~~High~~ **fixed** | small | pedagogy |
 | H3 | Choice-card guessing counts as cold recall | ~~High~~ **fixed** | medium | pedagogy |
 | H4 | Production direction never scheduled; mastery direction-blind | ~~High~~ **fixed** | medium | pedagogy |
-| H5 | Guided path fronts 609 vocab cards before any grammar | High | medium | pedagogy/UX |
+| H5 | Guided path fronts 609 vocab cards before any grammar | ~~High~~ **fixed** | medium | pedagogy/UX |
 | M1 | Stage 5/6: production forced above recognition tables by order rule | Medium | medium | content/pedagogy |
 | M2 | Alaṅkāra/Rasa bounded identification sections uncarded | Medium | small | content |
 | M3 | Trouble-clear "sitting" = page load (long-lived tab never clears) | Medium | small | engineering |

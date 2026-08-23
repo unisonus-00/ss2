@@ -256,6 +256,7 @@
     },
     {
       "name": "V07 · Yuddha — battle and warriors · DM",
+      "role": "breadth",
       "cards": [
         {
           "id": "07-karaka:war-combat:yuddha",
@@ -331,6 +332,7 @@
     },
     {
       "name": "V07 · Prahāra — verbs of striking · DM",
+      "role": "breadth",
       "cards": [
         {
           "id": "07-karaka:war-combat:prahara",
@@ -455,6 +457,7 @@
     },
     {
       "name": "V07 · Garjana — rage and devouring · DM",
+      "role": "breadth",
       "cards": [
         {
           "id": "07-karaka:war-combat:vrasc",
@@ -530,6 +533,7 @@
     },
     {
       "name": "V07 · Saṃhāra — destruction · DM",
+      "role": "breadth",
       "cards": [
         {
           "id": "07-karaka:war-combat:vadha",

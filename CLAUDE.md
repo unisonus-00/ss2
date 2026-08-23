@@ -996,6 +996,37 @@ the running totals were kept, and no record survives of *which* cards a past
 session showed — so it starts empty, every card is due, and the first session
 after upgrading draws from the whole pool exactly as it used to.
 
+### The course leads, the vocabulary follows
+
+`Continue —` is the one instruction the app gives, and it walked a track in
+flat curriculum order. **82 of the 176 lists widen the vocabulary rather than
+carrying the course, and 34 of those sit in Nāma** — so the recommended path
+ran all 41 of Stage 1's lists, 609 cards and a quarter of the whole app,
+before Varṇa-Vidyā so much as introduced the sound system. A learner
+following the one instruction they are given met several hundred deity names
+before their first grammatical idea, which is not what the track's own prose
+promises them.
+
+So there are now two orders, and they are different things:
+
+| | |
+|:--|:--|
+| **navigation** | the drawer, unchanged: the curriculum's own shape, every list at its own place |
+| **recommendation** | `recommendOrder()`: the spine in curriculum order, then the breadth that widens it |
+
+Seven lists — about a hundred cards — now reach the alphabet, and sandhi
+follows four lists later. The breadth is reached once the spine is done,
+which is the point at which the vocabulary is worth having: by then the
+learner can read the grammar it is set in.
+
+**Nothing is hidden, locked or reordered by this.** Every breadth list is in
+the drawer from the start, at its curriculum position, unlocked with the rest
+of its track; a learner who wants deity names takes them whenever they like.
+This decides one button's target, and the button is a recommendation. The
+order is a **permutation** of the track, so nothing is dropped — a test
+asserts that, along with the marking not drifting from the `V01 ·` naming
+convention it was derived from.
+
 ### The end of a round is not a dead end
 
 `Practise these again` / `Whole deck again` / `Share score` was every way on
@@ -1499,6 +1530,10 @@ Which vibhakti (case) typically expresses karaṇa (instrument)?
 card rather than depending on the order lists happen to be taken in. Every
 part of it is sourced: `instrumental` from Stage 5's own case list, `3rd`
 from the reference's `#` column and from the kāraka table's `3rd (tṛtīyā)`.
+
+**A list marked `"role": "breadth"` follows the course rather than carrying
+it.** The 82 vocab-bank lists carry it, and it decides one thing: what
+`Continue —` points at next. See **The course leads, the vocabulary follows**.
 
 **A list marked `"role": "core"` leads its lesson.** It holds what the
 lesson's own tests rest on, and `DECK_ROLE` carries the mark into the app so

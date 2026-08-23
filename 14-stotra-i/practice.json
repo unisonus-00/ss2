@@ -106,6 +106,7 @@
     },
     {
       "name": "V18 · Uvāca — speech tags and fury · DM",
+      "role": "breadth",
       "cards": [
         {
           "id": "14-stotra-i:refrains-formulae:rsir-uvaca",
@@ -223,6 +224,7 @@
     },
     {
       "name": "V18 · Dhruva-pada — refrains and colophons · DM · LS",
+      "role": "breadth",
       "cards": [
         {
           "id": "14-stotra-i:refrains-formulae:ya-devi-sarvabhutesu-x-rupena-samsthita",

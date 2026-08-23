@@ -149,6 +149,7 @@
     },
     {
       "name": "V13 · Brahman — brahman and māyā · LS · VS",
+      "role": "breadth",
       "cards": [
         {
           "id": "26-darshana:philosophy-tattvas:brahman",
@@ -273,6 +274,7 @@
     },
     {
       "name": "V13 · Guṇa — the guṇas and the five acts · LS",
+      "role": "breadth",
       "cards": [
         {
           "id": "26-darshana:philosophy-tattvas:guna",
@@ -376,6 +378,7 @@
     },
     {
       "name": "V13 · Jñāna-bandha — knowledge and bondage · LS · VS",
+      "role": "breadth",
       "cards": [
         {
           "id": "26-darshana:philosophy-tattvas:jnana",
@@ -507,6 +510,7 @@
     },
     {
       "name": "V13 · Śakti — śakti and Śrīvidyā · LS",
+      "role": "breadth",
       "cards": [
         {
           "id": "26-darshana:philosophy-tattvas:sakti",

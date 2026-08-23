@@ -536,6 +536,7 @@
     },
     {
       "name": "V16 · Upasarga — the verbal prefixes",
+      "role": "breadth",
       "pair": "affix → sense",
       "cards": [
         {
@@ -647,6 +648,7 @@
     },
     {
       "name": "V16 · Strī-pratyaya — feminine suffixes · LS",
+      "role": "breadth",
       "pair": "affix → sense",
       "cards": [
         {
@@ -737,6 +739,7 @@
     },
     {
       "name": "V16 · Pratyaya-rūpa — kṛt and taddhita forms",
+      "role": "breadth",
       "pair": "affix → sense",
       "cards": [
         {

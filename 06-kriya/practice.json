@@ -738,6 +738,7 @@
     },
     {
       "name": "V10 · Gati — motion and position · DM",
+      "role": "breadth",
       "pair": "root → meaning",
       "cards": [
         {
@@ -828,6 +829,7 @@
     },
     {
       "name": "V10 · Jñāna — perception and speech · DM",
+      "role": "breadth",
       "pair": "root → meaning",
       "cards": [
         {
@@ -904,6 +906,7 @@
     },
     {
       "name": "V10 · Dāna-grahaṇa — giving, living and dying · DM",
+      "role": "breadth",
       "pair": "root → meaning",
       "cards": [
         {
@@ -994,6 +997,7 @@
     },
     {
       "name": "V10 · Pūjana — worship and pleasing · DM",
+      "role": "breadth",
       "pair": "root → meaning",
       "cards": [
         {
@@ -1070,6 +1074,7 @@
     },
     {
       "name": "V10 · Rakṣaṇa — protecting and dwelling · DM",
+      "role": "breadth",
       "pair": "root → meaning",
       "cards": [
         {

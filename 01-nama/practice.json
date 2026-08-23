@@ -780,6 +780,7 @@
     },
     {
       "name": "V01 · Devī-nāma — the great names · LS",
+      "role": "breadth",
       "cards": [
         {
           "id": "01-nama:goddess-names:devi",
@@ -890,6 +891,7 @@
     },
     {
       "name": "V01 · Kālī-nāma — Kālī and Tantric forms · LS",
+      "role": "breadth",
       "cards": [
         {
           "id": "01-nama:goddess-names:narayani",
@@ -986,6 +988,7 @@
     },
     {
       "name": "V01 · Lalitā — epithets · LS",
+      "role": "breadth",
       "cards": [
         {
           "id": "01-nama:goddess-names:kamakhya",
@@ -1166,6 +1169,7 @@
     },
     {
       "name": "V01 · Pañca-kṛtya — creatrix and protectress · LS",
+      "role": "breadth",
       "cards": [
         {
           "id": "01-nama:goddess-names:srstikartri",
@@ -1255,6 +1259,7 @@
     },
     {
       "name": "V01 · Sarva-pada — the sarva- epithets · LS",
+      "role": "breadth",
       "cards": [
         {
           "id": "01-nama:goddess-names:sarvabhutahiterata",
@@ -1358,6 +1363,7 @@
     },
     {
       "name": "V01 · Mātṛkā — the eight śaktis · LS",
+      "role": "breadth",
       "cards": [
         {
           "id": "01-nama:goddess-names:brahmi-brahmani",
@@ -1419,6 +1425,7 @@
     },
     {
       "name": "V01 · Saṃsthitā I — the DM 5 litany",
+      "role": "breadth",
       "cards": [
         {
           "id": "01-nama:goddess-names:buddhi",
@@ -1515,6 +1522,7 @@
     },
     {
       "name": "V01 · Saṃsthitā II — the DM 5 litany",
+      "role": "breadth",
       "cards": [
         {
           "id": "01-nama:goddess-names:smrti",
@@ -1618,6 +1626,7 @@
     },
     {
       "name": "V02 · Viṣṇu-nāma — the thousand names · VS",
+      "role": "breadth",
       "cards": [
         {
           "id": "01-nama:god-names-celestials:visnu",
@@ -1749,6 +1758,7 @@
     },
     {
       "name": "V02 · Viśva — cosmic epithets · VS",
+      "role": "breadth",
       "cards": [
         {
           "id": "01-nama:god-names-celestials:visvam",
@@ -1852,6 +1862,7 @@
     },
     {
       "name": "V02 · Dharma — maker and orderer · VS",
+      "role": "breadth",
       "cards": [
         {
           "id": "01-nama:god-names-celestials:satya",
@@ -1976,6 +1987,7 @@
     },
     {
       "name": "V02 · Deva-gaṇa — the devas · VS · DM",
+      "role": "breadth",
       "cards": [
         {
           "id": "01-nama:god-names-celestials:indra-sakra",
@@ -2079,6 +2091,7 @@
     },
     {
       "name": "V02 · Ṛṣi — sages and celestials · DM",
+      "role": "breadth",
       "cards": [
         {
           "id": "01-nama:god-names-celestials:rsi",
@@ -2196,6 +2209,7 @@
     },
     {
       "name": "V03 · Asura — demon kinds · DM",
+      "role": "breadth",
       "cards": [
         {
           "id": "01-nama:asuras-demon-vocabulary:asura",
@@ -2285,6 +2299,7 @@
     },
     {
       "name": "V03 · Asura-nāma — named demons · DM",
+      "role": "breadth",
       "cards": [
         {
           "id": "01-nama:asuras-demon-vocabulary:madhu",
@@ -2430,6 +2445,7 @@
     },
     {
       "name": "V03 · Daitya-senā — hosts and slayings · DM",
+      "role": "breadth",
       "cards": [
         {
           "id": "01-nama:asuras-demon-vocabulary:bhandaputra",
@@ -2526,6 +2542,7 @@
     },
     {
       "name": "V04 · Śastra — weapons · DM",
+      "role": "breadth",
       "cards": [
         {
           "id": "01-nama:weapons-battle-gear:trisula-sula",
@@ -2678,6 +2695,7 @@
     },
     {
       "name": "V04 · Śara — arrows and archery · DM",
+      "role": "breadth",
       "cards": [
         {
           "id": "01-nama:weapons-battle-gear:saravrsti",
@@ -2774,6 +2792,7 @@
     },
     {
       "name": "V04 · Vādya — emblems and instruments · DM",
+      "role": "breadth",
       "cards": [
         {
           "id": "01-nama:weapons-battle-gear:sankha",
@@ -2856,6 +2875,7 @@
     },
     {
       "name": "V06 · Pṛthivī — earth, sky and waters · DM · LS",
+      "role": "breadth",
       "cards": [
         {
           "id": "01-nama:nature-cosmos:prthivi-bhumi-dhara-ksma-avani-mahi",
@@ -2987,6 +3007,7 @@
     },
     {
       "name": "V06 · Tejas — fire, light and mountains · DM · LS",
+      "role": "breadth",
       "cards": [
         {
           "id": "01-nama:nature-cosmos:agni-vahni-anala-pavaka-hutasana",
@@ -3111,6 +3132,7 @@
     },
     {
       "name": "V06 · Vana — trees and flowers · DM · LS",
+      "role": "breadth",
       "cards": [
         {
           "id": "01-nama:nature-cosmos:vana-aranya-kanana",
@@ -3200,6 +3222,7 @@
     },
     {
       "name": "V06 · Diś — directions and realms · DM · LS",
+      "role": "breadth",
       "cards": [
         {
           "id": "01-nama:nature-cosmos:dis-kakubh",
@@ -3310,6 +3333,7 @@
     },
     {
       "name": "V14 · Paśu-pakṣin — beasts and birds · DM",
+      "role": "breadth",
       "cards": [
         {
           "id": "01-nama:animals-mounts:simha-kesarin-kesari",
@@ -3420,6 +3444,7 @@
     },
     {
       "name": "V14 · Mṛga — more creatures · DM",
+      "role": "breadth",
       "cards": [
         {
           "id": "01-nama:animals-mounts:mrga",
@@ -3516,6 +3541,7 @@
     },
     {
       "name": "V14 · Vāhana — mounts and chariots · DM · LS",
+      "role": "breadth",
       "cards": [
         {
           "id": "01-nama:animals-mounts:ratha",
@@ -3577,6 +3603,7 @@
     },
     {
       "name": "V19 · Saṅkhyā — numbers · DM",
+      "role": "breadth",
       "cards": [
         {
           "id": "01-nama:numbers-time-space:eka",
@@ -3736,6 +3763,7 @@
     },
     {
       "name": "V19 · Pūraṇa — ordinals and multiples · DM",
+      "role": "breadth",
       "cards": [
         {
           "id": "01-nama:numbers-time-space:prathama",
@@ -3811,6 +3839,7 @@
     },
     {
       "name": "V19 · Kāla — time · DM",
+      "role": "breadth",
       "cards": [
         {
           "id": "01-nama:numbers-time-space:kala",
@@ -3921,6 +3950,7 @@
     },
     {
       "name": "V19 · Sthāna — place and seat · DM",
+      "role": "breadth",
       "cards": [
         {
           "id": "01-nama:numbers-time-space:madhya-madhyastha",
@@ -3996,6 +4026,7 @@
     },
     {
       "name": "V20 · Tīrtha — sacred places and rivers · DM · LS",
+      "role": "breadth",
       "cards": [
         {
           "id": "01-nama:sacred-geography-plants:kasi",
@@ -4134,6 +4165,7 @@
     },
     {
       "name": "V20 · Divya-vastu — sacred objects · LS",
+      "role": "breadth",
       "cards": [
         {
           "id": "01-nama:sacred-geography-plants:sricakra-sriyantra",
@@ -4230,6 +4262,7 @@
     },
     {
       "name": "V20 · Oṣadhi — plants and fragrances · DM · LS",
+      "role": "breadth",
       "cards": [
         {
           "id": "01-nama:sacred-geography-plants:kadamba",
@@ -4361,6 +4394,7 @@
     },
     {
       "name": "V20 · Naivedya — offerings and abodes · LS",
+      "role": "breadth",
       "cards": [
         {
           "id": "01-nama:sacred-geography-plants:payasanna",

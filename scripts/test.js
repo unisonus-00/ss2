@@ -3196,6 +3196,85 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
+  // ── the course leads, the vocabulary follows ───────────────────────
+  // "Continue —" is the one instruction the app gives, and it walked the
+  // track in flat curriculum order.  82 of the 176 lists widen the
+  // vocabulary rather than carrying the course, and 34 of those sit in Nāma,
+  // so the recommended path ran all 41 of its lists — 609 cards, a quarter
+  // of the app — before Varṇa-Vidyā introduced the sound system.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const out = {};
+      SAVED.mastered = {}; SAVED.pending = {}; SAVED.trouble = {}; SAVED.decks = {};
+      const row = TRACK_ROWS.find(x => x.track.id === 'bhasha');
+
+      /* walk the recommended path from a cold start, completing as we go */
+      const path = [];
+      let name = recommendOrder(row)[0];
+      for (let i = 0; i < 12 && name; i++) {
+        path.push({ lesson: LESSON_LABEL[DECK_LESSON[name]],
+                    cards: DECKS[name].length, breadth: isBreadth(name) });
+        DECKS[name].forEach(c => { SAVED.mastered[c.id] = 1; });
+        name = nextList(name);
+      }
+      const leave = path.findIndex(x => x.lesson !== path[0].lesson);
+      out.listsBeforeSecondStage = leave;
+      out.cardsBeforeSecondStage = path.slice(0, leave)
+        .reduce((a, x) => a + x.cards, 0);
+      out.noBreadthOnTheWay = path.slice(0, leave).every(x => !x.breadth);
+
+      /* the track page recommends from the same order */
+      SAVED.mastered = {};
+      SAVED.begun = { home: 1, bhasha: 1 };
+      showTrack('bhasha');
+      out.trackGo = document.getElementById('s-go').textContent;
+      out.wantGo = DECK_SHORT(recommendOrder(row)[0]);
+
+      /* nothing is hidden or reordered in the drawer by any of this */
+      const nav = trackDecks(row);
+      out.navUnchanged = nav.slice(0, 8).map(DECK_SHORT).join('|');
+      out.breadthInNav = nav.filter(isBreadth).length;
+      openDrawer(); renderDrawer();
+      const rows = [...document.querySelectorAll('.dk')].map(b => b.title);
+      out.breadthDrawn = nav.filter(isBreadth)
+        .every(n => rows.some(t => t.indexOf(n) === 0));
+      out.breadthLocked = nav.filter(isBreadth).some(n => deckLocked(n));
+      closeDrawer();
+
+      /* and every list is still reached: the order is a permutation */
+      const order = recommendOrder(row);
+      out.isPermutation = order.length === nav.length
+        && order.every(n => nav.indexOf(n) >= 0);
+      out.spineThenBreadth = order.findIndex(isBreadth)
+        > order.map(isBreadth).lastIndexOf(false);
+
+      /* the marking is a property of the source, not of a name prefix read
+         at runtime — but the two must agree, or one has drifted */
+      const drift = Object.keys(DECKS).filter(n =>
+        /^V\d/.test(n) !== (DECK_ROLE[n] === 'breadth'));
+      out.drift = drift;
+      return out;
+    });
+    ok('the recommended path reaches the second stage in a sitting or two',
+      r.listsBeforeSecondStage > 0 && r.listsBeforeSecondStage <= 10
+        && r.cardsBeforeSecondStage <= 150,
+      r.listsBeforeSecondStage + ' lists, ' + r.cardsBeforeSecondStage + ' cards');
+    ok('with no vocabulary-bank list standing in the way', r.noBreadthOnTheWay);
+    ok('and the track page recommends the same first list',
+      r.trackGo.indexOf(r.wantGo) >= 0, r.trackGo + ' vs ' + r.wantGo);
+    ok('the drawer still navigates in curriculum order',
+      r.navUnchanged.indexOf('Devī|Deva') === 0 && r.breadthInNav === 68,
+      r.breadthInNav + ' breadth lists in place');
+    ok('every breadth list is still drawn, and none is locked by this',
+      r.breadthDrawn && !r.breadthLocked);
+    ok('the recommendation is a permutation, so nothing is dropped',
+      r.isPermutation && r.spineThenBreadth);
+    ok('and the breadth marking has not drifted from the naming convention',
+      !r.drift.length, r.drift.slice(0, 4).join(' | '));
+    await p.close();
+  }
+
   // ── what "learned" means, and what Abhyāsa draws on ───────────────
   // A list played to the end used to be complete at any score, which fed the
   // review with material the learner had never got right and moved the

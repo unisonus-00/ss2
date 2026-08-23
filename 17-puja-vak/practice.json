@@ -361,6 +361,7 @@
     },
     {
       "name": "V05 · Śiras — head and face · DM · LS",
+      "role": "breadth",
       "cards": [
         {
           "id": "17-puja-vak:body-adornment:siras-murdhan-mastaka",
@@ -513,6 +514,7 @@
     },
     {
       "name": "V05 · Gātra — limbs and body · DM · LS",
+      "role": "breadth",
       "cards": [
         {
           "id": "17-puja-vak:body-adornment:bhuja-bahu",
@@ -693,6 +695,7 @@
     },
     {
       "name": "V05 · Ābharaṇa — ornament and adornment · DM · LS",
+      "role": "breadth",
       "cards": [
         {
           "id": "17-puja-vak:body-adornment:abharana-bhusana-alankara",
@@ -845,6 +848,7 @@
     },
     {
       "name": "V12 · Arcana — rites and observances · DM · LS",
+      "role": "breadth",
       "cards": [
         {
           "id": "17-puja-vak:ritual-worship:arcana-arcana",
@@ -941,6 +945,7 @@
     },
     {
       "name": "V12 · Dravya — the upacāra offerings · DM · LS",
+      "role": "breadth",
       "cards": [
         {
           "id": "17-puja-vak:ritual-worship:puspa-kusuma",
@@ -1016,6 +1021,7 @@
     },
     {
       "name": "V12 · Bīja-mantra — mantra and bīja · LS",
+      "role": "breadth",
       "cards": [
         {
           "id": "17-puja-vak:ritual-worship:mantra",
@@ -1098,6 +1104,7 @@
     },
     {
       "name": "V12 · Śāstra — texts and knowledge · LS",
+      "role": "breadth",
       "cards": [
         {
           "id": "17-puja-vak:ritual-worship:sukta",
@@ -1180,6 +1187,7 @@
     },
     {
       "name": "V12 · Phala-śruti — fruits and grace · DM · LS",
+      "role": "breadth",
       "cards": [
         {
           "id": "17-puja-vak:ritual-worship:patha",

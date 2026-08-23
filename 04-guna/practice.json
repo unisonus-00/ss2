@@ -262,6 +262,7 @@
     },
     {
       "name": "V11 · Ugra — fierce and terrible · DM",
+      "role": "breadth",
       "cards": [
         {
           "id": "04-guna:adjectives-of-power-beauty:ugra",
@@ -365,6 +366,7 @@
     },
     {
       "name": "V11 · Sundara — beautiful and radiant · DM · LS",
+      "role": "breadth",
       "cards": [
         {
           "id": "04-guna:adjectives-of-power-beauty:sundara-ramya-rucira-manohara",
@@ -454,6 +456,7 @@
     },
     {
       "name": "V11 · Mahat — vast, pure and auspicious · LS",
+      "role": "breadth",
       "cards": [
         {
           "id": "04-guna:adjectives-of-power-beauty:maha-mahat",
@@ -606,6 +609,7 @@
     },
     {
       "name": "V11 · Niṣedha — the nir- epithets · LS",
+      "role": "breadth",
       "cards": [
         {
           "id": "04-guna:adjectives-of-power-beauty:niradhara",
@@ -737,6 +741,7 @@
     },
     {
       "name": "V11 · Varṇa — colours · DM · LS",
+      "role": "breadth",
       "cards": [
         {
           "id": "04-guna:adjectives-of-power-beauty:krsna-syama",

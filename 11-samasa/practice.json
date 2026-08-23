@@ -254,6 +254,7 @@
     },
     {
       "name": "V17 · Tatpuruṣa — X of Y",
+      "role": "breadth",
       "pair": "compound → vigraha",
       "cards": [
         {
@@ -344,6 +345,7 @@
     },
     {
       "name": "V17 · Karmadhāraya — X which is Y",
+      "role": "breadth",
       "pair": "compound → vigraha",
       "cards": [
         {
@@ -399,6 +401,7 @@
     },
     {
       "name": "V17 · Bahuvrīhi — one who has X",
+      "role": "breadth",
       "pair": "compound → vigraha",
       "cards": [
         {
@@ -482,6 +485,7 @@
     },
     {
       "name": "V17 · Dvandva — X and Y",
+      "role": "breadth",
       "pair": "compound → vigraha",
       "cards": [
         {
@@ -530,6 +534,7 @@
     },
     {
       "name": "V17 · Avyayībhāva — adverbial compounds · LS",
+      "role": "breadth",
       "pair": "compound → vigraha",
       "cards": [
         {
