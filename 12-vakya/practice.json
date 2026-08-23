@@ -387,20 +387,6 @@
           "note": "indeclinable · DM passim"
         },
         {
-          "id": "12-vakya:indeclinables-particles:tatha",
-          "devanagari": "तथा",
-          "iast": "tathā",
-          "gloss": "so, likewise",
-          "note": "indeclinable · DM passim (paired with yathā)"
-        },
-        {
-          "id": "12-vakya:indeclinables-particles:eva",
-          "devanagari": "एव",
-          "iast": "eva",
-          "gloss": "indeed, only, precisely",
-          "note": "indeclinable · DM throughout"
-        },
-        {
           "id": "12-vakya:indeclinables-particles:hi",
           "devanagari": "हि",
           "iast": "hi",
@@ -649,13 +635,6 @@
       "name": "V15 · Praśna — questions and connectives · DM",
       "role": "breadth",
       "cards": [
-        {
-          "id": "12-vakya:indeclinables-particles:kim",
-          "devanagari": "किम्",
-          "iast": "kim",
-          "gloss": "what? why?",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: kim- · interrogative pronoun"
-        },
         {
           "id": "12-vakya:indeclinables-particles:katham",
           "devanagari": "कथम्",

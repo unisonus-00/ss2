@@ -733,46 +733,11 @@
       "pair": "root → meaning",
       "cards": [
         {
-          "id": "06-kriya:high-frequency-verbs:as",
-          "devanagari": "√अस्",
-          "iast": "√as",
-          "gloss": "to be, exist",
-          "note": "dhātu · asti, āsīt, astu · DM throughout"
-        },
-        {
-          "id": "06-kriya:high-frequency-verbs:bhu",
-          "devanagari": "√भू",
-          "iast": "√bhū",
-          "gloss": "to become, be",
-          "note": "dhātu · babhūva, bhavati, abhūt, bhūtaḥ, bhaviṣyati · DM throughout"
-        },
-        {
-          "id": "06-kriya:high-frequency-verbs:gam",
-          "devanagari": "√गम्",
-          "iast": "√gam",
-          "gloss": "to go",
-          "note": "dhātu · jagāma, gacchati, gatvā, gataḥ, āgata · DM 1.4"
-        },
-        {
           "id": "06-kriya:high-frequency-verbs:ya",
           "devanagari": "√या",
           "iast": "√yā",
           "gloss": "to go, proceed",
           "note": "dhātu · yayau, yāti, yāhi (imp.) · DM 6.7"
-        },
-        {
-          "id": "06-kriya:high-frequency-verbs:car",
-          "devanagari": "√चर्",
-          "iast": "√car",
-          "gloss": "to move, wander",
-          "note": "dhātu · cacāra, carati, caran · DM passim"
-        },
-        {
-          "id": "06-kriya:high-frequency-verbs:stha",
-          "devanagari": "√स्था",
-          "iast": "√sthā",
-          "gloss": "to stand, remain",
-          "note": "dhātu · tasthau, tiṣṭhati, sthitā (pp.) · DM 10.24"
         },
         {
           "id": "06-kriya:high-frequency-verbs:vis",
@@ -824,20 +789,6 @@
       "pair": "root → meaning",
       "cards": [
         {
-          "id": "06-kriya:high-frequency-verbs:drs",
-          "devanagari": "√दृश्",
-          "iast": "√dṛś",
-          "gloss": "to see",
-          "note": "dhātu · dadarśa, dṛṣṭvā, dṛṣṭaḥ · DM 1.8"
-        },
-        {
-          "id": "06-kriya:high-frequency-verbs:sru",
-          "devanagari": "√श्रु",
-          "iast": "√śru",
-          "gloss": "to hear",
-          "note": "dhātu · śuśrāva, śrutvā, śruta · DM 6.20"
-        },
-        {
           "id": "06-kriya:high-frequency-verbs:vid",
           "devanagari": "√विद् / √ज्ञा",
           "iast": "√vid / √jñā",
@@ -845,32 +796,11 @@
           "note": "dhātu · √vid (veda, vetti, vidita) · √jñā (jānāti, jñātaḥ, jñāna n.) · DM passim"
         },
         {
-          "id": "06-kriya:high-frequency-verbs:man",
-          "devanagari": "√मन्",
-          "iast": "√man",
-          "gloss": "to think",
-          "note": "dhātu · manyate, manvāna, mata · DM passim"
-        },
-        {
           "id": "06-kriya:high-frequency-verbs:cint",
           "devanagari": "√चिन्त्",
           "iast": "√cint",
           "gloss": "to contemplate",
           "note": "dhātu · cintayāmāsa, cintita · DM 1.9"
-        },
-        {
-          "id": "06-kriya:high-frequency-verbs:smr",
-          "devanagari": "√स्मृ",
-          "iast": "√smṛ",
-          "gloss": "to remember",
-          "note": "dhātu · smarati, smṛtā · LS passim"
-        },
-        {
-          "id": "06-kriya:high-frequency-verbs:budh",
-          "devanagari": "√बुध्",
-          "iast": "√budh",
-          "gloss": "to awaken, know",
-          "note": "dhātu · buddhā, bodhayāmāsa · DM 1.73 (Viṣṇu awakened)"
         },
         {
           "id": "06-kriya:high-frequency-verbs:vac",
@@ -901,13 +831,6 @@
       "pair": "root → meaning",
       "cards": [
         {
-          "id": "06-kriya:high-frequency-verbs:da",
-          "devanagari": "√दा",
-          "iast": "√dā",
-          "gloss": "to give",
-          "note": "dhātu · dadau, dadāti, dattaḥ · DM 4.37 (abhayaṃ dadau)"
-        },
-        {
           "id": "06-kriya:high-frequency-verbs:grah-grh",
           "devanagari": "√ग्रह् / √गृह्",
           "iast": "√grah / √gṛh",
@@ -915,25 +838,11 @@
           "note": "dhātu · jagrāha, gṛhīta · DM 9.14"
         },
         {
-          "id": "06-kriya:high-frequency-verbs:labh",
-          "devanagari": "√लभ्",
-          "iast": "√labh",
-          "gloss": "to obtain",
-          "note": "dhātu · lebhe, labdha, lābha · DM passim"
-        },
-        {
           "id": "06-kriya:high-frequency-verbs:ap",
           "devanagari": "√आप्",
           "iast": "√āp",
           "gloss": "to attain",
           "note": "dhātu · āpa, prāpta · DM 13.20"
-        },
-        {
-          "id": "06-kriya:high-frequency-verbs:hr",
-          "devanagari": "√हृ",
-          "iast": "√hṛ",
-          "gloss": "to take, carry",
-          "note": "dhātu · jaghāra, āhṛta · DM passim"
         },
         {
           "id": "06-kriya:high-frequency-verbs:srj",
@@ -957,27 +866,6 @@
           "note": "dhātu · jaghāna, hata · DM throughout"
         },
         {
-          "id": "06-kriya:high-frequency-verbs:kr",
-          "devanagari": "√कृ",
-          "iast": "√kṛ",
-          "gloss": "to do, make",
-          "note": "dhātu · cakāra, karoti, kṛtaḥ, kartṛ · DM throughout"
-        },
-        {
-          "id": "06-kriya:high-frequency-verbs:jan",
-          "devanagari": "√जन्",
-          "iast": "√jan",
-          "gloss": "to be born",
-          "note": "dhātu · jajñe, jāta, janana · DM passim"
-        },
-        {
-          "id": "06-kriya:high-frequency-verbs:mr",
-          "devanagari": "√मृ",
-          "iast": "√mṛ",
-          "gloss": "to die",
-          "note": "dhātu · mamāra, mṛta, maraṇa · DM passim"
-        },
-        {
           "id": "06-kriya:high-frequency-verbs:jiv",
           "devanagari": "√जीव्",
           "iast": "√jīv",
@@ -992,20 +880,6 @@
       "pair": "root → meaning",
       "cards": [
         {
-          "id": "06-kriya:high-frequency-verbs:stu",
-          "devanagari": "√स्तु",
-          "iast": "√stu",
-          "gloss": "to praise",
-          "note": "dhātu · tuṣṭuvu (perf. 3pl), stūyate, stutā, stuvanti · DM 3.44"
-        },
-        {
-          "id": "06-kriya:high-frequency-verbs:nam",
-          "devanagari": "√नम्",
-          "iast": "√nam",
-          "gloss": "to bow",
-          "note": "dhātu · nanāma, namati, nataḥ · DM passim"
-        },
-        {
           "id": "06-kriya:high-frequency-verbs:pranam",
           "devanagari": "√प्रणम्",
           "iast": "√praṇam",
@@ -1013,39 +887,11 @@
           "note": "dhātu · praṇamya (abs.), praṇipatya · DM 13.8"
         },
         {
-          "id": "06-kriya:high-frequency-verbs:puj",
-          "devanagari": "√पूज्",
-          "iast": "√pūj",
-          "gloss": "to worship",
-          "note": "dhātu · pūjayāmāsa, pūjita · DM 4.30"
-        },
-        {
           "id": "06-kriya:high-frequency-verbs:arc",
           "devanagari": "√अर्च्",
           "iast": "√arc",
           "gloss": "to honor",
           "note": "dhātu · arcita, arcanā · LS passim"
-        },
-        {
-          "id": "06-kriya:high-frequency-verbs:bhaj",
-          "devanagari": "√भज्",
-          "iast": "√bhaj",
-          "gloss": "to worship, share",
-          "note": "dhātu · bhajati, bhakta · VS passim"
-        },
-        {
-          "id": "06-kriya:high-frequency-verbs:yaj",
-          "devanagari": "√यज्",
-          "iast": "√yaj",
-          "gloss": "to sacrifice",
-          "note": "dhātu · yajati, yajña · VS passim"
-        },
-        {
-          "id": "06-kriya:high-frequency-verbs:jap",
-          "devanagari": "√जप्",
-          "iast": "√jap",
-          "gloss": "to recite",
-          "note": "dhātu · japati, japa · DM 13.10"
         },
         {
           "id": "06-kriya:high-frequency-verbs:tus",
@@ -1083,20 +929,6 @@
           "note": "dhātu · trāyate, trāhi (imp.) · DM 4.22"
         },
         {
-          "id": "06-kriya:high-frequency-verbs:tyaj",
-          "devanagari": "√त्यज्",
-          "iast": "√tyaj",
-          "gloss": "to abandon",
-          "note": "dhātu · tatyāja, tyaktvā · DM 1.7"
-        },
-        {
-          "id": "06-kriya:high-frequency-verbs:ni",
-          "devanagari": "√नी",
-          "iast": "√nī",
-          "gloss": "to lead",
-          "note": "dhātu · ninye, nīta · DM 6.19"
-        },
-        {
           "id": "06-kriya:high-frequency-verbs:vars",
           "devanagari": "√वर्ष्",
           "iast": "√varṣ",
@@ -1118,25 +950,11 @@
           "note": "dhātu · pūrayāmāsa, pūrṇa · DM 9.20"
         },
         {
-          "id": "06-kriya:high-frequency-verbs:vas",
-          "devanagari": "√वस्",
-          "iast": "√vas",
-          "gloss": "to dwell",
-          "note": "dhātu · vasati, vāsa, nivāsinī · KKS passim"
-        },
-        {
           "id": "06-kriya:high-frequency-verbs:dhr",
           "devanagari": "√धृ",
           "iast": "√dhṛ",
           "gloss": "to hold",
           "note": "dhātu · dhārayati, dhṛta, dhāriṇī · KKS passim"
-        },
-        {
-          "id": "06-kriya:high-frequency-verbs:vad",
-          "devanagari": "√वद्",
-          "iast": "√vad",
-          "gloss": "to speak",
-          "note": "dhātu · vadati, vādin · KS passim"
         }
       ]
     }

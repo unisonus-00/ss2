@@ -790,13 +790,6 @@
           "note": "noun · feminine · ī-stem · stem: devī- · from √div · DM 1.57"
         },
         {
-          "id": "01-nama:goddess-names:durga",
-          "devanagari": "दुर्गा",
-          "iast": "durgā",
-          "gloss": "the inaccessible one",
-          "note": "noun · feminine · ā-stem · stem: durgā- · dur + gā · DM 4.11"
-        },
-        {
           "id": "01-nama:goddess-names:ambika",
           "devanagari": "अम्बिका",
           "iast": "ambikā",
@@ -825,39 +818,11 @@
           "note": "noun · feminine · ā-stem · stem: kālikā- · DM 7.23"
         },
         {
-          "id": "01-nama:goddess-names:lalita",
-          "devanagari": "ललिता",
-          "iast": "lalitā",
-          "gloss": "she who plays (the sportive one)",
-          "note": "noun · feminine · ā-stem · stem: lalitā- · from √laḍ/laḷ · LS 1 (Śrīmātā) + throughout"
-        },
-        {
           "id": "01-nama:goddess-names:laksmi",
           "devanagari": "लक्ष्मी",
           "iast": "lakṣmī",
           "gloss": "prosperity, beauty, fortune",
           "note": "noun · feminine · ī-stem · stem: lakṣmī- · DM 4.8"
-        },
-        {
-          "id": "01-nama:goddess-names:sarasvati",
-          "devanagari": "सरस्वती",
-          "iast": "sarasvatī",
-          "gloss": "she of the flowing (river/speech)",
-          "note": "noun · feminine · ī-stem · stem: sarasvatī- · DM 5.79"
-        },
-        {
-          "id": "01-nama:goddess-names:parvati",
-          "devanagari": "पार्वती",
-          "iast": "pārvatī",
-          "gloss": "daughter of Parvata (mountain)",
-          "note": "noun · feminine · ī-stem · stem: pārvatī- · patronymic · DM 5.38"
-        },
-        {
-          "id": "01-nama:goddess-names:gauri",
-          "devanagari": "गौरी",
-          "iast": "gaurī",
-          "gloss": "the golden/fair one",
-          "note": "noun · feminine · ī-stem · stem: gaurī- · DM 11.10"
         },
         {
           "id": "01-nama:goddess-names:siva",
@@ -1131,25 +1096,11 @@
           "note": "noun · feminine · ā-stem · stem: mahāpadmāṭavīsaṃsthā- · LS 59"
         },
         {
-          "id": "01-nama:goddess-names:kamaksi",
-          "devanagari": "कामाक्षी",
-          "iast": "kāmākṣī",
-          "gloss": "she of desire-eyes",
-          "note": "noun · feminine · ī-stem · stem: kāmākṣī- · LS 62"
-        },
-        {
           "id": "01-nama:goddess-names:kamadhayini",
           "devanagari": "कामधायिनी",
           "iast": "kāmadhāyinī",
           "gloss": "fulfiller of desires",
           "note": "noun · feminine · ī-stem · stem: kāmadhāyinī- · LS 63"
-        },
-        {
-          "id": "01-nama:goddess-names:rajarajesvari",
-          "devanagari": "राजराजेश्वरी",
-          "iast": "rājarājeśvarī",
-          "gloss": "sovereign of the king of kings",
-          "note": "noun · feminine · ī-stem · stem: rājarājeśvarī- · LS 684"
         },
         {
           "id": "01-nama:goddess-names:tripura",
@@ -4138,28 +4089,12 @@
           "note": "noun · feminine · ā-stem · stem: citā- · KS passim"
         },
         {
-          "id": "01-nama:sacred-geography-plants:ganga",
-          "devanagari": "गङ्गा",
-          "iast": "gaṅgā",
-          "gloss": "Ganges",
-          "note": "noun · feminine · ā-stem · stem: gaṅgā-",
-          "source": "KS passim"
-        },
-        {
           "id": "01-nama:sacred-geography-plants:yamuna-kalindi",
           "devanagari": "यमुना / कालिन्दी",
           "iast": "yamunā / kālindī",
           "gloss": "Yamunā",
           "note": "noun · feminine",
           "source": "KKS 688-689; KS passim"
-        },
-        {
-          "id": "01-nama:sacred-geography-plants:kaveri",
-          "devanagari": "कावेरी",
-          "iast": "kāverī",
-          "gloss": "Kāverī",
-          "note": "noun · feminine · ī-stem · stem: kāverī-",
-          "source": "KKS 705-706"
         },
         {
           "id": "01-nama:sacred-geography-plants:sarasvati",
@@ -4233,13 +4168,6 @@
           "note": "noun · feminine · ā-stem · stem: sudhā- · LS 61"
         },
         {
-          "id": "01-nama:sacred-geography-plants:pitha",
-          "devanagari": "पीठ",
-          "iast": "pīṭha",
-          "gloss": "sacred seat (śākta)",
-          "note": "noun · neuter · a-stem · stem: pīṭha- · LS passim"
-        },
-        {
           "id": "01-nama:sacred-geography-plants:yajnopavita",
           "devanagari": "यज्ञोपवीत",
           "iast": "yajñopavīta",
@@ -4266,13 +4194,6 @@
           "iast": "kalaśa",
           "gloss": "sacred pot",
           "note": "noun · masculine · a-stem · stem: kalaśa- · KKS 520"
-        },
-        {
-          "id": "01-nama:sacred-geography-plants:dipa",
-          "devanagari": "दीप",
-          "iast": "dīpa",
-          "gloss": "sacred lamp",
-          "note": "noun · masculine · a-stem · stem: dīpa- · KKS 140"
         }
       ]
     },
@@ -4281,36 +4202,12 @@
       "role": "breadth",
       "cards": [
         {
-          "id": "01-nama:sacred-geography-plants:kadamba",
-          "devanagari": "कदम्ब",
-          "iast": "kadamba",
-          "gloss": "kadamba (Neolamarckia cadamba)",
-          "note": "noun · masculine · a-stem · stem: kadamba-",
-          "source": "LS 60; KKS 196-205"
-        },
-        {
-          "id": "01-nama:sacred-geography-plants:kadali",
-          "devanagari": "कदली",
-          "iast": "kadalī",
-          "gloss": "plantain",
-          "note": "noun · feminine · ī-stem · stem: kadalī-",
-          "source": "KKS 187-195"
-        },
-        {
           "id": "01-nama:sacred-geography-plants:karanja",
           "devanagari": "करञ्ज",
           "iast": "karañja",
           "gloss": "Indian beech (Pongamia)",
           "note": "noun · masculine · a-stem · stem: karañja-",
           "source": "KKS 111-115"
-        },
-        {
-          "id": "01-nama:sacred-geography-plants:ketaki",
-          "devanagari": "केतकी",
-          "iast": "ketakī",
-          "gloss": "screw-pine (Pandanus)",
-          "note": "noun · feminine · ī-stem · stem: ketakī-",
-          "source": "KKS 929-930"
         },
         {
           "id": "01-nama:sacred-geography-plants:kunkuma",

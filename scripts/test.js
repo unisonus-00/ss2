@@ -3287,7 +3287,12 @@ const open = async (browser, opts = {}) => {
       /* nothing is hidden or reordered in the drawer by any of this */
       const nav = trackDecks(row);
       out.navUnchanged = nav.slice(0, 8).map(DECK_SHORT).join('|');
+      /* every breadth list the track holds is still in the drawer, in place:
+         a literal count here would only be a number to chase whenever a list
+         is added or a duplicate removed */
       out.breadthInNav = nav.filter(isBreadth).length;
+      out.breadthHeld = row.lessons.reduce(
+        (n, L) => n + L.decks.filter(isBreadth).length, 0);
       openDrawer(); renderDrawer();
       const rows = [...document.querySelectorAll('.dk')].map(b => b.title);
       out.breadthDrawn = nav.filter(isBreadth)
@@ -3327,8 +3332,9 @@ const open = async (browser, opts = {}) => {
     ok('and the track page recommends the same first list',
       r.trackGo.indexOf(r.wantGo) >= 0, r.trackGo + ' vs ' + r.wantGo);
     ok('the drawer still navigates in curriculum order',
-      r.navUnchanged.indexOf('Devī|Deva') === 0 && r.breadthInNav === 68,
-      r.breadthInNav + ' breadth lists in place');
+      r.navUnchanged.indexOf('Devī|Deva') === 0
+        && r.breadthInNav === r.breadthHeld && r.breadthInNav > 0,
+      r.breadthInNav + ' of ' + r.breadthHeld + ' breadth lists in place');
     ok('every breadth list is still drawn, and none is locked by this',
       r.breadthDrawn && !r.breadthLocked);
     ok('the recommendation is a permutation, so nothing is dropped',
@@ -3803,6 +3809,64 @@ const open = async (browser, opts = {}) => {
        completed list when the other two say there is none */
     ok('and so does the row that opens it',
       /no list finished yet/.test(r.row) || /^best scores · 0 of/.test(r.row), r.row);
+    await p.close();
+  }
+
+  // ── one fact, carded once ─────────────────────────────────────────
+  // Two lists of the same lesson holding the same word with the same meaning
+  // is the same card twice: mastery of one is mastery of the other, and the
+  // second only costs the learner a sitting.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      /* One word, two senses — these are not duplicates, and the substring
+         test cannot tell the difference on its own. */
+      const SENSES = ['śakti', 'kāla', 'madhu'];
+      const norm = s => (s || '').toLowerCase().replace(/[^a-zāīūṛṅñṭḍṇśṣḥṃ ]/g, '').trim();
+      const byLesson = {};
+      Object.keys(DECKS).forEach(n => {
+        const L = DECK_LESSON[n];
+        DECKS[n].forEach(c => {
+          if ((c.type || 'reveal') !== 'reveal') return;
+          const w = (c.devanagari || '').trim();
+          if (!w) return;
+          ((byLesson[L] = byLesson[L] || {})[w] = byLesson[L][w] || []).push(
+            { deck: n, gloss: norm(c.gloss), iast: (c.iast || '').trim(), id: c.id });
+        });
+      });
+      const twice = [];
+      Object.keys(byLesson).forEach(L => Object.keys(byLesson[L]).forEach(w => {
+        const v = byLesson[L][w];
+        for (let i = 0; i < v.length; i++) for (let k = i + 1; k < v.length; k++) {
+          if (SENSES.indexOf(v[i].iast) >= 0) continue;
+          const a = v[i].gloss, b = v[k].gloss;
+          if (!a || !b) continue;
+          const same = a === b || (a.length > 3 && b.length > 3
+            && (a.indexOf(b) >= 0 || b.indexOf(a) >= 0));
+          if (same) twice.push(v[i].id + ' & ' + v[k].id);
+        }
+      }));
+      /* and the fifty core roots are carded at the stage that owns them,
+         not again as vocabulary a few stages earlier */
+      const roots = new Set();
+      Object.keys(DECKS).forEach(n => {
+        if (DECK_LESSON[n] !== '09-dhatu') return;
+        DECKS[n].forEach(c => roots.add((c.iast || '').trim()));
+      });
+      const rootsTwice = [];
+      Object.keys(DECKS).forEach(n => {
+        if (DECK_LESSON[n] === '09-dhatu') return;
+        DECKS[n].forEach(c => {
+          if ((c.type || 'reveal') !== 'reveal') return;
+          if (/^√/.test(c.iast || '') && roots.has((c.iast || '').trim())) rootsTwice.push(c.id);
+        });
+      });
+      return { twice: twice, rootsTwice: rootsTwice };
+    });
+    ok('no lesson holds the same word and meaning in two of its lists',
+      !r.twice.length, r.twice.slice(0, 3).join(' | '));
+    ok('and a core dhātu is carded at the stage that owns roots, once',
+      !r.rootsTwice.length, r.rootsTwice.slice(0, 3).join(' | '));
     await p.close();
   }
 

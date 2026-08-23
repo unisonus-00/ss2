@@ -329,25 +329,11 @@
           "note": "dhātu · cikṣepa (perf.), kṣipta (pp.) · DM 3.18"
         },
         {
-          "id": "07-karaka:war-combat:pat",
-          "devanagari": "√पत्",
-          "iast": "√pat",
-          "gloss": "to fall",
-          "note": "dhātu · papāta (perf.), patita (pp.) · DM 3.33"
-        },
-        {
           "id": "07-karaka:war-combat:pat-caus",
           "devanagari": "√पात् (caus.)",
           "iast": "√pāt (caus.)",
           "gloss": "to cause to fall",
           "note": "dhātu · apātayat (impf.) · DM 9.16"
-        },
-        {
-          "id": "07-karaka:war-combat:muc",
-          "devanagari": "√मुच्",
-          "iast": "√muc",
-          "gloss": "to release, shoot",
-          "note": "dhātu · mumoca (perf.), mukta (pp.) · DM 3.8"
         },
         {
           "id": "07-karaka:war-combat:dhav",
@@ -459,13 +445,6 @@
           "iast": "√khād",
           "gloss": "to devour",
           "note": "dhātu · cakhāda (perf.) · DM 9.37"
-        },
-        {
-          "id": "07-karaka:war-combat:pa",
-          "devanagari": "√पा",
-          "iast": "√pā",
-          "gloss": "to drink",
-          "note": "dhātu · papau (perf.) · DM 8.52+ (Kālī drinks blood)"
         },
         {
           "id": "07-karaka:war-combat:bhaks",

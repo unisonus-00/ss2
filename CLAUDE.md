@@ -1823,6 +1823,36 @@ adjective agreement genuinely needs Stage 5's gender and case, and every card
 carries it inline — `Make it agree: sundara + devī (f.)`. That is the pattern,
 not reordering the curriculum.
 
+### One fact, carded once
+
+A learner's time is the scarce thing, not the card count, so a fact carded
+twice costs a sitting and teaches nothing the first card did not. Sixty-five
+cards went in one pass, all of them the same fact in two lists:
+
+| | |
+|:--|:--|
+| **a deck inside another deck** | `V08 · Uvāca` held seven speech formulae; `V18 · Uvāca` holds all seven and eight more. The seven-card list is gone. |
+| **the fifty core dhātus, twice** | thirty roots — `√gam`, `√kṛ`, `√stu` — were carded as vocabulary in Stages 6, 7 and 8 *and* as the curriculum's own fifty in Stage 9, which is the stage that owns roots and the only one that gives the class and the pada. The vocabulary copies went; what those lists keep is what Stage 9 does not carry, which is the upasarga forms (`√ā-gam`, `√pra-yā`, `√upa-gam`). |
+| **the same word twice in one lesson** | twenty headwords appeared in a curated list and again in a vocabulary-bank list of the same stage, with the same meaning in different words — `durgā` as *the unassailable* and as *the inaccessible one*. The curated copy stays. |
+| **Stage 10's base words** | eight of `30 · Paryāya`'s fifteen cards asked for a meaning Stage 1 had already taught (`jalam → water`), with the synonyms only mentioned in the chip. The synonym sets are drilled by `Paryāya-varga` and `Bhinna-pada`, which is where that skill actually lives. |
+
+**One word with two senses is not a duplicate.** `śakti` is a spear in
+`V04 · Śastra` and power in `V01 · Saṃsthitā I`; `madhu` is honey and a demon;
+`kāla` is time and an epithet of Viṣṇu. Three named exceptions, because a
+substring test cannot tell a sense apart from a paraphrase.
+
+**What was not cut, and why.** Every `Rūpa-siddhi` production deck stands. So
+do the nine `Śabda-rūpa` tables: the delta and transfer treatment is already
+applied there wherever a source states the derivation — `Mātṛ` is three cards
+off `Pitṛ`, `Phala` four off the masculine, `Viṣṇu` a seven-form transfer off
+the i-stem — and cutting further would be taste rather than a rule. Three
+`tad-` duals are genuinely asked twice, in `Rūpa-siddhi · Saḥ` and `· Sā`,
+because the dual is genderless; each deck is a complete paradigm and the badge
+asks for complete paradigms, so they stay.
+
+`scripts/test.js` fails if a lesson holds the same headword with the same
+meaning in two lists, and if a core dhātu is carded anywhere but Stage 9.
+
 ### A reversed deck must still have one answer per cue
 
 Every reveal deck can be run backwards, and in that direction **the gloss is
@@ -2146,7 +2176,7 @@ Three things here are load-bearing for the compatibility list above:
   chain, and keep each step stamping its own version rather than the newest;
   every `localStorage` touch stays guarded, since it can be absent or full.
 
-The app carries 28 lessons, 178 decks, and 2291 cards — 1930 `reveal`, 356
+The app carries 28 lessons, 177 decks, and 2226 cards — 1865 `reveal`, 356
 `choice` and 5 `sequence`, spread over 34 interactive decks in 16 lessons,
 plus the mastery decks holding complete paradigms.
 They are curated practice, not conversions of the reference tables:
