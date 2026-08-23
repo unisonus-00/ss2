@@ -464,29 +464,41 @@ fixed on its own in any case: `build.py` holds it byte-identical to
 
 ### Navigation and progress
 
-**One child is folded away.** A level that has a single child adds a step
-without adding information, so the drawer skips it:
+**The drawer stops at the stage name.** It holds two levels and no more:
 
 | | |
 |:--|:--|
-| a track with one lesson | shows that lesson's lists directly — `Pūjā-Vāk` inside `Pūjā-Vāk` was the same name twice |
-| a lesson with one list | *is* that list; the row loads it instead of expanding |
-| both at once | the track row loads the list — `Svara-Vidyā`, `Avadhāna` |
+| a track | expands to its lessons |
+| a lesson | **opens its stage page** — which carries that lesson's lists |
 
-**Folded by what exists, never by a list of exceptions.** `soleLesson` and
-`soleDeck` read the tree, so the level reappears by itself the moment a second
-lesson or a second list does, and the curriculum stays the only thing driving
-the drawer. A track that folds counts what it actually holds — `· 11 lists`,
-`· 12 cards` — rather than `· 1 lesson`.
+So the walk is track → stage → list: the same three taps expanding a lesson
+used to take, with the stage's own prose on the way through. Nothing is
+nested under a lesson row any more, and a test asserts that no list sits a
+level deeper in the drawer.
+
+**One child is folded away.** A level that has a single child adds a step
+without adding information, so the drawer skips it: **a track with one lesson
+*is* that lesson**, and its row opens the stage page directly — `Pūjā-Vāk`
+inside `Pūjā-Vāk` was the same name twice. `Svara-Vidyā` and `Avadhāna` fold
+the same way.
+
+A lesson with one list is no longer folded onto that list: it has a stage page
+like every other lesson, and the list is the one row on it. Folding now
+governs which *name* a row carries, not where it leads.
+
+**Folded by what exists, never by a list of exceptions.** `soleLesson` reads
+the tree, so the level reappears by itself the moment a second lesson does,
+and the curriculum stays the only thing driving the drawer. A track that folds
+counts what it actually holds — `· 11 lists` — rather than `· 1 lesson`.
 
 Where a folded lesson's name differs from its track's, the subheading keeps it
 (`Avadhāna` / *Samasyāpūraṇa · 1 list*) so nothing is silently lost.
 
 ### The stage page
 
-A lesson says what it gives you before it asks anything of you. Expanding a
-lesson in the drawer leads with **About this stage**, which opens a page on
-the same palm-leaf surface:
+A lesson says what it gives you before it asks anything of you. **Tapping the
+stage name in the drawer opens its page** — that is what a lesson row does
+now — on the same palm-leaf surface:
 
 ```
 BHĀṢĀ-VIDYĀ
@@ -500,6 +512,13 @@ HOW THIS STAGE RUNS
 Tap the red line under any answer for the grammar behind it, and the
 book icon beside the list name to read the lesson's reference.
 [ Begin — Vibhakti-vacana ]
+
+24 LISTS IN THIS STAGE
+Vibhakti-vacana                                              0%
+the eight cases · 8 cards
+Vibhakti-rūpa                                                0%
+case and form · practice · 15 cards
+…
 ```
 
 - **The prose is written for someone who has never met the material.** The
@@ -513,8 +532,14 @@ book icon beside the list name to read the lesson's reference.
 - **The prompt changes once the stage has been started.** Untouched, it reads
   `Begin — <first list>`. With progress, the page shows stage percentage and
   lists complete, and the button reads `Continue — <first unfinished list>`.
-- **The row carries no percentage.** It is a way in, not a list, and
-  `rowButton` prints nothing where a row passes no `pct`.
+- **The page carries the lesson's lists.** They are the drawer's own rows,
+  drawn by `deckRow` and re-inked for the leaf, so a list shows the same
+  percentage, the same descriptor and the same `on` marking it had in the
+  drawer. This is why moving the page onto the lesson row costs no step: the
+  level that used to expand under the row is now the menu at the bottom of
+  the page, under prose saying what the lists are for.
+- **`Begin` leads, the menu follows.** The button is the answer for a learner
+  who does not yet know which list to take; the menu is for one who does.
 
 **The overview lives in the lesson's own `practice.json`**, beside the lists
 it describes, and declares its coupling to them:
@@ -554,6 +579,9 @@ LISTS COMPLETE                      0
 [ In progress ]      [ Scoreboard ]
 ```
 
+- **It says where the stages are.** A learner who has never opened the drawer
+  has no way to know the stage pages exist, so the welcome names the gesture:
+  *open the menu at the top left and tap a stage name — Nāma, Sandhi, Rūpa*.
 - **Anything that starts a round dismisses it.** `loadDeck()` and
   `startRound()` both call `leaveWelcome()`, so every other surface — the
   drawer, a review draw, the trouble drill — reaches the cards without

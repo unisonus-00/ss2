@@ -1048,20 +1048,28 @@ const open = async (browser, opts = {}) => {
     ok('no track repeats its own name one level down', !dup.length,
       dup.map(x => x.name).join(' | '));
 
-    // a track that comes down to a single list is that list
+    /* A track that comes down to a single lesson IS that lesson: no heading of
+       its own to expand, and the row opens that lesson's stage page. */
     const leaves = r.rows.filter(x => x.leaf).map(x => x.name);
-    ok('a track of one list is the list itself',
-      leaves.includes('Svara-Vidyā') && leaves.includes('Avadhāna'), leaves.join(' | '));
-
-    // a track with one lesson shows that lesson's lists directly
+    ok('a track of one lesson is that lesson itself',
+      ['Pūjā-Vāk', 'Svara-Vidyā', 'Avadhāna'].every(n => leaves.includes(n)),
+      leaves.join(' | '));
     const puja = r.rows.find(x => x.name === 'Pūjā-Vāk');
-    ok('a track of one lesson shows its lists directly',
-      puja && puja.kids.length === 11 && !puja.kids.includes('Pūjā-Vāk'),
-      puja ? puja.kids.length + ' rows' : 'missing');
+    ok('and has no level underneath repeating it',
+      puja && !puja.kids.length, puja ? puja.kids.join(' | ') : 'missing');
+    const folded = await p.evaluate(() => {
+      const row = [...document.querySelectorAll('.tr-head.leaf')]
+        .find(b => b.querySelector('.tr-name').textContent === 'Pūjā-Vāk');
+      row.click();
+      return { page: !document.getElementById('stagecard').hidden,
+               name: document.getElementById('s-name').textContent };
+    });
+    ok('a folded track still reaches its stage page',
+      folded.page && /Pūjā/.test(folded.name), folded.name);
 
-    // a lesson holding one list is that list, not a heading over it
+    // a lesson holding one list is still drawn as the lesson
     const kavya = r.rows.find(x => x.name === 'Kāvya-Racanā');
-    ok('a lesson of one list is the list itself',
+    ok('a lesson of one list is still the lesson',
       kavya && kavya.kids.includes('Alaṅkāra') && kavya.kids.includes('Rasa'),
       kavya ? kavya.kids.join(' | ') : 'missing');
 
@@ -1990,22 +1998,39 @@ const open = async (browser, opts = {}) => {
       && /^\d+ of \d+$/.test(again.done),
       again.go + ' · ' + again.pct + ' · ' + again.done);
 
-    // and the drawer leads each lesson's lists with the way in
+    /* The stage name in the drawer IS the way in: tapping it opens the page,
+       and the page carries the lesson's lists, so nothing moved further away. */
     const drawer = await p.evaluate(() => {
-      /* expand through the app's own state rather than by clicking: a track
-         left open by an earlier step would otherwise be collapsed by the click */
       const row = TRACK_ROWS.find(r => r.lessons.some(L => L.lesson === '05-rupa'));
       openDrawer();
       openTracks.add(row.track.id);
-      openLessons.add('05-rupa');
       renderDrawer();
-      const body = [...document.querySelectorAll('.ls-body:not([hidden])')]
-        .find(b => b.querySelector('[title="Rūpa"], .dk')) || document.querySelector('.ls-body:not([hidden])');
-      return { first: body.firstElementChild.className,
-               label: body.firstElementChild.textContent.replace(/\s+/g, ' ').trim() };
+      const head = [...document.querySelectorAll('.tr-body:not([hidden]) .ls-head')]
+        .find(b => b.querySelector('.ls-name').textContent === LESSON_LABEL['05-rupa']);
+      head.click();
+      const lists = [...document.querySelectorAll('#s-decks .dk')].map(b => b.title);
+      return { shut: document.getElementById('drawer').hidden,
+               page: !document.getElementById('stagecard').hidden,
+               name: document.getElementById('s-name').textContent,
+               heading: document.getElementById('s-lists-h').textContent,
+               lists: lists.length,
+               all: lists.length === Object.keys(DECKS).filter(n => DECK_LESSON[n] === '05-rupa').length,
+               deep: document.querySelectorAll('.ls-body .dk').length };
     });
-    ok('the stage page leads its lesson’s lists in the drawer',
-      /about/.test(drawer.first), drawer.first + ' · ' + drawer.label);
+    ok('tapping a stage name in the drawer opens its page',
+      drawer.shut && drawer.page && /Rūpa/.test(drawer.name), drawer.name);
+    ok('and the page carries every list in the stage',
+      drawer.all && /^\d+ lists in this stage$/.test(drawer.heading),
+      drawer.heading + ' · ' + drawer.lists + ' rows');
+    ok('so no list is buried a level deeper in the drawer',
+      drawer.deep === 0, drawer.deep + ' rows nested');
+    const reach = await p.evaluate(() => {
+      const rows = [...document.querySelectorAll('#s-decks .dk')];
+      return { minH: Math.min(...rows.map(b => b.getBoundingClientRect().height)),
+               overflow: document.documentElement.scrollWidth > window.innerWidth };
+    });
+    ok('and every list row on the page is a 44px target',
+      reach.minH >= 44 && !reach.overflow, reach.minH + 'px');
     await p.close();
   }
 
@@ -3182,14 +3207,17 @@ const open = async (browser, opts = {}) => {
       tracks: document.querySelectorAll('.tr-head').length,
       // the track and lesson holding the current list open on the way in
       lessons: document.querySelectorAll('.tr-body:not([hidden]) .ls-head').length,
-      decks: document.querySelectorAll('.ls-body:not([hidden]) .dk').length,
+      /* the lesson holding the current list is marked, so opening the drawer
+         mid-round shows where you are */
+      here: [...document.querySelectorAll('.tr-body:not([hidden]) .ls-head')]
+        .some(b => b.querySelector('.ls-name').textContent === LESSON_LABEL[DECK_LESSON[deckName]]),
       cards: document.getElementById('dp-cards').textContent,
       heads: [...document.querySelectorAll('#dr-prog .dp-h')].map(x => x.textContent).join(' | '),
     }));
     ok('the handle opens the drawer', opened.open && opened.veil);
     ok('every track is a heading', opened.tracks === 6, opened.tracks + ' headings');
-    ok('the drawer lands on the current lesson', opened.lessons > 0 && opened.decks > 0,
-      opened.lessons + ' lessons, ' + opened.decks + ' decks');
+    ok('the drawer lands on the current lesson', opened.lessons > 0 && opened.here,
+      opened.lessons + ' lessons showing');
     /* The section's own statistic is lists carried to 100%, not a card count
        already folded into the figure above it. */
     ok('course progress is counted in lists, not cards',
@@ -3197,21 +3225,24 @@ const open = async (browser, opts = {}) => {
       opened.heads + ' · ' + opened.cards);
 
     const reach = await p.evaluate(() => {
-      // shut everything, then walk down: track -> lesson -> deck
+      // shut everything, then walk down: track -> stage page -> deck
       openTracks.clear(); openLessons.clear(); renderDrawer();
       const before = document.querySelectorAll('.tr-body:not([hidden]) .ls-head').length;
       document.querySelector('.tr-head').click();
       const afterTrack = document.querySelectorAll('.tr-body:not([hidden]) .ls-head').length;
       document.querySelector('.tr-body:not([hidden]) .ls-head').click();
-      const afterLesson = document.querySelectorAll('.ls-body:not([hidden]) .dk').length;
-      return { before, afterTrack, afterLesson,
-               name: document.querySelector('.ls-body:not([hidden]) .dk').title };
+      const page = !document.getElementById('stagecard').hidden;
+      const afterLesson = document.querySelectorAll('#s-decks .dk').length;
+      return { before, afterTrack, page, afterLesson,
+               name: document.querySelector('#s-decks .dk').title };
     });
     ok('collapsed tracks hide their lessons', reach.before === 0, reach.before + ' showing');
     ok('a track expands to its lessons', reach.afterTrack > 0, reach.afterTrack + ' lessons');
-    ok('a lesson expands to its decks', reach.afterLesson > 0, reach.afterLesson + ' decks');
+    ok('a lesson opens its stage page', reach.page);
+    ok('and the stage page carries that lesson’s lists',
+      reach.afterLesson > 0, reach.afterLesson + ' lists');
 
-    await p.click('.ls-body:not([hidden]) .dk');
+    await p.click('#s-decks .dk');
     const chosen = await p.evaluate(() => ({
       shut: document.getElementById('drawer').hidden,
       deck: deckName, running: !!current,
@@ -3230,7 +3261,10 @@ const open = async (browser, opts = {}) => {
       document.getElementById('nav').click();
       document.querySelectorAll('.tr-head').forEach(b => { if (b.getAttribute('aria-expanded') === 'false') b.click(); });
       document.querySelectorAll('.ls-head').forEach(b => { if (b.getAttribute('aria-expanded') === 'false') b.click(); });
-      const rows = [...document.querySelectorAll('.tr-head, .ls-head, .dk, .dr-mode, .dr-x')];
+      /* scoped to the drawer: the stage page's list rows are the same `.dk`
+         button, and it is hidden behind the round that is running */
+      const rows = [...document.querySelectorAll('#drawer .tr-head, #drawer .ls-head, '
+        + '#drawer .dk, #drawer .dr-mode, #drawer .dr-x')];
       const r = document.getElementById('drawer').getBoundingClientRect();
       return {
         minH: Math.min(...rows.map(x => x.getBoundingClientRect().height)),

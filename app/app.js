@@ -810,15 +810,11 @@ const count = (n, word) => n + ' ' + word + (n === 1 ? '' : 's');
    standing in for its lesson keeps the lesson's size and indent. */
 function rowButton(cls, { name, pct, sub, full, on, bar, title }) {
   const b = document.createElement('button');
-  /* a deck row is `.dk` and the stage-page row `.about`; the two levels above
-     them are `.tr-head` / `.ls-head` */
-  b.className = (cls === 'dk' || cls === 'about' ? cls : cls + '-head') + (on ? ' on' : '');
+  b.className = (cls === 'dk' ? 'dk' : cls + '-head') + (on ? ' on' : '');
   b.innerHTML = `<span class="${cls}-name"></span><span class="${cls}-pct"></span>`
               + `<span class="${cls}-sub"></span>` + (bar ? '<span class="bar"><i></i></span>' : '');
   fillRow(b, { ['.' + cls + '-name']: name,
-               /* a row with no percentage to show is not a list — the stage
-                  page's row is a way in, and has no progress of its own */
-               ['.' + cls + '-pct']: pct === undefined ? '' : (full ? '✓' : pct + '%'),
+               ['.' + cls + '-pct']: full ? '✓' : pct + '%',
                ['.' + cls + '-sub']: sub });
   if (bar) setBar(b, pct);
   if (title) b.title = title;
@@ -839,12 +835,31 @@ function deckRow(name, cls) {
   return b;
 }
 
+/* A lesson's row IS its stage page.  The stage says what it gives you before
+   it asks anything, so the tap that used to expand a heading opens that page
+   instead — and the page carries the lesson's lists, so nothing moved further
+   away: track \u2192 stage \u2192 list is the same three taps expanding was. */
+function stageRow(cls, L, over) {
+  const p = progressOf(L.ids);
+  const b = rowButton(cls, Object.assign({
+    name: L.label, pct: p.pct, full: p.full, bar: true,
+    sub: [LESSON_GLOSS[L.lesson], count(L.decks.length, 'list')].filter(Boolean).join(' \u00b7 '),
+  }, over || {}));
+  b.classList.add('leaf');
+  b.addEventListener('click', () => { closeDrawer(); showStage(L.lesson); });
+  return b;
+}
+
 function lessonRow(L) {
+  /* A lesson with no overview has no page to open, so it keeps the older
+     behaviour and expands.  The drawer navigates what exists. */
+  if (OVERVIEW[L.lesson]) return stageRow('ls', L);
+
   const one = soleDeck(L);
   if (one) {
-    /* The lesson IS that list — but the row still has to say which lesson.
+    /* The lesson IS that list \u2014 but the row still has to say which lesson.
        Folding may not silently delete a curriculum name: `Chandas II` read
-       simply `Vṛtta`, and the drawer then had a Chandas I and no Chandas II.
+       simply `V\u1e5btta`, and the drawer then had a Chandas I and no Chandas II.
        So the lesson's name leads, exactly as a folded track's does, and the
        list's own name is kept in the subheading wherever it differs. */
     const r = deckRow(one, 'ls');
@@ -859,7 +874,7 @@ function lessonRow(L) {
   wrap.className = 'ls' + (p.full ? ' full' : '');
   const head = rowButton('ls', {
     name: L.label, pct: p.pct, full: p.full, bar: true,
-    sub: [LESSON_GLOSS[L.lesson], count(L.decks.length, 'list')].filter(Boolean).join(' · ')
+    sub: [LESSON_GLOSS[L.lesson], count(L.decks.length, 'list')].filter(Boolean).join(' \u00b7 ')
   });
   head.setAttribute('aria-expanded', open ? 'true' : 'false');
   head.addEventListener('click', () => { toggleIn(openLessons, L.lesson); renderDrawer(); });
@@ -868,19 +883,6 @@ function lessonRow(L) {
   const body = document.createElement('div');
   body.className = 'ls-body';
   body.hidden = !open;
-  /* The stage page leads the lists, because it is what the learner should
-     read before choosing one.  A lesson with no overview simply does not get
-     the row — the drawer navigates what exists. */
-  if (OVERVIEW[L.lesson]) {
-    const about = rowButton('about', {
-      name: 'About this stage',
-      sub: 'what it gives you, and how it runs',
-      title: L.label
-    });
-    about.classList.add('leaf');
-    about.addEventListener('click', () => { closeDrawer(); showStage(L.lesson); });
-    body.appendChild(about);
-  }
   L.decks.forEach(name => body.appendChild(deckRow(name)));
   wrap.appendChild(body);
   return wrap;
@@ -910,13 +912,22 @@ function renderDrawer() {
     const wrap = document.createElement('div');
     wrap.className = 'tr' + (p.full ? ' full' : '');
 
-    /* A track that comes down to a single list is that list: no heading of
-       its own to expand, since there is nothing underneath to reveal. */
+    /* A track that comes down to a single lesson IS that lesson: no heading of
+       its own to expand, since the level underneath would only repeat it.  The
+       row opens the stage page directly.  The track's own name leads; where
+       the lesson folded away is named something else, that name takes the
+       subheading, so no level of the curriculum vanishes without trace. */
+    if (only && OVERVIEW[only.lesson]) {
+      wrap.appendChild(stageRow('tr', only, {
+        name: t.name, pct: p.pct, full: p.full,
+        sub: foldedSub(only.label, t.name, t.gloss,
+                       [count(only.decks.length, 'list')]),
+      }));
+      host.appendChild(wrap);
+      return;
+    }
     if (onlyDeck) {
       const head = deckRow(onlyDeck, 'tr');
-      /* the track's own name leads.  Where the lesson folded away underneath
-         is named something else, that name takes the subheading rather than
-         the gloss, so no level of the curriculum vanishes without trace. */
       fillRow(head, { '.tr-name': t.name,
         '.tr-sub': foldedSub(only.label, t.name, t.gloss,
                              [DECKS[onlyDeck].length + ' cards']) });
@@ -962,22 +973,25 @@ function openDrawer() {
 }
 
 function closeDrawer(to) {
-  if (!drawerOpen()) return;
-  $('dveil').hidden = true;
-  $('drawer').hidden = true;
-  $('nav').setAttribute('aria-expanded', 'false');
+  if (drawerOpen()) {
+    $('dveil').hidden = true;
+    $('drawer').hidden = true;
+    $('nav').setAttribute('aria-expanded', 'false');
+  } else if (to !== 'card') return;
   /* Focus must not be left on a row that is now hidden.  It returns to the
      handle, except when a list was picked: there it goes to the card, so
-     space flips it straight away instead of re-opening the drawer. */
+     space flips it straight away instead of re-opening the drawer.  A list
+     picked from the stage page leaves a hidden row behind just as the drawer
+     does, and the drawer is already shut by then — hence the second arm. */
   $(to === 'card' ? 'card' : 'nav').focus();
 }
 
 /* Picking a list from the drawer, with the same guard the picker carried:
    a round that has been graded is not thrown away without asking. */
 async function chooseDeck(name) {
-  /* Already on this list — except while the landing card is up, where
+  /* Already on this list — except while a page is up over the cards, where
      picking your current list is exactly how you leave it. */
-  if (name === deckName && !mixed && $('welcome').hidden) { closeDrawer('card'); return; }
+  if (name === deckName && !mixed && !onPage()) { closeDrawer('card'); return; }
   if (roundInProgress()
       && !await ask('Leave this round? Your progress in it will be lost.', 'Leave it')) return;
   /* Load first, close second: closeDrawer('card') moves focus onto the card,
@@ -1123,6 +1137,14 @@ function renderStage(lesson) {
   const go = $('s-go');
   go.textContent = started ? 'Continue \u2014 ' + DECK_SHORT(next) : 'Begin \u2014 ' + DECK_SHORT(next);
   go.onclick = () => chooseDeck(next);
+  /* The page carries the lesson's own lists, because it is the lesson's way
+     in: the drawer's rows stop at the stage name, and picking a list happens
+     here, under the prose that says what the lists are for.  Same rows the
+     drawer drew, so progress and the list in play read exactly as before. */
+  const host = $('s-decks');
+  host.textContent = '';
+  names.forEach(n => host.appendChild(deckRow(n)));
+  $('s-lists-h').textContent = count(names.length, 'list') + ' in this stage';
   stageShown = lesson;
   return true;
 }
@@ -1147,6 +1169,9 @@ function quietChrome() {
   $('study-btn').hidden = true;
 }
 
+/* Is a page — the landing card or a stage — standing over the cards? */
+const onPage = () => !$('welcome').hidden || !$('stagecard').hidden;
+
 function showWelcome() {
   leavePage();
   renderWelcome();
@@ -1158,7 +1183,7 @@ function showWelcome() {
    gives the cards their chrome back.  Every surface that starts a round calls
    it, so none of them has to know a page exists. */
 function leavePage() {
-  const on = !$('welcome').hidden || !$('stagecard').hidden;
+  const on = onPage();
   $('welcome').hidden = true;
   $('stagecard').hidden = true;
   stageShown = null;
