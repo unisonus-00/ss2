@@ -158,7 +158,7 @@ const open = async (browser, opts = {}) => {
       };
     });
     // the chain runs to the end, not just to the step under test
-    ok('saved state runs the whole migration chain', r.version === 7, 'v' + r.version);
+    ok('saved state runs the whole migration chain', r.version === 8, 'v' + r.version);
     ok('a track already practised in is not re-gated',
       !!r.begun.bhasha && !!r.begun.home,
       Object.keys(r.begun).join(' | ') || 'none');
@@ -1058,6 +1058,9 @@ const open = async (browser, opts = {}) => {
         singleLessonTracks: TRACK_ROWS.filter(x => x.lessons.length === 1)
           .map(x => x.track.name),
         singleDeckLessons: LESSONS.filter(L => L.decks.length === 1).map(L => L.label),
+        /* what the folded track actually holds, so the count is not a
+           number the next list added has to chase */
+        pujaLists: (LESSONS.find(L => L.lesson === '17-puja-vak') || { decks: [] }).decks.length,
       };
     });
 
@@ -1070,7 +1073,7 @@ const open = async (browser, opts = {}) => {
        stand directly under the track's name, with no heading between. */
     const puja = r.rows.find(x => x.name === 'Pūjā-Vāk');
     ok('a track of one lesson shows its lists directly',
-      puja && puja.kids.length === 11 && !puja.kids.includes('Pūjā-Vāk'),
+      puja && puja.kids.length === r.pujaLists && !puja.kids.includes('Pūjā-Vāk'),
       puja ? puja.kids.length + ' rows' : 'missing');
     /* And one that comes down to a single list draws no row at all: the page
        the name opens has a Begin, and a menu of one is not a menu. */
@@ -3398,7 +3401,7 @@ const open = async (browser, opts = {}) => {
       SAVED.mastered = {};
       row.lessons.forEach(L => L.decks.forEach(n =>
         DECKS[n].forEach(c => { SAVED.mastered[c.id] = 1; })));
-      SAVED.review = { runs: 1, right: 9, seen: 10, cards: {} };
+      SAVED.review = { runs: 1, right: 9, seen: 10, cards: {}, recent: [[9, 10]] };
       out.track = rankOf(row.ids).score;
       out.course = rankOf().score;
       return out;
@@ -3586,6 +3589,71 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
+  // ── accuracy is what is happening now, not what always happened ────
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const out = {};
+      SAVED.review = { runs: 0, right: 0, seen: 0, cards: {}, recent: [] };
+      out.none = masteryPct();
+      pushRecent(10, 20); out.one = masteryPct();
+      pushRecent(20, 20); out.two = masteryPct();
+      /* eleven perfect sessions push the bad one out of the window */
+      for (let i = 0; i < 10; i++) pushRecent(20, 20);
+      out.window = SAVED.review.recent.length;
+      out.after = masteryPct();
+      return out;
+    });
+    ok('no accuracy before the first review', r.none === null, String(r.none));
+    ok('one session is the whole figure', r.one === 50, r.one + '%');
+    ok('two are averaged', r.two === 75, r.two + '%');
+    ok('and a bad session eventually falls out of the window',
+      r.window === 10 && r.after === 100, r.window + ' kept · ' + r.after + '%');
+
+    /* a v3 store carries its lifetime tally in whole, so the figure does not
+       move at the moment of upgrade */
+    const p2 = await browser.newPage();
+    p2.on('pageerror', e => { console.log('  PAGEERROR ' + e.message); fail.push('pageerror'); });
+    await p2.addInitScript(() => {
+      try {
+        localStorage.setItem('abhyāsaḥ', JSON.stringify({
+          v: 3, decks: {}, review: { runs: 4, right: 63, seen: 80 },
+          trouble: {}, cleared: 0, mastered: {} }));
+      } catch (e) {}
+    });
+    await p2.goto(FILE, { waitUntil: 'load' });
+    const carried = await p2.evaluate(() => ({
+      v: SAVED.v, recent: SAVED.review.recent, pct: masteryPct() }));
+    ok('an older store keeps its figure to the digit',
+      carried.v === 8 && carried.pct === 79,
+      'v' + carried.v + ' · ' + carried.pct + '%');
+    await p2.close();
+    await p.close();
+  }
+
+  // ── the drawer marks the one list to take next ─────────────────────
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      SAVED.mastered = {}; beginHome(); beginTrack('bhasha');
+      const row = TRACK_ROWS.find(x => x.track.id === 'bhasha');
+      const want = recommendOrder(row)[0];
+      openDrawer(); openTracks.add('bhasha'); openLessons.add(DECK_LESSON[want]);
+      renderDrawer();
+      const marked = [...document.querySelectorAll('.dk')]
+        .filter(b => /· next$/.test(b.querySelector('.dk-sub').textContent));
+      return { want: want, marked: marked.map(b => b.title),
+               /* one per begun track, never a row per list */
+               shutTrack: !!recommendedSet && !recommendedSet().has(
+                 recommendOrder(TRACK_ROWS.find(x => x.track.id === 'kavya'))[0]) };
+    });
+    ok('the recommended list is marked in the drawer',
+      r.marked.indexOf(r.want) >= 0, r.marked.join(' | ') || 'none');
+    ok('and only the recommended one', r.marked.length === 1, r.marked.length + ' marked');
+    ok('a track that has not been begun recommends nothing', r.shutTrack);
+    await p.close();
+  }
+
   // ── the results say which lists held up ───────────────────────────
   // A review crosses lists, so "which cards went wrong" is the wrong
   // question at the end of one; the learner-facing unit is the list.
@@ -3649,7 +3717,12 @@ const open = async (browser, opts = {}) => {
     const p = await open(browser);
     const r = await p.evaluate(() => {
       const out = {};
-      const acc = (right, seen) => { SAVED.review = { runs: 1, right: right, seen: seen }; };
+      /* accuracy is read off the last few sessions now, so a fixture states
+         one session at the ratio it wants */
+      const acc = (right, seen) => {
+        SAVED.review = { runs: 1, right: right, seen: seen, cards: {},
+                         recent: [[right, seen]] };
+      };
       /* a list is complete when every card in it has come back cold */
       const complete = names => {
         SAVED.decks = {}; SAVED.mastered = {};
@@ -4328,7 +4401,7 @@ const open = async (browser, opts = {}) => {
     ok('a perfect round on a smaller deck seeds nothing',
       r.resized.done === 0, r.resized.done + ' seeded');
     ok('a partial best score seeds nothing', r.partial.done === 0, r.partial.done + ' seeded');
-    ok('the store is stamped v7', r.v === 7, 'v' + r.v);
+    ok('the store is stamped v8', r.v === 8, 'v' + r.v);
     await p.close();
   }
 

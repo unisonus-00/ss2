@@ -322,6 +322,9 @@ SAVED.review = SAVED.review || { runs: 0, right: 0, seen: 0 };   // the review t
    sessions running it has come back right on the first try].  This is what
    lets a card rest after it is remembered and return sooner after a miss. */
 SAVED.review.cards = SAVED.review.cards || {};
+/* The last few sessions' results, [right, seen] each: what review accuracy
+   is now measured over. */
+SAVED.review.recent = SAVED.review.recent || [];
 SAVED.trouble = SAVED.trouble || {};       // per-card history, keyed by card
 SAVED.cleared = SAVED.cleared || 0;        // cards that have left the trouble list
 SAVED.mastered = SAVED.mastered || {};     // card ids answered right on a cold showing
@@ -352,7 +355,7 @@ const deckState = name => SAVED.decks[name] = SAVED.decks[name] || {};
 
    SAVED.decks is keyed by deck NAME, and deck names did not change in the
    migration, so per-deck best scores need no rescue. */
-const SAVED_VERSION = 7;
+const SAVED_VERSION = 8;
 if ((SAVED.v || 1) < 2) {
   let moved = 0;
   Object.values(DECKS).forEach(cards => cards.forEach(c => {
@@ -859,7 +862,7 @@ if ((SAVED.v || 1) < 6) {
       lift(trackIdOf(n));
   });
   if (SAVED.deck && DECKS[SAVED.deck]) lift(trackIdOf(SAVED.deck));
-  SAVED.v = SAVED_VERSION;
+  SAVED.v = 6;                        // this step only — v7 runs below
   save();
 }
 
@@ -932,15 +935,6 @@ function bumpStreak() {
   const yesterday = new Date(Date.now() - 864e5).toISOString().slice(0, 10);
   st.run = st.last === yesterday ? st.run + 1 : 1;
   st.last = now;
-  save();
-}
-
-/* v7 adds all three.  The awards are seeded from what is already true, so a
-   learner who upgrades mid-course is not handed a wall of announcements for
-   work they finished weeks ago. */
-if ((SAVED.v || 1) < 7) {
-  earnedNow().forEach(a => { SAVED.awards[a.key] = SAVED.awards[a.key] || 'earlier'; });
-  SAVED.v = SAVED_VERSION;
   save();
 }
 
@@ -1141,6 +1135,46 @@ const DECK_SHORT = name => {
   return t || name;
 };
 
+/* ── the last two migrations ────────────────────────────────
+   Placed here rather than beside the others because they read what a list is
+   CALLED, and `DECK_SHORT` is defined just above: a const cannot be used
+   before it is initialised, and a migration that throws takes the rest of the
+   page down with it.
+
+   They were also both dead until now.  The v6 step stamped `SAVED_VERSION`
+   rather than 6, so it wrote whatever the newest version happened to be and
+   every step after it was skipped — which is exactly what the rule about
+   stamping your own version exists to prevent.  Each of these stamps its own.
+
+   v7 adds the awards, the streak and the guided flag.  The awards are seeded
+   from what is already true, so a learner who upgrades mid-course is not
+   handed a wall of announcements for work they finished weeks ago. */
+if ((SAVED.v || 1) < 7) {
+  earnedNow().forEach(a => { SAVED.awards[a.key] = SAVED.awards[a.key] || 'earlier'; });
+  SAVED.v = 7;                        // this step only — v8 runs below
+  save();
+}
+
+/* v8 moves review accuracy from a lifetime average to a window over the last
+   ten sessions.  A learner mid-course has one lifetime tally and no session
+   history, so that tally is carried in whole as the window's first entry:
+   the figure is unchanged to the digit at the moment of upgrade, and it is
+   real evidence rather than a session-sized approximation of it.  It weighs
+   what it weighs, and falls out of the window after ten more reviews. */
+if ((SAVED.v || 1) < 8) {
+  const r = SAVED.review;
+  if (r.seen && !(r.recent || []).length) r.recent = [[r.right, r.seen]];
+  /* v7 never ran in the wild — the step before it stamped the newest version
+     and skipped it — so any store that reached v7 without awards has them
+     seeded here instead.  Seeding what is already true is a no-op for a
+     learner who has genuinely completed nothing. */
+  if (!Object.keys(SAVED.awards).length)
+    earnedNow().forEach(a => { SAVED.awards[a.key] = 'earlier'; });
+  SAVED.v = 8;
+  save();
+}
+
+
 /* ── the drawer ─────────────────────────────────────────
    Navigation is track → lesson → deck, opened from the button that names
    the list you are on.  A left drawer rather than a fixed sidebar: this page
@@ -1238,6 +1272,26 @@ function rowButton(cls, { name, pct, sub, full, on, bar, title }) {
 }
 
 /* A list, drawn at whatever level it has been folded up to. */
+/* The one list `Continue` would open in each track: the first unfinished one
+   in recommendation order.  Marked rather than enforced — every other list
+   stays open, and the mark is the guidance a learner facing 41 rows needs.
+
+   Computed once per drawer render: `finishedDecks()` walks every card in the
+   app, and asking it again for each of 178 rows is the kind of thing that
+   makes a phone feel slow. */
+let recCache = null;
+function recommendedSet() {
+  if (recCache) return recCache;
+  const done = finishedDecks();
+  recCache = new Set();
+  TRACK_ROWS.forEach(row => {
+    if (!trackBegun(row.track.id)) return;
+    const next = recommendOrder(row).find(n => done.indexOf(n) < 0);
+    if (next) recCache.add(next);
+  });
+  return recCache;
+}
+
 function deckRow(name, cls) {
   cls = cls || 'dk';
   const p = progressOf(DECK_IDS[name]);
@@ -1253,6 +1307,15 @@ function deckRow(name, cls) {
               ? confirmingIn(DECK_IDS[name]) + ' to confirm' : ''
          ].filter(Boolean).join(' · ')
   });
+  /* The one list the app is recommending, inked rather than faded: guidance
+     a learner facing 41 rows can actually see. */
+  if (recommendedSet().has(name)) {
+    const sub = b.querySelector('.' + cls + '-sub');
+    const nx = document.createElement('b');
+    nx.className = 'nx';
+    nx.textContent = 'next';
+    sub.append(' \u00b7 ', nx);
+  }
   b.classList.add('leaf');
   /* Shut until the stage has been begun.  The learner meets the stage before
      its lists, so a list that has not been introduced is greyed rather than
@@ -1334,6 +1397,7 @@ function shutNote(text) {
 }
 
 function renderDrawer() {
+  recCache = null;                    // one pass over the course, not 178
   const r = rankOf(), all = Object.keys(DECKS).length;
   /* Lists, not cards.  A card is the evidence underneath; a list is what a
      learner finishes, and it is the same act that puts the list into review —
@@ -1626,7 +1690,11 @@ function renderTrack(id) {
   $('s-review').hidden = !begun;
   $('s-review').textContent = due ? 'Abhyāsa \u00b7 ' + dueLabel(due) : 'Abhyāsa review';
   $('s-side').hidden = !begun;
-  $('s-side').textContent = due
+  const pool = reviewPool().length;
+  $('s-side').textContent = pool < REVIEW_MIN
+    ? 'Abhyāsa opens at ' + REVIEW_MIN + ' cards known cold — ' + pool + ' so far. '
+      + 'It brings them back later to see whether they stayed.'
+    : due
     ? (due > REVIEW_SIZE
         ? 'Abhyāsa has a full session waiting: cards you have already got right, '
           + 'brought back before they fade.'
@@ -2792,7 +2860,8 @@ function finish() {
          times and a card at rest 8 comes round, whenever those eight were. */
       const day = today();
       if (r.day !== day) { r.runs++; r.day = day; }
-      r.right += firstPass; r.seen += total;
+      r.right += firstPass; r.seen += total;   // the lifetime tally
+      pushRecent(firstPass, total);            // and the window accuracy reads
       recordReview(roundSource, new Set(missed));
       save();
     }
@@ -2957,13 +3026,25 @@ async function shareScore() {
   flashShare(await copyText(text) ? "copied \u2713" : "press \u2318/Ctrl+C");
 }
 
-/* Review mastery: every card ever drawn in a review, against the ones
-   answered on the first showing.  One running average, not per list —
-   the draw crosses lists by design. */
+/* Review accuracy: cards answered on the first showing, against cards drawn,
+   over the last RECENT_SESSIONS review sessions.  One running figure, not per
+   list — the draw crosses lists by design.
+
+   It used to be the lifetime average, and after a few hundred cards nothing
+   could move it: a bad first week was permanent and a good month invisible.
+   A window makes it answer the question a learner actually asks — how am I
+   doing now — and it is the same arithmetic over less. */
+const RECENT_SESSIONS = 10;
 const masteryPct = () => {
-  const r = SAVED.review;
-  return r.seen ? Math.round(r.right / r.seen * 100) : null;
+  const recent = SAVED.review.recent || [];
+  let right = 0, seen = 0;
+  recent.forEach(x => { right += x[0]; seen += x[1]; });
+  return seen ? Math.round(right / seen * 100) : null;
 };
+function pushRecent(right, seen) {
+  const r = SAVED.review;
+  r.recent = (r.recent || []).concat([[right, seen]]).slice(-RECENT_SESSIONS);
+}
 
 /* ── rank ──────────────────────────────────────────────────
    Review is the mastery system, and the rank is what it produces.  Two things

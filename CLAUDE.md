@@ -830,7 +830,7 @@ Every number follows from it:
 
 | | |
 |:--|:--|
-| **review accuracy** | correct on the first try, across everything reviewed |
+| **review accuracy** | correct on the first try, over the **last ten review sessions** |
 | **course coverage** | how much of the material has entered review — which is the cards you have got right cold at least once |
 | **overall mastery** | the two together, as one figure with a rank beside it |
 | **course progress** | lists complete, out of all of them |
@@ -864,6 +864,14 @@ Before there is a figure the drawer reads `Unranked`, and the card says what
 to do instead — *Learn 40 cards to unlock — 12 so far*, then *Reviewing 20
 cards from 59 learned · 12 due now*. **The mode's own name is never the thing
 being explained.**
+
+**Accuracy is a window, not a lifetime.** It was the running average over
+every card ever drawn, and after a few hundred that figure could not move: a
+bad first week was permanent, a good month invisible. `masteryPct()` now sums
+the last `RECENT_SESSIONS` (10) sessions' results out of `SAVED.review.recent`
+— the same arithmetic over less — so it answers the question a learner
+actually asks. The lifetime tally stays for *N cards reviewed*, which is a
+count rather than a rate.
 
 **Abhyāsa says what is waiting.** The drawer's button reads `abhyāsa · 12 due`
 and the track page's reminder counts the same cards; `dueCount()` is
@@ -1054,6 +1062,14 @@ Seven lists — about a hundred cards — now reach the alphabet, and sandhi
 follows four lists later. The breadth is reached once the spine is done,
 which is the point at which the vocabulary is worth having: by then the
 learner can read the grammar it is set in.
+
+**The drawer marks it, and marks nothing else.** `recommendedSet()` is the
+first unfinished list of each begun track in that order, and the row carries
+`· next` in the drawer's own ink rather than the faded tone the rest of the
+descriptor takes. It is guidance, not a gate — a learner facing Nāma's 41
+rows needs to be told where to start, and the other 40 stay open. Computed
+once per render: `finishedDecks()` walks every card in the app, and asking it
+again for each of 178 rows is the kind of thing that makes a phone feel slow.
 
 **Nothing is hidden, locked or reordered by this.** Every breadth list is in
 the drawer from the start, at its curriculum position, unlocked with the rest
@@ -1724,6 +1740,12 @@ runs one deck, so the cue is unambiguous where it is asked; only a reversed
 mixed review could pair them, and there the two lists are deliberately
 different treatments of the same word.
 
+An audit re-raised eight of these in `17-puja-vak` — *hand* answers `hastaḥ`
+in `08 · Aṅga` and `kara / hasta / pāṇi` in `V05 · Gātra` — and they were
+left alone on inspection, because the two lists are not duplicates: **Aṅga
+carries the inflected form nyāsa uses, V05 the stem and its synonyms.** That
+is the difference the rule above is about.
+
 ### The annotation names what a word is, not that it is a card
 
 The morphology chip read `HEADWORD | N. · STEM: YUDDHA- · A-STEM · FROM
@@ -1958,6 +1980,14 @@ Three things here are load-bearing for the compatibility list above:
   deck whose best round was perfect *and* whose size has not changed since.
   v3→v4 adds the per-card review history that paces the draw, starting empty
   because no record of *which* cards a past session showed ever existed.
+  v7→v8 windows the accuracy figure, carrying an older store's lifetime tally
+  in whole as the window's first entry so the number does not move at the
+  moment of upgrade. It also seeds the awards, because **v7 never ran in the
+  wild**: the v6 step stamped `SAVED_VERSION` instead of 6, so it wrote
+  whatever the newest version happened to be and every step after it was
+  skipped. That is exactly what the rule below exists to prevent, and the two
+  latest steps now sit after `DECK_SHORT` because they read what a list is
+  called — a migration that throws takes the rest of the page with it.
   v6→v7 adds `SAVED.awards` (seeded from what is already true, so upgrading
   mid-course does not hand back a wall of announcements for work finished
   weeks ago), `SAVED.streak`, and `SAVED.guided`.
@@ -1972,8 +2002,8 @@ Three things here are load-bearing for the compatibility list above:
   chain, and keep each step stamping its own version rather than the newest;
   every `localStorage` touch stays guarded, since it can be absent or full.
 
-The app carries 28 lessons, 176 decks, and 2332 cards — 1955 `reveal`, 372
-`choice` and 5 `sequence`, spread over 32 interactive decks in 15 lessons,
+The app carries 28 lessons, 178 decks, and 2344 cards — 1955 `reveal`, 384
+`choice` and 5 `sequence`, spread over 34 interactive decks in 16 lessons,
 plus the mastery decks holding complete paradigms.
 They are curated practice, not conversions of the reference tables:
 
@@ -2001,6 +2031,12 @@ They are curated practice, not conversions of the reference tables:
 - `02-varna-vidya` — 11 cards: what each pratyāhāra covers, and how one is
   formed, plus 4 set cards asking whether a given handful of sounds falls
   inside `ik`, `ac` or `hal`. No articulation widget, as the plan forbids.
+- `17-puja-vak` — 12 cards in two decks, and the stage's first exercises of
+  any kind: the offering formula (`śrī-___ namaḥ · gandhaṃ samarpayāmi`,
+  which is the dative-against-accusative discrimination the badge turns on)
+  and the five closing words of aṅga-nyāsa. Every answer and every distractor
+  is the workbook's own — sections D1–D3 and B2 — and the three numbered
+  lists that feed them are marked `core`.
 - `10-paryaya` — 21 cards in two decks, and the lesson's first exercises of
   any kind: pick the set that is entirely one category, and spot the one name
   that does not belong. See **An option may be a set**.

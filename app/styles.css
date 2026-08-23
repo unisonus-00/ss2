@@ -743,6 +743,9 @@
   .dk.on { border-color: var(--leaf); }
   .dk-name { grid-area: name; font-size: .86rem; }
   .dk-sub { grid-area: sub; font-size: .66rem; color: var(--faded); }
+  /* the recommended list, in the drawer's own ink rather than the faded tone
+     the rest of the descriptor takes */
+  .dk-sub .nx, .ls-sub .nx, .tr-sub .nx { color: var(--leaf); font-weight: 600; font-style: normal; }
   .dk-pct { grid-area: pct; align-self: center; font-size: .74rem;
             color: var(--faded); font-variant-numeric: tabular-nums; }
   .dk.full .dk-pct { color: var(--patra); font-size: .9rem; }

@@ -144,7 +144,8 @@
           "gloss": "service, attendance",
           "note": "prathamā | nom. sg. · f. · stem: sevā- · ā-stem"
         }
-      ]
+      ],
+      "role": "core"
     },
     {
       "name": "08 · Aṅga — body and nyāsa",
@@ -254,7 +255,8 @@
           "gloss": "body",
           "note": "prathamā | nom. sg. · m. · stem: deha- · a-stem"
         }
-      ]
+      ],
+      "role": "core"
     },
     {
       "name": "33 · Saṅkalpa-vāk — ritual formulae",
@@ -356,6 +358,175 @@
           "iast": "astu",
           "gloss": "let it be",
           "note": "3 sg. impv. · √as · parasmaipada"
+        }
+      ],
+      "role": "core"
+    },
+    {
+      "name": "Samarpaṇa — the offering formula · practice",
+      "desc": "practice",
+      "cards": [
+        {
+          "id": "17-puja-vak:samarpana:śivāya",
+          "type": "choice",
+          "front": "“to Śiva”\nśrī-___ namaḥ · gandhaṃ samarpayāmi",
+          "options": [
+            "śivāya",
+            "śivam",
+            "śivasya"
+          ],
+          "answer": "śivāya",
+          "note": "caturthī · dative — the deity receives the offering; gandhaṃ is what is given",
+          "source": "workbook D1"
+        },
+        {
+          "id": "17-puja-vak:samarpana:lalitāyai",
+          "type": "choice",
+          "front": "“to Lalitā”\nśrī-___ namaḥ · puṣpaṃ samarpayāmi",
+          "options": [
+            "lalitāyai",
+            "lalitām",
+            "lalitāyāḥ"
+          ],
+          "answer": "lalitāyai",
+          "note": "caturthī · dative — the deity receives the offering; puṣpaṃ is what is given",
+          "source": "workbook D1"
+        },
+        {
+          "id": "17-puja-vak:samarpana:gaṇeśāya",
+          "type": "choice",
+          "front": "“to Gaṇeśa”\nśrī-___ namaḥ · naivedyaṃ samarpayāmi",
+          "options": [
+            "gaṇeśāya",
+            "gaṇeśam",
+            "gaṇeśasya"
+          ],
+          "answer": "gaṇeśāya",
+          "note": "caturthī · dative — the deity receives the offering; naivedyaṃ is what is given",
+          "source": "workbook D1"
+        },
+        {
+          "id": "17-puja-vak:samarpana:kālyai",
+          "type": "choice",
+          "front": "“to Kālī”\nśrī-___ namaḥ · dīpaṃ samarpayāmi",
+          "options": [
+            "kālyai",
+            "kālīm",
+            "kālyāḥ"
+          ],
+          "answer": "kālyai",
+          "note": "caturthī · dative — the deity receives the offering; dīpaṃ is what is given",
+          "source": "workbook D1"
+        },
+        {
+          "id": "17-puja-vak:samarpana:viṣṇave",
+          "type": "choice",
+          "front": "“to Viṣṇu”\nśrī-___ namaḥ · dhūpaṃ samarpayāmi",
+          "options": [
+            "viṣṇave",
+            "viṣṇum",
+            "viṣṇoḥ"
+          ],
+          "answer": "viṣṇave",
+          "note": "caturthī · dative — the deity receives the offering; dhūpaṃ is what is given",
+          "source": "workbook D1"
+        },
+        {
+          "id": "17-puja-vak:samarpana:deity-case",
+          "type": "choice",
+          "front": "Which vibhakti does the deity name take in an offering formula?",
+          "options": [
+            "caturthī · dative · the recipient",
+            "dvitīyā · accusative · the object",
+            "ṣaṣṭhī · genitive · possession"
+          ],
+          "answer": "caturthī · dative · the recipient",
+          "note": "samarpayāmi takes a dative recipient and an accusative object · “śrīśivam namaḥ” would make Śiva the thing being offered",
+          "source": "workbook D2"
+        },
+        {
+          "id": "17-puja-vak:samarpana:upacara-case",
+          "type": "choice",
+          "front": "Which vibhakti do the sixteen upacāras take?",
+          "options": [
+            "dvitīyā · accusative · the object",
+            "caturthī · dative · the recipient",
+            "tṛtīyā · instrumental · the means"
+          ],
+          "answer": "dvitīyā · accusative · the object",
+          "note": "gandham, puṣpam, dīpam — each is the direct object of samarpayāmi, answering “what am I offering?”",
+          "source": "workbook D3"
+        }
+      ]
+    },
+    {
+      "name": "Aṅga-nyāsa — the closing words · practice",
+      "desc": "practice",
+      "cards": [
+        {
+          "id": "17-puja-vak:nyasa:namaḥ",
+          "type": "choice",
+          "front": "Which closing word does aṅga-nyāsa use for surrender — the offering itself?",
+          "options": [
+            "namaḥ",
+            "svāhā",
+            "phaṭ"
+          ],
+          "answer": "namaḥ",
+          "note": "the word that gives; every upacāra formula ends with it",
+          "source": "workbook B2"
+        },
+        {
+          "id": "17-puja-vak:nyasa:svāhā",
+          "type": "choice",
+          "front": "Which closing word does aṅga-nyāsa use for oblation, as into the Vedic fire?",
+          "options": [
+            "svāhā",
+            "namaḥ",
+            "vauṣaṭ"
+          ],
+          "answer": "svāhā",
+          "note": "the fire-offering word, carried into ritual from the Veda",
+          "source": "workbook B2"
+        },
+        {
+          "id": "17-puja-vak:nyasa:huṃ",
+          "type": "choice",
+          "front": "Which closing word does aṅga-nyāsa use for protection, warding?",
+          "options": [
+            "huṃ",
+            "phaṭ",
+            "svāhā"
+          ],
+          "answer": "huṃ",
+          "note": "the guarding bīja",
+          "source": "workbook B2"
+        },
+        {
+          "id": "17-puja-vak:nyasa:vauṣaṭ",
+          "type": "choice",
+          "front": "Which closing word does aṅga-nyāsa use for consecration, empowerment?",
+          "options": [
+            "vauṣaṭ",
+            "huṃ",
+            "namaḥ"
+          ],
+          "answer": "vauṣaṭ",
+          "note": "the word that charges the limb it is placed on",
+          "source": "workbook B2"
+        },
+        {
+          "id": "17-puja-vak:nyasa:phaṭ",
+          "type": "choice",
+          "front": "Which closing word does aṅga-nyāsa use for deploying the weapon, dispersal?",
+          "options": [
+            "phaṭ",
+            "huṃ",
+            "vauṣaṭ"
+          ],
+          "answer": "phaṭ",
+          "note": "the astra-bīja: it drives away",
+          "source": "workbook B2"
         }
       ]
     },
