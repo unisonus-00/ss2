@@ -1002,7 +1002,7 @@
     <div id="b-list"></div>
     <!-- Which build this is.  A bug report that cannot name the build it came
          from cannot be acted on, and several are in the wild at once. -->
-    <div class="b-build">build e5fdcff</div>
+    <div class="b-build">build ea888ac</div>
   </div>
 </div>
 
@@ -1575,8 +1575,6 @@ if ((SAVED.v || 1) < 4) {
    Keyed by card rather than by card-in-a-list, so a word you keep losing
    is one problem however many lists happen to carry it. */
 const TROUBLE_WRONG = 3, TROUBLE_CLEAR = 3;
-const SESSION = Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
-
 function markWrong(card) {
   const k = cardKey(card);
   const rec = SAVED.trouble[k] = SAVED.trouble[k] || { w: 0, r: 0, s: "" };
@@ -1601,12 +1599,13 @@ function markWrong(card) {
    answers in one sitting, because "three right answers in one sitting is
    recognition, not memory".
 
-   The day rather than the page-load id `SESSION`, for two reasons.  A page
-   load is not a unit of time at all: a phone tab left open for a week would
-   hold one session the whole time, so a card lost on Monday could never be
-   counted again all week — a worse fault than the one being fixed.  And a
-   reload would otherwise hand out a free pass.  The day rolls over on its
-   own and cannot be minted.
+   The day rather than a page-load id, for two reasons.  A page load is not a
+   unit of time at all: a phone tab left open for a week would hold one
+   "session" the whole time, so a card lost on Monday could never be counted
+   again all week — a worse fault than the one being fixed.  And a reload
+   would otherwise hand out a free pass.  The day rolls over on its own and
+   cannot be minted.  The trouble list's own clearing rule keyed on that
+   page-load id until it was brought into line here.
 
    Nothing new is stored: the stamp goes on the trouble record, which
    `markWrong` already creates on the first wrong answer.  A missing stamp
@@ -1616,8 +1615,14 @@ const lostToday = card => (SAVED.trouble[cardKey(card)] || {}).m === today();
 function markRight(card) {
   const k = cardKey(card), rec = SAVED.trouble[k];
   if (!rec || rec.w < TROUBLE_WRONG) return;   // only cards on the list count out
-  if (rec.s === SESSION) return;               // one credit per session, however many rounds
-  rec.s = SESSION;
+  /* One credit a day, however many rounds — and the day rather than the
+     page-load id this used to key on.  A page load is not a unit of time at
+     all: a phone tab left open for a week held one "session" for as long as
+     it lived, so a card could never be cleared all week; a reload between
+     two rounds handed out a free credit.  The day rolls over on its own and
+     cannot be minted, which is the same reason `lostToday` uses it. */
+  if (rec.s === today()) return;
+  rec.s = today();
   if (++rec.r >= TROUBLE_CLEAR) { delete SAVED.trouble[k]; SAVED.cleared++; }
   save();
 }
@@ -4287,7 +4292,7 @@ function renderBoard() {
     $('b-mpct').textContent = "";
     $('b-msub').textContent = pool >= REVIEW_MIN
       ? "unlocked \u00b7 open Abhyāsa from the drawer"
-      : "locked \u00b7 " + pool + " of " + REVIEW_MIN + " cards from completed lists";
+      : "locked \u00b7 " + pool + " of " + REVIEW_MIN + " cards known cold";
   }
 
   const rows = Object.keys(DECKS)
@@ -4296,15 +4301,22 @@ function renderBoard() {
     .sort((a, b) => (b.best[0] / b.best[1]) - (a.best[0] / a.best[1])
                  || a.name.localeCompare(b.name));
 
+  /* Two different facts, and they used to be one word.  The rows below are
+     best scores, so a list appears once it has been played to the end at any
+     score; "complete" means every card in it has come back cold, which is
+     what the drawer counts.  Saying both keeps the two surfaces from
+     disagreeing about the same word. */
+  const complete = finishedDecks().length;
   $('b-sub').textContent = rows.length
-    ? rows.length + " of " + Object.keys(DECKS).length + " lists completed"
+    ? complete + " of " + Object.keys(DECKS).length + " lists complete \u00b7 "
+      + rows.length + " played"
     : "";
 
   const list = $('b-list');
   list.innerHTML = "";
   if (!rows.length) {
-    list.innerHTML = '<div class="clean">Nothing here yet — finish a list '
-                   + 'and its best score will appear.</div>';
+    list.innerHTML = '<div class="clean">Nothing here yet — play a list to '
+                   + 'the end and its best score will appear.</div>';
     return;
   }
   rows.forEach(d => {

@@ -2426,7 +2426,7 @@ const open = async (browser, opts = {}) => {
     await p.evaluate(() => loadDeck(Object.keys(DECKS)[0]));  // off the landing card
     // and every one of them still opens and renders
     for (const [btn, id, want] of [
-      ['#dr-board', 'board', /lists completed/],
+      ['#dr-board', 'board', /lists complete · \d+ played/],
       ['#dr-prog', 'reviewpanel', /Reviewing \d+ cards from \d+ learned/],
       ['#dr-trouble', 'trouble', /cleared/],
     ]) {
@@ -3692,6 +3692,70 @@ const open = async (browser, opts = {}) => {
       !r.headwordCase.length, r.headwordCase.slice(0, 3).join(' | '));
     ok('and nothing is labelled two parts of speech at once',
       !r.bothLabels.length, r.bothLabels.slice(0, 3).join(' | '));
+    await p.close();
+  }
+
+  // ── a sitting is a day, on both ends of the trouble list ──────────
+  // The clearing rule used to key on a page-load id: a tab left open for a
+  // week could never clear a card, and a reload between two rounds handed
+  // out a free credit.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const out = {};
+      const c = DECKS[Object.keys(DECKS)[0]][0];
+      SAVED.trouble = {};
+      for (let i = 0; i < 3; i++) markWrong(c);        // onto the list
+      out.listed = troubleCards().length === 1;
+      markRight(c); markRight(c); markRight(c);        // three in one sitting
+      out.oneCredit = (SAVED.trouble[c.id] || {}).r === 1;
+      /* a new day, and the next credit lands */
+      SAVED.trouble[c.id].s = '2020-01-01';
+      markRight(c);
+      out.nextDay = (SAVED.trouble[c.id] || {}).r === 2;
+      /* the stamp is a date, not a random page id */
+      out.stampsADay = /^\d{4}-\d{2}-\d{2}$/.test(SAVED.trouble[c.id].s);
+      /* and a wrong answer counts however close together they were */
+      SAVED.trouble = {};
+      markWrong(c); markWrong(c); markWrong(c);
+      out.wrongsCount = (SAVED.trouble[c.id] || {}).w === 3;
+      return out;
+    });
+    ok('three wrong answers list a card, however close together', r.listed && r.wrongsCount);
+    ok('but three right ones in a sitting are one credit', r.oneCredit);
+    ok('and the next day the next credit lands', r.nextDay);
+    ok('the sitting is stamped as a day, not a page load', r.stampsADay);
+    await p.close();
+  }
+
+  // ── "complete" means the same thing on every surface ──────────────
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const small = Object.keys(DECKS).find(n => DECKS[n].length <= 8);
+      SAVED.mastered = {}; SAVED.decks = {};
+      /* played to the end at 0 — a best score, and nothing learned */
+      SAVED.decks[small] = { best: [0, DECKS[small].length], pile: [] };
+      openDrawer(); renderDrawer();
+      const drawer = document.getElementById('dp-cards').textContent;
+      closeDrawer();
+      openPanel('board');
+      const board = document.getElementById('b-sub').textContent;
+      const row = document.getElementById('dm-board').textContent;
+      closePanel();
+      return { drawer: drawer, board: board, row: row };
+    });
+    /* the drawer says 0 complete; the board must not say 1 completed */
+    const n = s => (s.match(/\d+/) || [])[0];
+    ok('the scoreboard and the drawer agree on how many lists are complete',
+      n(r.board) === n(r.drawer) && n(r.drawer) === '0',
+      r.drawer + '  vs  ' + r.board);
+    ok('and the board still says what it holds, which is scores',
+      / \d+ played$/.test(r.board), r.board);
+    /* the row has a zero state of its own; what it may never do is claim a
+       completed list when the other two say there is none */
+    ok('and so does the row that opens it',
+      /no list finished yet/.test(r.row) || /^best scores · 0 of/.test(r.row), r.row);
     await p.close();
   }
 

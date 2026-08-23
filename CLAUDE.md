@@ -835,6 +835,15 @@ Every number follows from it:
 | **overall mastery** | the two together, as one figure with a rank beside it |
 | **course progress** | lists complete, out of all of them |
 
+**Every surface means the same thing by "complete".** The Scoreboard's own
+count said `12 of 178 lists completed`, counting decks with a best score —
+i.e. played to the end at any score — while the drawer beside it counted
+lists whose every card had come back cold. Two numbers, one word, both on
+screen at once. The board says `3 of 178 lists complete · 12 played` now:
+the rows below it are best scores and a list earns one by being finished at
+any score, so both facts are stated rather than conflated. A test seeds a
+list played to the end at zero and fails if the two surfaces disagree.
+
 **The pool is cards, not lists, and that is a correction.** A list used to
 enter the review by being *completed*, and `finishedDecks()` read completion
 off `ds.best` — which is set on the first finish at **any** score. A 15-card
@@ -1288,8 +1297,15 @@ memory*.
 **The trouble list's two ends are deliberately asymmetric**, and the code
 comment used to claim otherwise. Three *wrong* answers count however close
 together they were — a card you keep losing today is trouble today — while
-three *right* ones count once per session each. Getting in is easy and
-getting out is not, which is the way round it should be.
+three *right* ones count once a day each. Getting in is easy and getting out
+is not, which is the way round it should be.
+
+**And its "sitting" is a day**, like every other sitting in the app. It keyed
+on a page-load id until this pass, which fails in both directions: a phone
+tab left open for a week held one "session" the whole time, so a card could
+never be cleared all week, and a reload between two rounds handed out a free
+credit. `markRight` stamps `today()` now, exactly as `lostToday` does, and a
+test checks the stamp is a date rather than a random string.
 
 **The day, not the page-load id `SESSION`.** A page load is not a unit of time
 at all: a phone tab left open for a week holds one session for as long as it
