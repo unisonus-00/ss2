@@ -2,6 +2,297 @@
   "lesson": "10-paryaya",
   "decks": [
     {
+      "name": "Set membership — practice",
+      "cards": [
+        {
+          "id": "10-paryaya:set:siva-rivals",
+          "type": "choice",
+          "front": "Which set consists entirely of names for Śiva?",
+          "options": [
+            "haraḥ · śambhuḥ · rudraḥ",
+            "hariḥ · keśavaḥ · mādhavaḥ",
+            "induḥ · somaḥ · vidhuḥ",
+            "ambā · gaurī · lalitā"
+          ],
+          "answer": "haraḥ · śambhuḥ · rudraḥ",
+          "note": "the others are Viṣṇu, the moon and Devī — each a whole set of its own",
+          "source": "reference · Deities"
+        },
+        {
+          "id": "10-paryaya:set:visnu-rivals",
+          "type": "choice",
+          "front": "Which set consists entirely of names for Viṣṇu?",
+          "options": [
+            "govindaḥ · acyutaḥ · janārdanaḥ",
+            "īśaḥ · bhavaḥ · tryambakaḥ",
+            "arkaḥ · raviḥ · bhānuḥ"
+          ],
+          "answer": "govindaḥ · acyutaḥ · janārdanaḥ",
+          "note": "īśa, bhava and tryambaka are Śiva; arka, ravi and bhānu the sun",
+          "source": "reference · Deities"
+        },
+        {
+          "id": "10-paryaya:set:devi-rivals",
+          "type": "choice",
+          "front": "Which set consists entirely of names for Devī?",
+          "options": [
+            "durgā · caṇḍikā · kālikā",
+            "bhairavaḥ · vāmadevaḥ · sadāśivaḥ",
+            "ambaram · vyoma · nabhaḥ"
+          ],
+          "answer": "durgā · caṇḍikā · kālikā",
+          "note": "the fierce name is not the giveaway — bhairava is Śiva, caṇḍikā Devī",
+          "source": "reference · Deities"
+        },
+        {
+          "id": "10-paryaya:set:sun-rivals",
+          "type": "choice",
+          "front": "Which set consists entirely of names for the sun?",
+          "options": [
+            "bhāskaraḥ · divākaraḥ · mārtaṇḍaḥ",
+            "niśākaraḥ · śaśī · mṛgāṅkaḥ",
+            "vahniḥ · analaḥ · pāvakaḥ"
+          ],
+          "answer": "bhāskaraḥ · divākaraḥ · mārtaṇḍaḥ",
+          "note": "divākara makes the day, niśākara the night — sun and moon, one syllable apart",
+          "source": "reference · Nature Synonyms"
+        },
+        {
+          "id": "10-paryaya:set:water-rivals",
+          "type": "choice",
+          "front": "Which set consists entirely of synonyms for water?",
+          "options": [
+            "toyam · salilam · payaḥ",
+            "nīrajam · jalajam · ambujam",
+            "sāgaraḥ · jaladhi · ratnākaraḥ"
+          ],
+          "answer": "toyam · salilam · payaḥ",
+          "note": "nīraja, jalaja and ambuja all mean water-born — and all name the lotus",
+          "source": "reference · Nature Synonyms"
+        },
+        {
+          "id": "10-paryaya:set:fire-rivals",
+          "type": "choice",
+          "front": "Which set consists entirely of synonyms for fire?",
+          "options": [
+            "vahniḥ · hutāśanaḥ · kṛśānuḥ",
+            "prabhākaraḥ · dinamaṇiḥ · savitā",
+            "ākāśaḥ · kham · antarikṣam"
+          ],
+          "answer": "vahniḥ · hutāśanaḥ · kṛśānuḥ",
+          "note": "the light-makers are the sun, not the fire",
+          "source": "reference · Nature Synonyms"
+        },
+        {
+          "id": "10-paryaya:set:siva-mixed",
+          "type": "choice",
+          "front": "Which set consists entirely of names for Śiva?",
+          "options": [
+            "īśānaḥ · paśupatiḥ · mṛḍaḥ",
+            "haraḥ · rudraḥ · keśavaḥ",
+            "śambhuḥ · induḥ · bhairavaḥ"
+          ],
+          "answer": "īśānaḥ · paśupatiḥ · mṛḍaḥ",
+          "note": "two of these sets are Śiva but for one word — keśava is Viṣṇu, indu the moon",
+          "source": "reference · Deities"
+        },
+        {
+          "id": "10-paryaya:set:visnu-mixed",
+          "type": "choice",
+          "front": "Which set consists entirely of names for Viṣṇu?",
+          "options": [
+            "hṛṣīkeśaḥ · vāmanaḥ · murāriḥ",
+            "keśavaḥ · mādhavaḥ · śaṅkaraḥ",
+            "hariḥ · govindaḥ · giriśaḥ"
+          ],
+          "answer": "hṛṣīkeśaḥ · vāmanaḥ · murāriḥ",
+          "note": "śaṅkara and giriśa are Śiva · vāmana is Viṣṇu, vāmadeva is not",
+          "source": "reference · Deities"
+        },
+        {
+          "id": "10-paryaya:set:devi-mixed",
+          "type": "choice",
+          "front": "Which set consists entirely of names for Devī?",
+          "options": [
+            "ambikā · bhavānī · jagadambā",
+            "pārvatī · gaurī · bhavaḥ",
+            "umā · lalitā · umāpatiḥ"
+          ],
+          "answer": "ambikā · bhavānī · jagadambā",
+          "note": "bhava is Śiva and bhavānī his consort · umāpati is her husband, not her",
+          "source": "reference · Deities"
+        },
+        {
+          "id": "10-paryaya:set:moon-mixed",
+          "type": "choice",
+          "front": "Which set consists entirely of names for the moon?",
+          "options": [
+            "induḥ · vidhuḥ · mṛgāṅkaḥ",
+            "somaḥ · śaśī · candraśekharaḥ",
+            "niśākaraḥ · sudhākaraḥ · divākaraḥ"
+          ],
+          "answer": "induḥ · vidhuḥ · mṛgāṅkaḥ",
+          "note": "candraśekhara wears the moon — he is Śiva · divākara is the sun",
+          "source": "reference · Nature Synonyms"
+        },
+        {
+          "id": "10-paryaya:set:lotus-mixed",
+          "type": "choice",
+          "front": "Which set consists entirely of synonyms for the lotus?",
+          "options": [
+            "kamalam · aravindam · puṇḍarīkam",
+            "paṅkajam · nīrajam · nīram",
+            "ambujam · jalajam · jalam"
+          ],
+          "answer": "kamalam · aravindam · puṇḍarīkam",
+          "note": "nīra and jala are the water itself; nīraja and jalaja are what grows in it",
+          "source": "reference · Nature Synonyms"
+        },
+        {
+          "id": "10-paryaya:set:ocean-mixed",
+          "type": "choice",
+          "front": "Which set consists entirely of synonyms for the ocean?",
+          "options": [
+            "sāgaraḥ · jaladhi · ratnākaraḥ",
+            "samudraḥ · sindhuḥ · salilam",
+            "udadhi · vāridhi · vāri"
+          ],
+          "answer": "sāgaraḥ · jaladhi · ratnākaraḥ",
+          "note": "vāri and salila are water · vāridhi and jaladhi are what holds it",
+          "source": "reference · Nature Synonyms"
+        },
+        {
+          "id": "10-paryaya:set:mountain-mixed",
+          "type": "choice",
+          "front": "Which set consists entirely of synonyms for a mountain?",
+          "options": [
+            "giriḥ · acalaḥ · śailaḥ",
+            "parvataḥ · adriḥ · giriśaḥ",
+            "nagaḥ · bhūdharaḥ · gaṅgādharaḥ"
+          ],
+          "answer": "giriḥ · acalaḥ · śailaḥ",
+          "note": "giriśa is lord of the mountain and gaṅgādhara bearer of the river — both Śiva",
+          "source": "reference · Nature Synonyms"
+        },
+        {
+          "id": "10-paryaya:set:fire-mixed",
+          "type": "choice",
+          "front": "Which set consists entirely of synonyms for fire?",
+          "options": [
+            "jvalanaḥ · dahanaḥ · vibhāvasuḥ",
+            "agniḥ · analaḥ · dinamaṇiḥ",
+            "pāvakaḥ · śikhī · prabhākaraḥ"
+          ],
+          "answer": "jvalanaḥ · dahanaḥ · vibhāvasuḥ",
+          "note": "dinamaṇi and prabhākara burn in the sky, not on the altar",
+          "source": "reference · Nature Synonyms"
+        }
+      ]
+    },
+    {
+      "name": "Spot the intruder — practice",
+      "cards": [
+        {
+          "id": "10-paryaya:odd:siva-padmanabha",
+          "type": "choice",
+          "front": "Which name does NOT belong with the others?",
+          "options": [
+            "haraḥ",
+            "mahādevaḥ",
+            "nīlakaṇṭhaḥ",
+            "padmanābhaḥ"
+          ],
+          "answer": "padmanābhaḥ",
+          "note": "the rest are Śiva · padmanābha is lotus-navelled — Viṣṇu",
+          "source": "reference · Deities"
+        },
+        {
+          "id": "10-paryaya:odd:visnu-vamadeva",
+          "type": "choice",
+          "front": "Which name does NOT belong with the others?",
+          "options": [
+            "keśavaḥ",
+            "govindaḥ",
+            "vāsudevaḥ",
+            "vāmadevaḥ"
+          ],
+          "answer": "vāmadevaḥ",
+          "note": "the rest are Viṣṇu · vāmadeva is Śiva, though vāmana is not",
+          "source": "reference · Deities"
+        },
+        {
+          "id": "10-paryaya:odd:devi-kapardi",
+          "type": "choice",
+          "front": "Which name does NOT belong with the others?",
+          "options": [
+            "durgā",
+            "caṇḍikā",
+            "kālikā",
+            "kapardī"
+          ],
+          "answer": "kapardī",
+          "note": "the rest are Devī · kapardī is the matted-haired one — Śiva",
+          "source": "reference · Deities"
+        },
+        {
+          "id": "10-paryaya:odd:sun-himamsu",
+          "type": "choice",
+          "front": "Which name does NOT belong with the others?",
+          "options": [
+            "arkaḥ",
+            "bhānuḥ",
+            "prabhākaraḥ",
+            "himāṃśuḥ"
+          ],
+          "answer": "himāṃśuḥ",
+          "note": "the rest are the sun · himāṃśu is cool-rayed — the moon",
+          "source": "reference · Nature Synonyms"
+        },
+        {
+          "id": "10-paryaya:odd:water-utpalam",
+          "type": "choice",
+          "front": "Which name does NOT belong with the others?",
+          "options": [
+            "toyam",
+            "salilam",
+            "udakam",
+            "utpalam"
+          ],
+          "answer": "utpalam",
+          "note": "the rest are water · utpala is the lotus",
+          "source": "reference · Nature Synonyms"
+        },
+        {
+          "id": "10-paryaya:odd:mountain-nabhas",
+          "type": "choice",
+          "front": "Which name does NOT belong with the others?",
+          "options": [
+            "adriḥ",
+            "śailaḥ",
+            "nagaḥ",
+            "nabhaḥ"
+          ],
+          "answer": "nabhaḥ",
+          "note": "the rest are the mountain · nabhas is the sky",
+          "source": "reference · Nature Synonyms"
+        },
+        {
+          "id": "10-paryaya:odd:fire-dhurjati",
+          "type": "choice",
+          "front": "Which name does NOT belong with the others?",
+          "options": [
+            "vahniḥ",
+            "analaḥ",
+            "dahanaḥ",
+            "dhūrjaṭiḥ"
+          ],
+          "answer": "dhūrjaṭiḥ",
+          "note": "the rest are fire · dhūrjaṭi carries the matted load — Śiva",
+          "source": "reference · Deities"
+        }
+      ]
+    },
+    {
       "name": "30 · Paryāya — synonym sets",
       "cards": [
         {

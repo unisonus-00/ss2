@@ -94,6 +94,59 @@
           "answer": "first sound + a later it-marker, covering everything between",
           "note": "ādir antyena sahetā · Pāṇini 1.1.71",
           "source": "theory · how pratyāhāras work"
+        },
+        {
+          "id": "02-varna-vidya:praty:set-ik",
+          "type": "choice",
+          "front": "Which set is covered entirely by ik?",
+          "options": [
+            "i · u · ṛ",
+            "i · u · e",
+            "a · i · u"
+          ],
+          "answer": "i · u · ṛ",
+          "note": "ik stops at the simple high vowels — e is a compound, a is not in it at all",
+          "source": "reference · Key Pratyāhāras"
+        },
+        {
+          "id": "02-varna-vidya:praty:set-ac",
+          "type": "choice",
+          "front": "Which set is covered entirely by ac?",
+          "options": [
+            "e · au · ṛ",
+            "a · ya · u",
+            "i · ha · o"
+          ],
+          "answer": "e · au · ṛ",
+          "note": "ac is every vowel and nothing else — ya and ha are hal",
+          "source": "reference · Key Pratyāhāras"
+        },
+        {
+          "id": "02-varna-vidya:praty:set-hal",
+          "type": "choice",
+          "front": "Which set is covered entirely by hal?",
+          "options": [
+            "ya · ra · ha",
+            "ya · ra · ṛ",
+            "va · la · e"
+          ],
+          "answer": "ya · ra · ha",
+          "note": "ṛ is a vowel, however consonantal it sounds · hal is the whole complement of ac",
+          "source": "reference · Key Pratyāhāras"
+        },
+        {
+          "id": "02-varna-vidya:praty:not-ik",
+          "type": "choice",
+          "front": "Which sound is NOT covered by ik?",
+          "options": [
+            "i",
+            "u",
+            "ṛ",
+            "e"
+          ],
+          "answer": "e",
+          "note": "e is in ac and in eṅ, never in ik — which is why guṇa turns ik into it",
+          "source": "reference · Key Pratyāhāras"
         }
       ]
     },

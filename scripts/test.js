@@ -1201,6 +1201,170 @@ const open = async (browser, opts = {}) => {
     }
   }
 
+  // ── a set question must have exactly one true answer ───────────────
+  // Set membership and intruder cards carry an integrity property that a
+  // one-word question does not: the answer is only right if EVERY member
+  // belongs, and the card is only fair if every other option holds at least
+  // one member that does not.  Get one word wrong and the question has two
+  // answers or none, which no amount of reading the card would reveal.
+  //
+  // So they are checked against the lesson's own reference rather than
+  // trusted.  10-paryaya/reference.md lists its categories outright, which
+  // makes word -> category a lookup, and an invented word a hard failure.
+  {
+    const p = await open(browser);
+    const cards = await p.evaluate(() => {
+      const out = [];
+      Object.entries(DECKS).forEach(([n, cs]) => {
+        if (DECK_LESSON[n] !== '10-paryaya') return;
+        cs.forEach(c => { if ((c.type || 'reveal') === 'choice') out.push(c); });
+      });
+      return out;
+    });
+    await p.close();
+
+    const REF = require('fs').readFileSync(
+      path.resolve(__dirname, '..', '10-paryaya', 'reference.md'), 'utf8');
+    const cats = {};                       // "Śiva" -> [names]
+    const add = (k, list) => { cats[k] = list.split(',').map(s => s.trim()).filter(Boolean); };
+    for (const m of REF.matchAll(/^### Deities — (\S+).*\n(.+)$/gm)) add(m[1], m[2]);
+    for (const m of REF.matchAll(/^\*\*(\w+):\*\*[ \t]*(.+)$/gm)) add(m[1], m[2]);
+    const home = {};                       // name -> the one category holding it
+    Object.entries(cats).forEach(([k, ws]) => ws.forEach(w => { home[w] = k; }));
+    /* "names for Śiva", "synonyms for the lotus" -> the reference's own key.
+       An author naming a category the reference does not carry fails here,
+       which is the right failure: the card would be unanswerable. */
+    const keyOf = phrase => {
+      const last = phrase.trim().split(/\s+/).pop().toLowerCase();
+      return Object.keys(cats).find(k => k.toLowerCase() === last);
+    };
+
+    const SET = /^Which set consists entirely of (.+)\?$/;
+    const ODD = /^Which name does NOT belong with the others\?$/;
+    const bad = [], counts = { set: 0, odd: 0 };
+
+    cards.forEach(c => {
+      const s = (c.front || '').match(SET);
+      if (s) {
+        counts.set++;
+        const key = keyOf(s[1]);
+        if (!key) { bad.push(c.id + ': no reference category for "' + s[1] + '"'); return; }
+        const members = o => o.split(' · ');
+        // every option is drawn as a set of the same size, so the shape of an
+        // option can never be what gives the answer away
+        const sizes = new Set(c.options.map(o => members(o).length));
+        if (sizes.size !== 1) bad.push(c.id + ': options differ in size (' + [...sizes] + ')');
+        members(c.answer).forEach(w => {
+          if (!(w in home)) bad.push(c.id + ': "' + w + '" is in no reference list');
+          else if (home[w] !== key) bad.push(c.id + ': answer holds ' + w + ' (' + home[w] + '), not ' + key);
+        });
+        c.options.filter(o => o !== c.answer).forEach(o => {
+          members(o).forEach(w => {
+            if (!(w in home)) bad.push(c.id + ': "' + w + '" is in no reference list');
+          });
+          if (members(o).every(w => home[w] === key))
+            bad.push(c.id + ': distractor "' + o + '" is also entirely ' + key);
+        });
+        return;
+      }
+      if (ODD.test(c.front || '')) {
+        counts.odd++;
+        // options are bare words here, so the two formats stay distinguishable
+        if (c.options.some(o => o.includes(' · ')))
+          bad.push(c.id + ': an intruder card lists sets, not names');
+        const keep = c.options.filter(o => o !== c.answer);
+        const homes = new Set(keep.map(w => home[w]));
+        keep.concat(c.answer).forEach(w => {
+          if (!(w in home)) bad.push(c.id + ': "' + w + '" is in no reference list');
+        });
+        if (homes.size !== 1) bad.push(c.id + ': the other names span ' + [...homes].join('/'));
+        else if (home[c.answer] === [...homes][0])
+          bad.push(c.id + ': ' + c.answer + ' belongs with the rest');
+      }
+    });
+
+    ok('the reference parses into disjoint categories',
+      Object.keys(cats).length >= 10
+      && Object.values(cats).reduce((a, b) => a + b.length, 0) === Object.keys(home).length,
+      Object.keys(cats).length + ' categories');
+    ok('every set question has exactly one true answer', !bad.length, bad.slice(0, 5).join(' | '));
+    ok('both set formats are actually in use', counts.set >= 6 && counts.odd >= 4,
+      counts.set + ' membership · ' + counts.odd + ' intruder');
+    console.log('        ' + (counts.set + counts.odd) + ' set cards checked against '
+      + Object.keys(home).length + ' reference words');
+  }
+
+  // ── the pratyāhāra sets agree with the reference's own row ─────────
+  {
+    const p = await open(browser);
+    const cards = await p.evaluate(() =>
+      (DECKS['Pratyāhāras — practice'] || []).filter(c =>
+        /^Which (set is|sound is NOT) covered .*\bik\b/.test(c.front || '')));
+    await p.close();
+    const REF = require('fs').readFileSync(
+      path.resolve(__dirname, '..', '02-varna-vidya', 'reference.md'), 'utf8');
+    const row = REF.match(/^\|\s*\*\*ik\*\*\s*\|\s*([^|]+)\|/m);
+    const ik = new Set((row ? row[1] : '').split(',').map(s => s.trim()).filter(Boolean));
+    const bad = [];
+    cards.forEach(c => {
+      const inside = w => ik.has(w);
+      if (/NOT covered/.test(c.front)) {
+        if (inside(c.answer)) bad.push(c.id + ': ' + c.answer + ' IS in ik');
+        c.options.filter(o => o !== c.answer).forEach(o => {
+          if (!inside(o)) bad.push(c.id + ': ' + o + ' is not in ik either');
+        });
+      } else {
+        c.answer.split(' · ').forEach(w => { if (!inside(w)) bad.push(c.id + ': ' + w + ' is not in ik'); });
+        c.options.filter(o => o !== c.answer).forEach(o => {
+          if (o.split(' · ').every(inside)) bad.push(c.id + ': distractor "' + o + '" is also all ik');
+        });
+      }
+    });
+    ok('the ik cards agree with the reference', ik.size === 4 && cards.length >= 2 && !bad.length,
+      'ik = ' + [...ik].join(',') + (bad.length ? ' — ' + bad.join(' | ') : ''));
+  }
+
+  // ── a set option still fits a phone ────────────────────────────────
+  // Three names and two separators is a much longer option than "namāmi",
+  // and the card's visual language only survives if it still sets on one
+  // line: a wrapped option puts its ✓ on a line of its own.
+  {
+    const p = await open(browser, { viewport: { width: 360, height: 780 }, deviceScaleFactor: 2 });
+    const r = await p.evaluate(() => {
+      const names = Object.keys(DECKS).filter(n =>
+        DECKS[n].some(c => /^Which set consists entirely of/.test(c.front || '')));
+      const wide = [], wrapped = [];
+      let seen = 0, overflow = false;
+      names.forEach(name => {
+        const deck = DECKS[name];
+        for (let i = 0; i < deck.length; i++) {
+          loadDeck(name);
+          // walk to card i by answering correctly
+          for (let k = 0; k < i; k++) {
+            const b = [...document.querySelectorAll('#choices .opt')]
+              .find(x => x.textContent === current.card.answer);
+            if (!b) break;
+            b.click(); document.getElementById('g-next').click();
+          }
+          [...document.querySelectorAll('#choices .opt')].forEach(o => {
+            seen++;
+            const box = o.getBoundingClientRect();
+            if (box.right > innerWidth || box.left < 0) wide.push(o.textContent);
+            // one line: the box has not grown past its own minimum height
+            if (box.height > 50) wrapped.push(o.textContent + ' @' + Math.round(box.height));
+          });
+          if (document.documentElement.scrollWidth > innerWidth) overflow = true;
+        }
+      });
+      return { wide, wrapped, seen, overflow, lists: names.length };
+    });
+    ok('every set option fits a 360px screen', !r.wide.length && !r.overflow,
+      r.wide.slice(0, 3).join(' | '));
+    ok('and sets on a single line', !r.wrapped.length, r.wrapped.slice(0, 3).join(' | '));
+    console.log('        ' + r.seen + ' options measured across ' + r.lists + ' lists');
+    await p.close();
+  }
+
   // ── no choice card repeats a reveal card ───────────────────────────
   // A choice card that hands over the same operation and the same answer as
   // a reveal card in the same lesson is strictly the weaker of the two: the

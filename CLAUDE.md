@@ -842,6 +842,97 @@ The label stays short — five words at most where an item follows it — so the
 item is what gets read. A prompt that *ends* at its colon is a lead-in to the
 options and is a sentence by design, so the length rule does not apply to it.
 
+### An option may be a set
+
+A `choice` option is a string, so it can carry three names as easily as one —
+and that turns the same renderer into a test of **membership** rather than
+recognition. Nothing in `app.js`, the schema or the CSS changed to allow it;
+what changed is what an option is allowed to hold.
+
+```
+Which set consists entirely of names for Śiva?
+    haraḥ · śambhuḥ · rudraḥ      ✓
+    hariḥ · keśavaḥ · mādhavaḥ        (all Viṣṇu)
+    induḥ · somaḥ · vidhuḥ            (all the moon)
+    ambā · gaurī · lalitā             (all Devī)
+```
+
+**Recognising one word and knowing a set are different skills.** `induḥ →
+moon` can be answered from a half-memory of having seen the word; deciding
+that `śambhuḥ · induḥ · bhairavaḥ` is *not* a Śiva set cannot. Every member
+has to be checked, and one false member is enough to reject the whole option.
+That is the skill Paryāya is actually for, and the badge asks for it outright
+— *ten names for a single deity, five synonyms each for sun, water, lotus.*
+
+Two constructions, in one deck because they ask the identical question and
+differ only in how hard the rejection is:
+
+| | |
+|:--|:--|
+| **rival sets** | every distractor is itself a pure set of some *other* category — tests whether the categories are distinct in the learner's head |
+| **contaminated sets** | a distractor is the target category but for one intruder — `haraḥ · rudraḥ · keśavaḥ`, where only `keśavaḥ` is wrong |
+
+The second is much the harder, and the interesting one: gist is enough for the
+first and useless for the second.
+
+**The inverse gets its own deck**, because it is the inverse operation rather
+than a harder version of the same one — the category is not named, and the
+learner has to infer it from three of the four names before rejecting the
+fourth:
+
+```
+Which name does NOT belong with the others?
+    haraḥ    mahādevaḥ    nīlakaṇṭhaḥ    padmanābhaḥ ✓
+```
+
+The pairs that make these worth setting are the ones where a shared morpheme
+points the wrong way: `nīraja` and `jalaja` mean *water-born* and name the
+**lotus**; `divākara` makes the day and `niśākara` the night; `candraśekhara`
+carries the moon and is **Śiva**; `giriśa` is lord of the mountain and not a
+mountain; `umā` is Devī and `umāpati` her husband. A distractor built any
+other way is answerable by elimination and teaches nothing.
+
+**Every option holds the same number of members.** An option of two among
+options of three is answerable from its shape alone, without reading a word of
+it.
+
+#### A set question is checked, not trusted
+
+A one-word question is wrong in a way an author can see. A set question is
+wrong invisibly: one misfiled name and it has two right answers, or none, and
+the card still looks perfectly reasonable. So the answer is not the author's —
+it is the lesson's reference, and `scripts/test.js` re-derives it.
+
+`10-paryaya/reference.md` lists its categories outright, so it parses into 12
+disjoint sets over 189 names, and every card is checked against them:
+
+- every member of the answer is in the named category
+- every distractor holds at least one member that is not — so exactly one
+  option is true
+- every word on the card appears in the reference at all, so no vocabulary is
+  invented at the card
+- on an intruder card, the three kept names share exactly one category and the
+  answer sits outside it
+- the category the prompt names is one the reference actually carries
+
+The 4 pratyāhāra cards are checked the same way against `02-varna-vidya`'s own
+`ik` row. **A pratyāhāra is a set by definition**, which is why the format
+belongs there too — and membership is not the same drill as `Expand: ik`, which
+the deck already had: reciting the expansion is recall, deciding whether `e` is
+inside it is the thing guṇa turns on.
+
+Where else this fits, when the content is ready for it: gaṇa membership in
+`09-dhatu`, the ac / hal / viśeṣa categories in `03-sandhi`, the semantic
+fields of the `vocab/` bank. It does **not** fit anywhere the categories
+overlap — a word in two sets makes the question unanswerable, and the parse
+above fails loudly rather than shipping it.
+
+**A set option must still set on one line.** Three names and two separators is
+a far longer option than `namāmi`; at 360px the longest in use
+(`bhāskaraḥ · divākaraḥ · mārtaṇḍaḥ`) fits with room to spare, and a test walks
+every set card at that width and fails if any option wraps — a wrapped option
+puts its `✓` on a line of its own. Keep sets to three members.
+
 **`choice` is one renderer, not one per lesson.** Recognition ("which
 analysis?") and controlled transformation ("make it 'I'") differ only in the
 prompt. Options are shuffled per showing, so position is never what gets
@@ -926,8 +1017,8 @@ Three things here are load-bearing for the compatibility list above:
   chain, and keep each step stamping its own version rather than the newest;
   every `localStorage` touch stays guarded, since it can be absent or full.
 
-The app carries 24 lessons, 153 decks, and 2079 cards — 1929 `reveal`, 145
-`choice` and 5 `sequence`, spread over 13 interactive decks in 10 lessons,
+The app carries 24 lessons, 155 decks, and 2104 cards — 1929 `reveal`, 170
+`choice` and 5 `sequence`, spread over 16 interactive decks in 12 lessons,
 plus the mastery decks holding complete paradigms.
 They are curated practice, not conversions of the reference tables:
 
@@ -949,8 +1040,12 @@ They are curated practice, not conversions of the reference tables:
   answer names **both** the semantic role and the morphological case
   (`karaṇa · instrument · tṛtīyā · instr. sg.`), which is the distinction the
   lesson exists to teach.
-- `02-varna-vidya` — 7 cards: what each pratyāhāra covers, and how one is
-  formed. No articulation widget, as the plan forbids.
+- `02-varna-vidya` — 11 cards: what each pratyāhāra covers, and how one is
+  formed, plus 4 set cards asking whether a given handful of sounds falls
+  inside `ik`, `ac` or `hal`. No articulation widget, as the plan forbids.
+- `10-paryaya` — 21 cards in two decks, and the lesson's first exercises of
+  any kind: pick the set that is entirely one category, and spot the one name
+  that does not belong. See **An option may be a set**.
 - `08-sambodhana` — 9 cards: form the vocative across five stem types. The
   confusable pair is i-stems (`agne`) against u-stems (`viṣṇo`).
 - `09-dhatu` — the curriculum's **50 core dhātus**, all of them. The
