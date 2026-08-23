@@ -587,13 +587,16 @@ const TRACKS = [
       'Alaṅkāra and Rasa name what makes a verse land — simile, repeated sound, '
       + 'the flavour a piece leaves — and Darśana gives the philosophical '
       + 'vocabulary those verses lean on.',
+      'Three stages hand you the words for a particular job: Prārthanā the '
+      + 'forms that ask, Kathā the past tense a story is told in, and '
+      + 'Paryāya-Chandas the synonym that fits the slot the metre leaves.',
     ],
     note: 'The composing itself belongs to the workbook, where a good verse can be '
         + 'read as one however you have written it. These lists give you the '
         + 'bounded things worth knowing by heart first.',
     mentions: ['Stotra I', 'Stotra II', 'Chandas I', 'Chandas II', 'Chandas III',
-               'Alaṅkāra', 'Rasa', 'Darśana'],
-    lessons: 8 },
+               'Alaṅkāra', 'Rasa', 'Darśana', 'Prārthanā', 'Kathā', 'Paryāya-Chandas'],
+    lessons: 11 },
 
   { id: 'puja',     name: 'Pūjā-Vāk',     gloss: 'Ritual Literacy',
     has: s => s === 17,
@@ -1445,10 +1448,17 @@ function renderTrack(id) {
   const stages = row.lessons.filter(L => progressOf(L.ids).full).length;
   $('s-stagerow').hidden = !begun || row.lessons.length < 2;
   $('s-stages').textContent = stages + ' of ' + row.lessons.length;
-  const next = names.find(n => finishedDecks().indexOf(n) < 0) || names[0];
+  /* Nothing left to finish here: the track's own next step is the review,
+     not its first list over again. */
+  const next = names.find(n => finishedDecks().indexOf(n) < 0);
   const go = $('s-go');
-  go.textContent = (begun ? 'Continue — ' : 'Begin — ') + DECK_SHORT(next);
-  go.onclick = () => { beginTrack(id); chooseDeck(next); };
+  if (next) {
+    go.textContent = (begun ? 'Continue — ' : 'Begin — ') + DECK_SHORT(next);
+    go.onclick = () => { beginTrack(id); chooseDeck(next); };
+  } else {
+    go.textContent = 'Every list complete — review it';
+    go.onclick = () => { beginTrack(id); openPanel('reviewpanel'); };
+  }
   /* Abhyāsa is a reminder here, not a section: one line and a way in — and
      the line says what is waiting rather than only what the mode is. */
   const due = reviewPool().length >= REVIEW_MIN ? dueCount() : 0;

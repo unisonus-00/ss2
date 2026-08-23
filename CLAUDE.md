@@ -171,19 +171,29 @@ which complements the numbered stages rather than replacing them.
 
 Every lesson directory carries `theory.md`, `reference.md`,
 `workbook-questions.md`, `workbook-answers.md`, and `badge.md`. `bricks.md`
-exists only in `02-varna-vidya`, `05-rupa`, and `06-kriya`. 24 of the 36 carry
-a `practice.json`; the 12 without are composition and avadhāna stages, where
-open-ended production is the point and the workbook is the right home — every
-one of their badges asks the learner to *compose*, *narrate* or *rewrite*.
-Stage 22 joined the carded side when the classical metres moved to the stage
-that names them; its badge asks for composition, but the metres it composes in
-are a bounded set to know first.
-That is the rule, not a backlog: a stage is carded when its workbook holds a
-bounded operation to card. Stotra II looked like a gap next to Stotra I and
-was one — its workbook sections A and D (dative and genitive across stem
-types, and naming the vibhakti a devotional line turns on) are exactly that
-kind of operation, and are now carded, while its sections B and C stay in the
-workbook where composition belongs.
+exists only in `02-varna-vidya`, `05-rupa`, and `06-kriya`. 27 of the 36 carry
+a `practice.json`; the 9 without are all avadhāna performance stages
+(28–36), where open-ended production is the point and the workbook is the
+right home — every one of their badges asks the learner to *compose*,
+*narrate* or *perform*.
+
+**A stage is carded when its workbook holds a bounded operation to card.**
+That is the rule, not a backlog, and it has now been applied three more
+times. Stage 22 joined when the classical metres moved to the stage that
+names them. Stotra II looked like a gap next to Stotra I and was one — its
+sections A and D are bounded, B and C are composition and stay in the
+workbook. And the same reading of Kāvya-Racanā's three uncarded stages found
+bounded sections in all three:
+
+| | |
+|:--|:--|
+| **16 · Prārthanā** | section A's nine loṭ forms, and section B's five prayer lines completed by choosing the right imperative |
+| **18 · Kathā** | section A's nine laṅ forms, the past tense a story is told in |
+| **23 · Paryāya-Chandas** | sections A and B: the synonym that fits a slot of a given weight — the intersection of Paryāya and Chandas I, and the one drill in the app that cards do better than a workbook can, since the options can be shuffled |
+
+Every card in the three is the workbook's own answer, distractors included:
+`kamalam ∪∪∪ · padmam – – · paṅkajam – ∪∪` are all three the answer key's.
+Kāvya-Racanā went from 8 carded stages to 11, and from 233 cards to 267.
 
 Stage numbering is now consistent: directory number, `badge.md`, and every
 lesson file heading agree across all 36. See `AUDIT.md` for what was repaired
@@ -552,6 +562,9 @@ here keeps coming back.
   annotation, in kumkuma under its dotted rule, and the Study glyph itself.
   A test resolves the colour and the border style off the sample and fails if
   either stops matching a card's own.
+- **A track with nothing left to finish offers the review.** `Continue —
+  <first list>` pointed back at list one once every list was complete, which
+  is the one moment the review is exactly the right next thing.
 - **The prompt changes once the track has been begun.** Untouched, the page
   reports nothing and reads `Begin — <first list>`; that press is what opens
   the track. After it, the page carries **one** figure — track progress — and
@@ -792,7 +805,7 @@ lists — and it can no longer be handed material nobody has learnt. A test
 plays a list to the end at zero and fails if either figure moves.
 
 **`rankOf(ids)` takes a set of cards**, so the same figure in the same words
-can be given for one track against its own material. Over 2298 cards nothing
+can be given for one track against its own material. Over 2332 cards nothing
 a learner does in an evening visibly moves the number, which is why it read
 as dead; over one track's it moves. The track page carries it as `TRACK
 MASTERY 8% · Learner` under its own progress figure.
@@ -1694,8 +1707,8 @@ Three things here are load-bearing for the compatibility list above:
   chain, and keep each step stamping its own version rather than the newest;
   every `localStorage` touch stays guarded, since it can be absent or full.
 
-The app carries 25 lessons, 172 decks, and 2298 cards — 1937 `reveal`, 356
-`choice` and 5 `sequence`, spread over 30 interactive decks in 13 lessons,
+The app carries 28 lessons, 176 decks, and 2332 cards — 1955 `reveal`, 372
+`choice` and 5 `sequence`, spread over 32 interactive decks in 15 lessons,
 plus the mastery decks holding complete paradigms.
 They are curated practice, not conversions of the reference tables:
 

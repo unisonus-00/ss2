@@ -1,0 +1,154 @@
+{
+  "lesson": "23-paryaya-chandas",
+  "decks": [
+    {
+      "name": "Paryāya-mātrā — the synonym that fits · practice",
+      "desc": "practice",
+      "cards": [
+        {
+          "id": "23-paryaya-chandas:mitra:kamalam-lll",
+          "type": "choice",
+          "front": "Which word for “lotus” scans ∪ ∪ ∪?",
+          "options": [
+            "kamalam",
+            "padmam",
+            "paṅkajam"
+          ],
+          "answer": "kamalam",
+          "note": "kamalam ∪∪∪ · padmam – – · paṅkajam – ∪∪",
+          "source": "workbook A1.3"
+        },
+        {
+          "id": "23-paryaya-chandas:mitra:padmam-gg",
+          "type": "choice",
+          "front": "Which word for “lotus” scans – –?",
+          "options": [
+            "padmam",
+            "kamalam",
+            "paṅkajam"
+          ],
+          "answer": "padmam",
+          "note": "padmam – – · kamalam ∪∪∪ · paṅkajam – ∪∪",
+          "source": "workbook A1.4"
+        },
+        {
+          "id": "23-paryaya-chandas:mitra:paṅkajam-gll",
+          "type": "choice",
+          "front": "Which word for “lotus” scans – ∪ ∪?",
+          "options": [
+            "paṅkajam",
+            "padmam",
+            "kamalam"
+          ],
+          "answer": "paṅkajam",
+          "note": "paṅkajam – ∪∪ · padmam – – · kamalam ∪∪∪",
+          "source": "workbook A1.10"
+        },
+        {
+          "id": "23-paryaya-chandas:mitra:raviḥ-lg",
+          "type": "choice",
+          "front": "Which word for “the sun” scans ∪ –?",
+          "options": [
+            "raviḥ",
+            "sūryaḥ",
+            "arkaḥ"
+          ],
+          "answer": "raviḥ",
+          "note": "raviḥ ∪ – · sūryaḥ – – · arkaḥ – –",
+          "source": "workbook A1.1–2"
+        },
+        {
+          "id": "23-paryaya-chandas:mitra:candraḥ-gg",
+          "type": "choice",
+          "front": "Which word for “the moon” scans – –?",
+          "options": [
+            "candraḥ",
+            "induḥ",
+            "vidhuḥ"
+          ],
+          "answer": "candraḥ",
+          "note": "candraḥ – – · induḥ ∪ – · vidhuḥ ∪ –",
+          "source": "workbook A1.6, B1.3"
+        },
+        {
+          "id": "23-paryaya-chandas:mitra:jalam-ll",
+          "type": "choice",
+          "front": "Which word for “water” scans ∪ ∪?",
+          "options": [
+            "jalam",
+            "vāri",
+            "ambu"
+          ],
+          "answer": "jalam",
+          "note": "jalam ∪∪ · vāri – ∪ · ambu – ∪",
+          "source": "workbook A1.5, B1.4"
+        },
+        {
+          "id": "23-paryaya-chandas:mitra:analaḥ-lll",
+          "type": "choice",
+          "front": "Which word for “fire” scans ∪ ∪ ∪?",
+          "options": [
+            "analaḥ",
+            "agniḥ",
+            "vahniḥ"
+          ],
+          "answer": "analaḥ",
+          "note": "analaḥ ∪∪∪ · agniḥ – – · vahniḥ – –",
+          "source": "workbook A1.7, B1.5"
+        },
+        {
+          "id": "23-paryaya-chandas:mitra:haraḥ-lg",
+          "type": "choice",
+          "front": "Which word for “Śiva” scans ∪ –?",
+          "options": [
+            "haraḥ",
+            "śambhuḥ",
+            "mahādevaḥ"
+          ],
+          "answer": "haraḥ",
+          "note": "haraḥ ∪ – · śambhuḥ – – · mahādevaḥ ∪ – – ∪",
+          "source": "workbook A2"
+        },
+        {
+          "id": "23-paryaya-chandas:mitra:śambhuḥ-gg",
+          "type": "choice",
+          "front": "Which word for “Śiva” scans – –?",
+          "options": [
+            "śambhuḥ",
+            "haraḥ",
+            "maheśvaraḥ"
+          ],
+          "answer": "śambhuḥ",
+          "note": "śambhuḥ – – · haraḥ ∪ – · maheśvaraḥ ∪ – ∪∪∪",
+          "source": "workbook A2"
+        },
+        {
+          "id": "23-paryaya-chandas:mitra:maheśvaraḥ-lglll",
+          "type": "choice",
+          "front": "Which word for “Śiva” scans ∪ – ∪ ∪ ∪?",
+          "options": [
+            "maheśvaraḥ",
+            "mahādevaḥ",
+            "śambhuḥ"
+          ],
+          "answer": "maheśvaraḥ",
+          "note": "maheśvaraḥ ∪ – ∪∪∪ · mahādevaḥ ∪ – – ∪ · śambhuḥ – –",
+          "source": "workbook A2"
+        },
+        {
+          "id": "23-paryaya-chandas:mitra:mahādevaḥ-lggl",
+          "type": "choice",
+          "front": "Which word for “Śiva” scans ∪ – – ∪?",
+          "options": [
+            "mahādevaḥ",
+            "maheśvaraḥ",
+            "haraḥ"
+          ],
+          "answer": "mahādevaḥ",
+          "note": "mahādevaḥ ∪ – – ∪ · maheśvaraḥ ∪ – ∪∪∪ · haraḥ ∪ –",
+          "source": "workbook A2"
+        }
+      ]
+    }
+  ]
+}

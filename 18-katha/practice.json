@@ -1,0 +1,76 @@
+{
+  "lesson": "18-katha",
+  "decks": [
+    {
+      "name": "Laṅ-rūpa — the narrative past",
+      "desc": "what happened",
+      "pair": "form → sense",
+      "role": "core",
+      "cards": [
+        {
+          "id": "18-katha:lan:akarot",
+          "devanagari": "अकरोत्",
+          "iast": "akarot",
+          "gloss": "he did · from karoti",
+          "note": "laṅ · लङ् — the simple past · 3 sg. · workbook A1–A2"
+        },
+        {
+          "id": "18-katha:lan:avadat",
+          "devanagari": "अवदत्",
+          "iast": "avadat",
+          "gloss": "he spoke · from vadati",
+          "note": "laṅ · लङ् — the simple past · 3 sg. · workbook A1–A2"
+        },
+        {
+          "id": "18-katha:lan:abhavat",
+          "devanagari": "अभवत्",
+          "iast": "abhavat",
+          "gloss": "he became · from bhavati",
+          "note": "laṅ · लङ् — the simple past · 3 sg. · workbook A1–A2"
+        },
+        {
+          "id": "18-katha:lan:apaśyat",
+          "devanagari": "अपश्यत्",
+          "iast": "apaśyat",
+          "gloss": "he saw · from paśyati",
+          "note": "laṅ · लङ् — the simple past · 3 sg. · workbook A1–A2"
+        },
+        {
+          "id": "18-katha:lan:adadāt",
+          "devanagari": "अददात्",
+          "iast": "adadāt",
+          "gloss": "he gave · from dadāti",
+          "note": "laṅ · लङ् — the simple past · 3 sg. · workbook A1–A2"
+        },
+        {
+          "id": "18-katha:lan:ajayat",
+          "devanagari": "अजयत्",
+          "iast": "ajayat",
+          "gloss": "he conquered · from jayati",
+          "note": "laṅ · लङ् — the simple past · 3 sg. · workbook A1–A2"
+        },
+        {
+          "id": "18-katha:lan:anamat",
+          "devanagari": "अनमत्",
+          "iast": "anamat",
+          "gloss": "he bowed · from namati",
+          "note": "laṅ · लङ् — the simple past · 3 sg. · workbook A1–A2"
+        },
+        {
+          "id": "18-katha:lan:āsīt",
+          "devanagari": "आसीत्",
+          "iast": "āsīt",
+          "gloss": "he was · from asti",
+          "note": "laṅ · लङ् — the simple past · 3 sg. · workbook A1–A2"
+        },
+        {
+          "id": "18-katha:lan:aicchat",
+          "devanagari": "ऐच्छत्",
+          "iast": "aicchat",
+          "gloss": "he wished · from icchati",
+          "note": "laṅ · लङ् — the simple past · 3 sg. · workbook A1–A2"
+        }
+      ]
+    }
+  ]
+}

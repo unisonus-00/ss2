@@ -1861,9 +1861,13 @@ const open = async (browser, opts = {}) => {
         seq.forEach((k, i) => {
           if (k === 0 && seq.slice(0, i).some(x => x === 1)) late.push(L);
         });
-        // every lesson that tests must show its fundamentals somewhere first —
-        // in the lesson itself, or (Stages 15 and 21) in an earlier one
-        if (seq.includes(1) && !seq.includes(0) && !['15-stotra-ii', '21-chandas-ii'].includes(L))
+        /* Every lesson that tests must show its fundamentals somewhere first —
+           in the lesson itself, or in an earlier one. Three rest entirely on
+           earlier stages: Stotra II and Chandas II on the cases and the
+           śloka, and Paryāya-Chandas on both of the stages it is named for —
+           the synonym sets of Paryāya and the scansion of Chandas I. */
+        const RESTS_EARLIER = ['15-stotra-ii', '21-chandas-ii', '23-paryaya-chandas'];
+        if (seq.includes(1) && !seq.includes(0) && !RESTS_EARLIER.includes(L))
           late.push(L + ' (no fundamentals list at all)');
         // and an exercise may never sit below a plain recall list
         seq.forEach((k, i) => {
@@ -2154,6 +2158,25 @@ const open = async (browser, opts = {}) => {
     const back = await p.evaluate(() => !document.getElementById('trackcard').hidden);
     ok('the reminder’s button opens Abhyāsa', rev.panel && rev.page);
     ok('and closing it returns to the track', back);
+
+    /* A track with nothing left to finish points at the review rather than
+       at its own first list again. */
+    const finished = await p.evaluate(() => {
+      const row = TRACK_ROWS.find(x => x.track.id === 'svara');
+      row.lessons.forEach(L => L.decks.forEach(n =>
+        DECKS[n].forEach(c => { SAVED.mastered[c.id] = 1; })));
+      SAVED.begun.svara = 1;
+      showTrack('svara');
+      const go = document.getElementById('s-go');
+      const label = go.textContent;
+      go.click();
+      const opened = panelOpen;
+      closePanel();
+      return { label: label, opened: opened };
+    });
+    ok('a finished track offers the review, not its first list again',
+      /^Every list complete/.test(finished.label) && finished.opened === 'reviewpanel',
+      finished.label + ' → ' + finished.opened);
 
     /* Both pages stay reachable once they have been read: the track by its
        own name in the drawer, the landing card by the row that leads to it. */

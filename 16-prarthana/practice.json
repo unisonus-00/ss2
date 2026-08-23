@@ -1,0 +1,147 @@
+{
+  "lesson": "16-prarthana",
+  "decks": [
+    {
+      "name": "Loṭ-rūpa — command and blessing",
+      "desc": "the forms that ask",
+      "pair": "form → sense",
+      "role": "core",
+      "cards": [
+        {
+          "id": "16-prarthana:lot:pāhi",
+          "devanagari": "पाहि",
+          "iast": "pāhi",
+          "gloss": "√pā · 2 sg. — protect!",
+          "note": "loṭ · लोट् — the form that asks · 2 sg. · workbook A1–A2"
+        },
+        {
+          "id": "16-prarthana:lot:kuru",
+          "devanagari": "कुरु",
+          "iast": "kuru",
+          "gloss": "√kṛ · 2 sg. — do!",
+          "note": "loṭ · लोट् — the form that asks · 2 sg. · workbook A1–A2"
+        },
+        {
+          "id": "16-prarthana:lot:kṣamasva",
+          "devanagari": "क्षमस्व",
+          "iast": "kṣamasva",
+          "gloss": "√kṣam · 2 sg. — forgive!",
+          "note": "loṭ · लोट् — the form that asks · 2 sg. · workbook A1–A2"
+        },
+        {
+          "id": "16-prarthana:lot:śṛṇu",
+          "devanagari": "शृणु",
+          "iast": "śṛṇu",
+          "gloss": "√śru · 2 sg. — hear!",
+          "note": "loṭ · लोट् — the form that asks · 2 sg. · workbook A1–A2"
+        },
+        {
+          "id": "16-prarthana:lot:pātu",
+          "devanagari": "पातु",
+          "iast": "pātu",
+          "gloss": "√pā · 3 sg. — may he protect",
+          "note": "loṭ · लोट् — the form that asks · 3 sg. · workbook A1–A2"
+        },
+        {
+          "id": "16-prarthana:lot:bhavatu",
+          "devanagari": "भवतु",
+          "iast": "bhavatu",
+          "gloss": "√bhū · 3 sg. — may it be",
+          "note": "loṭ · लोट् — the form that asks · 3 sg. · workbook A1–A2"
+        },
+        {
+          "id": "16-prarthana:lot:jayatu",
+          "devanagari": "जयतु",
+          "iast": "jayatu",
+          "gloss": "√ji · 3 sg. — may he conquer",
+          "note": "loṭ · लोट् — the form that asks · 3 sg. · workbook A1–A2"
+        },
+        {
+          "id": "16-prarthana:lot:rakṣatu",
+          "devanagari": "रक्षतु",
+          "iast": "rakṣatu",
+          "gloss": "√rakṣ · 3 sg. — may he protect",
+          "note": "loṭ · लोट् — the form that asks · 3 sg. · workbook A1–A2"
+        },
+        {
+          "id": "16-prarthana:lot:karotu",
+          "devanagari": "करोतु",
+          "iast": "karotu",
+          "gloss": "√kṛ · 3 sg. — may he do",
+          "note": "loṭ · लोट् — the form that asks · 3 sg. · workbook A1–A2"
+        }
+      ]
+    },
+    {
+      "name": "Prārthanā-pada — complete the prayer line · practice",
+      "desc": "practice",
+      "cards": [
+        {
+          "id": "16-prarthana:vakya:dehi",
+          "type": "choice",
+          "front": "“Give me devotion.”\nhe devi! ___ me bhaktim",
+          "options": [
+            "dehi",
+            "kṣamasva",
+            "trāhi"
+          ],
+          "answer": "dehi",
+          "note": "dehi me bhaktim · 2 sg. loṭ of √dā",
+          "source": "workbook B1"
+        },
+        {
+          "id": "16-prarthana:vakya:kṣamasva",
+          "type": "choice",
+          "front": "“Forgive my wrong.”\nhe śiva! mama pāpam ___",
+          "options": [
+            "kṣamasva",
+            "dehi",
+            "trāhi"
+          ],
+          "answer": "kṣamasva",
+          "note": "2 sg. loṭ of √kṣam · ātmanepada",
+          "source": "workbook B1"
+        },
+        {
+          "id": "16-prarthana:vakya:trāhi",
+          "type": "choice",
+          "front": "“Save me from fear.”\nhe prabho! bhayāt ___ mām",
+          "options": [
+            "trāhi",
+            "dehi",
+            "kṣamasva"
+          ],
+          "answer": "trāhi",
+          "note": "2 sg. loṭ of √trai · pāhi is accepted too",
+          "source": "workbook B1"
+        },
+        {
+          "id": "16-prarthana:vakya:naya",
+          "type": "choice",
+          "front": "“Lead me.”\nhe guro! mām ___",
+          "options": [
+            "naya",
+            "dehi",
+            "kṣamasva"
+          ],
+          "answer": "naya",
+          "note": "2 sg. loṭ of √nī",
+          "source": "workbook B1"
+        },
+        {
+          "id": "16-prarthana:vakya:śṛṇu",
+          "type": "choice",
+          "front": "“Hear my prayer.”\nhe bhagavan! ___ mama prārthanām",
+          "options": [
+            "śṛṇu",
+            "dehi",
+            "kṣamasva"
+          ],
+          "answer": "śṛṇu",
+          "note": "2 sg. loṭ of √śru",
+          "source": "workbook B1"
+        }
+      ]
+    }
+  ]
+}
