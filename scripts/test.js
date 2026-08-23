@@ -3654,6 +3654,47 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
+  // ── the annotation is grammar, and provenance is not ──────────────
+  // A chip reading "DM 5.17-18" is provenance dressed as grammar: the red
+  // line promises what the word is, and the card has a slot of its own for
+  // where it was found.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const CITE = /^(DM|LS|VS|MB|RV|KKS|KS)\b/;
+      const CASE = /^[a-zāīūṛṭḍṇśṣñṅḥṃ/]+\s*\|/;
+      const out = { chipIsCitation: [], headwordCase: [], bothLabels: [] };
+      Object.keys(DECKS).forEach(n => DECKS[n].forEach(c => {
+        if ((c.type || 'reveal') !== 'reveal') return;
+        const note = (c.note || '').trim();
+        if (CITE.test(note) && !/noun|adjective|verb|numeral|pronoun|stem/.test(note))
+          out.chipIsCitation.push(c.id);
+        /* and nothing is two parts of speech at once */
+        if (/^(noun|adjective)\b/.test(note) && /\bpronoun\b/.test(note))
+          out.bothLabels.push(c.id);
+      }));
+      /* The older `prathamā | nom. sg.` shape survives only where the case is
+         the content — a paradigm cell, a kāraka, a vocative.  That is a fact
+         about the LIST: if every one of a list's cards is a citation form,
+         the field varies with the gender and says nothing. */
+      Object.keys(DECKS).forEach(n => {
+        const noted = DECKS[n].filter(c => CASE.test((c.note || '').trim()));
+        if (!noted.length) return;
+        const allCitationForms = noted.every(c =>
+          /^prathamā(\/(dvitīyā|sambodhana))*\s*\|/.test(c.note.trim()));
+        if (allCitationForms) out.headwordCase.push(n);
+      });
+      return out;
+    });
+    ok('no card’s whole annotation is a citation',
+      !r.chipIsCitation.length, r.chipIsCitation.slice(0, 3).join(' | '));
+    ok('no list of citation forms leads its annotations with a case',
+      !r.headwordCase.length, r.headwordCase.slice(0, 3).join(' | '));
+    ok('and nothing is labelled two parts of speech at once',
+      !r.bothLabels.length, r.bothLabels.slice(0, 3).join(' | '));
+    await p.close();
+  }
+
   // ── the results say which lists held up ───────────────────────────
   // A review crosses lists, so "which cards went wrong" is the wrong
   // question at the end of one; the learner-facing unit is the list.

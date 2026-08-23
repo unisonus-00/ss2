@@ -10,7 +10,7 @@
           "devanagari": "ब्रह्म",
           "iast": "brahma",
           "gloss": "the absolute",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: brahman- · an-stem"
+          "note": "noun · neuter · an-stem · stem: brahman-"
         },
         {
           "id": "26-darshana:darsana:atman",
@@ -24,35 +24,35 @@
           "devanagari": "माया",
           "iast": "māyā",
           "gloss": "the measuring power, illusion",
-          "note": "prathamā | nom. sg. · f. · stem: māyā- · ā-stem"
+          "note": "noun · feminine · ā-stem · stem: māyā-"
         },
         {
           "id": "26-darshana:darsana:moksah",
           "devanagari": "मोक्षः",
           "iast": "mokṣaḥ",
           "gloss": "liberation",
-          "note": "prathamā | nom. sg. · m. · stem: mokṣa- · a-stem"
+          "note": "noun · masculine · a-stem · stem: mokṣa-"
         },
         {
           "id": "26-darshana:darsana:dharmah",
           "devanagari": "धर्मः",
           "iast": "dharmaḥ",
           "gloss": "duty, law, nature",
-          "note": "prathamā | nom. sg. · m. · stem: dharma- · a-stem"
+          "note": "noun · masculine · a-stem · stem: dharma-"
         },
         {
           "id": "26-darshana:darsana:jnanam",
           "devanagari": "ज्ञानम्",
           "iast": "jñānam",
           "gloss": "knowledge",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: jñāna- · a-stem"
+          "note": "noun · neuter · a-stem · stem: jñāna-"
         },
         {
           "id": "26-darshana:darsana:avidya",
           "devanagari": "अविद्या",
           "iast": "avidyā",
           "gloss": "ignorance",
-          "note": "prathamā | nom. sg. · f. · stem: avidyā- · ā-stem"
+          "note": "noun · feminine · ā-stem · stem: avidyā-"
         },
         {
           "id": "26-darshana:darsana:sat",
@@ -73,77 +73,77 @@
           "devanagari": "प्रकृतिः",
           "iast": "prakṛtiḥ",
           "gloss": "nature, matter",
-          "note": "prathamā | nom. sg. · f. · stem: prakṛti- · i-stem"
+          "note": "noun · feminine · i-stem · stem: prakṛti-"
         },
         {
           "id": "26-darshana:darsana:purusah",
           "devanagari": "पुरुषः",
           "iast": "puruṣaḥ",
           "gloss": "the conscious principle",
-          "note": "prathamā | nom. sg. · m. · stem: puruṣa- · a-stem"
+          "note": "noun · masculine · a-stem · stem: puruṣa-"
         },
         {
           "id": "26-darshana:darsana:saktih",
           "devanagari": "शक्तिः",
           "iast": "śaktiḥ",
           "gloss": "power",
-          "note": "prathamā | nom. sg. · f. · stem: śakti- · i-stem"
+          "note": "noun · feminine · i-stem · stem: śakti-"
         },
         {
           "id": "26-darshana:darsana:binduh",
           "devanagari": "बिन्दुः",
           "iast": "binduḥ",
           "gloss": "the point",
-          "note": "prathamā | nom. sg. · m. · stem: bindu- · u-stem"
+          "note": "noun · masculine · u-stem · stem: bindu-"
         },
         {
           "id": "26-darshana:darsana:nadah",
           "devanagari": "नादः",
           "iast": "nādaḥ",
           "gloss": "primal sound",
-          "note": "prathamā | nom. sg. · m. · stem: nāda- · a-stem"
+          "note": "noun · masculine · a-stem · stem: nāda-"
         },
         {
           "id": "26-darshana:darsana:mantrah",
           "devanagari": "मन्त्रः",
           "iast": "mantraḥ",
           "gloss": "sacred formula",
-          "note": "prathamā | nom. sg. · m. · stem: mantra- · a-stem"
+          "note": "noun · masculine · a-stem · stem: mantra-"
         },
         {
           "id": "26-darshana:darsana:yantram",
           "devanagari": "यन्त्रम्",
           "iast": "yantram",
           "gloss": "ritual diagram",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: yantra- · a-stem"
+          "note": "noun · neuter · a-stem · stem: yantra-"
         },
         {
           "id": "26-darshana:darsana:sabdabrahma",
           "devanagari": "शब्दब्रह्म",
           "iast": "śabdabrahma",
           "gloss": "sound as the absolute",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: śabdabrahman- · an-stem"
+          "note": "noun · neuter · an-stem · stem: śabdabrahman-"
         },
         {
           "id": "26-darshana:darsana:darsanam",
           "devanagari": "दर्शनम्",
           "iast": "darśanam",
           "gloss": "viewpoint; a school of philosophy",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: darśana- · a-stem"
+          "note": "noun · neuter · a-stem · stem: darśana-"
         },
         {
           "id": "26-darshana:darsana:istadevata",
           "devanagari": "इष्टदेवता",
           "iast": "iṣṭadevatā",
           "gloss": "one's chosen deity",
-          "note": "prathamā | nom. sg. · f. · stem: iṣṭadevatā- · ā-stem"
+          "note": "noun · feminine · ā-stem · stem: iṣṭadevatā-"
         },
         {
           "id": "26-darshana:darsana:srividya",
           "devanagari": "श्रीविद्या",
           "iast": "śrīvidyā",
           "gloss": "the Śrī tradition of the goddess",
-          "note": "prathamā | nom. sg. · f. · stem: śrīvidyā- · ā-stem"
+          "note": "noun · feminine · ā-stem · stem: śrīvidyā-"
         }
       ]
     },
@@ -434,7 +434,7 @@
           "devanagari": "कर्म",
           "iast": "karma",
           "gloss": "action, accumulated deeds",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: karman- · an-stem · KKS 317-345"
+          "note": "noun · neuter · an-stem · stem: karman- · KKS 317-345"
         },
         {
           "id": "26-darshana:philosophy-tattvas:dharma",
@@ -580,63 +580,64 @@
           "devanagari": "श्रीविद्या",
           "iast": "śrīvidyā",
           "gloss": "the auspicious knowledge (15/16-syllable mantra)",
-          "note": "LS 585"
+          "note": "noun · feminine · ā-stem · stem: śrīvidyā-",
+          "source": "LS 585"
         },
         {
           "id": "26-darshana:philosophy-tattvas:trikona",
           "devanagari": "त्रिकोण",
           "iast": "trikoṇa",
           "gloss": "triangle (of Śrīcakra)",
-          "note": "KS passim; LS passim"
+          "source": "KS passim; LS passim"
         },
         {
           "id": "26-darshana:philosophy-tattvas:bindu",
           "devanagari": "बिन्दु",
           "iast": "bindu",
           "gloss": "point (center of Śrīcakra)",
-          "note": "LS passim; KS passim"
+          "source": "LS passim; KS passim"
         },
         {
           "id": "26-darshana:philosophy-tattvas:navacakra",
           "devanagari": "नवचक्र",
           "iast": "navacakra",
           "gloss": "nine enclosures (of Śrīcakra)",
-          "note": "KS passim"
+          "source": "KS passim"
         },
         {
           "id": "26-darshana:philosophy-tattvas:pancadasi",
           "devanagari": "पञ्चदशी",
           "iast": "pañcadaśī",
           "gloss": "fifteen-syllabled (mantra)",
-          "note": "KS passim"
+          "source": "KS passim"
         },
         {
           "id": "26-darshana:philosophy-tattvas:sodasi",
           "devanagari": "षोडशी",
           "iast": "ṣoḍaśī",
           "gloss": "sixteen-syllabled (mantra)",
-          "note": "KS passim"
+          "source": "KS passim"
         },
         {
           "id": "26-darshana:philosophy-tattvas:kadi",
           "devanagari": "कादि",
           "iast": "kādi",
           "gloss": "beginning with ka (Kādi school)",
-          "note": "KKS 586, 606-609"
+          "source": "KKS 586, 606-609"
         },
         {
           "id": "26-darshana:philosophy-tattvas:hadi",
           "devanagari": "हादि",
           "iast": "hādi",
           "gloss": "beginning with ha (Hādi school)",
-          "note": "LS passim"
+          "source": "LS passim"
         },
         {
           "id": "26-darshana:philosophy-tattvas:kamakala",
           "devanagari": "कामकला",
           "iast": "kāmakalā",
           "gloss": "desire-digit",
-          "note": "KKS 583; LS passim"
+          "source": "KKS 583; LS passim"
         }
       ]
     }

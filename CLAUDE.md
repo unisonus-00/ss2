@@ -1285,6 +1285,12 @@ where it was missing — the trouble list already refuses three right answers in
 one sitting, because *three right answers in one sitting is recognition, not
 memory*.
 
+**The trouble list's two ends are deliberately asymmetric**, and the code
+comment used to claim otherwise. Three *wrong* answers count however close
+together they were — a card you keep losing today is trouble today — while
+three *right* ones count once per session each. Getting in is easy and
+getting out is not, which is the way round it should be.
+
 **The day, not the page-load id `SESSION`.** A page load is not a unit of time
 at all: a phone tab left open for a week holds one session for as long as it
 lives, so a card lost on Monday could never be counted again all week — a
@@ -1756,6 +1762,26 @@ later. All 627 now read:
 ```
 noun · neuter · a-stem · stem: yuddha- · from √yudh · DM 2.3
 ```
+
+**The `|` shape is gone from every headword card.** 126 more cards read
+`prathamā | nom. sg. · m. · stem: kāla- · a-stem`, which above Stage 5 is not
+a comprehension problem but is still a constant: every card in those thirteen
+lists is a citation form, so the case field varied only with the gender. They
+now read `noun · masculine · a-stem · stem: kāla-`. Where the case genuinely
+*is* the content it stays — the nine `Śabda-rūpa` paradigms, `12 · Kāraka`,
+`31 · Sambodhana`'s vocatives, the vibhakti-sense lists — 274 cards in twenty
+lists, left exactly as they were. Eight pronouns picked up `pronoun` as their
+part of speech in the same pass, having been labelled `noun` and `pronoun` at
+once.
+
+**A chip that is only a citation is not an annotation.** 141 cards' whole red
+line read `DM 5.17-18` — provenance dressed as grammar. Provenance has a slot
+of its own, `source`, which renders on its own line below the answer, so that
+is where they went. 31 of them could be filled honestly first, from *another
+card in the app that already annotates the same headword*: `kāla` is a
+masculine a-stem in Saṅkhyā-kāla, so it is one in `V02 · Dharma` too. The
+other 110 keep an empty chip rather than an invented gender — nothing in the
+repository states what they are, and that is a lookup job, not a script.
 
 **157 cards were still on the older shape** — the vocabulary of Stages 1, 2
 and 4 and the vyākaraṇam lists, which is to say everything a learner meets

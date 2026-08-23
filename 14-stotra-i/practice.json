@@ -120,28 +120,28 @@
           "devanagari": "राजोवाच",
           "iast": "rājovāca",
           "gloss": "the king said",
-          "note": "DM 1.3, 9.1, 13.1"
+          "source": "DM 1.3, 9.1, 13.1"
         },
         {
           "id": "14-stotra-i:refrains-formulae:devyuvaca",
           "devanagari": "देव्युवाच",
           "iast": "devyuvāca",
           "gloss": "the Goddess said",
-          "note": "DM 5.116, 6.10, 12.1"
+          "source": "DM 5.116, 6.10, 12.1"
         },
         {
           "id": "14-stotra-i:refrains-formulae:deva-ucuh",
           "devanagari": "देवा ऊचुः",
           "iast": "devā ūcuḥ",
           "gloss": "the gods said",
-          "note": "DM 4.1, 5.9"
+          "source": "DM 4.1, 5.9"
         },
         {
           "id": "14-stotra-i:refrains-formulae:markandeya-uvaca",
           "devanagari": "मार्कण्डेय उवाच",
           "iast": "mārkaṇḍeya uvāca",
           "gloss": "Mārkaṇḍeya said",
-          "note": "DM 13.6, 13.26"
+          "source": "DM 13.6, 13.26"
         },
         {
           "id": "14-stotra-i:refrains-formulae:tatah",
@@ -190,35 +190,39 @@
           "devanagari": "कोपाविष्टा",
           "iast": "kopāviṣṭā",
           "gloss": "seized by anger",
-          "note": "DM 3.26"
+          "note": "noun · feminine · ā-stem · stem: kopāviṣṭā- · pp.",
+          "source": "DM 3.26"
         },
         {
           "id": "14-stotra-i:refrains-formulae:samkruddha",
           "devanagari": "संक्रुद्ध",
           "iast": "saṃkruddha",
           "gloss": "thoroughly enraged",
-          "note": "DM 9.17"
+          "note": "past participle · a-stem · stem: saṃkruddha-",
+          "source": "DM 9.17"
         },
         {
           "id": "14-stotra-i:refrains-formulae:kopadhmata",
           "devanagari": "कोपाध्मता",
           "iast": "kopādhmatā",
           "gloss": "swollen with rage",
-          "note": "DM 8.4"
+          "note": "past participle · ā-stem · stem: kopādhmatā-",
+          "source": "DM 8.4"
         },
         {
           "id": "14-stotra-i:refrains-formulae:prasphuritadhara",
           "devanagari": "प्रस्फुरिताधर",
           "iast": "prasphuritādhara",
           "gloss": "with quivering lip",
-          "note": "DM 6.21"
+          "note": "adjective · a-stem · stem: prasphuritādhara-",
+          "source": "DM 6.21"
         },
         {
           "id": "14-stotra-i:refrains-formulae:amarsapuritah",
           "devanagari": "अमर्षपूरितः",
           "iast": "amarṣapūritaḥ",
           "gloss": "filled with indignation",
-          "note": "DM 6.2"
+          "source": "DM 6.2"
         }
       ]
     },
@@ -261,7 +265,7 @@
           "devanagari": "ओं X-आय/ऐ नमः",
           "iast": "oṃ X-āya/ai namaḥ",
           "gloss": "Oṃ, salutation to X",
-          "note": "VS/LS/KKS/KS throughout"
+          "source": "VS/LS/KKS/KS throughout"
         },
         {
           "id": "14-stotra-i:refrains-formulae:om-x-aya-namah",
@@ -306,35 +310,35 @@
           "devanagari": "ओं नमः शिवाय",
           "iast": "oṃ namaḥ śivāya",
           "gloss": "Oṃ, salutation to Śiva",
-          "note": "KS/KKS contexts"
+          "source": "KS/KKS contexts"
         },
         {
           "id": "14-stotra-i:refrains-formulae:om-namo-narayanaya",
           "devanagari": "ओं नमो नारायणाय",
           "iast": "oṃ namo nārāyaṇāya",
           "gloss": "Oṃ, salutation to Nārāyaṇa",
-          "note": "VS context"
+          "source": "VS context"
         },
         {
           "id": "14-stotra-i:refrains-formulae:om-aim-hrim-klim",
           "devanagari": "ओं ऐं ह्रीं क्लीं",
           "iast": "oṃ aiṃ hrīṃ klīṃ",
           "gloss": "Bāla mantra seed",
-          "note": "LS/KKS contexts"
+          "source": "LS/KKS contexts"
         },
         {
           "id": "14-stotra-i:refrains-formulae:jayatu-jayatu-devi",
           "devanagari": "जयतु जयतु देवी",
           "iast": "jayatu jayatu devī",
           "gloss": "victory, victory to the Goddess",
-          "note": "DM passim"
+          "source": "DM passim"
         },
         {
           "id": "14-stotra-i:refrains-formulae:svasti",
           "devanagari": "स्वस्ति",
           "iast": "svasti",
           "gloss": "well-being, auspiciousness",
-          "note": "KS passim; VS passim"
+          "source": "KS passim; VS passim"
         }
       ]
     }

@@ -10,98 +10,98 @@
           "devanagari": "अवधानम्",
           "iast": "avadhānam",
           "gloss": "sustained attention; the performance",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: avadhāna- · a-stem"
+          "note": "noun · neuter · a-stem · stem: avadhāna-"
         },
         {
           "id": "27-samasyapurana:avadhana:avadhani",
           "devanagari": "अवधानी",
           "iast": "avadhānī",
           "gloss": "the performer",
-          "note": "prathamā | nom. sg. · m. · stem: avadhānin- · in-stem"
+          "note": "noun · masculine · in-stem · stem: avadhānin-"
         },
         {
           "id": "27-samasyapurana:avadhana:prcchakah",
           "devanagari": "पृच्छकः",
           "iast": "pṛcchakaḥ",
           "gloss": "the questioner",
-          "note": "prathamā | nom. sg. · m. · stem: pṛcchaka- · a-stem"
+          "note": "noun · masculine · a-stem · stem: pṛcchaka-"
         },
         {
           "id": "27-samasyapurana:avadhana:samasyapuranam",
           "devanagari": "समस्यापूरणम्",
           "iast": "samasyāpūraṇam",
           "gloss": "completing a verse from its last line",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: samasyāpūraṇa- · a-stem"
+          "note": "noun · neuter · a-stem · stem: samasyāpūraṇa-"
         },
         {
           "id": "27-samasyapurana:avadhana:dattapadi",
           "devanagari": "दत्तपदी",
           "iast": "dattapadī",
           "gloss": "composing with imposed words",
-          "note": "prathamā | nom. sg. · f. · stem: dattapadī- · ī-stem"
+          "note": "noun · feminine · ī-stem · stem: dattapadī-"
         },
         {
           "id": "27-samasyapurana:avadhana:nisiddhaksari",
           "devanagari": "निषिद्धाक्षरी",
           "iast": "niṣiddhākṣarī",
           "gloss": "composing with forbidden letters",
-          "note": "prathamā | nom. sg. · f. · stem: niṣiddhākṣarī- · ī-stem"
+          "note": "noun · feminine · ī-stem · stem: niṣiddhākṣarī-"
         },
         {
           "id": "27-samasyapurana:avadhana:citrakavyam",
           "devanagari": "चित्रकाव्यम्",
           "iast": "citrakāvyam",
           "gloss": "constrained, figured poetry",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: citrakāvya- · a-stem"
+          "note": "noun · neuter · a-stem · stem: citrakāvya-"
         },
         {
           "id": "27-samasyapurana:avadhana:dharana",
           "devanagari": "धारणा",
           "iast": "dhāraṇā",
           "gloss": "holding in memory",
-          "note": "prathamā | nom. sg. · f. · stem: dhāraṇā- · ā-stem"
+          "note": "noun · feminine · ā-stem · stem: dhāraṇā-"
         },
         {
           "id": "27-samasyapurana:avadhana:katha",
           "devanagari": "कथा",
           "iast": "kathā",
           "gloss": "the narrated story, recalled and answered on afterwards",
-          "note": "prathamā | nom. sg. · f. · stem: kathā- · ā-stem · also vācana"
+          "note": "noun · feminine · ā-stem · stem: kathā- · also vācana"
         },
         {
           "id": "27-samasyapurana:avadhana:aprastutaprasangah",
           "devanagari": "अप्रस्तुतप्रसङ्गः",
           "iast": "aprastutaprasaṅgaḥ",
           "gloss": "the irrelevant interruption",
-          "note": "prathamā | nom. sg. · m. · stem: aprastutaprasaṅga- · a-stem"
+          "note": "noun · masculine · a-stem · stem: aprastutaprasaṅga-"
         },
         {
           "id": "27-samasyapurana:avadhana:asukavitvam",
           "devanagari": "आशुकवित्वम्",
           "iast": "āśukavitvam",
           "gloss": "extempore composition",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: āśukavitva- · a-stem"
+          "note": "noun · neuter · a-stem · stem: āśukavitva-"
         },
         {
           "id": "27-samasyapurana:avadhana:ghantagananam",
           "devanagari": "घण्टागणनम्",
           "iast": "ghaṇṭāgaṇanam",
           "gloss": "counting bells while composing",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: ghaṇṭāgaṇana- · a-stem"
+          "note": "noun · neuter · a-stem · stem: ghaṇṭāgaṇana-"
         },
         {
           "id": "27-samasyapurana:avadhana:astavadhanam",
           "devanagari": "अष्टावधानम्",
           "iast": "aṣṭāvadhānam",
           "gloss": "all eight at once",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: aṣṭāvadhāna- · a-stem"
+          "note": "noun · neuter · a-stem · stem: aṣṭāvadhāna-"
         },
         {
           "id": "27-samasyapurana:avadhana:satavadhanam",
           "devanagari": "शतावधानम्",
           "iast": "śatāvadhānam",
           "gloss": "a hundred simultaneous tasks",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: śatāvadhāna- · a-stem"
+          "note": "noun · neuter · a-stem · stem: śatāvadhāna-"
         }
       ]
     }

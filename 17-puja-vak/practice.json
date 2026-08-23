@@ -9,119 +9,119 @@
           "devanagari": "पूजा",
           "iast": "pūjā",
           "gloss": "worship",
-          "note": "prathamā | nom. sg. · f. · stem: pūjā- · ā-stem"
+          "note": "noun · feminine · ā-stem · stem: pūjā-"
         },
         {
           "id": "17-puja-vak:upacara:avahanam",
           "devanagari": "आवाहनम्",
           "iast": "āvāhanam",
           "gloss": "invocation",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: āvāhana- · a-stem"
+          "note": "noun · neuter · a-stem · stem: āvāhana-"
         },
         {
           "id": "17-puja-vak:upacara:dhyanam",
           "devanagari": "ध्यानम्",
           "iast": "dhyānam",
           "gloss": "meditation, visualisation",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: dhyāna- · a-stem"
+          "note": "noun · neuter · a-stem · stem: dhyāna-"
         },
         {
           "id": "17-puja-vak:upacara:nyasah",
           "devanagari": "न्यासः",
           "iast": "nyāsaḥ",
           "gloss": "placement of mantra on the body",
-          "note": "prathamā | nom. sg. · m. · stem: nyāsa- · a-stem"
+          "note": "noun · masculine · a-stem · stem: nyāsa-"
         },
         {
           "id": "17-puja-vak:upacara:sankalpah",
           "devanagari": "सङ्कल्पः",
           "iast": "saṅkalpaḥ",
           "gloss": "statement of intent",
-          "note": "prathamā | nom. sg. · m. · stem: saṅkalpa- · a-stem"
+          "note": "noun · masculine · a-stem · stem: saṅkalpa-"
         },
         {
           "id": "17-puja-vak:upacara:arcana",
           "devanagari": "अर्चना",
           "iast": "arcanā",
           "gloss": "offering of names",
-          "note": "prathamā | nom. sg. · f. · stem: arcanā- · ā-stem"
+          "note": "noun · feminine · ā-stem · stem: arcanā-"
         },
         {
           "id": "17-puja-vak:upacara:namaskarah",
           "devanagari": "नमस्कारः",
           "iast": "namaskāraḥ",
           "gloss": "salutation",
-          "note": "prathamā | nom. sg. · m. · stem: namaskāra- · a-stem"
+          "note": "noun · masculine · a-stem · stem: namaskāra-"
         },
         {
           "id": "17-puja-vak:upacara:pradaksina",
           "devanagari": "प्रदक्षिणा",
           "iast": "pradakṣiṇā",
           "gloss": "circumambulation",
-          "note": "prathamā | nom. sg. · f. · stem: pradakṣiṇā- · ā-stem"
+          "note": "noun · feminine · ā-stem · stem: pradakṣiṇā-"
         },
         {
           "id": "17-puja-vak:upacara:nirajanam",
           "devanagari": "नीराजनम्",
           "iast": "nīrājanam",
           "gloss": "waving of lamps",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: nīrājana- · a-stem"
+          "note": "noun · neuter · a-stem · stem: nīrājana-"
         },
         {
           "id": "17-puja-vak:upacara:visarjanam",
           "devanagari": "विसर्जनम्",
           "iast": "visarjanam",
           "gloss": "dismissal",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: visarjana- · a-stem"
+          "note": "noun · neuter · a-stem · stem: visarjana-"
         },
         {
           "id": "17-puja-vak:upacara:homah",
           "devanagari": "होमः",
           "iast": "homaḥ",
           "gloss": "fire offering",
-          "note": "prathamā | nom. sg. · m. · stem: homa- · a-stem"
+          "note": "noun · masculine · a-stem · stem: homa-"
         },
         {
           "id": "17-puja-vak:upacara:japah",
           "devanagari": "जपः",
           "iast": "japaḥ",
           "gloss": "mantra repetition",
-          "note": "prathamā | nom. sg. · m. · stem: japa- · a-stem"
+          "note": "noun · masculine · a-stem · stem: japa-"
         },
         {
           "id": "17-puja-vak:upacara:abhisekah",
           "devanagari": "अभिषेकः",
           "iast": "abhiṣekaḥ",
           "gloss": "ritual bathing",
-          "note": "prathamā | nom. sg. · m. · stem: abhiṣeka- · a-stem"
+          "note": "noun · masculine · a-stem · stem: abhiṣeka-"
         },
         {
           "id": "17-puja-vak:upacara:prasadah",
           "devanagari": "प्रसादः",
           "iast": "prasādaḥ",
           "gloss": "grace; consecrated food",
-          "note": "prathamā | nom. sg. · m. · stem: prasāda- · a-stem"
+          "note": "noun · masculine · a-stem · stem: prasāda-"
         },
         {
           "id": "17-puja-vak:upacara:stotram",
           "devanagari": "स्तोत्रम्",
           "iast": "stotram",
           "gloss": "hymn of praise",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: stotra- · a-stem"
+          "note": "noun · neuter · a-stem · stem: stotra-"
         },
         {
           "id": "17-puja-vak:upacara:upacarah",
           "devanagari": "उपचारः",
           "iast": "upacāraḥ",
           "gloss": "an act of homage in worship",
-          "note": "prathamā | nom. sg. · m. · stem: upacāra- · a-stem"
+          "note": "noun · masculine · a-stem · stem: upacāra-"
         },
         {
           "id": "17-puja-vak:upacara:paddhatih",
           "devanagari": "पद्धतिः",
           "iast": "paddhatiḥ",
           "gloss": "ritual manual",
-          "note": "prathamā | nom. sg. · f. · stem: paddhati- · i-stem"
+          "note": "noun · feminine · i-stem · stem: paddhati-"
         },
         {
           "id": "17-puja-vak:upacara:pranamah",
@@ -135,14 +135,14 @@
           "devanagari": "प्रार्थना",
           "iast": "prārthanā",
           "gloss": "prayer, entreaty",
-          "note": "prathamā | nom. sg. · f. · stem: prārthanā- · ā-stem"
+          "note": "noun · feminine · ā-stem · stem: prārthanā-"
         },
         {
           "id": "17-puja-vak:upacara:seva",
           "devanagari": "सेवा",
           "iast": "sevā",
           "gloss": "service, attendance",
-          "note": "prathamā | nom. sg. · f. · stem: sevā- · ā-stem"
+          "note": "noun · feminine · ā-stem · stem: sevā-"
         }
       ],
       "role": "core"
@@ -155,105 +155,105 @@
           "devanagari": "शिरः",
           "iast": "śiraḥ",
           "gloss": "head",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: śiras- · as-stem"
+          "note": "noun · neuter · as-stem · stem: śiras-"
         },
         {
           "id": "17-puja-vak:anga:netram",
           "devanagari": "नेत्रम्",
           "iast": "netram",
           "gloss": "eye",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: netra- · a-stem"
+          "note": "noun · neuter · a-stem · stem: netra-"
         },
         {
           "id": "17-puja-vak:anga:mukham",
           "devanagari": "मुखम्",
           "iast": "mukham",
           "gloss": "face, mouth",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: mukha- · a-stem"
+          "note": "noun · neuter · a-stem · stem: mukha-"
         },
         {
           "id": "17-puja-vak:anga:hastah",
           "devanagari": "हस्तः",
           "iast": "hastaḥ",
           "gloss": "hand",
-          "note": "prathamā | nom. sg. · m. · stem: hasta- · a-stem"
+          "note": "noun · masculine · a-stem · stem: hasta-"
         },
         {
           "id": "17-puja-vak:anga:padah",
           "devanagari": "पादः",
           "iast": "pādaḥ",
           "gloss": "foot",
-          "note": "prathamā | nom. sg. · m. · stem: pāda- · a-stem"
+          "note": "noun · masculine · a-stem · stem: pāda-"
         },
         {
           "id": "17-puja-vak:anga:hrdayam",
           "devanagari": "हृदयम्",
           "iast": "hṛdayam",
           "gloss": "heart",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: hṛdaya- · a-stem"
+          "note": "noun · neuter · a-stem · stem: hṛdaya-"
         },
         {
           "id": "17-puja-vak:anga:sikha",
           "devanagari": "शिखा",
           "iast": "śikhā",
           "gloss": "crown-tuft",
-          "note": "prathamā | nom. sg. · f. · stem: śikhā- · ā-stem"
+          "note": "noun · feminine · ā-stem · stem: śikhā-"
         },
         {
           "id": "17-puja-vak:anga:kavacam",
           "devanagari": "कवचम्",
           "iast": "kavacam",
           "gloss": "armour",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: kavaca- · a-stem"
+          "note": "noun · neuter · a-stem · stem: kavaca-"
         },
         {
           "id": "17-puja-vak:anga:angusthah",
           "devanagari": "अङ्गुष्ठः",
           "iast": "aṅguṣṭhaḥ",
           "gloss": "thumb",
-          "note": "prathamā | nom. sg. · m. · stem: aṅguṣṭha- · a-stem"
+          "note": "noun · masculine · a-stem · stem: aṅguṣṭha-"
         },
         {
           "id": "17-puja-vak:anga:tarjani",
           "devanagari": "तर्जनी",
           "iast": "tarjanī",
           "gloss": "index finger",
-          "note": "prathamā | nom. sg. · f. · stem: tarjanī- · ī-stem"
+          "note": "noun · feminine · ī-stem · stem: tarjanī-"
         },
         {
           "id": "17-puja-vak:anga:madhyama",
           "devanagari": "मध्यमा",
           "iast": "madhyamā",
           "gloss": "middle finger",
-          "note": "prathamā | nom. sg. · f. · stem: madhyamā- · ā-stem"
+          "note": "noun · feminine · ā-stem · stem: madhyamā-"
         },
         {
           "id": "17-puja-vak:anga:anamika",
           "devanagari": "अनामिका",
           "iast": "anāmikā",
           "gloss": "ring finger",
-          "note": "prathamā | nom. sg. · f. · stem: anāmikā- · ā-stem"
+          "note": "noun · feminine · ā-stem · stem: anāmikā-"
         },
         {
           "id": "17-puja-vak:anga:kanisthika",
           "devanagari": "कनिष्ठिका",
           "iast": "kaniṣṭhikā",
           "gloss": "little finger",
-          "note": "prathamā | nom. sg. · f. · stem: kaniṣṭhikā- · ā-stem"
+          "note": "noun · feminine · ā-stem · stem: kaniṣṭhikā-"
         },
         {
           "id": "17-puja-vak:anga:karatalam",
           "devanagari": "करतलम्",
           "iast": "karatalam",
           "gloss": "palm of the hand",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: karatala- · a-stem"
+          "note": "noun · neuter · a-stem · stem: karatala-"
         },
         {
           "id": "17-puja-vak:anga:dehah",
           "devanagari": "देहः",
           "iast": "dehaḥ",
           "gloss": "body",
-          "note": "prathamā | nom. sg. · m. · stem: deha- · a-stem"
+          "note": "noun · masculine · a-stem · stem: deha-"
         }
       ],
       "role": "core"

@@ -401,7 +401,7 @@
           "devanagari": "भास्वत् / भासुर",
           "iast": "bhāsvat / bhāsura",
           "gloss": "shining",
-          "note": "LS passim; KKS passim"
+          "source": "LS passim; KKS passim"
         },
         {
           "id": "04-guna:adjectives-of-power-beauty:kancana-hema-suvarna",
@@ -450,7 +450,7 @@
           "devanagari": "स्फुरद् / स्फुरत्",
           "iast": "sphurad / sphurat",
           "gloss": "glittering, throbbing",
-          "note": "LS 16; KS passim"
+          "source": "LS 16; KS passim"
         }
       ]
     },
@@ -589,14 +589,14 @@
           "devanagari": "श्रीमत्",
           "iast": "śrīmat",
           "gloss": "endowed with splendor",
-          "note": "VS 22, 178; LS passim"
+          "source": "VS 22, 178; LS passim"
         },
         {
           "id": "04-guna:adjectives-of-power-beauty:sat",
           "devanagari": "सत्",
           "iast": "sat",
           "gloss": "true, good, real",
-          "note": "VS 41; LS passim"
+          "source": "VS 41; LS passim"
         },
         {
           "id": "04-guna:adjectives-of-power-beauty:satya",

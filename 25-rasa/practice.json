@@ -10,7 +10,7 @@
           "devanagari": "रसः",
           "iast": "rasaḥ",
           "gloss": "aesthetic flavour",
-          "note": "prathamā | nom. sg. · m. · stem: rasa- · a-stem"
+          "note": "noun · masculine · a-stem · stem: rasa-"
         },
         {
           "id": "25-rasa:rasa:srngarah",
@@ -80,14 +80,14 @@
           "devanagari": "स्थायिभावः",
           "iast": "sthāyibhāvaḥ",
           "gloss": "the abiding emotion",
-          "note": "prathamā | nom. sg. · m. · stem: sthāyibhāva- · a-stem"
+          "note": "noun · masculine · a-stem · stem: sthāyibhāva-"
         },
         {
           "id": "25-rasa:rasa:vibhavah",
           "devanagari": "विभावः",
           "iast": "vibhāvaḥ",
           "gloss": "the determinant cause",
-          "note": "prathamā | nom. sg. · m. · stem: vibhāva- · a-stem"
+          "note": "noun · masculine · a-stem · stem: vibhāva-"
         }
       ]
     }

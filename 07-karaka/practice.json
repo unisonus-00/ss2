@@ -10,56 +10,56 @@
           "devanagari": "कर्ता",
           "iast": "kartā",
           "gloss": "the agent, the doer",
-          "note": "prathamā | nom. sg. · m. · stem: kartṛ- · ṛ-stem"
+          "note": "noun · masculine · ṛ-stem · stem: kartṛ-"
         },
         {
           "id": "07-karaka:karaka:karma",
           "devanagari": "कर्म",
           "iast": "karma",
           "gloss": "the object acted upon",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: karman- · an-stem"
+          "note": "noun · neuter · an-stem · stem: karman-"
         },
         {
           "id": "07-karaka:karaka:karanam",
           "devanagari": "करणम्",
           "iast": "karaṇam",
           "gloss": "the instrument",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: karaṇa- · a-stem"
+          "note": "noun · neuter · a-stem · stem: karaṇa-"
         },
         {
           "id": "07-karaka:karaka:sampradanam",
           "devanagari": "सम्प्रदानम्",
           "iast": "sampradānam",
           "gloss": "the recipient",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: sampradāna- · a-stem"
+          "note": "noun · neuter · a-stem · stem: sampradāna-"
         },
         {
           "id": "07-karaka:karaka:apadanam",
           "devanagari": "अपादानम्",
           "iast": "apādānam",
           "gloss": "the source of separation",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: apādāna- · a-stem"
+          "note": "noun · neuter · a-stem · stem: apādāna-"
         },
         {
           "id": "07-karaka:karaka:adhikaranam",
           "devanagari": "अधिकरणम्",
           "iast": "adhikaraṇam",
           "gloss": "the locus",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: adhikaraṇa- · a-stem"
+          "note": "noun · neuter · a-stem · stem: adhikaraṇa-"
         },
         {
           "id": "07-karaka:karaka:sambandhah",
           "devanagari": "सम्बन्धः",
           "iast": "sambandhaḥ",
           "gloss": "relation (not strictly a kāraka)",
-          "note": "prathamā | nom. sg. · m. · stem: sambandha- · a-stem"
+          "note": "noun · masculine · a-stem · stem: sambandha-"
         },
         {
           "id": "07-karaka:karaka:hetuh",
           "devanagari": "हेतुः",
           "iast": "hetuḥ",
           "gloss": "cause",
-          "note": "prathamā | nom. sg. · m. · stem: hetu- · u-stem"
+          "note": "noun · masculine · u-stem · stem: hetu-"
         },
         {
           "id": "07-karaka:karaka:ramah-banena-ravanam-hanti",
@@ -568,7 +568,7 @@
           "devanagari": "भस्म",
           "iast": "bhasma",
           "gloss": "ashes",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: bhasman- · an-stem · DM 6.13 (hūṃkāreṇa taṃ bhasma sā cakāra)"
+          "note": "noun · neuter · an-stem · stem: bhasman- · DM 6.13 (hūṃkāreṇa taṃ bhasma sā cakāra)"
         },
         {
           "id": "07-karaka:war-combat:curna",

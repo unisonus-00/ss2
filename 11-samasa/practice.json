@@ -542,35 +542,35 @@
           "devanagari": "खण्डशः",
           "iast": "khaṇḍaśaḥ",
           "gloss": "into pieces",
-          "note": "DM passim"
+          "source": "DM passim"
         },
         {
           "id": "11-samasa:compounds-broken-down:satasah",
           "devanagari": "शतशः",
           "iast": "śataśaḥ",
           "gloss": "by hundreds",
-          "note": "DM 9.27"
+          "source": "DM 9.27"
         },
         {
           "id": "11-samasa:compounds-broken-down:sahasrasah",
           "devanagari": "सहस्रशः",
           "iast": "sahasraśaḥ",
           "gloss": "by thousands",
-          "note": "DM 8.45, 9.27"
+          "source": "DM 8.45, 9.27"
         },
         {
           "id": "11-samasa:compounds-broken-down:yathavidhi",
           "devanagari": "यथाविधि",
           "iast": "yathāvidhi",
           "gloss": "according to rule",
-          "note": "DM passim"
+          "source": "DM passim"
         },
         {
           "id": "11-samasa:compounds-broken-down:samantatah",
           "devanagari": "समन्ततः",
           "iast": "samantataḥ",
           "gloss": "all around",
-          "note": "DM passim"
+          "source": "DM passim"
         },
         {
           "id": "11-samasa:compounds-broken-down:sarvamangalamangalye",
@@ -598,7 +598,7 @@
           "devanagari": "नारायणि नमोऽस्तु ते",
           "iast": "nārāyaṇi namo'stu te",
           "gloss": "O Nārāyaṇī, salutations to you",
-          "note": "DM 11.12+ (refrain)"
+          "source": "DM 11.12+ (refrain)"
         }
       ]
     }

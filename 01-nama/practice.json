@@ -1765,98 +1765,101 @@
           "devanagari": "विश्वम्",
           "iast": "viśvam",
           "gloss": "the universe",
-          "note": "VS 1"
+          "note": "noun · neuter",
+          "source": "VS 1"
         },
         {
           "id": "01-nama:god-names-celestials:bhutakrt",
           "devanagari": "भूतकृत्",
           "iast": "bhūtakṛt",
           "gloss": "creator of beings",
-          "note": "VS 5"
+          "source": "VS 5"
         },
         {
           "id": "01-nama:god-names-celestials:bhutabhrt",
           "devanagari": "भूतभृत्",
           "iast": "bhūtabhṛt",
           "gloss": "sustainer of beings",
-          "note": "VS 6"
+          "source": "VS 6"
         },
         {
           "id": "01-nama:god-names-celestials:prabhava",
           "devanagari": "प्रभव",
           "iast": "prabhava",
           "gloss": "source of all",
-          "note": "VS 7"
+          "source": "VS 7"
         },
         {
           "id": "01-nama:god-names-celestials:prabhu",
           "devanagari": "प्रभु",
           "iast": "prabhu",
           "gloss": "lord",
-          "note": "VS 8"
+          "source": "VS 8"
         },
         {
           "id": "01-nama:god-names-celestials:sarvaga",
           "devanagari": "सर्वग",
           "iast": "sarvaga",
           "gloss": "all-pervading",
-          "note": "VS 18"
+          "source": "VS 18"
         },
         {
           "id": "01-nama:god-names-celestials:sarvadarsana",
           "devanagari": "सर्वदर्शन",
           "iast": "sarvadarśana",
           "gloss": "all-seeing",
-          "note": "VS 20"
+          "source": "VS 20"
         },
         {
           "id": "01-nama:god-names-celestials:sasvata",
           "devanagari": "शाश्वत",
           "iast": "śāśvata",
           "gloss": "eternal",
-          "note": "VS 57"
+          "source": "VS 57"
         },
         {
           "id": "01-nama:god-names-celestials:purusa",
           "devanagari": "पुरुष",
           "iast": "puruṣa",
           "gloss": "the cosmic person",
-          "note": "VS 14"
+          "note": "noun · masculine · a-stem · stem: puruṣa-",
+          "source": "VS 14"
         },
         {
           "id": "01-nama:god-names-celestials:paramatma",
           "devanagari": "परमात्मा",
           "iast": "paramātmā",
           "gloss": "supreme self",
-          "note": "VS 10, 362"
+          "source": "VS 10, 362"
         },
         {
           "id": "01-nama:god-names-celestials:amrtyu",
           "devanagari": "अमृत्यु",
           "iast": "amṛtyu",
           "gloss": "deathless",
-          "note": "VS 26"
+          "source": "VS 26"
         },
         {
           "id": "01-nama:god-names-celestials:sarvajna",
           "devanagari": "सर्वज्ञ",
           "iast": "sarvajña",
           "gloss": "all-knowing",
-          "note": "VS 453"
+          "source": "VS 453"
         },
         {
           "id": "01-nama:god-names-celestials:srimat",
           "devanagari": "श्रीमत्",
           "iast": "śrīmat",
           "gloss": "endowed with Śrī/beauty",
-          "note": "VS 22, 178"
+          "source": "VS 22, 178"
         },
         {
           "id": "01-nama:god-names-celestials:sundara",
           "devanagari": "सुन्दर",
           "iast": "sundara",
           "gloss": "beautiful",
-          "note": "VS 591"
+          "note": "adjective · a-stem · stem: sundara-",
+          "source": "VS 591"
         }
       ]
     },
@@ -1869,119 +1872,126 @@
           "devanagari": "सत्य",
           "iast": "satya",
           "gloss": "truth",
-          "note": "VS 107, 212, 871"
+          "note": "adjective · a-stem · stem: satya-",
+          "source": "VS 107, 212, 871"
         },
         {
           "id": "01-nama:god-names-celestials:dharma",
           "devanagari": "धर्म",
           "iast": "dharma",
           "gloss": "righteousness",
-          "note": "VS 405"
+          "note": "noun · masculine · a-stem · stem: dharma- · from √dhṛ",
+          "source": "VS 405"
         },
         {
           "id": "01-nama:god-names-celestials:sat",
           "devanagari": "सत्",
           "iast": "sat",
           "gloss": "being/existence",
-          "note": "VS 41"
+          "source": "VS 41"
         },
         {
           "id": "01-nama:god-names-celestials:acyuta",
           "devanagari": "अच्युत",
           "iast": "acyuta",
           "gloss": "unfallen",
-          "note": "VS 100, 318"
+          "note": "adjective · a-stem · stem: acyuta-",
+          "source": "VS 100, 318"
         },
         {
           "id": "01-nama:god-names-celestials:ajita",
           "devanagari": "अजित",
           "iast": "ajita",
           "gloss": "unconquered",
-          "note": "VS 438"
+          "note": "adjective · a-stem · stem: ajita-",
+          "source": "VS 438"
         },
         {
           "id": "01-nama:god-names-celestials:amita",
           "devanagari": "अमित",
           "iast": "amita",
           "gloss": "immeasurable",
-          "note": "VS 174"
+          "note": "adjective · a-stem",
+          "source": "VS 174"
         },
         {
           "id": "01-nama:god-names-celestials:avyaya",
           "devanagari": "अव्यय",
           "iast": "avyaya",
           "gloss": "imperishable",
-          "note": "VS 13"
+          "note": "adjective · a-stem · stem: avyaya-",
+          "source": "VS 13"
         },
         {
           "id": "01-nama:god-names-celestials:srasta",
           "devanagari": "स्रष्टा",
           "iast": "sraṣṭā",
           "gloss": "creator",
-          "note": "VS 472"
+          "source": "VS 472"
         },
         {
           "id": "01-nama:god-names-celestials:vikarta",
           "devanagari": "विकर्ता",
           "iast": "vikartā",
           "gloss": "transformer",
-          "note": "VS 452"
+          "source": "VS 452"
         },
         {
           "id": "01-nama:god-names-celestials:samharta",
           "devanagari": "संहर्ता",
           "iast": "saṃhartā",
           "gloss": "destroyer",
-          "note": "VS -- (implied)"
+          "source": "VS -- (implied)"
         },
         {
           "id": "01-nama:god-names-celestials:sthanu",
           "devanagari": "स्थाणु",
           "iast": "sthāṇu",
           "gloss": "pillar / immovable",
-          "note": "VS 28"
+          "source": "VS 28"
         },
         {
           "id": "01-nama:god-names-celestials:dhata",
           "devanagari": "धाता",
           "iast": "dhātā",
           "gloss": "supporter",
-          "note": "VS 43, 304"
+          "source": "VS 43, 304"
         },
         {
           "id": "01-nama:god-names-celestials:vidhata",
           "devanagari": "विधाता",
           "iast": "vidhātā",
           "gloss": "ordainer",
-          "note": "VS 44, 305"
+          "source": "VS 44, 305"
         },
         {
           "id": "01-nama:god-names-celestials:lokadhyaksa",
           "devanagari": "लोकाध्यक्ष",
           "iast": "lokādhyakṣa",
           "gloss": "overseer of worlds",
-          "note": "VS 51"
+          "source": "VS 51"
         },
         {
           "id": "01-nama:god-names-celestials:kala",
           "devanagari": "काल",
           "iast": "kāla",
           "gloss": "time",
-          "note": "VS 299"
+          "note": "noun · masculine · a-stem · stem: kāla-",
+          "source": "VS 299"
         },
         {
           "id": "01-nama:god-names-celestials:isvara",
           "devanagari": "ईश्वर",
           "iast": "īśvara",
           "gloss": "lord",
-          "note": "VS 36"
+          "source": "VS 36"
         },
         {
           "id": "01-nama:god-names-celestials:svayambhu",
           "devanagari": "स्वयम्भू",
           "iast": "svayambhū",
           "gloss": "self-born",
-          "note": "VS 37"
+          "source": "VS 37"
         }
       ]
     },
@@ -2466,7 +2476,7 @@
           "devanagari": "दैत्यसेन",
           "iast": "daityasena",
           "gloss": "demon army-commander",
-          "note": "DM 2.42"
+          "source": "DM 2.42"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:daityasainye",
@@ -2480,63 +2490,63 @@
           "devanagari": "असुराणाम् अधिपः",
           "iast": "asurāṇām adhipaḥ",
           "gloss": "overlord of asuras",
-          "note": "DM 6.3"
+          "source": "DM 6.3"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:mahasainya",
           "devanagari": "महासैन्य",
           "iast": "mahāsainya",
           "gloss": "great army",
-          "note": "DM 6.14"
+          "source": "DM 6.14"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:daityanasin",
           "devanagari": "दैत्यनाशिन्",
           "iast": "daityanāśin",
           "gloss": "demon-destroyer",
-          "note": "DM 11.14"
+          "source": "DM 11.14"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:sarvadaityakulantaka",
           "devanagari": "सर्वदैत्यकुलान्तक",
           "iast": "sarvadaityakulāntaka",
           "gloss": "ender of all demon clans",
-          "note": "DM 11.14"
+          "source": "DM 11.14"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:mahisasuramardani",
           "devanagari": "महिषासुरमर्दनी",
           "iast": "mahiṣāsuramardanī",
           "gloss": "crusher of the buffalo-demon",
-          "note": "DM 3.44"
+          "source": "DM 3.44"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:mahisasuranirnasa",
           "devanagari": "महिषासुरनिर्णाश",
           "iast": "mahiṣāsuranirṇāśa",
           "gloss": "annihilation of Mahiṣāsura",
-          "note": "DM Ch.3 colophon"
+          "source": "DM Ch.3 colophon"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:raktabijavadha",
           "devanagari": "रक्तबीजवध",
           "iast": "raktabījavadha",
           "gloss": "slaying of Raktabīja",
-          "note": "DM Ch.8 colophon"
+          "source": "DM Ch.8 colophon"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:sumbhavadha",
           "devanagari": "शुम्भवध",
           "iast": "śumbhavadha",
           "gloss": "slaying of Śumbha",
-          "note": "DM Ch.10 colophon"
+          "source": "DM Ch.10 colophon"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:kesakarsanavihvala",
           "devanagari": "केशाकर्षणविह्वला",
           "iast": "keśākarṣaṇavihvalā",
           "gloss": "distraught from hair-dragging",
-          "note": "DM 6.4, 6.9"
+          "source": "DM 6.4, 6.9"
         }
       ]
     },
@@ -3236,7 +3246,7 @@
           "devanagari": "दश दिशः",
           "iast": "daśa diśaḥ",
           "gloss": "the ten directions",
-          "note": "DM 9.21"
+          "source": "DM 9.21"
         },
         {
           "id": "01-nama:nature-cosmos:purva",
@@ -3770,70 +3780,70 @@
           "devanagari": "प्रथम",
           "iast": "prathama",
           "gloss": "first",
-          "note": "DM: prathamo'dhyāyaḥ"
+          "source": "DM: prathamo'dhyāyaḥ"
         },
         {
           "id": "01-nama:numbers-time-space:dvitiya",
           "devanagari": "द्वितीय",
           "iast": "dvitīya",
           "gloss": "second",
-          "note": "DM: dvitīyo'dhyāyaḥ"
+          "source": "DM: dvitīyo'dhyāyaḥ"
         },
         {
           "id": "01-nama:numbers-time-space:trtiya",
           "devanagari": "तृतीय",
           "iast": "tṛtīya",
           "gloss": "third",
-          "note": "DM colophon"
+          "source": "DM colophon"
         },
         {
           "id": "01-nama:numbers-time-space:caturtha",
           "devanagari": "चतुर्थ",
           "iast": "caturtha",
           "gloss": "fourth",
-          "note": "DM colophon"
+          "source": "DM colophon"
         },
         {
           "id": "01-nama:numbers-time-space:pancama",
           "devanagari": "पञ्चम",
           "iast": "pañcama",
           "gloss": "fifth",
-          "note": "DM colophon"
+          "source": "DM colophon"
         },
         {
           "id": "01-nama:numbers-time-space:dvidha",
           "devanagari": "द्विधा",
           "iast": "dvidhā",
           "gloss": "in two",
-          "note": "DM 9.13"
+          "source": "DM 9.13"
         },
         {
           "id": "01-nama:numbers-time-space:tridha",
           "devanagari": "त्रिधा",
           "iast": "tridhā",
           "gloss": "in three",
-          "note": "DM passim"
+          "source": "DM passim"
         },
         {
           "id": "01-nama:numbers-time-space:satasah",
           "devanagari": "शतशः",
           "iast": "śataśaḥ",
           "gloss": "by hundreds",
-          "note": "DM 9.27"
+          "source": "DM 9.27"
         },
         {
           "id": "01-nama:numbers-time-space:sahasrasah",
           "devanagari": "सहस्रशः",
           "iast": "sahasraśaḥ",
           "gloss": "by thousands",
-          "note": "DM 8.45, 9.27"
+          "source": "DM 8.45, 9.27"
         },
         {
           "id": "01-nama:numbers-time-space:kotisah",
           "devanagari": "कोटिशः",
           "iast": "koṭiśaḥ",
           "gloss": "by millions",
-          "note": "KS passim"
+          "source": "KS passim"
         }
       ]
     },
@@ -4033,91 +4043,92 @@
           "devanagari": "काशी",
           "iast": "kāśī",
           "gloss": "Vārāṇasī",
-          "note": "KKS 610; KS passim"
+          "source": "KKS 610; KS passim"
         },
         {
           "id": "01-nama:sacred-geography-plants:kanci",
           "devanagari": "काञ्ची",
           "iast": "kāñcī",
           "gloss": "Kāñcīpuram",
-          "note": "KKS 501, 611"
+          "note": "noun · feminine · ī-stem · stem: kāñcī-",
+          "source": "KKS 501, 611"
         },
         {
           "id": "01-nama:sacred-geography-plants:kamarupa",
           "devanagari": "कामरूप",
           "iast": "kāmarūpa",
           "gloss": "Assam (Kāmākhyā region)",
-          "note": "KKS 621, 628+, 659+"
+          "source": "KKS 621, 628+, 659+"
         },
         {
           "id": "01-nama:sacred-geography-plants:kampilya",
           "devanagari": "काम्पिल्य",
           "iast": "kāmpilya",
           "gloss": "ancient city",
-          "note": "KKS 713"
+          "source": "KKS 713"
         },
         {
           "id": "01-nama:sacred-geography-plants:kedara",
           "devanagari": "केदार",
           "iast": "kedāra",
           "gloss": "Kedārnāth",
-          "note": "KKS 967-968"
+          "source": "KKS 967-968"
         },
         {
           "id": "01-nama:sacred-geography-plants:kerala",
           "devanagari": "केरळ",
           "iast": "keraḷa",
           "gloss": "Kerala",
-          "note": "KKS 964-966"
+          "source": "KKS 964-966"
         },
         {
           "id": "01-nama:sacred-geography-plants:kolapura",
           "devanagari": "कोलापुर",
           "iast": "kolāpura",
           "gloss": "Kolhapur",
-          "note": "KKS 952-953"
+          "source": "KKS 952-953"
         },
         {
           "id": "01-nama:sacred-geography-plants:kasmira",
           "devanagari": "काश्मीर",
           "iast": "kāśmīra",
           "gloss": "Kashmir",
-          "note": "KKS 657-658"
+          "source": "KKS 657-658"
         },
         {
           "id": "01-nama:sacred-geography-plants:avanti",
           "devanagari": "अवन्ती",
           "iast": "avantī",
           "gloss": "Ujjain",
-          "note": "KS passim"
+          "source": "KS passim"
         },
         {
           "id": "01-nama:sacred-geography-plants:mathura",
           "devanagari": "मथुरा",
           "iast": "mathurā",
           "gloss": "Mathurā",
-          "note": "KS passim"
+          "source": "KS passim"
         },
         {
           "id": "01-nama:sacred-geography-plants:ayodhya",
           "devanagari": "अयोध्या",
           "iast": "ayodhyā",
           "gloss": "Ayodhyā",
-          "note": "KS passim"
+          "source": "KS passim"
         },
         {
           "id": "01-nama:sacred-geography-plants:vindhyacala",
           "devanagari": "विन्ध्याचल",
           "iast": "vindhyācala",
           "gloss": "Vindhya mountains",
-          "note": "LS 318; KS passim"
+          "source": "LS 318; KS passim"
         },
         {
           "id": "01-nama:sacred-geography-plants:smasana",
           "devanagari": "श्मशान",
           "iast": "śmaśāna",
           "gloss": "cremation ground",
-          "note": "KS 1 (śmaśānakālikā)"
+          "source": "KS 1 (śmaśānakālikā)"
         },
         {
           "id": "01-nama:sacred-geography-plants:cita",
@@ -4131,35 +4142,40 @@
           "devanagari": "गङ्गा",
           "iast": "gaṅgā",
           "gloss": "Ganges",
-          "note": "KS passim"
+          "note": "noun · feminine · ā-stem · stem: gaṅgā-",
+          "source": "KS passim"
         },
         {
           "id": "01-nama:sacred-geography-plants:yamuna-kalindi",
           "devanagari": "यमुना / कालिन्दी",
           "iast": "yamunā / kālindī",
           "gloss": "Yamunā",
-          "note": "KKS 688-689; KS passim"
+          "note": "noun · feminine",
+          "source": "KKS 688-689; KS passim"
         },
         {
           "id": "01-nama:sacred-geography-plants:kaveri",
           "devanagari": "कावेरी",
           "iast": "kāverī",
           "gloss": "Kāverī",
-          "note": "KKS 705-706"
+          "note": "noun · feminine · ī-stem · stem: kāverī-",
+          "source": "KKS 705-706"
         },
         {
           "id": "01-nama:sacred-geography-plants:sarasvati",
           "devanagari": "सरस्वती",
           "iast": "sarasvatī",
           "gloss": "Sarasvatī river",
-          "note": "LS passim"
+          "note": "noun · feminine · ī-stem · stem: sarasvatī-",
+          "source": "LS passim"
         },
         {
           "id": "01-nama:sacred-geography-plants:sindhu",
           "devanagari": "सिन्धु",
           "iast": "sindhu",
           "gloss": "Indus",
-          "note": "KS passim"
+          "note": "noun · masculine",
+          "source": "KS passim"
         }
       ]
     },
@@ -4172,35 +4188,35 @@
           "devanagari": "श्रीचक्र / श्रीयन्त्र",
           "iast": "śrīcakra / śrīyantra",
           "gloss": "the sacred diagram",
-          "note": "LS 56+ (cakrarājanilaya)"
+          "source": "LS 56+ (cakrarājanilaya)"
         },
         {
           "id": "01-nama:sacred-geography-plants:cintamani",
           "devanagari": "चिन्तामणि",
           "iast": "cintāmaṇi",
           "gloss": "wish-fulfilling jewel",
-          "note": "LS 57; KS passim"
+          "source": "LS 57; KS passim"
         },
         {
           "id": "01-nama:sacred-geography-plants:kalpalata-kalpavrksa",
           "devanagari": "कल्पलता / कल्पवृक्ष",
           "iast": "kalpalatā / kalpavṛkṣa",
           "gloss": "wish-fulfilling vine/tree",
-          "note": "KKS 367-369, 526-530; KS passim"
+          "source": "KKS 367-369, 526-530; KS passim"
         },
         {
           "id": "01-nama:sacred-geography-plants:kamadhenu",
           "devanagari": "कामधेनु",
           "iast": "kāmadhenu",
           "gloss": "wish-fulfilling cow",
-          "note": "KKS 637; KS passim"
+          "source": "KKS 637; KS passim"
         },
         {
           "id": "01-nama:sacred-geography-plants:parijata",
           "devanagari": "पारिजात",
           "iast": "pārijāta",
           "gloss": "celestial tree",
-          "note": "LS passim"
+          "source": "LS passim"
         },
         {
           "id": "01-nama:sacred-geography-plants:amrta",
@@ -4269,56 +4285,64 @@
           "devanagari": "कदम्ब",
           "iast": "kadamba",
           "gloss": "kadamba (Neolamarckia cadamba)",
-          "note": "LS 60; KKS 196-205"
+          "note": "noun · masculine · a-stem · stem: kadamba-",
+          "source": "LS 60; KKS 196-205"
         },
         {
           "id": "01-nama:sacred-geography-plants:kadali",
           "devanagari": "कदली",
           "iast": "kadalī",
           "gloss": "plantain",
-          "note": "KKS 187-195"
+          "note": "noun · feminine · ī-stem · stem: kadalī-",
+          "source": "KKS 187-195"
         },
         {
           "id": "01-nama:sacred-geography-plants:karanja",
           "devanagari": "करञ्ज",
           "iast": "karañja",
           "gloss": "Indian beech (Pongamia)",
-          "note": "KKS 111-115"
+          "note": "noun · masculine · a-stem · stem: karañja-",
+          "source": "KKS 111-115"
         },
         {
           "id": "01-nama:sacred-geography-plants:ketaki",
           "devanagari": "केतकी",
           "iast": "ketakī",
           "gloss": "screw-pine (Pandanus)",
-          "note": "KKS 929-930"
+          "note": "noun · feminine · ī-stem · stem: ketakī-",
+          "source": "KKS 929-930"
         },
         {
           "id": "01-nama:sacred-geography-plants:kunkuma",
           "devanagari": "कुङ्कुम",
           "iast": "kuṅkuma",
           "gloss": "saffron (Crocus)",
-          "note": "KKS 747, 839-842"
+          "note": "noun · neuter · a-stem · stem: kuṅkuma-",
+          "source": "KKS 747, 839-842"
         },
         {
           "id": "01-nama:sacred-geography-plants:karpura",
           "devanagari": "कर्पूर",
           "iast": "karpūra",
           "gloss": "camphor (Cinnamomum camphora)",
-          "note": "KKS 531-537"
+          "note": "noun · neuter · a-stem · stem: karpūra-",
+          "source": "KKS 531-537"
         },
         {
           "id": "01-nama:sacred-geography-plants:kasturi",
           "devanagari": "कस्तूरी",
           "iast": "kastūrī",
           "gloss": "musk",
-          "note": "KKS 225-280"
+          "note": "noun · feminine · ī-stem · stem: kastūrī-",
+          "source": "KKS 225-280"
         },
         {
           "id": "01-nama:sacred-geography-plants:candana",
           "devanagari": "चन्दन",
           "iast": "candana",
           "gloss": "sandalwood",
-          "note": "KS passim"
+          "note": "noun · neuter · a-stem · stem: candana-",
+          "source": "KS passim"
         },
         {
           "id": "01-nama:sacred-geography-plants:bilva",
@@ -4339,56 +4363,56 @@
           "devanagari": "कुश",
           "iast": "kuśa",
           "gloss": "darbha grass",
-          "note": "KKS 759"
+          "source": "KKS 759"
         },
         {
           "id": "01-nama:sacred-geography-plants:kunda",
           "devanagari": "कुन्द",
           "iast": "kunda",
           "gloss": "jasmine",
-          "note": "KKS 751-753"
+          "source": "KKS 751-753"
         },
         {
           "id": "01-nama:sacred-geography-plants:campaka",
           "devanagari": "चम्पक",
           "iast": "campaka",
           "gloss": "Champaka (Magnolia)",
-          "note": "LS 12"
+          "source": "LS 12"
         },
         {
           "id": "01-nama:sacred-geography-plants:punnaga",
           "devanagari": "पुण्णाग",
           "iast": "puṇṇāga",
           "gloss": "Calophyllum",
-          "note": "LS 12"
+          "source": "LS 12"
         },
         {
           "id": "01-nama:sacred-geography-plants:asoka",
           "devanagari": "अशोक",
           "iast": "aśoka",
           "gloss": "Saraca asoca",
-          "note": "LS 12"
+          "source": "LS 12"
         },
         {
           "id": "01-nama:sacred-geography-plants:saugandhika",
           "devanagari": "सौगन्धिक",
           "iast": "saugandhika",
           "gloss": "fragrant lotus",
-          "note": "LS 12"
+          "source": "LS 12"
         },
         {
           "id": "01-nama:sacred-geography-plants:kimsuka",
           "devanagari": "किंशुक",
           "iast": "kiṃśuka",
           "gloss": "flame of the forest (Butea)",
-          "note": "KKS 921"
+          "source": "KKS 921"
         },
         {
           "id": "01-nama:sacred-geography-plants:kalaguru",
           "devanagari": "कालागुरु",
           "iast": "kālāguru",
           "gloss": "aloe/agarwood",
-          "note": "KKS 701-704"
+          "source": "KKS 701-704"
         }
       ]
     },
@@ -4401,105 +4425,107 @@
           "devanagari": "पायसान्न",
           "iast": "pāyasānna",
           "gloss": "milk-rice pudding",
-          "note": "LS 401"
+          "source": "LS 401"
         },
         {
           "id": "01-nama:sacred-geography-plants:modaka-modana",
           "devanagari": "मोदक / मोदन",
           "iast": "modaka / modana",
           "gloss": "sweet dumpling",
-          "note": "LS passim"
+          "source": "LS passim"
         },
         {
           "id": "01-nama:sacred-geography-plants:mudgaudana",
           "devanagari": "मुद्गौदन",
           "iast": "mudgaudana",
           "gloss": "mung-rice",
-          "note": "LS passim"
+          "source": "LS passim"
         },
         {
           "id": "01-nama:sacred-geography-plants:dadhyanna",
           "devanagari": "दध्यन्न",
           "iast": "dadhyanna",
           "gloss": "yogurt-rice",
-          "note": "LS passim"
+          "source": "LS passim"
         },
         {
           "id": "01-nama:sacred-geography-plants:gudanna",
           "devanagari": "गुडान्न",
           "iast": "guḍānna",
           "gloss": "jaggery-rice",
-          "note": "LS passim"
+          "source": "LS passim"
         },
         {
           "id": "01-nama:sacred-geography-plants:haridranna",
           "devanagari": "हरिद्रान्न",
           "iast": "haridrānna",
           "gloss": "turmeric-rice",
-          "note": "LS passim"
+          "source": "LS passim"
         },
         {
           "id": "01-nama:sacred-geography-plants:madhu",
           "devanagari": "मधु",
           "iast": "madhu",
           "gloss": "honey",
-          "note": "VS passim; KS passim"
+          "note": "noun · masculine · u-stem · stem: madhu-",
+          "source": "VS passim; KS passim"
         },
         {
           "id": "01-nama:sacred-geography-plants:ghrta",
           "devanagari": "घृत",
           "iast": "ghṛta",
           "gloss": "clarified butter",
-          "note": "VS passim"
+          "source": "VS passim"
         },
         {
           "id": "01-nama:sacred-geography-plants:mamsa",
           "devanagari": "मांस",
           "iast": "māṃsa",
           "gloss": "meat (offered to Kālī)",
-          "note": "KS passim"
+          "note": "noun · neuter · a-stem · stem: māṃsa-",
+          "source": "KS passim"
         },
         {
           "id": "01-nama:sacred-geography-plants:ekarnava",
           "devanagari": "एकार्णव",
           "iast": "ekārṇava",
           "gloss": "the single primordial ocean",
-          "note": "DM 1.64"
+          "source": "DM 1.64"
         },
         {
           "id": "01-nama:sacred-geography-plants:ksirasagara-ksiroda",
           "devanagari": "क्षीरसागर / क्षीरोद",
           "iast": "kṣīrasāgara / kṣīroda",
           "gloss": "ocean of milk",
-          "note": "VS passim"
+          "source": "VS passim"
         },
         {
           "id": "01-nama:sacred-geography-plants:nabhikamala",
           "devanagari": "नाभिकमल",
           "iast": "nābhikamala",
           "gloss": "navel-lotus (of Viṣṇu)",
-          "note": "DM 1.46"
+          "source": "DM 1.46"
         },
         {
           "id": "01-nama:sacred-geography-plants:vaikuntha",
           "devanagari": "वैकुण्ठ",
           "iast": "vaikuṇṭha",
           "gloss": "Viṣṇu's abode",
-          "note": "VS passim"
+          "source": "VS passim"
         },
         {
           "id": "01-nama:sacred-geography-plants:manidvipa",
           "devanagari": "मणिद्वीप",
           "iast": "maṇidvīpa",
           "gloss": "jewel-island (Devī's abode)",
-          "note": "LS passim"
+          "source": "LS passim"
         },
         {
           "id": "01-nama:sacred-geography-plants:sripura-srinagara",
           "devanagari": "श्रीपुर / श्रीनगर",
           "iast": "śrīpura / śrīnagara",
           "gloss": "the auspicious city",
-          "note": "LS 56 (śrīmannagara)"
+          "source": "LS 56 (śrīmannagara)"
         }
       ]
     }

@@ -408,8 +408,11 @@ if ((SAVED.v || 1) < 4) {
 
 /* ── trouble cards ─────────────────────────────────────────
    A card lands on the list after TROUBLE_WRONG wrong answers and leaves
-   after TROUBLE_CLEAR right ones, each in a different session — three
-   right answers in one sitting is recognition, not memory.  A wrong
+   after TROUBLE_CLEAR right ones.  The two are deliberately asymmetric:
+   getting it wrong three times counts however close together those were —
+   a card you keep losing today is trouble today — while getting it right
+   three times only counts once per session, because three right answers in
+   one sitting is recognition, not memory.  A wrong
    answer starts that count over: it is still trouble.
 
    Keyed by card rather than by card-in-a-list, so a word you keep losing

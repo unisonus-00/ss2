@@ -10,84 +10,84 @@
           "devanagari": "उदात्तः",
           "iast": "udāttaḥ",
           "gloss": "the raised accent",
-          "note": "prathamā | nom. sg. · m. · stem: udātta- · a-stem"
+          "note": "noun · masculine · a-stem · stem: udātta-"
         },
         {
           "id": "20-svara-vidya:svara:anudattah",
           "devanagari": "अनुदात्तः",
           "iast": "anudāttaḥ",
           "gloss": "the unraised accent",
-          "note": "prathamā | nom. sg. · m. · stem: anudātta- · a-stem"
+          "note": "noun · masculine · a-stem · stem: anudātta-"
         },
         {
           "id": "20-svara-vidya:svara:svaritah",
           "devanagari": "स्वरितः",
           "iast": "svaritaḥ",
           "gloss": "the falling accent",
-          "note": "prathamā | nom. sg. · m. · stem: svarita- · a-stem"
+          "note": "noun · masculine · a-stem · stem: svarita-"
         },
         {
           "id": "20-svara-vidya:svara:samhita",
           "devanagari": "संहिता",
           "iast": "saṃhitā",
           "gloss": "the continuous recitation",
-          "note": "prathamā | nom. sg. · f. · stem: saṃhitā- · ā-stem"
+          "note": "noun · feminine · ā-stem · stem: saṃhitā-"
         },
         {
           "id": "20-svara-vidya:svara:padapathah",
           "devanagari": "पदपाठः",
           "iast": "padapāṭhaḥ",
           "gloss": "word-by-word recitation",
-          "note": "prathamā | nom. sg. · m. · stem: padapāṭha- · a-stem"
+          "note": "noun · masculine · a-stem · stem: padapāṭha-"
         },
         {
           "id": "20-svara-vidya:svara:kramah",
           "devanagari": "क्रमः",
           "iast": "kramaḥ",
           "gloss": "step recitation (ab, bc, cd)",
-          "note": "prathamā | nom. sg. · m. · stem: krama- · a-stem"
+          "note": "noun · masculine · a-stem · stem: krama-"
         },
         {
           "id": "20-svara-vidya:svara:jata",
           "devanagari": "जटा",
           "iast": "jaṭā",
           "gloss": "braided recitation",
-          "note": "prathamā | nom. sg. · f. · stem: jaṭā- · ā-stem"
+          "note": "noun · feminine · ā-stem · stem: jaṭā-"
         },
         {
           "id": "20-svara-vidya:svara:ghanah",
           "devanagari": "घनः",
           "iast": "ghanaḥ",
           "gloss": "dense recitation",
-          "note": "prathamā | nom. sg. · m. · stem: ghana- · a-stem"
+          "note": "noun · masculine · a-stem · stem: ghana-"
         },
         {
           "id": "20-svara-vidya:svara:vikrtih",
           "devanagari": "विकृतिः",
           "iast": "vikṛtiḥ",
           "gloss": "a permuted recitation pattern",
-          "note": "prathamā | nom. sg. · f. · stem: vikṛti- · i-stem"
+          "note": "noun · feminine · i-stem · stem: vikṛti-"
         },
         {
           "id": "20-svara-vidya:svara:siksa",
           "devanagari": "शिक्षा",
           "iast": "śikṣā",
           "gloss": "the science of phonetics",
-          "note": "prathamā | nom. sg. · f. · stem: śikṣā- · ā-stem"
+          "note": "noun · feminine · ā-stem · stem: śikṣā-"
         },
         {
           "id": "20-svara-vidya:svara:pratisakhyam",
           "devanagari": "प्रातिशाख्यम्",
           "iast": "prātiśākhyam",
           "gloss": "phonetic treatise of a śākhā",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: prātiśākhya- · a-stem"
+          "note": "noun · neuter · a-stem · stem: prātiśākhya-"
         },
         {
           "id": "20-svara-vidya:svara:matra",
           "devanagari": "मात्रा",
           "iast": "mātrā",
           "gloss": "a unit of duration",
-          "note": "prathamā | nom. sg. · f. · stem: mātrā- · ā-stem"
+          "note": "noun · feminine · ā-stem · stem: mātrā-"
         }
       ]
     }

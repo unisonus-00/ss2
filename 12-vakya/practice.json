@@ -63,56 +63,56 @@
           "devanagari": "अहम्",
           "iast": "aham",
           "gloss": "I",
-          "note": "prathamā | nom. sg. · stem: asmad- · pronoun"
+          "note": "pronoun · stem: asmad-"
         },
         {
           "id": "12-vakya:sarvanama-avyaya:tvam",
           "devanagari": "त्वम्",
           "iast": "tvam",
           "gloss": "you",
-          "note": "prathamā | nom. sg. · stem: yuṣmad- · pronoun"
+          "note": "pronoun · stem: yuṣmad-"
         },
         {
           "id": "12-vakya:sarvanama-avyaya:sah",
           "devanagari": "सः",
           "iast": "saḥ",
           "gloss": "he, that one",
-          "note": "prathamā | nom. sg. · m. · stem: tad- · pronoun"
+          "note": "pronoun · masculine · stem: tad-"
         },
         {
           "id": "12-vakya:sarvanama-avyaya:sa",
           "devanagari": "सा",
           "iast": "sā",
           "gloss": "she, that one",
-          "note": "prathamā | nom. sg. · f. · stem: tad- · pronoun"
+          "note": "pronoun · feminine · stem: tad-"
         },
         {
           "id": "12-vakya:sarvanama-avyaya:tat",
           "devanagari": "तत्",
           "iast": "tat",
           "gloss": "that, it",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: tad- · pronoun"
+          "note": "pronoun · neuter · stem: tad-"
         },
         {
           "id": "12-vakya:sarvanama-avyaya:ayam",
           "devanagari": "अयम्",
           "iast": "ayam",
           "gloss": "this one",
-          "note": "prathamā | nom. sg. · m. · stem: idam- · pronoun"
+          "note": "pronoun · masculine · stem: idam-"
         },
         {
           "id": "12-vakya:sarvanama-avyaya:idam",
           "devanagari": "इदम्",
           "iast": "idam",
           "gloss": "this",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: idam- · pronoun"
+          "note": "pronoun · neuter · stem: idam-"
         },
         {
           "id": "12-vakya:sarvanama-avyaya:kim",
           "devanagari": "किम्",
           "iast": "kim",
           "gloss": "what?",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: kim- · interrogative pronoun"
+          "note": "interrogative pronoun · neuter · stem: kim-"
         },
         {
           "id": "12-vakya:sarvanama-avyaya:ca",

@@ -9,105 +9,105 @@
           "devanagari": "भक्तिः",
           "iast": "bhaktiḥ",
           "gloss": "devotion",
-          "note": "prathamā | nom. sg. · f. · stem: bhakti- · i-stem"
+          "note": "noun · feminine · i-stem · stem: bhakti-"
         },
         {
           "id": "13-bhava:bhava:prema",
           "devanagari": "प्रेम",
           "iast": "prema",
           "gloss": "love",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: preman- · an-stem"
+          "note": "noun · neuter · an-stem · stem: preman-"
         },
         {
           "id": "13-bhava:bhava:anandah",
           "devanagari": "आनन्दः",
           "iast": "ānandaḥ",
           "gloss": "bliss",
-          "note": "prathamā | nom. sg. · m. · stem: ānanda- · a-stem"
+          "note": "noun · masculine · a-stem · stem: ānanda-"
         },
         {
           "id": "13-bhava:bhava:sokah",
           "devanagari": "शोकः",
           "iast": "śokaḥ",
           "gloss": "grief",
-          "note": "prathamā | nom. sg. · m. · stem: śoka- · a-stem"
+          "note": "noun · masculine · a-stem · stem: śoka-"
         },
         {
           "id": "13-bhava:bhava:bhayam",
           "devanagari": "भयम्",
           "iast": "bhayam",
           "gloss": "fear",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: bhaya- · a-stem"
+          "note": "noun · neuter · a-stem · stem: bhaya-"
         },
         {
           "id": "13-bhava:bhava:krodhah",
           "devanagari": "क्रोधः",
           "iast": "krodhaḥ",
           "gloss": "anger",
-          "note": "prathamā | nom. sg. · m. · stem: krodha- · a-stem"
+          "note": "noun · masculine · a-stem · stem: krodha-"
         },
         {
           "id": "13-bhava:bhava:harsah",
           "devanagari": "हर्षः",
           "iast": "harṣaḥ",
           "gloss": "joy",
-          "note": "prathamā | nom. sg. · m. · stem: harṣa- · a-stem"
+          "note": "noun · masculine · a-stem · stem: harṣa-"
         },
         {
           "id": "13-bhava:bhava:karuna",
           "devanagari": "करुणा",
           "iast": "karuṇā",
           "gloss": "compassion",
-          "note": "prathamā | nom. sg. · f. · stem: karuṇā- · ā-stem"
+          "note": "noun · feminine · ā-stem · stem: karuṇā-"
         },
         {
           "id": "13-bhava:bhava:sraddha",
           "devanagari": "श्रद्धा",
           "iast": "śraddhā",
           "gloss": "faith",
-          "note": "prathamā | nom. sg. · f. · stem: śraddhā- · ā-stem"
+          "note": "noun · feminine · ā-stem · stem: śraddhā-"
         },
         {
           "id": "13-bhava:bhava:santih",
           "devanagari": "शान्तिः",
           "iast": "śāntiḥ",
           "gloss": "peace",
-          "note": "prathamā | nom. sg. · f. · stem: śānti- · i-stem"
+          "note": "noun · feminine · i-stem · stem: śānti-"
         },
         {
           "id": "13-bhava:bhava:vismayah",
           "devanagari": "विस्मयः",
           "iast": "vismayaḥ",
           "gloss": "wonder",
-          "note": "prathamā | nom. sg. · m. · stem: vismaya- · a-stem"
+          "note": "noun · masculine · a-stem · stem: vismaya-"
         },
         {
           "id": "13-bhava:bhava:lajja",
           "devanagari": "लज्जा",
           "iast": "lajjā",
           "gloss": "modesty, shame",
-          "note": "prathamā | nom. sg. · f. · stem: lajjā- · ā-stem"
+          "note": "noun · feminine · ā-stem · stem: lajjā-"
         },
         {
           "id": "13-bhava:bhava:utsahah",
           "devanagari": "उत्साहः",
           "iast": "utsāhaḥ",
           "gloss": "energy, resolve",
-          "note": "prathamā | nom. sg. · m. · stem: utsāha- · a-stem"
+          "note": "noun · masculine · a-stem · stem: utsāha-"
         },
         {
           "id": "13-bhava:bhava:bhavah",
           "devanagari": "भावः",
           "iast": "bhāvaḥ",
           "gloss": "state of being, feeling",
-          "note": "prathamā | nom. sg. · m. · stem: bhāva- · a-stem"
+          "note": "noun · masculine · a-stem · stem: bhāva-"
         },
         {
           "id": "13-bhava:bhava:vairagyam",
           "devanagari": "वैराग्यम्",
           "iast": "vairāgyam",
           "gloss": "dispassion",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: vairāgya- · a-stem"
+          "note": "noun · neuter · a-stem · stem: vairāgya-"
         }
       ]
     },

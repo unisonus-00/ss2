@@ -24,7 +24,7 @@
           "devanagari": "छन्दः",
           "iast": "chandaḥ",
           "gloss": "metre",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: chandas- · as-stem"
+          "note": "noun · neuter · as-stem · stem: chandas-"
         },
         {
           "id": "19-chandas-i:chandas:anustubh",
@@ -45,63 +45,63 @@
           "devanagari": "गायत्री",
           "iast": "gāyatrī",
           "gloss": "the 8×3 metre",
-          "note": "prathamā | nom. sg. · f. · stem: gāyatrī- · ī-stem"
+          "note": "noun · feminine · ī-stem · stem: gāyatrī-"
         },
         {
           "id": "19-chandas-i:chandas:jagati",
           "devanagari": "जगती",
           "iast": "jagatī",
           "gloss": "the 12-syllable metre",
-          "note": "prathamā | nom. sg. · f. · stem: jagatī- · ī-stem"
+          "note": "noun · feminine · ī-stem · stem: jagatī-"
         },
         {
           "id": "19-chandas-i:chandas:padah",
           "devanagari": "पादः",
           "iast": "pādaḥ",
           "gloss": "a quarter of a verse",
-          "note": "prathamā | nom. sg. · m. · stem: pāda- · a-stem"
+          "note": "noun · masculine · a-stem · stem: pāda-"
         },
         {
           "id": "19-chandas-i:chandas:guruh",
           "devanagari": "गुरुः",
           "iast": "guruḥ",
           "gloss": "a heavy syllable",
-          "note": "prathamā | nom. sg. · stem: guru- · u-stem"
+          "note": "adjective · u-stem · stem: guru-"
         },
         {
           "id": "19-chandas-i:chandas:laghuh",
           "devanagari": "लघुः",
           "iast": "laghuḥ",
           "gloss": "a light syllable",
-          "note": "prathamā | nom. sg. · stem: laghu- · u-stem"
+          "note": "adjective · u-stem · stem: laghu-"
         },
         {
           "id": "19-chandas-i:chandas:ganah",
           "devanagari": "गणः",
           "iast": "gaṇaḥ",
           "gloss": "a triad of syllables",
-          "note": "prathamā | nom. sg. · m. · stem: gaṇa- · a-stem"
+          "note": "noun · masculine · a-stem · stem: gaṇa-"
         },
         {
           "id": "19-chandas-i:chandas:yatih",
           "devanagari": "यतिः",
           "iast": "yatiḥ",
           "gloss": "caesura, pause",
-          "note": "prathamā | nom. sg. · f. · stem: yati- · i-stem"
+          "note": "noun · feminine · i-stem · stem: yati-"
         },
         {
           "id": "19-chandas-i:chandas:vrttam",
           "devanagari": "वृत्तम्",
           "iast": "vṛttam",
           "gloss": "a syllable-counted metre",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: vṛtta- · a-stem"
+          "note": "noun · neuter · a-stem · stem: vṛtta-"
         },
         {
           "id": "19-chandas-i:chandas:slokah",
           "devanagari": "श्लोकः",
           "iast": "ślokaḥ",
           "gloss": "a verse",
-          "note": "prathamā | nom. sg. · m. · stem: śloka- · a-stem"
+          "note": "noun · masculine · a-stem · stem: śloka-"
         }
       ],
       "role": "core"
