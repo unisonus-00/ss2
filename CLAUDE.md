@@ -897,13 +897,19 @@ Known on the first showing: 8 of 8
   landing card and nowhere else, because a streak is a reason to come back
   rather than a thing to look at while working.
 
-### Guided order, and the switch that turns it off
+### Test mode
 
 The two gates — the landing card opens the tracks, a track opens its lists —
-are one setting. **Off, every track and list is open at once**, which is what
-reaching a particular card needs: checking a change, or testing. The switch
-sits at the foot of the landing card, on by default, and a test asserts that
-nothing in the drawer is left shut when it is off.
+are one setting, and the switch is named for what turning it **on** is for:
+*Test mode — opens every track and list at once, instead of reading a track
+before its lists open.* It sits at the foot of the landing card, off by
+default, in **kumkuma**: it is the one control on the page that takes the app
+out of the state a learner should be in, and the colour says so. A test
+asserts nothing in the drawer is left shut while it is on.
+
+`SAVED.guided` is still the stored flag — the switch is its inverse, which
+keeps the gate code reading the way it does everywhere else (`!SAVED.guided
+|| begun`).
 
 This is deliberately the only gating in the app. Locking stage by stage would
 make it hostile to the person building it and to anyone who already reads

@@ -130,10 +130,12 @@
       <button id="w-go" class="primary">In progress</button>
       <button id="w-board">Scoreboard</button>
     </div>
-    <!-- The two gates, in one switch.  Off, every track and list is open at
-         once — which is what checking a particular card needs. -->
-    <label class="w-switch"><input type="checkbox" id="w-guided" checked>
-      <span>Guided order — read a track before its lists open</span></label>
+    <!-- The two gates, in one switch, named for what turning it on is for.
+         In kumkuma: this is the one control on the page that takes the app
+         out of the state a learner should be in. -->
+    <label class="w-switch"><input type="checkbox" id="w-test">
+      <span>Test mode — opens every track and list at once, instead of
+        reading a track before its lists open</span></label>
   </div>
 
   <div class="card" id="card" tabindex="0" role="button" aria-label="Show meaning">

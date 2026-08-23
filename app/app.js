@@ -1368,7 +1368,7 @@ function renderWelcome() {
   $('w-mastery').textContent = (r.score === null ? 0 : r.score) + '%';
   $('w-lists').textContent = finishedDecks().length;
   $('w-streak').textContent = SAVED.streak.run || 0;
-  $('w-guided').checked = !!SAVED.guided;
+  $('w-test').checked = !SAVED.guided;
   /* The first of the two gates.  With nothing begun there is nothing in
      progress, and "In progress" would drop a first-time learner into a list
      with no idea what it was for; the button opens the first track instead,
@@ -3027,10 +3027,10 @@ relabelAll();
    already running.  loadDeck() above has left the app ready for it. */
 showWelcome();
 $('w-board').addEventListener('click', () => openPanel('board'));
-/* Turning guided order off opens every track and list at once; turning it
-   back on restores whichever gates have not been pressed through. */
-$('w-guided').addEventListener('change', e => {
-  SAVED.guided = e.target.checked;
+/* Test mode opens every track and list at once; turning it off again
+   restores whichever gates have not been pressed through. */
+$('w-test').addEventListener('change', e => {
+  SAVED.guided = !e.target.checked;
   save();
   renderDrawer();
 });

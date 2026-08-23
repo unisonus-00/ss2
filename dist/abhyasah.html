@@ -205,10 +205,11 @@
   .s-lists .dk { color: var(--ink); }
   .s-lists .dk:hover { border-color: var(--leaf-edge); }
   .s-lists .dk.on { border-color: var(--ink); }
-  /* the one switch that opens both gates at once */
-  .w-switch { display: flex; align-items: center; gap: .5rem; margin-top: 1.1rem;
-              font-size: .78rem; color: var(--faded); cursor: pointer; }
-  .w-switch input { accent-color: var(--ink); }
+  /* The one switch that opens both gates at once, in the colour the app uses
+     for wrong: it is deliberately not the state a learner should be in. */
+  .w-switch { display: flex; align-items: flex-start; gap: .5rem; margin-top: 1.1rem;
+              font-size: .78rem; line-height: 1.45; color: var(--kumkuma); cursor: pointer; }
+  .w-switch input { accent-color: var(--kumkuma); flex: none; margin-top: .1rem; }
   .w-actions { display: flex; gap: .6rem; margin-top: 1.3rem; }
   .w-actions button {
     flex: 1; background: transparent; color: var(--ink);
@@ -896,10 +897,12 @@
       <button id="w-go" class="primary">In progress</button>
       <button id="w-board">Scoreboard</button>
     </div>
-    <!-- The two gates, in one switch.  Off, every track and list is open at
-         once — which is what checking a particular card needs. -->
-    <label class="w-switch"><input type="checkbox" id="w-guided" checked>
-      <span>Guided order — read a track before its lists open</span></label>
+    <!-- The two gates, in one switch, named for what turning it on is for.
+         In kumkuma: this is the one control on the page that takes the app
+         out of the state a learner should be in. -->
+    <label class="w-switch"><input type="checkbox" id="w-test">
+      <span>Test mode — opens every track and list at once, instead of
+        reading a track before its lists open</span></label>
   </div>
 
   <div class="card" id="card" tabindex="0" role="button" aria-label="Show meaning">
@@ -2497,7 +2500,7 @@ function renderWelcome() {
   $('w-mastery').textContent = (r.score === null ? 0 : r.score) + '%';
   $('w-lists').textContent = finishedDecks().length;
   $('w-streak').textContent = SAVED.streak.run || 0;
-  $('w-guided').checked = !!SAVED.guided;
+  $('w-test').checked = !SAVED.guided;
   /* The first of the two gates.  With nothing begun there is nothing in
      progress, and "In progress" would drop a first-time learner into a list
      with no idea what it was for; the button opens the first track instead,
@@ -4156,10 +4159,10 @@ relabelAll();
    already running.  loadDeck() above has left the app ready for it. */
 showWelcome();
 $('w-board').addEventListener('click', () => openPanel('board'));
-/* Turning guided order off opens every track and list at once; turning it
-   back on restores whichever gates have not been pressed through. */
-$('w-guided').addEventListener('change', e => {
-  SAVED.guided = e.target.checked;
+/* Test mode opens every track and list at once; turning it off again
+   restores whichever gates have not been pressed through. */
+$('w-test').addEventListener('change', e => {
+  SAVED.guided = !e.target.checked;
   save();
   renderDrawer();
 });
