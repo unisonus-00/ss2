@@ -51,6 +51,16 @@ pass" over.
 
 ### C1. A card missed in review is ejected from review
 
+> **Resolved.** The pool is now split: `masteredPool()` is what "learned" and
+> coverage count, `reviewPool()` is what a draw may show — the learned cards
+> plus the lapsed ones. A third ordering rule (`urgencyOf`) puts proven
+> weakness ahead of unmeasured material, and both ahead of proven strength,
+> applied stably to the finished round-robin order so the spread survives.
+> Verified end-to-end against a 600-card mid-course store: a card missed
+> through `didntKnow()` returns at the front of the very next session, and
+> counts as learned again when answered right there. Seven integrated checks
+> added — the suite is now 415.
+
 - **Evidence.** `reviewPool()` (`app/app.js:456`) is exactly the set of
   `SAVED.mastered` cards. `didntKnow()` (`app.js:2366`) calls
   `unmarkMastered` (`:2373`) on every first miss, in every round type —
@@ -331,7 +341,7 @@ per-deck pairs and cues correct. Recurring smaller issues:
 
 | # | Finding | Priority | Effort | Area |
 |---|---------|----------|--------|------|
-| C1 | Review miss ejects card from review pool; promise inverted | **Critical** | small | pedagogy/engineering |
+| C1 | Review miss ejects card from review pool; promise inverted | ~~Critical~~ **fixed** | small | pedagogy/engineering |
 | H1 | Replay rounds grant mastery moments after answer shown | High | small | pedagogy/engineering |
 | H2 | Session-counted spacing; "retained" attainable in one sitting | High | small | pedagogy |
 | H3 | Choice-card guessing counts as cold recall | High | medium | pedagogy |

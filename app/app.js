@@ -445,19 +445,51 @@ function troubleCards() {
    list scored 0/15 counted as complete, entered the review and moved the
    mastery figure.  "Complete" now means what the word says. */
 const finishedDecks = () => Object.keys(DECKS).filter(n => progressOf(DECK_IDS[n]).full);
-/* Everything the review can draw on: one entry per distinct card that has
-   been answered right on a first showing.  The same word can sit in more
-   than one list, and meeting it twice would waste two of the twenty.
+/* One entry per distinct card that has been answered right on a first
+   showing.  The same word can sit in more than one list, and meeting it
+   twice would waste two of the twenty.
 
    The pool is cards rather than lists, which makes the whole model one
    sentence: get a card right cold, and Abhyāsa keeps it alive.  It also
    keeps the mode honest — there is no point testing what was never learnt,
-   which is exactly what a list finished at 0/15 used to feed it. */
-function reviewPool() {
+   which is exactly what a list finished at 0/15 used to feed it.
+
+   This is what "learned" counts, and what coverage is measured against: a
+   card that has been lost again is not coverage still held. */
+function masteredPool() {
   const seen = new Map();
   Object.keys(DECKS).forEach(n => DECKS[n].forEach(c => {
     const k = cardKey(c);
     if (SAVED.mastered[k] && !seen.has(k)) seen.set(k, c);
+  }));
+  return [...seen.values()];
+}
+
+/* ── what a draw may show ──────────────────────────────
+   The learned cards, plus the LAPSED ones: cards that had been learned, came
+   back wrong in a review, and lost their tick for it.
+
+   Missing a card un-masters it — a lesson has to be able to lose its tick —
+   and while this pool was the mastered set alone, that dropped the card out
+   of Abhyāsa altogether.  The one card a review had just proved was weak
+   became the one card it would never show again: a draw keeps no list's
+   books, so it reached no missed pile either, and nothing brought it back
+   until three separate misses had built it a trouble record.  That is the
+   opposite of what the review card promises, and the opposite of what a
+   review is for.
+
+   A review record is the evidence that a card was learned and then reviewed,
+   so keeping the lapsed ones here is what makes the promise true: cards you
+   miss return sooner.  Their run of first-try corrects is already zero, so
+   `overdueBy` puts them in the very next session, and one right first answer
+   there re-masters them through the ordinary path.  Nothing new is stored:
+   this reads the history the draw already keeps. */
+function reviewPool() {
+  const seen = new Map();
+  const history = reviewCards();
+  Object.keys(DECKS).forEach(n => DECKS[n].forEach(c => {
+    const k = cardKey(c);
+    if ((SAVED.mastered[k] || history[k]) && !seen.has(k)) seen.set(k, c);
   }));
   return [...seen.values()];
 }
@@ -1296,7 +1328,10 @@ function syncReviewUI() {
 /* ── the review window ──────────────────────────────────────
    What the mode is, whether it can run yet, and the button that runs it. */
 function renderReviewPanel() {
+  /* Readiness counts everything the draw can reach, so a bad session can
+     never re-lock the mode; "learned" counts what is currently held. */
   const pool = reviewPool().length, ready = pool >= REVIEW_MIN;
+  const learned = masteredPool().length;
   const due = dueCount();
   /* What just happened, and what a review is: two plain statements rather
      than a figure the learner has to reverse-engineer. */
@@ -1306,7 +1341,7 @@ function renderReviewPanel() {
     : m + "% correct on first try";
   $('rp-what').textContent = !ready
     ? "Learn " + REVIEW_MIN + " cards to unlock \u2014 " + pool + " so far"
-    : "Reviewing " + REVIEW_SIZE + " cards from " + pool + " learned \u00b7 "
+    : "Reviewing " + REVIEW_SIZE + " cards from " + learned + " learned \u00b7 "
       + dueLabel(due) + " now";
   $('rp-note').textContent = "Abhy\u0101sa checks how well your studied material is "
     + "holding up over time. A card joins it the moment you answer it right "
@@ -1602,6 +1637,31 @@ function overdueBy(card) {
   return (SAVED.review.runs - rec[0]) - restFor(rec[1]);
 }
 
+/* ── which due card goes first ─────────────────────────────
+   Being due says a card may be shown; this says which of the due ones the
+   session is actually for.  Three tiers, and they are the three things the
+   review knows about a card:
+
+     2  lapsed        it was learned, and the last review took it back
+     1  never checked its strength is simply unmeasured
+     0  holding up    a run of first-try corrects behind it
+
+   Overdue alone put the lapsed card last of those three, because a card
+   never reviewed is maximally overdue and a card missed a moment ago is
+   overdue by nothing at all.  Mid-course that buried the one card the review
+   had just proved was weak beneath every card it had never asked about —
+   hundreds of them, which is sessions of waiting for material that is known
+   to be gone.  Proven weakness outranks unmeasured, and both outrank proven
+   strength; that ordering is what "cards you miss return sooner" means.
+
+   New material still leads the rest of the draw: the lapsed tier is bounded
+   by what a session can show, so it can never be more than a session deep. */
+function urgencyOf(card) {
+  const rec = reviewCards()[cardKey(card)];
+  if (!rec) return 1;
+  return rec[1] === 0 ? 2 : 0;
+}
+
 function mixCards() {
   const byDeck = new Map();
   reviewPool().forEach(c => {
@@ -1613,7 +1673,8 @@ function mixCards() {
      each session, then sort — Array#sort is stable, so the shuffle survives
      within each tier. */
   const piles = shuffle([...byDeck.values()].map(cs =>
-    shuffle(cs).sort((a, b) => overdueBy(b) - overdueBy(a))));
+    shuffle(cs).sort((a, b) => urgencyOf(b) - urgencyOf(a)
+                            || overdueBy(b) - overdueBy(a))));
 
   /* one pass round-robin: pile 1's first card, pile 2's first, and so on */
   const order = [];
@@ -1624,6 +1685,15 @@ function mixCards() {
     }
     if (!took) break;
   }
+
+  /* The round-robin decides the SPREAD; urgency decides the front of the
+     session.  Sorting the finished order by tier — stably, so the
+     round-robin survives inside each one — is what stops a lapsed card
+     waiting on the pile shuffle to reach its list: with 176 piles and one
+     pass of twenty, "leads its own pile" was still a wait of several
+     sessions.  The lapsed tier is bounded by what a session showed, so this
+     can never crowd out more than the front of one draw. */
+  order.sort((a, b) => urgencyOf(b) - urgencyOf(a));
 
   const due = order.filter(c => overdueBy(c) >= 0);
   const out = due.slice(0, REVIEW_SIZE);
@@ -2682,11 +2752,14 @@ const RANKS = [
 ];
 
 /* Course coverage: how much of the material has actually entered review.
-   A list enters when it is completed, so this is the pool over everything —
-   the same act the learner already understands ("finish a list and it starts
-   coming back"), rather than a second, invisible notion of mastery. */
+   A card enters when it comes back cold, so this is the learned pool over
+   everything — the same act the learner already understands ("get it right
+   and it starts coming back"), rather than a second, invisible notion of
+   mastery.  Measured against the LEARNED pool rather than the drawable one:
+   a card that has lapsed is material the review is chasing, not material
+   already covered, and counting it would let coverage rise on a miss. */
 function coverageOf(ids) {
-  const pool = new Set(reviewPool().map(cardKey));
+  const pool = new Set(masteredPool().map(cardKey));
   const within = ids || ALL_IDS;
   let done = 0;
   within.forEach(k => { if (pool.has(k)) done++; });

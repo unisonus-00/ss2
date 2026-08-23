@@ -781,6 +781,10 @@ The whole model is one sentence:
 
 > Get a card right cold → it enters Abhyāsa → Abhyāsa keeps it alive.
 
+Keeping it alive includes keeping hold of it when it slips: a card missed in
+a review loses its tick but **not** its place in the draw, and comes back at
+the front of the next session. See **What a review draws**.
+
 Every number follows from it:
 
 | | |
@@ -845,8 +849,8 @@ Overall mastery 1% · Novice
 
 ### What a review draws
 
-The paragraph above is a promise, and three small rules keep it. They live in
-`mixCards()` and `overdueBy()`; the per-card history is
+The paragraph above is a promise, and four small rules keep it. They live in
+`mixCards()`, `overdueBy()` and `urgencyOf()`; the per-card history is
 `SAVED.review.cards[id] = [session last reviewed, run of first-try corrects]`.
 
 1. **REST** — `[0, 1, 2, 4, 8, 16]` sessions, indexed by that run, so what is
@@ -855,16 +859,55 @@ The paragraph above is a promise, and three small rules keep it. They live in
 2. **Overdue first** — among cards whose rest is up, the longest-waiting goes
    first; a card never reviewed waits longest of all, so new material leads.
    Ties are shuffled before a stable sort, so a session is never a replay.
-3. **Round-robin across lists** — piles are drawn from one at a time, so one
+3. **Urgency decides the front of the session** — three tiers, and they are
+   the three things the review knows about a card: **lapsed** (learned, and
+   the last review took it back), **never checked**, then **holding up**.
+   Proven weakness outranks unmeasured, and both outrank proven strength.
+4. **Round-robin across lists** — piles are drawn from one at a time, so one
    large list cannot swamp a session. A complete declension table is a
    hundred-odd cards; a flat draw would make every review mostly that table.
    Broad representation is a property of the draw, not of luck.
 
+Rules 3 and 4 divide the work: **the round-robin decides the spread, urgency
+decides what leads.** The tier sort is applied to the finished round-robin
+order, stably, so the spread survives inside each tier.
+
 If fewer cards are due than a session holds, the rest of the session is filled
 with the longest-rested cards anyway — a short pool should still give a full
-review. The draw is deliberately **not** weighted towards the cards you keep
-missing: it measures what stayed, and favouring the weak ones would flatter
-the figure. Weighted practice is what the trouble drill is for.
+review. The draw is still **not** weighted towards the cards you keep missing
+— a card that has been failed ten times gets no more of the session than one
+failed once, and the trouble drill is where weighted practice lives. What
+rule 3 fixes is narrower and was a real bug: see below.
+
+**A missed card used to leave Abhyāsa altogether.** Missing a card un-masters
+it — a lesson has to be able to lose its tick — and the pool was
+`SAVED.mastered` exactly, so the one card a review had just proved was weak
+became the one card it would never show again. It reached no list's missed
+pile either, because a draw keeps no list's books, and nothing brought it
+back until three separate misses had built it a trouble record. That is the
+opposite of the promise printed on the review card.
+
+So the pool is split, and neither half stores anything new:
+
+| | |
+|:--|:--|
+| `masteredPool()` | the cards currently held. This is what **learned** counts and what **coverage** is measured against — a card lost again is not coverage still held, and counting it would let coverage *rise* on a miss |
+| `reviewPool()` | what a draw may show: the learned cards **plus the lapsed ones**, recognised by having a review record at all |
+
+A lapsed card's run of first-try corrects is already zero, so `overdueBy` puts
+it in the very next session and rule 3 puts it at the front of one; answering
+it right there re-masters it through the ordinary `knew()` path. Readiness
+(the 40-card unlock) counts the wider pool, so a bad session can never re-lock
+the mode; the review card's *learned* figure counts the narrower one, so every
+word on it stays true.
+
+`scripts/test.js` grades a card wrong the way a learner does — through
+`didntKnow()` — and then asks whether the review ever shows it again. The
+older pacing test drives `recordReview()` directly, which is the scheduler in
+isolation, and that is exactly why it passed while the loop around it was
+broken. The new one runs against a 600-card mid-course store, because "due"
+alone was not enough: with 176 piles and one round-robin pass of twenty, a
+lapsed card that merely led its own pile still waited several sessions.
 
 `SAVED.v` 3→4 adds that history. There is nothing to recover — before it only
 the running totals were kept, and no record survives of *which* cards a past

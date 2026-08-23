@@ -2769,6 +2769,82 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
+  // ── a card missed in a review comes back, through the real path ────
+  // The pacing test above drives recordReview() directly, which is the
+  // scheduler in isolation.  This one grades a card WRONG the way a learner
+  // does — didntKnow() — and then asks whether the review ever shows it
+  // again.  It used not to: missing a card un-masters it, the pool was the
+  // mastered set alone, and a draw keeps no list's books, so the one card
+  // just proved weak left Abhyāsa altogether and reached no missed pile
+  // either.  Nothing brought it back until three separate misses had built
+  // it a trouble record.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const out = {};
+      /* A mid-course store: far more learned than one session can hold, so
+         the lapsed card has to compete with hundreds the review has never
+         asked about.  That is the case that stayed broken when the card was
+         merely "due". */
+      SAVED.mastered = {}; SAVED.decks = {}; SAVED.trouble = {};
+      let n = 0;
+      Object.keys(DECKS).forEach(d => DECKS[d].forEach(c => {
+        if (n < 600) { SAVED.mastered[c.id] = 1; n++; }
+      }));
+      SAVED.review = { runs: 0, right: 0, seen: 0, cards: {} };
+      const covBefore = coverageOf().done;
+
+      /* one real session, one real miss */
+      startMixedReview();
+      const victim = current.card;
+      out.victim = victim.id;
+      didntKnow();
+      let g = 0;
+      while (current && g++ < 100) knew();
+
+      out.mastered = !!SAVED.mastered[victim.id];      // the tick is taken back
+      out.inPool = reviewPool().some(c => c.id === victim.id);
+      /* the three states the draw sorts on, read while they are all true:
+         the lapsed card, one answered right in that same session, and one
+         the review has never asked about */
+      const held = reviewPool().find(c => (SAVED.review.cards[c.id] || [0, 0])[1] > 0);
+      const unseen = reviewPool().find(c => !SAVED.review.cards[c.id]);
+      out.tiers = { lapsed: urgencyOf(victim),
+                    unseen: unseen ? urgencyOf(unseen) : null,
+                    holding: held ? urgencyOf(held) : null };
+      out.due = overdueBy(victim) >= 0;
+      out.inNextDraw = mixCards().some(c => c.id === victim.id);
+      out.leadsDraw = mixCards().indexOf(mixCards().find(c => c.id === victim.id)) < 20;
+      /* coverage may not rise on a miss: a lapsed card is material the
+         review is chasing, not material already covered */
+      out.covRose = coverageOf().done > covBefore;
+
+      /* answered right in that next session, it is learned again and rests */
+      startMixedReview();
+      let g2 = 0, shown = false;
+      while (current && g2++ < 100) { if (current.card.id === victim.id) shown = true; knew(); }
+      out.shownAgain = shown;
+      out.reMastered = !!SAVED.mastered[victim.id];
+      out.restsAfter = restFor((SAVED.review.cards[victim.id] || [0, 0])[1]);
+      out.dueAfter = overdueBy(victim) >= 0;
+
+      return out;
+    });
+    ok('a review miss takes the card\u2019s tick back', !r.mastered);
+    ok('but never drops it out of Abhy\u0101sa', r.inPool && r.due);
+    ok('it returns in the very next session, mid-course pool and all',
+      r.inNextDraw && r.leadsDraw, JSON.stringify({ inDraw: r.inNextDraw, leads: r.leadsDraw }));
+    ok('and coverage does not rise on a miss', !r.covRose);
+    ok('answered right there, it counts as learned again', r.shownAgain && r.reMastered,
+      JSON.stringify({ shown: r.shownAgain, mastered: r.reMastered }));
+    ok('and rests again rather than repeating', r.restsAfter === 1 && !r.dueAfter,
+      'rest ' + r.restsAfter);
+    ok('proven weak leads unmeasured, and both lead proven strong',
+      r.tiers.lapsed === 2 && r.tiers.unseen === 1 && r.tiers.holding === 0,
+      JSON.stringify(r.tiers));
+    await p.close();
+  }
+
   // ── what "learned" means, and what Abhyāsa draws on ───────────────
   // A list played to the end used to be complete at any score, which fed the
   // review with material the learner had never got right and moved the
