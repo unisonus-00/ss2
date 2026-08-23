@@ -128,6 +128,9 @@ const DECK_RENAMES = {
   'Kāraka practice — roles in a sentence':       'Practice — roles in a sentence',
   'Sambodhana practice — direct address':        'Practice — direct address',
   'Pratyāhāra practice — what each covers':      'Practice — pratyāhāras',
+  /* The drawer showed this one as "Samāsa · Samāsa" — the lesson's name
+     twice, saying nothing about what the list asks for. */
+  '14 · Samāsa — compound types':                '14 · Form compounds — the six types',
   'Samāsa practice — name the compound':         'Practice — name the compound',
   'Suffix practice — kṛt and taddhita':          'Practice — kṛt and taddhita',
   'Chandas practice — scan and name':            'Practice — scan and name',

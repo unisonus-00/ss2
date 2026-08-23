@@ -928,6 +928,23 @@ setting them in Devanagari would teach nothing.
 }
 ```
 
+**A back has three parts at most: the answer, what it is, then why.** The
+compound cards used to put all three in the `gloss` — `नीलोत्पलम् ·
+karmadhāraya — "blue lotus"` — so flipping the card produced the answer, a
+classification and a grammar lesson in one breath, and the answer itself was
+the part hardest to pick out. Split across the slots the schema already has:
+`gloss` carries the answer alone (`नीलोत्पल · nīlotpala`), `detail` says what
+kind it is and what it means (`karmadhāraya · blue lotus`), and the structural
+formula goes on the `note` chip, which is small, secondary and tappable —
+which is what a chip is for. Nothing was added to the schema to do this.
+
+**Compound members are stems, on both sides of the arrow.** `theory.md` and
+`reference.md` write every example that way — `rāja-putra`, `nīla-utpala`,
+`tri-loka`, `pīta-ambara` — and the deck had been showing inflected members
+(`nīla + utpalam`), which misrepresents how a compound is built. Only dvandva
+and avyayībhāva carry an ending in the sources, and for a reason the card can
+state: `rāmalakṣmaṇau` is dual because they are two, `upakūlam` is adverbial.
+
 **A prompt names the task, then the item.** `Split: jagan nāthaḥ`, not
 `jagan nāthaḥ came from ?`. The learner is mid-round and reading fast; the
 operation should be the first thing on the card and the item the thing they

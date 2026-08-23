@@ -150,50 +150,56 @@
       ]
     },
     {
-      "name": "14 · Samāsa — compound types",
+      "name": "14 · Form compounds — the six types",
       "pair": "parts → compound",
       "cards": [
         {
-          "id": "11-samasa:samasa:raja-purusah",
-          "devanagari": "राज + पुरुषः",
-          "iast": "rāja + puruṣaḥ",
-          "gloss": "राजपुरुषः · tatpuruṣa — \"the king's man\"",
-          "note": "samāsa · the first member stands in a case relation to the second"
+          "id": "11-samasa:samasa:raja-putra",
+          "devanagari": "राज + पुत्र",
+          "iast": "rāja + putra",
+          "gloss": "राजपुत्र · rājaputra",
+          "detail": "tatpuruṣa · the king’s son",
+          "note": "noun + noun · ṣaṣṭhī relation, rājñaḥ putraḥ"
         },
         {
           "id": "11-samasa:samasa:nila-utpalam",
-          "devanagari": "नील + उत्पलम्",
-          "iast": "nīla + utpalam",
-          "gloss": "नीलोत्पलम् · karmadhāraya — \"blue lotus\"",
-          "note": "samāsa · adjective and noun in the same case"
+          "devanagari": "नील + उत्पल",
+          "iast": "nīla + utpala",
+          "gloss": "नीलोत्पल · nīlotpala",
+          "detail": "karmadhāraya · blue lotus",
+          "note": "adjective + noun"
         },
         {
           "id": "11-samasa:samasa:tri-lokam",
-          "devanagari": "त्रि + लोकम्",
-          "iast": "tri + lokam",
-          "gloss": "त्रिलोकम् · dvigu — \"the three worlds\"",
-          "note": "samāsa · a karmadhāraya whose first member is a number"
+          "devanagari": "त्रि + लोक",
+          "iast": "tri + loka",
+          "gloss": "त्रिलोक · triloka",
+          "detail": "dvigu · the three worlds",
+          "note": "number + noun"
         },
         {
           "id": "11-samasa:samasa:pita-ambarah",
-          "devanagari": "पीत + अम्बरः",
-          "iast": "pīta + ambaraḥ",
-          "gloss": "पीताम्बरः · bahuvrīhi — \"he whose garment is yellow\"",
-          "note": "samāsa · names something outside itself"
+          "devanagari": "पीत + अम्बर",
+          "iast": "pīta + ambara",
+          "gloss": "पीताम्बर · pītāmbara",
+          "detail": "bahuvrīhi · he who wears yellow cloth",
+          "note": "adjective + noun · names someone outside itself"
         },
         {
           "id": "11-samasa:samasa:rama-laksmanau",
-          "devanagari": "राम + लक्ष्मणौ",
-          "iast": "rāma + lakṣmaṇau",
-          "gloss": "रामलक्ष्मणौ · dvandva — \"Rāma and Lakṣmaṇa\"",
-          "note": "samāsa · and-compound, the members equal"
+          "devanagari": "राम + लक्ष्मण",
+          "iast": "rāma + lakṣmaṇa",
+          "gloss": "रामलक्ष्मणौ · rāmalakṣmaṇau",
+          "detail": "dvandva · Rāma and Lakṣmaṇa",
+          "note": "noun + noun · “and”, and dual because they are two"
         },
         {
-          "id": "11-samasa:samasa:upa-nadi",
-          "devanagari": "उप + नदी",
-          "iast": "upa + nadī",
-          "gloss": "उपनदि · avyayībhāva — \"near the river\"",
-          "note": "samāsa · indeclinable, the first member governs"
+          "id": "11-samasa:samasa:upa-kula",
+          "devanagari": "उप + कूल",
+          "iast": "upa + kūla",
+          "gloss": "उपकूलम् · upakūlam",
+          "detail": "avyayībhāva · near the bank",
+          "note": "indeclinable + noun · the whole is adverbial"
         }
       ]
     },
