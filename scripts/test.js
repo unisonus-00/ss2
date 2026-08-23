@@ -1735,6 +1735,12 @@ const open = async (browser, opts = {}) => {
         readable: ink.every(c => c !== leaf),
         mastery: document.getElementById('w-mastery').textContent,
         lists: document.getElementById('w-lists').textContent,
+        nav: (() => {
+          const el = document.querySelector('#welcome .navbtn');
+          return { sample: !!el, bars: !!(el && el.querySelector('.bars')),
+                   caret: !!(el && el.querySelector('.nav-caret')),
+                   inert: !!el && el.tagName !== 'BUTTON' };
+        })(),
         h1: document.querySelectorAll('h1').length,
         overflow: document.documentElement.scrollWidth > innerWidth,
       };
@@ -1751,6 +1757,16 @@ const open = async (browser, opts = {}) => {
     ok('a first visit offers the first stage and the scoreboard',
       /^Begin — /.test(r.buttons[0]) && r.buttons[1] === 'Scoreboard', r.buttons.join(' | '));
     ok('its buttons are legible on the leaf', r.readable);
+    /* The control the whole app is navigated by, shown as it appears in the
+       top bar rather than described — and inert, so there are never two of
+       it on the page. */
+    ok('it shows the menu control itself, not a description of it',
+      r.nav.sample && r.nav.bars && r.nav.caret && /Finding your way/i.test(r.txt),
+      JSON.stringify(r.nav));
+    ok('and says it is what tracks progress and moves you on',
+      /progress marked against every track, stage and list/.test(r.txt)
+      && /five tracks/.test(r.txt), '');
+    ok('the sample is not a second navigation button', r.nav.inert);
     ok('nothing that belongs to a running card is showing', r.quiet);
     ok('and it adds no h1 to the page', r.h1 === 0, r.h1 + ' found');
     ok('it fits a phone without sideways scroll', !r.overflow);

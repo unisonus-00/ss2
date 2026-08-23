@@ -189,6 +189,10 @@
   /* the control's own rule pulls it to the front of a flex row (order: -1);
      inside this grid it must stay where the markup puts it */
   .s-tools .studybtn { color: var(--ink); margin: 0 auto; order: 0; align-self: baseline; }
+  /* the selector as it sits in the top bar, inked for the leaf instead of the
+     dark ground, and inert — it is a picture of the control, not the control */
+  .s-tools .navbtn { color: var(--ink); min-height: 0; padding: 0; font-size: .8rem;
+                     cursor: default; white-space: nowrap; }
   .s-tools .studybtn::after { content: none; }
   /* the reminder that Abhyāsa is there — a line under the actions, not a
      section of its own */
@@ -870,9 +874,19 @@
       multiple choice and sequence.</p>
     <p>Material you master returns through Abhyāsa Review, helping earlier lessons
       stay active as you progress.</p>
-    <p class="s-help">The course runs in five tracks — language, poetry, ritual, Vedic
-      recitation and Avadhāna. Open the menu at the top left and tap one: it tells you
-      what that track gives you, how it runs, and which list to start with.</p>
+    <!-- The control the whole app is navigated by, shown as it appears rather
+         than described: a learner who has not opened it has no way to know
+         the tracks, the stage pages or their progress are in there. -->
+    <div class="s-h">Finding your way</div>
+    <div class="s-tools">
+      <span class="navbtn" aria-hidden="true">
+        <span class="bars"></span><span>N&#257;ma &#183; Dev&#299;</span><span class="nav-caret"></span>
+      </span>
+      <p>The menu, top left of every screen. It names the list you are on, and
+        opens the five tracks — language, poetry, ritual, Vedic recitation and
+        Avadhāna — with your progress marked against every track, stage and list.
+        Tap a track name for what it gives you and where to start.</p>
+    </div>
     <div class="w-stats">
       <div class="w-stat"><span>Overall mastery</span><b id="w-mastery">0%</b></div>
       <div class="w-stat"><span>Lists complete</span><b id="w-lists">0</b></div>

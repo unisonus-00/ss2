@@ -592,10 +592,14 @@ LISTS COMPLETE                      0
 [ Begin — Bhāṣā-Vidyā ]   [ Scoreboard ]
 ```
 
-- **It says where the tracks are.** A learner who has never opened the drawer
-  has no way to know the track pages exist, so the welcome names the gesture:
-  *the course runs in five tracks — open the menu at the top left and tap
-  one.*
+- **It shows the menu rather than describing it.** A learner who has never
+  opened the drawer has no way to know the tracks, the track pages or their
+  progress are in there — so the card carries the selector itself, drawn as it
+  sits in the top bar (`☰ Nāma · Devī ›`, inked for the leaf and inert), beside
+  one line saying what it is for: it names the list you are on, opens the five
+  tracks, and marks your progress against every track, stage and list. Same
+  principle as the two controls on a track page, and a test asserts the sample
+  is there, carries its bars and caret, and is not a second `button`.
 - **It is reachable again from the drawer.** Every page in the app has to
   stay open after it has been read, and this is the only one no row in the
   tracks leads to — so `Home` is the first of the mode rows, above
