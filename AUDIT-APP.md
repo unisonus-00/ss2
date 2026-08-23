@@ -127,6 +127,22 @@ engineering · effort small.*
 
 ### H2. Spacing is counted in sessions the learner can mint at will
 
+> **Resolved.** `runs` now advances at most once a calendar day, stamped by
+> `SAVED.review.day`. The one-line rule only holds because all three readings
+> of a session were brought into line — each was a separate leak: the ladder
+> advances once a day; a card already seen in the running session is not due
+> again within it (a missed card rests zero, so it would otherwise have
+> returned in every draw for the rest of the day); and a success advances the
+> run once per session, while a miss always counts. Reads go through
+> `sessionNow()` — the banked count plus the session this day would open —
+> because the count is banked at a session's end and the due figure is an
+> invitation that must be true *before* the visit. Days reviewed rather than
+> calendar days between, deliberately, so a fortnight away cannot manufacture
+> a backlog. Verified: five full draws in one sitting are one session, longest
+> run 1, nothing retained; the same five a day apart advance the ladder to 4
+> and earn the tier. Additive and absent-tolerant, so no migration. Seven
+> checks added; the suite is now 433.
+
 `REST` (`:1593`) indexes review *runs*, not time; nothing stores a
 timestamp. Verified: three back-to-back full draws — 22 ms of wall-clock —
 took `runs` 0→3 and marked 16 cards **retained**, the tier the UI and
@@ -356,7 +372,7 @@ per-deck pairs and cues correct. Recurring smaller issues:
 |---|---------|----------|--------|------|
 | C1 | Review miss ejects card from review pool; promise inverted | ~~Critical~~ **fixed** | small | pedagogy/engineering |
 | H1 | Replay rounds grant mastery moments after answer shown | ~~High~~ **fixed** | small | pedagogy/engineering |
-| H2 | Session-counted spacing; "retained" attainable in one sitting | High | small | pedagogy |
+| H2 | Session-counted spacing; "retained" attainable in one sitting | ~~High~~ **fixed** | small | pedagogy |
 | H3 | Choice-card guessing counts as cold recall | High | medium | pedagogy |
 | H4 | Production direction never scheduled; mastery direction-blind | High | medium | pedagogy |
 | H5 | Guided path fronts 609 vocab cards before any grammar | High | medium | pedagogy/UX |

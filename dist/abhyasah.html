@@ -999,7 +999,7 @@
     <div id="b-list"></div>
     <!-- Which build this is.  A bug report that cannot name the build it came
          from cannot be acted on, and several are in the wild at once. -->
-    <div class="b-build">build 1232135</div>
+    <div class="b-build">build d4d64c3</div>
   </div>
 </div>
 
@@ -2813,10 +2813,28 @@ const restFor = streak => REST[Math.min(Math.max(streak, 0), REST.length - 1)];
 /* How many sessions past its rest a card is.  0 is due exactly now, negative
    is still resting, and a card never reviewed is treated as maximally
    overdue so new material leads. */
+/* The session index as of now: the count that has been banked, plus the one
+   this day would open if a draw were made.  The count is banked at the END of
+   a session, when there is a result to record, so reading `runs` raw would
+   leave every figure a session stale until the learner had already drawn —
+   and the due count is an invitation to come back, so it has to be true
+   before the visit rather than after it.  Reads nothing but the clock, and
+   stores nothing. */
+const sessionNow = () =>
+  SAVED.review.runs + (SAVED.review.day === today() ? 0 : 1);
+
 function overdueBy(card) {
   const rec = reviewCards()[cardKey(card)];
   if (!rec) return Infinity;
-  return (SAVED.review.runs - rec[0]) - restFor(rec[1]);
+  const waited = sessionNow() - rec[0];
+  /* Already seen in this session, so not due again within it, whatever its
+     rest says.  A missed card rests zero — meaning the very next session —
+     and without this it would be due again the moment the results screen
+     closed, coming back in every draw for the rest of the day.  That is the
+     repetition the mode is built to avoid; relearning on the spot is what
+     the in-round re-show and "Practise these again" are for. */
+  if (waited === 0) return -1;
+  return waited - restFor(rec[1]);
 }
 
 /* ── which due card goes first ─────────────────────────────
@@ -2905,7 +2923,16 @@ function recordReview(cards, missedSet) {
   const now = SAVED.review.runs;
   cards.forEach(c => {
     const k = cardKey(c), prev = reviewCards()[k];
-    const streak = missedSet.has(c) ? 0 : ((prev && prev[1]) || 0) + 1;
+    /* Drawing the same card twice in one session — the fill hands back
+       rested cards when little is due — is one day's evidence, not two.  So
+       a success counts once per session and the run holds after that; a MISS
+       always counts, because it is evidence of weakness whenever it lands,
+       and holding it back would be flattering the figure rather than
+       guarding it. */
+    const counted = prev && prev[0] === now;
+    const streak = missedSet.has(c) ? 0
+                 : counted           ? prev[1]
+                 : ((prev && prev[1]) || 0) + 1;
     reviewCards()[k] = [now, streak];
   });
 }
@@ -3768,7 +3795,22 @@ function finish() {
        just missed would make the figure say nothing. */
     if (!reviewing && !trouble) {
       const r = SAVED.review;
-      r.runs++; r.right += firstPass; r.seen += total;
+      /* A session is a DAY you reviewed, not a round you played.  The rest
+         ladder is indexed by `runs`, so while every draw advanced it, three
+         draws back to back — twenty-two milliseconds of them — aged every
+         card in the pool by three sessions and carried cards to "retained",
+         which is supposed to mean two review sessions days apart.  A learner
+         could mint the spacing they were meant to be waiting out.
+
+         Counting the days a learner reviewed, rather than the calendar days
+         between, is the deliberate half of this: a gap of a fortnight
+         advances nothing, so coming back cannot manufacture a backlog of
+         hundreds due — which is the same reason `dueLabel` stops counting at
+         a session's worth.  The ladder is in study-days: sit down eight
+         times and a card at rest 8 comes round, whenever those eight were. */
+      const day = today();
+      if (r.day !== day) { r.runs++; r.day = day; }
+      r.right += firstPass; r.seen += total;
       recordReview(roundSource, new Set(missed));
       save();
     }

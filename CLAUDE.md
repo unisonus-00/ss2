@@ -855,7 +855,9 @@ The paragraph above is a promise, and four small rules keep it. They live in
 
 1. **REST** — `[0, 1, 2, 4, 8, 16]` sessions, indexed by that run, so what is
    holding up is asked less and less often. A miss resets the run to zero, and
-   a rest of zero means *the very next session*.
+   a rest of zero means *the very next session*. **A session is a day you
+   reviewed** — see below; a card already seen in the running session is not
+   due again within it, whatever its rest says.
 2. **Overdue first** — among cards whose rest is up, the longest-waiting goes
    first; a card never reviewed waits longest of all, so new material leads.
    Ties are shuffled before a stable sort, so a session is never a replay.
@@ -908,6 +910,40 @@ isolation, and that is exactly why it passed while the loop around it was
 broken. The new one runs against a 600-card mid-course store, because "due"
 alone was not enough: with 176 piles and one round-robin pass of twenty, a
 lapsed card that merely led its own pile still waited several sessions.
+
+### A session is a day you reviewed, not a round you played
+
+`REST` is indexed by `SAVED.review.runs`, and every finished draw used to
+advance it. So three draws back to back — twenty-two milliseconds of them —
+aged every card in the pool by three sessions and carried sixteen cards to
+**retained**, which is supposed to mean two review sessions *days apart*. The
+spacing a learner was meant to be waiting out could simply be minted, and
+every rest in the ladder shortened for material that had not been away at all.
+
+The rule is one line — `runs` advances at most once a calendar day, stamped by
+`SAVED.review.day` — but it only holds if all three readings of a session
+agree, and each was a separate leak:
+
+| | |
+|:--|:--|
+| **the ladder** | `runs` advances once a day, so `[0, 1, 2, 4, 8, 16]` is a ladder in days rather than in button presses |
+| **what is due** | a card already seen in the running session is not due again within it. A missed card rests zero, so without this it was due again the moment the results screen closed, and came back in *every* draw for the rest of the day — the repetition the mode exists to avoid. Relearning on the spot is what the in-round re-show and *Practise these again* are for |
+| **what counts** | a success advances the run **once** per session; drawing the same card twice in a day is one day's evidence, not two. A **miss** always counts, because it is evidence whenever it lands, and holding it back would flatter the figure rather than guard it |
+
+**Days you reviewed, not calendar days between**, and that half is deliberate:
+a gap of a fortnight advances nothing, so coming back cannot manufacture a
+backlog of hundreds due — the same reason `dueLabel` stops counting at a
+session's worth. The ladder is in study-days: sit down eight times and a card
+at rest 8 comes round, whenever those eight were.
+
+**The count is banked at the end of a session**, when there is a result to
+record, so every *reading* goes through `sessionNow()` — the banked count plus
+the session this day would open. A raw read of `runs` would leave the due
+figure a session stale until the learner had already drawn, and that figure is
+an invitation to come back: it has to be true before the visit, not after it.
+
+`SAVED.review.day` is additive and absent-tolerant — an older store simply
+rolls on its next review — so it needs no version bump and nothing to migrate.
 
 `SAVED.v` 3→4 adds that history. There is nothing to recover — before it only
 the running totals were kept, and no record survives of *which* cards a past
@@ -962,7 +998,7 @@ was feeding nothing but the rest interval.
 | | |
 |:--|:--|
 | **learned** | right on a first showing at least once, on a day it was not lost — `SAVED.mastered` |
-| **retained** | and right first try in **two** separate review sessions since, days apart, drawn out of its list |
+| **retained** | and right first try in **two** separate review sessions since, days apart, drawn out of its list — a session being a day you reviewed, so this cannot be earned in one sitting |
 
 Neither stores anything new. A third tier was considered and cut: two states
 a learner can name are worth more than three they have to look up.

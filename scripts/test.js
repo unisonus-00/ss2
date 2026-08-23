@@ -2812,47 +2812,51 @@ const open = async (browser, opts = {}) => {
       out.tiers = { lapsed: urgencyOf(victim),
                     unseen: unseen ? urgencyOf(unseen) : null,
                     holding: held ? urgencyOf(held) : null };
-      out.due = overdueBy(victim) >= 0;
-      out.inNextDraw = mixCards().some(c => c.id === victim.id);
-      out.leadsDraw = mixCards().indexOf(mixCards().find(c => c.id === victim.id)) < 20;
+      /* Not due again within the session that just showed it — a session is a
+         day, and a card does not loop inside one. */
+      out.dueSameSession = overdueBy(victim) >= 0;
+      out.inSameSessionDraw = mixCards().some(c => c.id === victim.id);
       /* coverage may not rise on a miss: a lapsed card is material the
          review is chasing, not material already covered */
       out.covRose = coverageOf().done > covBefore;
 
-      /* Shown again in that next session — but answered right on the same day
-         it was lost, it is relearning, so the tick is not handed back and the
-         card stays urgent until it is won back on a later day. */
+      /* The next day: the session rolls, and so does the day it was lost on. */
+      const yesterday = new Date(Date.now() - 864e5).toISOString().slice(0, 10);
+      SAVED.review.day = yesterday;
+      SAVED.trouble[victim.id].m = yesterday;
+
+      out.due = overdueBy(victim) >= 0;
+      out.inNextDraw = mixCards().some(c => c.id === victim.id);
+      out.leadsDraw = mixCards().findIndex(c => c.id === victim.id) < 20;
+
+      /* shown there and answered right, it is learned again and then rests */
       startMixedReview();
       let g2 = 0, shown = false;
       while (current && g2++ < 100) { if (current.card.id === victim.id) shown = true; knew(); }
       out.shownAgain = shown;
-      out.masteredSameDay = !!SAVED.mastered[victim.id];
-      out.stillUrgent = urgencyOf(victim);
-      out.stillInPool = reviewPool().some(c => c.id === victim.id);
+      out.reMastered = !!SAVED.mastered[victim.id];
+      out.wonBack = urgencyOf(victim);
       out.restsAfter = restFor((SAVED.review.cards[victim.id] || [0, 0])[1]);
-
-      /* with the loss a day old, the same answer counts */
-      SAVED.trouble[victim.id].m = new Date(Date.now() - 864e5).toISOString().slice(0, 10);
-      startRound([DECKS[DECK_OF.get(victim)].find(c => c.id === victim.id)], {});
-      reveal(); knew();
-      out.masteredNextDay = !!SAVED.mastered[victim.id];
+      out.dueAfter = overdueBy(victim) >= 0;
 
       return out;
     });
     ok('a review miss takes the card\u2019s tick back', !r.mastered);
     ok('but never drops it out of Abhy\u0101sa', r.inPool && r.due);
+    ok('without looping inside the session that showed it',
+      !r.dueSameSession && !r.inSameSessionDraw,
+      JSON.stringify({ due: r.dueSameSession, drawn: r.inSameSessionDraw }));
     ok('it returns in the very next session, mid-course pool and all',
-      r.inNextDraw && r.leadsDraw, JSON.stringify({ inDraw: r.inNextDraw, leads: r.leadsDraw }));
+      r.due && r.inNextDraw && r.leadsDraw,
+      JSON.stringify({ due: r.due, inDraw: r.inNextDraw, leads: r.leadsDraw }));
     ok('and coverage does not rise on a miss', !r.covRose);
-    ok('it is shown again there, but the same day earns no tick back',
-      r.shownAgain && !r.masteredSameDay,
-      JSON.stringify({ shown: r.shownAgain, mastered: r.masteredSameDay }));
-    ok('so it stays urgent, and in the pool, until it is won back',
-      r.stillUrgent === 2 && r.stillInPool, 'tier ' + r.stillUrgent);
-    ok('it yields for a session rather than looping within the day',
-      r.restsAfter === 1, 'rest ' + r.restsAfter);
-    ok('and a day later the same answer counts as learned again',
-      r.masteredNextDay);
+    ok('answered right there, it counts as learned again',
+      r.shownAgain && r.reMastered,
+      JSON.stringify({ shown: r.shownAgain, mastered: r.reMastered }));
+    ok('and is won back rather than staying urgent', r.wonBack === 0,
+      'tier ' + r.wonBack);
+    ok('then rests instead of repeating', r.restsAfter === 1 && !r.dueAfter,
+      'rest ' + r.restsAfter);
     ok('proven weak leads unmeasured, and both lead proven strong',
       r.tiers.lapsed === 2 && r.tiers.unseen === 1 && r.tiers.holding === 0,
       JSON.stringify(r.tiers));
@@ -2927,6 +2931,70 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
+  // ── a session is a day you reviewed, not a round you played ────────
+  // REST is indexed by SAVED.review.runs, and every draw used to advance it,
+  // so three draws back to back — milliseconds of them — aged the whole pool
+  // by three sessions and carried cards to "retained", which is supposed to
+  // mean two review sessions days apart.  The spacing a learner was meant to
+  // be waiting out could simply be minted.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const out = {};
+      const names = Object.keys(DECKS).slice(0, 6);
+      SAVED.mastered = {}; SAVED.trouble = {}; SAVED.decks = {};
+      names.forEach(n => DECKS[n].forEach(c => { SAVED.mastered[c.id] = 1; }));
+      SAVED.review = { runs: 0, right: 0, seen: 0, cards: {} };
+
+      /* five full draws in one sitting, everything answered right */
+      const t0 = Date.now();
+      for (let i = 0; i < 5; i++) {
+        startMixedReview();
+        let g = 0;
+        while (current && g++ < 60) knew();
+      }
+      out.elapsedMs = Date.now() - t0;
+      out.runsSameDay = SAVED.review.runs;
+      out.maxStreakSameDay = Math.max.apply(null,
+        Object.keys(SAVED.review.cards).map(k => SAVED.review.cards[k][1]));
+      out.retainedSameDay = reviewPool().filter(c => isRetained(c.id)).length;
+      out.seen = SAVED.review.seen;          // accuracy still counts every card
+      out.drawsWereFull = out.seen === 100;
+
+      /* the same five draws, one per day, do advance it */
+      for (let i = 0; i < 3; i++) {
+        SAVED.review.day = '2000-01-0' + (i + 1);
+        startMixedReview();
+        let g = 0;
+        while (current && g++ < 60) knew();
+      }
+      out.runsAcrossDays = SAVED.review.runs;
+      out.retainedAcrossDays = reviewPool().filter(c => isRetained(c.id)).length;
+
+      /* and the due figure is true before the visit rather than after it:
+         the count is banked at the end of a session, so a raw read of `runs`
+         would leave the invitation a session stale all day */
+      SAVED.review.day = '1999-12-31';
+      out.dueBeforeDrawing = dueCount();
+      return out;
+    });
+    ok('five draws in one sitting are one session',
+      r.runsSameDay === 1, r.runsSameDay + ' sessions in ' + r.elapsedMs + 'ms');
+    ok('so a run of first-try corrects cannot be minted',
+      r.maxStreakSameDay === 1, 'longest run ' + r.maxStreakSameDay);
+    ok('and nothing is retained the day it was learned',
+      r.retainedSameDay === 0, r.retainedSameDay + ' retained');
+    ok('though every card answered still counts towards accuracy',
+      r.drawsWereFull, r.seen + ' cards reviewed');
+    ok('while days apart do advance the ladder',
+      r.runsAcrossDays === 4, r.runsAcrossDays + ' sessions');
+    ok('and do earn the retained tier',
+      r.retainedAcrossDays > 0, r.retainedAcrossDays + ' retained');
+    ok('the due figure is true before the visit, not after it',
+      r.dueBeforeDrawing > 0, r.dueBeforeDrawing + ' due');
+    await p.close();
+  }
+
   // ── what "learned" means, and what Abhyāsa draws on ───────────────
   // A list played to the end used to be complete at any score, which fed the
   // review with material the learner had never got right and moved the
@@ -2954,7 +3022,9 @@ const open = async (browser, opts = {}) => {
 
       /* due: everything unseen by the review is due at once */
       out.dueAll = dueCount();
-      SAVED.review.runs = 1;
+      /* reviewed in the session that is running now — a session is a day, so
+         the day has to be stamped for the state to be one that can occur */
+      SAVED.review.runs = 1; SAVED.review.day = today();
       DECKS[small].forEach(c => { SAVED.review.cards[c.id] = [1, 1]; });
       out.dueRested = dueCount();
 
