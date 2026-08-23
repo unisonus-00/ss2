@@ -133,6 +133,43 @@
     box-shadow: 0 12px 30px rgba(0,0,0,.35);
     position: relative;
   }
+  /* ── the landing card ──────────────────────────────────────
+     The same palm-leaf surface as a flashcard, but set as prose: this is
+     read once, not answered, so it is left-aligned and its type is the
+     reading size rather than the display size a headword takes. */
+  .welcome { padding: 2rem 1.6rem 1.7rem; }
+  /* the binding holes belong to the leaf, not to the flashcard layout */
+  .welcome::before, .welcome::after {
+    content: ""; position: absolute; top: 50%; width: 9px; height: 9px;
+    border-radius: 50%; background: var(--ground); opacity: .28; transform: translateY(-50%);
+  }
+  .welcome::before { left: 14px; }
+  .welcome::after { right: 14px; }
+  .w-mark {
+    font-family: "Noto Serif Devanagari", "Kohinoor Devanagari", serif;
+    font-size: 2.1rem; line-height: 1.2; letter-spacing: .01em;
+  }
+  .w-head { margin: .5rem 0 .9rem; font-size: 1.3rem; font-weight: 600; }
+  .welcome p { margin: 0 0 .8rem; font-size: .9rem; line-height: 1.55; }
+  .w-lead { font-size: .98rem !important; }
+  .welcome p:last-of-type { margin-bottom: 1.3rem; }
+  /* the same two figures the drawer carries, said the same way round */
+  .w-stats { border-top: 1px solid var(--leaf-edge); padding-top: .9rem; }
+  .w-stat { display: flex; align-items: baseline; justify-content: space-between;
+            gap: .8rem; margin-bottom: .35rem; }
+  .w-stat span { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase;
+                 color: var(--faded); }
+  .w-stat b { font-size: 1rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+  /* On the leaf, not on the ground.  The app's buttons are inked --leaf for
+     the dark background, which is invisible on a light card — the same
+     reason the choice options carry their own palette. */
+  .w-actions { display: flex; gap: .6rem; margin-top: 1.3rem; }
+  .w-actions button {
+    flex: 1; background: transparent; color: var(--ink);
+    border: 1px solid var(--leaf-edge); font-size: .95rem;
+  }
+  .w-actions button:hover { border-color: var(--faded); }
+  .w-actions button.primary { border-color: var(--ink); }
   .card {
     min-height: 250px; display: flex; flex-direction: column;
     justify-content: center; align-items: center;
@@ -714,6 +751,28 @@
 <button id="pile" class="pilebtn" hidden></button>
 
 <div class="panel">
+  <!-- The landing card.  The app still opens on a card rather than a menu:
+       this is simply the first one, and choosing any list replaces it. -->
+  <div class="welcome" id="welcome" hidden>
+    <div class="w-mark">अभ्यास</div>
+    <h2 class="w-head">Welcome to Abhyāsa!</h2>
+    <p class="w-lead">Learn Sanskrit through practice, from your first words to
+      composition, poetry, Vedic recitation, and Avadhāna.</p>
+    <p>Abhyāsa follows a 36-stage path. Each lesson introduces a new ability, then
+      gives you several ways to make it your own. Card types include recall,
+      multiple choice and sequence.</p>
+    <p>Material you master returns through Abhyāsa Review, helping earlier lessons
+      stay active as you progress.</p>
+    <div class="w-stats">
+      <div class="w-stat"><span>Overall mastery</span><b id="w-mastery">0%</b></div>
+      <div class="w-stat"><span>Lists complete</span><b id="w-lists">0</b></div>
+    </div>
+    <div class="w-actions">
+      <button id="w-go" class="primary">In progress</button>
+      <button id="w-board">Scoreboard</button>
+    </div>
+  </div>
+
   <div class="card" id="card" tabindex="0" role="button" aria-label="Show meaning">
     <div class="seen-before" id="relearn" hidden>second look</div>
     <!-- What the card is asking for.  Derived from the deck's `pair`, so it
@@ -1882,11 +1941,15 @@ function closeDrawer(to) {
 /* Picking a list from the drawer, with the same guard the picker carried:
    a round that has been graded is not thrown away without asking. */
 async function chooseDeck(name) {
-  if (name === deckName && !mixed) { closeDrawer('card'); return; }   // already here
+  /* Already on this list — except while the landing card is up, where
+     picking your current list is exactly how you leave it. */
+  if (name === deckName && !mixed && $('welcome').hidden) { closeDrawer('card'); return; }
   if (roundInProgress()
       && !await ask('Leave this round? Your progress in it will be lost.', 'Leave it')) return;
-  closeDrawer('card');
+  /* Load first, close second: closeDrawer('card') moves focus onto the card,
+     and focus does not land on an element that is still display:none. */
   loadDeck(name);
+  closeDrawer('card');
 }
 
 /* Review, trouble and the scoreboard all open from the drawer, which then
@@ -1946,6 +2009,7 @@ const shuffle = a => {
 
 /* ── round control ─────────────────────────────────────── */
 function startRound(cards, opt) {
+  leaveWelcome();
   opt = opt || {};
   closePop();
   if (panelOpen) closePanel();          // never start a round behind a panel
@@ -1969,7 +2033,50 @@ function startRound(cards, opt) {
   next();
 }
 
+/* ── the landing card ──────────────────────────────────────
+   The app opens on a card rather than a menu, and this is the first one: it
+   says what Abhyāsa is, carries the same two figures the drawer does, and
+   offers the one thing a returning learner wants — the list they were on.
+   Anything that starts a round dismisses it, so it is never in the way. */
+function renderWelcome() {
+  const r = rankOf();
+  /* A beginner reading "Unranked" beside "Lists complete 0" reads it as a
+     fault.  Before the first review the figure really is nought, so it is
+     printed as one; the drawer keeps `Unranked`, where the word has the room
+     to mean something. */
+  $('w-mastery').textContent = (r.score === null ? 0 : r.score) + '%';
+  $('w-lists').textContent = finishedDecks().length;
+  const go = $('w-go');
+  go.title = deckName ? 'Continue ' + DECK_SHORT(deckName) : 'Start the first list';
+  go.setAttribute('aria-label', go.title);
+}
+
+function showWelcome() {
+  renderWelcome();
+  $('welcome').hidden = false;
+  $('card').style.display = 'none';
+  $('review').style.display = 'none';
+  $('tally').style.visibility = 'hidden';
+  $('grade').hidden = true;
+  $('after').hidden = true;
+  $('keys').hidden = true;
+  $('controls').hidden = true;      // they change a card; none is showing
+  $('stage').textContent = '';
+  $('study-btn').hidden = true;     // no lesson is in play yet
+}
+
+function leaveWelcome() {
+  if ($('welcome').hidden) return;
+  $('welcome').hidden = true;
+  relabelAll();                     // Study reappears if the lesson has a reference
+  $('card').style.display = 'flex';
+  $('tally').style.visibility = 'visible';
+  $('keys').hidden = false;
+  $('controls').hidden = false;
+}
+
 function loadDeck(name) {
+  leaveWelcome();
   if (!Object.keys(DECKS).length) {              // nothing parsed — say so instead of dying
     $('dn').textContent = "रिक्तम्";
     $('iast').textContent = "riktam — no cards";
@@ -3174,6 +3281,7 @@ function closePanel() {
   $('panel-back').hidden = true;
   panelOpen = null;
   relabelAll();
+  $('welcome').hidden = panelWas.welcome;
   $('card').style.display = panelWas.card;
   $('review').style.display = panelWas.review;
   $('tally').style.visibility = panelWas.tally;
@@ -3191,11 +3299,13 @@ function openPanel(which) {
   if (panelOpen === which) { PANELS[which].render(); return; }
   if (panelOpen) closePanel();                  // swapping one panel for the other
   panelWas = {
+    welcome: $('welcome').hidden,
     card: $('card').style.display, review: $('review').style.display,
     tally: $('tally').style.visibility, grade: $('grade').hidden,
     after: $('after').hidden, keys: $('keys').hidden,
     controls: $('controls').hidden
   };
+  $('welcome').hidden = true;
   $('card').style.display = 'none';
   $('review').style.display = 'none';
   $('tally').style.visibility = 'hidden';
@@ -3439,8 +3549,13 @@ document.addEventListener('keydown', e => {
 
 setDir(DIR);
 setIast(IAST);
-loadDeck(SAVED.deck);
+loadDeck(SAVED.deck);        // resolves the list, its labels and its toggles
 relabelAll();
+/* ...and then land on the welcome, so the list is one tap away rather than
+   already running.  loadDeck() above has left the app ready for it. */
+showWelcome();
+$('w-go').addEventListener('click', leaveWelcome);
+$('w-board').addEventListener('click', () => openPanel('board'));
 
 /* Load-time validation.  Silent while the card block is clean — the counts
    are for whoever edits the deck data, not for whoever is studying — but

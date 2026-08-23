@@ -951,11 +951,15 @@ function closeDrawer(to) {
 /* Picking a list from the drawer, with the same guard the picker carried:
    a round that has been graded is not thrown away without asking. */
 async function chooseDeck(name) {
-  if (name === deckName && !mixed) { closeDrawer('card'); return; }   // already here
+  /* Already on this list — except while the landing card is up, where
+     picking your current list is exactly how you leave it. */
+  if (name === deckName && !mixed && $('welcome').hidden) { closeDrawer('card'); return; }
   if (roundInProgress()
       && !await ask('Leave this round? Your progress in it will be lost.', 'Leave it')) return;
-  closeDrawer('card');
+  /* Load first, close second: closeDrawer('card') moves focus onto the card,
+     and focus does not land on an element that is still display:none. */
   loadDeck(name);
+  closeDrawer('card');
 }
 
 /* Review, trouble and the scoreboard all open from the drawer, which then
@@ -1015,6 +1019,7 @@ const shuffle = a => {
 
 /* ── round control ─────────────────────────────────────── */
 function startRound(cards, opt) {
+  leaveWelcome();
   opt = opt || {};
   closePop();
   if (panelOpen) closePanel();          // never start a round behind a panel
@@ -1038,7 +1043,50 @@ function startRound(cards, opt) {
   next();
 }
 
+/* ── the landing card ──────────────────────────────────────
+   The app opens on a card rather than a menu, and this is the first one: it
+   says what Abhyāsa is, carries the same two figures the drawer does, and
+   offers the one thing a returning learner wants — the list they were on.
+   Anything that starts a round dismisses it, so it is never in the way. */
+function renderWelcome() {
+  const r = rankOf();
+  /* A beginner reading "Unranked" beside "Lists complete 0" reads it as a
+     fault.  Before the first review the figure really is nought, so it is
+     printed as one; the drawer keeps `Unranked`, where the word has the room
+     to mean something. */
+  $('w-mastery').textContent = (r.score === null ? 0 : r.score) + '%';
+  $('w-lists').textContent = finishedDecks().length;
+  const go = $('w-go');
+  go.title = deckName ? 'Continue ' + DECK_SHORT(deckName) : 'Start the first list';
+  go.setAttribute('aria-label', go.title);
+}
+
+function showWelcome() {
+  renderWelcome();
+  $('welcome').hidden = false;
+  $('card').style.display = 'none';
+  $('review').style.display = 'none';
+  $('tally').style.visibility = 'hidden';
+  $('grade').hidden = true;
+  $('after').hidden = true;
+  $('keys').hidden = true;
+  $('controls').hidden = true;      // they change a card; none is showing
+  $('stage').textContent = '';
+  $('study-btn').hidden = true;     // no lesson is in play yet
+}
+
+function leaveWelcome() {
+  if ($('welcome').hidden) return;
+  $('welcome').hidden = true;
+  relabelAll();                     // Study reappears if the lesson has a reference
+  $('card').style.display = 'flex';
+  $('tally').style.visibility = 'visible';
+  $('keys').hidden = false;
+  $('controls').hidden = false;
+}
+
 function loadDeck(name) {
+  leaveWelcome();
   if (!Object.keys(DECKS).length) {              // nothing parsed — say so instead of dying
     $('dn').textContent = "रिक्तम्";
     $('iast').textContent = "riktam — no cards";
@@ -2243,6 +2291,7 @@ function closePanel() {
   $('panel-back').hidden = true;
   panelOpen = null;
   relabelAll();
+  $('welcome').hidden = panelWas.welcome;
   $('card').style.display = panelWas.card;
   $('review').style.display = panelWas.review;
   $('tally').style.visibility = panelWas.tally;
@@ -2260,11 +2309,13 @@ function openPanel(which) {
   if (panelOpen === which) { PANELS[which].render(); return; }
   if (panelOpen) closePanel();                  // swapping one panel for the other
   panelWas = {
+    welcome: $('welcome').hidden,
     card: $('card').style.display, review: $('review').style.display,
     tally: $('tally').style.visibility, grade: $('grade').hidden,
     after: $('after').hidden, keys: $('keys').hidden,
     controls: $('controls').hidden
   };
+  $('welcome').hidden = true;
   $('card').style.display = 'none';
   $('review').style.display = 'none';
   $('tally').style.visibility = 'hidden';
@@ -2508,8 +2559,13 @@ document.addEventListener('keydown', e => {
 
 setDir(DIR);
 setIast(IAST);
-loadDeck(SAVED.deck);
+loadDeck(SAVED.deck);        // resolves the list, its labels and its toggles
 relabelAll();
+/* ...and then land on the welcome, so the list is one tap away rather than
+   already running.  loadDeck() above has left the app ready for it. */
+showWelcome();
+$('w-go').addEventListener('click', leaveWelcome);
+$('w-board').addEventListener('click', () => openPanel('board'));
 
 /* Load-time validation.  Silent while the card block is clean — the counts
    are for whoever edits the deck data, not for whoever is studying — but

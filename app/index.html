@@ -50,6 +50,28 @@
 <button id="pile" class="pilebtn" hidden></button>
 
 <div class="panel">
+  <!-- The landing card.  The app still opens on a card rather than a menu:
+       this is simply the first one, and choosing any list replaces it. -->
+  <div class="welcome" id="welcome" hidden>
+    <div class="w-mark">अभ्यास</div>
+    <h2 class="w-head">Welcome to Abhyāsa!</h2>
+    <p class="w-lead">Learn Sanskrit through practice, from your first words to
+      composition, poetry, Vedic recitation, and Avadhāna.</p>
+    <p>Abhyāsa follows a 36-stage path. Each lesson introduces a new ability, then
+      gives you several ways to make it your own. Card types include recall,
+      multiple choice and sequence.</p>
+    <p>Material you master returns through Abhyāsa Review, helping earlier lessons
+      stay active as you progress.</p>
+    <div class="w-stats">
+      <div class="w-stat"><span>Overall mastery</span><b id="w-mastery">0%</b></div>
+      <div class="w-stat"><span>Lists complete</span><b id="w-lists">0</b></div>
+    </div>
+    <div class="w-actions">
+      <button id="w-go" class="primary">In progress</button>
+      <button id="w-board">Scoreboard</button>
+    </div>
+  </div>
+
   <div class="card" id="card" tabindex="0" role="button" aria-label="Show meaning">
     <div class="seen-before" id="relearn" hidden>second look</div>
     <!-- What the card is asking for.  Derived from the deck's `pair`, so it

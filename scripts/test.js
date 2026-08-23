@@ -925,6 +925,7 @@ const open = async (browser, opts = {}) => {
     const p = await browser.newPage({ viewport: { width: 390, height: 844 } });
     p.on('pageerror', e => { console.log('  PAGEERROR ' + e.message); fail.push('pageerror'); });
     await p.goto(FILE, { waitUntil: 'load' });
+    await p.evaluate(() => loadDeck(Object.keys(DECKS)[0]));   // off the landing card
     const r = await p.evaluate(() => {
       const box = s => { const e = document.querySelector(s); return e && e.getBoundingClientRect(); };
       const brand = box('.brand'), card = box('.panel'), logo = box('.brand-logo');
@@ -1676,6 +1677,101 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
+  // ── the app lands on a welcome card ────────────────────────────────
+  // Still a card rather than a menu — the same palm-leaf surface — but the
+  // first one says what Abhyāsa is and offers the list you were on.
+  {
+    /* open() loads a deck for every other test, which is exactly what
+       dismisses the landing card — so this one opens the page raw. */
+    const p = await browser.newPage({ viewport: { width: 390, height: 940 } });
+    p.on('pageerror', e => { console.log('  PAGEERROR ' + e.message); fail.push('pageerror'); });
+    await p.goto(FILE, { waitUntil: 'load' });
+    const r = await p.evaluate(() => {
+      const w = document.getElementById('welcome');
+      const on = !w.hidden && getComputedStyle(document.getElementById('card')).display === 'none';
+      const txt = w.textContent.replace(/\s+/g, ' ');
+      const btn = [...w.querySelectorAll('button')];
+      const ink = btn.map(b => getComputedStyle(b).color);
+      const leaf = getComputedStyle(w).backgroundColor;
+      return {
+        on, txt,
+        /* the controls change how a card is shown, and none is */
+        quiet: document.getElementById('controls').hidden
+            && document.getElementById('keys').hidden
+            && getComputedStyle(document.getElementById('tally')).visibility === 'hidden',
+        buttons: btn.map(b => b.textContent.trim()),
+        /* buttons inked for the dark ground vanish on a light card */
+        readable: ink.every(c => c !== leaf),
+        mastery: document.getElementById('w-mastery').textContent,
+        lists: document.getElementById('w-lists').textContent,
+        h1: document.querySelectorAll('h1').length,
+        overflow: document.documentElement.scrollWidth > innerWidth,
+      };
+    });
+    ok('the app opens on the welcome card', r.on);
+    ok('it says what Abhyāsa is',
+      /Welcome to Abhyāsa/.test(r.txt) && /36-stage path/.test(r.txt)
+      && /Abhyāsa Review/.test(r.txt), r.txt.slice(0, 60));
+    ok('it carries the two figures the drawer carries',
+      /^\d+%$/.test(r.mastery) && /^\d+$/.test(r.lists), r.mastery + ' · ' + r.lists);
+    ok('it offers the list and the scoreboard',
+      JSON.stringify(r.buttons) === '["In progress","Scoreboard"]', r.buttons.join(' | '));
+    ok('its buttons are legible on the leaf', r.readable);
+    ok('nothing that belongs to a running card is showing', r.quiet);
+    ok('and it adds no h1 to the page', r.h1 === 0, r.h1 + ' found');
+    ok('it fits a phone without sideways scroll', !r.overflow);
+
+    // "In progress" hands over to the cards, and the round is intact
+    await p.click('#w-go');
+    const after = await p.evaluate(() => ({
+      gone: document.getElementById('welcome').hidden,
+      card: getComputedStyle(document.getElementById('card')).display,
+      controls: document.getElementById('controls').hidden,
+      running: !!current,
+    }));
+    ok('“In progress” hands over to the cards',
+      after.gone && after.card !== 'none' && !after.controls && after.running,
+      JSON.stringify(after));
+
+    /* Picking the list you are already on is the case that nearly broke:
+       chooseDeck() used to return early for it, which on the landing card
+       would have closed the drawer and left the welcome up. */
+    await p.reload({ waitUntil: 'load' });
+    const picked = await p.evaluate(async () => {
+      openDrawer();
+      await chooseDeck(deckName);            // the very list the welcome offers
+      return { gone: document.getElementById('welcome').hidden,
+               shut: document.getElementById('drawer').hidden,
+               focus: document.activeElement && document.activeElement.id,
+               running: !!current };
+    });
+    ok('picking the list you are already on still leaves the welcome',
+      picked.gone && picked.shut && picked.running, JSON.stringify(picked));
+    ok('and focus lands on the card, not a hidden one', picked.focus === 'card', picked.focus);
+    await p.close();
+  }
+
+  // ── a panel opened from the welcome returns to it ──────────────────
+  {
+    const p = await browser.newPage();
+    p.on('pageerror', e => { console.log('  PAGEERROR ' + e.message); fail.push('pageerror'); });
+    await p.goto(FILE, { waitUntil: 'load' });
+    await p.click('#w-board');
+    const open1 = await p.evaluate(() => ({
+      board: getComputedStyle(document.getElementById('board')).display !== 'none',
+      welcome: document.getElementById('welcome').hidden,
+    }));
+    await p.click('#p-back');
+    const back = await p.evaluate(() => ({
+      welcome: !document.getElementById('welcome').hidden,
+      card: getComputedStyle(document.getElementById('card')).display,
+    }));
+    ok('the scoreboard opens from the welcome', open1.board && open1.welcome);
+    ok('and closing it returns to the welcome, not to a card',
+      back.welcome && back.card === 'none', JSON.stringify(back));
+    await p.close();
+  }
+
   // ── no choice card repeats a reveal card ───────────────────────────
   // A choice card that hands over the same operation and the same answer as
   // a reveal card in the same lesson is strictly the weaker of the two: the
@@ -1857,6 +1953,7 @@ const open = async (browser, opts = {}) => {
     ok('the trouble row says what is on the list',
       /cleared/.test(rows[1].sub), rows[1].sub);
 
+    await p.evaluate(() => loadDeck(Object.keys(DECKS)[0]));  // off the landing card
     // and every one of them still opens and renders
     for (const [btn, id, want] of [
       ['#dr-board', 'board', /lists completed/],

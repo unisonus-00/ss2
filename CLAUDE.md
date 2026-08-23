@@ -479,7 +479,47 @@ the drawer. A track that folds counts what it actually holds — `· 11 lists`,
 Where a folded lesson's name differs from its track's, the subheading keeps it
 (`Avadhāna` / *Samasyāpūraṇa · 1 list*) so nothing is silently lost.
 
-The app opens on a card, not on a menu. Navigation is a **left drawer**, opened
+### The landing card
+
+The app opens on a card, not on a menu — and the first one is a welcome
+rather than a flashcard. It is the same palm-leaf surface, set as prose
+because it is read once rather than answered:
+
+```
+अभ्यास
+Welcome to Abhyāsa!
+Learn Sanskrit through practice, from your first words to composition,
+poetry, Vedic recitation, and Avadhāna.
+…
+OVERALL MASTERY                    0%
+LISTS COMPLETE                      0
+[ In progress ]      [ Scoreboard ]
+```
+
+- **Anything that starts a round dismisses it.** `loadDeck()` and
+  `startRound()` both call `leaveWelcome()`, so every other surface — the
+  drawer, a review draw, the trouble drill — reaches the cards without
+  knowing the landing card exists. It is never something to get past.
+- **`In progress` resumes the list you were on.** Boot still runs
+  `loadDeck(SAVED.deck)` first, so the round is loaded and labelled behind
+  the welcome and the button only has to uncover it. The button's `title`
+  names the list.
+- **A panel opened from it returns to it.** `openPanel` records the welcome's
+  state alongside the card's, so the scoreboard closes back onto the landing
+  card rather than onto cards the learner never chose.
+- **Its buttons carry the card's palette.** The app's buttons are inked
+  `--leaf` for the dark ground, which is invisible on a light card — the same
+  reason the choice options carry their own colours.
+- **The mastery figure reads `0%`, not `Unranked`.** This is the one place
+  the drawer's vocabulary is not followed: a beginner reading *Unranked*
+  beside *Lists complete 0* reads it as a fault, and before the first review
+  the figure really is nought. The drawer keeps `Unranked`, where the word
+  has the room to mean something.
+
+`scripts/test.js` opens the page raw for this — the suite's `open()` helper
+loads a deck, which is exactly what dismisses the landing card.
+
+Navigation is a **left drawer**, opened
 from a selector at the top left — aligned with the card, not centred over it —
 which names the lesson and list in play. Inside is the curriculum's own shape:
 **track → lesson → deck**.
