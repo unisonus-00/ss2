@@ -2,7 +2,7 @@
   "lesson": "05-rupa",
   "decks": [
     {
-      "name": "Case and form — practice",
+      "name": "Vibhakti-rūpa — recognise and produce · practice",
       "cards": [
         {
           "id": "05-rupa:parse:sivam",
@@ -202,7 +202,7 @@
       ]
     },
     {
-      "name": "Form mastery · Śiva — all 17 forms",
+      "name": "Rūpa-siddhi · Śiva — all 17 forms",
       "cards": [
         {
           "id": "05-rupa:class:siva",
@@ -476,7 +476,7 @@
       ]
     },
     {
-      "name": "Form mastery · Phala — 4 key forms",
+      "name": "Rūpa-siddhi · Phala — 4 key forms",
       "cards": [
         {
           "id": "05-rupa:class:phala",
@@ -568,7 +568,7 @@
       ]
     },
     {
-      "name": "Form mastery · Mālā — all 14 forms",
+      "name": "Rūpa-siddhi · Mālā — all 14 forms",
       "cards": [
         {
           "id": "05-rupa:class:mala",
@@ -797,7 +797,7 @@
       ]
     },
     {
-      "name": "Form mastery · Devī — all 15 forms",
+      "name": "Rūpa-siddhi · Devī — all 15 forms",
       "cards": [
         {
           "id": "05-rupa:class:devi",
@@ -1041,7 +1041,7 @@
       ]
     },
     {
-      "name": "Form mastery · Agni — all 15 forms",
+      "name": "Rūpa-siddhi · Agni — all 15 forms",
       "cards": [
         {
           "id": "05-rupa:class:agni",
@@ -1285,7 +1285,7 @@
       ]
     },
     {
-      "name": "Form mastery · Viṣṇu — 7 key forms",
+      "name": "Rūpa-siddhi · Viṣṇu — 7 key forms",
       "cards": [
         {
           "id": "05-rupa:class:visnu",
@@ -1409,7 +1409,7 @@
       ]
     },
     {
-      "name": "Form mastery · Pitṛ — all 15 forms",
+      "name": "Rūpa-siddhi · Pitṛ — all 15 forms",
       "cards": [
         {
           "id": "05-rupa:class:pitr",
@@ -1653,7 +1653,7 @@
       ]
     },
     {
-      "name": "Form mastery · Bhagavat — all 14 forms",
+      "name": "Rūpa-siddhi · Bhagavat — all 14 forms",
       "cards": [
         {
           "id": "05-rupa:class:bhagavat",
@@ -1882,7 +1882,7 @@
       ]
     },
     {
-      "name": "Form mastery · Asmad — all 17 forms",
+      "name": "Rūpa-siddhi · Asmad — all 17 forms",
       "cards": [
         {
           "id": "05-rupa:class:asmad",
@@ -2156,7 +2156,7 @@
       ]
     },
     {
-      "name": "Form mastery · Yuṣmad — all 17 forms",
+      "name": "Rūpa-siddhi · Yuṣmad — all 17 forms",
       "cards": [
         {
           "id": "05-rupa:class:yusmad",
@@ -2430,7 +2430,7 @@
       ]
     },
     {
-      "name": "Form mastery · Saḥ — all 16 forms",
+      "name": "Rūpa-siddhi · Saḥ — all 16 forms",
       "cards": [
         {
           "id": "05-rupa:form:tad-m-1-eka",
@@ -2675,7 +2675,7 @@
       ]
     },
     {
-      "name": "Form mastery · Sā — all 14 forms",
+      "name": "Rūpa-siddhi · Sā — all 14 forms",
       "cards": [
         {
           "id": "05-rupa:form:tad-f-1-eka",
@@ -2890,7 +2890,7 @@
       ]
     },
     {
-      "name": "Form mastery · Tat — 3 key forms",
+      "name": "Rūpa-siddhi · Tat — 3 key forms",
       "cards": [
         {
           "id": "05-rupa:form:tad-n-1-eka",
@@ -2953,7 +2953,7 @@
       ]
     },
     {
-      "name": "Table mastery · Rāma — a-stem, all 24 cells",
+      "name": "Śabda-rūpa · Rāma — a-stem, all 24 cells",
       "pair": "form → analysis",
       "cards": [
         {
@@ -3078,7 +3078,7 @@
       ]
     },
     {
-      "name": "Table mastery · Durgā — ā-stem, all 24 cells",
+      "name": "Śabda-rūpa · Durgā — ā-stem, all 24 cells",
       "pair": "form → analysis",
       "cards": [
         {
@@ -3182,7 +3182,7 @@
       ]
     },
     {
-      "name": "Table mastery · Hari — i-stem, all 24 cells",
+      "name": "Śabda-rūpa · Hari — i-stem, all 24 cells",
       "pair": "form → analysis",
       "cards": [
         {
@@ -3300,7 +3300,7 @@
       ]
     },
     {
-      "name": "Table mastery · Lakṣmī — ī-stem, all 24 cells",
+      "name": "Śabda-rūpa · Lakṣmī — ī-stem, all 24 cells",
       "pair": "form → analysis",
       "cards": [
         {
@@ -3411,7 +3411,7 @@
       ]
     },
     {
-      "name": "Table mastery · Viṣṇu — u-stem, all 24 cells",
+      "name": "Śabda-rūpa · Viṣṇu — u-stem, all 24 cells",
       "pair": "form → analysis",
       "cards": [
         {
@@ -3529,7 +3529,7 @@
       ]
     },
     {
-      "name": "Table mastery · Mātṛ — ṛ-stem, all 24 cells",
+      "name": "Śabda-rūpa · Mātṛ — ṛ-stem, all 24 cells",
       "pair": "form → analysis",
       "cards": [
         {
@@ -3647,7 +3647,7 @@
       ]
     },
     {
-      "name": "Table mastery · Pitṛ — ṛ-stem, all 24 cells",
+      "name": "Śabda-rūpa · Pitṛ — ṛ-stem, all 24 cells",
       "pair": "form → analysis",
       "cards": [
         {
@@ -3765,7 +3765,7 @@
       ]
     },
     {
-      "name": "Table mastery · Bhagavat — at-stem, all 24 cells",
+      "name": "Śabda-rūpa · Bhagavat — at-stem, all 24 cells",
       "pair": "form → analysis",
       "cards": [
         {
@@ -3876,7 +3876,7 @@
       ]
     },
     {
-      "name": "Table mastery · Ātman — an-stem, all 24 cells",
+      "name": "Śabda-rūpa · Ātman — an-stem, all 24 cells",
       "pair": "form → analysis",
       "cards": [
         {

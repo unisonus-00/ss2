@@ -2,7 +2,7 @@
   "lesson": "06-kriya",
   "decks": [
     {
-      "name": "Person, tense and mood — practice",
+      "name": "Puruṣa-lakāra — person, tense and mood · practice",
       "cards": [
         {
           "id": "06-kriya:person:nam-1sg",
@@ -280,7 +280,7 @@
       ]
     },
     {
-      "name": "Conjugation mastery · √nam — laṭ, all 9 forms",
+      "name": "Dhātu-rūpa · √nam — laṭ, all 9 forms",
       "pair": "form → analysis",
       "cards": [
         {
@@ -349,7 +349,7 @@
       ]
     },
     {
-      "name": "Conjugation mastery · √bhū — laṭ, all 9 forms",
+      "name": "Dhātu-rūpa · √bhū — laṭ, all 9 forms",
       "pair": "form → analysis",
       "cards": [
         {
@@ -418,7 +418,7 @@
       ]
     },
     {
-      "name": "Conjugation mastery · √pūj — laṭ, all 9 forms",
+      "name": "Dhātu-rūpa · √pūj — laṭ, all 9 forms",
       "pair": "form → analysis",
       "cards": [
         {
@@ -694,7 +694,7 @@
       ]
     },
     {
-      "name": "V10 · Motion and position — DM",
+      "name": "V10 · Gati — motion and position · DM",
       "pair": "root → meaning",
       "cards": [
         {
@@ -784,7 +784,7 @@
       ]
     },
     {
-      "name": "V10 · Perception and speech — DM",
+      "name": "V10 · Jñāna — perception and speech · DM",
       "pair": "root → meaning",
       "cards": [
         {
@@ -860,7 +860,7 @@
       ]
     },
     {
-      "name": "V10 · Giving, living and dying — DM",
+      "name": "V10 · Dāna-grahaṇa — giving, living and dying · DM",
       "pair": "root → meaning",
       "cards": [
         {
@@ -950,7 +950,7 @@
       ]
     },
     {
-      "name": "V10 · Worship and pleasing — DM",
+      "name": "V10 · Pūjana — worship and pleasing · DM",
       "pair": "root → meaning",
       "cards": [
         {
@@ -1026,7 +1026,7 @@
       ]
     },
     {
-      "name": "V10 · Protecting and dwelling — DM",
+      "name": "V10 · Rakṣaṇa — protecting and dwelling · DM",
       "pair": "root → meaning",
       "cards": [
         {

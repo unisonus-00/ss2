@@ -2,7 +2,7 @@
   "lesson": "03-sandhi",
   "decks": [
     {
-      "name": "Joins — practice, combine the two words",
+      "name": "Saṃyoga — combine the two words · practice",
       "cards": [
         {
           "id": "03-sandhi:join:kavi-indrah",
@@ -202,7 +202,7 @@
       ]
     },
     {
-      "name": "Splits & rules — practice, take apart and name",
+      "name": "Viccheda — take apart and name · practice",
       "cards": [
         {
           "id": "03-sandhi:split:gurupadesah",
@@ -324,7 +324,7 @@
       ]
     },
     {
-      "name": "Derivation — order the stages",
+      "name": "Prakriyā — order the stages · practice",
       "cards": [
         {
           "id": "03-sandhi:derive:jagat-natyam",

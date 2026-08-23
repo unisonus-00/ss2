@@ -2,14 +2,18 @@
   "lesson": "15-stotra-ii",
   "decks": [
     {
-      "name": "Name the vibhakti — practice",
+      "name": "Vibhakti-jñāna — name the case a line turns on · practice",
       "pair": "line → vibhakti",
       "cards": [
         {
           "id": "15-stotra-ii:analysis:nilakanthaya-namah",
           "type": "choice",
           "front": "Identify the vibhakti: nīlakaṇṭhāya namaḥ",
-          "options": ["caturthī", "ṣaṣṭhī", "saptamī"],
+          "options": [
+            "caturthī",
+            "ṣaṣṭhī",
+            "saptamī"
+          ],
           "answer": "caturthī",
           "note": "dative · salutation TO the blue-throated one",
           "source": "workbook D1"
@@ -18,7 +22,11 @@
           "id": "15-stotra-ii:analysis:devya-anugrahena",
           "type": "choice",
           "front": "Identify the vibhakti: devyā anugraheṇa jīvāmi",
-          "options": ["tṛtīyā", "caturthī", "pañcamī"],
+          "options": [
+            "tṛtīyā",
+            "caturthī",
+            "pañcamī"
+          ],
           "answer": "tṛtīyā",
           "note": "instrumental · I live BY the goddess's grace",
           "source": "workbook D2"
@@ -27,7 +35,11 @@
           "id": "15-stotra-ii:analysis:papat-trahi",
           "type": "choice",
           "front": "Identify the vibhakti: pāpāt trāhi mām",
-          "options": ["pañcamī", "tṛtīyā", "ṣaṣṭhī"],
+          "options": [
+            "pañcamī",
+            "tṛtīyā",
+            "ṣaṣṭhī"
+          ],
           "answer": "pañcamī",
           "note": "ablative · save me FROM sin",
           "source": "workbook D3"
@@ -36,7 +48,11 @@
           "id": "15-stotra-ii:analysis:shivasya-rupam",
           "type": "choice",
           "front": "Identify the vibhakti: śivasya rūpaṃ divyam",
-          "options": ["ṣaṣṭhī", "caturthī", "saptamī"],
+          "options": [
+            "ṣaṣṭhī",
+            "caturthī",
+            "saptamī"
+          ],
           "answer": "ṣaṣṭhī",
           "note": "genitive · the form OF Śiva is divine",
           "source": "workbook D4"
@@ -45,7 +61,11 @@
           "id": "15-stotra-ii:analysis:hrdaye-vasasi",
           "type": "choice",
           "front": "Identify the vibhakti: hṛdaye tvaṃ sadā vasasi",
-          "options": ["saptamī", "pañcamī", "tṛtīyā"],
+          "options": [
+            "saptamī",
+            "pañcamī",
+            "tṛtīyā"
+          ],
           "answer": "saptamī",
           "note": "locative · you always dwell IN the heart",
           "source": "workbook D5"
@@ -54,7 +74,11 @@
           "id": "15-stotra-ii:analysis:shivat-jnanam",
           "type": "choice",
           "front": "\"knowledge from Śiva\"\n___ jñānam",
-          "options": ["śivāt", "śivāya", "śive"],
+          "options": [
+            "śivāt",
+            "śivāya",
+            "śive"
+          ],
           "answer": "śivāt",
           "note": "pañcamī marks the source · apādāna",
           "source": "theory, Pañcamī"
@@ -63,7 +87,11 @@
           "id": "15-stotra-ii:analysis:tvayi-vishvasah",
           "type": "choice",
           "front": "\"trust in you\"\n___ viśvāsaḥ",
-          "options": ["tvayi", "tvayā", "tubhyam"],
+          "options": [
+            "tvayi",
+            "tvayā",
+            "tubhyam"
+          ],
           "answer": "tvayi",
           "note": "saptamī of yuṣmad- · the locus devotion rests in",
           "source": "theory, Saptamī"
@@ -163,7 +191,7 @@
       ]
     },
     {
-      "name": "Case as relation — the seven stances",
+      "name": "Sambandha — case as relation · the seven stances",
       "pair": "line → relation",
       "cards": [
         {

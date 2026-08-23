@@ -2,7 +2,7 @@
   "lesson": "08-sambodhana",
   "decks": [
     {
-      "name": "Direct address — practice",
+      "name": "Āmantraṇa — form the vocative · practice",
       "cards": [
         {
           "id": "08-sambodhana:voc:siva",
@@ -227,7 +227,7 @@
       ]
     },
     {
-      "name": "V08 · Sounds and cries — DM · LS",
+      "name": "V08 · Nāda — sounds and cries · DM · LS",
       "cards": [
         {
           "id": "08-sambodhana:sound-speech:nada",
@@ -330,7 +330,7 @@
       ]
     },
     {
-      "name": "V08 · Saying and speech — DM · LS",
+      "name": "V08 · Vacana — saying and speech · DM · LS",
       "cards": [
         {
           "id": "08-sambodhana:sound-speech:uvaca",
@@ -475,7 +475,7 @@
       ]
     },
     {
-      "name": "V08 · Praise and recitation — DM · LS",
+      "name": "V08 · Stuti — praise and recitation · DM · LS",
       "cards": [
         {
           "id": "08-sambodhana:sound-speech:stuti",
@@ -550,7 +550,7 @@
       ]
     },
     {
-      "name": "V08 · Speech formulae — DM",
+      "name": "V08 · Uvāca — speech formulae · DM",
       "cards": [
         {
           "id": "08-sambodhana:sound-speech:rsir-uvaca",

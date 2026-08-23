@@ -507,6 +507,42 @@ Bhāṣā-Vidyā and Kāvya-Racanā are not** — nothing in the repository name
 two groupings, so they were coined to match the other three. Rename them
 freely; `TRACKS` is the only place either appears.
 
+**Every list is headed in Sanskrit, with its English in the descriptor.** The
+drawer draws a list as its head over `<descriptor> · N cards`, so a list called
+`Goddess names I` said the same thing twice and left the subtext saying
+nothing. 121 of the 168 were renamed in one pass:
+
+```
+Devī-nāma                 Śastra                   Rūpa-siddhi · Śiva
+the great names · LS      weapons · DM             all 17 forms
+· 15 cards                · 21 cards               · 18 cards
+```
+
+Each head is **the shortest Sanskrit word that says what the list holds**, and
+is taken from a word the list itself teaches wherever one exists — `Śara` for
+arrows, `Uvāca` for the speech tags, `Saṃsthitā` for the DM 5 litany, `Yuddha`
+for battle. Provenance follows the English in the descriptor (`weapons · DM`),
+so the sigla still reach the learner.
+
+Three families needed a term the repo did not already carry, and they take the
+traditional ones: **`Śabda-rūpa`** for a declension table, **`Dhātu-rūpa`** for
+a conjugation table, **`Rūpa-siddhi`** for deriving a form. The exercise lists
+are headed by the operation — `Saṃyoga` and `Viccheda` for joining and
+splitting, **`Prakriyā`** for ordering a derivation, `Mātrā` for scansion,
+`Paryāya-varga` and `Bhinna-pada` for the two set drills.
+
+**These heads are coinage where the curriculum has no name**, exactly as
+`Bhāṣā-Vidyā` and `Kāvya-Racanā` are. Rename any of them freely; each is one
+line in its `practice.json` plus a `DECK_RENAMES` entry.
+
+`scripts/test.js` fails if a head contains an English function word, if a list
+has no descriptor, or if a head is long enough that `DECK_SHORT` clips it —
+tokenised on separators rather than matched with `\b`, because JS word
+boundaries are ASCII and would find a bare `a` at the end of `Guṇa`.
+
+`Mātrā` was `Laghu-guru` for one build, until the rule that **a deck's
+descriptor must not answer a question the deck asks** caught `guru` in it.
+
 **Curriculum items are named in Sanskrit; the app's own functions are named in
 English.** A track or a lesson takes the Sanskrit in IAST as its heading and
 the English as an italic subheading beside a count — `Pūjā-Vāk` / *Ritual
@@ -1215,7 +1251,9 @@ Three things here are load-bearing for the compatibility list above:
 - **Deck names key saved scores.** `SAVED.decks` is keyed by the deck's full
   name, so renaming a deck would silently drop its best score and missed pile.
   `DECK_RENAMES` in `app.js` lists every rename the app has made and applies it
-  once on load, the same way `OLD_KEYS` rescues state from an earlier storage
+  once on load, **in insertion order** — so a new entry goes at the END, or a
+  deck renamed twice resolves its second hop before its first and loses the
+  score anyway, the same way `OLD_KEYS` rescues state from an earlier storage
   key. **Never rename a deck without adding a line there.** Vocab-bank decks
   still carry their `V01 ·` prefixes; the drawer hides them from display.
 - **Deck order carries the product structure.** Within a lesson the drawer

@@ -2,7 +2,7 @@
   "lesson": "07-karaka",
   "decks": [
     {
-      "name": "Roles in a sentence — practice",
+      "name": "Kāraka-vicāra — roles in a sentence · practice",
       "cards": [
         {
           "id": "07-karaka:role:bhaktah",
@@ -254,7 +254,7 @@
       ]
     },
     {
-      "name": "V07 · Battle and warriors — DM",
+      "name": "V07 · Yuddha — battle and warriors · DM",
       "cards": [
         {
           "id": "07-karaka:war-combat:yuddha",
@@ -329,7 +329,7 @@
       ]
     },
     {
-      "name": "V07 · Verbs of striking — DM",
+      "name": "V07 · Prahāra — verbs of striking · DM",
       "cards": [
         {
           "id": "07-karaka:war-combat:prahara",
@@ -453,7 +453,7 @@
       ]
     },
     {
-      "name": "V07 · Rage and devouring — DM",
+      "name": "V07 · Garjana — rage and devouring · DM",
       "cards": [
         {
           "id": "07-karaka:war-combat:vrasc",
@@ -528,7 +528,7 @@
       ]
     },
     {
-      "name": "V07 · Destruction — DM",
+      "name": "V07 · Saṃhāra — destruction · DM",
       "cards": [
         {
           "id": "07-karaka:war-combat:vadha",

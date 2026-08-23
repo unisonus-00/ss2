@@ -19,7 +19,7 @@ const { chromium } = require('playwright-core');
 const path = require('path');
 const FILE = 'file://' + path.resolve(__dirname, '..', 'dist', 'abhyasah.html');
 const EXE = process.env.CHROME || '/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
-const DECK = 'Person, tense and mood — practice';
+const DECK = 'Puruṣa-lakāra — person, tense and mood · practice';
 
 /* Expected counts come from the practice files themselves, so adding a
    lesson's practice does not break the suite — what is checked is that the
@@ -356,7 +356,7 @@ const open = async (browser, opts = {}) => {
     const p = await open(browser);
     const r = await p.evaluate(() => {
       // build a round mixing the choice deck with a reveal deck
-      const mix = [...DECKS['Person, tense and mood — practice'].slice(0, 3),
+      const mix = [...DECKS['Puruṣa-lakāra — person, tense and mood · practice'].slice(0, 3),
                    ...DECKS['10 · Kriyā — verbs in form'].slice(0, 3)];
       startRound(mix, {});
       const kinds = [];
@@ -409,7 +409,7 @@ const open = async (browser, opts = {}) => {
     const p = await open(browser);
     const r = await p.evaluate(() => {
       // fail a short round outright
-      startRound(DECKS['Person, tense and mood — practice'].slice(0, 3), {});
+      startRound(DECKS['Puruṣa-lakāra — person, tense and mood · practice'].slice(0, 3), {});
       let g = 0;
       while (current && g++ < 30) {
         [...document.querySelectorAll('#choices .opt')].find(x => x.textContent !== current.card.answer).click();
@@ -432,7 +432,7 @@ const open = async (browser, opts = {}) => {
   {
     const p = await open(browser);
     const r = await p.evaluate(() => {
-      const card = DECKS['Person, tense and mood — practice'][0];
+      const card = DECKS['Puruṣa-lakāra — person, tense and mood · practice'][0];
       SAVED.trouble[card.id] = { w: 3, r: 0, s: '' }; save();
       const onList = troubleCards().some(c => c.id === card.id);
       startTroubleDrill();
@@ -509,7 +509,7 @@ const open = async (browser, opts = {}) => {
   }
 
   // ── sequence: assemble supplied pieces by tapping ─────────────────
-  const SEQ = 'Derivation — order the stages';
+  const SEQ = 'Prakriyā — order the stages · practice';
   const openSeq = async (id) => {
     const p = await browser.newPage();
     p.on('pageerror', e => { console.log('  PAGEERROR ' + e.message); fail.push('pageerror'); });
@@ -746,7 +746,7 @@ const open = async (browser, opts = {}) => {
     const p = await browser.newPage();
     await p.goto(FILE, { waitUntil: 'load' });
     const r = await p.evaluate(() => {
-      const d = DECKS['Roles in a sentence — practice'] || [];
+      const d = DECKS['Kāraka-vicāra — roles in a sentence · practice'] || [];
       const sentence = d.filter(c => c.id.startsWith('07-karaka:role:'));
       return {
         n: sentence.length,
@@ -817,7 +817,7 @@ const open = async (browser, opts = {}) => {
       const NUM = { ekavacana: 'sg', dvivacana: 'du', bahuvacana: 'pl' };
       const table = [];
       Object.keys(DECKS).forEach(n => {
-        if (n.startsWith('Table mastery')) table.push(...DECKS[n]);
+        if (n.startsWith('Śabda-rūpa')) table.push(...DECKS[n]);
       });
       const cells = {};
       table.forEach(c => {
@@ -836,7 +836,7 @@ const open = async (browser, opts = {}) => {
 
       const conj = [];
       Object.keys(DECKS).forEach(n => {
-        if (n.startsWith('Conjugation mastery')) conj.push(...DECKS[n]);
+        if (n.startsWith('Dhātu-rūpa · ')) conj.push(...DECKS[n]);
       });
       const byRoot = {};
       conj.forEach(c => {
@@ -889,10 +889,10 @@ const open = async (browser, opts = {}) => {
     const r = await p.evaluate(() => {
       const raw = JSON.parse(localStorage.getItem('abhyāsaḥ'));
       return {
-        moved: raw.decks['Case and form — practice'],
-        movedKriya: raw.decks['Person, tense and mood — practice'],
+        moved: raw.decks['Vibhakti-rūpa — recognise and produce · practice'],
+        movedKriya: raw.decks['Puruṣa-lakāra — person, tense and mood · practice'],
         oldGone: !raw.decks['Rūpa practice — case and form'],
-        lastDeckMoved: raw.deck === 'Case and form — practice',
+        lastDeckMoved: raw.deck === 'Vibhakti-rūpa — recognise and produce · practice',
         finished: finishedDecks().length,
       };
     });
@@ -909,7 +909,7 @@ const open = async (browser, opts = {}) => {
       for (let i = 0; i < 25; i++) {
         const drawn = mixCards();
         const fromTable = drawn.filter(c =>
-          (DECK_OF.get(c) || '').startsWith('Table mastery')).length;
+          (DECK_OF.get(c) || '').startsWith('Śabda-rūpa')).length;
         counts.push(fromTable / drawn.length);
       }
       return { worst: Math.max(...counts), size: mixCards().length };
@@ -1100,7 +1100,7 @@ const open = async (browser, opts = {}) => {
     await p.goto(FILE, { waitUntil: 'load' });
     const r = await p.evaluate(() => {
       const raw = JSON.parse(localStorage.getItem('abhyāsaḥ'));
-      return { landed: raw.decks['Person, tense and mood — practice'],
+      return { landed: raw.decks['Puruṣa-lakāra — person, tense and mood · practice'],
                oldGone: !raw.decks['Kriyā practice — person, tense and mood']
                      && !raw.decks['Practice — person, tense and mood'],
                deck: raw.deck };
@@ -1109,7 +1109,7 @@ const open = async (browser, opts = {}) => {
       r.landed && r.landed.best[0] === 17, JSON.stringify(r.landed));
     ok('and leaves no stale key behind', r.oldGone);
     ok('the remembered list follows the whole chain',
-      r.deck === 'Person, tense and mood — practice', r.deck);
+      r.deck === 'Puruṣa-lakāra — person, tense and mood · practice', r.deck);
     await p.close();
   }
 
@@ -1298,7 +1298,7 @@ const open = async (browser, opts = {}) => {
   {
     const p = await open(browser);
     const cards = await p.evaluate(() =>
-      (DECKS['Pratyāhāras — practice'] || []).filter(c =>
+      (DECKS['Pratyāhāra-vistāra — expand and test membership · practice'] || []).filter(c =>
         /^Which (set is|sound is NOT) covered .*\bik\b/.test(c.front || '')));
     await p.close();
     const REF = require('fs').readFileSync(
@@ -1424,29 +1424,29 @@ const open = async (browser, opts = {}) => {
     const mA = table('Masculine -a (deva, śiva, rāma)', 'śiva', 1);
     const tadM = pron(REF, 'Pronoun: tad (3rd person, masculine)');
     const WANT = {
-      'Form mastery · Śiva — all 17 forms': mA,
-      'Form mastery · Phala — 4 key forms':
+      'Rūpa-siddhi · Śiva — all 17 forms': mA,
+      'Rūpa-siddhi · Phala — 4 key forms':
         table('Neuter -a (phala, puṣpa, jala)', 'phala', 1, table('Masculine -a (deva, śiva, rāma)', 'phala', 1)),
-      'Form mastery · Mālā — all 14 forms': table('Feminine -ā (mālā, gaṅgā, latā)', 'mālā', 1),
-      'Form mastery · Devī — all 15 forms': table('Feminine -ī (nadī, devī, lakṣmī)', 'devī', 1),
-      'Form mastery · Agni — all 15 forms': table('Masculine -i (agni, muni)', 'agni', 1),
-      'Form mastery · Viṣṇu — 7 key forms': table('Masculine -u (viṣṇu, guru)', 'viṣṇu', 1),
-      'Form mastery · Pitṛ — all 15 forms': table('Ṛ-stem (mātṛ, pitṛ, kartṛ)', 'pitṛ', 1),
-      'Form mastery · Bhagavat — all 14 forms': table('Consonant-stem -at (bhagavat, mahat)', 'bhagavat', 2),
-      'Form mastery · Asmad — all 17 forms': pron(REF, 'Pronoun: asmad (1st person)'),
-      'Form mastery · Yuṣmad — all 17 forms': pron(REF, 'Pronoun: yuṣmad (2nd person)'),
-      'Form mastery · Saḥ — all 16 forms': tadM,
-      'Form mastery · Sā — all 14 forms': pron(REF, 'Pronoun: tad (3rd person, feminine)'),
-      'Form mastery · Tat — 3 key forms': pron(BRICKS, 'Napuṃsakaliṅga (Neuter)', tadM),
+      'Rūpa-siddhi · Mālā — all 14 forms': table('Feminine -ā (mālā, gaṅgā, latā)', 'mālā', 1),
+      'Rūpa-siddhi · Devī — all 15 forms': table('Feminine -ī (nadī, devī, lakṣmī)', 'devī', 1),
+      'Rūpa-siddhi · Agni — all 15 forms': table('Masculine -i (agni, muni)', 'agni', 1),
+      'Rūpa-siddhi · Viṣṇu — 7 key forms': table('Masculine -u (viṣṇu, guru)', 'viṣṇu', 1),
+      'Rūpa-siddhi · Pitṛ — all 15 forms': table('Ṛ-stem (mātṛ, pitṛ, kartṛ)', 'pitṛ', 1),
+      'Rūpa-siddhi · Bhagavat — all 14 forms': table('Consonant-stem -at (bhagavat, mahat)', 'bhagavat', 2),
+      'Rūpa-siddhi · Asmad — all 17 forms': pron(REF, 'Pronoun: asmad (1st person)'),
+      'Rūpa-siddhi · Yuṣmad — all 17 forms': pron(REF, 'Pronoun: yuṣmad (2nd person)'),
+      'Rūpa-siddhi · Saḥ — all 16 forms': tadM,
+      'Rūpa-siddhi · Sā — all 14 forms': pron(REF, 'Pronoun: tad (3rd person, feminine)'),
+      'Rūpa-siddhi · Tat — 3 key forms': pron(BRICKS, 'Napuṃsakaliṅga (Neuter)', tadM),
     };
     /* Full mastery for new patterns, a delta check where the source itself
        derives one table from another, a transfer check where a paradigm is
        another's with one vowel changed.  The rows each list owes: */
     const ROWS = {
-      'Form mastery · Phala — 4 key forms': [1, 2, 8],   // "3–7 same as masculine"
-      'Form mastery · Tat — 3 key forms':   [1, 2],      // likewise, in bricks.md
+      'Rūpa-siddhi · Phala — 4 key forms': [1, 2, 8],   // "3–7 same as masculine"
+      'Rūpa-siddhi · Tat — 3 key forms':   [1, 2],      // likewise, in bricks.md
     };
-    const PARTIAL = new Set(['Form mastery · Viṣṇu — 7 key forms']);
+    const PARTIAL = new Set(['Rūpa-siddhi · Viṣṇu — 7 key forms']);
 
     const p = await open(browser);
     const got = await p.evaluate(names => {
@@ -1512,8 +1512,8 @@ const open = async (browser, opts = {}) => {
     ok('every distinct form is asked for, and only once',
       Object.values(covered).reduce((a, b) => a + b, 0) === 168, JSON.stringify(covered));
     ok('the reduction dropped cells, never forms',
-      covered['Form mastery · Śiva — all 17 forms'] === 17
-      && covered['Form mastery · Phala — 4 key forms'] === 4,
+      covered['Rūpa-siddhi · Śiva — all 17 forms'] === 17
+      && covered['Rūpa-siddhi · Phala — 4 key forms'] === 4,
       JSON.stringify(covered));
     ok('the bank spans all eight vibhaktis and all three numbers',
       vibsSeen.size === 8 && numsSeen.size === 3,
@@ -1526,7 +1526,7 @@ const open = async (browser, opts = {}) => {
   {
     const p = await open(browser);
     const r = await p.evaluate(() => {
-      const DECK = 'Form mastery · Devī — all 15 forms';
+      const DECK = 'Rūpa-siddhi · Devī — all 15 forms';
       const CLASS = '05-rupa:class:devi';
       const shown = () => document.getElementById('stemclass').hidden
         ? null : document.getElementById('stemclass').textContent;
@@ -1555,7 +1555,7 @@ const open = async (browser, opts = {}) => {
           leaks.push(n + ' ⊃ ' + c.answer);
       }));
       // and a reveal card never carries one
-      loadDeck('Table mastery · Rāma — a-stem, all 24 cells');
+      loadDeck('Śabda-rūpa · Rāma — a-stem, all 24 cells');
       const onReveal = shown();
       return { before, onAsk, after, styleOK, leaks, onReveal };
     });
@@ -1637,6 +1637,42 @@ const open = async (browser, opts = {}) => {
       r.abbrev.slice(0, 4).join(' | '));
     ok('an annotation reads as part of speech, class, then stem',
       /^noun · neuter · a-stem · stem: raṇa-/.test(r.sample || ''), r.sample);
+    await p.close();
+  }
+
+  // ── one naming rule for every list ─────────────────────────────────
+  // A Sanskrit head, the English in the descriptor.  The drawer draws the
+  // head over "<descriptor> · N cards", so a list whose head is already
+  // English says the same thing twice and leaves the subtext to say nothing.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      /* English function words: none of them belong in a Sanskrit head, and
+         between them they catch every shape the old names took — "Goddess
+         names I", "Case and form", "Spot the intruder".  Tokenised rather
+         than matched with \b, because JS word boundaries are ASCII and would
+         find a bare "a" at the end of Guṇa. */
+      const ENGLISH = new Set(['and','the','of','in','a','practice','name','names',
+        'form','forms','mastery','word','words','spot','which','set','case','more',
+        'all','key','cell','cells','intruder','goddess','demon','battle','time']);
+      const bad = [], noDesc = [], wide = [];
+      Object.keys(DECKS).forEach(n => {
+        const head = DECK_SHORT(n), desc = DECK_DESC(n);
+        if (!desc) noDesc.push(n);
+        const tokens = head.toLowerCase().split(/[\s·\-]+/).filter(Boolean);
+        if (tokens.some(t => ENGLISH.has(t))) bad.push(head);
+        // DECK_SHORT truncates past its display budget; a clipped head is a
+        // different name from the one the file carries
+        const written = n.replace(/^(?:V?\d+|S)\s*·\s*/, '').split(' — ')[0];
+        if (head !== written) wide.push(written + ' → ' + head);
+      });
+      return { bad, noDesc, wide, n: Object.keys(DECKS).length };
+    });
+    ok('every list is headed in Sanskrit', !r.bad.length, r.bad.slice(0, 6).join(' | '));
+    ok('and carries its English in the descriptor',
+      !r.noDesc.length, r.noDesc.slice(0, 4).join(' | '));
+    ok('no head is clipped by the drawer', !r.wide.length, r.wide.slice(0, 3).join(' | '));
+    console.log('        ' + r.n + ' list names checked');
     await p.close();
   }
 
@@ -1802,7 +1838,7 @@ const open = async (browser, opts = {}) => {
     }, { v: 3,
          decks: { '20 · Bhāva — inner states': { best: [13, 15], pile: [] },
                   '01 · Devī — goddess names': { best: [15, 15], pile: [] },
-                  'V09 · Anger and fear — DM · LS': { best: [12, 16], pile: [] } },
+                  'V09 · Krodha — anger and fear · DM · LS': { best: [12, 16], pile: [] } },
          review: { runs: 4, right: 63, seen: 80 }, trouble: {}, cleared: 2, mastered: {} });
     await p.goto(FILE, { waitUntil: 'load' });
 
@@ -2712,7 +2748,7 @@ const open = async (browser, opts = {}) => {
   {
     const p = await open(browser);
     const r = await p.evaluate(() => {
-      const deck = DECKS['Person, tense and mood — practice'];
+      const deck = DECKS['Puruṣa-lakāra — person, tense and mood · practice'];
       const ids = new Set(deck.map(c => c.id));
       startRound(deck.slice(0, 3), {});
       const first = current.card.id;
@@ -2884,11 +2920,11 @@ const open = async (browser, opts = {}) => {
           v: 2,
           decks: {
             // perfect, and the deck is still that size: every card was cold
-            'Person, tense and mood — practice': { best: [21, 21], pile: [] },
+            'Puruṣa-lakāra — person, tense and mood · practice': { best: [21, 21], pile: [] },
             // perfect, but set when the deck was smaller — cannot be attributed
-            'Case and form — practice': { best: [9, 9], pile: [] },
+            'Vibhakti-rūpa — recognise and produce · practice': { best: [9, 9], pile: [] },
             // not perfect: which cards were cold is simply not recorded
-            'Joins — practice, combine the two words': { best: [19, 20], pile: [] },
+            'Saṃyoga — combine the two words · practice': { best: [19, 20], pile: [] },
           },
           trouble: {}, cleared: 0,
         }));
@@ -2899,9 +2935,9 @@ const open = async (browser, opts = {}) => {
       const of = n => progressOf(new Set(DECKS[n].map(c => c.id)));
       return {
         v: JSON.parse(localStorage.getItem('abhyāsaḥ')).v,
-        exact: of('Person, tense and mood — practice'),
-        resized: of('Case and form — practice'),
-        partial: of('Joins — practice, combine the two words'),
+        exact: of('Puruṣa-lakāra — person, tense and mood · practice'),
+        resized: of('Vibhakti-rūpa — recognise and produce · practice'),
+        partial: of('Saṃyoga — combine the two words · practice'),
       };
     });
     ok('a perfect round on the deck as it stands seeds mastery',
