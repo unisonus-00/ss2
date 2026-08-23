@@ -558,7 +558,7 @@ rather than `· 1 lesson`.
 Where a folded lesson's name differs from its track's, the subheading keeps it
 (`Avadhāna` / *Samasyāpūraṇa · 1 list*) so nothing is silently lost.
 
-### Three streams, and four units
+### Four streams, and four units
 
 A track was one flat run of lessons, and it mixed together what a learner has
 to do with what they may. **Bhāṣā-Vidyā drew thirteen stage rows over 137
@@ -571,13 +571,14 @@ than it is.
 Two separations fix it, and neither deletes anything.
 
 **A list declares its stream.** `stream` on a deck in `practice.json`, one of
-three, defaulting to the first:
+four, defaulting to the first:
 
 | | |
 |:--|:--|
 | **core** | the acquisition path. What the track's percentage is measured against, what `Continue —` walks, and the only thing a learner has to finish. |
 | **enrichment** | vocabulary breadth and the lexical stages — Paryāya, Bhāva, the 82 bank lists. Present, open from the start, and deliberately outside the figure: a learner who takes none of it has still finished the track. |
 | **grammar** | the formal, Pāṇinian layer — the Maheśvara sūtras and pratyāhāras, the named sandhi rules, the kṛt and taddhita affixes, the ten lakāras. Real Sanskrit grammar, and optional to a *reader*, so it is drawn under Vyākaraṇam with the rest of the metalanguage rather than in the middle of the path. |
+| **mastery** | drilling a paradigm to the end — the thirteen lists that hand over a stem and ask for one named cell. What the Rūpa badge asks for rather than what reading asks for, so it is drawn under **Rūpa-siddhi** rather than in the middle of Stage 5. |
 
 `role: "breadth"` already said *this list widens rather than carries*, so it
 reads as enrichment without 82 lists having to say it twice; a deck's own
@@ -624,10 +625,61 @@ uppercase type per stage, so no curriculum name is lost.
   track without them draws its lessons exactly as before — and Kāvya-Racanā,
   at eleven, is the obvious next candidate.
 
-Bhāṣā-Vidyā now asks for **4 units, 56 lists and 694 cards**. The other 73
-lists and 1,001 cards are still in the drawer, in the enrichment row, counting
-towards nothing; the 8 grammar lists and 88 cards are under Vyākaraṇam, which
-counts towards no track's percentage either.
+Bhāṣā-Vidyā now asks for **4 units, 43 lists and 514 cards**. The other 72
+lists and 938 cards are still in the drawer, in the enrichment row, counting
+towards nothing; the 10 grammar lists and 117 cards are under Vyākaraṇam and
+the 13 production lists and 180 cards under Rūpa-siddhi, neither of which
+counts towards any track's percentage.
+
+### Rūpa-siddhi: the paradigm workshop
+
+Producing a form is not recognising one, and until this pass the two sat in
+the same stage. Rūpa ran eleven lists of terms and tables and then **thirteen
+more that hand over a bare stem and ask for one named cell** — 180 cards, more
+than half the stage, all of it drill rather than acquisition, standing between
+the learner and Kriyā.
+
+So the production lists are drawn as a track of their own, after the five and
+before Vyākaraṇam:
+
+```
+Rūpa-siddhi                                                            0%
+Rūpa · 13 lists
+    Śiva          all 17 forms · 18 cards · next
+    Phala         4 key forms · 6 cards
+    Mālā          all 14 forms · 15 cards
+    …
+```
+
+- **It is not a sixth course track.** It belongs to no track's percentage, it
+  is what the Rūpa **badge** asks for rather than what reading asks for, and
+  `Continue —` never points at it from inside Bhāṣā-Vidyā. A test walks the
+  acquisition path and fails if it is ever asked for a form on the way
+  through.
+- **The mechanism is the one Vyākaraṇam already uses.** `trackOfDeck` routes
+  a list by its stream before its stage, so a `mastery` list is drawn here
+  whatever lesson it sits in. Nothing moved on disk: the thirteen lists are
+  still `05-rupa`'s, and the drawer's subheading keeps saying so — `Rūpa · 13
+  lists`.
+- **It rests on Rūpa, and the page says so first.** Step one of the plan is
+  *take Rūpa first*: every prompt names a vibhakti and every wrong option is
+  another cell of the same paradigm, so both the terms and the tables are
+  assumed. There is no lock — the app has two gates by design — and guidance
+  is what the rest of the app uses in place of one.
+- **The order is the order the patterns build.** Śiva the masculine a-stem
+  first, because everything else is compared to it; Phala four rows off it;
+  Mālā, Devī, Agni; Viṣṇu, which is Agni with one vowel changed; then Pitṛ and
+  Bhagavat. The five pronouns last and whole, because `asmad` is suppletive
+  and nothing there predicts anything.
+- **The lists dropped the prefix they no longer need.** Thirteen rows reading
+  `Rūpa-siddhi · Śiva` under a heading reading `Rūpa-siddhi` said the track's
+  name fourteen times; the model stem is what tells them apart, so `Śiva — all
+  17 forms` is what they are called. Thirteen `DECK_RENAMES` entries, appended
+  at the end as the rule requires.
+
+What stayed on the acquisition path is what reading needs: the case terms, the
+nine `Śabda-rūpa` tables, and the one practice list that asks which case a
+sentence calls for. **The Rūpa unit went from 28 lists to 15.**
 
 ### The track page
 
@@ -781,9 +833,10 @@ maintainer's file; **they are not shown in the app**:
 | Avadhāna | *Attention Under Pressure* | 27–36 |
 
 `TRACKS` in `app.js` is the only place this lives, and the drawer is built from
-it alone, so navigation cannot drift from the curriculum. Cross-cutting
-vyākaraṇam practice is **not a sixth track**: it is listed after the five and
-counts towards no track's percentage. It now carries the grammar stream too —
+it alone, so navigation cannot drift from the curriculum. **Two more rows are
+drawn after the five, and neither is a sixth track**: `Rūpa-siddhi`, the
+paradigm production lifted out of Stage 5, and the cross-cutting vyākaraṇam
+practice. Both belong to no track's percentage. It now carries the grammar stream too —
 the formal layer of Varṇa-Vidyā, Sandhi, Kriyā and Dhātu — with its own
 terminology lists (`Saṃjñā`) leading, because inside that section they are the
 subject and the rest hang off them. A track with no practice yet is left out
@@ -793,8 +846,10 @@ otherwise the lessons actually in it, never the stages it spans.
 
 **Pūjā-Vāk, Svara-Vidyā and Avadhāna are the curriculum's own names.
 Bhāṣā-Vidyā and Kāvya-Racanā are not** — nothing in the repository names those
-two groupings, so they were coined to match the other three. Rename them
-freely; `TRACKS` is the only place either appears.
+two groupings, so they were coined to match the other three. `Rūpa-siddhi` is
+the app's own coinage as well, and was already the name of the thirteen lists
+before it became the name of the row they sit in. Rename any of them freely;
+`TRACKS` is the only place each appears.
 
 **Every list is headed in Sanskrit, with its English in the descriptor.** The
 drawer draws a list as its head over `<descriptor> · N cards`, so a list called

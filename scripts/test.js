@@ -1482,29 +1482,29 @@ const open = async (browser, opts = {}) => {
     const mA = table('Masculine -a (deva, śiva, rāma)', 'śiva', 1);
     const tadM = pron(REF, 'Pronoun: tad (3rd person, masculine)');
     const WANT = {
-      'Rūpa-siddhi · Śiva — all 17 forms': mA,
-      'Rūpa-siddhi · Phala — 4 key forms':
+      'Śiva — all 17 forms': mA,
+      'Phala — 4 key forms':
         table('Neuter -a (phala, puṣpa, jala)', 'phala', 1, table('Masculine -a (deva, śiva, rāma)', 'phala', 1)),
-      'Rūpa-siddhi · Mālā — all 14 forms': table('Feminine -ā (mālā, gaṅgā, latā)', 'mālā', 1),
-      'Rūpa-siddhi · Devī — all 15 forms': table('Feminine -ī (nadī, devī, lakṣmī)', 'devī', 1),
-      'Rūpa-siddhi · Agni — all 15 forms': table('Masculine -i (agni, muni)', 'agni', 1),
-      'Rūpa-siddhi · Viṣṇu — 7 key forms': table('Masculine -u (viṣṇu, guru)', 'viṣṇu', 1),
-      'Rūpa-siddhi · Pitṛ — all 15 forms': table('Ṛ-stem (mātṛ, pitṛ, kartṛ)', 'pitṛ', 1),
-      'Rūpa-siddhi · Bhagavat — all 14 forms': table('Consonant-stem -at (bhagavat, mahat)', 'bhagavat', 2),
-      'Rūpa-siddhi · Asmad — all 17 forms': pron(REF, 'Pronoun: asmad (1st person)'),
-      'Rūpa-siddhi · Yuṣmad — all 17 forms': pron(REF, 'Pronoun: yuṣmad (2nd person)'),
-      'Rūpa-siddhi · Saḥ — all 16 forms': tadM,
-      'Rūpa-siddhi · Sā — all 14 forms': pron(REF, 'Pronoun: tad (3rd person, feminine)'),
-      'Rūpa-siddhi · Tat — 3 key forms': pron(BRICKS, 'Napuṃsakaliṅga (Neuter)', tadM),
+      'Mālā — all 14 forms': table('Feminine -ā (mālā, gaṅgā, latā)', 'mālā', 1),
+      'Devī — all 15 forms': table('Feminine -ī (nadī, devī, lakṣmī)', 'devī', 1),
+      'Agni — all 15 forms': table('Masculine -i (agni, muni)', 'agni', 1),
+      'Viṣṇu — 7 key forms': table('Masculine -u (viṣṇu, guru)', 'viṣṇu', 1),
+      'Pitṛ — all 15 forms': table('Ṛ-stem (mātṛ, pitṛ, kartṛ)', 'pitṛ', 1),
+      'Bhagavat — all 14 forms': table('Consonant-stem -at (bhagavat, mahat)', 'bhagavat', 2),
+      'Asmad — all 17 forms': pron(REF, 'Pronoun: asmad (1st person)'),
+      'Yuṣmad — all 17 forms': pron(REF, 'Pronoun: yuṣmad (2nd person)'),
+      'Saḥ — all 16 forms': tadM,
+      'Sā — all 14 forms': pron(REF, 'Pronoun: tad (3rd person, feminine)'),
+      'Tat — 3 key forms': pron(BRICKS, 'Napuṃsakaliṅga (Neuter)', tadM),
     };
     /* Full mastery for new patterns, a delta check where the source itself
        derives one table from another, a transfer check where a paradigm is
        another's with one vowel changed.  The rows each list owes: */
     const ROWS = {
-      'Rūpa-siddhi · Phala — 4 key forms': [1, 2, 8],   // "3–7 same as masculine"
-      'Rūpa-siddhi · Tat — 3 key forms':   [1, 2],      // likewise, in bricks.md
+      'Phala — 4 key forms': [1, 2, 8],   // "3–7 same as masculine"
+      'Tat — 3 key forms':   [1, 2],      // likewise, in bricks.md
     };
-    const PARTIAL = new Set(['Rūpa-siddhi · Viṣṇu — 7 key forms']);
+    const PARTIAL = new Set(['Viṣṇu — 7 key forms']);
 
     const p = await open(browser);
     const got = await p.evaluate(names => {
@@ -1570,8 +1570,8 @@ const open = async (browser, opts = {}) => {
     ok('every distinct form is asked for, and only once',
       Object.values(covered).reduce((a, b) => a + b, 0) === 168, JSON.stringify(covered));
     ok('the reduction dropped cells, never forms',
-      covered['Rūpa-siddhi · Śiva — all 17 forms'] === 17
-      && covered['Rūpa-siddhi · Phala — 4 key forms'] === 4,
+      covered['Śiva — all 17 forms'] === 17
+      && covered['Phala — 4 key forms'] === 4,
       JSON.stringify(covered));
     ok('the bank spans all eight vibhaktis and all three numbers',
       vibsSeen.size === 8 && numsSeen.size === 3,
@@ -1584,7 +1584,7 @@ const open = async (browser, opts = {}) => {
   {
     const p = await open(browser);
     const r = await p.evaluate(() => {
-      const DECK = 'Rūpa-siddhi · Devī — all 15 forms';
+      const DECK = 'Devī — all 15 forms';
       const CLASS = '05-rupa:class:devi';
       const shown = () => document.getElementById('stemclass').hidden
         ? null : document.getElementById('stemclass').textContent;
@@ -3365,7 +3365,7 @@ const open = async (browser, opts = {}) => {
                  last: names.map(n => pat.test(n)).lastIndexOf(true) };
       };
       const rupa = { table: pos('05-rupa', /^Śabda-rūpa/),
-                     produce: pos('05-rupa', /^Rūpa-siddhi/) };
+                     produce: pos('05-rupa', /^(Śiva|Phala|Mālā|Devī|Agni|Viṣṇu|Pitṛ|Bhagavat|Asmad|Yuṣmad|Saḥ|Sā|Tat) — /) };
       const kriya = { table: pos('06-kriya', /^Dhātu-rūpa/),
                       practice: pos('06-kriya', /practice$/) };
       out.rupaOrdered = rupa.table.last < rupa.produce.first;
@@ -3379,19 +3379,28 @@ const open = async (browser, opts = {}) => {
         DECKS[n].every(c => (c.type || 'reveal') === 'reveal')
         && DECK_PAIR[n] === 'form \u2192 analysis');
 
-      /* and the learner walking the recommended path meets one before being
-         asked to produce out of it */
+      /* and the learner walking the acquisition path meets the tables while
+         never being asked to produce out of them: production is a track of
+         its own now, resting on this stage rather than sitting inside it */
       SAVED.mastered = {}; SAVED.pending = {}; SAVED.decks = {};
       const row = TRACK_ROWS.find(x => x.track.id === 'bhasha');
       let name = recommendOrder(row)[0], firstTable = -1, firstProduce = -1, i = 0;
       for (; i < 40 && name; i++) {
         if (firstTable < 0 && DECK_ROLE[name] === 'table') firstTable = i;
-        if (firstProduce < 0 && /^Rūpa-siddhi/.test(name)) firstProduce = i;
+        if (firstProduce < 0 && streamOf(name) === 'mastery') firstProduce = i;
         if (firstTable >= 0 && firstProduce >= 0) break;
         DECKS[name].forEach(c => { SAVED.mastered[c.id] = 1; });
         name = nextList(name);
       }
       out.path = { firstTable: firstTable, firstProduce: firstProduce };
+      const m = TRACK_ROWS.find(x => x.track.id === 'siddhi');
+      const mine = m ? [].concat(...m.groups.map(g => g.decks)) : [];
+      out.mastery = {
+        lists: mine.length,
+        cards: mine.reduce((n, d) => n + DECKS[d].length, 0),
+        inBhasha: [].concat(...TRACK_ROWS.find(x => x.track.id === 'bhasha')
+          .groups.map(g => g.decks)).some(n => streamOf(n) === 'mastery'),
+      };
       return out;
     });
     ok('Rūpa shows every declension table before asking for a form',
@@ -3400,9 +3409,13 @@ const open = async (browser, opts = {}) => {
       r.kriyaOrdered, JSON.stringify(r.kriya));
     ok('every list marked a table is a paradigm shown whole',
       r.tables.length === 12 && r.tablesAreRecall, r.tables.length + ' tables');
-    ok('so the recommended path meets a table before producing from one',
-      r.path.firstTable >= 0 && r.path.firstTable < r.path.firstProduce,
+    ok('so the acquisition path meets the tables', r.path.firstTable >= 0,
       JSON.stringify(r.path));
+    ok('and never asks for a form on the way through',
+      r.path.firstProduce < 0, JSON.stringify(r.path));
+    ok('the production lists are a track of their own, and it is not a course track',
+      r.mastery.lists === 13 && r.mastery.cards === 180 && !r.mastery.inBhasha,
+      JSON.stringify(r.mastery));
     await p.close();
   }
 
@@ -3867,6 +3880,56 @@ const open = async (browser, opts = {}) => {
       !r.twice.length, r.twice.slice(0, 3).join(' | '));
     ok('and a core dhātu is carded at the stage that owns roots, once',
       !r.rootsTwice.length, r.rootsTwice.slice(0, 3).join(' | '));
+    await p.close();
+  }
+
+  // ── the paradigm workshop is its own track ───────────────────────
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const row = TRACK_ROWS.find(x => x.track.id === 'siddhi');
+      const mine = [].concat(...row.groups.map(g => g.decks));
+      const bhasha = TRACK_ROWS.find(x => x.track.id === 'bhasha');
+      showTrack('siddhi');
+      return {
+        lists: mine.length,
+        /* still Stage 5's lists on disk — only the row they are drawn under
+           changed, and the subheading keeps saying which lesson they are */
+        stillRupa: mine.every(n => DECK_LESSON[n] === '05-rupa'),
+        sub: row.track.gloss,
+        folded: row.lessons.length === 1 && row.lessons[0].label === 'Rūpa',
+        /* the tables stayed on the acquisition path */
+        tablesOnPath: [].concat(...bhasha.groups.map(g => g.decks))
+          .filter(n => DECK_ROLE[n] === 'table').length,
+        /* no production list counts towards any course track */
+        inACourseTrack: TRACKS.some(t => {
+          const x = TRACK_ROWS.find(y => y.track === t);
+          return x && [].concat(...x.groups.map(g => g.decks))
+            .some(n => streamOf(n) === 'mastery');
+        }),
+        /* and none of them repeats the track's name any more */
+        prefixed: mine.filter(n => /^Rūpa-siddhi/.test(n)).length,
+        page: { name: document.getElementById('s-name').textContent,
+                held: document.getElementById('s-held').textContent,
+                plan: [...document.querySelectorAll('#s-plan li')].map(x => x.textContent),
+                go: document.getElementById('s-go').textContent },
+      };
+    });
+    ok('the production lists are drawn as a track of their own',
+      r.lists === 13 && !r.inACourseTrack, r.lists + ' lists');
+    ok('and are still Stage 5 lists, under a row that says so',
+      r.stillRupa && r.folded, JSON.stringify(r.folded));
+    ok('the tables stayed on the acquisition path', r.tablesOnPath >= 9,
+      r.tablesOnPath + ' tables');
+    ok('no list repeats the name of the track it sits in',
+      r.prefixed === 0, r.prefixed + ' prefixed');
+    ok('the page names the track and counts what it holds',
+      /Rūpa-siddhi · Form Production/.test(r.page.name) && /^13 lists$/.test(r.page.held),
+      r.page.held + ' · ' + r.page.name);
+    ok('and its plan says what it rests on, first',
+      /^Take Rūpa first/.test(r.page.plan[0] || ''), (r.page.plan[0] || '').slice(0, 40));
+    ok('it opens on the pattern everything else is compared to',
+      /Begin — Śiva/.test(r.page.go), r.page.go);
     await p.close();
   }
 
@@ -4644,7 +4707,7 @@ const open = async (browser, opts = {}) => {
       heads: [...document.querySelectorAll('#dr-prog .dp-h')].map(x => x.textContent).join(' | '),
     }));
     ok('the handle opens the drawer', opened.open && opened.veil);
-    ok('every track is a heading', opened.tracks === 6, opened.tracks + ' headings');
+    ok('every track is a heading', opened.tracks === 7, opened.tracks + ' headings');
     ok('the drawer lands on the group holding the current list',
       opened.lessons > 0 && opened.here, opened.lessons + ' groups showing');
     /* The section's own statistic is lists carried to 100%, not a card count

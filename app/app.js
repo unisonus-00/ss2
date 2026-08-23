@@ -321,6 +321,36 @@ const DECK_RENAMES = {
      case the governing word demands. */
   'Vibhakti-rūpa — recognise and produce · practice':
     'Vibhakti-prayoga — the case a sentence calls for · practice',
+  /* The production lists are a track of their own now, and every one of them
+     began with the track's own name — thirteen rows reading `Rūpa-siddhi ·
+     Śiva` under a heading reading `Rūpa-siddhi`.  The model stem is what
+     tells them apart, so that is what they are called. */
+  'Rūpa-siddhi · Śiva — all 17 forms':
+    'Śiva — all 17 forms',
+  'Rūpa-siddhi · Phala — 4 key forms':
+    'Phala — 4 key forms',
+  'Rūpa-siddhi · Mālā — all 14 forms':
+    'Mālā — all 14 forms',
+  'Rūpa-siddhi · Devī — all 15 forms':
+    'Devī — all 15 forms',
+  'Rūpa-siddhi · Agni — all 15 forms':
+    'Agni — all 15 forms',
+  'Rūpa-siddhi · Viṣṇu — 7 key forms':
+    'Viṣṇu — 7 key forms',
+  'Rūpa-siddhi · Pitṛ — all 15 forms':
+    'Pitṛ — all 15 forms',
+  'Rūpa-siddhi · Bhagavat — all 14 forms':
+    'Bhagavat — all 14 forms',
+  'Rūpa-siddhi · Asmad — all 17 forms':
+    'Asmad — all 17 forms',
+  'Rūpa-siddhi · Yuṣmad — all 17 forms':
+    'Yuṣmad — all 17 forms',
+  'Rūpa-siddhi · Saḥ — all 16 forms':
+    'Saḥ — all 16 forms',
+  'Rūpa-siddhi · Sā — all 14 forms':
+    'Sā — all 14 forms',
+  'Rūpa-siddhi · Tat — 3 key forms':
+    'Tat — 3 key forms',
 };
 /* A SPLIT is not a rename and has no entry here.  When a long list is broken
    into chunks, no one chunk is the old deck, so its best score and missed pile
@@ -649,7 +679,7 @@ const isRetained = k => !!SAVED.mastered[k] && streakOf(k) >= RETAIN;
 const countIn = (ids, test) => { let n = 0; ids.forEach(k => { if (test(k)) n++; }); return n; };
 const allRetained = ids => ids.size > 0 && countIn(ids, isRetained) === ids.size;
 
-/* ── the three streams ──────────────────────────────────────
+/* ── the four streams ───────────────────────────────────────
    A track used to be one flat run of lessons, and it mixed together things a
    learner has to do with things they may.  Bhāṣā-Vidyā ran 137 lists and
    1,836 cards, of which the vocabulary bank was more than half and the
@@ -669,6 +699,10 @@ const allRetained = ids => ids.size > 0 && countIn(ids, isRetained) === ids.size
                  It is real Sanskrit grammar and it is optional to a reader,
                  so it is drawn under Vyākaraṇam with the rest of the
                  metalanguage rather than in the middle of the path.
+     mastery     drilling a paradigm to the end — the thirteen lists that hand
+                 over a stem and ask for one named cell.  What the Rūpa badge
+                 asks for rather than what reading asks for, so it is drawn
+                 under Rūpa-siddhi rather than in the middle of Stage 5.
 
    `role: "breadth"` already said "this list widens rather than carries", so
    it is read as enrichment without 82 lists having to say it twice; a deck's
@@ -825,6 +859,46 @@ const TRACKS = [
     mentions: ['Avadhāna'],
     lessons: 1 },
 ];
+/* ── the paradigm workshop ─────────────────────────────────
+   Producing a form is not recognising one, and the two used to sit in the
+   same stage: Rūpa ran eleven lists of terms and tables and then thirteen
+   more that hand over a bare stem and ask for one named cell.  That is 180
+   cards — more than half the stage, and all of it drill rather than
+   acquisition, standing between the learner and Kriyā.
+
+   So the production lists are drawn here instead.  They are not a sixth
+   course track: they belong to no track's percentage, they are what the Rūpa
+   badge asks for rather than what reading asks for, and they rest entirely
+   on the stage they came from — the case names and the tables are still
+   taught there, and the page says so before it offers anything. */
+const MASTERY_TRACK = {
+  id: 'siddhi', name: 'Rūpa-siddhi', gloss: 'Form Production',
+  lead: 'Recognising a form and producing one are different skills, and this is '
+      + 'where the second is drilled. Rūpa gives you the eight cases and shows '
+      + 'you the tables whole; here you are handed a bare stem and one named '
+      + 'cell — the caturthī singular of devī- — and asked for the form itself. '
+      + 'That is what the badge asks for, and what writing a line of Sanskrit '
+      + 'actually needs.',
+  plan: [
+    'Take Rūpa first. Every prompt here names a vibhakti, and every wrong '
+    + 'option is another cell of the same paradigm, so both the terms and the '
+    + 'tables are assumed.',
+    'The nouns come in the order the patterns build. Śiva is the masculine '
+    + 'a-stem and the one everything else is compared to; Phala is four rows '
+    + 'off it, and Viṣṇu is Agni with one vowel changed. Mālā, Devī, Pitṛ and '
+    + 'Bhagavat are patterns in their own right.',
+    'The pronouns last, and whole: Asmad and Yuṣmad share no stem between '
+    + 'their forms — aham, mām, mayā, mahyam — so nothing here predicts '
+    + 'anything, and there is nothing to collapse.',
+  ],
+  note: 'A list here is a paradigm rather than a sitting of vocabulary: the '
+      + 'same eight cases every time, in fourteen to eighteen cards. The '
+      + 'repetition is the point — this is the one place in Abhyāsa that drills '
+      + 'a table to the end.',
+  mentions: ['Śiva', 'Phala', 'Mālā', 'Devī', 'Agni', 'Viṣṇu', 'Pitṛ',
+             'Bhagavat', 'Asmad', 'Yuṣmad'],
+  lessons: 1,
+};
 /* Cross-cutting practice sits outside the stage sequence, so it is not a
    sixth track: it is listed after the five, and belongs to no track's
    percentage.  The five are the course; this is what runs alongside it. */
@@ -879,6 +953,7 @@ const LESSONS = (() => {
    in, because that is what it is: the formal layer of that stage, not a step
    on the way through it. */
 const trackOfDeck = name => streamOf(name) === 'grammar' ? CROSS_TRACK
+                          : streamOf(name) === 'mastery' ? MASTERY_TRACK
                                                         : trackOf(DECK_STAGE[name]);
 
 /* ── what the drawer draws under a track ───────────────────
@@ -918,7 +993,7 @@ function makeGroup(key, label, gloss, names, optional) {
    so the bank must not sit in the denominator. */
 const TRACK_ROWS = (() => {
   const rows = [];
-  [...TRACKS, CROSS_TRACK].forEach(track => {
+  [...TRACKS, MASTERY_TRACK, CROSS_TRACK].forEach(track => {
     const mine = Object.keys(DECKS).filter(n => trackOfDeck(n) === track);
     if (!mine.length) return;
     const lessons = LESSONS.filter(L => L.decks.some(n => mine.indexOf(n) >= 0))
@@ -1821,7 +1896,7 @@ function renderTrack(id) {
      Thirteen stages and 137 lists is a wall; four units and the lists that
      make them up is a course. */
   const held = t.units ? count(row.units.length, 'unit') + ' · ' + count(path.length, 'list')
-    : t === CROSS_TRACK ? count(names.length, 'list')
+    : t === CROSS_TRACK || t === MASTERY_TRACK ? count(names.length, 'list')
     : count(row.lessons.length, 'stage') + ' · ' + count(names.length, 'list');
   fillRow(document, {
     '#s-held': held,

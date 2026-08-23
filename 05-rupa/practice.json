@@ -1108,7 +1108,8 @@
       ]
     },
     {
-      "name": "Rūpa-siddhi · Śiva — all 17 forms",
+      "name": "Śiva — all 17 forms",
+      "stream": "mastery",
       "cards": [
         {
           "id": "05-rupa:class:siva",
@@ -1382,7 +1383,8 @@
       ]
     },
     {
-      "name": "Rūpa-siddhi · Phala — 4 key forms",
+      "name": "Phala — 4 key forms",
+      "stream": "mastery",
       "cards": [
         {
           "id": "05-rupa:class:phala",
@@ -1474,7 +1476,8 @@
       ]
     },
     {
-      "name": "Rūpa-siddhi · Mālā — all 14 forms",
+      "name": "Mālā — all 14 forms",
+      "stream": "mastery",
       "cards": [
         {
           "id": "05-rupa:class:mala",
@@ -1703,7 +1706,8 @@
       ]
     },
     {
-      "name": "Rūpa-siddhi · Devī — all 15 forms",
+      "name": "Devī — all 15 forms",
+      "stream": "mastery",
       "cards": [
         {
           "id": "05-rupa:class:devi",
@@ -1947,7 +1951,8 @@
       ]
     },
     {
-      "name": "Rūpa-siddhi · Agni — all 15 forms",
+      "name": "Agni — all 15 forms",
+      "stream": "mastery",
       "cards": [
         {
           "id": "05-rupa:class:agni",
@@ -2191,7 +2196,8 @@
       ]
     },
     {
-      "name": "Rūpa-siddhi · Viṣṇu — 7 key forms",
+      "name": "Viṣṇu — 7 key forms",
+      "stream": "mastery",
       "cards": [
         {
           "id": "05-rupa:class:visnu",
@@ -2315,7 +2321,8 @@
       ]
     },
     {
-      "name": "Rūpa-siddhi · Pitṛ — all 15 forms",
+      "name": "Pitṛ — all 15 forms",
+      "stream": "mastery",
       "cards": [
         {
           "id": "05-rupa:class:pitr",
@@ -2559,7 +2566,8 @@
       ]
     },
     {
-      "name": "Rūpa-siddhi · Bhagavat — all 14 forms",
+      "name": "Bhagavat — all 14 forms",
+      "stream": "mastery",
       "cards": [
         {
           "id": "05-rupa:class:bhagavat",
@@ -2788,7 +2796,8 @@
       ]
     },
     {
-      "name": "Rūpa-siddhi · Asmad — all 17 forms",
+      "name": "Asmad — all 17 forms",
+      "stream": "mastery",
       "cards": [
         {
           "id": "05-rupa:class:asmad",
@@ -3062,7 +3071,8 @@
       ]
     },
     {
-      "name": "Rūpa-siddhi · Yuṣmad — all 17 forms",
+      "name": "Yuṣmad — all 17 forms",
+      "stream": "mastery",
       "cards": [
         {
           "id": "05-rupa:class:yusmad",
@@ -3336,7 +3346,8 @@
       ]
     },
     {
-      "name": "Rūpa-siddhi · Saḥ — all 16 forms",
+      "name": "Saḥ — all 16 forms",
+      "stream": "mastery",
       "cards": [
         {
           "id": "05-rupa:form:tad-m-1-eka",
@@ -3581,7 +3592,8 @@
       ]
     },
     {
-      "name": "Rūpa-siddhi · Sā — all 14 forms",
+      "name": "Sā — all 14 forms",
+      "stream": "mastery",
       "cards": [
         {
           "id": "05-rupa:form:tad-f-1-eka",
@@ -3796,7 +3808,8 @@
       ]
     },
     {
-      "name": "Rūpa-siddhi · Tat — 3 key forms",
+      "name": "Tat — 3 key forms",
+      "stream": "mastery",
       "cards": [
         {
           "id": "05-rupa:form:tad-n-1-eka",

@@ -43,11 +43,11 @@ const LOGO = '<!--logo-->';
 const BUILD = '<!--build-->';
 
 const CARD_TYPES = new Set(['reveal', 'choice', 'sequence']);
-/* The three streams a list can be in: the core acquisition path (the
-   default, and what a track's percentage is measured against), the
-   enrichment that widens it, and the formal grammar drawn under
-   Vyākaraṇam.  See `streamOf` in app.js. */
-const STREAMS = new Set(['core', 'enrichment', 'grammar']);
+/* The four streams a list can be in: the core acquisition path (the default,
+   and what a track's percentage is measured against), the enrichment that
+   widens it, the formal grammar drawn under Vyākaraṇam, and the paradigm
+   production drawn under Rūpa-siddhi.  See `streamOf` in app.js. */
+const STREAMS = new Set(['core', 'enrichment', 'grammar', 'mastery']);
 
 /* ── discover ───────────────────────────────────────────────────────── */
 
