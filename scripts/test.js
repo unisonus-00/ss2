@@ -1772,6 +1772,72 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
+  // ── terminology comes before the cards that use it ─────────────────
+  // term → equivalent → relationship → application.  A list marked
+  // `"role": "terms"` teaches the vocabulary a later list assumes, so it
+  // leads its lesson; the exercises follow, and the recall lists come last.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const byLesson = {};
+      Object.keys(DECKS).forEach(n => {
+        (byLesson[DECK_LESSON[n]] = byLesson[DECK_LESSON[n]] || []).push(n);
+      });
+      const late = [], early = [];
+      Object.entries(byLesson).forEach(([L, names]) => {
+        const kind = n => DECK_ROLE[n] === 'terms' ? 0
+                        : DECKS[n].some(c => (c.type || 'reveal') !== 'reveal') ? 1 : 2;
+        const seq = names.map(kind);
+        // a terms list may never sit below an exercise that leans on it
+        seq.forEach((k, i) => {
+          if (k === 0 && seq.slice(0, i).some(x => x === 1)) late.push(L);
+        });
+        // and an exercise may never sit below a plain recall list
+        seq.forEach((k, i) => {
+          if (k === 1 && seq.slice(0, i).some(x => x === 2)) early.push(L);
+        });
+      });
+      /* The equivalences a later stage leans on, each taught by its own
+         card before anything applies it. */
+      const taught = {};
+      Object.values(DECKS).forEach(cs => cs.forEach(c => {
+        if ((c.type || 'reveal') === 'reveal') taught[(c.iast || '').trim()] = c.gloss || '';
+      }));
+      const need = {
+        'prathama puruṣaḥ': /3rd person/, 'madhyama puruṣaḥ': /2nd person/,
+        'uttama puruṣaḥ': /1st person/,   'ekavacanam': /singular/,
+        'dvivacanam': /dual/,             'bahuvacanam': /plural/,
+        'parasmaipadam': /active/,        'ātmanepadam': /middle/,
+        'tṛtīyā': /instrumental · 3rd case/, 'ṣaṣṭhī': /genitive · 6th case/,
+        'kartā': /agent/,                 'karaṇam': /instrument/,
+      };
+      const untaught = Object.keys(need).filter(k => !need[k].test(taught[k] || ''));
+      /* The two levels stay apart: a case card must not simply assert a
+         kāraka name, which is what "tṛtīyā → karaṇa" used to do. */
+      const conflated = [];
+      (DECKS['11 · Vibhakti-vacana — case and number terms'] || []).forEach(c => {
+        if (/^(kartā|karma|karaṇa|sampradāna|apādāna|adhikaraṇa|sambandha)$/.test((c.note || '').trim()))
+          conflated.push(c.id);
+      });
+      /* and the applied card names both levels rather than one */
+      const rel = (DECKS['Kāraka-vicāra — roles in a sentence · practice'] || [])
+        .filter(c => c.id.startsWith('07-karaka:case:'));
+      const monolingual = rel.filter(c => !/·.*·/.test(c.answer)).map(c => c.id);
+      const asksBoth = rel.every(c => /vibhakti \(case\)/.test(c.front));
+      return { late: [...new Set(late)], early: [...new Set(early)],
+               untaught, conflated, monolingual, asksBoth, rel: rel.length };
+    });
+    ok('a terms list leads its lesson', !r.late.length, r.late.join(' | '));
+    ok('and the exercises still lead the recall lists', !r.early.length, r.early.join(' | '));
+    ok('every equivalence a later card leans on is taught by a card',
+      !r.untaught.length, r.untaught.join(' | '));
+    ok('a case card does not simply assert a kāraka',
+      !r.conflated.length, r.conflated.join(' | '));
+    ok('the kāraka-to-vibhakti cards name both levels',
+      r.rel >= 4 && !r.monolingual.length && r.asksBoth, r.monolingual.join(' | '));
+    await p.close();
+  }
+
   // ── no choice card repeats a reveal card ───────────────────────────
   // A choice card that hands over the same operation and the same answer as
   // a reveal card in the same lesson is strictly the weaker of the two: the

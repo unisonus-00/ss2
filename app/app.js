@@ -12,10 +12,13 @@
    Cards with no `type` are `reveal`, which is what every migrated card is. */
 const CARD_TYPES = ["reveal", "choice", "sequence"];
 
-const [DECKS, DECK_STAGE, DECK_LESSON, LESSON_LABEL, LESSON_GLOSS, DECK_PAIR, PARSE] = (() => {
+const [DECKS, DECK_STAGE, DECK_LESSON, LESSON_LABEL, LESSON_GLOSS, DECK_PAIR, DECK_ROLE, PARSE] = (() => {
   const decks = {}, stages = {}, lessons = {}, labels = {}, glosses = {}, pairs = {},
-        skipped = [];
-  const fail = why => [decks, stages, lessons, labels, glosses, pairs,
+        /* "terms": the list teaches the vocabulary a later list assumes, so it
+           leads its lesson.  Nothing else reads this; it is the progression
+           written down where the progression lives. */
+        roles = {}, skipped = [];
+  const fail = why => [decks, stages, lessons, labels, glosses, pairs, roles,
                        { count: 0, decks: 0, skipped, fatal: why }];
 
   const src = document.getElementById('practice');
@@ -45,11 +48,12 @@ const [DECKS, DECK_STAGE, DECK_LESSON, LESSON_LABEL, LESSON_GLOSS, DECK_PAIR, PA
       stages[d.name] = L.stage;
       lessons[d.name] = L.lesson;
       if (d.pair) pairs[d.name] = d.pair;
+      if (d.role) roles[d.name] = d.role;
     });
   });
 
   const count = Object.values(decks).reduce((a, b) => a + b.length, 0);
-  return [decks, stages, lessons, labels, glosses, pairs,
+  return [decks, stages, lessons, labels, glosses, pairs, roles,
           { count, decks: Object.keys(decks).length, skipped }];
 })();
 
@@ -298,6 +302,9 @@ const DECK_RENAMES = {
   'V20 · Plants and fragrances — DM · LS':              'V20 · Oṣadhi — plants and fragrances · DM · LS',
   'V20 · Sacred objects — LS':                          'V20 · Divya-vastu — sacred objects · LS',
   'V20 · Sacred places and rivers — DM · LS':           'V20 · Tīrtha — sacred places and rivers · DM · LS',
+  /* Stage 5's case list grew the number terms alongside the case terms, so
+     it is no longer "the seven cases". */
+  '11 · Vibhakti — the seven cases':             '11 · Vibhakti-vacana — case and number terms',
 };
 /* A SPLIT is not a rename and has no entry here.  When a long list is broken
    into chunks, no one chunk is the old deck, so its best score and missed pile

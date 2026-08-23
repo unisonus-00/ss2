@@ -1048,6 +1048,54 @@ setting them in Devanagari would teach nothing.
 }
 ```
 
+### term → equivalent → relationship → application
+
+An applied card must rest on vocabulary the learner has already been taught.
+Stage 7 asked **“Which vibhakti carries karaṇa?”** with three bare Sanskrit
+options, which fails twice over: nothing had taught that `tṛtīyā` is the
+instrumental, and the wording quietly equates a *kāraka* with a *vibhakti*.
+They are different levels — a role in the action, and the case ending that
+carries it — and `07-karaka/reference.md` keeps them in separate columns.
+
+The card now reads:
+
+```
+Which vibhakti (case) typically expresses karaṇa (instrument)?
+    tṛtīyā · instrumental · 3rd case  ✓
+    dvitīyā · accusative · 2nd case
+    caturthī · dative · 4th case
+```
+
+**Both labels on the option**, so the level being tested is visible on the
+card rather than depending on the order lists happen to be taken in. Every
+part of it is sourced: `instrumental` from Stage 5's own case list, `3rd`
+from the reference's `#` column and from the kāraka table's `3rd (tṛtīyā)`.
+
+**A list marked `"role": "terms"` leads its lesson.** It teaches the
+equivalences a later list assumes, and `DECK_ROLE` carries the mark into the
+app so `scripts/test.js` can assert the order — terms, then exercises, then
+recall. Three lists carry it: Stage 5's case and number terms, Stage 6's
+person and voice terms, and Stage 7's kāraka list.
+
+What the audit found missing, and what was added:
+
+| | |
+|:--|:--|
+| **puruṣa** | nothing taught `prathama puruṣa = 3rd person`. Sanskrit counts the persons the other way round, so a learner meeting `prathama ekavacana` on a conjugation card would read it as *first* person. `06-kriya/reference.md` heads its rows `3rd (prathama)`, so the equivalence was there to teach. |
+| **vacana** | `ekavacana ↔ singular` was shown on hundreds of cards and taught by none; `05-rupa/theory.md` tables all three. |
+| **pada** | `parasmaipada` appears in almost every verb note; `theory.md` glosses it *(active)* and `ātmanepada` *(middle voice)*. |
+| **the case ordinal** | the case list gave `tṛtīyā → instrumental` but never `3rd case`, which is how both the reference's summary card and the kāraka table name it. |
+
+And what was **removed**: the case list's notes read `karaṇa`, `sampradāna`,
+`apādāna` — the kāraka name asserted as the meaning of the case. They carry
+the reference's own case marker now (`marker -ena`). The relationship is
+Stage 7's to teach, and Stage 7 teaches it.
+
+`scripts/test.js` fails if a terms list sits below an exercise, if any of the
+twelve equivalences above is not taught by a card of its own, if a case card
+asserts a bare kāraka name, or if a kāraka-to-vibhakti card names only one
+level.
+
 ### A reversed deck must still have one answer per cue
 
 Every reveal deck can be run backwards, and in that direction **the gloss is
@@ -1296,9 +1344,8 @@ Three things here are load-bearing for the compatibility list above:
   score anyway, the same way `OLD_KEYS` rescues state from an earlier storage
   key. **Never rename a deck without adding a line there.** Vocab-bank decks
   still carry their `V01 ·` prefixes; the drawer hides them from display.
-- **Deck order carries the product structure.** Within a lesson the drawer
-  reads the exercises first, then `Table mastery` / `Conjugation mastery`, then
-  the recall lists — because that is the order they sit in `practice.json`,
+- **Deck order carries the progression.** Within a lesson the drawer reads the
+  **terminology first**, then the exercises, then the recall lists — because that is the order they sit in `practice.json`,
   which the build preserves. Practice prepares generalisation; mastery closes
   known finite gaps. A test walks every lesson and fails if a set of
   interactive cards ends up below a recall list.
@@ -1322,7 +1369,7 @@ Three things here are load-bearing for the compatibility list above:
   chain, and keep each step stamping its own version rather than the newest;
   every `localStorage` touch stays guarded, since it can be absent or full.
 
-The app carries 24 lessons, 168 decks, and 2270 cards — 1915 `reveal`, 350
+The app carries 24 lessons, 169 decks, and 2278 cards — 1923 `reveal`, 350
 `choice` and 5 `sequence`, spread over 29 interactive decks in 12 lessons,
 plus the mastery decks holding complete paradigms.
 They are curated practice, not conversions of the reference tables:

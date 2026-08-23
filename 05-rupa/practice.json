@@ -2,6 +2,90 @@
   "lesson": "05-rupa",
   "decks": [
     {
+      "name": "11 · Vibhakti-vacana — case and number terms",
+      "pair": "term → definition",
+      "cards": [
+        {
+          "id": "05-rupa:vibhakti:prathama",
+          "devanagari": "प्रथमा",
+          "iast": "prathamā",
+          "gloss": "nominative · 1st case — names the thing itself",
+          "note": "marker -aḥ · prātipadikārtha, 2.3.46"
+        },
+        {
+          "id": "05-rupa:vibhakti:dvitiya",
+          "devanagari": "द्वितीया",
+          "iast": "dvitīyā",
+          "gloss": "accusative · 2nd case — the object",
+          "note": "marker -am"
+        },
+        {
+          "id": "05-rupa:vibhakti:trtiya",
+          "devanagari": "तृतीया",
+          "iast": "tṛtīyā",
+          "gloss": "instrumental · 3rd case — by, with",
+          "note": "marker -ena"
+        },
+        {
+          "id": "05-rupa:vibhakti:caturthi",
+          "devanagari": "चतुर्थी",
+          "iast": "caturthī",
+          "gloss": "dative · 4th case — to, for",
+          "note": "marker -āya"
+        },
+        {
+          "id": "05-rupa:vibhakti:pancami",
+          "devanagari": "पञ्चमी",
+          "iast": "pañcamī",
+          "gloss": "ablative · 5th case — from",
+          "note": "marker -āt"
+        },
+        {
+          "id": "05-rupa:vibhakti:sasthi",
+          "devanagari": "षष्ठी",
+          "iast": "ṣaṣṭhī",
+          "gloss": "genitive · 6th case — of",
+          "note": "marker -asya"
+        },
+        {
+          "id": "05-rupa:vibhakti:saptami",
+          "devanagari": "सप्तमी",
+          "iast": "saptamī",
+          "gloss": "locative · 7th case — in, on",
+          "note": "marker -e"
+        },
+        {
+          "id": "05-rupa:vibhakti:sambodhanam",
+          "devanagari": "सम्बोधनम्",
+          "iast": "sambodhanam",
+          "gloss": "vocative · 8th case — direct address",
+          "note": "marker -a!"
+        },
+        {
+          "id": "05-rupa:vacana:ekavacanam",
+          "devanagari": "एकवचनम्",
+          "iast": "ekavacanam",
+          "gloss": "singular",
+          "note": "prathamā of deva — devaḥ"
+        },
+        {
+          "id": "05-rupa:vacana:dvivacanam",
+          "devanagari": "द्विवचनम्",
+          "iast": "dvivacanam",
+          "gloss": "dual",
+          "note": "prathamā of deva — devau"
+        },
+        {
+          "id": "05-rupa:vacana:bahuvacanam",
+          "devanagari": "बहुवचनम्",
+          "iast": "bahuvacanam",
+          "gloss": "plural",
+          "note": "prathamā of deva — devāḥ"
+        }
+      ],
+      "role": "terms"
+    },
+    {
       "name": "Vibhakti-rūpa — recognise and produce · practice",
       "cards": [
         {
@@ -3983,68 +4067,6 @@
           "iast": "ātman",
           "gloss": "Ātman — sambodhana ekavacana",
           "note": "sambodhana | voc. sg. · m. · stem: ātman- · an-stem"
-        }
-      ]
-    },
-    {
-      "name": "11 · Vibhakti — the seven cases",
-      "pair": "term → definition",
-      "cards": [
-        {
-          "id": "05-rupa:vibhakti:prathama",
-          "devanagari": "प्रथमा",
-          "iast": "prathamā",
-          "gloss": "nominative — names the thing itself",
-          "note": "prātipadikārtha, 2.3.46"
-        },
-        {
-          "id": "05-rupa:vibhakti:dvitiya",
-          "devanagari": "द्वितीया",
-          "iast": "dvitīyā",
-          "gloss": "accusative — the object",
-          "note": "karma"
-        },
-        {
-          "id": "05-rupa:vibhakti:trtiya",
-          "devanagari": "तृतीया",
-          "iast": "tṛtīyā",
-          "gloss": "instrumental — by, with",
-          "note": "karaṇa"
-        },
-        {
-          "id": "05-rupa:vibhakti:caturthi",
-          "devanagari": "चतुर्थी",
-          "iast": "caturthī",
-          "gloss": "dative — to, for",
-          "note": "sampradāna"
-        },
-        {
-          "id": "05-rupa:vibhakti:pancami",
-          "devanagari": "पञ्चमी",
-          "iast": "pañcamī",
-          "gloss": "ablative — from",
-          "note": "apādāna"
-        },
-        {
-          "id": "05-rupa:vibhakti:sasthi",
-          "devanagari": "षष्ठी",
-          "iast": "ṣaṣṭhī",
-          "gloss": "genitive — of",
-          "note": "sambandha"
-        },
-        {
-          "id": "05-rupa:vibhakti:saptami",
-          "devanagari": "सप्तमी",
-          "iast": "saptamī",
-          "gloss": "locative — in, on",
-          "note": "adhikaraṇa"
-        },
-        {
-          "id": "05-rupa:vibhakti:sambodhanam",
-          "devanagari": "सम्बोधनम्",
-          "iast": "sambodhanam",
-          "gloss": "vocative — direct address",
-          "note": "O …!"
         }
       ]
     }

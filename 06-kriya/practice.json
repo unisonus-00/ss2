@@ -2,6 +2,132 @@
   "lesson": "06-kriya",
   "decks": [
     {
+      "name": "Puruṣa-pada — person and voice terms",
+      "pair": "term → definition",
+      "role": "terms",
+      "cards": [
+        {
+          "id": "06-kriya:saṃjñā:prathama-purusa",
+          "devanagari": "प्रथम पुरुषः",
+          "iast": "prathama puruṣaḥ",
+          "gloss": "3rd person",
+          "note": "laṭ parasmaipada -ti, -taḥ, -anti — “first” in the Sanskrit order, third in the English"
+        },
+        {
+          "id": "06-kriya:saṃjñā:madhyama-purusa",
+          "devanagari": "मध्यम पुरुषः",
+          "iast": "madhyama puruṣaḥ",
+          "gloss": "2nd person",
+          "note": "laṭ parasmaipada -si, -thaḥ, -tha"
+        },
+        {
+          "id": "06-kriya:saṃjñā:uttama-purusa",
+          "devanagari": "उत्तम पुरुषः",
+          "iast": "uttama puruṣaḥ",
+          "gloss": "1st person",
+          "note": "laṭ parasmaipada -mi, -vaḥ, -maḥ"
+        },
+        {
+          "id": "06-kriya:saṃjñā:parasmaipadam",
+          "devanagari": "परस्मैपदम्",
+          "iast": "parasmaipadam",
+          "gloss": "active endings",
+          "note": "laṭ -ti, -si, -mi"
+        },
+        {
+          "id": "06-kriya:saṃjñā:atmanepadam",
+          "devanagari": "आत्मनेपदम्",
+          "iast": "ātmanepadam",
+          "gloss": "middle-voice endings",
+          "note": "laṭ -te, -se, -e"
+        }
+      ]
+    },
+    {
+      "name": "34 · Lakāra — the ten tense-moods",
+      "pair": "term → definition",
+      "cards": [
+        {
+          "id": "06-kriya:lakara:lakarah",
+          "devanagari": "लकारः",
+          "iast": "lakāraḥ",
+          "gloss": "a tense-mood slot, replaced by personal endings",
+          "note": "lakāra · ten in all"
+        },
+        {
+          "id": "06-kriya:lakara:gacchati",
+          "devanagari": "गच्छति",
+          "iast": "gacchati",
+          "gloss": "laṭ · लट् — present",
+          "note": "lakāra · vartamāne laṭ, 3.2.123"
+        },
+        {
+          "id": "06-kriya:lakara:jagama",
+          "devanagari": "जगाम",
+          "iast": "jagāma",
+          "gloss": "liṭ · लिट् — remote past, unwitnessed",
+          "note": "lakāra · parokṣe liṭ, 3.2.115"
+        },
+        {
+          "id": "06-kriya:lakara:ganta",
+          "devanagari": "गन्ता",
+          "iast": "gantā",
+          "gloss": "luṭ · लुट् — future, not today",
+          "note": "lakāra · anadyatane luṭ, 3.3.15"
+        },
+        {
+          "id": "06-kriya:lakara:gamisyati",
+          "devanagari": "गमिष्यति",
+          "iast": "gamiṣyati",
+          "gloss": "lṛṭ · लृट् — general future",
+          "note": "lakāra · 3.3.13"
+        },
+        {
+          "id": "06-kriya:lakara:gacchatu",
+          "devanagari": "गच्छतु",
+          "iast": "gacchatu",
+          "gloss": "loṭ · लोट् — imperative",
+          "note": "lakāra · 3.3.162"
+        },
+        {
+          "id": "06-kriya:lakara:agacchat",
+          "devanagari": "अगच्छत्",
+          "iast": "agacchat",
+          "gloss": "laṅ · लङ् — past, before today",
+          "note": "lakāra · anadyatane laṅ, 3.2.111"
+        },
+        {
+          "id": "06-kriya:lakara:gacchet",
+          "devanagari": "गच्छेत्",
+          "iast": "gacchet",
+          "gloss": "liṅ · लिङ् — optative",
+          "note": "lakāra · 3.3.161"
+        },
+        {
+          "id": "06-kriya:lakara:agamat",
+          "devanagari": "अगमत्",
+          "iast": "agamat",
+          "gloss": "luṅ · लुङ् — aorist, general past",
+          "note": "lakāra · 3.2.110"
+        },
+        {
+          "id": "06-kriya:lakara:agamisyat",
+          "devanagari": "अगमिष्यत्",
+          "iast": "agamiṣyat",
+          "gloss": "lṛṅ · लृङ् — conditional",
+          "note": "lakāra · 3.3.139"
+        },
+        {
+          "id": "06-kriya:lakara:let",
+          "devanagari": "लेट्",
+          "iast": "leṭ",
+          "gloss": "the Vedic subjunctive",
+          "note": "lakāra · chandas only"
+        }
+      ],
+      "role": "terms"
+    },
+    {
       "name": "Puruṣa-lakāra — person, tense and mood · practice",
       "cards": [
         {
@@ -607,89 +733,6 @@
           "iast": "upaviśati",
           "gloss": "he/she sits down",
           "note": "3 sg. pres. · upa + √viś · parasmaipada"
-        }
-      ]
-    },
-    {
-      "name": "34 · Lakāra — the ten tense-moods",
-      "pair": "term → definition",
-      "cards": [
-        {
-          "id": "06-kriya:lakara:lakarah",
-          "devanagari": "लकारः",
-          "iast": "lakāraḥ",
-          "gloss": "a tense-mood slot, replaced by personal endings",
-          "note": "lakāra · ten in all"
-        },
-        {
-          "id": "06-kriya:lakara:gacchati",
-          "devanagari": "गच्छति",
-          "iast": "gacchati",
-          "gloss": "laṭ · लट् — present",
-          "note": "lakāra · vartamāne laṭ, 3.2.123"
-        },
-        {
-          "id": "06-kriya:lakara:jagama",
-          "devanagari": "जगाम",
-          "iast": "jagāma",
-          "gloss": "liṭ · लिट् — remote past, unwitnessed",
-          "note": "lakāra · parokṣe liṭ, 3.2.115"
-        },
-        {
-          "id": "06-kriya:lakara:ganta",
-          "devanagari": "गन्ता",
-          "iast": "gantā",
-          "gloss": "luṭ · लुट् — future, not today",
-          "note": "lakāra · anadyatane luṭ, 3.3.15"
-        },
-        {
-          "id": "06-kriya:lakara:gamisyati",
-          "devanagari": "गमिष्यति",
-          "iast": "gamiṣyati",
-          "gloss": "lṛṭ · लृट् — general future",
-          "note": "lakāra · 3.3.13"
-        },
-        {
-          "id": "06-kriya:lakara:gacchatu",
-          "devanagari": "गच्छतु",
-          "iast": "gacchatu",
-          "gloss": "loṭ · लोट् — imperative",
-          "note": "lakāra · 3.3.162"
-        },
-        {
-          "id": "06-kriya:lakara:agacchat",
-          "devanagari": "अगच्छत्",
-          "iast": "agacchat",
-          "gloss": "laṅ · लङ् — past, before today",
-          "note": "lakāra · anadyatane laṅ, 3.2.111"
-        },
-        {
-          "id": "06-kriya:lakara:gacchet",
-          "devanagari": "गच्छेत्",
-          "iast": "gacchet",
-          "gloss": "liṅ · लिङ् — optative",
-          "note": "lakāra · 3.3.161"
-        },
-        {
-          "id": "06-kriya:lakara:agamat",
-          "devanagari": "अगमत्",
-          "iast": "agamat",
-          "gloss": "luṅ · लुङ् — aorist, general past",
-          "note": "lakāra · 3.2.110"
-        },
-        {
-          "id": "06-kriya:lakara:agamisyat",
-          "devanagari": "अगमिष्यत्",
-          "iast": "agamiṣyat",
-          "gloss": "lṛṅ · लृङ् — conditional",
-          "note": "lakāra · 3.3.139"
-        },
-        {
-          "id": "06-kriya:lakara:let",
-          "devanagari": "लेट्",
-          "iast": "leṭ",
-          "gloss": "the Vedic subjunctive",
-          "note": "lakāra · chandas only"
         }
       ]
     },
