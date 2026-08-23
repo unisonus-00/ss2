@@ -99,6 +99,19 @@ pass" over.
 
 ### H1. The cold-recall rule is defeated at the round boundary
 
+> **Resolved.** `markWrong` now stamps the day a card was lost and `lostToday`
+> reads it back; a right answer on that day earns no tick, and the `second
+> look` badge says so. The day rather than the page-load `SESSION`, because a
+> tab left open for a week holds one session throughout — that would have
+> blocked a Monday card all week, a worse fault than the one being fixed —
+> while a reload would hand out a free pass. Two follow-ons: `urgencyOf` keeps
+> a card urgent until it is genuinely won back (a same-day relearn advances
+> the run of corrects without earning the tick, which alone would have dropped
+> it into the resting tier while still lost), and a card now leaves the missed
+> pile when it is **won** rather than merely met again, so a relearn cannot
+> strand it — not learned, and no longer pointed at. Nothing new is stored and
+> no migration is needed. Nine checks added; the suite is now 424.
+
 `knew()` refuses mastery on a within-round re-show (`:2359`,
 "relearning, not remembering"), but "Practise these again" (`:2964`) and the
 missed pile (`:3046`) start *new* rounds with fresh flags. Verified: a card
@@ -342,7 +355,7 @@ per-deck pairs and cues correct. Recurring smaller issues:
 | # | Finding | Priority | Effort | Area |
 |---|---------|----------|--------|------|
 | C1 | Review miss ejects card from review pool; promise inverted | ~~Critical~~ **fixed** | small | pedagogy/engineering |
-| H1 | Replay rounds grant mastery moments after answer shown | High | small | pedagogy/engineering |
+| H1 | Replay rounds grant mastery moments after answer shown | ~~High~~ **fixed** | small | pedagogy/engineering |
 | H2 | Session-counted spacing; "retained" attainable in one sitting | High | small | pedagogy |
 | H3 | Choice-card guessing counts as cold recall | High | medium | pedagogy |
 | H4 | Production direction never scheduled; mastery direction-blind | High | medium | pedagogy |

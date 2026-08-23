@@ -961,7 +961,7 @@ was feeding nothing but the rest interval.
 
 | | |
 |:--|:--|
-| **learned** | right on a first showing at least once — `SAVED.mastered` |
+| **learned** | right on a first showing at least once, on a day it was not lost — `SAVED.mastered` |
 | **retained** | and right first try in **two** separate review sessions since, days apart, drawn out of its list |
 
 Neither stores anything new. A third tier was considered and cut: two states
@@ -1090,7 +1090,7 @@ only ever rise would leave a lesson ticked long after it had gone. Every kind
 of round feeds this, review draws and trouble drills included: whether a card
 came back cold is a fact about the card, not about the round it turned up in.
 
-Two rules keep the figure honest:
+Three rules keep the figure honest:
 
 - **Counted from cards the whole way up.** A track's figure is the union of its
   lessons' cards, never the average of their percentages — that would give a
@@ -1098,6 +1098,37 @@ Two rules keep the figure honest:
 - **A tick means all of it.** 100% is `done === total`, not a rounded 99.6;
   `progressOf` holds a not-quite-finished list at 99% and a barely-started one
   at 1% rather than letting either round away.
+- **A right answer has to be cold, and the unit is the day.** `knew()` already
+  refused a card missed earlier in the same round. But a round is not what
+  makes a recall cold: *Practise these again* and the missed pile both start a
+  **fresh** round with fresh per-round flags, so the same card answered right
+  seconds after being told counted as a cold recall, and the app's central
+  signal was one button-press deep.
+
+`markWrong` stamps the day a card was lost and `lostToday` reads it back; a
+right answer on that day earns no tick. This is the project's own rule applied
+where it was missing — the trouble list already refuses three right answers in
+one sitting, because *three right answers in one sitting is recognition, not
+memory*.
+
+**The day, not the page-load id `SESSION`.** A page load is not a unit of time
+at all: a phone tab left open for a week holds one session for as long as it
+lives, so a card lost on Monday could never be counted again all week — a
+worse fault than the one being fixed — while a reload would hand out a free
+pass. The day rolls over on its own and cannot be minted. Nothing new is
+stored: the stamp goes on the trouble record `markWrong` already creates, and
+a missing stamp reads as "not lost today", so no store needs migrating.
+
+Two things follow, and both are the point rather than side effects:
+
+| | |
+|:--|:--|
+| **the card says so** | the `second look` badge is shown for a card lost earlier *today* as well as earlier in the round — the only warning that a right answer here is relearning. The round tally still counts it; it is mastery that waits |
+| **the pile holds it** | a card leaves the missed pile when it is **won**, not when it is merely met again. Clearing it on a relearn would leave it in limbo — not learned, and no longer pointed at by the one control that exists to point at it |
+
+So a first pass that misses three of eight ends the day at 63% however many
+times those three are replayed, and the pile still names them; run the pile
+the next day and the list completes. A round with no misses is untouched.
 
 Every card the app carries counts towards the denominator. What is here is
 curated practice plus the paradigm tables the badges ask for whole — reference

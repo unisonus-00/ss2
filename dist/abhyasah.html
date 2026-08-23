@@ -999,7 +999,7 @@
     <div id="b-list"></div>
     <!-- Which build this is.  A bug report that cannot name the build it came
          from cannot be acted on, and several are in the wild at once. -->
-    <div class="b-build">build 9099e9d</div>
+    <div class="b-build">build 1232135</div>
   </div>
 </div>
 
@@ -1570,8 +1570,36 @@ function markWrong(card) {
   const rec = SAVED.trouble[k] = SAVED.trouble[k] || { w: 0, r: 0, s: "" };
   rec.w++;
   rec.r = 0; rec.s = "";               // the run of clean recalls starts again
+  rec.m = today();                     // the day it was last lost — see lostToday
   save();
 }
+
+/* ── a right answer has to be cold ─────────────────────────
+   `knew()` already refused to count a card that had been missed earlier in
+   the SAME round: being told the answer and handing it back four cards later
+   is relearning, not remembering.  But a round is not the unit that makes a
+   recall cold.  "Practise these again" and the missed pile both start a
+   FRESH round, with fresh per-round flags, so the same card answered right
+   moments after its answer had been shown counted as a cold recall — and
+   mastery feeds coverage, list completion, the awards and the review pool.
+   The app's central signal was one button-press deep.
+
+   The unit is the day the card was lost.  That is the project's own rule
+   applied where it was missing: the trouble list already refuses three right
+   answers in one sitting, because "three right answers in one sitting is
+   recognition, not memory".
+
+   The day rather than the page-load id `SESSION`, for two reasons.  A page
+   load is not a unit of time at all: a phone tab left open for a week would
+   hold one session the whole time, so a card lost on Monday could never be
+   counted again all week — a worse fault than the one being fixed.  And a
+   reload would otherwise hand out a free pass.  The day rolls over on its
+   own and cannot be minted.
+
+   Nothing new is stored: the stamp goes on the trouble record, which
+   `markWrong` already creates on the first wrong answer.  A missing stamp
+   reads as "not lost today", so an older store needs no migration. */
+const lostToday = card => (SAVED.trouble[cardKey(card)] || {}).m === today();
 
 function markRight(card) {
   const k = cardKey(card), rec = SAVED.trouble[k];
@@ -2811,9 +2839,16 @@ function overdueBy(card) {
    New material still leads the rest of the draw: the lapsed tier is bounded
    by what a session can show, so it can never be more than a session deep. */
 function urgencyOf(card) {
-  const rec = reviewCards()[cardKey(card)];
-  if (!rec) return 1;
-  return rec[1] === 0 ? 2 : 0;
+  const k = cardKey(card);
+  const rec = reviewCards()[k];
+  if (!rec) return 1;                                  // never checked
+  /* Urgent until it has been WON BACK, which is both halves: the last review
+     went right, and the card is holding its tick.  Either one alone leaves a
+     card the review should still be chasing.  A same-day relearn advances the
+     run of corrects without earning the tick back (see `lostToday`), and on
+     the run alone that was enough to drop the card into the resting tier
+     while it was still lost. */
+  return (rec[1] === 0 || !SAVED.mastered[k]) ? 2 : 0;
 }
 
 function mixCards() {
@@ -3560,7 +3595,11 @@ function next() {
   seqOrder = null;
   if (!queue.length) { current = null; finish(); return; }
   current = queue.shift();
-  $('relearn').hidden = !current.missedThisRound;
+  /* The card says so when it is not going to count: "second look" is as
+     true of a card lost earlier today as of one lost earlier in the round,
+     and it is the only warning the learner gets that a right answer here is
+     relearning rather than recall. */
+  $('relearn').hidden = !current.missedThisRound && !lostToday(current.card);
   paint();
   updateTally();
 }
@@ -3580,7 +3619,11 @@ function knew() {
   if (!current) return;
   /* only a cold recall counts towards clearing: getting it right on the
      re-show, moments after being told, is relearning, not remembering */
-  if (!current.missedThisRound) { markRight(current.card); markMastered(current.card); }
+  /* Both guards earn their place: the round-local one still catches a card
+     re-shown across midnight, when the day stamp has already rolled over. */
+  if (!current.missedThisRound && !lostToday(current.card)) {
+    markRight(current.card); markMastered(current.card);
+  }
   learned++;
   next();
 }
@@ -3737,8 +3780,14 @@ function finish() {
       ds.last = [firstPass, total];
       if (!ds.best || firstPass / total > ds.best[0] / ds.best[1]) ds.best = [firstPass, total];
     }
+    /* A card leaves the pile when it has actually been WON, not merely met
+       again.  A card relearned the same day it was lost earns no tick (see
+       `lostToday`), and clearing it out of the pile on the strength of that
+       would leave it in limbo: not learned, and no longer pointed at by the
+       one control that exists to point at it.  The pile is "not won back
+       yet", so it holds until the tick does. */
     const practised = new Set(roundSource.map(cardKey));
-    ds.pile = (ds.pile || []).filter(k => !practised.has(k));
+    ds.pile = (ds.pile || []).filter(k => !practised.has(k) || !SAVED.mastered[k]);
     missed.forEach(c => { const k = cardKey(c); if (!ds.pile.includes(k)) ds.pile.push(k); });
     save();
   }

@@ -2819,14 +2819,23 @@ const open = async (browser, opts = {}) => {
          review is chasing, not material already covered */
       out.covRose = coverageOf().done > covBefore;
 
-      /* answered right in that next session, it is learned again and rests */
+      /* Shown again in that next session — but answered right on the same day
+         it was lost, it is relearning, so the tick is not handed back and the
+         card stays urgent until it is won back on a later day. */
       startMixedReview();
       let g2 = 0, shown = false;
       while (current && g2++ < 100) { if (current.card.id === victim.id) shown = true; knew(); }
       out.shownAgain = shown;
-      out.reMastered = !!SAVED.mastered[victim.id];
+      out.masteredSameDay = !!SAVED.mastered[victim.id];
+      out.stillUrgent = urgencyOf(victim);
+      out.stillInPool = reviewPool().some(c => c.id === victim.id);
       out.restsAfter = restFor((SAVED.review.cards[victim.id] || [0, 0])[1]);
-      out.dueAfter = overdueBy(victim) >= 0;
+
+      /* with the loss a day old, the same answer counts */
+      SAVED.trouble[victim.id].m = new Date(Date.now() - 864e5).toISOString().slice(0, 10);
+      startRound([DECKS[DECK_OF.get(victim)].find(c => c.id === victim.id)], {});
+      reveal(); knew();
+      out.masteredNextDay = !!SAVED.mastered[victim.id];
 
       return out;
     });
@@ -2835,13 +2844,86 @@ const open = async (browser, opts = {}) => {
     ok('it returns in the very next session, mid-course pool and all',
       r.inNextDraw && r.leadsDraw, JSON.stringify({ inDraw: r.inNextDraw, leads: r.leadsDraw }));
     ok('and coverage does not rise on a miss', !r.covRose);
-    ok('answered right there, it counts as learned again', r.shownAgain && r.reMastered,
-      JSON.stringify({ shown: r.shownAgain, mastered: r.reMastered }));
-    ok('and rests again rather than repeating', r.restsAfter === 1 && !r.dueAfter,
-      'rest ' + r.restsAfter);
+    ok('it is shown again there, but the same day earns no tick back',
+      r.shownAgain && !r.masteredSameDay,
+      JSON.stringify({ shown: r.shownAgain, mastered: r.masteredSameDay }));
+    ok('so it stays urgent, and in the pool, until it is won back',
+      r.stillUrgent === 2 && r.stillInPool, 'tier ' + r.stillUrgent);
+    ok('it yields for a session rather than looping within the day',
+      r.restsAfter === 1, 'rest ' + r.restsAfter);
+    ok('and a day later the same answer counts as learned again',
+      r.masteredNextDay);
     ok('proven weak leads unmeasured, and both lead proven strong',
       r.tiers.lapsed === 2 && r.tiers.unseen === 1 && r.tiers.holding === 0,
       JSON.stringify(r.tiers));
+    await p.close();
+  }
+
+  // ── a right answer moments after the answer was shown is not cold ──
+  // knew() already refused a card missed earlier in the SAME round.  But
+  // "Practise these again" and the missed pile start a FRESH round with
+  // fresh per-round flags, so the identical card, answered right seconds
+  // after being told, used to count as a cold recall — and mastery feeds
+  // coverage, list completion, the awards and the review pool.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const out = {};
+      const name = Object.keys(DECKS).find(n => DECKS[n].length <= 10
+        && DECKS[n].every(c => (c.type || 'reveal') === 'reveal'));
+      SAVED.mastered = {}; SAVED.trouble = {}; SAVED.decks = {};
+      loadDeck(name);
+
+      /* miss one card the way a learner does, know the rest */
+      const victim = current.card;
+      out.victim = victim.id;
+      didntKnow();
+      let g = 0;
+      while (current && g++ < 40) { reveal(); knew(); }
+      out.afterMiss = !!SAVED.mastered[victim.id];
+
+      /* the loophole: replay the misses at once and answer right */
+      document.getElementById('again-missed').click();
+      out.replayIsVictim = current.card.id === victim.id;
+      out.badgeShown = !document.getElementById('relearn').hidden;
+      reveal(); knew();
+      out.afterReplay = !!SAVED.mastered[victim.id];
+      out.roundStillCounted = learned > 0;   // the round tally is unaffected
+      /* and the one control that points at it still does: a card met again
+         but not won is exactly what the missed pile is for */
+      out.pileAfterReplay = (SAVED.decks[name].pile || []).indexOf(victim.id) >= 0;
+
+      /* a card never missed is untouched by any of this */
+      const clean = DECKS[name].find(c => c.id !== victim.id);
+      out.cleanMastered = !!SAVED.mastered[clean.id];
+
+      /* the day rolls over: the same answer is now a real recall */
+      SAVED.trouble[victim.id].m = new Date(Date.now() - 864e5).toISOString().slice(0, 10);
+      startRound([DECKS[name].find(c => c.id === victim.id)], {});
+      out.badgeNextDay = !document.getElementById('relearn').hidden;
+      reveal(); knew();
+      out.afterNextDay = !!SAVED.mastered[victim.id];
+      out.pileAfterWin = (SAVED.decks[name].pile || []).indexOf(victim.id) >= 0;
+
+      /* and a page-load id would not have done: a tab left open holds one
+         SESSION for as long as it lives, so the stamp has to be the day */
+      out.stampIsADay = /^\d{4}-\d\d-\d\d$/.test(SAVED.trouble[victim.id].m);
+      return out;
+    });
+    ok('a missed card is not mastered by the round that missed it', !r.afterMiss);
+    ok('nor by replaying the misses seconds later',
+      r.replayIsVictim && !r.afterReplay,
+      JSON.stringify({ replayed: r.replayIsVictim, mastered: r.afterReplay }));
+    ok('the card says why — it is marked a second look', r.badgeShown);
+    ok('though the round still counts it as answered', r.roundStillCounted);
+    ok('and it stays in the missed pile, which is the way back',
+      r.pileAfterReplay);
+    ok('a card that was never missed is unaffected', r.cleanMastered);
+    ok('a day later the same answer is a real recall',
+      r.afterNextDay && !r.badgeNextDay,
+      JSON.stringify({ mastered: r.afterNextDay, badge: r.badgeNextDay }));
+    ok('which finally clears it out of the missed pile', !r.pileAfterWin);
+    ok('and the stamp is a day, not a page load', r.stampIsADay);
     await p.close();
   }
 
