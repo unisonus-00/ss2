@@ -202,6 +202,4396 @@
       ]
     },
     {
+      "name": "Form mastery · Śiva — all 24 cells",
+      "cards": [
+        {
+          "id": "05-rupa:class:siva",
+          "type": "choice",
+          "front": "Which class does śiva- belong to?",
+          "stemClass": "masculine · a-stem",
+          "options": [
+            "masculine · a-stem",
+            "neuter · a-stem",
+            "masculine · i-stem"
+          ],
+          "answer": "masculine · a-stem",
+          "note": "the class decides the endings — establish it before declining",
+          "source": "reference · Masculine -a"
+        },
+        {
+          "id": "05-rupa:form:siva-1-eka",
+          "type": "choice",
+          "front": "Form the prathamā singular of:\nśiva-",
+          "stemClass": "masculine · a-stem",
+          "options": [
+            "śivaḥ",
+            "śivam",
+            "śivena",
+            "śivāya"
+          ],
+          "answer": "śivaḥ",
+          "note": "prathamā ekavacana · subject · -aḥ",
+          "source": "reference · Masculine -a"
+        },
+        {
+          "id": "05-rupa:form:siva-1-dvi",
+          "type": "choice",
+          "front": "Form the prathamā dual of:\nśiva-",
+          "stemClass": "masculine · a-stem",
+          "options": [
+            "śivau",
+            "śivābhyām",
+            "śivayoḥ",
+            "śivaḥ"
+          ],
+          "answer": "śivau",
+          "note": "prathamā dvivacana · subject · -au · also dvitīyā dvivacana, sambodhana dvivacana",
+          "source": "reference · Masculine -a"
+        },
+        {
+          "id": "05-rupa:form:siva-1-bah",
+          "type": "choice",
+          "front": "Form the prathamā plural of:\nśiva-",
+          "stemClass": "masculine · a-stem",
+          "options": [
+            "śivāḥ",
+            "śivān",
+            "śivaiḥ",
+            "śivebhyaḥ"
+          ],
+          "answer": "śivāḥ",
+          "note": "prathamā bahuvacana · subject · -āḥ · also sambodhana bahuvacana",
+          "source": "reference · Masculine -a"
+        },
+        {
+          "id": "05-rupa:form:siva-2-eka",
+          "type": "choice",
+          "front": "Form the dvitīyā singular of:\nśiva-",
+          "stemClass": "masculine · a-stem",
+          "options": [
+            "śivam",
+            "śivaḥ",
+            "śivena",
+            "śivāya"
+          ],
+          "answer": "śivam",
+          "note": "dvitīyā ekavacana · object · -am",
+          "source": "reference · Masculine -a"
+        },
+        {
+          "id": "05-rupa:form:siva-2-dvi",
+          "type": "choice",
+          "front": "Form the dvitīyā dual of:\nśiva-",
+          "stemClass": "masculine · a-stem",
+          "options": [
+            "śivau",
+            "śivābhyām",
+            "śivayoḥ",
+            "śivam"
+          ],
+          "answer": "śivau",
+          "note": "dvitīyā dvivacana · object · -au · also prathamā dvivacana, sambodhana dvivacana",
+          "source": "reference · Masculine -a"
+        },
+        {
+          "id": "05-rupa:form:siva-2-bah",
+          "type": "choice",
+          "front": "Form the dvitīyā plural of:\nśiva-",
+          "stemClass": "masculine · a-stem",
+          "options": [
+            "śivān",
+            "śivāḥ",
+            "śivaiḥ",
+            "śivebhyaḥ"
+          ],
+          "answer": "śivān",
+          "note": "dvitīyā bahuvacana · object · -ān",
+          "source": "reference · Masculine -a"
+        },
+        {
+          "id": "05-rupa:form:siva-3-eka",
+          "type": "choice",
+          "front": "Form the tṛtīyā singular of:\nśiva-",
+          "stemClass": "masculine · a-stem",
+          "options": [
+            "śivena",
+            "śivam",
+            "śivāya",
+            "śivaḥ"
+          ],
+          "answer": "śivena",
+          "note": "tṛtīyā ekavacana · by/with · -ena",
+          "source": "reference · Masculine -a"
+        },
+        {
+          "id": "05-rupa:form:siva-3-dvi",
+          "type": "choice",
+          "front": "Form the tṛtīyā dual of:\nśiva-",
+          "stemClass": "masculine · a-stem",
+          "options": [
+            "śivābhyām",
+            "śivau",
+            "śivayoḥ",
+            "śivena"
+          ],
+          "answer": "śivābhyām",
+          "note": "tṛtīyā dvivacana · by/with · -ābhyām · also caturthī dvivacana, pañcamī dvivacana",
+          "source": "reference · Masculine -a"
+        },
+        {
+          "id": "05-rupa:form:siva-3-bah",
+          "type": "choice",
+          "front": "Form the tṛtīyā plural of:\nśiva-",
+          "stemClass": "masculine · a-stem",
+          "options": [
+            "śivaiḥ",
+            "śivān",
+            "śivebhyaḥ",
+            "śivāḥ"
+          ],
+          "answer": "śivaiḥ",
+          "note": "tṛtīyā bahuvacana · by/with · -aiḥ",
+          "source": "reference · Masculine -a"
+        },
+        {
+          "id": "05-rupa:form:siva-4-eka",
+          "type": "choice",
+          "front": "Form the caturthī singular of:\nśiva-",
+          "stemClass": "masculine · a-stem",
+          "options": [
+            "śivāya",
+            "śivena",
+            "śivāt",
+            "śivam"
+          ],
+          "answer": "śivāya",
+          "note": "caturthī ekavacana · for/to · -āya",
+          "source": "reference · Masculine -a"
+        },
+        {
+          "id": "05-rupa:form:siva-4-dvi",
+          "type": "choice",
+          "front": "Form the caturthī dual of:\nśiva-",
+          "stemClass": "masculine · a-stem",
+          "options": [
+            "śivābhyām",
+            "śivau",
+            "śivayoḥ",
+            "śivāya"
+          ],
+          "answer": "śivābhyām",
+          "note": "caturthī dvivacana · for/to · -ābhyām · also tṛtīyā dvivacana, pañcamī dvivacana",
+          "source": "reference · Masculine -a"
+        },
+        {
+          "id": "05-rupa:form:siva-4-bah",
+          "type": "choice",
+          "front": "Form the caturthī plural of:\nśiva-",
+          "stemClass": "masculine · a-stem",
+          "options": [
+            "śivebhyaḥ",
+            "śivaiḥ",
+            "śivān",
+            "śivānām"
+          ],
+          "answer": "śivebhyaḥ",
+          "note": "caturthī bahuvacana · for/to · -ebhyaḥ · also pañcamī bahuvacana",
+          "source": "reference · Masculine -a"
+        },
+        {
+          "id": "05-rupa:form:siva-5-eka",
+          "type": "choice",
+          "front": "Form the pañcamī singular of:\nśiva-",
+          "stemClass": "masculine · a-stem",
+          "options": [
+            "śivāt",
+            "śivāya",
+            "śivasya",
+            "śivena"
+          ],
+          "answer": "śivāt",
+          "note": "pañcamī ekavacana · from · -āt",
+          "source": "reference · Masculine -a"
+        },
+        {
+          "id": "05-rupa:form:siva-5-dvi",
+          "type": "choice",
+          "front": "Form the pañcamī dual of:\nśiva-",
+          "stemClass": "masculine · a-stem",
+          "options": [
+            "śivābhyām",
+            "śivayoḥ",
+            "śivau",
+            "śivāt"
+          ],
+          "answer": "śivābhyām",
+          "note": "pañcamī dvivacana · from · -ābhyām · also tṛtīyā dvivacana, caturthī dvivacana",
+          "source": "reference · Masculine -a"
+        },
+        {
+          "id": "05-rupa:form:siva-5-bah",
+          "type": "choice",
+          "front": "Form the pañcamī plural of:\nśiva-",
+          "stemClass": "masculine · a-stem",
+          "options": [
+            "śivebhyaḥ",
+            "śivānām",
+            "śivaiḥ",
+            "śiveṣu"
+          ],
+          "answer": "śivebhyaḥ",
+          "note": "pañcamī bahuvacana · from · -ebhyaḥ · also caturthī bahuvacana",
+          "source": "reference · Masculine -a"
+        },
+        {
+          "id": "05-rupa:form:siva-6-eka",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī singular of:\nśiva-",
+          "stemClass": "masculine · a-stem",
+          "options": [
+            "śivasya",
+            "śivāt",
+            "śive",
+            "śivāya"
+          ],
+          "answer": "śivasya",
+          "note": "ṣaṣṭhī ekavacana · of · -asya",
+          "source": "reference · Masculine -a"
+        },
+        {
+          "id": "05-rupa:form:siva-6-dvi",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī dual of:\nśiva-",
+          "stemClass": "masculine · a-stem",
+          "options": [
+            "śivayoḥ",
+            "śivābhyām",
+            "śivau",
+            "śivasya"
+          ],
+          "answer": "śivayoḥ",
+          "note": "ṣaṣṭhī dvivacana · of · -ayoḥ · also saptamī dvivacana",
+          "source": "reference · Masculine -a"
+        },
+        {
+          "id": "05-rupa:form:siva-6-bah",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī plural of:\nśiva-",
+          "stemClass": "masculine · a-stem",
+          "options": [
+            "śivānām",
+            "śivebhyaḥ",
+            "śiveṣu",
+            "śivāḥ"
+          ],
+          "answer": "śivānām",
+          "note": "ṣaṣṭhī bahuvacana · of · -ānām",
+          "source": "reference · Masculine -a"
+        },
+        {
+          "id": "05-rupa:form:siva-7-eka",
+          "type": "choice",
+          "front": "Form the saptamī singular of:\nśiva-",
+          "stemClass": "masculine · a-stem",
+          "options": [
+            "śive",
+            "śivasya",
+            "śiva",
+            "śivāt"
+          ],
+          "answer": "śive",
+          "note": "saptamī ekavacana · in/on · -e",
+          "source": "reference · Masculine -a"
+        },
+        {
+          "id": "05-rupa:form:siva-7-dvi",
+          "type": "choice",
+          "front": "Form the saptamī dual of:\nśiva-",
+          "stemClass": "masculine · a-stem",
+          "options": [
+            "śivayoḥ",
+            "śivau",
+            "śivābhyām",
+            "śive"
+          ],
+          "answer": "śivayoḥ",
+          "note": "saptamī dvivacana · in/on · -ayoḥ · also ṣaṣṭhī dvivacana",
+          "source": "reference · Masculine -a"
+        },
+        {
+          "id": "05-rupa:form:siva-7-bah",
+          "type": "choice",
+          "front": "Form the saptamī plural of:\nśiva-",
+          "stemClass": "masculine · a-stem",
+          "options": [
+            "śiveṣu",
+            "śivānām",
+            "śivāḥ",
+            "śivebhyaḥ"
+          ],
+          "answer": "śiveṣu",
+          "note": "saptamī bahuvacana · in/on · -eṣu",
+          "source": "reference · Masculine -a"
+        },
+        {
+          "id": "05-rupa:form:siva-8-eka",
+          "type": "choice",
+          "front": "Form the sambodhana singular of:\nśiva-",
+          "stemClass": "masculine · a-stem",
+          "options": [
+            "śiva",
+            "śive",
+            "śivasya",
+            "śivāt"
+          ],
+          "answer": "śiva",
+          "note": "sambodhana ekavacana · O…! · -a",
+          "source": "reference · Masculine -a"
+        },
+        {
+          "id": "05-rupa:form:siva-8-dvi",
+          "type": "choice",
+          "front": "Form the sambodhana dual of:\nśiva-",
+          "stemClass": "masculine · a-stem",
+          "options": [
+            "śivau",
+            "śivayoḥ",
+            "śivābhyām",
+            "śiva"
+          ],
+          "answer": "śivau",
+          "note": "sambodhana dvivacana · O…! · -au · also prathamā dvivacana, dvitīyā dvivacana",
+          "source": "reference · Masculine -a"
+        },
+        {
+          "id": "05-rupa:form:siva-8-bah",
+          "type": "choice",
+          "front": "Form the sambodhana plural of:\nśiva-",
+          "stemClass": "masculine · a-stem",
+          "options": [
+            "śivāḥ",
+            "śiveṣu",
+            "śivānām",
+            "śivebhyaḥ"
+          ],
+          "answer": "śivāḥ",
+          "note": "sambodhana bahuvacana · O…! · -āḥ · also prathamā bahuvacana",
+          "source": "reference · Masculine -a"
+        }
+      ]
+    },
+    {
+      "name": "Form mastery · Phala — all 24 cells",
+      "cards": [
+        {
+          "id": "05-rupa:class:phala",
+          "type": "choice",
+          "front": "Which class does phala- belong to?",
+          "stemClass": "neuter · a-stem",
+          "options": [
+            "neuter · a-stem",
+            "masculine · a-stem",
+            "feminine · ā-stem"
+          ],
+          "answer": "neuter · a-stem",
+          "note": "the class decides the endings — establish it before declining",
+          "source": "reference · Neuter -a"
+        },
+        {
+          "id": "05-rupa:form:phala-1-eka",
+          "type": "choice",
+          "front": "Form the prathamā singular of:\nphala-",
+          "stemClass": "neuter · a-stem",
+          "options": [
+            "phalam",
+            "phalena",
+            "phalāya",
+            "phalāt"
+          ],
+          "answer": "phalam",
+          "note": "prathamā ekavacana · subject · -am · also dvitīyā ekavacana",
+          "source": "reference · Neuter -a"
+        },
+        {
+          "id": "05-rupa:form:phala-1-dvi",
+          "type": "choice",
+          "front": "Form the prathamā dual of:\nphala-",
+          "stemClass": "neuter · a-stem",
+          "options": [
+            "phale",
+            "phalābhyām",
+            "phalayoḥ",
+            "phalam"
+          ],
+          "answer": "phale",
+          "note": "prathamā dvivacana · subject · -e · also dvitīyā dvivacana, saptamī ekavacana, sambodhana dvivacana",
+          "source": "reference · Neuter -a"
+        },
+        {
+          "id": "05-rupa:form:phala-1-bah",
+          "type": "choice",
+          "front": "Form the prathamā plural of:\nphala-",
+          "stemClass": "neuter · a-stem",
+          "options": [
+            "phalāni",
+            "phalaiḥ",
+            "phalebhyaḥ",
+            "phalānām"
+          ],
+          "answer": "phalāni",
+          "note": "prathamā bahuvacana · subject · -āni · also dvitīyā bahuvacana, sambodhana bahuvacana",
+          "source": "reference · Neuter -a"
+        },
+        {
+          "id": "05-rupa:form:phala-2-eka",
+          "type": "choice",
+          "front": "Form the dvitīyā singular of:\nphala-",
+          "stemClass": "neuter · a-stem",
+          "options": [
+            "phalam",
+            "phalena",
+            "phalāya",
+            "phalāt"
+          ],
+          "answer": "phalam",
+          "note": "dvitīyā ekavacana · object · -am · also prathamā ekavacana",
+          "source": "reference · Neuter -a"
+        },
+        {
+          "id": "05-rupa:form:phala-2-dvi",
+          "type": "choice",
+          "front": "Form the dvitīyā dual of:\nphala-",
+          "stemClass": "neuter · a-stem",
+          "options": [
+            "phale",
+            "phalābhyām",
+            "phalayoḥ",
+            "phalam"
+          ],
+          "answer": "phale",
+          "note": "dvitīyā dvivacana · object · -e · also prathamā dvivacana, saptamī ekavacana, sambodhana dvivacana",
+          "source": "reference · Neuter -a"
+        },
+        {
+          "id": "05-rupa:form:phala-2-bah",
+          "type": "choice",
+          "front": "Form the dvitīyā plural of:\nphala-",
+          "stemClass": "neuter · a-stem",
+          "options": [
+            "phalāni",
+            "phalaiḥ",
+            "phalebhyaḥ",
+            "phalānām"
+          ],
+          "answer": "phalāni",
+          "note": "dvitīyā bahuvacana · object · -āni · also prathamā bahuvacana, sambodhana bahuvacana",
+          "source": "reference · Neuter -a"
+        },
+        {
+          "id": "05-rupa:form:phala-3-eka",
+          "type": "choice",
+          "front": "Form the tṛtīyā singular of:\nphala-",
+          "stemClass": "neuter · a-stem",
+          "options": [
+            "phalena",
+            "phalam",
+            "phalāya",
+            "phalāt"
+          ],
+          "answer": "phalena",
+          "note": "tṛtīyā ekavacana · by/with · -ena",
+          "source": "reference · Neuter -a"
+        },
+        {
+          "id": "05-rupa:form:phala-3-dvi",
+          "type": "choice",
+          "front": "Form the tṛtīyā dual of:\nphala-",
+          "stemClass": "neuter · a-stem",
+          "options": [
+            "phalābhyām",
+            "phale",
+            "phalayoḥ",
+            "phalena"
+          ],
+          "answer": "phalābhyām",
+          "note": "tṛtīyā dvivacana · by/with · -ābhyām · also caturthī dvivacana, pañcamī dvivacana",
+          "source": "reference · Neuter -a"
+        },
+        {
+          "id": "05-rupa:form:phala-3-bah",
+          "type": "choice",
+          "front": "Form the tṛtīyā plural of:\nphala-",
+          "stemClass": "neuter · a-stem",
+          "options": [
+            "phalaiḥ",
+            "phalāni",
+            "phalebhyaḥ",
+            "phalānām"
+          ],
+          "answer": "phalaiḥ",
+          "note": "tṛtīyā bahuvacana · by/with · -aiḥ",
+          "source": "reference · Neuter -a"
+        },
+        {
+          "id": "05-rupa:form:phala-4-eka",
+          "type": "choice",
+          "front": "Form the caturthī singular of:\nphala-",
+          "stemClass": "neuter · a-stem",
+          "options": [
+            "phalāya",
+            "phalena",
+            "phalāt",
+            "phalam"
+          ],
+          "answer": "phalāya",
+          "note": "caturthī ekavacana · for/to · -āya",
+          "source": "reference · Neuter -a"
+        },
+        {
+          "id": "05-rupa:form:phala-4-dvi",
+          "type": "choice",
+          "front": "Form the caturthī dual of:\nphala-",
+          "stemClass": "neuter · a-stem",
+          "options": [
+            "phalābhyām",
+            "phale",
+            "phalayoḥ",
+            "phalāya"
+          ],
+          "answer": "phalābhyām",
+          "note": "caturthī dvivacana · for/to · -ābhyām · also tṛtīyā dvivacana, pañcamī dvivacana",
+          "source": "reference · Neuter -a"
+        },
+        {
+          "id": "05-rupa:form:phala-4-bah",
+          "type": "choice",
+          "front": "Form the caturthī plural of:\nphala-",
+          "stemClass": "neuter · a-stem",
+          "options": [
+            "phalebhyaḥ",
+            "phalaiḥ",
+            "phalāni",
+            "phalānām"
+          ],
+          "answer": "phalebhyaḥ",
+          "note": "caturthī bahuvacana · for/to · -ebhyaḥ · also pañcamī bahuvacana",
+          "source": "reference · Neuter -a"
+        },
+        {
+          "id": "05-rupa:form:phala-5-eka",
+          "type": "choice",
+          "front": "Form the pañcamī singular of:\nphala-",
+          "stemClass": "neuter · a-stem",
+          "options": [
+            "phalāt",
+            "phalāya",
+            "phalasya",
+            "phalena"
+          ],
+          "answer": "phalāt",
+          "note": "pañcamī ekavacana · from · -āt",
+          "source": "reference · Neuter -a"
+        },
+        {
+          "id": "05-rupa:form:phala-5-dvi",
+          "type": "choice",
+          "front": "Form the pañcamī dual of:\nphala-",
+          "stemClass": "neuter · a-stem",
+          "options": [
+            "phalābhyām",
+            "phalayoḥ",
+            "phale",
+            "phalāt"
+          ],
+          "answer": "phalābhyām",
+          "note": "pañcamī dvivacana · from · -ābhyām · also tṛtīyā dvivacana, caturthī dvivacana",
+          "source": "reference · Neuter -a"
+        },
+        {
+          "id": "05-rupa:form:phala-5-bah",
+          "type": "choice",
+          "front": "Form the pañcamī plural of:\nphala-",
+          "stemClass": "neuter · a-stem",
+          "options": [
+            "phalebhyaḥ",
+            "phalānām",
+            "phalaiḥ",
+            "phaleṣu"
+          ],
+          "answer": "phalebhyaḥ",
+          "note": "pañcamī bahuvacana · from · -ebhyaḥ · also caturthī bahuvacana",
+          "source": "reference · Neuter -a"
+        },
+        {
+          "id": "05-rupa:form:phala-6-eka",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī singular of:\nphala-",
+          "stemClass": "neuter · a-stem",
+          "options": [
+            "phalasya",
+            "phalāt",
+            "phale",
+            "phalāya"
+          ],
+          "answer": "phalasya",
+          "note": "ṣaṣṭhī ekavacana · of · -asya",
+          "source": "reference · Neuter -a"
+        },
+        {
+          "id": "05-rupa:form:phala-6-dvi",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī dual of:\nphala-",
+          "stemClass": "neuter · a-stem",
+          "options": [
+            "phalayoḥ",
+            "phalābhyām",
+            "phale",
+            "phalasya"
+          ],
+          "answer": "phalayoḥ",
+          "note": "ṣaṣṭhī dvivacana · of · -ayoḥ · also saptamī dvivacana",
+          "source": "reference · Neuter -a"
+        },
+        {
+          "id": "05-rupa:form:phala-6-bah",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī plural of:\nphala-",
+          "stemClass": "neuter · a-stem",
+          "options": [
+            "phalānām",
+            "phalebhyaḥ",
+            "phaleṣu",
+            "phalāni"
+          ],
+          "answer": "phalānām",
+          "note": "ṣaṣṭhī bahuvacana · of · -ānām",
+          "source": "reference · Neuter -a"
+        },
+        {
+          "id": "05-rupa:form:phala-7-eka",
+          "type": "choice",
+          "front": "Form the saptamī singular of:\nphala-",
+          "stemClass": "neuter · a-stem",
+          "options": [
+            "phale",
+            "phalasya",
+            "phala",
+            "phalāt"
+          ],
+          "answer": "phale",
+          "note": "saptamī ekavacana · in/on · -e · also prathamā dvivacana, dvitīyā dvivacana, sambodhana dvivacana",
+          "source": "reference · Neuter -a"
+        },
+        {
+          "id": "05-rupa:form:phala-7-dvi",
+          "type": "choice",
+          "front": "Form the saptamī dual of:\nphala-",
+          "stemClass": "neuter · a-stem",
+          "options": [
+            "phalayoḥ",
+            "phale",
+            "phalābhyām",
+            "phaleṣu"
+          ],
+          "answer": "phalayoḥ",
+          "note": "saptamī dvivacana · in/on · -ayoḥ · also ṣaṣṭhī dvivacana",
+          "source": "reference · Neuter -a"
+        },
+        {
+          "id": "05-rupa:form:phala-7-bah",
+          "type": "choice",
+          "front": "Form the saptamī plural of:\nphala-",
+          "stemClass": "neuter · a-stem",
+          "options": [
+            "phaleṣu",
+            "phalānām",
+            "phalāni",
+            "phalebhyaḥ"
+          ],
+          "answer": "phaleṣu",
+          "note": "saptamī bahuvacana · in/on · -eṣu",
+          "source": "reference · Neuter -a"
+        },
+        {
+          "id": "05-rupa:form:phala-8-eka",
+          "type": "choice",
+          "front": "Form the sambodhana singular of:\nphala-",
+          "stemClass": "neuter · a-stem",
+          "options": [
+            "phala",
+            "phale",
+            "phalasya",
+            "phalāt"
+          ],
+          "answer": "phala",
+          "note": "sambodhana ekavacana · O…! · -a",
+          "source": "reference · Neuter -a"
+        },
+        {
+          "id": "05-rupa:form:phala-8-dvi",
+          "type": "choice",
+          "front": "Form the sambodhana dual of:\nphala-",
+          "stemClass": "neuter · a-stem",
+          "options": [
+            "phale",
+            "phalayoḥ",
+            "phalābhyām",
+            "phala"
+          ],
+          "answer": "phale",
+          "note": "sambodhana dvivacana · O…! · -e · also prathamā dvivacana, dvitīyā dvivacana, saptamī ekavacana",
+          "source": "reference · Neuter -a"
+        },
+        {
+          "id": "05-rupa:form:phala-8-bah",
+          "type": "choice",
+          "front": "Form the sambodhana plural of:\nphala-",
+          "stemClass": "neuter · a-stem",
+          "options": [
+            "phalāni",
+            "phaleṣu",
+            "phalānām",
+            "phalebhyaḥ"
+          ],
+          "answer": "phalāni",
+          "note": "sambodhana bahuvacana · O…! · -āni · also prathamā bahuvacana, dvitīyā bahuvacana",
+          "source": "reference · Neuter -a"
+        }
+      ]
+    },
+    {
+      "name": "Form mastery · Mālā — all 21 cells",
+      "cards": [
+        {
+          "id": "05-rupa:class:mala",
+          "type": "choice",
+          "front": "Which class does mālā- belong to?",
+          "stemClass": "feminine · ā-stem",
+          "options": [
+            "feminine · ā-stem",
+            "feminine · ī-stem",
+            "neuter · a-stem"
+          ],
+          "answer": "feminine · ā-stem",
+          "note": "the class decides the endings — establish it before declining",
+          "source": "reference · Feminine -ā"
+        },
+        {
+          "id": "05-rupa:form:mala-1-eka",
+          "type": "choice",
+          "front": "Form the prathamā singular of:\nmālā-",
+          "stemClass": "feminine · ā-stem",
+          "options": [
+            "mālā",
+            "mālām",
+            "mālayā",
+            "mālāyai"
+          ],
+          "answer": "mālā",
+          "note": "prathamā ekavacana · subject · -ā",
+          "source": "reference · Feminine -ā"
+        },
+        {
+          "id": "05-rupa:form:mala-1-dvi",
+          "type": "choice",
+          "front": "Form the prathamā dual of:\nmālā-",
+          "stemClass": "feminine · ā-stem",
+          "options": [
+            "māle",
+            "mālābhyām",
+            "mālayoḥ",
+            "mālā"
+          ],
+          "answer": "māle",
+          "note": "prathamā dvivacana · subject · -e · also dvitīyā dvivacana",
+          "source": "reference · Feminine -ā"
+        },
+        {
+          "id": "05-rupa:form:mala-1-bah",
+          "type": "choice",
+          "front": "Form the prathamā plural of:\nmālā-",
+          "stemClass": "feminine · ā-stem",
+          "options": [
+            "mālāḥ",
+            "mālābhiḥ",
+            "mālābhyaḥ",
+            "mālānām"
+          ],
+          "answer": "mālāḥ",
+          "note": "prathamā bahuvacana · subject · -āḥ · also dvitīyā bahuvacana",
+          "source": "reference · Feminine -ā"
+        },
+        {
+          "id": "05-rupa:form:mala-2-eka",
+          "type": "choice",
+          "front": "Form the dvitīyā singular of:\nmālā-",
+          "stemClass": "feminine · ā-stem",
+          "options": [
+            "mālām",
+            "mālā",
+            "mālayā",
+            "mālāyai"
+          ],
+          "answer": "mālām",
+          "note": "dvitīyā ekavacana · object · -ām",
+          "source": "reference · Feminine -ā"
+        },
+        {
+          "id": "05-rupa:form:mala-2-dvi",
+          "type": "choice",
+          "front": "Form the dvitīyā dual of:\nmālā-",
+          "stemClass": "feminine · ā-stem",
+          "options": [
+            "māle",
+            "mālābhyām",
+            "mālayoḥ",
+            "mālām"
+          ],
+          "answer": "māle",
+          "note": "dvitīyā dvivacana · object · -e · also prathamā dvivacana",
+          "source": "reference · Feminine -ā"
+        },
+        {
+          "id": "05-rupa:form:mala-2-bah",
+          "type": "choice",
+          "front": "Form the dvitīyā plural of:\nmālā-",
+          "stemClass": "feminine · ā-stem",
+          "options": [
+            "mālāḥ",
+            "mālābhiḥ",
+            "mālābhyaḥ",
+            "mālānām"
+          ],
+          "answer": "mālāḥ",
+          "note": "dvitīyā bahuvacana · object · -āḥ · also prathamā bahuvacana",
+          "source": "reference · Feminine -ā"
+        },
+        {
+          "id": "05-rupa:form:mala-3-eka",
+          "type": "choice",
+          "front": "Form the tṛtīyā singular of:\nmālā-",
+          "stemClass": "feminine · ā-stem",
+          "options": [
+            "mālayā",
+            "mālām",
+            "mālāyai",
+            "mālā"
+          ],
+          "answer": "mālayā",
+          "note": "tṛtīyā ekavacana · by/with · -ayā",
+          "source": "reference · Feminine -ā"
+        },
+        {
+          "id": "05-rupa:form:mala-3-dvi",
+          "type": "choice",
+          "front": "Form the tṛtīyā dual of:\nmālā-",
+          "stemClass": "feminine · ā-stem",
+          "options": [
+            "mālābhyām",
+            "māle",
+            "mālayoḥ",
+            "mālayā"
+          ],
+          "answer": "mālābhyām",
+          "note": "tṛtīyā dvivacana · by/with · -ābhyām · also caturthī dvivacana, pañcamī dvivacana",
+          "source": "reference · Feminine -ā"
+        },
+        {
+          "id": "05-rupa:form:mala-3-bah",
+          "type": "choice",
+          "front": "Form the tṛtīyā plural of:\nmālā-",
+          "stemClass": "feminine · ā-stem",
+          "options": [
+            "mālābhiḥ",
+            "mālāḥ",
+            "mālābhyaḥ",
+            "mālānām"
+          ],
+          "answer": "mālābhiḥ",
+          "note": "tṛtīyā bahuvacana · by/with · -ābhiḥ",
+          "source": "reference · Feminine -ā"
+        },
+        {
+          "id": "05-rupa:form:mala-4-eka",
+          "type": "choice",
+          "front": "Form the caturthī singular of:\nmālā-",
+          "stemClass": "feminine · ā-stem",
+          "options": [
+            "mālāyai",
+            "mālayā",
+            "mālāyāḥ",
+            "mālām"
+          ],
+          "answer": "mālāyai",
+          "note": "caturthī ekavacana · for/to · -āyai",
+          "source": "reference · Feminine -ā"
+        },
+        {
+          "id": "05-rupa:form:mala-4-dvi",
+          "type": "choice",
+          "front": "Form the caturthī dual of:\nmālā-",
+          "stemClass": "feminine · ā-stem",
+          "options": [
+            "mālābhyām",
+            "māle",
+            "mālayoḥ",
+            "mālāyai"
+          ],
+          "answer": "mālābhyām",
+          "note": "caturthī dvivacana · for/to · -ābhyām · also tṛtīyā dvivacana, pañcamī dvivacana",
+          "source": "reference · Feminine -ā"
+        },
+        {
+          "id": "05-rupa:form:mala-4-bah",
+          "type": "choice",
+          "front": "Form the caturthī plural of:\nmālā-",
+          "stemClass": "feminine · ā-stem",
+          "options": [
+            "mālābhyaḥ",
+            "mālābhiḥ",
+            "mālāḥ",
+            "mālānām"
+          ],
+          "answer": "mālābhyaḥ",
+          "note": "caturthī bahuvacana · for/to · -ābhyaḥ · also pañcamī bahuvacana",
+          "source": "reference · Feminine -ā"
+        },
+        {
+          "id": "05-rupa:form:mala-5-eka",
+          "type": "choice",
+          "front": "Form the pañcamī singular of:\nmālā-",
+          "stemClass": "feminine · ā-stem",
+          "options": [
+            "mālāyāḥ",
+            "mālāyai",
+            "mālayā",
+            "mālāyām"
+          ],
+          "answer": "mālāyāḥ",
+          "note": "pañcamī ekavacana · from · -āyāḥ · also ṣaṣṭhī ekavacana",
+          "source": "reference · Feminine -ā"
+        },
+        {
+          "id": "05-rupa:form:mala-5-dvi",
+          "type": "choice",
+          "front": "Form the pañcamī dual of:\nmālā-",
+          "stemClass": "feminine · ā-stem",
+          "options": [
+            "mālābhyām",
+            "mālayoḥ",
+            "māle",
+            "mālāyāḥ"
+          ],
+          "answer": "mālābhyām",
+          "note": "pañcamī dvivacana · from · -ābhyām · also tṛtīyā dvivacana, caturthī dvivacana",
+          "source": "reference · Feminine -ā"
+        },
+        {
+          "id": "05-rupa:form:mala-5-bah",
+          "type": "choice",
+          "front": "Form the pañcamī plural of:\nmālā-",
+          "stemClass": "feminine · ā-stem",
+          "options": [
+            "mālābhyaḥ",
+            "mālānām",
+            "mālābhiḥ",
+            "mālāsu"
+          ],
+          "answer": "mālābhyaḥ",
+          "note": "pañcamī bahuvacana · from · -ābhyaḥ · also caturthī bahuvacana",
+          "source": "reference · Feminine -ā"
+        },
+        {
+          "id": "05-rupa:form:mala-6-eka",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī singular of:\nmālā-",
+          "stemClass": "feminine · ā-stem",
+          "options": [
+            "mālāyāḥ",
+            "mālāyām",
+            "mālāyai",
+            "mālayā"
+          ],
+          "answer": "mālāyāḥ",
+          "note": "ṣaṣṭhī ekavacana · of · -āyāḥ · also pañcamī ekavacana",
+          "source": "reference · Feminine -ā"
+        },
+        {
+          "id": "05-rupa:form:mala-6-dvi",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī dual of:\nmālā-",
+          "stemClass": "feminine · ā-stem",
+          "options": [
+            "mālayoḥ",
+            "mālābhyām",
+            "māle",
+            "mālāyāḥ"
+          ],
+          "answer": "mālayoḥ",
+          "note": "ṣaṣṭhī dvivacana · of · -ayoḥ · also saptamī dvivacana",
+          "source": "reference · Feminine -ā"
+        },
+        {
+          "id": "05-rupa:form:mala-6-bah",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī plural of:\nmālā-",
+          "stemClass": "feminine · ā-stem",
+          "options": [
+            "mālānām",
+            "mālābhyaḥ",
+            "mālāsu",
+            "mālābhiḥ"
+          ],
+          "answer": "mālānām",
+          "note": "ṣaṣṭhī bahuvacana · of · -ānām",
+          "source": "reference · Feminine -ā"
+        },
+        {
+          "id": "05-rupa:form:mala-7-eka",
+          "type": "choice",
+          "front": "Form the saptamī singular of:\nmālā-",
+          "stemClass": "feminine · ā-stem",
+          "options": [
+            "mālāyām",
+            "mālāyāḥ",
+            "mālāyai",
+            "mālayā"
+          ],
+          "answer": "mālāyām",
+          "note": "saptamī ekavacana · in/on · -āyām",
+          "source": "reference · Feminine -ā"
+        },
+        {
+          "id": "05-rupa:form:mala-7-dvi",
+          "type": "choice",
+          "front": "Form the saptamī dual of:\nmālā-",
+          "stemClass": "feminine · ā-stem",
+          "options": [
+            "mālayoḥ",
+            "mālābhyām",
+            "māle",
+            "mālāyām"
+          ],
+          "answer": "mālayoḥ",
+          "note": "saptamī dvivacana · in/on · -ayoḥ · also ṣaṣṭhī dvivacana",
+          "source": "reference · Feminine -ā"
+        },
+        {
+          "id": "05-rupa:form:mala-7-bah",
+          "type": "choice",
+          "front": "Form the saptamī plural of:\nmālā-",
+          "stemClass": "feminine · ā-stem",
+          "options": [
+            "mālāsu",
+            "mālānām",
+            "mālābhyaḥ",
+            "mālābhiḥ"
+          ],
+          "answer": "mālāsu",
+          "note": "saptamī bahuvacana · in/on · -āsu",
+          "source": "reference · Feminine -ā"
+        }
+      ]
+    },
+    {
+      "name": "Form mastery · Devī — all 21 cells",
+      "cards": [
+        {
+          "id": "05-rupa:class:devi",
+          "type": "choice",
+          "front": "Which class does devī- belong to?",
+          "stemClass": "feminine · ī-stem",
+          "options": [
+            "feminine · ī-stem",
+            "feminine · ā-stem",
+            "masculine · i-stem"
+          ],
+          "answer": "feminine · ī-stem",
+          "note": "the class decides the endings — establish it before declining",
+          "source": "reference · Feminine -ī"
+        },
+        {
+          "id": "05-rupa:form:devi-1-eka",
+          "type": "choice",
+          "front": "Form the prathamā singular of:\ndevī-",
+          "stemClass": "feminine · ī-stem",
+          "options": [
+            "devī",
+            "devīm",
+            "devyā",
+            "devyai"
+          ],
+          "answer": "devī",
+          "note": "prathamā ekavacana · subject · -ī",
+          "source": "reference · Feminine -ī"
+        },
+        {
+          "id": "05-rupa:form:devi-1-dvi",
+          "type": "choice",
+          "front": "Form the prathamā dual of:\ndevī-",
+          "stemClass": "feminine · ī-stem",
+          "options": [
+            "devyau",
+            "devībhyām",
+            "devyoḥ",
+            "devī"
+          ],
+          "answer": "devyau",
+          "note": "prathamā dvivacana · subject · -yau · also dvitīyā dvivacana",
+          "source": "reference · Feminine -ī"
+        },
+        {
+          "id": "05-rupa:form:devi-1-bah",
+          "type": "choice",
+          "front": "Form the prathamā plural of:\ndevī-",
+          "stemClass": "feminine · ī-stem",
+          "options": [
+            "devyaḥ",
+            "devīḥ",
+            "devībhiḥ",
+            "devībhyaḥ"
+          ],
+          "answer": "devyaḥ",
+          "note": "prathamā bahuvacana · subject · -yaḥ",
+          "source": "reference · Feminine -ī"
+        },
+        {
+          "id": "05-rupa:form:devi-2-eka",
+          "type": "choice",
+          "front": "Form the dvitīyā singular of:\ndevī-",
+          "stemClass": "feminine · ī-stem",
+          "options": [
+            "devīm",
+            "devī",
+            "devyā",
+            "devyai"
+          ],
+          "answer": "devīm",
+          "note": "dvitīyā ekavacana · object · -īm",
+          "source": "reference · Feminine -ī"
+        },
+        {
+          "id": "05-rupa:form:devi-2-dvi",
+          "type": "choice",
+          "front": "Form the dvitīyā dual of:\ndevī-",
+          "stemClass": "feminine · ī-stem",
+          "options": [
+            "devyau",
+            "devībhyām",
+            "devyoḥ",
+            "devīm"
+          ],
+          "answer": "devyau",
+          "note": "dvitīyā dvivacana · object · -yau · also prathamā dvivacana",
+          "source": "reference · Feminine -ī"
+        },
+        {
+          "id": "05-rupa:form:devi-2-bah",
+          "type": "choice",
+          "front": "Form the dvitīyā plural of:\ndevī-",
+          "stemClass": "feminine · ī-stem",
+          "options": [
+            "devīḥ",
+            "devyaḥ",
+            "devībhiḥ",
+            "devībhyaḥ"
+          ],
+          "answer": "devīḥ",
+          "note": "dvitīyā bahuvacana · object · -īḥ",
+          "source": "reference · Feminine -ī"
+        },
+        {
+          "id": "05-rupa:form:devi-3-eka",
+          "type": "choice",
+          "front": "Form the tṛtīyā singular of:\ndevī-",
+          "stemClass": "feminine · ī-stem",
+          "options": [
+            "devyā",
+            "devīm",
+            "devyai",
+            "devī"
+          ],
+          "answer": "devyā",
+          "note": "tṛtīyā ekavacana · by/with · -yā",
+          "source": "reference · Feminine -ī"
+        },
+        {
+          "id": "05-rupa:form:devi-3-dvi",
+          "type": "choice",
+          "front": "Form the tṛtīyā dual of:\ndevī-",
+          "stemClass": "feminine · ī-stem",
+          "options": [
+            "devībhyām",
+            "devyau",
+            "devyoḥ",
+            "devyā"
+          ],
+          "answer": "devībhyām",
+          "note": "tṛtīyā dvivacana · by/with · -ībhyām · also caturthī dvivacana, pañcamī dvivacana",
+          "source": "reference · Feminine -ī"
+        },
+        {
+          "id": "05-rupa:form:devi-3-bah",
+          "type": "choice",
+          "front": "Form the tṛtīyā plural of:\ndevī-",
+          "stemClass": "feminine · ī-stem",
+          "options": [
+            "devībhiḥ",
+            "devīḥ",
+            "devībhyaḥ",
+            "devyaḥ"
+          ],
+          "answer": "devībhiḥ",
+          "note": "tṛtīyā bahuvacana · by/with · -ībhiḥ",
+          "source": "reference · Feminine -ī"
+        },
+        {
+          "id": "05-rupa:form:devi-4-eka",
+          "type": "choice",
+          "front": "Form the caturthī singular of:\ndevī-",
+          "stemClass": "feminine · ī-stem",
+          "options": [
+            "devyai",
+            "devyā",
+            "devyāḥ",
+            "devīm"
+          ],
+          "answer": "devyai",
+          "note": "caturthī ekavacana · for/to · -yai",
+          "source": "reference · Feminine -ī"
+        },
+        {
+          "id": "05-rupa:form:devi-4-dvi",
+          "type": "choice",
+          "front": "Form the caturthī dual of:\ndevī-",
+          "stemClass": "feminine · ī-stem",
+          "options": [
+            "devībhyām",
+            "devyau",
+            "devyoḥ",
+            "devyai"
+          ],
+          "answer": "devībhyām",
+          "note": "caturthī dvivacana · for/to · -ībhyām · also tṛtīyā dvivacana, pañcamī dvivacana",
+          "source": "reference · Feminine -ī"
+        },
+        {
+          "id": "05-rupa:form:devi-4-bah",
+          "type": "choice",
+          "front": "Form the caturthī plural of:\ndevī-",
+          "stemClass": "feminine · ī-stem",
+          "options": [
+            "devībhyaḥ",
+            "devībhiḥ",
+            "devīḥ",
+            "devīnām"
+          ],
+          "answer": "devībhyaḥ",
+          "note": "caturthī bahuvacana · for/to · -ībhyaḥ · also pañcamī bahuvacana",
+          "source": "reference · Feminine -ī"
+        },
+        {
+          "id": "05-rupa:form:devi-5-eka",
+          "type": "choice",
+          "front": "Form the pañcamī singular of:\ndevī-",
+          "stemClass": "feminine · ī-stem",
+          "options": [
+            "devyāḥ",
+            "devyai",
+            "devyā",
+            "devyām"
+          ],
+          "answer": "devyāḥ",
+          "note": "pañcamī ekavacana · from · -yāḥ · also ṣaṣṭhī ekavacana",
+          "source": "reference · Feminine -ī"
+        },
+        {
+          "id": "05-rupa:form:devi-5-dvi",
+          "type": "choice",
+          "front": "Form the pañcamī dual of:\ndevī-",
+          "stemClass": "feminine · ī-stem",
+          "options": [
+            "devībhyām",
+            "devyoḥ",
+            "devyau",
+            "devyāḥ"
+          ],
+          "answer": "devībhyām",
+          "note": "pañcamī dvivacana · from · -ībhyām · also tṛtīyā dvivacana, caturthī dvivacana",
+          "source": "reference · Feminine -ī"
+        },
+        {
+          "id": "05-rupa:form:devi-5-bah",
+          "type": "choice",
+          "front": "Form the pañcamī plural of:\ndevī-",
+          "stemClass": "feminine · ī-stem",
+          "options": [
+            "devībhyaḥ",
+            "devīnām",
+            "devībhiḥ",
+            "devīṣu"
+          ],
+          "answer": "devībhyaḥ",
+          "note": "pañcamī bahuvacana · from · -ībhyaḥ · also caturthī bahuvacana",
+          "source": "reference · Feminine -ī"
+        },
+        {
+          "id": "05-rupa:form:devi-6-eka",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī singular of:\ndevī-",
+          "stemClass": "feminine · ī-stem",
+          "options": [
+            "devyāḥ",
+            "devyām",
+            "devyai",
+            "devyā"
+          ],
+          "answer": "devyāḥ",
+          "note": "ṣaṣṭhī ekavacana · of · -yāḥ · also pañcamī ekavacana",
+          "source": "reference · Feminine -ī"
+        },
+        {
+          "id": "05-rupa:form:devi-6-dvi",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī dual of:\ndevī-",
+          "stemClass": "feminine · ī-stem",
+          "options": [
+            "devyoḥ",
+            "devībhyām",
+            "devyau",
+            "devyāḥ"
+          ],
+          "answer": "devyoḥ",
+          "note": "ṣaṣṭhī dvivacana · of · -yoḥ · also saptamī dvivacana",
+          "source": "reference · Feminine -ī"
+        },
+        {
+          "id": "05-rupa:form:devi-6-bah",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī plural of:\ndevī-",
+          "stemClass": "feminine · ī-stem",
+          "options": [
+            "devīnām",
+            "devībhyaḥ",
+            "devīṣu",
+            "devībhiḥ"
+          ],
+          "answer": "devīnām",
+          "note": "ṣaṣṭhī bahuvacana · of · -īnām",
+          "source": "reference · Feminine -ī"
+        },
+        {
+          "id": "05-rupa:form:devi-7-eka",
+          "type": "choice",
+          "front": "Form the saptamī singular of:\ndevī-",
+          "stemClass": "feminine · ī-stem",
+          "options": [
+            "devyām",
+            "devyāḥ",
+            "devyai",
+            "devyā"
+          ],
+          "answer": "devyām",
+          "note": "saptamī ekavacana · in/on · -yām",
+          "source": "reference · Feminine -ī"
+        },
+        {
+          "id": "05-rupa:form:devi-7-dvi",
+          "type": "choice",
+          "front": "Form the saptamī dual of:\ndevī-",
+          "stemClass": "feminine · ī-stem",
+          "options": [
+            "devyoḥ",
+            "devībhyām",
+            "devyau",
+            "devyām"
+          ],
+          "answer": "devyoḥ",
+          "note": "saptamī dvivacana · in/on · -yoḥ · also ṣaṣṭhī dvivacana",
+          "source": "reference · Feminine -ī"
+        },
+        {
+          "id": "05-rupa:form:devi-7-bah",
+          "type": "choice",
+          "front": "Form the saptamī plural of:\ndevī-",
+          "stemClass": "feminine · ī-stem",
+          "options": [
+            "devīṣu",
+            "devīnām",
+            "devībhyaḥ",
+            "devībhiḥ"
+          ],
+          "answer": "devīṣu",
+          "note": "saptamī bahuvacana · in/on · -īṣu",
+          "source": "reference · Feminine -ī"
+        }
+      ]
+    },
+    {
+      "name": "Form mastery · Agni — all 21 cells",
+      "cards": [
+        {
+          "id": "05-rupa:class:agni",
+          "type": "choice",
+          "front": "Which class does agni- belong to?",
+          "stemClass": "masculine · i-stem",
+          "options": [
+            "masculine · i-stem",
+            "masculine · u-stem",
+            "feminine · ī-stem"
+          ],
+          "answer": "masculine · i-stem",
+          "note": "the class decides the endings — establish it before declining",
+          "source": "reference · Masculine -i"
+        },
+        {
+          "id": "05-rupa:form:agni-1-eka",
+          "type": "choice",
+          "front": "Form the prathamā singular of:\nagni-",
+          "stemClass": "masculine · i-stem",
+          "options": [
+            "agniḥ",
+            "agnim",
+            "agninā",
+            "agnaye"
+          ],
+          "answer": "agniḥ",
+          "note": "prathamā ekavacana · subject · -iḥ",
+          "source": "reference · Masculine -i"
+        },
+        {
+          "id": "05-rupa:form:agni-1-dvi",
+          "type": "choice",
+          "front": "Form the prathamā dual of:\nagni-",
+          "stemClass": "masculine · i-stem",
+          "options": [
+            "agnī",
+            "agnibhyām",
+            "agnyoḥ",
+            "agniḥ"
+          ],
+          "answer": "agnī",
+          "note": "prathamā dvivacana · subject · -ī · also dvitīyā dvivacana",
+          "source": "reference · Masculine -i"
+        },
+        {
+          "id": "05-rupa:form:agni-1-bah",
+          "type": "choice",
+          "front": "Form the prathamā plural of:\nagni-",
+          "stemClass": "masculine · i-stem",
+          "options": [
+            "agnayaḥ",
+            "agnīn",
+            "agnibhiḥ",
+            "agnibhyaḥ"
+          ],
+          "answer": "agnayaḥ",
+          "note": "prathamā bahuvacana · subject · -ayaḥ",
+          "source": "reference · Masculine -i"
+        },
+        {
+          "id": "05-rupa:form:agni-2-eka",
+          "type": "choice",
+          "front": "Form the dvitīyā singular of:\nagni-",
+          "stemClass": "masculine · i-stem",
+          "options": [
+            "agnim",
+            "agniḥ",
+            "agninā",
+            "agnaye"
+          ],
+          "answer": "agnim",
+          "note": "dvitīyā ekavacana · object · -im",
+          "source": "reference · Masculine -i"
+        },
+        {
+          "id": "05-rupa:form:agni-2-dvi",
+          "type": "choice",
+          "front": "Form the dvitīyā dual of:\nagni-",
+          "stemClass": "masculine · i-stem",
+          "options": [
+            "agnī",
+            "agnibhyām",
+            "agnyoḥ",
+            "agnim"
+          ],
+          "answer": "agnī",
+          "note": "dvitīyā dvivacana · object · -ī · also prathamā dvivacana",
+          "source": "reference · Masculine -i"
+        },
+        {
+          "id": "05-rupa:form:agni-2-bah",
+          "type": "choice",
+          "front": "Form the dvitīyā plural of:\nagni-",
+          "stemClass": "masculine · i-stem",
+          "options": [
+            "agnīn",
+            "agnayaḥ",
+            "agnibhiḥ",
+            "agnibhyaḥ"
+          ],
+          "answer": "agnīn",
+          "note": "dvitīyā bahuvacana · object · -īn",
+          "source": "reference · Masculine -i"
+        },
+        {
+          "id": "05-rupa:form:agni-3-eka",
+          "type": "choice",
+          "front": "Form the tṛtīyā singular of:\nagni-",
+          "stemClass": "masculine · i-stem",
+          "options": [
+            "agninā",
+            "agnim",
+            "agnaye",
+            "agniḥ"
+          ],
+          "answer": "agninā",
+          "note": "tṛtīyā ekavacana · by/with · -inā",
+          "source": "reference · Masculine -i"
+        },
+        {
+          "id": "05-rupa:form:agni-3-dvi",
+          "type": "choice",
+          "front": "Form the tṛtīyā dual of:\nagni-",
+          "stemClass": "masculine · i-stem",
+          "options": [
+            "agnibhyām",
+            "agnī",
+            "agnyoḥ",
+            "agninā"
+          ],
+          "answer": "agnibhyām",
+          "note": "tṛtīyā dvivacana · by/with · -ibhyām · also caturthī dvivacana, pañcamī dvivacana",
+          "source": "reference · Masculine -i"
+        },
+        {
+          "id": "05-rupa:form:agni-3-bah",
+          "type": "choice",
+          "front": "Form the tṛtīyā plural of:\nagni-",
+          "stemClass": "masculine · i-stem",
+          "options": [
+            "agnibhiḥ",
+            "agnīn",
+            "agnibhyaḥ",
+            "agnayaḥ"
+          ],
+          "answer": "agnibhiḥ",
+          "note": "tṛtīyā bahuvacana · by/with · -ibhiḥ",
+          "source": "reference · Masculine -i"
+        },
+        {
+          "id": "05-rupa:form:agni-4-eka",
+          "type": "choice",
+          "front": "Form the caturthī singular of:\nagni-",
+          "stemClass": "masculine · i-stem",
+          "options": [
+            "agnaye",
+            "agninā",
+            "agneḥ",
+            "agnim"
+          ],
+          "answer": "agnaye",
+          "note": "caturthī ekavacana · for/to · -aye",
+          "source": "reference · Masculine -i"
+        },
+        {
+          "id": "05-rupa:form:agni-4-dvi",
+          "type": "choice",
+          "front": "Form the caturthī dual of:\nagni-",
+          "stemClass": "masculine · i-stem",
+          "options": [
+            "agnibhyām",
+            "agnī",
+            "agnyoḥ",
+            "agnaye"
+          ],
+          "answer": "agnibhyām",
+          "note": "caturthī dvivacana · for/to · -ibhyām · also tṛtīyā dvivacana, pañcamī dvivacana",
+          "source": "reference · Masculine -i"
+        },
+        {
+          "id": "05-rupa:form:agni-4-bah",
+          "type": "choice",
+          "front": "Form the caturthī plural of:\nagni-",
+          "stemClass": "masculine · i-stem",
+          "options": [
+            "agnibhyaḥ",
+            "agnibhiḥ",
+            "agnīn",
+            "agnīnām"
+          ],
+          "answer": "agnibhyaḥ",
+          "note": "caturthī bahuvacana · for/to · -ibhyaḥ · also pañcamī bahuvacana",
+          "source": "reference · Masculine -i"
+        },
+        {
+          "id": "05-rupa:form:agni-5-eka",
+          "type": "choice",
+          "front": "Form the pañcamī singular of:\nagni-",
+          "stemClass": "masculine · i-stem",
+          "options": [
+            "agneḥ",
+            "agnaye",
+            "agninā",
+            "agnau"
+          ],
+          "answer": "agneḥ",
+          "note": "pañcamī ekavacana · from · -eḥ · also ṣaṣṭhī ekavacana",
+          "source": "reference · Masculine -i"
+        },
+        {
+          "id": "05-rupa:form:agni-5-dvi",
+          "type": "choice",
+          "front": "Form the pañcamī dual of:\nagni-",
+          "stemClass": "masculine · i-stem",
+          "options": [
+            "agnibhyām",
+            "agnyoḥ",
+            "agnī",
+            "agneḥ"
+          ],
+          "answer": "agnibhyām",
+          "note": "pañcamī dvivacana · from · -ibhyām · also tṛtīyā dvivacana, caturthī dvivacana",
+          "source": "reference · Masculine -i"
+        },
+        {
+          "id": "05-rupa:form:agni-5-bah",
+          "type": "choice",
+          "front": "Form the pañcamī plural of:\nagni-",
+          "stemClass": "masculine · i-stem",
+          "options": [
+            "agnibhyaḥ",
+            "agnīnām",
+            "agnibhiḥ",
+            "agniṣu"
+          ],
+          "answer": "agnibhyaḥ",
+          "note": "pañcamī bahuvacana · from · -ibhyaḥ · also caturthī bahuvacana",
+          "source": "reference · Masculine -i"
+        },
+        {
+          "id": "05-rupa:form:agni-6-eka",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī singular of:\nagni-",
+          "stemClass": "masculine · i-stem",
+          "options": [
+            "agneḥ",
+            "agnau",
+            "agnaye",
+            "agninā"
+          ],
+          "answer": "agneḥ",
+          "note": "ṣaṣṭhī ekavacana · of · -eḥ · also pañcamī ekavacana",
+          "source": "reference · Masculine -i"
+        },
+        {
+          "id": "05-rupa:form:agni-6-dvi",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī dual of:\nagni-",
+          "stemClass": "masculine · i-stem",
+          "options": [
+            "agnyoḥ",
+            "agnibhyām",
+            "agnī",
+            "agneḥ"
+          ],
+          "answer": "agnyoḥ",
+          "note": "ṣaṣṭhī dvivacana · of · -yoḥ · also saptamī dvivacana",
+          "source": "reference · Masculine -i"
+        },
+        {
+          "id": "05-rupa:form:agni-6-bah",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī plural of:\nagni-",
+          "stemClass": "masculine · i-stem",
+          "options": [
+            "agnīnām",
+            "agnibhyaḥ",
+            "agniṣu",
+            "agnibhiḥ"
+          ],
+          "answer": "agnīnām",
+          "note": "ṣaṣṭhī bahuvacana · of · -īnām",
+          "source": "reference · Masculine -i"
+        },
+        {
+          "id": "05-rupa:form:agni-7-eka",
+          "type": "choice",
+          "front": "Form the saptamī singular of:\nagni-",
+          "stemClass": "masculine · i-stem",
+          "options": [
+            "agnau",
+            "agneḥ",
+            "agnaye",
+            "agninā"
+          ],
+          "answer": "agnau",
+          "note": "saptamī ekavacana · in/on · -au",
+          "source": "reference · Masculine -i"
+        },
+        {
+          "id": "05-rupa:form:agni-7-dvi",
+          "type": "choice",
+          "front": "Form the saptamī dual of:\nagni-",
+          "stemClass": "masculine · i-stem",
+          "options": [
+            "agnyoḥ",
+            "agnibhyām",
+            "agnī",
+            "agnau"
+          ],
+          "answer": "agnyoḥ",
+          "note": "saptamī dvivacana · in/on · -yoḥ · also ṣaṣṭhī dvivacana",
+          "source": "reference · Masculine -i"
+        },
+        {
+          "id": "05-rupa:form:agni-7-bah",
+          "type": "choice",
+          "front": "Form the saptamī plural of:\nagni-",
+          "stemClass": "masculine · i-stem",
+          "options": [
+            "agniṣu",
+            "agnīnām",
+            "agnibhyaḥ",
+            "agnibhiḥ"
+          ],
+          "answer": "agniṣu",
+          "note": "saptamī bahuvacana · in/on · -iṣu",
+          "source": "reference · Masculine -i"
+        }
+      ]
+    },
+    {
+      "name": "Form mastery · Viṣṇu — all 21 cells",
+      "cards": [
+        {
+          "id": "05-rupa:class:visnu",
+          "type": "choice",
+          "front": "Which class does viṣṇu- belong to?",
+          "stemClass": "masculine · u-stem",
+          "options": [
+            "masculine · u-stem",
+            "masculine · i-stem",
+            "masculine · a-stem"
+          ],
+          "answer": "masculine · u-stem",
+          "note": "the class decides the endings — establish it before declining",
+          "source": "reference · Masculine -u"
+        },
+        {
+          "id": "05-rupa:form:visnu-1-eka",
+          "type": "choice",
+          "front": "Form the prathamā singular of:\nviṣṇu-",
+          "stemClass": "masculine · u-stem",
+          "options": [
+            "viṣṇuḥ",
+            "viṣṇum",
+            "viṣṇunā",
+            "viṣṇave"
+          ],
+          "answer": "viṣṇuḥ",
+          "note": "prathamā ekavacana · subject · -uḥ",
+          "source": "reference · Masculine -u"
+        },
+        {
+          "id": "05-rupa:form:visnu-1-dvi",
+          "type": "choice",
+          "front": "Form the prathamā dual of:\nviṣṇu-",
+          "stemClass": "masculine · u-stem",
+          "options": [
+            "viṣṇū",
+            "viṣṇubhyām",
+            "viṣṇvoḥ",
+            "viṣṇuḥ"
+          ],
+          "answer": "viṣṇū",
+          "note": "prathamā dvivacana · subject · -ū · also dvitīyā dvivacana",
+          "source": "reference · Masculine -u"
+        },
+        {
+          "id": "05-rupa:form:visnu-1-bah",
+          "type": "choice",
+          "front": "Form the prathamā plural of:\nviṣṇu-",
+          "stemClass": "masculine · u-stem",
+          "options": [
+            "viṣṇavaḥ",
+            "viṣṇūn",
+            "viṣṇubhiḥ",
+            "viṣṇubhyaḥ"
+          ],
+          "answer": "viṣṇavaḥ",
+          "note": "prathamā bahuvacana · subject · -avaḥ",
+          "source": "reference · Masculine -u"
+        },
+        {
+          "id": "05-rupa:form:visnu-2-eka",
+          "type": "choice",
+          "front": "Form the dvitīyā singular of:\nviṣṇu-",
+          "stemClass": "masculine · u-stem",
+          "options": [
+            "viṣṇum",
+            "viṣṇuḥ",
+            "viṣṇunā",
+            "viṣṇave"
+          ],
+          "answer": "viṣṇum",
+          "note": "dvitīyā ekavacana · object · -um",
+          "source": "reference · Masculine -u"
+        },
+        {
+          "id": "05-rupa:form:visnu-2-dvi",
+          "type": "choice",
+          "front": "Form the dvitīyā dual of:\nviṣṇu-",
+          "stemClass": "masculine · u-stem",
+          "options": [
+            "viṣṇū",
+            "viṣṇubhyām",
+            "viṣṇvoḥ",
+            "viṣṇum"
+          ],
+          "answer": "viṣṇū",
+          "note": "dvitīyā dvivacana · object · -ū · also prathamā dvivacana",
+          "source": "reference · Masculine -u"
+        },
+        {
+          "id": "05-rupa:form:visnu-2-bah",
+          "type": "choice",
+          "front": "Form the dvitīyā plural of:\nviṣṇu-",
+          "stemClass": "masculine · u-stem",
+          "options": [
+            "viṣṇūn",
+            "viṣṇavaḥ",
+            "viṣṇubhiḥ",
+            "viṣṇubhyaḥ"
+          ],
+          "answer": "viṣṇūn",
+          "note": "dvitīyā bahuvacana · object · -ūn",
+          "source": "reference · Masculine -u"
+        },
+        {
+          "id": "05-rupa:form:visnu-3-eka",
+          "type": "choice",
+          "front": "Form the tṛtīyā singular of:\nviṣṇu-",
+          "stemClass": "masculine · u-stem",
+          "options": [
+            "viṣṇunā",
+            "viṣṇum",
+            "viṣṇave",
+            "viṣṇuḥ"
+          ],
+          "answer": "viṣṇunā",
+          "note": "tṛtīyā ekavacana · by/with · -unā",
+          "source": "reference · Masculine -u"
+        },
+        {
+          "id": "05-rupa:form:visnu-3-dvi",
+          "type": "choice",
+          "front": "Form the tṛtīyā dual of:\nviṣṇu-",
+          "stemClass": "masculine · u-stem",
+          "options": [
+            "viṣṇubhyām",
+            "viṣṇū",
+            "viṣṇvoḥ",
+            "viṣṇunā"
+          ],
+          "answer": "viṣṇubhyām",
+          "note": "tṛtīyā dvivacana · by/with · -ubhyām · also caturthī dvivacana, pañcamī dvivacana",
+          "source": "reference · Masculine -u"
+        },
+        {
+          "id": "05-rupa:form:visnu-3-bah",
+          "type": "choice",
+          "front": "Form the tṛtīyā plural of:\nviṣṇu-",
+          "stemClass": "masculine · u-stem",
+          "options": [
+            "viṣṇubhiḥ",
+            "viṣṇūn",
+            "viṣṇubhyaḥ",
+            "viṣṇavaḥ"
+          ],
+          "answer": "viṣṇubhiḥ",
+          "note": "tṛtīyā bahuvacana · by/with · -ubhiḥ",
+          "source": "reference · Masculine -u"
+        },
+        {
+          "id": "05-rupa:form:visnu-4-eka",
+          "type": "choice",
+          "front": "Form the caturthī singular of:\nviṣṇu-",
+          "stemClass": "masculine · u-stem",
+          "options": [
+            "viṣṇave",
+            "viṣṇunā",
+            "viṣṇoḥ",
+            "viṣṇum"
+          ],
+          "answer": "viṣṇave",
+          "note": "caturthī ekavacana · for/to · -ave",
+          "source": "reference · Masculine -u"
+        },
+        {
+          "id": "05-rupa:form:visnu-4-dvi",
+          "type": "choice",
+          "front": "Form the caturthī dual of:\nviṣṇu-",
+          "stemClass": "masculine · u-stem",
+          "options": [
+            "viṣṇubhyām",
+            "viṣṇū",
+            "viṣṇvoḥ",
+            "viṣṇave"
+          ],
+          "answer": "viṣṇubhyām",
+          "note": "caturthī dvivacana · for/to · -ubhyām · also tṛtīyā dvivacana, pañcamī dvivacana",
+          "source": "reference · Masculine -u"
+        },
+        {
+          "id": "05-rupa:form:visnu-4-bah",
+          "type": "choice",
+          "front": "Form the caturthī plural of:\nviṣṇu-",
+          "stemClass": "masculine · u-stem",
+          "options": [
+            "viṣṇubhyaḥ",
+            "viṣṇubhiḥ",
+            "viṣṇūn",
+            "viṣṇūnām"
+          ],
+          "answer": "viṣṇubhyaḥ",
+          "note": "caturthī bahuvacana · for/to · -ubhyaḥ · also pañcamī bahuvacana",
+          "source": "reference · Masculine -u"
+        },
+        {
+          "id": "05-rupa:form:visnu-5-eka",
+          "type": "choice",
+          "front": "Form the pañcamī singular of:\nviṣṇu-",
+          "stemClass": "masculine · u-stem",
+          "options": [
+            "viṣṇoḥ",
+            "viṣṇave",
+            "viṣṇunā",
+            "viṣṇau"
+          ],
+          "answer": "viṣṇoḥ",
+          "note": "pañcamī ekavacana · from · -oḥ · also ṣaṣṭhī ekavacana",
+          "source": "reference · Masculine -u"
+        },
+        {
+          "id": "05-rupa:form:visnu-5-dvi",
+          "type": "choice",
+          "front": "Form the pañcamī dual of:\nviṣṇu-",
+          "stemClass": "masculine · u-stem",
+          "options": [
+            "viṣṇubhyām",
+            "viṣṇvoḥ",
+            "viṣṇū",
+            "viṣṇoḥ"
+          ],
+          "answer": "viṣṇubhyām",
+          "note": "pañcamī dvivacana · from · -ubhyām · also tṛtīyā dvivacana, caturthī dvivacana",
+          "source": "reference · Masculine -u"
+        },
+        {
+          "id": "05-rupa:form:visnu-5-bah",
+          "type": "choice",
+          "front": "Form the pañcamī plural of:\nviṣṇu-",
+          "stemClass": "masculine · u-stem",
+          "options": [
+            "viṣṇubhyaḥ",
+            "viṣṇūnām",
+            "viṣṇubhiḥ",
+            "viṣṇuṣu"
+          ],
+          "answer": "viṣṇubhyaḥ",
+          "note": "pañcamī bahuvacana · from · -ubhyaḥ · also caturthī bahuvacana",
+          "source": "reference · Masculine -u"
+        },
+        {
+          "id": "05-rupa:form:visnu-6-eka",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī singular of:\nviṣṇu-",
+          "stemClass": "masculine · u-stem",
+          "options": [
+            "viṣṇoḥ",
+            "viṣṇau",
+            "viṣṇave",
+            "viṣṇunā"
+          ],
+          "answer": "viṣṇoḥ",
+          "note": "ṣaṣṭhī ekavacana · of · -oḥ · also pañcamī ekavacana",
+          "source": "reference · Masculine -u"
+        },
+        {
+          "id": "05-rupa:form:visnu-6-dvi",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī dual of:\nviṣṇu-",
+          "stemClass": "masculine · u-stem",
+          "options": [
+            "viṣṇvoḥ",
+            "viṣṇubhyām",
+            "viṣṇū",
+            "viṣṇoḥ"
+          ],
+          "answer": "viṣṇvoḥ",
+          "note": "ṣaṣṭhī dvivacana · of · -voḥ · also saptamī dvivacana",
+          "source": "reference · Masculine -u"
+        },
+        {
+          "id": "05-rupa:form:visnu-6-bah",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī plural of:\nviṣṇu-",
+          "stemClass": "masculine · u-stem",
+          "options": [
+            "viṣṇūnām",
+            "viṣṇubhyaḥ",
+            "viṣṇuṣu",
+            "viṣṇubhiḥ"
+          ],
+          "answer": "viṣṇūnām",
+          "note": "ṣaṣṭhī bahuvacana · of · -ūnām",
+          "source": "reference · Masculine -u"
+        },
+        {
+          "id": "05-rupa:form:visnu-7-eka",
+          "type": "choice",
+          "front": "Form the saptamī singular of:\nviṣṇu-",
+          "stemClass": "masculine · u-stem",
+          "options": [
+            "viṣṇau",
+            "viṣṇoḥ",
+            "viṣṇave",
+            "viṣṇunā"
+          ],
+          "answer": "viṣṇau",
+          "note": "saptamī ekavacana · in/on · -au",
+          "source": "reference · Masculine -u"
+        },
+        {
+          "id": "05-rupa:form:visnu-7-dvi",
+          "type": "choice",
+          "front": "Form the saptamī dual of:\nviṣṇu-",
+          "stemClass": "masculine · u-stem",
+          "options": [
+            "viṣṇvoḥ",
+            "viṣṇubhyām",
+            "viṣṇū",
+            "viṣṇau"
+          ],
+          "answer": "viṣṇvoḥ",
+          "note": "saptamī dvivacana · in/on · -voḥ · also ṣaṣṭhī dvivacana",
+          "source": "reference · Masculine -u"
+        },
+        {
+          "id": "05-rupa:form:visnu-7-bah",
+          "type": "choice",
+          "front": "Form the saptamī plural of:\nviṣṇu-",
+          "stemClass": "masculine · u-stem",
+          "options": [
+            "viṣṇuṣu",
+            "viṣṇūnām",
+            "viṣṇubhyaḥ",
+            "viṣṇubhiḥ"
+          ],
+          "answer": "viṣṇuṣu",
+          "note": "saptamī bahuvacana · in/on · -uṣu",
+          "source": "reference · Masculine -u"
+        }
+      ]
+    },
+    {
+      "name": "Form mastery · Pitṛ — all 21 cells",
+      "cards": [
+        {
+          "id": "05-rupa:class:pitr",
+          "type": "choice",
+          "front": "Which class does pitṛ- belong to?",
+          "stemClass": "masculine · ṛ-stem",
+          "options": [
+            "masculine · ṛ-stem",
+            "masculine · consonant -at stem",
+            "masculine · i-stem"
+          ],
+          "answer": "masculine · ṛ-stem",
+          "note": "the class decides the endings — establish it before declining",
+          "source": "reference · Ṛ-stem"
+        },
+        {
+          "id": "05-rupa:form:pitr-1-eka",
+          "type": "choice",
+          "front": "Form the prathamā singular of:\npitṛ-",
+          "stemClass": "masculine · ṛ-stem",
+          "options": [
+            "pitā",
+            "pitaram",
+            "pitrā",
+            "pitre"
+          ],
+          "answer": "pitā",
+          "note": "prathamā ekavacana · subject · -ā",
+          "source": "reference · Ṛ-stem"
+        },
+        {
+          "id": "05-rupa:form:pitr-1-dvi",
+          "type": "choice",
+          "front": "Form the prathamā dual of:\npitṛ-",
+          "stemClass": "masculine · ṛ-stem",
+          "options": [
+            "pitarau",
+            "pitṛbhyām",
+            "pitroḥ",
+            "pitā"
+          ],
+          "answer": "pitarau",
+          "note": "prathamā dvivacana · subject · -arau · also dvitīyā dvivacana",
+          "source": "reference · Ṛ-stem"
+        },
+        {
+          "id": "05-rupa:form:pitr-1-bah",
+          "type": "choice",
+          "front": "Form the prathamā plural of:\npitṛ-",
+          "stemClass": "masculine · ṛ-stem",
+          "options": [
+            "pitaraḥ",
+            "pitṝn",
+            "pitṛbhiḥ",
+            "pitṛbhyaḥ"
+          ],
+          "answer": "pitaraḥ",
+          "note": "prathamā bahuvacana · subject · -araḥ",
+          "source": "reference · Ṛ-stem"
+        },
+        {
+          "id": "05-rupa:form:pitr-2-eka",
+          "type": "choice",
+          "front": "Form the dvitīyā singular of:\npitṛ-",
+          "stemClass": "masculine · ṛ-stem",
+          "options": [
+            "pitaram",
+            "pitā",
+            "pitrā",
+            "pitre"
+          ],
+          "answer": "pitaram",
+          "note": "dvitīyā ekavacana · object · -aram",
+          "source": "reference · Ṛ-stem"
+        },
+        {
+          "id": "05-rupa:form:pitr-2-dvi",
+          "type": "choice",
+          "front": "Form the dvitīyā dual of:\npitṛ-",
+          "stemClass": "masculine · ṛ-stem",
+          "options": [
+            "pitarau",
+            "pitṛbhyām",
+            "pitroḥ",
+            "pitaram"
+          ],
+          "answer": "pitarau",
+          "note": "dvitīyā dvivacana · object · -arau · also prathamā dvivacana",
+          "source": "reference · Ṛ-stem"
+        },
+        {
+          "id": "05-rupa:form:pitr-2-bah",
+          "type": "choice",
+          "front": "Form the dvitīyā plural of:\npitṛ-",
+          "stemClass": "masculine · ṛ-stem",
+          "options": [
+            "pitṝn",
+            "pitaraḥ",
+            "pitṛbhiḥ",
+            "pitṛbhyaḥ"
+          ],
+          "answer": "pitṝn",
+          "note": "dvitīyā bahuvacana · object · -ṝn",
+          "source": "reference · Ṛ-stem"
+        },
+        {
+          "id": "05-rupa:form:pitr-3-eka",
+          "type": "choice",
+          "front": "Form the tṛtīyā singular of:\npitṛ-",
+          "stemClass": "masculine · ṛ-stem",
+          "options": [
+            "pitrā",
+            "pitaram",
+            "pitre",
+            "pitā"
+          ],
+          "answer": "pitrā",
+          "note": "tṛtīyā ekavacana · by/with · -rā",
+          "source": "reference · Ṛ-stem"
+        },
+        {
+          "id": "05-rupa:form:pitr-3-dvi",
+          "type": "choice",
+          "front": "Form the tṛtīyā dual of:\npitṛ-",
+          "stemClass": "masculine · ṛ-stem",
+          "options": [
+            "pitṛbhyām",
+            "pitarau",
+            "pitroḥ",
+            "pitrā"
+          ],
+          "answer": "pitṛbhyām",
+          "note": "tṛtīyā dvivacana · by/with · -ṛbhyām · also caturthī dvivacana, pañcamī dvivacana",
+          "source": "reference · Ṛ-stem"
+        },
+        {
+          "id": "05-rupa:form:pitr-3-bah",
+          "type": "choice",
+          "front": "Form the tṛtīyā plural of:\npitṛ-",
+          "stemClass": "masculine · ṛ-stem",
+          "options": [
+            "pitṛbhiḥ",
+            "pitṝn",
+            "pitṛbhyaḥ",
+            "pitaraḥ"
+          ],
+          "answer": "pitṛbhiḥ",
+          "note": "tṛtīyā bahuvacana · by/with · -ṛbhiḥ",
+          "source": "reference · Ṛ-stem"
+        },
+        {
+          "id": "05-rupa:form:pitr-4-eka",
+          "type": "choice",
+          "front": "Form the caturthī singular of:\npitṛ-",
+          "stemClass": "masculine · ṛ-stem",
+          "options": [
+            "pitre",
+            "pitrā",
+            "pituḥ",
+            "pitaram"
+          ],
+          "answer": "pitre",
+          "note": "caturthī ekavacana · for/to · -re",
+          "source": "reference · Ṛ-stem"
+        },
+        {
+          "id": "05-rupa:form:pitr-4-dvi",
+          "type": "choice",
+          "front": "Form the caturthī dual of:\npitṛ-",
+          "stemClass": "masculine · ṛ-stem",
+          "options": [
+            "pitṛbhyām",
+            "pitarau",
+            "pitroḥ",
+            "pitre"
+          ],
+          "answer": "pitṛbhyām",
+          "note": "caturthī dvivacana · for/to · -ṛbhyām · also tṛtīyā dvivacana, pañcamī dvivacana",
+          "source": "reference · Ṛ-stem"
+        },
+        {
+          "id": "05-rupa:form:pitr-4-bah",
+          "type": "choice",
+          "front": "Form the caturthī plural of:\npitṛ-",
+          "stemClass": "masculine · ṛ-stem",
+          "options": [
+            "pitṛbhyaḥ",
+            "pitṛbhiḥ",
+            "pitṝn",
+            "pitṝṇām"
+          ],
+          "answer": "pitṛbhyaḥ",
+          "note": "caturthī bahuvacana · for/to · -ṛbhyaḥ · also pañcamī bahuvacana",
+          "source": "reference · Ṛ-stem"
+        },
+        {
+          "id": "05-rupa:form:pitr-5-eka",
+          "type": "choice",
+          "front": "Form the pañcamī singular of:\npitṛ-",
+          "stemClass": "masculine · ṛ-stem",
+          "options": [
+            "pituḥ",
+            "pitre",
+            "pitrā",
+            "pitari"
+          ],
+          "answer": "pituḥ",
+          "note": "pañcamī ekavacana · from · -uḥ · also ṣaṣṭhī ekavacana",
+          "source": "reference · Ṛ-stem"
+        },
+        {
+          "id": "05-rupa:form:pitr-5-dvi",
+          "type": "choice",
+          "front": "Form the pañcamī dual of:\npitṛ-",
+          "stemClass": "masculine · ṛ-stem",
+          "options": [
+            "pitṛbhyām",
+            "pitroḥ",
+            "pitarau",
+            "pituḥ"
+          ],
+          "answer": "pitṛbhyām",
+          "note": "pañcamī dvivacana · from · -ṛbhyām · also tṛtīyā dvivacana, caturthī dvivacana",
+          "source": "reference · Ṛ-stem"
+        },
+        {
+          "id": "05-rupa:form:pitr-5-bah",
+          "type": "choice",
+          "front": "Form the pañcamī plural of:\npitṛ-",
+          "stemClass": "masculine · ṛ-stem",
+          "options": [
+            "pitṛbhyaḥ",
+            "pitṝṇām",
+            "pitṛbhiḥ",
+            "pitṛṣu"
+          ],
+          "answer": "pitṛbhyaḥ",
+          "note": "pañcamī bahuvacana · from · -ṛbhyaḥ · also caturthī bahuvacana",
+          "source": "reference · Ṛ-stem"
+        },
+        {
+          "id": "05-rupa:form:pitr-6-eka",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī singular of:\npitṛ-",
+          "stemClass": "masculine · ṛ-stem",
+          "options": [
+            "pituḥ",
+            "pitari",
+            "pitre",
+            "pitrā"
+          ],
+          "answer": "pituḥ",
+          "note": "ṣaṣṭhī ekavacana · of · -uḥ · also pañcamī ekavacana",
+          "source": "reference · Ṛ-stem"
+        },
+        {
+          "id": "05-rupa:form:pitr-6-dvi",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī dual of:\npitṛ-",
+          "stemClass": "masculine · ṛ-stem",
+          "options": [
+            "pitroḥ",
+            "pitṛbhyām",
+            "pitarau",
+            "pituḥ"
+          ],
+          "answer": "pitroḥ",
+          "note": "ṣaṣṭhī dvivacana · of · -roḥ · also saptamī dvivacana",
+          "source": "reference · Ṛ-stem"
+        },
+        {
+          "id": "05-rupa:form:pitr-6-bah",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī plural of:\npitṛ-",
+          "stemClass": "masculine · ṛ-stem",
+          "options": [
+            "pitṝṇām",
+            "pitṛbhyaḥ",
+            "pitṛṣu",
+            "pitṛbhiḥ"
+          ],
+          "answer": "pitṝṇām",
+          "note": "ṣaṣṭhī bahuvacana · of · -ṝṇām",
+          "source": "reference · Ṛ-stem"
+        },
+        {
+          "id": "05-rupa:form:pitr-7-eka",
+          "type": "choice",
+          "front": "Form the saptamī singular of:\npitṛ-",
+          "stemClass": "masculine · ṛ-stem",
+          "options": [
+            "pitari",
+            "pituḥ",
+            "pitre",
+            "pitrā"
+          ],
+          "answer": "pitari",
+          "note": "saptamī ekavacana · in/on · -ari",
+          "source": "reference · Ṛ-stem"
+        },
+        {
+          "id": "05-rupa:form:pitr-7-dvi",
+          "type": "choice",
+          "front": "Form the saptamī dual of:\npitṛ-",
+          "stemClass": "masculine · ṛ-stem",
+          "options": [
+            "pitroḥ",
+            "pitṛbhyām",
+            "pitarau",
+            "pitari"
+          ],
+          "answer": "pitroḥ",
+          "note": "saptamī dvivacana · in/on · -roḥ · also ṣaṣṭhī dvivacana",
+          "source": "reference · Ṛ-stem"
+        },
+        {
+          "id": "05-rupa:form:pitr-7-bah",
+          "type": "choice",
+          "front": "Form the saptamī plural of:\npitṛ-",
+          "stemClass": "masculine · ṛ-stem",
+          "options": [
+            "pitṛṣu",
+            "pitṝṇām",
+            "pitṛbhyaḥ",
+            "pitṛbhiḥ"
+          ],
+          "answer": "pitṛṣu",
+          "note": "saptamī bahuvacana · in/on · -ṛṣu",
+          "source": "reference · Ṛ-stem"
+        }
+      ]
+    },
+    {
+      "name": "Form mastery · Bhagavat — all 21 cells",
+      "cards": [
+        {
+          "id": "05-rupa:class:bhagavat",
+          "type": "choice",
+          "front": "Which class does bhagavat- belong to?",
+          "stemClass": "masculine · consonant -at stem",
+          "options": [
+            "masculine · consonant -at stem",
+            "masculine · ṛ-stem",
+            "masculine · a-stem"
+          ],
+          "answer": "masculine · consonant -at stem",
+          "note": "the class decides the endings — establish it before declining",
+          "source": "reference · Consonant-stem -at"
+        },
+        {
+          "id": "05-rupa:form:bhagavat-1-eka",
+          "type": "choice",
+          "front": "Form the prathamā singular of:\nbhagavat-",
+          "stemClass": "masculine · consonant -at stem",
+          "options": [
+            "bhagavān",
+            "bhagavantam",
+            "bhagavatā",
+            "bhagavate"
+          ],
+          "answer": "bhagavān",
+          "note": "prathamā ekavacana · subject · -ān",
+          "source": "reference · Consonant-stem -at"
+        },
+        {
+          "id": "05-rupa:form:bhagavat-1-dvi",
+          "type": "choice",
+          "front": "Form the prathamā dual of:\nbhagavat-",
+          "stemClass": "masculine · consonant -at stem",
+          "options": [
+            "bhagavantau",
+            "bhagavadbhyām",
+            "bhagavatoḥ",
+            "bhagavān"
+          ],
+          "answer": "bhagavantau",
+          "note": "prathamā dvivacana · subject · -antau · also dvitīyā dvivacana",
+          "source": "reference · Consonant-stem -at"
+        },
+        {
+          "id": "05-rupa:form:bhagavat-1-bah",
+          "type": "choice",
+          "front": "Form the prathamā plural of:\nbhagavat-",
+          "stemClass": "masculine · consonant -at stem",
+          "options": [
+            "bhagavantaḥ",
+            "bhagavataḥ",
+            "bhagavadbhiḥ",
+            "bhagavadbhyaḥ"
+          ],
+          "answer": "bhagavantaḥ",
+          "note": "prathamā bahuvacana · subject · -antaḥ",
+          "source": "reference · Consonant-stem -at"
+        },
+        {
+          "id": "05-rupa:form:bhagavat-2-eka",
+          "type": "choice",
+          "front": "Form the dvitīyā singular of:\nbhagavat-",
+          "stemClass": "masculine · consonant -at stem",
+          "options": [
+            "bhagavantam",
+            "bhagavān",
+            "bhagavatā",
+            "bhagavate"
+          ],
+          "answer": "bhagavantam",
+          "note": "dvitīyā ekavacana · object · -antam",
+          "source": "reference · Consonant-stem -at"
+        },
+        {
+          "id": "05-rupa:form:bhagavat-2-dvi",
+          "type": "choice",
+          "front": "Form the dvitīyā dual of:\nbhagavat-",
+          "stemClass": "masculine · consonant -at stem",
+          "options": [
+            "bhagavantau",
+            "bhagavadbhyām",
+            "bhagavatoḥ",
+            "bhagavantam"
+          ],
+          "answer": "bhagavantau",
+          "note": "dvitīyā dvivacana · object · -antau · also prathamā dvivacana",
+          "source": "reference · Consonant-stem -at"
+        },
+        {
+          "id": "05-rupa:form:bhagavat-2-bah",
+          "type": "choice",
+          "front": "Form the dvitīyā plural of:\nbhagavat-",
+          "stemClass": "masculine · consonant -at stem",
+          "options": [
+            "bhagavataḥ",
+            "bhagavantaḥ",
+            "bhagavadbhiḥ",
+            "bhagavadbhyaḥ"
+          ],
+          "answer": "bhagavataḥ",
+          "note": "dvitīyā bahuvacana · object · -ataḥ · also pañcamī ekavacana, ṣaṣṭhī ekavacana",
+          "source": "reference · Consonant-stem -at"
+        },
+        {
+          "id": "05-rupa:form:bhagavat-3-eka",
+          "type": "choice",
+          "front": "Form the tṛtīyā singular of:\nbhagavat-",
+          "stemClass": "masculine · consonant -at stem",
+          "options": [
+            "bhagavatā",
+            "bhagavantam",
+            "bhagavate",
+            "bhagavān"
+          ],
+          "answer": "bhagavatā",
+          "note": "tṛtīyā ekavacana · by/with · -atā",
+          "source": "reference · Consonant-stem -at"
+        },
+        {
+          "id": "05-rupa:form:bhagavat-3-dvi",
+          "type": "choice",
+          "front": "Form the tṛtīyā dual of:\nbhagavat-",
+          "stemClass": "masculine · consonant -at stem",
+          "options": [
+            "bhagavadbhyām",
+            "bhagavantau",
+            "bhagavatoḥ",
+            "bhagavatā"
+          ],
+          "answer": "bhagavadbhyām",
+          "note": "tṛtīyā dvivacana · by/with · -adbhyām · also caturthī dvivacana, pañcamī dvivacana",
+          "source": "reference · Consonant-stem -at"
+        },
+        {
+          "id": "05-rupa:form:bhagavat-3-bah",
+          "type": "choice",
+          "front": "Form the tṛtīyā plural of:\nbhagavat-",
+          "stemClass": "masculine · consonant -at stem",
+          "options": [
+            "bhagavadbhiḥ",
+            "bhagavataḥ",
+            "bhagavadbhyaḥ",
+            "bhagavantaḥ"
+          ],
+          "answer": "bhagavadbhiḥ",
+          "note": "tṛtīyā bahuvacana · by/with · -adbhiḥ",
+          "source": "reference · Consonant-stem -at"
+        },
+        {
+          "id": "05-rupa:form:bhagavat-4-eka",
+          "type": "choice",
+          "front": "Form the caturthī singular of:\nbhagavat-",
+          "stemClass": "masculine · consonant -at stem",
+          "options": [
+            "bhagavate",
+            "bhagavatā",
+            "bhagavataḥ",
+            "bhagavantam"
+          ],
+          "answer": "bhagavate",
+          "note": "caturthī ekavacana · for/to · -ate",
+          "source": "reference · Consonant-stem -at"
+        },
+        {
+          "id": "05-rupa:form:bhagavat-4-dvi",
+          "type": "choice",
+          "front": "Form the caturthī dual of:\nbhagavat-",
+          "stemClass": "masculine · consonant -at stem",
+          "options": [
+            "bhagavadbhyām",
+            "bhagavantau",
+            "bhagavatoḥ",
+            "bhagavate"
+          ],
+          "answer": "bhagavadbhyām",
+          "note": "caturthī dvivacana · for/to · -adbhyām · also tṛtīyā dvivacana, pañcamī dvivacana",
+          "source": "reference · Consonant-stem -at"
+        },
+        {
+          "id": "05-rupa:form:bhagavat-4-bah",
+          "type": "choice",
+          "front": "Form the caturthī plural of:\nbhagavat-",
+          "stemClass": "masculine · consonant -at stem",
+          "options": [
+            "bhagavadbhyaḥ",
+            "bhagavadbhiḥ",
+            "bhagavataḥ",
+            "bhagavatām"
+          ],
+          "answer": "bhagavadbhyaḥ",
+          "note": "caturthī bahuvacana · for/to · -adbhyaḥ · also pañcamī bahuvacana",
+          "source": "reference · Consonant-stem -at"
+        },
+        {
+          "id": "05-rupa:form:bhagavat-5-eka",
+          "type": "choice",
+          "front": "Form the pañcamī singular of:\nbhagavat-",
+          "stemClass": "masculine · consonant -at stem",
+          "options": [
+            "bhagavataḥ",
+            "bhagavate",
+            "bhagavatā",
+            "bhagavati"
+          ],
+          "answer": "bhagavataḥ",
+          "note": "pañcamī ekavacana · from · -ataḥ · also dvitīyā bahuvacana, ṣaṣṭhī ekavacana",
+          "source": "reference · Consonant-stem -at"
+        },
+        {
+          "id": "05-rupa:form:bhagavat-5-dvi",
+          "type": "choice",
+          "front": "Form the pañcamī dual of:\nbhagavat-",
+          "stemClass": "masculine · consonant -at stem",
+          "options": [
+            "bhagavadbhyām",
+            "bhagavatoḥ",
+            "bhagavantau",
+            "bhagavataḥ"
+          ],
+          "answer": "bhagavadbhyām",
+          "note": "pañcamī dvivacana · from · -adbhyām · also tṛtīyā dvivacana, caturthī dvivacana",
+          "source": "reference · Consonant-stem -at"
+        },
+        {
+          "id": "05-rupa:form:bhagavat-5-bah",
+          "type": "choice",
+          "front": "Form the pañcamī plural of:\nbhagavat-",
+          "stemClass": "masculine · consonant -at stem",
+          "options": [
+            "bhagavadbhyaḥ",
+            "bhagavatām",
+            "bhagavadbhiḥ",
+            "bhagavatsu"
+          ],
+          "answer": "bhagavadbhyaḥ",
+          "note": "pañcamī bahuvacana · from · -adbhyaḥ · also caturthī bahuvacana",
+          "source": "reference · Consonant-stem -at"
+        },
+        {
+          "id": "05-rupa:form:bhagavat-6-eka",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī singular of:\nbhagavat-",
+          "stemClass": "masculine · consonant -at stem",
+          "options": [
+            "bhagavataḥ",
+            "bhagavati",
+            "bhagavate",
+            "bhagavatā"
+          ],
+          "answer": "bhagavataḥ",
+          "note": "ṣaṣṭhī ekavacana · of · -ataḥ · also dvitīyā bahuvacana, pañcamī ekavacana",
+          "source": "reference · Consonant-stem -at"
+        },
+        {
+          "id": "05-rupa:form:bhagavat-6-dvi",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī dual of:\nbhagavat-",
+          "stemClass": "masculine · consonant -at stem",
+          "options": [
+            "bhagavatoḥ",
+            "bhagavadbhyām",
+            "bhagavantau",
+            "bhagavataḥ"
+          ],
+          "answer": "bhagavatoḥ",
+          "note": "ṣaṣṭhī dvivacana · of · -atoḥ · also saptamī dvivacana",
+          "source": "reference · Consonant-stem -at"
+        },
+        {
+          "id": "05-rupa:form:bhagavat-6-bah",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī plural of:\nbhagavat-",
+          "stemClass": "masculine · consonant -at stem",
+          "options": [
+            "bhagavatām",
+            "bhagavadbhyaḥ",
+            "bhagavatsu",
+            "bhagavadbhiḥ"
+          ],
+          "answer": "bhagavatām",
+          "note": "ṣaṣṭhī bahuvacana · of · -atām",
+          "source": "reference · Consonant-stem -at"
+        },
+        {
+          "id": "05-rupa:form:bhagavat-7-eka",
+          "type": "choice",
+          "front": "Form the saptamī singular of:\nbhagavat-",
+          "stemClass": "masculine · consonant -at stem",
+          "options": [
+            "bhagavati",
+            "bhagavataḥ",
+            "bhagavate",
+            "bhagavatā"
+          ],
+          "answer": "bhagavati",
+          "note": "saptamī ekavacana · in/on · -ati",
+          "source": "reference · Consonant-stem -at"
+        },
+        {
+          "id": "05-rupa:form:bhagavat-7-dvi",
+          "type": "choice",
+          "front": "Form the saptamī dual of:\nbhagavat-",
+          "stemClass": "masculine · consonant -at stem",
+          "options": [
+            "bhagavatoḥ",
+            "bhagavadbhyām",
+            "bhagavantau",
+            "bhagavati"
+          ],
+          "answer": "bhagavatoḥ",
+          "note": "saptamī dvivacana · in/on · -atoḥ · also ṣaṣṭhī dvivacana",
+          "source": "reference · Consonant-stem -at"
+        },
+        {
+          "id": "05-rupa:form:bhagavat-7-bah",
+          "type": "choice",
+          "front": "Form the saptamī plural of:\nbhagavat-",
+          "stemClass": "masculine · consonant -at stem",
+          "options": [
+            "bhagavatsu",
+            "bhagavatām",
+            "bhagavadbhyaḥ",
+            "bhagavadbhiḥ"
+          ],
+          "answer": "bhagavatsu",
+          "note": "saptamī bahuvacana · in/on · -atsu",
+          "source": "reference · Consonant-stem -at"
+        }
+      ]
+    },
+    {
+      "name": "Form mastery · Asmad — the first person",
+      "cards": [
+        {
+          "id": "05-rupa:class:asmad",
+          "type": "choice",
+          "front": "Which class does asmad- belong to?",
+          "stemClass": "first person · no gender",
+          "options": [
+            "first person · no gender",
+            "second person · no gender",
+            "pronoun · masculine"
+          ],
+          "answer": "first person · no gender",
+          "note": "the class decides the endings — establish it before declining",
+          "source": "reference · Pronoun asmad"
+        },
+        {
+          "id": "05-rupa:form:asmad-1-eka",
+          "type": "choice",
+          "front": "Form the prathamā singular of:\nasmad-",
+          "stemClass": "first person · no gender",
+          "options": [
+            "aham",
+            "mām",
+            "mayā",
+            "mahyam"
+          ],
+          "answer": "aham",
+          "note": "prathamā ekavacana · subject",
+          "source": "reference · Pronoun asmad"
+        },
+        {
+          "id": "05-rupa:form:asmad-1-dvi",
+          "type": "choice",
+          "front": "Form the prathamā dual of:\nasmad-",
+          "stemClass": "first person · no gender",
+          "options": [
+            "āvām",
+            "āvābhyām",
+            "āvayoḥ",
+            "aham"
+          ],
+          "answer": "āvām",
+          "note": "prathamā dvivacana · subject · also dvitīyā dvivacana",
+          "source": "reference · Pronoun asmad"
+        },
+        {
+          "id": "05-rupa:form:asmad-1-bah",
+          "type": "choice",
+          "front": "Form the prathamā plural of:\nasmad-",
+          "stemClass": "first person · no gender",
+          "options": [
+            "vayam",
+            "asmān",
+            "asmābhiḥ",
+            "asmabhyam"
+          ],
+          "answer": "vayam",
+          "note": "prathamā bahuvacana · subject",
+          "source": "reference · Pronoun asmad"
+        },
+        {
+          "id": "05-rupa:form:asmad-2-eka",
+          "type": "choice",
+          "front": "Form the dvitīyā singular of:\nasmad-",
+          "stemClass": "first person · no gender",
+          "options": [
+            "mām",
+            "aham",
+            "mayā",
+            "mahyam"
+          ],
+          "answer": "mām",
+          "note": "dvitīyā ekavacana · object",
+          "source": "reference · Pronoun asmad"
+        },
+        {
+          "id": "05-rupa:form:asmad-2-dvi",
+          "type": "choice",
+          "front": "Form the dvitīyā dual of:\nasmad-",
+          "stemClass": "first person · no gender",
+          "options": [
+            "āvām",
+            "āvābhyām",
+            "āvayoḥ",
+            "mām"
+          ],
+          "answer": "āvām",
+          "note": "dvitīyā dvivacana · object · also prathamā dvivacana",
+          "source": "reference · Pronoun asmad"
+        },
+        {
+          "id": "05-rupa:form:asmad-2-bah",
+          "type": "choice",
+          "front": "Form the dvitīyā plural of:\nasmad-",
+          "stemClass": "first person · no gender",
+          "options": [
+            "asmān",
+            "vayam",
+            "asmābhiḥ",
+            "asmabhyam"
+          ],
+          "answer": "asmān",
+          "note": "dvitīyā bahuvacana · object",
+          "source": "reference · Pronoun asmad"
+        },
+        {
+          "id": "05-rupa:form:asmad-3-eka",
+          "type": "choice",
+          "front": "Form the tṛtīyā singular of:\nasmad-",
+          "stemClass": "first person · no gender",
+          "options": [
+            "mayā",
+            "mām",
+            "mahyam",
+            "aham"
+          ],
+          "answer": "mayā",
+          "note": "tṛtīyā ekavacana · by/with",
+          "source": "reference · Pronoun asmad"
+        },
+        {
+          "id": "05-rupa:form:asmad-3-dvi",
+          "type": "choice",
+          "front": "Form the tṛtīyā dual of:\nasmad-",
+          "stemClass": "first person · no gender",
+          "options": [
+            "āvābhyām",
+            "āvām",
+            "āvayoḥ",
+            "mayā"
+          ],
+          "answer": "āvābhyām",
+          "note": "tṛtīyā dvivacana · by/with · also caturthī dvivacana, pañcamī dvivacana",
+          "source": "reference · Pronoun asmad"
+        },
+        {
+          "id": "05-rupa:form:asmad-3-bah",
+          "type": "choice",
+          "front": "Form the tṛtīyā plural of:\nasmad-",
+          "stemClass": "first person · no gender",
+          "options": [
+            "asmābhiḥ",
+            "asmān",
+            "asmabhyam",
+            "vayam"
+          ],
+          "answer": "asmābhiḥ",
+          "note": "tṛtīyā bahuvacana · by/with",
+          "source": "reference · Pronoun asmad"
+        },
+        {
+          "id": "05-rupa:form:asmad-4-eka",
+          "type": "choice",
+          "front": "Form the caturthī singular of:\nasmad-",
+          "stemClass": "first person · no gender",
+          "options": [
+            "mahyam",
+            "mayā",
+            "mat",
+            "mām"
+          ],
+          "answer": "mahyam",
+          "note": "caturthī ekavacana · for/to",
+          "source": "reference · Pronoun asmad"
+        },
+        {
+          "id": "05-rupa:form:asmad-4-dvi",
+          "type": "choice",
+          "front": "Form the caturthī dual of:\nasmad-",
+          "stemClass": "first person · no gender",
+          "options": [
+            "āvābhyām",
+            "āvām",
+            "āvayoḥ",
+            "mahyam"
+          ],
+          "answer": "āvābhyām",
+          "note": "caturthī dvivacana · for/to · also tṛtīyā dvivacana, pañcamī dvivacana",
+          "source": "reference · Pronoun asmad"
+        },
+        {
+          "id": "05-rupa:form:asmad-4-bah",
+          "type": "choice",
+          "front": "Form the caturthī plural of:\nasmad-",
+          "stemClass": "first person · no gender",
+          "options": [
+            "asmabhyam",
+            "asmābhiḥ",
+            "asmat",
+            "asmān"
+          ],
+          "answer": "asmabhyam",
+          "note": "caturthī bahuvacana · for/to",
+          "source": "reference · Pronoun asmad"
+        },
+        {
+          "id": "05-rupa:form:asmad-5-eka",
+          "type": "choice",
+          "front": "Form the pañcamī singular of:\nasmad-",
+          "stemClass": "first person · no gender",
+          "options": [
+            "mat",
+            "mahyam",
+            "mama",
+            "mayā"
+          ],
+          "answer": "mat",
+          "note": "pañcamī ekavacana · from",
+          "source": "reference · Pronoun asmad"
+        },
+        {
+          "id": "05-rupa:form:asmad-5-dvi",
+          "type": "choice",
+          "front": "Form the pañcamī dual of:\nasmad-",
+          "stemClass": "first person · no gender",
+          "options": [
+            "āvābhyām",
+            "āvayoḥ",
+            "āvām",
+            "mat"
+          ],
+          "answer": "āvābhyām",
+          "note": "pañcamī dvivacana · from · also tṛtīyā dvivacana, caturthī dvivacana",
+          "source": "reference · Pronoun asmad"
+        },
+        {
+          "id": "05-rupa:form:asmad-5-bah",
+          "type": "choice",
+          "front": "Form the pañcamī plural of:\nasmad-",
+          "stemClass": "first person · no gender",
+          "options": [
+            "asmat",
+            "asmabhyam",
+            "asmākam",
+            "asmābhiḥ"
+          ],
+          "answer": "asmat",
+          "note": "pañcamī bahuvacana · from",
+          "source": "reference · Pronoun asmad"
+        },
+        {
+          "id": "05-rupa:form:asmad-6-eka",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī singular of:\nasmad-",
+          "stemClass": "first person · no gender",
+          "options": [
+            "mama",
+            "mat",
+            "mayi",
+            "mahyam"
+          ],
+          "answer": "mama",
+          "note": "ṣaṣṭhī ekavacana · of",
+          "source": "reference · Pronoun asmad"
+        },
+        {
+          "id": "05-rupa:form:asmad-6-dvi",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī dual of:\nasmad-",
+          "stemClass": "first person · no gender",
+          "options": [
+            "āvayoḥ",
+            "āvābhyām",
+            "āvām",
+            "mama"
+          ],
+          "answer": "āvayoḥ",
+          "note": "ṣaṣṭhī dvivacana · of · also saptamī dvivacana",
+          "source": "reference · Pronoun asmad"
+        },
+        {
+          "id": "05-rupa:form:asmad-6-bah",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī plural of:\nasmad-",
+          "stemClass": "first person · no gender",
+          "options": [
+            "asmākam",
+            "asmat",
+            "asmāsu",
+            "asmabhyam"
+          ],
+          "answer": "asmākam",
+          "note": "ṣaṣṭhī bahuvacana · of",
+          "source": "reference · Pronoun asmad"
+        },
+        {
+          "id": "05-rupa:form:asmad-7-eka",
+          "type": "choice",
+          "front": "Form the saptamī singular of:\nasmad-",
+          "stemClass": "first person · no gender",
+          "options": [
+            "mayi",
+            "mama",
+            "mat",
+            "mahyam"
+          ],
+          "answer": "mayi",
+          "note": "saptamī ekavacana · in/on",
+          "source": "reference · Pronoun asmad"
+        },
+        {
+          "id": "05-rupa:form:asmad-7-dvi",
+          "type": "choice",
+          "front": "Form the saptamī dual of:\nasmad-",
+          "stemClass": "first person · no gender",
+          "options": [
+            "āvayoḥ",
+            "āvābhyām",
+            "āvām",
+            "mayi"
+          ],
+          "answer": "āvayoḥ",
+          "note": "saptamī dvivacana · in/on · also ṣaṣṭhī dvivacana",
+          "source": "reference · Pronoun asmad"
+        },
+        {
+          "id": "05-rupa:form:asmad-7-bah",
+          "type": "choice",
+          "front": "Form the saptamī plural of:\nasmad-",
+          "stemClass": "first person · no gender",
+          "options": [
+            "asmāsu",
+            "asmākam",
+            "asmat",
+            "asmabhyam"
+          ],
+          "answer": "asmāsu",
+          "note": "saptamī bahuvacana · in/on",
+          "source": "reference · Pronoun asmad"
+        }
+      ]
+    },
+    {
+      "name": "Form mastery · Yuṣmad — the second person",
+      "cards": [
+        {
+          "id": "05-rupa:class:yusmad",
+          "type": "choice",
+          "front": "Which class does yuṣmad- belong to?",
+          "stemClass": "second person · no gender",
+          "options": [
+            "second person · no gender",
+            "first person · no gender",
+            "pronoun · feminine"
+          ],
+          "answer": "second person · no gender",
+          "note": "the class decides the endings — establish it before declining",
+          "source": "reference · Pronoun yuṣmad"
+        },
+        {
+          "id": "05-rupa:form:yusmad-1-eka",
+          "type": "choice",
+          "front": "Form the prathamā singular of:\nyuṣmad-",
+          "stemClass": "second person · no gender",
+          "options": [
+            "tvam",
+            "tvām",
+            "tvayā",
+            "tubhyam"
+          ],
+          "answer": "tvam",
+          "note": "prathamā ekavacana · subject",
+          "source": "reference · Pronoun yuṣmad"
+        },
+        {
+          "id": "05-rupa:form:yusmad-1-dvi",
+          "type": "choice",
+          "front": "Form the prathamā dual of:\nyuṣmad-",
+          "stemClass": "second person · no gender",
+          "options": [
+            "yuvām",
+            "yuvābhyām",
+            "yuvayoḥ",
+            "tvam"
+          ],
+          "answer": "yuvām",
+          "note": "prathamā dvivacana · subject · also dvitīyā dvivacana",
+          "source": "reference · Pronoun yuṣmad"
+        },
+        {
+          "id": "05-rupa:form:yusmad-1-bah",
+          "type": "choice",
+          "front": "Form the prathamā plural of:\nyuṣmad-",
+          "stemClass": "second person · no gender",
+          "options": [
+            "yūyam",
+            "yuṣmān",
+            "yuṣmābhiḥ",
+            "yuṣmabhyam"
+          ],
+          "answer": "yūyam",
+          "note": "prathamā bahuvacana · subject",
+          "source": "reference · Pronoun yuṣmad"
+        },
+        {
+          "id": "05-rupa:form:yusmad-2-eka",
+          "type": "choice",
+          "front": "Form the dvitīyā singular of:\nyuṣmad-",
+          "stemClass": "second person · no gender",
+          "options": [
+            "tvām",
+            "tvam",
+            "tvayā",
+            "tubhyam"
+          ],
+          "answer": "tvām",
+          "note": "dvitīyā ekavacana · object",
+          "source": "reference · Pronoun yuṣmad"
+        },
+        {
+          "id": "05-rupa:form:yusmad-2-dvi",
+          "type": "choice",
+          "front": "Form the dvitīyā dual of:\nyuṣmad-",
+          "stemClass": "second person · no gender",
+          "options": [
+            "yuvām",
+            "yuvābhyām",
+            "yuvayoḥ",
+            "tvām"
+          ],
+          "answer": "yuvām",
+          "note": "dvitīyā dvivacana · object · also prathamā dvivacana",
+          "source": "reference · Pronoun yuṣmad"
+        },
+        {
+          "id": "05-rupa:form:yusmad-2-bah",
+          "type": "choice",
+          "front": "Form the dvitīyā plural of:\nyuṣmad-",
+          "stemClass": "second person · no gender",
+          "options": [
+            "yuṣmān",
+            "yūyam",
+            "yuṣmābhiḥ",
+            "yuṣmabhyam"
+          ],
+          "answer": "yuṣmān",
+          "note": "dvitīyā bahuvacana · object",
+          "source": "reference · Pronoun yuṣmad"
+        },
+        {
+          "id": "05-rupa:form:yusmad-3-eka",
+          "type": "choice",
+          "front": "Form the tṛtīyā singular of:\nyuṣmad-",
+          "stemClass": "second person · no gender",
+          "options": [
+            "tvayā",
+            "tvām",
+            "tubhyam",
+            "tvam"
+          ],
+          "answer": "tvayā",
+          "note": "tṛtīyā ekavacana · by/with",
+          "source": "reference · Pronoun yuṣmad"
+        },
+        {
+          "id": "05-rupa:form:yusmad-3-dvi",
+          "type": "choice",
+          "front": "Form the tṛtīyā dual of:\nyuṣmad-",
+          "stemClass": "second person · no gender",
+          "options": [
+            "yuvābhyām",
+            "yuvām",
+            "yuvayoḥ",
+            "tvayā"
+          ],
+          "answer": "yuvābhyām",
+          "note": "tṛtīyā dvivacana · by/with · also caturthī dvivacana, pañcamī dvivacana",
+          "source": "reference · Pronoun yuṣmad"
+        },
+        {
+          "id": "05-rupa:form:yusmad-3-bah",
+          "type": "choice",
+          "front": "Form the tṛtīyā plural of:\nyuṣmad-",
+          "stemClass": "second person · no gender",
+          "options": [
+            "yuṣmābhiḥ",
+            "yuṣmān",
+            "yuṣmabhyam",
+            "yūyam"
+          ],
+          "answer": "yuṣmābhiḥ",
+          "note": "tṛtīyā bahuvacana · by/with",
+          "source": "reference · Pronoun yuṣmad"
+        },
+        {
+          "id": "05-rupa:form:yusmad-4-eka",
+          "type": "choice",
+          "front": "Form the caturthī singular of:\nyuṣmad-",
+          "stemClass": "second person · no gender",
+          "options": [
+            "tubhyam",
+            "tvayā",
+            "tvat",
+            "tvām"
+          ],
+          "answer": "tubhyam",
+          "note": "caturthī ekavacana · for/to",
+          "source": "reference · Pronoun yuṣmad"
+        },
+        {
+          "id": "05-rupa:form:yusmad-4-dvi",
+          "type": "choice",
+          "front": "Form the caturthī dual of:\nyuṣmad-",
+          "stemClass": "second person · no gender",
+          "options": [
+            "yuvābhyām",
+            "yuvām",
+            "yuvayoḥ",
+            "tubhyam"
+          ],
+          "answer": "yuvābhyām",
+          "note": "caturthī dvivacana · for/to · also tṛtīyā dvivacana, pañcamī dvivacana",
+          "source": "reference · Pronoun yuṣmad"
+        },
+        {
+          "id": "05-rupa:form:yusmad-4-bah",
+          "type": "choice",
+          "front": "Form the caturthī plural of:\nyuṣmad-",
+          "stemClass": "second person · no gender",
+          "options": [
+            "yuṣmabhyam",
+            "yuṣmābhiḥ",
+            "yuṣmat",
+            "yuṣmān"
+          ],
+          "answer": "yuṣmabhyam",
+          "note": "caturthī bahuvacana · for/to",
+          "source": "reference · Pronoun yuṣmad"
+        },
+        {
+          "id": "05-rupa:form:yusmad-5-eka",
+          "type": "choice",
+          "front": "Form the pañcamī singular of:\nyuṣmad-",
+          "stemClass": "second person · no gender",
+          "options": [
+            "tvat",
+            "tubhyam",
+            "tava",
+            "tvayā"
+          ],
+          "answer": "tvat",
+          "note": "pañcamī ekavacana · from",
+          "source": "reference · Pronoun yuṣmad"
+        },
+        {
+          "id": "05-rupa:form:yusmad-5-dvi",
+          "type": "choice",
+          "front": "Form the pañcamī dual of:\nyuṣmad-",
+          "stemClass": "second person · no gender",
+          "options": [
+            "yuvābhyām",
+            "yuvayoḥ",
+            "yuvām",
+            "tvat"
+          ],
+          "answer": "yuvābhyām",
+          "note": "pañcamī dvivacana · from · also tṛtīyā dvivacana, caturthī dvivacana",
+          "source": "reference · Pronoun yuṣmad"
+        },
+        {
+          "id": "05-rupa:form:yusmad-5-bah",
+          "type": "choice",
+          "front": "Form the pañcamī plural of:\nyuṣmad-",
+          "stemClass": "second person · no gender",
+          "options": [
+            "yuṣmat",
+            "yuṣmabhyam",
+            "yuṣmākam",
+            "yuṣmābhiḥ"
+          ],
+          "answer": "yuṣmat",
+          "note": "pañcamī bahuvacana · from",
+          "source": "reference · Pronoun yuṣmad"
+        },
+        {
+          "id": "05-rupa:form:yusmad-6-eka",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī singular of:\nyuṣmad-",
+          "stemClass": "second person · no gender",
+          "options": [
+            "tava",
+            "tvat",
+            "tvayi",
+            "tubhyam"
+          ],
+          "answer": "tava",
+          "note": "ṣaṣṭhī ekavacana · of",
+          "source": "reference · Pronoun yuṣmad"
+        },
+        {
+          "id": "05-rupa:form:yusmad-6-dvi",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī dual of:\nyuṣmad-",
+          "stemClass": "second person · no gender",
+          "options": [
+            "yuvayoḥ",
+            "yuvābhyām",
+            "yuvām",
+            "tava"
+          ],
+          "answer": "yuvayoḥ",
+          "note": "ṣaṣṭhī dvivacana · of · also saptamī dvivacana",
+          "source": "reference · Pronoun yuṣmad"
+        },
+        {
+          "id": "05-rupa:form:yusmad-6-bah",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī plural of:\nyuṣmad-",
+          "stemClass": "second person · no gender",
+          "options": [
+            "yuṣmākam",
+            "yuṣmat",
+            "yuṣmāsu",
+            "yuṣmabhyam"
+          ],
+          "answer": "yuṣmākam",
+          "note": "ṣaṣṭhī bahuvacana · of",
+          "source": "reference · Pronoun yuṣmad"
+        },
+        {
+          "id": "05-rupa:form:yusmad-7-eka",
+          "type": "choice",
+          "front": "Form the saptamī singular of:\nyuṣmad-",
+          "stemClass": "second person · no gender",
+          "options": [
+            "tvayi",
+            "tava",
+            "tvat",
+            "tubhyam"
+          ],
+          "answer": "tvayi",
+          "note": "saptamī ekavacana · in/on",
+          "source": "reference · Pronoun yuṣmad"
+        },
+        {
+          "id": "05-rupa:form:yusmad-7-dvi",
+          "type": "choice",
+          "front": "Form the saptamī dual of:\nyuṣmad-",
+          "stemClass": "second person · no gender",
+          "options": [
+            "yuvayoḥ",
+            "yuvābhyām",
+            "yuvām",
+            "tvayi"
+          ],
+          "answer": "yuvayoḥ",
+          "note": "saptamī dvivacana · in/on · also ṣaṣṭhī dvivacana",
+          "source": "reference · Pronoun yuṣmad"
+        },
+        {
+          "id": "05-rupa:form:yusmad-7-bah",
+          "type": "choice",
+          "front": "Form the saptamī plural of:\nyuṣmad-",
+          "stemClass": "second person · no gender",
+          "options": [
+            "yuṣmāsu",
+            "yuṣmākam",
+            "yuṣmat",
+            "yuṣmabhyam"
+          ],
+          "answer": "yuṣmāsu",
+          "note": "saptamī bahuvacana · in/on",
+          "source": "reference · Pronoun yuṣmad"
+        }
+      ]
+    },
+    {
+      "name": "Form mastery · Saḥ — tad, masculine",
+      "cards": [
+        {
+          "id": "05-rupa:form:tad-m-1-eka",
+          "type": "choice",
+          "front": "Form the prathamā singular of:\ntad-",
+          "stemClass": "pronoun · masculine",
+          "options": [
+            "saḥ",
+            "tam",
+            "tena",
+            "tasmai"
+          ],
+          "answer": "saḥ",
+          "note": "prathamā ekavacana · subject",
+          "source": "reference · Pronoun tad, masculine"
+        },
+        {
+          "id": "05-rupa:form:tad-m-1-dvi",
+          "type": "choice",
+          "front": "Form the prathamā dual of:\ntad-",
+          "stemClass": "pronoun · masculine",
+          "options": [
+            "tau",
+            "tābhyām",
+            "tayoḥ",
+            "saḥ"
+          ],
+          "answer": "tau",
+          "note": "prathamā dvivacana · subject · also dvitīyā dvivacana",
+          "source": "reference · Pronoun tad, masculine"
+        },
+        {
+          "id": "05-rupa:form:tad-m-1-bah",
+          "type": "choice",
+          "front": "Form the prathamā plural of:\ntad-",
+          "stemClass": "pronoun · masculine",
+          "options": [
+            "te",
+            "tān",
+            "taiḥ",
+            "tebhyaḥ"
+          ],
+          "answer": "te",
+          "note": "prathamā bahuvacana · subject",
+          "source": "reference · Pronoun tad, masculine"
+        },
+        {
+          "id": "05-rupa:form:tad-m-2-eka",
+          "type": "choice",
+          "front": "Form the dvitīyā singular of:\ntad-",
+          "stemClass": "pronoun · masculine",
+          "options": [
+            "tam",
+            "saḥ",
+            "tena",
+            "tasmai"
+          ],
+          "answer": "tam",
+          "note": "dvitīyā ekavacana · object",
+          "source": "reference · Pronoun tad, masculine"
+        },
+        {
+          "id": "05-rupa:form:tad-m-2-dvi",
+          "type": "choice",
+          "front": "Form the dvitīyā dual of:\ntad-",
+          "stemClass": "pronoun · masculine",
+          "options": [
+            "tau",
+            "tābhyām",
+            "tayoḥ",
+            "tam"
+          ],
+          "answer": "tau",
+          "note": "dvitīyā dvivacana · object · also prathamā dvivacana",
+          "source": "reference · Pronoun tad, masculine"
+        },
+        {
+          "id": "05-rupa:form:tad-m-2-bah",
+          "type": "choice",
+          "front": "Form the dvitīyā plural of:\ntad-",
+          "stemClass": "pronoun · masculine",
+          "options": [
+            "tān",
+            "te",
+            "taiḥ",
+            "tebhyaḥ"
+          ],
+          "answer": "tān",
+          "note": "dvitīyā bahuvacana · object",
+          "source": "reference · Pronoun tad, masculine"
+        },
+        {
+          "id": "05-rupa:form:tad-m-3-eka",
+          "type": "choice",
+          "front": "Form the tṛtīyā singular of:\ntad-",
+          "stemClass": "pronoun · masculine",
+          "options": [
+            "tena",
+            "tam",
+            "tasmai",
+            "saḥ"
+          ],
+          "answer": "tena",
+          "note": "tṛtīyā ekavacana · by/with",
+          "source": "reference · Pronoun tad, masculine"
+        },
+        {
+          "id": "05-rupa:form:tad-m-3-dvi",
+          "type": "choice",
+          "front": "Form the tṛtīyā dual of:\ntad-",
+          "stemClass": "pronoun · masculine",
+          "options": [
+            "tābhyām",
+            "tau",
+            "tayoḥ",
+            "tena"
+          ],
+          "answer": "tābhyām",
+          "note": "tṛtīyā dvivacana · by/with · also caturthī dvivacana, pañcamī dvivacana",
+          "source": "reference · Pronoun tad, masculine"
+        },
+        {
+          "id": "05-rupa:form:tad-m-3-bah",
+          "type": "choice",
+          "front": "Form the tṛtīyā plural of:\ntad-",
+          "stemClass": "pronoun · masculine",
+          "options": [
+            "taiḥ",
+            "tān",
+            "tebhyaḥ",
+            "te"
+          ],
+          "answer": "taiḥ",
+          "note": "tṛtīyā bahuvacana · by/with",
+          "source": "reference · Pronoun tad, masculine"
+        },
+        {
+          "id": "05-rupa:form:tad-m-4-eka",
+          "type": "choice",
+          "front": "Form the caturthī singular of:\ntad-",
+          "stemClass": "pronoun · masculine",
+          "options": [
+            "tasmai",
+            "tena",
+            "tasmāt",
+            "tam"
+          ],
+          "answer": "tasmai",
+          "note": "caturthī ekavacana · for/to",
+          "source": "reference · Pronoun tad, masculine"
+        },
+        {
+          "id": "05-rupa:form:tad-m-4-dvi",
+          "type": "choice",
+          "front": "Form the caturthī dual of:\ntad-",
+          "stemClass": "pronoun · masculine",
+          "options": [
+            "tābhyām",
+            "tau",
+            "tayoḥ",
+            "tasmai"
+          ],
+          "answer": "tābhyām",
+          "note": "caturthī dvivacana · for/to · also tṛtīyā dvivacana, pañcamī dvivacana",
+          "source": "reference · Pronoun tad, masculine"
+        },
+        {
+          "id": "05-rupa:form:tad-m-4-bah",
+          "type": "choice",
+          "front": "Form the caturthī plural of:\ntad-",
+          "stemClass": "pronoun · masculine",
+          "options": [
+            "tebhyaḥ",
+            "taiḥ",
+            "tān",
+            "teṣām"
+          ],
+          "answer": "tebhyaḥ",
+          "note": "caturthī bahuvacana · for/to · also pañcamī bahuvacana",
+          "source": "reference · Pronoun tad, masculine"
+        },
+        {
+          "id": "05-rupa:form:tad-m-5-eka",
+          "type": "choice",
+          "front": "Form the pañcamī singular of:\ntad-",
+          "stemClass": "pronoun · masculine",
+          "options": [
+            "tasmāt",
+            "tasmai",
+            "tasya",
+            "tena"
+          ],
+          "answer": "tasmāt",
+          "note": "pañcamī ekavacana · from",
+          "source": "reference · Pronoun tad, masculine"
+        },
+        {
+          "id": "05-rupa:form:tad-m-5-dvi",
+          "type": "choice",
+          "front": "Form the pañcamī dual of:\ntad-",
+          "stemClass": "pronoun · masculine",
+          "options": [
+            "tābhyām",
+            "tayoḥ",
+            "tau",
+            "tasmāt"
+          ],
+          "answer": "tābhyām",
+          "note": "pañcamī dvivacana · from · also tṛtīyā dvivacana, caturthī dvivacana",
+          "source": "reference · Pronoun tad, masculine"
+        },
+        {
+          "id": "05-rupa:form:tad-m-5-bah",
+          "type": "choice",
+          "front": "Form the pañcamī plural of:\ntad-",
+          "stemClass": "pronoun · masculine",
+          "options": [
+            "tebhyaḥ",
+            "teṣām",
+            "taiḥ",
+            "teṣu"
+          ],
+          "answer": "tebhyaḥ",
+          "note": "pañcamī bahuvacana · from · also caturthī bahuvacana",
+          "source": "reference · Pronoun tad, masculine"
+        },
+        {
+          "id": "05-rupa:form:tad-m-6-eka",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī singular of:\ntad-",
+          "stemClass": "pronoun · masculine",
+          "options": [
+            "tasya",
+            "tasmāt",
+            "tasmin",
+            "tasmai"
+          ],
+          "answer": "tasya",
+          "note": "ṣaṣṭhī ekavacana · of",
+          "source": "reference · Pronoun tad, masculine"
+        },
+        {
+          "id": "05-rupa:form:tad-m-6-dvi",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī dual of:\ntad-",
+          "stemClass": "pronoun · masculine",
+          "options": [
+            "tayoḥ",
+            "tābhyām",
+            "tau",
+            "tasya"
+          ],
+          "answer": "tayoḥ",
+          "note": "ṣaṣṭhī dvivacana · of · also saptamī dvivacana",
+          "source": "reference · Pronoun tad, masculine"
+        },
+        {
+          "id": "05-rupa:form:tad-m-6-bah",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī plural of:\ntad-",
+          "stemClass": "pronoun · masculine",
+          "options": [
+            "teṣām",
+            "tebhyaḥ",
+            "teṣu",
+            "taiḥ"
+          ],
+          "answer": "teṣām",
+          "note": "ṣaṣṭhī bahuvacana · of",
+          "source": "reference · Pronoun tad, masculine"
+        },
+        {
+          "id": "05-rupa:form:tad-m-7-eka",
+          "type": "choice",
+          "front": "Form the saptamī singular of:\ntad-",
+          "stemClass": "pronoun · masculine",
+          "options": [
+            "tasmin",
+            "tasya",
+            "tasmāt",
+            "tasmai"
+          ],
+          "answer": "tasmin",
+          "note": "saptamī ekavacana · in/on",
+          "source": "reference · Pronoun tad, masculine"
+        },
+        {
+          "id": "05-rupa:form:tad-m-7-dvi",
+          "type": "choice",
+          "front": "Form the saptamī dual of:\ntad-",
+          "stemClass": "pronoun · masculine",
+          "options": [
+            "tayoḥ",
+            "tābhyām",
+            "tau",
+            "tasmin"
+          ],
+          "answer": "tayoḥ",
+          "note": "saptamī dvivacana · in/on · also ṣaṣṭhī dvivacana",
+          "source": "reference · Pronoun tad, masculine"
+        },
+        {
+          "id": "05-rupa:form:tad-m-7-bah",
+          "type": "choice",
+          "front": "Form the saptamī plural of:\ntad-",
+          "stemClass": "pronoun · masculine",
+          "options": [
+            "teṣu",
+            "teṣām",
+            "tebhyaḥ",
+            "taiḥ"
+          ],
+          "answer": "teṣu",
+          "note": "saptamī bahuvacana · in/on",
+          "source": "reference · Pronoun tad, masculine"
+        }
+      ]
+    },
+    {
+      "name": "Form mastery · Sā — tad, feminine",
+      "cards": [
+        {
+          "id": "05-rupa:form:tad-f-1-eka",
+          "type": "choice",
+          "front": "Form the prathamā singular of:\ntad-",
+          "stemClass": "pronoun · feminine",
+          "options": [
+            "sā",
+            "tām",
+            "tayā",
+            "tasyai"
+          ],
+          "answer": "sā",
+          "note": "prathamā ekavacana · subject",
+          "source": "reference · Pronoun tad, feminine"
+        },
+        {
+          "id": "05-rupa:form:tad-f-1-dvi",
+          "type": "choice",
+          "front": "Form the prathamā dual of:\ntad-",
+          "stemClass": "pronoun · feminine",
+          "options": [
+            "te",
+            "tābhyām",
+            "tayoḥ",
+            "sā"
+          ],
+          "answer": "te",
+          "note": "prathamā dvivacana · subject · also dvitīyā dvivacana",
+          "source": "reference · Pronoun tad, feminine"
+        },
+        {
+          "id": "05-rupa:form:tad-f-1-bah",
+          "type": "choice",
+          "front": "Form the prathamā plural of:\ntad-",
+          "stemClass": "pronoun · feminine",
+          "options": [
+            "tāḥ",
+            "tābhiḥ",
+            "tābhyaḥ",
+            "tāsām"
+          ],
+          "answer": "tāḥ",
+          "note": "prathamā bahuvacana · subject · also dvitīyā bahuvacana",
+          "source": "reference · Pronoun tad, feminine"
+        },
+        {
+          "id": "05-rupa:form:tad-f-2-eka",
+          "type": "choice",
+          "front": "Form the dvitīyā singular of:\ntad-",
+          "stemClass": "pronoun · feminine",
+          "options": [
+            "tām",
+            "sā",
+            "tayā",
+            "tasyai"
+          ],
+          "answer": "tām",
+          "note": "dvitīyā ekavacana · object",
+          "source": "reference · Pronoun tad, feminine"
+        },
+        {
+          "id": "05-rupa:form:tad-f-2-dvi",
+          "type": "choice",
+          "front": "Form the dvitīyā dual of:\ntad-",
+          "stemClass": "pronoun · feminine",
+          "options": [
+            "te",
+            "tābhyām",
+            "tayoḥ",
+            "tām"
+          ],
+          "answer": "te",
+          "note": "dvitīyā dvivacana · object · also prathamā dvivacana",
+          "source": "reference · Pronoun tad, feminine"
+        },
+        {
+          "id": "05-rupa:form:tad-f-2-bah",
+          "type": "choice",
+          "front": "Form the dvitīyā plural of:\ntad-",
+          "stemClass": "pronoun · feminine",
+          "options": [
+            "tāḥ",
+            "tābhiḥ",
+            "tābhyaḥ",
+            "tāsām"
+          ],
+          "answer": "tāḥ",
+          "note": "dvitīyā bahuvacana · object · also prathamā bahuvacana",
+          "source": "reference · Pronoun tad, feminine"
+        },
+        {
+          "id": "05-rupa:form:tad-f-3-eka",
+          "type": "choice",
+          "front": "Form the tṛtīyā singular of:\ntad-",
+          "stemClass": "pronoun · feminine",
+          "options": [
+            "tayā",
+            "tām",
+            "tasyai",
+            "sā"
+          ],
+          "answer": "tayā",
+          "note": "tṛtīyā ekavacana · by/with",
+          "source": "reference · Pronoun tad, feminine"
+        },
+        {
+          "id": "05-rupa:form:tad-f-3-dvi",
+          "type": "choice",
+          "front": "Form the tṛtīyā dual of:\ntad-",
+          "stemClass": "pronoun · feminine",
+          "options": [
+            "tābhyām",
+            "te",
+            "tayoḥ",
+            "tayā"
+          ],
+          "answer": "tābhyām",
+          "note": "tṛtīyā dvivacana · by/with · also caturthī dvivacana, pañcamī dvivacana",
+          "source": "reference · Pronoun tad, feminine"
+        },
+        {
+          "id": "05-rupa:form:tad-f-3-bah",
+          "type": "choice",
+          "front": "Form the tṛtīyā plural of:\ntad-",
+          "stemClass": "pronoun · feminine",
+          "options": [
+            "tābhiḥ",
+            "tāḥ",
+            "tābhyaḥ",
+            "tāsām"
+          ],
+          "answer": "tābhiḥ",
+          "note": "tṛtīyā bahuvacana · by/with",
+          "source": "reference · Pronoun tad, feminine"
+        },
+        {
+          "id": "05-rupa:form:tad-f-4-eka",
+          "type": "choice",
+          "front": "Form the caturthī singular of:\ntad-",
+          "stemClass": "pronoun · feminine",
+          "options": [
+            "tasyai",
+            "tayā",
+            "tasyāḥ",
+            "tām"
+          ],
+          "answer": "tasyai",
+          "note": "caturthī ekavacana · for/to",
+          "source": "reference · Pronoun tad, feminine"
+        },
+        {
+          "id": "05-rupa:form:tad-f-4-dvi",
+          "type": "choice",
+          "front": "Form the caturthī dual of:\ntad-",
+          "stemClass": "pronoun · feminine",
+          "options": [
+            "tābhyām",
+            "te",
+            "tayoḥ",
+            "tasyai"
+          ],
+          "answer": "tābhyām",
+          "note": "caturthī dvivacana · for/to · also tṛtīyā dvivacana, pañcamī dvivacana",
+          "source": "reference · Pronoun tad, feminine"
+        },
+        {
+          "id": "05-rupa:form:tad-f-4-bah",
+          "type": "choice",
+          "front": "Form the caturthī plural of:\ntad-",
+          "stemClass": "pronoun · feminine",
+          "options": [
+            "tābhyaḥ",
+            "tābhiḥ",
+            "tāḥ",
+            "tāsām"
+          ],
+          "answer": "tābhyaḥ",
+          "note": "caturthī bahuvacana · for/to · also pañcamī bahuvacana",
+          "source": "reference · Pronoun tad, feminine"
+        },
+        {
+          "id": "05-rupa:form:tad-f-5-eka",
+          "type": "choice",
+          "front": "Form the pañcamī singular of:\ntad-",
+          "stemClass": "pronoun · feminine",
+          "options": [
+            "tasyāḥ",
+            "tasyai",
+            "tayā",
+            "tasyām"
+          ],
+          "answer": "tasyāḥ",
+          "note": "pañcamī ekavacana · from · also ṣaṣṭhī ekavacana",
+          "source": "reference · Pronoun tad, feminine"
+        },
+        {
+          "id": "05-rupa:form:tad-f-5-dvi",
+          "type": "choice",
+          "front": "Form the pañcamī dual of:\ntad-",
+          "stemClass": "pronoun · feminine",
+          "options": [
+            "tābhyām",
+            "tayoḥ",
+            "te",
+            "tasyāḥ"
+          ],
+          "answer": "tābhyām",
+          "note": "pañcamī dvivacana · from · also tṛtīyā dvivacana, caturthī dvivacana",
+          "source": "reference · Pronoun tad, feminine"
+        },
+        {
+          "id": "05-rupa:form:tad-f-5-bah",
+          "type": "choice",
+          "front": "Form the pañcamī plural of:\ntad-",
+          "stemClass": "pronoun · feminine",
+          "options": [
+            "tābhyaḥ",
+            "tāsām",
+            "tābhiḥ",
+            "tāsu"
+          ],
+          "answer": "tābhyaḥ",
+          "note": "pañcamī bahuvacana · from · also caturthī bahuvacana",
+          "source": "reference · Pronoun tad, feminine"
+        },
+        {
+          "id": "05-rupa:form:tad-f-6-eka",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī singular of:\ntad-",
+          "stemClass": "pronoun · feminine",
+          "options": [
+            "tasyāḥ",
+            "tasyām",
+            "tasyai",
+            "tayā"
+          ],
+          "answer": "tasyāḥ",
+          "note": "ṣaṣṭhī ekavacana · of · also pañcamī ekavacana",
+          "source": "reference · Pronoun tad, feminine"
+        },
+        {
+          "id": "05-rupa:form:tad-f-6-dvi",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī dual of:\ntad-",
+          "stemClass": "pronoun · feminine",
+          "options": [
+            "tayoḥ",
+            "tābhyām",
+            "te",
+            "tasyāḥ"
+          ],
+          "answer": "tayoḥ",
+          "note": "ṣaṣṭhī dvivacana · of · also saptamī dvivacana",
+          "source": "reference · Pronoun tad, feminine"
+        },
+        {
+          "id": "05-rupa:form:tad-f-6-bah",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī plural of:\ntad-",
+          "stemClass": "pronoun · feminine",
+          "options": [
+            "tāsām",
+            "tābhyaḥ",
+            "tāsu",
+            "tābhiḥ"
+          ],
+          "answer": "tāsām",
+          "note": "ṣaṣṭhī bahuvacana · of",
+          "source": "reference · Pronoun tad, feminine"
+        },
+        {
+          "id": "05-rupa:form:tad-f-7-eka",
+          "type": "choice",
+          "front": "Form the saptamī singular of:\ntad-",
+          "stemClass": "pronoun · feminine",
+          "options": [
+            "tasyām",
+            "tasyāḥ",
+            "tasyai",
+            "tayā"
+          ],
+          "answer": "tasyām",
+          "note": "saptamī ekavacana · in/on",
+          "source": "reference · Pronoun tad, feminine"
+        },
+        {
+          "id": "05-rupa:form:tad-f-7-dvi",
+          "type": "choice",
+          "front": "Form the saptamī dual of:\ntad-",
+          "stemClass": "pronoun · feminine",
+          "options": [
+            "tayoḥ",
+            "tābhyām",
+            "te",
+            "tasyām"
+          ],
+          "answer": "tayoḥ",
+          "note": "saptamī dvivacana · in/on · also ṣaṣṭhī dvivacana",
+          "source": "reference · Pronoun tad, feminine"
+        },
+        {
+          "id": "05-rupa:form:tad-f-7-bah",
+          "type": "choice",
+          "front": "Form the saptamī plural of:\ntad-",
+          "stemClass": "pronoun · feminine",
+          "options": [
+            "tāsu",
+            "tāsām",
+            "tābhyaḥ",
+            "tābhiḥ"
+          ],
+          "answer": "tāsu",
+          "note": "saptamī bahuvacana · in/on",
+          "source": "reference · Pronoun tad, feminine"
+        }
+      ]
+    },
+    {
+      "name": "Form mastery · Tat — tad, neuter",
+      "cards": [
+        {
+          "id": "05-rupa:form:tad-n-1-eka",
+          "type": "choice",
+          "front": "Form the prathamā singular of:\ntad-",
+          "stemClass": "pronoun · neuter",
+          "options": [
+            "tat",
+            "tena",
+            "tasmai",
+            "tasmāt"
+          ],
+          "answer": "tat",
+          "note": "prathamā ekavacana · subject · also dvitīyā ekavacana",
+          "source": "bricks · tad napuṃsakaliṅga"
+        },
+        {
+          "id": "05-rupa:form:tad-n-1-dvi",
+          "type": "choice",
+          "front": "Form the prathamā dual of:\ntad-",
+          "stemClass": "pronoun · neuter",
+          "options": [
+            "te",
+            "tābhyām",
+            "tayoḥ",
+            "tat"
+          ],
+          "answer": "te",
+          "note": "prathamā dvivacana · subject · also dvitīyā dvivacana",
+          "source": "bricks · tad napuṃsakaliṅga"
+        },
+        {
+          "id": "05-rupa:form:tad-n-1-bah",
+          "type": "choice",
+          "front": "Form the prathamā plural of:\ntad-",
+          "stemClass": "pronoun · neuter",
+          "options": [
+            "tāni",
+            "taiḥ",
+            "tebhyaḥ",
+            "teṣām"
+          ],
+          "answer": "tāni",
+          "note": "prathamā bahuvacana · subject · also dvitīyā bahuvacana",
+          "source": "bricks · tad napuṃsakaliṅga"
+        },
+        {
+          "id": "05-rupa:form:tad-n-2-eka",
+          "type": "choice",
+          "front": "Form the dvitīyā singular of:\ntad-",
+          "stemClass": "pronoun · neuter",
+          "options": [
+            "tat",
+            "tena",
+            "tasmai",
+            "tasmāt"
+          ],
+          "answer": "tat",
+          "note": "dvitīyā ekavacana · object · also prathamā ekavacana",
+          "source": "bricks · tad napuṃsakaliṅga"
+        },
+        {
+          "id": "05-rupa:form:tad-n-2-dvi",
+          "type": "choice",
+          "front": "Form the dvitīyā dual of:\ntad-",
+          "stemClass": "pronoun · neuter",
+          "options": [
+            "te",
+            "tābhyām",
+            "tayoḥ",
+            "tat"
+          ],
+          "answer": "te",
+          "note": "dvitīyā dvivacana · object · also prathamā dvivacana",
+          "source": "bricks · tad napuṃsakaliṅga"
+        },
+        {
+          "id": "05-rupa:form:tad-n-2-bah",
+          "type": "choice",
+          "front": "Form the dvitīyā plural of:\ntad-",
+          "stemClass": "pronoun · neuter",
+          "options": [
+            "tāni",
+            "taiḥ",
+            "tebhyaḥ",
+            "teṣām"
+          ],
+          "answer": "tāni",
+          "note": "dvitīyā bahuvacana · object · also prathamā bahuvacana",
+          "source": "bricks · tad napuṃsakaliṅga"
+        },
+        {
+          "id": "05-rupa:form:tad-n-3-eka",
+          "type": "choice",
+          "front": "Form the tṛtīyā singular of:\ntad-",
+          "stemClass": "pronoun · neuter",
+          "options": [
+            "tena",
+            "tat",
+            "tasmai",
+            "tasmāt"
+          ],
+          "answer": "tena",
+          "note": "tṛtīyā ekavacana · by/with",
+          "source": "bricks · tad napuṃsakaliṅga"
+        },
+        {
+          "id": "05-rupa:form:tad-n-3-dvi",
+          "type": "choice",
+          "front": "Form the tṛtīyā dual of:\ntad-",
+          "stemClass": "pronoun · neuter",
+          "options": [
+            "tābhyām",
+            "te",
+            "tayoḥ",
+            "tena"
+          ],
+          "answer": "tābhyām",
+          "note": "tṛtīyā dvivacana · by/with · also caturthī dvivacana, pañcamī dvivacana",
+          "source": "bricks · tad napuṃsakaliṅga"
+        },
+        {
+          "id": "05-rupa:form:tad-n-3-bah",
+          "type": "choice",
+          "front": "Form the tṛtīyā plural of:\ntad-",
+          "stemClass": "pronoun · neuter",
+          "options": [
+            "taiḥ",
+            "tāni",
+            "tebhyaḥ",
+            "teṣām"
+          ],
+          "answer": "taiḥ",
+          "note": "tṛtīyā bahuvacana · by/with",
+          "source": "bricks · tad napuṃsakaliṅga"
+        },
+        {
+          "id": "05-rupa:form:tad-n-4-eka",
+          "type": "choice",
+          "front": "Form the caturthī singular of:\ntad-",
+          "stemClass": "pronoun · neuter",
+          "options": [
+            "tasmai",
+            "tena",
+            "tasmāt",
+            "tat"
+          ],
+          "answer": "tasmai",
+          "note": "caturthī ekavacana · for/to",
+          "source": "bricks · tad napuṃsakaliṅga"
+        },
+        {
+          "id": "05-rupa:form:tad-n-4-dvi",
+          "type": "choice",
+          "front": "Form the caturthī dual of:\ntad-",
+          "stemClass": "pronoun · neuter",
+          "options": [
+            "tābhyām",
+            "te",
+            "tayoḥ",
+            "tasmai"
+          ],
+          "answer": "tābhyām",
+          "note": "caturthī dvivacana · for/to · also tṛtīyā dvivacana, pañcamī dvivacana",
+          "source": "bricks · tad napuṃsakaliṅga"
+        },
+        {
+          "id": "05-rupa:form:tad-n-4-bah",
+          "type": "choice",
+          "front": "Form the caturthī plural of:\ntad-",
+          "stemClass": "pronoun · neuter",
+          "options": [
+            "tebhyaḥ",
+            "taiḥ",
+            "tāni",
+            "teṣām"
+          ],
+          "answer": "tebhyaḥ",
+          "note": "caturthī bahuvacana · for/to · also pañcamī bahuvacana",
+          "source": "bricks · tad napuṃsakaliṅga"
+        },
+        {
+          "id": "05-rupa:form:tad-n-5-eka",
+          "type": "choice",
+          "front": "Form the pañcamī singular of:\ntad-",
+          "stemClass": "pronoun · neuter",
+          "options": [
+            "tasmāt",
+            "tasmai",
+            "tasya",
+            "tena"
+          ],
+          "answer": "tasmāt",
+          "note": "pañcamī ekavacana · from",
+          "source": "bricks · tad napuṃsakaliṅga"
+        },
+        {
+          "id": "05-rupa:form:tad-n-5-dvi",
+          "type": "choice",
+          "front": "Form the pañcamī dual of:\ntad-",
+          "stemClass": "pronoun · neuter",
+          "options": [
+            "tābhyām",
+            "tayoḥ",
+            "te",
+            "tasmāt"
+          ],
+          "answer": "tābhyām",
+          "note": "pañcamī dvivacana · from · also tṛtīyā dvivacana, caturthī dvivacana",
+          "source": "bricks · tad napuṃsakaliṅga"
+        },
+        {
+          "id": "05-rupa:form:tad-n-5-bah",
+          "type": "choice",
+          "front": "Form the pañcamī plural of:\ntad-",
+          "stemClass": "pronoun · neuter",
+          "options": [
+            "tebhyaḥ",
+            "teṣām",
+            "taiḥ",
+            "teṣu"
+          ],
+          "answer": "tebhyaḥ",
+          "note": "pañcamī bahuvacana · from · also caturthī bahuvacana",
+          "source": "bricks · tad napuṃsakaliṅga"
+        },
+        {
+          "id": "05-rupa:form:tad-n-6-eka",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī singular of:\ntad-",
+          "stemClass": "pronoun · neuter",
+          "options": [
+            "tasya",
+            "tasmāt",
+            "tasmin",
+            "tasmai"
+          ],
+          "answer": "tasya",
+          "note": "ṣaṣṭhī ekavacana · of",
+          "source": "bricks · tad napuṃsakaliṅga"
+        },
+        {
+          "id": "05-rupa:form:tad-n-6-dvi",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī dual of:\ntad-",
+          "stemClass": "pronoun · neuter",
+          "options": [
+            "tayoḥ",
+            "tābhyām",
+            "te",
+            "tasya"
+          ],
+          "answer": "tayoḥ",
+          "note": "ṣaṣṭhī dvivacana · of · also saptamī dvivacana",
+          "source": "bricks · tad napuṃsakaliṅga"
+        },
+        {
+          "id": "05-rupa:form:tad-n-6-bah",
+          "type": "choice",
+          "front": "Form the ṣaṣṭhī plural of:\ntad-",
+          "stemClass": "pronoun · neuter",
+          "options": [
+            "teṣām",
+            "tebhyaḥ",
+            "teṣu",
+            "taiḥ"
+          ],
+          "answer": "teṣām",
+          "note": "ṣaṣṭhī bahuvacana · of",
+          "source": "bricks · tad napuṃsakaliṅga"
+        },
+        {
+          "id": "05-rupa:form:tad-n-7-eka",
+          "type": "choice",
+          "front": "Form the saptamī singular of:\ntad-",
+          "stemClass": "pronoun · neuter",
+          "options": [
+            "tasmin",
+            "tasya",
+            "tasmāt",
+            "tasmai"
+          ],
+          "answer": "tasmin",
+          "note": "saptamī ekavacana · in/on",
+          "source": "bricks · tad napuṃsakaliṅga"
+        },
+        {
+          "id": "05-rupa:form:tad-n-7-dvi",
+          "type": "choice",
+          "front": "Form the saptamī dual of:\ntad-",
+          "stemClass": "pronoun · neuter",
+          "options": [
+            "tayoḥ",
+            "tābhyām",
+            "te",
+            "tasmin"
+          ],
+          "answer": "tayoḥ",
+          "note": "saptamī dvivacana · in/on · also ṣaṣṭhī dvivacana",
+          "source": "bricks · tad napuṃsakaliṅga"
+        },
+        {
+          "id": "05-rupa:form:tad-n-7-bah",
+          "type": "choice",
+          "front": "Form the saptamī plural of:\ntad-",
+          "stemClass": "pronoun · neuter",
+          "options": [
+            "teṣu",
+            "teṣām",
+            "tebhyaḥ",
+            "taiḥ"
+          ],
+          "answer": "teṣu",
+          "note": "saptamī bahuvacana · in/on",
+          "source": "bricks · tad napuṃsakaliṅga"
+        }
+      ]
+    },
+    {
       "name": "Table mastery · Rāma — a-stem, all 24 cells",
       "pair": "form → analysis",
       "cards": [

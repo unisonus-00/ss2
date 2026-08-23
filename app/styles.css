@@ -187,6 +187,15 @@
     /* a prompt may put the English meaning above the Sanskrit frame */
     white-space: pre-line;
   }
+  /* The stem class sits under the stem, secondary to it: it names the
+     paradigm the form has to come out of without competing with the item.
+     Not uppercased the way the task cue is — "ī-stem" set in caps hides its
+     own macron, which is the same objection that keeps a choice note in
+     lower case. */
+  .stemclass {
+    margin-top: .5rem; font-size: .82rem; font-style: italic;
+    color: var(--faded); letter-spacing: .02em;
+  }
   .choices {
     display: flex; flex-direction: column; gap: .5rem;
     margin-top: 1.3rem; width: 100%; max-width: 20rem;

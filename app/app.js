@@ -877,6 +877,7 @@ function startRound(cards, opt) {
   mixed = !!opt.mixed;
   trouble = !!opt.trouble;
   clearedAt = SAVED.cleared;
+  established = new Set();              // the scaffold returns with a new round
   queue = shuffle(cards.map(card => ({ card, missedThisRound: false })));
   missed = []; learned = 0;
   if (trouble)            $('stage').textContent = "trouble cards \u00b7 " + cards.length
@@ -1433,6 +1434,7 @@ function paint() {
   if (kind === 'sequence') { paintSequence(c); return; }
 
   $('card').classList.remove('choice', 'seq-card');
+  $('stemclass').hidden = true;          // a reveal card carries no stem class
   $('seq').hidden = true;
   $('choices').hidden = true;
   $('choices').textContent = '';
@@ -1484,6 +1486,29 @@ function paint() {
 let choiceRight = null;                  // null until answered, then true/false
 const KEYS_REVEAL = $('keys').textContent;
 
+/* ── the stem class ────────────────────────────
+   A declension card hands over a stem and asks for one cell of its table,
+   which is answerable only if you know which table.  Naming the gender and
+   stem class under the stem is what keeps the card testing the declension:
+   inferring the class is a different skill, and leaving it implied would
+   test two things while grading one.
+
+   It is a scaffold, so it is withdrawn once it has been earned.  A card that
+   ASKS for the class carries that same string among its options — which is
+   how one is recognised, no flag needed — and once such a card has come up
+   in a round, the rest of the round stops printing the class it established.
+   Nothing is withdrawn that was never asked for: a pronoun takes its gender
+   from its referent rather than from its stem, so `tad-` is never asked and
+   its line always shows. */
+let established = new Set();             // stem classes asked so far this round
+const asksClass = c => !!c.stemClass && (c.options || []).indexOf(c.stemClass) >= 0;
+function paintStemClass(c) {
+  const show = c.stemClass && !asksClass(c) && !established.has(c.stemClass);
+  $('stemclass').textContent = show ? c.stemClass : '';
+  $('stemclass').hidden = !show;
+  if (asksClass(c)) established.add(c.stemClass);
+}
+
 function paintChoice(c) {
   choiceRight = null;
   $('seq').hidden = true;
@@ -1495,6 +1520,7 @@ function paintChoice(c) {
   /* An interactive card carries its task in its own prompt — "Join: nara +
      indrah" — so a cue over the top would only repeat it. */
   $('cue').textContent = '';
+  paintStemClass(c);
   $('gloss').textContent = '';
   $('iast-back').textContent = '';
   $('detail').textContent = '';
@@ -1567,6 +1593,7 @@ function paintSequence(c) {
   /* An interactive card carries its task in its own prompt — "Join: nara +
      indrah" — so a cue over the top would only repeat it. */
   $('cue').textContent = '';
+  paintStemClass(c);
   $('gloss').textContent = '';
   $('iast-back').textContent = '';
   $('detail').textContent = '';

@@ -744,6 +744,102 @@ Every card the app carries counts towards the denominator. What is here is
 curated practice plus the paradigm tables the badges ask for whole — reference
 material was never brought in, so there is nothing to filter out.
 
+### Producing a form is not recognising one
+
+`Table mastery` decks show an inflected form and ask what it is. **`Form
+mastery` decks hand over the bare stem and ask for one named cell**, which is
+the direction the badge actually demands — *a noun through all 8 vibhaktis × 3
+vacanas* — and the direction the workbook drills in sections B and C.
+
+```
+Form the caturthī singular of:
+devī-
+feminine · ī-stem
+        devyai ✓      devyā       devyāḥ      devīm
+```
+
+This is deliberately a **second pass over the same tables**, and the rule that
+a `choice` card must not repeat a `reveal` card is not the objection it looks
+like. A reveal card reversed asks the learner to produce the form and then
+grade themselves on it, and self-grading is at its least reliable exactly
+here — *devyai… or was it devyāḥ?* ticks "knew it" far too often. Three things
+the reveal card cannot do:
+
+| | |
+|:--|:--|
+| **it grades** | the right option is `knew()`, a wrong one `didntKnow()` — the same single retrieval event as everything else |
+| **it forces a discrimination** | the distractors are other cells of *this* paradigm, so a miss is a specific confusion (dative for ablative) rather than a blank |
+| **it withdraws a scaffold** | see below; there is nowhere on a reveal card to put one |
+
+**Distractors are the nearest cells, not random forms.** Same number first,
+ordered by distance in the vibhakti sequence, then the same vibhakti in
+another number, then whatever is left — and never a form equal to the answer,
+which syncretism makes a live hazard. A learner's real confusion is the cell
+next door.
+
+#### The stem class is a scaffold, and it is withdrawn
+
+A stem plus a case name is answerable only if you know which table, so the
+gender and stem class are printed under the stem. Leaving them implied would
+test two skills and grade one — the card would silently be an inference
+question with a declension attached.
+
+But a permanent label is not a scaffold. Each nominal deck carries one card
+that **asks** for the class, and once it has come up in a round the rest of
+that round stops printing it:
+
+```
+Which class does devī- belong to?
+        feminine · ī-stem ✓    feminine · ā-stem     masculine · i-stem
+```
+
+A card that asks is recognised by carrying its own `stemClass` among its
+options — no flag was added for it — and `established` resets with every
+round. Nothing is withdrawn that was never asked for: **`tad-` has no gender
+of its own**, its referent supplies it, so asking would be circular and the
+pronoun decks' stem lines always show.
+
+**A deck's descriptor must not answer a question the deck asks.** The status
+row prints it for the whole round, so `— feminine ī-stem` on the deck would
+have handed over the class card and undone the scaffold on every other card in
+it. The nominal decks are counted (`— all 21 cells`), not classified; the
+pronoun decks, which never ask, may say `— tad, masculine`. A test scans every
+deck in the app for a name containing one of its own cards' answers.
+
+#### The forms are re-derived, never authored
+
+Every answer is an ending from `05-rupa/reference.md` applied to the model stem
+the deck is named for, and `scripts/test.js` re-derives all 279 cells from the
+source files independently and fails on any disagreement — it also fails if a
+cell the source supplies is never asked for, or if a distractor is not a cell
+of that same paradigm.
+
+Which model stem each table takes is **decided by the table, not by taste**:
+
+| | |
+|:--|:--|
+| ṛ-stem → **pitṛ** | the reference gives `-arau`/`-araḥ`, the kinship pattern; `kartṛ` would need the vṛddhi (`kartārau`) it does not state |
+| -at → **bhagavat** | `-antau` yields `bhagavantau` correctly and `mahāntau` only if the ā is lengthened |
+| neuter -a → **phala** | the reference's own first example; `puṣpa` would need ṇatva (`puṣpāṇi`) for its plural, which is Stage 3's rule and not in this table |
+
+That last one is the rule in miniature: where a stem cannot be declined from
+the Stage 5 table alone, the model stem changes, rather than the form being
+quietly corrected from outside the source.
+
+**Sambodhana appears only where the reference tables it** — masculine and
+neuter -a. The other tables stop at row 7, so those decks hold 21 cells and not
+24. The `Table mastery` decks do carry vocatives (`viṣṇo`, `pitaḥ`,
+`bhagavan`) that these tables do not supply; every other form in them agrees
+with the reference exactly, which is how these thirteen were checked.
+
+Thirteen paradigms are carded: the eight nominal types the reference tables,
+plus `asmad`, `yuṣmad` and `tad` in all three genders — masculine and feminine
+from `reference.md`, neuter from `bricks.md`, whose tad tables agree with the
+reference cell for cell. `bricks.md` also declines `etad`, `yad`, `kim`, `idam`
+and `sarva` in three genders each; those are **deliberately not carded**, being
+sixteen more paradigms and some 340 more cards for a stage that already holds
+the largest share of the app.
+
 ### A choice card must not repeat a reveal card
 
 A `choice` card that hands over the same item and expects the same answer as a
@@ -767,6 +863,12 @@ replaced them say so in their `pair`: `35 · Kṛt` and `36 · Taddhita` run
 
 `scripts/test.js` compares every choice card against every reveal card of its
 lesson, in both directions, and fails if one repeats the other.
+
+The `Form mastery` decks are the one deliberate exception, and
+**Producing a form is not recognising one** above says what earns it: they
+grade what a reveal card can only ask the learner to grade themselves, they
+force a discrimination against the neighbouring cell, and they carry a
+scaffold a reveal card has nowhere to put.
 
 ### Card schema
 
@@ -1017,8 +1119,8 @@ Three things here are load-bearing for the compatibility list above:
   chain, and keep each step stamping its own version rather than the newest;
   every `localStorage` touch stays guarded, since it can be absent or full.
 
-The app carries 24 lessons, 155 decks, and 2104 cards — 1929 `reveal`, 170
-`choice` and 5 `sequence`, spread over 16 interactive decks in 12 lessons,
+The app carries 24 lessons, 168 decks, and 2393 cards — 1929 `reveal`, 459
+`choice` and 5 `sequence`, spread over 29 interactive decks in 12 lessons,
 plus the mastery decks holding complete paradigms.
 They are curated practice, not conversions of the reference tables:
 
@@ -1034,7 +1136,9 @@ They are curated practice, not conversions of the reference tables:
   *vocabulary* stays `reveal`.
 - `05-rupa` — 15 cards: recognise a case, produce a form, and pick the case a
   devotional phrase needs. Selected contrasts across stems, never a paradigm
-  table transcribed.
+  table transcribed. Beside them 289 cards in 13 `Form mastery` decks, which
+  are the opposite: every cell the reference tables, asked for by name. See
+  **Producing a form is not recognising one**.
 - `07-karaka` — 11 cards: the role a word plays in a real sentence, plus the
   role→vibhakti mapping and the fact that ṣaṣṭhī is not a kāraka at all. Each
   answer names **both** the semantic role and the morphological case

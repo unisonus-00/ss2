@@ -1365,6 +1365,178 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
+  // ── every declension form is the reference's, not the author's ─────
+  // A production card asserts a form.  Getting one wrong teaches the wrong
+  // paradigm, and no amount of reading the card would show it — so the
+  // answers are re-derived here from Stage 5's own tables and compared,
+  // rather than trusted.  reference.md supplies endings, which are applied
+  // to the model stem the deck is named for; bricks.md supplies tad's
+  // neuter whole.
+  {
+    const fs = require('fs');
+    const read = f => fs.readFileSync(path.resolve(__dirname, '..', '05-rupa', f), 'utf8');
+    const REF = read('reference.md'), BRICKS = read('bricks.md');
+    const VIB = ['prathamā', 'dvitīyā', 'tṛtīyā', 'caturthī', 'pañcamī',
+                 'ṣaṣṭhī', 'saptamī', 'sambodhana'];
+    const NUM = ['ekavacana', 'dvivacana', 'bahuvacana'];
+
+    const section = (text, head) => {
+      const i = text.indexOf('### ' + head);
+      if (i < 0) return null;
+      const rest = text.slice(i + 4);
+      const m = rest.match(/\n#{2,3}\s/);
+      return m ? rest.slice(0, m.index) : rest;
+    };
+    const rowsOf = block => {
+      const out = {};
+      block.split('\n').filter(l => l.trim().startsWith('|')).forEach(l => {
+        const cells = l.trim().replace(/^\||\|$/g, '').split('|').map(c => c.trim());
+        if (cells.length < 2) return;
+        if (/^[-: ]*$/.test(cells.join(''))) return;
+        if (/^(vib\.?|vibhakti|#)$/i.test(cells[0])) return;
+        out[cells[0]] = cells.slice(1);
+      });
+      return out;
+    };
+    // stem -> the paradigm it should decline as, keyed [vibhakti][number]
+    const table = (head, stem, strip, inherit) => {
+      const r = rowsOf(section(REF, head)), t = {};
+      Object.keys(r).forEach(k => {
+        if (k === '3–7') return;                     // "same as masculine"
+        k.split('–').forEach(v => {
+          t[+v] = r[k].map(c => stem.slice(0, stem.length - strip) + c.replace(/^-/, '').replace(/!$/, ''));
+        });
+      });
+      if (inherit) for (let v = 3; v <= 7; v++) t[v] = inherit[v];
+      return t;
+    };
+    const pron = (text, head, inherit) => {
+      const r = rowsOf(section(text, head)), t = {};
+      Object.keys(r).forEach(k => {
+        let n;
+        if (/^\d$/.test(k)) n = +k;
+        else { const w = k.toLowerCase().split(/\s/)[0]; n = VIB.indexOf(w) + 1; if (!n) return; }
+        t[n] = r[k].map(c => c.replace(/\s*\(.*?\)/g, '').trim());
+      });
+      if (inherit) for (let v = 3; v <= 7; v++) t[v] = inherit[v];
+      return t;
+    };
+    const mA = table('Masculine -a (deva, śiva, rāma)', 'śiva', 1);
+    const tadM = pron(REF, 'Pronoun: tad (3rd person, masculine)');
+    const WANT = {
+      'Form mastery · Śiva — all 24 cells': mA,
+      'Form mastery · Phala — all 24 cells':
+        table('Neuter -a (phala, puṣpa, jala)', 'phala', 1, table('Masculine -a (deva, śiva, rāma)', 'phala', 1)),
+      'Form mastery · Mālā — all 21 cells': table('Feminine -ā (mālā, gaṅgā, latā)', 'mālā', 1),
+      'Form mastery · Devī — all 21 cells': table('Feminine -ī (nadī, devī, lakṣmī)', 'devī', 1),
+      'Form mastery · Agni — all 21 cells': table('Masculine -i (agni, muni)', 'agni', 1),
+      'Form mastery · Viṣṇu — all 21 cells': table('Masculine -u (viṣṇu, guru)', 'viṣṇu', 1),
+      'Form mastery · Pitṛ — all 21 cells': table('Ṛ-stem (mātṛ, pitṛ, kartṛ)', 'pitṛ', 1),
+      'Form mastery · Bhagavat — all 21 cells': table('Consonant-stem -at (bhagavat, mahat)', 'bhagavat', 2),
+      'Form mastery · Asmad — the first person': pron(REF, 'Pronoun: asmad (1st person)'),
+      'Form mastery · Yuṣmad — the second person': pron(REF, 'Pronoun: yuṣmad (2nd person)'),
+      'Form mastery · Saḥ — tad, masculine': tadM,
+      'Form mastery · Sā — tad, feminine': pron(REF, 'Pronoun: tad (3rd person, feminine)'),
+      'Form mastery · Tat — tad, neuter': pron(BRICKS, 'Napuṃsakaliṅga (Neuter)', tadM),
+    };
+
+    const p = await open(browser);
+    const got = await p.evaluate(names => {
+      const out = {};
+      names.forEach(n => { out[n] = (DECKS[n] || []).map(c => ({
+        id: c.id, front: c.front, answer: c.answer, options: c.options,
+        stemClass: c.stemClass, note: c.note })); });
+      return out;
+    }, Object.keys(WANT));
+    await p.close();
+
+    const bad = [], covered = {}, vibsSeen = new Set(), numsSeen = new Set();
+    Object.entries(WANT).forEach(([name, want]) => {
+      const cards = got[name] || [];
+      if (!cards.length) { bad.push(name + ': deck missing'); return; }
+      const cells = new Set();
+      cards.forEach(c => {
+        const m = (c.front || '').match(/^Form the (\S+) (singular|dual|plural) of:/);
+        if (!m) return;                                    // the class card
+        const v = VIB.indexOf(m[1]) + 1, n = ['singular', 'dual', 'plural'].indexOf(m[2]);
+        if (!v) { bad.push(c.id + ': unknown vibhakti ' + m[1]); return; }
+        const expect = want[v] && want[v][n];
+        if (!expect) { bad.push(c.id + ': the source has no such cell'); return; }
+        if (c.answer !== expect) bad.push(c.id + ': ' + c.answer + ' ≠ ' + expect);
+        // distractors must be real cells of the SAME paradigm
+        const real = new Set([].concat(...Object.values(want)));
+        c.options.filter(o => o !== c.answer).forEach(o => {
+          if (!real.has(o)) bad.push(c.id + ': "' + o + '" is not a cell of this paradigm');
+        });
+        cells.add(v + ':' + n);
+        vibsSeen.add(VIB[v - 1]); numsSeen.add(NUM[n]);
+      });
+      // every cell the source supplies is asked for
+      const wanted = [];
+      Object.keys(want).forEach(v => want[v].forEach((f, n) => { if (f) wanted.push(v + ':' + n); }));
+      const missing = wanted.filter(k => !cells.has(k));
+      if (missing.length) bad.push(name + ': never asks ' + missing.join(','));
+      covered[name] = cells.size;
+    });
+
+    ok('every produced form is the one Stage 5 tables', !bad.length, bad.slice(0, 5).join(' | '));
+    ok('every cell the source supplies is asked for',
+      Object.values(covered).every(n => n >= 21), JSON.stringify(covered));
+    ok('the bank spans all eight vibhaktis and all three numbers',
+      vibsSeen.size === 8 && numsSeen.size === 3,
+      [...vibsSeen].join(',') + ' | ' + [...numsSeen].join(','));
+    console.log('        ' + Object.values(covered).reduce((a, b) => a + b, 0)
+      + ' cells re-derived across ' + Object.keys(WANT).length + ' paradigms');
+  }
+
+  // ── the stem class is a scaffold, and it is withdrawn ──────────────
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const DECK = 'Form mastery · Devī — all 21 cells';
+      const CLASS = '05-rupa:class:devi';
+      const shown = () => document.getElementById('stemclass').hidden
+        ? null : document.getElementById('stemclass').textContent;
+      let before = null, onAsk = 'not reached', after = null, styleOK = false;
+      for (let attempt = 0; attempt < 40 && after === null; attempt++) {
+        loadDeck(DECK);
+        let seenAsk = false;
+        for (let i = 0; i < 8; i++) {
+          if (current.card.id === CLASS) { onAsk = shown(); seenAsk = true; }
+          else if (!seenAsk && before === null) {
+            before = shown();
+            const el = document.getElementById('stemclass'), item = document.getElementById('dn');
+            styleOK = el.compareDocumentPosition(item) === Node.DOCUMENT_POSITION_PRECEDING
+              && parseFloat(getComputedStyle(el).fontSize) < parseFloat(getComputedStyle(item).fontSize);
+          } else if (seenAsk && after === null) after = shown();
+          const b = [...document.querySelectorAll('#choices .opt')]
+            .find(x => x.textContent === current.card.answer);
+          if (!b) break;
+          b.click(); document.getElementById('g-next').click();
+        }
+      }
+      // a deck's descriptor must not answer a question the deck asks
+      const leaks = [];
+      Object.keys(DECKS).forEach(n => DECKS[n].forEach(c => {
+        if (typeof c.answer === 'string' && c.answer.length > 3 && n.includes(c.answer))
+          leaks.push(n + ' ⊃ ' + c.answer);
+      }));
+      // and a reveal card never carries one
+      loadDeck('Table mastery · Rāma — a-stem, all 24 cells');
+      const onReveal = shown();
+      return { before, onAsk, after, styleOK, leaks, onReveal };
+    });
+    ok('the stem class is shown until it has been asked for',
+      r.before === 'feminine · ī-stem', JSON.stringify(r.before));
+    ok('it sits under the stem, smaller than it', r.styleOK);
+    ok('the card that asks for it does not also print it', r.onAsk === null, JSON.stringify(r.onAsk));
+    ok('and it is withdrawn once established', r.after === null, JSON.stringify(r.after));
+    ok('a reveal card carries no stem class', r.onReveal === null, JSON.stringify(r.onReveal));
+    ok('no deck name answers a question that deck asks',
+      !r.leaks.length, r.leaks.slice(0, 3).join(' | '));
+    await p.close();
+  }
+
   // ── no choice card repeats a reveal card ───────────────────────────
   // A choice card that hands over the same operation and the same answer as
   // a reveal card in the same lesson is strictly the weaker of the two: the
