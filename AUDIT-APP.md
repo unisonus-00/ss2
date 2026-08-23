@@ -155,6 +155,19 @@ count as one session for pacing and retention. *Pedagogy · effort small.*
 
 ### H3. A correct guess is a cold recall
 
+> **Resolved.** A choice card now wants its evidence twice, on two different
+> days — chance has to land twice (one time in nine or sixteen) and a miss in
+> between resets it. `SAVED.pending[id]` holds the day of the first win.
+> Choice only, by the arithmetic: a four-piece sequence comes out right one
+> time in twenty-four and there are five of them, and a reveal card is not
+> picked from anything. The consequence needed saying rather than discovering
+> — a list of choice cards reads 0% after a faultless first round — so the
+> results screen adds *N waiting to be confirmed* and the drawer's row carries
+> *· N to confirm*. Verified through the UI: a blind run that always taps the
+> first option masters nothing where it previously mastered the five it
+> guessed; an honest learner reaches 100% the next day. Existing mastery is
+> deliberately not revoked. Seven checks added; the suite is now 440.
+
 `answerChoice` → `knew()` treats a 1-in-3 / 1-in-4 guess identically to
 recall: instant `markMastered`, review-accuracy credit. 372 cards (16%) —
 including every Rūpa-siddhi production deck, i.e. the paradigm mastery the
@@ -373,7 +386,7 @@ per-deck pairs and cues correct. Recurring smaller issues:
 | C1 | Review miss ejects card from review pool; promise inverted | ~~Critical~~ **fixed** | small | pedagogy/engineering |
 | H1 | Replay rounds grant mastery moments after answer shown | ~~High~~ **fixed** | small | pedagogy/engineering |
 | H2 | Session-counted spacing; "retained" attainable in one sitting | ~~High~~ **fixed** | small | pedagogy |
-| H3 | Choice-card guessing counts as cold recall | High | medium | pedagogy |
+| H3 | Choice-card guessing counts as cold recall | ~~High~~ **fixed** | medium | pedagogy |
 | H4 | Production direction never scheduled; mastery direction-blind | High | medium | pedagogy |
 | H5 | Guided path fronts 609 vocab cards before any grammar | High | medium | pedagogy/UX |
 | M1 | Stage 5/6: production forced above recognition tables by order rule | Medium | medium | content/pedagogy |

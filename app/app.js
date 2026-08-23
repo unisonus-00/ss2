@@ -325,6 +325,9 @@ SAVED.review.cards = SAVED.review.cards || {};
 SAVED.trouble = SAVED.trouble || {};       // per-card history, keyed by card
 SAVED.cleared = SAVED.cleared || 0;        // cards that have left the trouble list
 SAVED.mastered = SAVED.mastered || {};     // card ids answered right on a cold showing
+/* Choice cards awaiting a second, independent success: id -> the day of the
+   first one.  See markMastered. */
+SAVED.pending = SAVED.pending || {};
 /* Stages whose introduction has been read: a stage's lists stay shut until
    the learner has been through what the stage is for and pressed Begin. */
 SAVED.begun = SAVED.begun || {};
@@ -541,16 +544,59 @@ const dueLabel = n => (n > REVIEW_SIZE ? REVIEW_SIZE + '+' : n) + ' due';
    Every kind of round feeds this, review draws and trouble drills included.
    Whether a card came back cold is a fact about the card, not about which
    round it happened to turn up in. */
+/* ── a guess is not a recall ────────────────────────────────
+   A reveal card asks the learner to produce the answer and then say whether
+   they had it.  A CHOICE card puts the answer on the screen among three or
+   four, so a tap is right one time in three or four with no knowledge at all
+   — and a single cold win was enough to mark a card learned for good.  The
+   tick only came off if the card was missed somewhere later, so every lucky
+   tap stuck.  372 cards are choice, the thirteen Rūpa-siddhi lists among them
+   entirely so: the paradigm production the badges actually ask for was the
+   most guessable material in the app.
+
+   So a choice card wants the evidence twice, on two different days.  Chance
+   alone then has to land twice, which is one time in nine or sixteen, and a
+   miss in between resets it.  That is the app's own idiom for durable
+   evidence rather than a new one: `retained` already means right on the first
+   try in two separate review sessions, and the trouble list already refuses
+   three right answers in one sitting.
+
+   Choice cards only, and the reason is the arithmetic.  A four-piece sequence
+   assembled at random comes out right one time in twenty-four, and there are
+   five such cards in the app; a reveal card is not picked from anything.  The
+   exposure is all in the one type, so the friction goes there and nowhere
+   else. */
+const needsConfirming = card => (card.type || 'reveal') === 'choice';
+const awaitingConfirmation = k => !!SAVED.pending[k] && !SAVED.mastered[k];
+
 function markMastered(card) {
   const k = cardKey(card);
   if (SAVED.mastered[k]) return;
+  if (needsConfirming(card)) {
+    const first = SAVED.pending[k];
+    /* First win, or a second one on the same day: one day's evidence either
+       way, and the day is the unit everywhere else in the app. */
+    if (!first) { SAVED.pending[k] = today(); save(); return; }
+    if (first === today()) return;
+    delete SAVED.pending[k];
+  }
   SAVED.mastered[k] = 1; save();
 }
 function unmarkMastered(card) {
   const k = cardKey(card);
-  if (!SAVED.mastered[k]) return;
-  delete SAVED.mastered[k]; save();
+  /* A miss resets the evidence, half-gathered evidence included: the run
+     starts again rather than resuming where it was interrupted. */
+  if (!SAVED.mastered[k] && !SAVED.pending[k]) return;
+  delete SAVED.mastered[k];
+  delete SAVED.pending[k];
+  save();
 }
+
+/* How many of a set are half-way there — one cold win recorded, waiting on
+   the second.  The drawer and the results screen both say so, because a list
+   that reads 0% after a faultless round is not a figure a learner can act on
+   without being told why. */
+const confirmingIn = ids => countIn(ids, awaitingConfirmation);
 
 /* ── how strongly a card is held ───────────────────────────
    A faultless run says the card can be produced minutes after being taught.
@@ -1155,7 +1201,10 @@ function deckRow(name, cls) {
     on: name === deckName && !deckLocked(name),
     bar: cls !== 'dk', title: name,
     sub: [DECK_DESC(name), DECKS[name].length + ' cards',
-          allRetained(DECK_IDS[name]) ? 'retained' : ''].filter(Boolean).join(' · ')
+          allRetained(DECK_IDS[name]) ? 'retained'
+            : confirmingIn(DECK_IDS[name])
+              ? confirmingIn(DECK_IDS[name]) + ' to confirm' : ''
+         ].filter(Boolean).join(' · ')
   });
   b.classList.add('leaf');
   /* Shut until the stage has been begun.  The learner meets the stage before
@@ -2702,6 +2751,14 @@ function finish() {
                + SAVED.review.seen + " cards reviewed";
   if (justCleared)
     scoreLine += "<br><b>" + justCleared + "</b> left the trouble list";
+  /* A choice card wants its evidence twice, so a faultless first round on a
+     list of them moves no percentage at all.  Say so here, where the work was
+     just done: an unexplained 0% after a clean round reads as a fault. */
+  const waiting = roundSource.reduce(
+    (n, c) => n + (awaitingConfirmation(cardKey(c)) ? 1 : 0), 0);
+  if (waiting)
+    scoreLine += "<br><b>" + waiting + "</b> waiting to be confirmed \u2014 answer "
+               + (waiting === 1 ? "it" : "them") + " right again another day";
   $('r-score').innerHTML = scoreLine;
   renderAwards();
   renderHandoff();

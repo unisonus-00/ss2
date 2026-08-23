@@ -2995,6 +2995,106 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
+  // ── a guess is not a recall ────────────────────────────────────────
+  // A choice card puts the answer on screen among three or four, so a tap is
+  // right one time in three with no knowledge at all — and a single cold win
+  // used to mark a card learned for good, the tick only coming off if it was
+  // missed somewhere later.  Every lucky tap stuck.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const out = {};
+      const name = Object.keys(DECKS).find(n =>
+        DECKS[n].length >= 6 && DECKS[n].every(c => c.type === 'choice'));
+      const ids = DECK_IDS[name];
+      out.deck = name;
+      const rightAnswer = () => {
+        [...document.querySelectorAll('#choices .opt')]
+          .find(x => x.textContent === current.card.answer).click();
+        document.getElementById('g-next').click();
+      };
+      const playRight = () => {
+        let g = 0;
+        while (current && g++ < 60) rightAnswer();
+      };
+      const reset = () => {
+        SAVED.mastered = {}; SAVED.pending = {}; SAVED.trouble = {}; SAVED.decks = {};
+      };
+
+      /* one faultless round earns no tick — only half the evidence */
+      reset();
+      loadDeck(name); playRight();
+      out.day1 = { pct: progressOf(ids).pct, waiting: confirmingIn(ids) };
+      out.day1Says = document.getElementById('r-score').textContent;
+
+      /* and a second round the same day is still one day's evidence */
+      loadDeck(name); playRight();
+      out.sameDayAgain = progressOf(ids).pct;
+
+      /* the drawer says how many are half-way rather than leaving a bare 0% */
+      openDrawer(); renderDrawer();
+      out.drawerSays = [...document.querySelectorAll('.dk')]
+        .some(b => b.title.indexOf(name) === 0 && /to confirm/.test(b.textContent));
+      closeDrawer();
+
+      /* a day later, the same answers confirm them */
+      Object.keys(SAVED.pending).forEach(k => { SAVED.pending[k] = '2000-01-01'; });
+      loadDeck(name); playRight();
+      out.day2 = { pct: progressOf(ids).pct, full: progressOf(ids).full,
+                   waiting: confirmingIn(ids) };
+
+      /* a miss resets the evidence rather than pausing it */
+      reset();
+      const card = DECKS[name][0];
+      startRound([card], {});
+      rightAnswer();                                  // half-way there
+      out.halfWay = !!SAVED.pending[card.id];
+      startRound([card], {});
+      [...document.querySelectorAll('#choices .opt')]
+        .find(x => x.textContent !== card.answer).click();
+      document.getElementById('g-next').click();
+      out.afterMiss = { pending: !!SAVED.pending[card.id],
+                        mastered: !!SAVED.mastered[card.id] };
+
+      /* chance alone now has to land twice: a blind run masters nothing */
+      reset();
+      loadDeck(name);
+      let g = 0;
+      while (current && g++ < 60) {
+        document.querySelector('#choices .opt').click();   // always the first
+        document.getElementById('g-next').click();
+      }
+      out.blind = { mastered: progressOf(ids).done, lucky: confirmingIn(ids) };
+
+      /* and a reveal card, where the learner attests the recall, is untouched */
+      reset();
+      const rev = Object.keys(DECKS).find(n =>
+        DECKS[n].every(c => (c.type || 'reveal') === 'reveal'));
+      startRound([DECKS[rev][0]], {});
+      reveal(); knew();
+      out.revealMastered = !!SAVED.mastered[DECKS[rev][0].id];
+      return out;
+    });
+    ok('a faultless first round on a choice list earns no tick yet',
+      r.day1.pct === 0 && r.day1.waiting > 0, JSON.stringify(r.day1));
+    ok('and says so, rather than leaving an unexplained 0%',
+      /waiting to be confirmed/.test(r.day1Says) && r.drawerSays,
+      JSON.stringify({ results: /waiting to be confirmed/.test(r.day1Says),
+                       drawer: r.drawerSays }));
+    ok('a second round the same day is still one day\u2019s evidence',
+      r.sameDayAgain === 0, r.sameDayAgain + '%');
+    ok('a day later the same answers confirm them',
+      r.day2.full && r.day2.waiting === 0, JSON.stringify(r.day2));
+    ok('a miss resets the evidence rather than pausing it',
+      r.halfWay && !r.afterMiss.pending && !r.afterMiss.mastered,
+      JSON.stringify(r.afterMiss));
+    ok('so chance alone masters nothing, however lucky the run',
+      r.blind.mastered === 0, r.blind.mastered + ' mastered, '
+        + r.blind.lucky + ' lucky taps held half-way');
+    ok('while a reveal card still counts on one cold showing', r.revealMastered);
+    await p.close();
+  }
+
   // ── what "learned" means, and what Abhyāsa draws on ───────────────
   // A list played to the end used to be complete at any score, which fed the
   // review with material the learner had never got right and moved the
@@ -3757,7 +3857,11 @@ const open = async (browser, opts = {}) => {
   {
     const p = await open(browser);
     const r = await p.evaluate(() => {
-      const deck = DECKS['Puruṣa-lakāra — person, tense and mood · practice'];
+      /* a reveal deck: the learner attests the recall, so one cold win is the
+         evidence.  A choice card is picked from three or four and wants the
+         evidence twice — that rule has a block of its own below. */
+      const deck = DECKS[Object.keys(DECKS).find(n => DECKS[n].length >= 4
+        && DECKS[n].every(c => (c.type || 'reveal') === 'reveal'))];
       const ids = new Set(deck.map(c => c.id));
       startRound(deck.slice(0, 3), {});
       const first = current.card.id;

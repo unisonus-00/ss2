@@ -1134,6 +1134,15 @@ Three rules keep the figure honest:
 - **A tick means all of it.** 100% is `done === total`, not a rounded 99.6;
   `progressOf` holds a not-quite-finished list at 99% and a barely-started one
   at 1% rather than letting either round away.
+- **A guess is not a recall.** A reveal card asks the learner to produce the
+  answer and then say whether they had it. A **choice** card puts the answer on
+  screen among three or four, so a tap is right one time in three or four with
+  no knowledge at all — and a single cold win marked the card learned for good,
+  the tick only coming off if it was missed somewhere later. Every lucky tap
+  stuck. So a choice card wants the evidence **twice, on two different days**:
+  chance then has to land twice, one time in nine or sixteen, and a miss in
+  between resets it rather than pausing it. `SAVED.pending[id]` holds the day
+  of the first win until the second confirms it.
 - **A right answer has to be cold, and the unit is the day.** `knew()` already
   refused a card missed earlier in the same round. But a round is not what
   makes a recall cold: *Practise these again* and the missed pile both start a
@@ -1165,6 +1174,30 @@ Two things follow, and both are the point rather than side effects:
 So a first pass that misses three of eight ends the day at 63% however many
 times those three are replayed, and the pile still names them; run the pile
 the next day and the list completes. A round with no misses is untouched.
+
+**Choice cards only, and the reason is the arithmetic.** A four-piece
+`sequence` assembled at random comes out right one time in twenty-four, and
+there are five such cards in the app; a `reveal` card is not picked from
+anything. The exposure is all in the one type — 372 cards, the thirteen
+`Rūpa-siddhi` lists among them entirely so, which makes the paradigm
+production the badges actually ask for the most guessable material here — so
+the friction goes there and nowhere else. This is the app's own idiom rather
+than a new one: `retained` already means right on the first try in two
+separate review sessions, and the trouble list already refuses three right
+answers in one sitting.
+
+**A list of choice cards therefore reads 0% after a faultless first round,
+and that has to be said rather than left to be discovered.** An unexplained
+nought after a clean round reads as a fault, so both surfaces that would show
+it say what it means instead: the results screen adds *16 waiting to be
+confirmed — answer them right again another day*, and the drawer's row carries
+`· 16 to confirm` where a finished list carries `retained`. A blind run
+through a 16-card list now masters nothing where it used to master the five it
+happened to guess.
+
+`SAVED.pending` is additive and absent-tolerant, and mastery already held is
+deliberately **not** revoked — a learner's history is not invalidated to apply
+a new rule to it, so the requirement governs what is earned from here on.
 
 Every card the app carries counts towards the denominator. What is here is
 curated practice plus the paradigm tables the badges ask for whole — reference
