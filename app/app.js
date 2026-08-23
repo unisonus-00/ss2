@@ -437,20 +437,31 @@ function troubleCards() {
   return out.sort((a, b) => SAVED.trouble[cardKey(b)].w - SAVED.trouble[cardKey(a)].w);
 }
 
-/* The lists that have been played through to the end at least once.  Only
-   these feed the review — there is no point testing what was never learnt. */
-const finishedDecks = () => Object.keys(DECKS).filter(n => (SAVED.decks[n] || {}).best);
-/* Everything the review can draw on: one entry per distinct card across
-   the finished lists.  The same word can sit in more than one list, and
-   meeting it twice would waste two of the twenty. */
+/* The lists every card of which has come back cold at least once.  Playing a
+   list to the end used to be enough — `ds.best` exists at any score, so a
+   list scored 0/15 counted as complete, entered the review and moved the
+   mastery figure.  "Complete" now means what the word says. */
+const finishedDecks = () => Object.keys(DECKS).filter(n => progressOf(DECK_IDS[n]).full);
+/* Everything the review can draw on: one entry per distinct card that has
+   been answered right on a first showing.  The same word can sit in more
+   than one list, and meeting it twice would waste two of the twenty.
+
+   The pool is cards rather than lists, which makes the whole model one
+   sentence: get a card right cold, and Abhyāsa keeps it alive.  It also
+   keeps the mode honest — there is no point testing what was never learnt,
+   which is exactly what a list finished at 0/15 used to feed it. */
 function reviewPool() {
   const seen = new Map();
-  finishedDecks().forEach(n => DECKS[n].forEach(c => {
+  Object.keys(DECKS).forEach(n => DECKS[n].forEach(c => {
     const k = cardKey(c);
-    if (!seen.has(k)) seen.set(k, c);
+    if (SAVED.mastered[k] && !seen.has(k)) seen.set(k, c);
   }));
   return [...seen.values()];
 }
+/* How many of those are due now.  `overdueBy` already paces the draw; this
+   is the same test, counted rather than sorted, so the mode can say what is
+   waiting instead of only saying what it is. */
+const dueCount = () => reviewPool().filter(c => overdueBy(c) >= 0).length;
 
 /* ── mastery ───────────────────────────────────────
    A card is mastered once it has come back right on its FIRST showing in a
@@ -472,6 +483,30 @@ function unmarkMastered(card) {
   if (!SAVED.mastered[k]) return;
   delete SAVED.mastered[k]; save();
 }
+
+/* ── how strongly a card is held ───────────────────────────
+   A faultless run says the card can be produced minutes after being taught.
+   It does not say it will be there next week, and that is what the review
+   already measures: `SAVED.review.cards[id]` keeps, per card, how many
+   consecutive Abhyāsa sessions it has come back right on the first try.
+
+   So two strengths, and no new stored state for either:
+
+     learned    right on a first showing at least once  (SAVED.mastered)
+     retained   and right on the first try in RETAIN separate review
+                sessions since, days apart, drawn out of its list
+
+   A third tier was considered and cut: two states a learner can name are
+   worth more than three they have to look up. */
+const RETAIN = 2;
+/* The per-card history, always a map: a store written before v4, or one a
+   test has replaced wholesale, has no `cards` at all, and three separate
+   readers would each have to remember that. */
+const reviewCards = () => (SAVED.review.cards = SAVED.review.cards || {});
+const streakOf = k => (reviewCards()[k] || [0, 0])[1];
+const isRetained = k => !!SAVED.mastered[k] && streakOf(k) >= RETAIN;
+const countIn = (ids, test) => { let n = 0; ids.forEach(k => { if (test(k)) n++; }); return n; };
+const allRetained = ids => ids.size > 0 && countIn(ids, isRetained) === ids.size;
 
 /* ── the five course tracks ─────────────────────────────
    The curriculum's own shape, one level above the numbered lessons.  A stage
@@ -986,7 +1021,8 @@ function deckRow(name, cls) {
        landing card */
     on: name === deckName && !deckLocked(name),
     bar: cls !== 'dk', title: name,
-    sub: [DECK_DESC(name), DECKS[name].length + ' cards'].filter(Boolean).join(' · ')
+    sub: [DECK_DESC(name), DECKS[name].length + ' cards',
+          allRetained(DECK_IDS[name]) ? 'retained' : ''].filter(Boolean).join(' · ')
   });
   b.classList.add('leaf');
   /* Shut until the stage has been begun.  The learner meets the stage before
@@ -995,7 +1031,7 @@ function deckRow(name, cls) {
   if (deckLocked(name)) {
     b.disabled = true;
     b.classList.add('locked');
-    b.title = name + ' — begin the stage to open its lists';
+    b.title = name + ' — begin ' + trackOf(DECK_STAGE[name]).name + ' to open it';
   } else b.addEventListener('click', () => chooseDeck(name));
   return b;
 }
@@ -1074,9 +1110,12 @@ function renderDrawer() {
      learner finishes, and it is the same act that puts the list into review —
      so one number carries the whole model. */
   const done = finishedDecks().length;
+  const due = reviewPool().length >= REVIEW_MIN ? dueCount() : 0;
   fillRow(document, {
     /* the figure and its rank, and nothing else: what it is made of is on
-       the card this button opens */
+       the card this button opens.  Beside the name, the one thing that
+       changes on its own and is worth coming back for. */
+    '#dp-label': due ? 'abhyāsa · ' + due + ' due' : 'abhyāsa',
     '#dp-pct': r.score === null ? 'Unranked' : r.score + '% \u00b7 ' + r.name,
     '#dp-cards': done + ' of ' + all
   });
@@ -1185,7 +1224,7 @@ function syncReviewUI() {
    What the mode is, whether it can run yet, and the button that runs it. */
 function renderReviewPanel() {
   const pool = reviewPool().length, ready = pool >= REVIEW_MIN;
-  const lists = finishedDecks().length, s = lists > 1 ? "s" : "";
+  const due = dueCount();
   /* What just happened, and what a review is: two plain statements rather
      than a figure the learner has to reverse-engineer. */
   const m = masteryPct();
@@ -1193,12 +1232,14 @@ function renderReviewPanel() {
     : m === null ? "Ready to review"
     : m + "% correct on first try";
   $('rp-what').textContent = !ready
-    ? "Complete more lists \u2014 " + pool + " of " + REVIEW_MIN + " cards so far"
-    : "Reviewing " + REVIEW_SIZE + " cards from " + lists + " completed list" + s;
+    ? "Learn " + REVIEW_MIN + " cards to unlock \u2014 " + pool + " so far"
+    : "Reviewing " + REVIEW_SIZE + " cards from " + pool + " learned \u00b7 "
+      + due + " due now";
   $('rp-note').textContent = "Abhy\u0101sa checks how well your studied material is "
-    + "holding up over time. It mixes cards from completed lists and counts only "
-    + "your first answer. Cards you remember return later; cards you miss return "
-    + "sooner, so review stays focused without becoming repetitive.";
+    + "holding up over time. A card joins it the moment you answer it right "
+    + "first time, and only your first answer counts here. Cards you remember "
+    + "return later; cards you miss return sooner, so review stays focused "
+    + "without becoming repetitive.";
   /* Stated here as well as in the drawer, and in the same words: the figure
      and its two readings.  Never the multiplication. */
   const r = rankOf();
@@ -1321,13 +1362,27 @@ function renderTrack(id) {
   const p = progressOf(row.ids);
   $('s-stats').hidden = !begun;
   if (begun) $('s-pct').textContent = p.pct + '%';
+  /* Two aggregates, never a directory: what of this track you have learnt,
+     and — once a review has set an accuracy — the same mastery figure the
+     drawer carries, measured against this track alone. */
+  const rank = rankOf(row.ids);
+  $('s-rankrow').hidden = !begun || rank.score === null;
+  if (rank.score !== null) $('s-rank').textContent = rank.score + '% \u00b7 ' + rank.name;
   const next = names.find(n => finishedDecks().indexOf(n) < 0) || names[0];
   const go = $('s-go');
   go.textContent = (begun ? 'Continue — ' : 'Begin — ') + DECK_SHORT(next);
   go.onclick = () => { beginTrack(id); chooseDeck(next); };
-  /* Abhyāsa is a reminder here, not a section: one line and a way in. */
+  /* Abhyāsa is a reminder here, not a section: one line and a way in — and
+     the line says what is waiting rather than only what the mode is. */
+  const due = reviewPool().length >= REVIEW_MIN ? dueCount() : 0;
   $('s-review').hidden = !begun;
+  $('s-review').textContent = due ? 'Abhyāsa \u00b7 ' + due + ' due' : 'Abhyāsa review';
   $('s-side').hidden = !begun;
+  $('s-side').textContent = due
+    ? 'Abhyāsa has ' + due + ' card' + (due === 1 ? '' : 's') + ' waiting: cards you '
+      + 'have already got right, brought back before they fade.'
+    : 'A card joins Abhyāsa the moment you get it right first time, and comes '
+      + 'back later to see whether it stayed.';
   $('s-review').onclick = () => openPanel('reviewpanel');
   trackShown = id;
   return true;
@@ -1452,7 +1507,7 @@ const restFor = streak => REST[Math.min(Math.max(streak, 0), REST.length - 1)];
    is still resting, and a card never reviewed is treated as maximally
    overdue so new material leads. */
 function overdueBy(card) {
-  const rec = SAVED.review.cards[cardKey(card)];
+  const rec = reviewCards()[cardKey(card)];
   if (!rec) return Infinity;
   return (SAVED.review.runs - rec[0]) - restFor(rec[1]);
 }
@@ -1500,16 +1555,16 @@ function mixCards() {
 function recordReview(cards, missedSet) {
   const now = SAVED.review.runs;
   cards.forEach(c => {
-    const k = cardKey(c), prev = SAVED.review.cards[k];
+    const k = cardKey(c), prev = reviewCards()[k];
     const streak = missedSet.has(c) ? 0 : ((prev && prev[1]) || 0) + 1;
-    SAVED.review.cards[k] = [now, streak];
+    reviewCards()[k] = [now, streak];
   });
 }
 
 function startMixedReview() {
   if (reviewPool().length < REVIEW_MIN) return;      // the button is disabled, but still
-  const lists = finishedDecks().length;
   const cards = mixCards();
+  const lists = new Set(cards.map(c => DECK_OF.get(c))).size;
   deckName = MIX;
   relabelAll();
   $('stage').textContent = ["abhyāsa", cards.length + " cards",
@@ -2283,7 +2338,8 @@ function finish() {
   const justCleared = SAVED.cleared - clearedAt;
   lastRound = { deck: deckName, lesson: LESSON_LABEL[DECK_LESSON[deckName]], firstPass, total,
                 reviewing, mixed, trouble, justCleared,
-                lists: mixed && !trouble ? finishedDecks().length : 0 };
+                lists: mixed && !trouble
+                  ? new Set(roundSource.map(c => DECK_OF.get(c))).size : 0 };
 
   if (mixed) {
     /* A draw measures; it does not keep books.  No list's best score and no
@@ -2396,8 +2452,8 @@ function scoreText() {
   if (r.mixed) {
     const m = masteryPct();
     return "अभ्यास · sanskrit flashcards\n"
-         + "Mixed review — a random draw from " + r.lists
-         + " finished list" + (r.lists > 1 ? "s" : "") + "\n"
+         + "Mixed review — a random draw across " + r.lists
+         + " list" + (r.lists > 1 ? "s" : "") + "\n"
          + "Known cold: " + r.firstPass + " of " + r.total + " · " + pct + "%\n"
          + "\u25cf".repeat(filled) + "\u25cb".repeat(10 - filled)
          + (m === null ? "" : "\nReview mastery: " + m + "%");
@@ -2473,17 +2529,25 @@ const RANKS = [
    A list enters when it is completed, so this is the pool over everything —
    the same act the learner already understands ("finish a list and it starts
    coming back"), rather than a second, invisible notion of mastery. */
-function coverageOf() {
-  const done = reviewPool().length, total = ALL_IDS.size;
+function coverageOf(ids) {
+  const pool = new Set(reviewPool().map(cardKey));
+  const within = ids || ALL_IDS;
+  let done = 0;
+  within.forEach(k => { if (pool.has(k)) done++; });
+  const total = within.size;
   let pct = total ? Math.round(done / total * 100) : 0;
   if (pct === 100 && done < total) pct = 99;
   if (pct === 0 && done > 0) pct = 1;
   return { done: done, total: total, pct: pct, full: total > 0 && done === total };
 }
 
-function rankOf() {
+/* Over the whole course by default, or over one track's cards when it is
+   asked for one.  Same two readings and the same words either way: what
+   changes is only how much material the figure is measured against, and
+   over 2298 cards nothing a learner does in an evening visibly moves it. */
+function rankOf(ids) {
   const acc = masteryPct();                  // null until the first review
-  const cov = coverageOf();
+  const cov = coverageOf(ids);
   if (acc === null) return { acc: null, cov: cov.pct, score: null, name: 'Unranked' };
   let score = Math.round(acc * cov.pct / 100);
   /* the same two guards progressOf uses: a figure may not round up to

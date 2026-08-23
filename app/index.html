@@ -81,13 +81,18 @@
 
     <div class="w-stats" id="s-stats" hidden>
       <div class="w-stat"><span>Track progress</span><b id="s-pct"></b></div>
+      <!-- The same figure the drawer carries, measured against this track's
+           cards rather than all 2298 — over the whole course nothing a
+           learner does in an evening visibly moves it. -->
+      <div class="w-stat" id="s-rankrow" hidden>
+        <span>Track mastery</span><b id="s-rank"></b>
+      </div>
     </div>
     <div class="w-actions">
       <button id="s-go" class="primary"></button>
       <button id="s-review" hidden>Abhy&#257;sa review</button>
     </div>
-    <p class="s-side" id="s-side" hidden>Abhy&#257;sa mixes cards from every list you
-      have completed, so what you learn here keeps coming back.</p>
+    <p class="s-side" id="s-side" hidden></p>
   </div>
 
   <div class="welcome" id="welcome" hidden>

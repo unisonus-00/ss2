@@ -899,7 +899,14 @@ const open = async (browser, opts = {}) => {
         movedKriya: raw.decks['Puruṣa-lakāra — person, tense and mood · practice'],
         oldGone: !raw.decks['Rūpa practice — case and form'],
         lastDeckMoved: raw.deck === 'Vibhakti-rūpa — recognise and produce · practice',
-        finished: finishedDecks().length,
+        /* "finished" is now every card mastered rather than a best score at
+           any score, so mastering both renamed decks is what proves it */
+        finished: (() => {
+          ['Vibhakti-rūpa — recognise and produce · practice',
+           'Puruṣa-lakāra — person, tense and mood · practice']
+            .forEach(n => DECKS[n].forEach(c => { SAVED.mastered[c.id] = 1; }));
+          return finishedDecks().length;
+        })(),
       };
     });
     ok('a renamed deck keeps its best score',
@@ -909,16 +916,19 @@ const open = async (browser, opts = {}) => {
     ok('the remembered deck follows the rename', r.lastDeckMoved);
     ok('both renamed decks still count as finished', r.finished === 2, r.finished + ' finished');
 
-    // the draw must spread across lists, not pour out of the biggest one
+    /* The draw must spread across lists rather than pour out of the biggest
+       one, so the pool is seeded with a whole paradigm table and three small
+       lists — a flat draw would make every session mostly the table. */
     const spread = await p.evaluate(() => {
+      const big = Object.keys(DECKS).find(n => DECKS[n].length >= 20);
+      const small = Object.keys(DECKS).filter(n => DECKS[n].length <= 12).slice(0, 3);
+      [big, ...small].forEach(n => DECKS[n].forEach(c => { SAVED.mastered[c.id] = 1; }));
       const counts = [];
       for (let i = 0; i < 25; i++) {
         const drawn = mixCards();
-        const fromTable = drawn.filter(c =>
-          (DECK_OF.get(c) || '').startsWith('Śabda-rūpa')).length;
-        counts.push(fromTable / drawn.length);
+        counts.push(drawn.filter(c => DECK_OF.get(c) === big).length / drawn.length);
       }
-      return { worst: Math.max(...counts), size: mixCards().length };
+      return { worst: Math.max(...counts), size: mixCards().length, big };
     });
     ok('no one list dominates a 20-card draw',
       spread.worst <= 0.65, 'worst share ' + Math.round(spread.worst * 100) + '%');
@@ -2098,15 +2108,17 @@ const open = async (browser, opts = {}) => {
                pct: document.getElementById('s-pct').textContent,
                review: !document.getElementById('s-review').hidden,
                side: document.getElementById('s-side').textContent.replace(/\s+/g, ' ').trim(),
-               figures: document.querySelectorAll('#s-stats .w-stat').length };
+               menu: document.querySelectorAll('#trackcard .dk').length,
+               figures: [...document.querySelectorAll('#s-stats .w-stat')]
+                 .filter(e => !e.hidden).length };
     });
     ok('a track in progress reports it rather than offering to begin',
       /^Continue/.test(again.go) && again.stats && /^\d+%$/.test(again.pct),
       again.go + ' · ' + again.pct);
-    ok('and reports one figure, not a breakdown', again.figures === 1,
-      again.figures + ' figures');
+    ok('and reports aggregates, never a directory of what is in the track',
+      again.figures <= 2 && !again.menu, again.figures + ' figures');
     ok('Abhyāsa is a reminder with a way in, not a section',
-      again.review && /Abhyāsa mixes cards/.test(again.side), again.side.slice(0, 40));
+      again.review && /Abhyāsa/.test(again.side), again.side.slice(0, 40));
 
     // and that way in opens the review, returning to the track afterwards
     await p.click('#s-review');
@@ -2318,6 +2330,16 @@ const open = async (browser, opts = {}) => {
          review: { runs: 4, right: 63, seen: 80 }, trouble: {}, cleared: 2, mastered: {} });
     await p.goto(FILE, { waitUntil: 'load' });
 
+    /* A best score no longer makes a list complete — every card in it has to
+       have come back cold — so the seeded store is brought up to that here,
+       with enough cards mastered to unlock the review as well. */
+    await p.evaluate(() => {
+      const pick = new Set(['20 · Bhāva — inner states', '01 · Devī — goddess names']);
+      let n = 0;
+      for (const d of Object.keys(DECKS)) { if (n >= 45) break; pick.add(d); n += DECKS[d].length; }
+      pick.forEach(d => DECKS[d].forEach(c => { SAVED.mastered[c.id] = 1; }));
+      save(); relabelAll();
+    });
     const rows = await p.evaluate(() => [...document.querySelectorAll('.dr-mode')].map(x => ({
       name: x.querySelector('.dm-name').textContent,
       sub: x.querySelector('.dm-sub').textContent,
@@ -2338,7 +2360,7 @@ const open = async (browser, opts = {}) => {
     // and every one of them still opens and renders
     for (const [btn, id, want] of [
       ['#dr-board', 'board', /lists completed/],
-      ['#dr-prog', 'reviewpanel', /Reviewing \d+ cards from \d+ completed lists?/],
+      ['#dr-prog', 'reviewpanel', /Reviewing \d+ cards from \d+ learned/],
       ['#dr-trouble', 'trouble', /cleared/],
     ]) {
       await p.click('#nav');
@@ -2616,10 +2638,10 @@ const open = async (browser, opts = {}) => {
     const r = await p.evaluate(() => {
       const out = {};
       const small = Object.keys(DECKS).filter(n => DECKS[n].length <= 15).slice(0, 6);
-      SAVED.decks = {};
-      small.forEach(n => {
-        SAVED.decks[n] = { best: [DECKS[n].length, DECKS[n].length], pile: [] };
-      });
+      /* a card enters the pool by having come back cold, not by sitting in
+         a list that was played to the end */
+      SAVED.decks = {}; SAVED.mastered = {};
+      small.forEach(n => DECKS[n].forEach(c => { SAVED.mastered[c.id] = 1; }));
       SAVED.review = { runs: 0, right: 0, seen: 0, cards: {} };
 
       /* with nothing recorded, every card is due and the draw is full */
@@ -2700,6 +2722,74 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
+  // ── what "learned" means, and what Abhyāsa draws on ───────────────
+  // A list played to the end used to be complete at any score, which fed the
+  // review with material the learner had never got right and moved the
+  // mastery figure on the strength of it.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const out = {};
+      const small = Object.keys(DECKS).find(n => DECKS[n].length <= 10);
+      SAVED.mastered = {}; SAVED.decks = {};
+      SAVED.review = { runs: 0, right: 0, seen: 0, cards: {} };
+
+      /* played to the end and got nothing right */
+      SAVED.decks[small] = { best: [0, DECKS[small].length], pile: [] };
+      out.seenOnly = { complete: finishedDecks().length, pool: reviewPool().length };
+
+      /* every card back cold */
+      DECKS[small].forEach(c => { SAVED.mastered[c.id] = 1; });
+      out.learned = { complete: finishedDecks().length, pool: reviewPool().length };
+
+      /* one card lost again takes the list back with it */
+      delete SAVED.mastered[DECKS[small][0].id];
+      out.lost = { complete: finishedDecks().length, pool: reviewPool().length };
+      SAVED.mastered[DECKS[small][0].id] = 1;
+
+      /* due: everything unseen by the review is due at once */
+      out.dueAll = dueCount();
+      SAVED.review.runs = 1;
+      DECKS[small].forEach(c => { SAVED.review.cards[c.id] = [1, 1]; });
+      out.dueRested = dueCount();
+
+      /* retained is two review sessions, not one round */
+      out.retainedAfterOne = allRetained(DECK_IDS[small]);
+      SAVED.review.runs = 2;
+      DECKS[small].forEach(c => { SAVED.review.cards[c.id] = [2, 2]; });
+      out.retainedAfterTwo = allRetained(DECK_IDS[small]);
+      openDrawer(); renderDrawer();
+      out.saysSo = [...document.querySelectorAll('.dk')]
+        .some(b => b.title.indexOf(small) === 0 && /retained/.test(b.textContent));
+      closeDrawer();
+
+      /* a track's rank is measured against its own cards */
+      const row = TRACK_ROWS.find(x => x.track.id === 'svara');
+      SAVED.mastered = {};
+      row.lessons.forEach(L => L.decks.forEach(n =>
+        DECKS[n].forEach(c => { SAVED.mastered[c.id] = 1; })));
+      SAVED.review = { runs: 1, right: 9, seen: 10, cards: {} };
+      out.track = rankOf(row.ids).score;
+      out.course = rankOf().score;
+      return out;
+    });
+    ok('a list played through at 0 is not complete',
+      r.seenOnly.complete === 0 && r.seenOnly.pool === 0, JSON.stringify(r.seenOnly));
+    ok('one whose cards have all come back cold is',
+      r.learned.complete === 1 && r.learned.pool > 0, JSON.stringify(r.learned));
+    ok('and losing a card takes it back', r.lost.complete === 0, JSON.stringify(r.lost));
+    ok('Abhyāsa draws on the cards you have got right, not the lists you have seen',
+      r.learned.pool === r.dueAll, r.learned.pool + ' vs ' + r.dueAll);
+    ok('a card just reviewed is not due again', r.dueRested === 0, r.dueRested + ' due');
+    ok('“retained” takes two review sessions, not one round',
+      !r.retainedAfterOne && r.retainedAfterTwo,
+      r.retainedAfterOne + ' → ' + r.retainedAfterTwo);
+    ok('and the drawer says so on the list that earned it', r.saysSo);
+    ok('a track is ranked against its own cards, not the whole course',
+      r.track > r.course && r.track > 50, r.track + '% in track vs ' + r.course + '% overall');
+    await p.close();
+  }
+
   // ── the results say which lists held up ───────────────────────────
   // A review crosses lists, so "which cards went wrong" is the wrong
   // question at the end of one; the learner-facing unit is the list.
@@ -2707,10 +2797,10 @@ const open = async (browser, opts = {}) => {
     const p = await open(browser);
     const r = await p.evaluate(() => {
       const small = Object.keys(DECKS).filter(n => DECKS[n].length <= 15).slice(0, 5);
-      SAVED.decks = {};
-      small.forEach(n => {
-        SAVED.decks[n] = { best: [DECKS[n].length, DECKS[n].length], pile: [] };
-      });
+      /* a card enters the pool by having come back cold, not by sitting in
+         a list that was played to the end */
+      SAVED.decks = {}; SAVED.mastered = {};
+      small.forEach(n => DECKS[n].forEach(c => { SAVED.mastered[c.id] = 1; }));
       SAVED.review = { runs: 0, right: 0, seen: 0, cards: {} };
       startMixedReview();
       /* miss everything from the first list drawn, know the rest */
@@ -2764,10 +2854,10 @@ const open = async (browser, opts = {}) => {
     const r = await p.evaluate(() => {
       const out = {};
       const acc = (right, seen) => { SAVED.review = { runs: 1, right: right, seen: seen }; };
-      /* a list enters review by being completed, which is what records a best */
+      /* a list is complete when every card in it has come back cold */
       const complete = names => {
-        SAVED.decks = {};
-        names.forEach(n => { SAVED.decks[n] = { best: [DECKS[n].length, DECKS[n].length], pile: [] }; });
+        SAVED.decks = {}; SAVED.mastered = {};
+        names.forEach(n => DECKS[n].forEach(c => { SAVED.mastered[c.id] = 1; }));
       };
       const all = Object.keys(DECKS);
       const upTo = frac => {
@@ -2817,7 +2907,7 @@ const open = async (browser, opts = {}) => {
     ok('no figure before the first review', r.unranked.pct === 'Unranked',
       r.unranked.pct);
     ok('and the card says what to do instead',
-      /^Complete more lists — \d+ of \d+ cards so far$/.test(r.unranked.card),
+      /^Learn \d+ cards to unlock — \d+ so far$/.test(r.unranked.card),
       r.unranked.card);
     ok('mastery is accuracy against coverage',
       r.acc80.score === Math.round(80 * r.cov / 100) && r.acc80.acc === 80,
@@ -2834,8 +2924,8 @@ const open = async (browser, opts = {}) => {
     /* the panel says what a review is and what it costs, in plain words */
     ok('the review card states the score plainly',
       /^\d+% correct on first try$/.test(r.panelScore), r.panelScore);
-    ok('and what it is drawing on',
-      /^Reviewing \d+ cards from \d+ completed lists?$/.test(r.panelWhat), r.panelWhat);
+    ok('and what it is drawing on, and what is waiting',
+      /^Reviewing \d+ cards from \d+ learned · \d+ due now$/.test(r.panelWhat), r.panelWhat);
     ok('the explanation describes the mode, not the arithmetic',
       /^Abhyāsa checks how well your studied material is holding up over time\./
         .test(r.panelNote)
@@ -2904,7 +2994,7 @@ const open = async (browser, opts = {}) => {
     ok('so does the trouble drill', leads(r.troubleRows, 't-actions'),
       r.troubleRows.join(' | '));
     ok('unlocked and unused, the card says what it draws on',
-      /^Reviewing \d+ cards from \d+ completed lists?$/.test(r.cardBefore),
+      /^Reviewing \d+ cards from \d+ learned · \d+ due now$/.test(r.cardBefore),
       JSON.stringify(r.cardBefore));
     ok('the drawer carries only the figure and its rank',
       /^\d+% · (Novice|Learner|Skilled|Expert|Master)$/.test(r.rankRow),
