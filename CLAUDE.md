@@ -171,10 +171,13 @@ which complements the numbered stages rather than replacing them.
 
 Every lesson directory carries `theory.md`, `reference.md`,
 `workbook-questions.md`, `workbook-answers.md`, and `badge.md`. `bricks.md`
-exists only in `02-varna-vidya`, `05-rupa`, and `06-kriya`. 23 of the 36 carry
-a `practice.json`; the 13 without are composition and avadhāna stages, where
+exists only in `02-varna-vidya`, `05-rupa`, and `06-kriya`. 24 of the 36 carry
+a `practice.json`; the 12 without are composition and avadhāna stages, where
 open-ended production is the point and the workbook is the right home — every
 one of their badges asks the learner to *compose*, *narrate* or *rewrite*.
+Stage 22 joined the carded side when the classical metres moved to the stage
+that names them; its badge asks for composition, but the metres it composes in
+are a bounded set to know first.
 That is the rule, not a backlog: a stage is carded when its workbook holds a
 bounded operation to card. Stotra II looked like a gap next to Stotra I and
 was one — its workbook sections A and D (dative and genitive across stem
@@ -1096,6 +1099,35 @@ twelve equivalences above is not taught by a card of its own, if a case card
 asserts a bare kāraka name, or if a kāraka-to-vibhakti card names only one
 level.
 
+### A card may not use a term its stage has not taught
+
+A project-wide scan compared where each piece of grammatical metalanguage is
+first **used** against where a card **teaches** it. Five gaps, all fixed by
+subtraction or by moving something to the stage that owns it:
+
+| | |
+|:--|:--|
+| **case names, 159 cards** | every vocabulary annotation read `prathamā \| nom. sg. · …` from Stage 1, four stages before Stage 5 defines `prathamā`. The English half was already there and already enough, so below Stage 5 the note now reads `nom. sg. · …` and the Sanskrit returns at the stage that earns it. |
+| **compound types** | `bahuvrīhi` and `tatpuruṣa` annotated demon names at Stage 1 and were *answers* at Stage 11, and no card defined either. Six terms cards now lead Stage 11, from the reference's own *Compound Types at a Glance*; the three early notes dropped the word. |
+| **the class notation** | `1P`, `9U`, `10P` sat on 70 cards and were unpacked nowhere. Stage 6 does not test a root's class, so it lost the notation; Stage 9, which does, spells it out — `dhātu · class 1 · parasmaipada · bhavati`. |
+| **the classical metres** | `28 · Vṛtta` sat in Stage 21, whose theory and badge are anuṣṭubh only, while Stage 22 — *Multiple Meters* — had no practice at all. The list moved to 22 with its ids intact, and 21 gained six cards on the śloka pattern from its own theory. |
+| **one mood, two names** | Stage 6 practice said `vidhiliṅ`, the lakāra list taught `liṅ`. The gloss now reads `liṅ (vidhiliṅ) · लिङ् — optative`. |
+
+**`U` is glossed `both padas`** — the one gloss no source states. The
+reference tables a `Class` column and never explains its letters; `P` is
+`parasmaipada`, which Stage 6 teaches, and `both padas` describes the
+notation rather than naming a term the repo does not carry.
+
+`scripts/test.js` holds all five: no note may name a vibhakti below Stage 5
+or a compound type below Stage 11, Stage 6 may not carry the class notation
+and Stage 9 may not leave it unexpanded, each of the six types must be taught
+at Stage 11, and no `Vṛtta` list may sit earlier than Stage 22.
+
+**Where a forward reference is unavoidable, put it on the card.** Stage 4's
+adjective agreement genuinely needs Stage 5's gender and case, and every card
+carries it inline — `Make it agree: sundara + devī (f.)`. That is the pattern,
+not reordering the curriculum.
+
 ### A reversed deck must still have one answer per cue
 
 Every reveal deck can be run backwards, and in that direction **the gloss is
@@ -1369,8 +1401,8 @@ Three things here are load-bearing for the compatibility list above:
   chain, and keep each step stamping its own version rather than the newest;
   every `localStorage` touch stays guarded, since it can be absent or full.
 
-The app carries 24 lessons, 169 decks, and 2278 cards — 1923 `reveal`, 350
-`choice` and 5 `sequence`, spread over 29 interactive decks in 12 lessons,
+The app carries 25 lessons, 171 decks, and 2290 cards — 1929 `reveal`, 356
+`choice` and 5 `sequence`, spread over 30 interactive decks in 13 lessons,
 plus the mastery decks holding complete paradigms.
 They are curated practice, not conversions of the reference tables:
 

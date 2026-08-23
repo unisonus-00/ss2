@@ -2,6 +2,55 @@
   "lesson": "11-samasa",
   "decks": [
     {
+      "name": "13 · Samāsa-saṃjñā — the six compound types",
+      "pair": "term → definition",
+      "role": "terms",
+      "cards": [
+        {
+          "id": "11-samasa:samjna:tatpurusa",
+          "devanagari": "तत्पुरुषः",
+          "iast": "tatpuruṣaḥ",
+          "gloss": "determinative · X of, by, for or in Y",
+          "note": "the second word is the head · rāja-putra, the king’s son"
+        },
+        {
+          "id": "11-samasa:samjna:karmadharaya",
+          "devanagari": "कर्मधारयः",
+          "iast": "karmadhārayaḥ",
+          "gloss": "descriptive · X which is Y",
+          "note": "the second word is the head · mahā-deva, the great god"
+        },
+        {
+          "id": "11-samasa:samjna:dvigu",
+          "devanagari": "द्विगुः",
+          "iast": "dviguḥ",
+          "gloss": "numerical · a number and what it counts",
+          "note": "the second word is the head · tri-loka, the three worlds"
+        },
+        {
+          "id": "11-samasa:samjna:dvandva",
+          "devanagari": "द्वन्द्वः",
+          "iast": "dvandvaḥ",
+          "gloss": "copulative · X and Y",
+          "note": "both words are heads · rāma-kṛṣṇau"
+        },
+        {
+          "id": "11-samasa:samjna:bahuvrihi",
+          "devanagari": "बहुव्रीहिः",
+          "iast": "bahuvrīhiḥ",
+          "gloss": "possessive · one who has X-Y",
+          "note": "the head is outside the compound · nīla-kaṇṭha, the blue-throated one"
+        },
+        {
+          "id": "11-samasa:samjna:avyayibhava",
+          "devanagari": "अव्ययीभावः",
+          "iast": "avyayībhāvaḥ",
+          "gloss": "adverbial · the whole becomes indeclinable",
+          "note": "the first word is the head · prati-dinam, daily"
+        }
+      ]
+    },
+    {
       "name": "Samāsa-bheda — name the type · practice",
       "cards": [
         {

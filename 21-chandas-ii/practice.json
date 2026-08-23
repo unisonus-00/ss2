@@ -2,130 +2,85 @@
   "lesson": "21-chandas-ii",
   "decks": [
     {
-      "name": "28 · Vṛtta — the classical metres",
-      "pair": "pattern → metre",
+      "name": "Anuṣṭubh — the śloka pattern · practice",
       "cards": [
         {
-          "id": "21-chandas-ii:vrtta:11-syllables-ta-ta-ja-ga-ga",
-          "devanagari": "— — ◡ — — ◡ ◡ — ◡ — —",
-          "iast": "11 syllables",
-          "gloss": "इन्द्रवज्रा · indravajrā",
-          "detail": "त · त · ज · ग · ग",
-          "detailIast": "ta · ta · ja · ga · ga",
-          "note": "11 syllables · triṣṭubh"
+          "id": "21-chandas-ii:anustubh:padas",
+          "type": "choice",
+          "front": "How many pādas make one anuṣṭubh?",
+          "options": [
+            "4",
+            "2",
+            "8"
+          ],
+          "answer": "4",
+          "note": "four pādas of eight syllables — 32 in all, two pādas to a half-verse",
+          "source": "theory · The Rules"
         },
         {
-          "id": "21-chandas-ii:vrtta:11-syllables-ja-ta-ja-ga-ga",
-          "devanagari": "◡ — ◡ — — ◡ ◡ — ◡ — —",
-          "iast": "11 syllables",
-          "gloss": "उपेन्द्रवज्रा · upendravajrā",
-          "detail": "ज · त · ज · ग · ग",
-          "detailIast": "ja · ta · ja · ga · ga",
-          "note": "11 syllables · triṣṭubh"
+          "id": "21-chandas-ii:anustubh:syllables",
+          "type": "choice",
+          "front": "How many syllables does one anuṣṭubh pāda hold?",
+          "options": [
+            "8",
+            "11",
+            "16"
+          ],
+          "answer": "8",
+          "note": "the count is fixed; the weights are only constrained at 5–6–7",
+          "source": "theory · The Rules"
         },
         {
-          "id": "21-chandas-ii:vrtta:14-syllables-ta-bha-ja-ja-ga-ga",
-          "devanagari": "— — ◡ — ◡ ◡ ◡ — ◡ ◡ — ◡ — —",
-          "iast": "14 syllables",
-          "gloss": "वसन्ततिलका · vasantatilakā",
-          "detail": "त · भ · ज · ज · ग · ग",
-          "detailIast": "ta · bha · ja · ja · ga · ga",
-          "note": "14 syllables · śakvarī"
+          "id": "21-chandas-ii:anustubh:pada-b",
+          "type": "choice",
+          "front": "In pāda b, syllables 5–6–7 are:",
+          "options": [
+            "∪ – –",
+            "∪ – ∪",
+            "– ∪ –"
+          ],
+          "answer": "∪ – –",
+          "note": "the even pādas carry the constraint — pāda b closes ∪ – –",
+          "source": "theory · The Rules"
         },
         {
-          "id": "21-chandas-ii:vrtta:15-syllables-na-na-ma-ya-ya",
-          "devanagari": "◡ ◡ ◡ ◡ ◡ ◡ — — — ◡ — — ◡ — —",
-          "iast": "15 syllables",
-          "gloss": "मालिनी · mālinī",
-          "detail": "न · न · म · य · य",
-          "detailIast": "na · na · ma · ya · ya",
-          "note": "15 syllables · atiśakvarī"
+          "id": "21-chandas-ii:anustubh:pada-d",
+          "type": "choice",
+          "front": "In pāda d, syllables 5–6–7 are:",
+          "options": [
+            "∪ – ∪",
+            "∪ – –",
+            "– – ∪"
+          ],
+          "answer": "∪ – ∪",
+          "note": "pāda d differs from pāda b only in the seventh syllable",
+          "source": "theory · The Rules"
         },
         {
-          "id": "21-chandas-ii:vrtta:17-syllables-ya-ma-na-sa-bha-la-ga",
-          "devanagari": "◡ — — — — — ◡ ◡ ◡ ◡ ◡ — — ◡ ◡ ◡ —",
-          "iast": "17 syllables",
-          "gloss": "शिखरिणी · śikhariṇī",
-          "detail": "य · म · न · स · भ · ल · ग",
-          "detailIast": "ya · ma · na · sa · bha · la · ga",
-          "note": "17 syllables · atyaṣṭi"
+          "id": "21-chandas-ii:anustubh:odd-padas",
+          "type": "choice",
+          "front": "Which pattern is avoided at 5–6–7 of an odd pāda?",
+          "options": [
+            "∪ – ∪",
+            "∪ – –",
+            "– ∪ ∪"
+          ],
+          "answer": "∪ – ∪",
+          "note": "ja-gaṇa is avoided in pādas a and c; otherwise the odd pādas are free",
+          "source": "theory · The Rules"
         },
         {
-          "id": "21-chandas-ii:vrtta:17-syllables-ma-bha-na-ta-ta-ga-ga",
-          "devanagari": "— — — — ◡ ◡ ◡ ◡ ◡ — — ◡ — — ◡ — —",
-          "iast": "17 syllables",
-          "gloss": "मन्दाक्रान्ता · mandākrāntā",
-          "detail": "म · भ · न · त · त · ग · ग",
-          "detailIast": "ma · bha · na · ta · ta · ga · ga",
-          "note": "17 syllables · atyaṣṭi · the Meghadūta metre"
-        },
-        {
-          "id": "21-chandas-ii:vrtta:17-syllables-ja-sa-ja-sa-ya-la-ga",
-          "devanagari": "◡ — ◡ ◡ ◡ — ◡ — ◡ ◡ ◡ — ◡ — — ◡ —",
-          "iast": "17 syllables",
-          "gloss": "पृथ्वी · pṛthvī",
-          "detail": "ज · स · ज · स · य · ल · ग",
-          "detailIast": "ja · sa · ja · sa · ya · la · ga",
-          "note": "17 syllables · atyaṣṭi"
-        },
-        {
-          "id": "21-chandas-ii:vrtta:19-syllables-ma-sa-ja-sa-ta-ta-ga",
-          "devanagari": "— — — ◡ ◡ — ◡ — ◡ ◡ ◡ — — — ◡ — — ◡ —",
-          "iast": "19 syllables",
-          "gloss": "शार्दूलविक्रीडितम् · śārdūlavikrīḍitam",
-          "detail": "म · स · ज · स · त · त · ग",
-          "detailIast": "ma · sa · ja · sa · ta · ta · ga",
-          "note": "19 syllables · atidhṛti"
-        },
-        {
-          "id": "21-chandas-ii:vrtta:21-syllables-ma-ra-bha-na-ya-ya-ya",
-          "devanagari": "— — — — ◡ — — ◡ ◡ ◡ ◡ ◡ ◡ — — ◡ — — ◡ — —",
-          "iast": "21 syllables",
-          "gloss": "स्रग्धरा · sragdharā",
-          "detail": "म · र · भ · न · य · य · य",
-          "detailIast": "ma · ra · bha · na · ya · ya · ya",
-          "note": "21 syllables · prakṛti"
-        },
-        {
-          "id": "21-chandas-ii:vrtta:12-syllables-ya-ya-ya-ya",
-          "devanagari": "◡ — — ◡ — — ◡ — — ◡ — —",
-          "iast": "12 syllables",
-          "gloss": "भुजङ्गप्रयातम् · bhujaṅgaprayātam",
-          "detail": "य · य · य · य",
-          "detailIast": "ya · ya · ya · ya",
-          "note": "12 syllables · jagatī"
-        },
-        {
-          "id": "21-chandas-ii:vrtta:12-syllables-na-bha-bha-ra",
-          "devanagari": "◡ ◡ ◡ — ◡ ◡ — ◡ ◡ — ◡ —",
-          "iast": "12 syllables",
-          "gloss": "द्रुतविलम्बितम् · drutavilambitam",
-          "detail": "न · भ · भ · र",
-          "detailIast": "na · bha · bha · ra",
-          "note": "12 syllables · jagatī"
-        },
-        {
-          "id": "21-chandas-ii:vrtta:12-syllables-sa-sa-sa-sa",
-          "devanagari": "◡ ◡ — ◡ ◡ — ◡ ◡ — ◡ ◡ —",
-          "iast": "12 syllables",
-          "gloss": "तोटकम् · toṭakam",
-          "detail": "स · स · स · स",
-          "detailIast": "sa · sa · sa · sa",
-          "note": "12 syllables · jagatī"
-        },
-        {
-          "id": "21-chandas-ii:vrtta:upajatih",
-          "devanagari": "उपजातिः",
-          "iast": "upajātiḥ",
-          "gloss": "indravajrā and upendravajrā mixed in one stanza",
-          "note": "vṛtta · triṣṭubh class"
-        },
-        {
-          "id": "21-chandas-ii:vrtta:arya",
-          "devanagari": "आर्या",
-          "iast": "āryā",
-          "gloss": "a mātrā metre, counted by weight not syllables",
-          "note": "vṛtta · 30 + 27 mātrās"
+          "id": "21-chandas-ii:anustubh:yati",
+          "type": "choice",
+          "front": "Where does the yati normally fall in a pāda?",
+          "options": [
+            "after the 4th syllable",
+            "after the 5th syllable",
+            "at the end only"
+          ],
+          "answer": "after the 4th syllable",
+          "note": "a natural word-break halfway through the pāda",
+          "source": "theory · The Rules"
         }
       ]
     }

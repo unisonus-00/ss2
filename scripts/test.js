@@ -1838,6 +1838,72 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
+  // ── no card uses metalanguage its stage has not been taught ────────
+  // The audit's five findings, each held by the fact that caught it.  A
+  // card may name a grammatical term only from the stage that teaches it:
+  // vibhakti from 5, the compound types from 11, the class notation from 9.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const VIB = /prathamā|dvitīyā|tṛtīyā|caturthī|pañcamī|ṣaṣṭhī|saptamī|sambodhana/;
+      const SAM = /tatpuruṣa|karmadhāraya|dvigu|bahuvrīhi|dvandva|avyayībhāva/;
+      const CLS = /\b\d{1,2}[PUA]\b/;
+      const early = { vibhakti: [], samasa: [], klass: [] };
+      const plain = [];
+      Object.keys(DECKS).forEach(n => {
+        const st = DECK_STAGE[n];
+        DECKS[n].forEach(c => {
+          const note = c.note || '';
+          if (st > 0 && st < 5 && VIB.test(note)) early.vibhakti.push(c.id);
+          /* the list that TEACHES the types is allowed to name them */
+          if (st > 0 && st < 11 && SAM.test(note) && DECK_ROLE[n] !== 'terms')
+            early.samasa.push(c.id);
+          if (st === 6 && CLS.test(note)) early.klass.push(c.id);
+          // and where it does belong it is spelled out, not left as "1P"
+          if (st === 9 && CLS.test(note)) plain.push(c.id);
+        });
+      });
+      const taught = {};
+      Object.keys(DECKS).forEach(n => DECKS[n].forEach(c => {
+        if ((c.type || 'reveal') === 'reveal') taught[(c.iast || '').trim()] = DECK_STAGE[n];
+      }));
+      const types = ['tatpuruṣaḥ', 'karmadhārayaḥ', 'dviguḥ', 'dvandvaḥ',
+                     'bahuvrīhiḥ', 'avyayībhāvaḥ'];
+      const untaught = types.filter(t => taught[t] !== 11);
+      const lakara = (DECKS['34 · Lakāra — the ten tense-moods'] || [])
+        .find(c => /optative/.test(c.gloss || ''));
+      // Stage 21 is anuṣṭubh; the classical metres belong to Stage 22
+      const vrttaAt = Object.keys(DECKS).filter(n => n.includes('Vṛtta'));
+      const anustubh = Object.keys(DECKS).find(n => n.startsWith('Anuṣṭubh'));
+      return {
+        early, plain, untaught,
+        lakara: (lakara || {}).gloss || '',
+        vrttaStage: vrttaAt.map(n => DECK_STAGE[n]),
+        anustubhStage: anustubh ? DECK_STAGE[anustubh] : null,
+        anustubhCards: anustubh ? DECKS[anustubh].length : 0,
+      };
+    });
+    ok('no card names a vibhakti before Stage 5 teaches it',
+      !r.early.vibhakti.length, r.early.vibhakti.slice(0, 3).join(' | '));
+    ok('nor a compound type before Stage 11 teaches it',
+      !r.early.samasa.length, r.early.samasa.slice(0, 3).join(' | '));
+    ok('and the class notation is gone from Stage 6, which does not test it',
+      !r.early.klass.length, r.early.klass.slice(0, 3).join(' | '));
+    ok('where the class does belong it is spelled out, not left as "1P"',
+      !r.plain.length, r.plain.slice(0, 3).join(' | '));
+    ok('each of the six compound types is taught at Stage 11',
+      !r.untaught.length, r.untaught.join(' | '));
+    ok('the optative card names both liṅ and vidhiliṅ',
+      /liṅ \(vidhiliṅ\)/.test(r.lakara), r.lakara);
+    ok('the classical metres sit at Stage 22, and nowhere earlier',
+      r.vrttaStage.length > 0 && r.vrttaStage.every(s => s === 22),
+      'stages ' + r.vrttaStage.join(', '));
+    ok('and Stage 21 practises the anuṣṭubh it is named for',
+      r.anustubhStage === 21 && r.anustubhCards >= 4,
+      'stage ' + r.anustubhStage + ' · ' + r.anustubhCards + ' cards');
+    await p.close();
+  }
+
   // ── no choice card repeats a reveal card ───────────────────────────
   // A choice card that hands over the same operation and the same answer as
   // a reveal card in the same lesson is strictly the weaker of the two: the

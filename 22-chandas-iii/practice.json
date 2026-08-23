@@ -1,0 +1,133 @@
+{
+  "lesson": "22-chandas-iii",
+  "decks": [
+    {
+      "name": "28 · Vṛtta — the classical metres",
+      "pair": "pattern → metre",
+      "cards": [
+        {
+          "id": "21-chandas-ii:vrtta:11-syllables-ta-ta-ja-ga-ga",
+          "devanagari": "— — ◡ — — ◡ ◡ — ◡ — —",
+          "iast": "11 syllables",
+          "gloss": "इन्द्रवज्रा · indravajrā",
+          "detail": "त · त · ज · ग · ग",
+          "detailIast": "ta · ta · ja · ga · ga",
+          "note": "11 syllables · triṣṭubh"
+        },
+        {
+          "id": "21-chandas-ii:vrtta:11-syllables-ja-ta-ja-ga-ga",
+          "devanagari": "◡ — ◡ — — ◡ ◡ — ◡ — —",
+          "iast": "11 syllables",
+          "gloss": "उपेन्द्रवज्रा · upendravajrā",
+          "detail": "ज · त · ज · ग · ग",
+          "detailIast": "ja · ta · ja · ga · ga",
+          "note": "11 syllables · triṣṭubh"
+        },
+        {
+          "id": "21-chandas-ii:vrtta:14-syllables-ta-bha-ja-ja-ga-ga",
+          "devanagari": "— — ◡ — ◡ ◡ ◡ — ◡ ◡ — ◡ — —",
+          "iast": "14 syllables",
+          "gloss": "वसन्ततिलका · vasantatilakā",
+          "detail": "त · भ · ज · ज · ग · ग",
+          "detailIast": "ta · bha · ja · ja · ga · ga",
+          "note": "14 syllables · śakvarī"
+        },
+        {
+          "id": "21-chandas-ii:vrtta:15-syllables-na-na-ma-ya-ya",
+          "devanagari": "◡ ◡ ◡ ◡ ◡ ◡ — — — ◡ — — ◡ — —",
+          "iast": "15 syllables",
+          "gloss": "मालिनी · mālinī",
+          "detail": "न · न · म · य · य",
+          "detailIast": "na · na · ma · ya · ya",
+          "note": "15 syllables · atiśakvarī"
+        },
+        {
+          "id": "21-chandas-ii:vrtta:17-syllables-ya-ma-na-sa-bha-la-ga",
+          "devanagari": "◡ — — — — — ◡ ◡ ◡ ◡ ◡ — — ◡ ◡ ◡ —",
+          "iast": "17 syllables",
+          "gloss": "शिखरिणी · śikhariṇī",
+          "detail": "य · म · न · स · भ · ल · ग",
+          "detailIast": "ya · ma · na · sa · bha · la · ga",
+          "note": "17 syllables · atyaṣṭi"
+        },
+        {
+          "id": "21-chandas-ii:vrtta:17-syllables-ma-bha-na-ta-ta-ga-ga",
+          "devanagari": "— — — — ◡ ◡ ◡ ◡ ◡ — — ◡ — — ◡ — —",
+          "iast": "17 syllables",
+          "gloss": "मन्दाक्रान्ता · mandākrāntā",
+          "detail": "म · भ · न · त · त · ग · ग",
+          "detailIast": "ma · bha · na · ta · ta · ga · ga",
+          "note": "17 syllables · atyaṣṭi · the Meghadūta metre"
+        },
+        {
+          "id": "21-chandas-ii:vrtta:17-syllables-ja-sa-ja-sa-ya-la-ga",
+          "devanagari": "◡ — ◡ ◡ ◡ — ◡ — ◡ ◡ ◡ — ◡ — — ◡ —",
+          "iast": "17 syllables",
+          "gloss": "पृथ्वी · pṛthvī",
+          "detail": "ज · स · ज · स · य · ल · ग",
+          "detailIast": "ja · sa · ja · sa · ya · la · ga",
+          "note": "17 syllables · atyaṣṭi"
+        },
+        {
+          "id": "21-chandas-ii:vrtta:19-syllables-ma-sa-ja-sa-ta-ta-ga",
+          "devanagari": "— — — ◡ ◡ — ◡ — ◡ ◡ ◡ — — — ◡ — — ◡ —",
+          "iast": "19 syllables",
+          "gloss": "शार्दूलविक्रीडितम् · śārdūlavikrīḍitam",
+          "detail": "म · स · ज · स · त · त · ग",
+          "detailIast": "ma · sa · ja · sa · ta · ta · ga",
+          "note": "19 syllables · atidhṛti"
+        },
+        {
+          "id": "21-chandas-ii:vrtta:21-syllables-ma-ra-bha-na-ya-ya-ya",
+          "devanagari": "— — — — ◡ — — ◡ ◡ ◡ ◡ ◡ ◡ — — ◡ — — ◡ — —",
+          "iast": "21 syllables",
+          "gloss": "स्रग्धरा · sragdharā",
+          "detail": "म · र · भ · न · य · य · य",
+          "detailIast": "ma · ra · bha · na · ya · ya · ya",
+          "note": "21 syllables · prakṛti"
+        },
+        {
+          "id": "21-chandas-ii:vrtta:12-syllables-ya-ya-ya-ya",
+          "devanagari": "◡ — — ◡ — — ◡ — — ◡ — —",
+          "iast": "12 syllables",
+          "gloss": "भुजङ्गप्रयातम् · bhujaṅgaprayātam",
+          "detail": "य · य · य · य",
+          "detailIast": "ya · ya · ya · ya",
+          "note": "12 syllables · jagatī"
+        },
+        {
+          "id": "21-chandas-ii:vrtta:12-syllables-na-bha-bha-ra",
+          "devanagari": "◡ ◡ ◡ — ◡ ◡ — ◡ ◡ — ◡ —",
+          "iast": "12 syllables",
+          "gloss": "द्रुतविलम्बितम् · drutavilambitam",
+          "detail": "न · भ · भ · र",
+          "detailIast": "na · bha · bha · ra",
+          "note": "12 syllables · jagatī"
+        },
+        {
+          "id": "21-chandas-ii:vrtta:12-syllables-sa-sa-sa-sa",
+          "devanagari": "◡ ◡ — ◡ ◡ — ◡ ◡ — ◡ ◡ —",
+          "iast": "12 syllables",
+          "gloss": "तोटकम् · toṭakam",
+          "detail": "स · स · स · स",
+          "detailIast": "sa · sa · sa · sa",
+          "note": "12 syllables · jagatī"
+        },
+        {
+          "id": "21-chandas-ii:vrtta:upajatih",
+          "devanagari": "उपजातिः",
+          "iast": "upajātiḥ",
+          "gloss": "indravajrā and upendravajrā mixed in one stanza",
+          "note": "vṛtta · triṣṭubh class"
+        },
+        {
+          "id": "21-chandas-ii:vrtta:arya",
+          "devanagari": "आर्या",
+          "iast": "āryā",
+          "gloss": "a mātrā metre, counted by weight not syllables",
+          "note": "vṛtta · 30 + 27 mātrās"
+        }
+      ]
+    }
+  ]
+}
