@@ -131,6 +131,24 @@ const DECK_RENAMES = {
   /* The drawer showed this one as "Samāsa · Samāsa" — the lesson's name
      twice, saying nothing about what the list asks for. */
   '14 · Samāsa — compound types':                '14 · Form compounds — the six types',
+  /* Rūpa production was reduced from every cell to every distinct form, with
+     delta and transfer checks where the source derives one table from
+     another, so each of these lists names a smaller count than it did. The
+     drill and the stem are unchanged, so the score carries over — `ds.best`
+     is compared as a ratio. */
+  'Form mastery · Śiva — all 24 cells':         'Form mastery · Śiva — all 17 forms',
+  'Form mastery · Phala — all 24 cells':        'Form mastery · Phala — 4 key forms',
+  'Form mastery · Mālā — all 21 cells':         'Form mastery · Mālā — all 14 forms',
+  'Form mastery · Devī — all 21 cells':         'Form mastery · Devī — all 15 forms',
+  'Form mastery · Agni — all 21 cells':         'Form mastery · Agni — all 15 forms',
+  'Form mastery · Viṣṇu — all 21 cells':        'Form mastery · Viṣṇu — 7 key forms',
+  'Form mastery · Pitṛ — all 21 cells':         'Form mastery · Pitṛ — all 15 forms',
+  'Form mastery · Bhagavat — all 21 cells':     'Form mastery · Bhagavat — all 14 forms',
+  'Form mastery · Asmad — the first person':    'Form mastery · Asmad — all 17 forms',
+  'Form mastery · Yuṣmad — the second person':  'Form mastery · Yuṣmad — all 17 forms',
+  'Form mastery · Saḥ — tad, masculine':        'Form mastery · Saḥ — all 16 forms',
+  'Form mastery · Sā — tad, feminine':          'Form mastery · Sā — all 14 forms',
+  'Form mastery · Tat — tad, neuter':           'Form mastery · Tat — 3 key forms',
   'Samāsa practice — name the compound':         'Practice — name the compound',
   'Suffix practice — kṛt and taddhita':          'Practice — kṛt and taddhita',
   'Chandas practice — scan and name':            'Practice — scan and name',

@@ -777,6 +777,51 @@ another number, then whatever is left — and never a form equal to the answer,
 which syncretism makes a live hazard. A learner's real confusion is the cell
 next door.
 
+#### Full mastery for new patterns, shorter checks for derived ones
+
+Every cell of every paradigm was 289 cards, and most of them drilled a fact
+already drilled. Two reductions cut it to 180, and **both are computed from
+the tables rather than judged**:
+
+**Syncretism collapses.** A paradigm has more cells than forms — three of
+śiva's duals are `śivābhyām` — so asking for the same form three times drills
+one fact three times. One card per distinct **form**; its prompt names the
+first cell it fills and its note names the rest (`· also caturthī dvivacana,
+pañcamī dvivacana`), so nothing the table says leaves the app. This is the
+same collapse the `Table mastery` reveal decks already made: 24 cells, 17
+cards.
+
+**Derived tables get a delta or a transfer check**, and the tier is decided by
+the source, never by taste:
+
+| | | |
+|:--|:--|:--|
+| **full** | a new pattern, or an irregular one | masc -a, fem -ā, fem -ī, masc -i, ṛ, -at, and all four pronoun paradigms |
+| **delta** | the source itself says the table repeats another | neuter -a, `tad` neuter |
+| **transfer** | the same shape with one vowel changed | masc -u |
+
+A **delta** list asks only the rows that differ, plus one card for the rule
+itself — `Which cases does a neuter a-stem share with the masculine?` The
+reference writes neuter -a's rows 3–7 as *"same as masculine"* and `bricks.md`
+writes tad neuter's the same way, so these two are the only deltas in Stage 5:
+4 and 3 forms, against 14 apiece before.
+
+A **transfer** list drills the cells where the correspondence is *not* a plain
+vowel swap. The u-stem endings are the i-stem's with u for i, but `-aye`
+becomes `-ave`, `-eḥ` becomes `-oḥ`, `-yoḥ` becomes `-voḥ` — and saptamī
+singular is `-au` in both, where a learner expecting a shift is caught. Seven
+forms, each noting its i-stem counterpart, against 15 before. Every viṣṇu form
+still lives in `Table mastery · Viṣṇu`, so nothing is lost.
+
+**Pronouns keep full coverage.** `asmad` is suppletive — `aham`, `mām`,
+`mayā`, `mahyam` share no stem — so no cell predicts another and there is
+nothing to collapse but the syncretism.
+
+`scripts/test.js` re-derives all 168 answers from the source files, and fails
+if a full list misses a form the table supplies, if any list asks for the same
+form twice, if a collapsed card does not name the cells it fills, or if a
+transfer list reaches for a cell outside its own paradigm.
+
 #### The stem class is a scaffold, and it is withdrawn
 
 A stem plus a case name is answerable only if you know which table, so the
@@ -809,10 +854,9 @@ deck in the app for a name containing one of its own cards' answers.
 #### The forms are re-derived, never authored
 
 Every answer is an ending from `05-rupa/reference.md` applied to the model stem
-the deck is named for, and `scripts/test.js` re-derives all 279 cells from the
-source files independently and fails on any disagreement — it also fails if a
-cell the source supplies is never asked for, or if a distractor is not a cell
-of that same paradigm.
+the deck is named for, and `scripts/test.js` re-derives all 168 answers from the
+source files independently and fails on any disagreement — see
+**Full mastery for new patterns** above for what else it checks.
 
 Which model stem each table takes is **decided by the table, not by taste**:
 
@@ -1200,7 +1244,7 @@ Three things here are load-bearing for the compatibility list above:
   chain, and keep each step stamping its own version rather than the newest;
   every `localStorage` touch stays guarded, since it can be absent or full.
 
-The app carries 24 lessons, 168 decks, and 2379 cards — 1915 `reveal`, 459
+The app carries 24 lessons, 168 decks, and 2270 cards — 1915 `reveal`, 350
 `choice` and 5 `sequence`, spread over 29 interactive decks in 12 lessons,
 plus the mastery decks holding complete paradigms.
 They are curated practice, not conversions of the reference tables:
@@ -1217,8 +1261,9 @@ They are curated practice, not conversions of the reference tables:
   *vocabulary* stays `reveal`.
 - `05-rupa` — 15 cards: recognise a case, produce a form, and pick the case a
   devotional phrase needs. Selected contrasts across stems, never a paradigm
-  table transcribed. Beside them 289 cards in 13 `Form mastery` decks, which
-  are the opposite: every cell the reference tables, asked for by name. See
+  table transcribed. Beside them 180 cards in 13 `Form mastery` decks, which
+  are the opposite: every distinct form the reference tables, asked for by
+  name, with a delta or transfer check where one table derives from another. See
   **Producing a form is not recognising one**.
 - `07-karaka` — 11 cards: the role a word plays in a real sentence, plus the
   role→vibhakti mapping and the fact that ṣaṣṭhī is not a kāraka at all. Each

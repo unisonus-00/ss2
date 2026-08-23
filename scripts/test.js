@@ -1424,21 +1424,29 @@ const open = async (browser, opts = {}) => {
     const mA = table('Masculine -a (deva, śiva, rāma)', 'śiva', 1);
     const tadM = pron(REF, 'Pronoun: tad (3rd person, masculine)');
     const WANT = {
-      'Form mastery · Śiva — all 24 cells': mA,
-      'Form mastery · Phala — all 24 cells':
+      'Form mastery · Śiva — all 17 forms': mA,
+      'Form mastery · Phala — 4 key forms':
         table('Neuter -a (phala, puṣpa, jala)', 'phala', 1, table('Masculine -a (deva, śiva, rāma)', 'phala', 1)),
-      'Form mastery · Mālā — all 21 cells': table('Feminine -ā (mālā, gaṅgā, latā)', 'mālā', 1),
-      'Form mastery · Devī — all 21 cells': table('Feminine -ī (nadī, devī, lakṣmī)', 'devī', 1),
-      'Form mastery · Agni — all 21 cells': table('Masculine -i (agni, muni)', 'agni', 1),
-      'Form mastery · Viṣṇu — all 21 cells': table('Masculine -u (viṣṇu, guru)', 'viṣṇu', 1),
-      'Form mastery · Pitṛ — all 21 cells': table('Ṛ-stem (mātṛ, pitṛ, kartṛ)', 'pitṛ', 1),
-      'Form mastery · Bhagavat — all 21 cells': table('Consonant-stem -at (bhagavat, mahat)', 'bhagavat', 2),
-      'Form mastery · Asmad — the first person': pron(REF, 'Pronoun: asmad (1st person)'),
-      'Form mastery · Yuṣmad — the second person': pron(REF, 'Pronoun: yuṣmad (2nd person)'),
-      'Form mastery · Saḥ — tad, masculine': tadM,
-      'Form mastery · Sā — tad, feminine': pron(REF, 'Pronoun: tad (3rd person, feminine)'),
-      'Form mastery · Tat — tad, neuter': pron(BRICKS, 'Napuṃsakaliṅga (Neuter)', tadM),
+      'Form mastery · Mālā — all 14 forms': table('Feminine -ā (mālā, gaṅgā, latā)', 'mālā', 1),
+      'Form mastery · Devī — all 15 forms': table('Feminine -ī (nadī, devī, lakṣmī)', 'devī', 1),
+      'Form mastery · Agni — all 15 forms': table('Masculine -i (agni, muni)', 'agni', 1),
+      'Form mastery · Viṣṇu — 7 key forms': table('Masculine -u (viṣṇu, guru)', 'viṣṇu', 1),
+      'Form mastery · Pitṛ — all 15 forms': table('Ṛ-stem (mātṛ, pitṛ, kartṛ)', 'pitṛ', 1),
+      'Form mastery · Bhagavat — all 14 forms': table('Consonant-stem -at (bhagavat, mahat)', 'bhagavat', 2),
+      'Form mastery · Asmad — all 17 forms': pron(REF, 'Pronoun: asmad (1st person)'),
+      'Form mastery · Yuṣmad — all 17 forms': pron(REF, 'Pronoun: yuṣmad (2nd person)'),
+      'Form mastery · Saḥ — all 16 forms': tadM,
+      'Form mastery · Sā — all 14 forms': pron(REF, 'Pronoun: tad (3rd person, feminine)'),
+      'Form mastery · Tat — 3 key forms': pron(BRICKS, 'Napuṃsakaliṅga (Neuter)', tadM),
     };
+    /* Full mastery for new patterns, a delta check where the source itself
+       derives one table from another, a transfer check where a paradigm is
+       another's with one vowel changed.  The rows each list owes: */
+    const ROWS = {
+      'Form mastery · Phala — 4 key forms': [1, 2, 8],   // "3–7 same as masculine"
+      'Form mastery · Tat — 3 key forms':   [1, 2],      // likewise, in bricks.md
+    };
+    const PARTIAL = new Set(['Form mastery · Viṣṇu — 7 key forms']);
 
     const p = await open(browser);
     const got = await p.evaluate(names => {
@@ -1471,17 +1479,42 @@ const open = async (browser, opts = {}) => {
         cells.add(v + ':' + n);
         vibsSeen.add(VIB[v - 1]); numsSeen.add(NUM[n]);
       });
-      // every cell the source supplies is asked for
-      const wanted = [];
-      Object.keys(want).forEach(v => want[v].forEach((f, n) => { if (f) wanted.push(v + ':' + n); }));
-      const missing = wanted.filter(k => !cells.has(k));
-      if (missing.length) bad.push(name + ': never asks ' + missing.join(','));
-      covered[name] = cells.size;
+      /* Every distinct FORM the list owes is asked for exactly once.  Cells
+         are not: three of śiva's duals are śivābhyām, and asking for the
+         same form three times drills one fact three times. */
+      const owed = new Map();                    // form -> the cells it fills
+      (ROWS[name] || Object.keys(want).map(Number)).forEach(v =>
+        (want[v] || []).forEach((f, n) => {
+          if (f) owed.set(f, (owed.get(f) || []).concat(v + ':' + n));
+        }));
+      const asked = cards.filter(c => /^Form the /.test(c.front || ''))
+                         .map(c => c.answer);
+      const twice = asked.filter((f, k) => asked.indexOf(f) !== k);
+      if (twice.length) bad.push(name + ': asks for ' + twice[0] + ' more than once');
+      if (!PARTIAL.has(name)) {
+        const missing = [...owed.keys()].filter(f => !asked.includes(f));
+        if (missing.length) bad.push(name + ': never asks ' + missing.join(','));
+      } else {
+        const stray = asked.filter(f => !owed.has(f));
+        if (stray.length) bad.push(name + ': asks ' + stray.join(',') + ', not a cell here');
+      }
+      /* a collapsed card names the other cells its form fills, so nothing the
+         table says is lost from the app */
+      cards.filter(c => /^Form the /.test(c.front || '')).forEach(c => {
+        const fills = owed.get(c.answer) || [];
+        if (fills.length > 1 && !/·\s*also\s/.test(c.note || ''))
+          bad.push(c.id + ': fills ' + fills.length + ' cells but names only one');
+      });
+      covered[name] = asked.length;
     });
 
     ok('every produced form is the one Stage 5 tables', !bad.length, bad.slice(0, 5).join(' | '));
-    ok('every cell the source supplies is asked for',
-      Object.values(covered).every(n => n >= 21), JSON.stringify(covered));
+    ok('every distinct form is asked for, and only once',
+      Object.values(covered).reduce((a, b) => a + b, 0) === 168, JSON.stringify(covered));
+    ok('the reduction dropped cells, never forms',
+      covered['Form mastery · Śiva — all 17 forms'] === 17
+      && covered['Form mastery · Phala — 4 key forms'] === 4,
+      JSON.stringify(covered));
     ok('the bank spans all eight vibhaktis and all three numbers',
       vibsSeen.size === 8 && numsSeen.size === 3,
       [...vibsSeen].join(',') + ' | ' + [...numsSeen].join(','));
@@ -1493,7 +1526,7 @@ const open = async (browser, opts = {}) => {
   {
     const p = await open(browser);
     const r = await p.evaluate(() => {
-      const DECK = 'Form mastery · Devī — all 21 cells';
+      const DECK = 'Form mastery · Devī — all 15 forms';
       const CLASS = '05-rupa:class:devi';
       const shown = () => document.getElementById('stemclass').hidden
         ? null : document.getElementById('stemclass').textContent;
