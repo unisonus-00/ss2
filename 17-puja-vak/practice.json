@@ -374,56 +374,56 @@
           "devanagari": "मुख / वदन / आनन",
           "iast": "mukha / vadana / ānana",
           "gloss": "face",
-          "note": "headword | n. · stem: mukha- · a-stem · DM 2.10"
+          "note": "noun · neuter · a-stem · stem: mukha- · DM 2.10"
         },
         {
           "id": "17-puja-vak:body-adornment:netra-nayana-aksi-locana-caksus",
           "devanagari": "नेत्र / नयन / अक्षि / लोचन / चक्षुस्",
           "iast": "netra / nayana / akṣi / locana / cakṣus",
           "gloss": "eye",
-          "note": "n. · DM 2.11"
+          "note": "noun · neuter · DM 2.11"
         },
         {
           "id": "17-puja-vak:body-adornment:trilocana-trinetra",
           "devanagari": "त्रिलोचन / त्रिनेत्र",
           "iast": "trilocana / trinetra",
           "gloss": "three-eyed",
-          "note": "headword | adj. · stem: trilocana- · a-stem · DM 2.13"
+          "note": "adjective · a-stem · stem: trilocana- · DM 2.13"
         },
         {
           "id": "17-puja-vak:body-adornment:kataksa",
           "devanagari": "कटाक्ष",
           "iast": "kaṭākṣa",
           "gloss": "sidelong glance",
-          "note": "headword | m. · stem: kaṭākṣa- · a-stem · kaṭa + akṣa · LS 62"
+          "note": "noun · masculine · a-stem · stem: kaṭākṣa- · kaṭa + akṣa · LS 62"
         },
         {
           "id": "17-puja-vak:body-adornment:bhru",
           "devanagari": "भ्रू",
           "iast": "bhrū",
           "gloss": "eyebrow",
-          "note": "headword | f. · stem: bhrū- · ū-stem · LS 15"
+          "note": "noun · feminine · ū-stem · stem: bhrū- · LS 15"
         },
         {
           "id": "17-puja-vak:body-adornment:kapola-ganda",
           "devanagari": "कपोल / गण्ड",
           "iast": "kapola / gaṇḍa",
           "gloss": "cheek",
-          "note": "headword | m. · stem: kapola- · a-stem · LS 16"
+          "note": "noun · masculine · a-stem · stem: kapola- · LS 16"
         },
         {
           "id": "17-puja-vak:body-adornment:nasa-nasika",
           "devanagari": "नासा / नासिका",
           "iast": "nāsā / nāsikā",
           "gloss": "nose",
-          "note": "headword | f. · stem: nāsā- · ā-stem · DM passim"
+          "note": "noun · feminine · ā-stem · stem: nāsā- · DM passim"
         },
         {
           "id": "17-puja-vak:body-adornment:ostha-adhara",
           "devanagari": "ओष्ठ / अधर",
           "iast": "oṣṭha / adhara",
           "gloss": "lip",
-          "note": "headword | m. · stem: oṣṭha- · a-stem · DM 8.4"
+          "note": "noun · masculine · a-stem · stem: oṣṭha- · DM 8.4"
         },
         {
           "id": "17-puja-vak:body-adornment:danta-dantapankti",
@@ -437,56 +437,56 @@
           "devanagari": "दंष्ट्रा",
           "iast": "daṃṣṭrā",
           "gloss": "fang, tusk",
-          "note": "headword | f. · stem: daṃṣṭrā- · ā-stem · DM 7.9"
+          "note": "noun · feminine · ā-stem · stem: daṃṣṭrā- · DM 7.9"
         },
         {
           "id": "17-puja-vak:body-adornment:jihva",
           "devanagari": "जिह्वा",
           "iast": "jihvā",
           "gloss": "tongue",
-          "note": "headword | f. · stem: jihvā- · ā-stem · DM 7.8"
+          "note": "noun · feminine · ā-stem · stem: jihvā- · DM 7.8"
         },
         {
           "id": "17-puja-vak:body-adornment:cibuka",
           "devanagari": "चिबुक",
           "iast": "cibuka",
           "gloss": "chin",
-          "note": "headword | n. · stem: cibuka- · a-stem · LS 29"
+          "note": "noun · neuter · a-stem · stem: cibuka- · LS 29"
         },
         {
           "id": "17-puja-vak:body-adornment:karna",
           "devanagari": "कर्ण",
           "iast": "karṇa",
           "gloss": "ear",
-          "note": "headword | m. · stem: karṇa- · a-stem · KKS 209+"
+          "note": "noun · masculine · a-stem · stem: karṇa- · KKS 209+"
         },
         {
           "id": "17-puja-vak:body-adornment:lalata-bhala",
           "devanagari": "ललाट / भाल",
           "iast": "lalāṭa / bhāla",
           "gloss": "forehead",
-          "note": "headword | n. · stem: lalāṭa- · a-stem · LS 15"
+          "note": "noun · neuter · a-stem · stem: lalāṭa- · LS 15"
         },
         {
           "id": "17-puja-vak:body-adornment:kesa-kaca-kuntala",
           "devanagari": "केश / कच / कुन्तल",
           "iast": "keśa / kaca / kuntala",
           "gloss": "hair",
-          "note": "headword | m. · stem: keśa- · a-stem · DM 6.4"
+          "note": "noun · masculine · a-stem · stem: keśa- · DM 6.4"
         },
         {
           "id": "17-puja-vak:body-adornment:muktakesi",
           "devanagari": "मुक्तकेशी",
           "iast": "muktakeśī",
           "gloss": "loose-haired",
-          "note": "headword | f. · stem: muktakeśī- · ī-stem · KS 101"
+          "note": "noun · feminine · ī-stem · stem: muktakeśī- · KS 101"
         },
         {
           "id": "17-puja-vak:body-adornment:dirghakesi",
           "devanagari": "दीर्घकेशी",
           "iast": "dīrghakeśī",
           "gloss": "long-haired",
-          "note": "headword | f. · stem: dīrghakeśī- · ī-stem · KS 102"
+          "note": "noun · feminine · ī-stem · stem: dīrghakeśī- · KS 102"
         },
         {
           "id": "17-puja-vak:body-adornment:jata-jatin",
@@ -500,14 +500,14 @@
           "devanagari": "केशर / केसरिन्",
           "iast": "keśara / kesarin",
           "gloss": "mane (of lion)",
-          "note": "m. · DM 6.17"
+          "note": "noun · masculine · DM 6.17"
         },
         {
           "id": "17-puja-vak:body-adornment:suksmakesi",
           "devanagari": "सूक्ष्मकेशी",
           "iast": "sūkṣmakeśī",
           "gloss": "fine-haired",
-          "note": "headword | f. · stem: sūkṣmakeśī- · ī-stem · KS passim"
+          "note": "noun · feminine · ī-stem · stem: sūkṣmakeśī- · KS passim"
         }
       ]
     },
@@ -519,14 +519,14 @@
           "devanagari": "भुज / बाहु",
           "iast": "bhuja / bāhu",
           "gloss": "arm",
-          "note": "m. · DM 2.12"
+          "note": "noun · masculine · DM 2.12"
         },
         {
           "id": "17-puja-vak:body-adornment:kara-hasta-pani",
           "devanagari": "कर / हस्त / पाणि",
           "iast": "kara / hasta / pāṇi",
           "gloss": "hand",
-          "note": "m. · DM passim"
+          "note": "noun · masculine · DM passim"
         },
         {
           "id": "17-puja-vak:body-adornment:anguli-anguliya",
@@ -540,35 +540,35 @@
           "devanagari": "पद / चरण",
           "iast": "pada / caraṇa",
           "gloss": "foot",
-          "note": "headword | m. · stem: pada- · a-stem · LS 35+"
+          "note": "noun · masculine · a-stem · stem: pada- · LS 35+"
         },
         {
           "id": "17-puja-vak:body-adornment:jangha",
           "devanagari": "जङ्घा",
           "iast": "jaṅghā",
           "gloss": "shin/calf",
-          "note": "headword | f. · stem: jaṅghā- · ā-stem · LS 37"
+          "note": "noun · feminine · ā-stem · stem: jaṅghā- · LS 37"
         },
         {
           "id": "17-puja-vak:body-adornment:janu",
           "devanagari": "जानु",
           "iast": "jānu",
           "gloss": "knee",
-          "note": "headword | n. · stem: jānu- · u-stem · LS 38"
+          "note": "noun · neuter · u-stem · stem: jānu- · LS 38"
         },
         {
           "id": "17-puja-vak:body-adornment:uru",
           "devanagari": "ऊरु",
           "iast": "ūru",
           "gloss": "thigh",
-          "note": "headword | m. · stem: ūru- · u-stem · LS 36"
+          "note": "noun · masculine · u-stem · stem: ūru- · LS 36"
         },
         {
           "id": "17-puja-vak:body-adornment:kati",
           "devanagari": "कटि",
           "iast": "kaṭi",
           "gloss": "waist/hip",
-          "note": "headword | f. · stem: kaṭi- · i-stem · LS 36"
+          "note": "noun · feminine · i-stem · stem: kaṭi- · LS 36"
         },
         {
           "id": "17-puja-vak:body-adornment:madhya",
@@ -582,21 +582,21 @@
           "devanagari": "नाभि",
           "iast": "nābhi",
           "gloss": "navel",
-          "note": "headword | f. · stem: nābhi- · i-stem · LS 35"
+          "note": "noun · feminine · i-stem · stem: nābhi- · LS 35"
         },
         {
           "id": "17-puja-vak:body-adornment:vaksas",
           "devanagari": "वक्षस्",
           "iast": "vakṣas",
           "gloss": "chest",
-          "note": "headword | n. · stem: vakṣas- · as-stem · DM passim"
+          "note": "noun · neuter · as-stem · stem: vakṣas- · DM passim"
         },
         {
           "id": "17-puja-vak:body-adornment:stana-kuca",
           "devanagari": "स्तन / कुच",
           "iast": "stana / kuca",
           "gloss": "breast",
-          "note": "headword | m. · stem: stana- · a-stem · LS 35"
+          "note": "noun · masculine · a-stem · stem: stana- · LS 35"
         },
         {
           "id": "17-puja-vak:body-adornment:kantha-griva",
@@ -610,14 +610,14 @@
           "devanagari": "अङ्ग",
           "iast": "aṅga",
           "gloss": "limb/body part",
-          "note": "headword | n. · stem: aṅga- · a-stem · DM passim"
+          "note": "noun · neuter · a-stem · stem: aṅga- · DM passim"
         },
         {
           "id": "17-puja-vak:body-adornment:gatra",
           "devanagari": "गात्र",
           "iast": "gātra",
           "gloss": "body/limb",
-          "note": "headword | n. · stem: gātra- · a-stem · DM 5.14"
+          "note": "noun · neuter · a-stem · stem: gātra- · DM 5.14"
         },
         {
           "id": "17-puja-vak:body-adornment:deha-sarira-vapus-tanu",
@@ -631,63 +631,63 @@
           "devanagari": "त्वच् / त्वक्",
           "iast": "tvac / tvak",
           "gloss": "skin",
-          "note": "f. · LS passim"
+          "note": "noun · feminine · LS passim"
         },
         {
           "id": "17-puja-vak:body-adornment:rudhira-rakta-asrj-sonita",
           "devanagari": "रुधिर / रक्त / असृज् / शोणित",
           "iast": "rudhira / rakta / asṛj / śoṇita",
           "gloss": "blood",
-          "note": "n. · DM 6.18"
+          "note": "noun · neuter · DM 6.18"
         },
         {
           "id": "17-puja-vak:body-adornment:mamsa",
           "devanagari": "मांस",
           "iast": "māṃsa",
           "gloss": "flesh",
-          "note": "headword | n. · stem: māṃsa- · a-stem · KS passim"
+          "note": "noun · neuter · a-stem · stem: māṃsa- · KS passim"
         },
         {
           "id": "17-puja-vak:body-adornment:asthi",
           "devanagari": "अस्थि",
           "iast": "asthi",
           "gloss": "bone",
-          "note": "headword | n. · stem: asthi- · i-stem · KS passim"
+          "note": "noun · neuter · i-stem · stem: asthi- · KS passim"
         },
         {
           "id": "17-puja-vak:body-adornment:majja",
           "devanagari": "मज्जा",
           "iast": "majjā",
           "gloss": "marrow",
-          "note": "headword | f. · stem: majjā- · ā-stem · LS passim"
+          "note": "noun · feminine · ā-stem · stem: majjā- · LS passim"
         },
         {
           "id": "17-puja-vak:body-adornment:meda",
           "devanagari": "मेद",
           "iast": "meda",
           "gloss": "fat",
-          "note": "headword | n. · stem: meda- · a-stem · LS passim"
+          "note": "noun · neuter · a-stem · stem: meda- · LS passim"
         },
         {
           "id": "17-puja-vak:body-adornment:hrdaya",
           "devanagari": "हृदय",
           "iast": "hṛdaya",
           "gloss": "heart",
-          "note": "headword | n. · stem: hṛdaya- · a-stem · DM 9.34"
+          "note": "noun · neuter · a-stem · stem: hṛdaya- · DM 9.34"
         },
         {
           "id": "17-puja-vak:body-adornment:kostha",
           "devanagari": "कोष्ठ",
           "iast": "koṣṭha",
           "gloss": "torso/abdomen",
-          "note": "headword | n. · stem: koṣṭha- · a-stem · DM 6.17"
+          "note": "noun · neuter · a-stem · stem: koṣṭha- · DM 6.17"
         },
         {
           "id": "17-puja-vak:body-adornment:sirodhara",
           "devanagari": "शिरोधर",
           "iast": "śirodhara",
           "gloss": "neck (lit. head-bearer)",
-          "note": "headword | n. · stem: śirodhara- · a-stem · DM 6.18"
+          "note": "noun · neuter · a-stem · stem: śirodhara- · DM 6.18"
         }
       ]
     },
@@ -699,56 +699,56 @@
           "devanagari": "आभरण / भूषण / अलङ्कार",
           "iast": "ābharaṇa / bhūṣaṇa / alaṅkāra",
           "gloss": "ornament",
-          "note": "headword | n. · stem: ābharaṇa- · a-stem · DM 2.26"
+          "note": "noun · neuter · a-stem · stem: ābharaṇa- · DM 2.26"
         },
         {
           "id": "17-puja-vak:body-adornment:kirita-mukuta",
           "devanagari": "किरीट / मुकुट",
           "iast": "kirīṭa / mukuṭa",
           "gloss": "crown/tiara",
-          "note": "headword | n. · stem: kirīṭa- · a-stem · LS 13"
+          "note": "noun · neuter · a-stem · stem: kirīṭa- · LS 13"
         },
         {
           "id": "17-puja-vak:body-adornment:kundala",
           "devanagari": "कुण्डल",
           "iast": "kuṇḍala",
           "gloss": "earring",
-          "note": "headword | n. · stem: kuṇḍala- · a-stem · LS 16"
+          "note": "noun · neuter · a-stem · stem: kuṇḍala- · LS 16"
         },
         {
           "id": "17-puja-vak:body-adornment:hara",
           "devanagari": "हार",
           "iast": "hāra",
           "gloss": "necklace",
-          "note": "headword | m. · stem: hāra- · a-stem · LS 30"
+          "note": "noun · masculine · a-stem · stem: hāra- · LS 30"
         },
         {
           "id": "17-puja-vak:body-adornment:kankana",
           "devanagari": "कङ्कण",
           "iast": "kaṅkaṇa",
           "gloss": "bracelet",
-          "note": "headword | n. · stem: kaṅkaṇa- · a-stem · LS 31"
+          "note": "noun · neuter · a-stem · stem: kaṅkaṇa- · LS 31"
         },
         {
           "id": "17-puja-vak:body-adornment:keyura",
           "devanagari": "केयूर",
           "iast": "keyūra",
           "gloss": "armlet",
-          "note": "headword | n. · stem: keyūra- · a-stem · LS 31"
+          "note": "noun · neuter · a-stem · stem: keyūra- · LS 31"
         },
         {
           "id": "17-puja-vak:body-adornment:nupura",
           "devanagari": "नूपुर",
           "iast": "nūpura",
           "gloss": "anklet",
-          "note": "headword | n. · stem: nūpura- · a-stem · LS 40"
+          "note": "noun · neuter · a-stem · stem: nūpura- · LS 40"
         },
         {
           "id": "17-puja-vak:body-adornment:manjira",
           "devanagari": "मञ्जीर",
           "iast": "mañjīra",
           "gloss": "ankle-bell",
-          "note": "headword | n. · stem: mañjīra- · a-stem · LS 40"
+          "note": "noun · neuter · a-stem · stem: mañjīra- · LS 40"
         },
         {
           "id": "17-puja-vak:body-adornment:malyam-mala",
@@ -762,70 +762,70 @@
           "devanagari": "सिन्दूर",
           "iast": "sindūra",
           "gloss": "vermillion",
-          "note": "headword | n. · stem: sindūra- · a-stem · KKS 747"
+          "note": "noun · neuter · a-stem · stem: sindūra- · KKS 747"
         },
         {
           "id": "17-puja-vak:body-adornment:kunkuma",
           "devanagari": "कुङ्कुम",
           "iast": "kuṅkuma",
           "gloss": "saffron",
-          "note": "headword | n. · stem: kuṅkuma- · a-stem · KKS 747"
+          "note": "noun · neuter · a-stem · stem: kuṅkuma- · KKS 747"
         },
         {
           "id": "17-puja-vak:body-adornment:kasturi",
           "devanagari": "कस्तूरी",
           "iast": "kastūrī",
           "gloss": "musk",
-          "note": "headword | f. · stem: kastūrī- · ī-stem · KKS 225-280"
+          "note": "noun · feminine · ī-stem · stem: kastūrī- · KKS 225-280"
         },
         {
           "id": "17-puja-vak:body-adornment:karpura",
           "devanagari": "कर्पूर",
           "iast": "karpūra",
           "gloss": "camphor",
-          "note": "headword | n. · stem: karpūra- · a-stem · KKS 531-537"
+          "note": "noun · neuter · a-stem · stem: karpūra- · KKS 531-537"
         },
         {
           "id": "17-puja-vak:body-adornment:candana",
           "devanagari": "चन्दन",
           "iast": "candana",
           "gloss": "sandalwood",
-          "note": "headword | n. · stem: candana- · a-stem · KS passim"
+          "note": "noun · neuter · a-stem · stem: candana- · KS passim"
         },
         {
           "id": "17-puja-vak:body-adornment:tilaka",
           "devanagari": "तिलक",
           "iast": "tilaka",
           "gloss": "forehead mark",
-          "note": "headword | m. · stem: tilaka- · a-stem · KKS 239"
+          "note": "noun · masculine · a-stem · stem: tilaka- · KKS 239"
         },
         {
           "id": "17-puja-vak:body-adornment:pattambara",
           "devanagari": "पट्टाम्बर",
           "iast": "paṭṭāmbara",
           "gloss": "silk garment",
-          "note": "headword | n. · stem: paṭṭāmbara- · a-stem · KS passim"
+          "note": "noun · neuter · a-stem · stem: paṭṭāmbara- · KS passim"
         },
         {
           "id": "17-puja-vak:body-adornment:vastra-ambara",
           "devanagari": "वस्त्र / अम्बर",
           "iast": "vastra / ambara",
           "gloss": "garment",
-          "note": "headword | n. · stem: vastra- · a-stem · KS passim"
+          "note": "noun · neuter · a-stem · stem: vastra- · KS passim"
         },
         {
           "id": "17-puja-vak:body-adornment:kanci",
           "devanagari": "काञ्ची",
           "iast": "kāñcī",
           "gloss": "girdle/waist-chain",
-          "note": "headword | f. · stem: kāñcī- · ī-stem · KKS 501"
+          "note": "noun · feminine · ī-stem · stem: kāñcī- · KKS 501"
         },
         {
           "id": "17-puja-vak:body-adornment:graivaiyaka",
           "devanagari": "ग्रैवैयक",
           "iast": "graivaiyaka",
           "gloss": "neck-ornament",
-          "note": "headword | n. · stem: graivaiyaka- · a-stem · LS 30"
+          "note": "noun · neuter · a-stem · stem: graivaiyaka- · LS 30"
         },
         {
           "id": "17-puja-vak:body-adornment:ratna-mani",
@@ -865,77 +865,77 @@
           "devanagari": "होम",
           "iast": "homa",
           "gloss": "fire oblation",
-          "note": "headword | m. · stem: homa- · a-stem · KKS 104"
+          "note": "noun · masculine · a-stem · stem: homa- · KKS 104"
         },
         {
           "id": "17-puja-vak:ritual-worship:bali",
           "devanagari": "बलि",
           "iast": "bali",
           "gloss": "offering (esp. food/animal)",
-          "note": "headword | m. · stem: bali- · i-stem · DM 13.12"
+          "note": "noun · masculine · i-stem · stem: bali- · DM 13.12"
         },
         {
           "id": "17-puja-vak:ritual-worship:tarpana",
           "devanagari": "तर्पण",
           "iast": "tarpaṇa",
           "gloss": "libation, satiating",
-          "note": "headword | n. · stem: tarpaṇa- · a-stem · from √tṛp · DM 13.11"
+          "note": "noun · neuter · a-stem · stem: tarpaṇa- · from √tṛp · DM 13.11"
         },
         {
           "id": "17-puja-vak:ritual-worship:abhiseka",
           "devanagari": "अभिषेक",
           "iast": "abhiṣeka",
           "gloss": "consecration/bathing",
-          "note": "headword | m. · stem: abhiṣeka- · a-stem · KS passim"
+          "note": "noun · masculine · a-stem · stem: abhiṣeka- · KS passim"
         },
         {
           "id": "17-puja-vak:ritual-worship:ahuti",
           "devanagari": "आहुति",
           "iast": "āhuti",
           "gloss": "oblation into fire",
-          "note": "headword | f. · stem: āhuti- · i-stem · DM passim"
+          "note": "noun · feminine · i-stem · stem: āhuti- · DM passim"
         },
         {
           "id": "17-puja-vak:ritual-worship:yajna",
           "devanagari": "यज्ञ",
           "iast": "yajña",
           "gloss": "sacrifice",
-          "note": "headword | m. · stem: yajña- · a-stem · from √yaj · DM passim"
+          "note": "noun · masculine · a-stem · stem: yajña- · from √yaj · DM passim"
         },
         {
           "id": "17-puja-vak:ritual-worship:vrata",
           "devanagari": "व्रत",
           "iast": "vrata",
           "gloss": "vow, observance",
-          "note": "headword | n. · stem: vrata- · a-stem · DM 13.8"
+          "note": "noun · neuter · a-stem · stem: vrata- · DM 13.8"
         },
         {
           "id": "17-puja-vak:ritual-worship:tapas",
           "devanagari": "तपस्",
           "iast": "tapas",
           "gloss": "austerity, penance",
-          "note": "headword | n. · stem: tapas- · as-stem · from √tap · DM 13.9"
+          "note": "noun · neuter · as-stem · stem: tapas- · from √tap · DM 13.9"
         },
         {
           "id": "17-puja-vak:ritual-worship:diksa",
           "devanagari": "दीक्षा",
           "iast": "dīkṣā",
           "gloss": "initiation",
-          "note": "headword | f. · stem: dīkṣā- · ā-stem · LS passim"
+          "note": "noun · feminine · ā-stem · stem: dīkṣā- · LS passim"
         },
         {
           "id": "17-puja-vak:ritual-worship:sadhana",
           "devanagari": "साधन",
           "iast": "sādhana",
           "gloss": "spiritual practice",
-          "note": "headword | n. · stem: sādhana- · a-stem · KS passim"
+          "note": "noun · neuter · a-stem · stem: sādhana- · KS passim"
         },
         {
           "id": "17-puja-vak:ritual-worship:upasana",
           "devanagari": "उपासन",
           "iast": "upāsana",
           "gloss": "meditation/worship",
-          "note": "headword | n. · stem: upāsana- · a-stem · VS passim"
+          "note": "noun · neuter · a-stem · stem: upāsana- · VS passim"
         }
       ]
     },
@@ -947,35 +947,35 @@
           "devanagari": "पुष्प / कुसुम",
           "iast": "puṣpa / kusuma",
           "gloss": "flower",
-          "note": "headword | n. · stem: puṣpa- · a-stem · DM 4.30"
+          "note": "noun · neuter · a-stem · stem: puṣpa- · DM 4.30"
         },
         {
           "id": "17-puja-vak:ritual-worship:dhupa",
           "devanagari": "धूप",
           "iast": "dhūpa",
           "gloss": "incense",
-          "note": "headword | m. · stem: dhūpa- · a-stem · DM 13.11"
+          "note": "noun · masculine · a-stem · stem: dhūpa- · DM 13.11"
         },
         {
           "id": "17-puja-vak:ritual-worship:dipa",
           "devanagari": "दीप",
           "iast": "dīpa",
           "gloss": "lamp",
-          "note": "headword | m. · stem: dīpa- · a-stem · KKS 140"
+          "note": "noun · masculine · a-stem · stem: dīpa- · KKS 140"
         },
         {
           "id": "17-puja-vak:ritual-worship:gandha",
           "devanagari": "गन्ध",
           "iast": "gandha",
           "gloss": "sandalwood/fragrance",
-          "note": "headword | m. · stem: gandha- · a-stem · DM 13.11"
+          "note": "noun · masculine · a-stem · stem: gandha- · DM 13.11"
         },
         {
           "id": "17-puja-vak:ritual-worship:naivedya",
           "devanagari": "नैवेद्य",
           "iast": "naivedya",
           "gloss": "food offering",
-          "note": "headword | n. · stem: naivedya- · a-stem · VS passim"
+          "note": "noun · neuter · a-stem · stem: naivedya- · VS passim"
         },
         {
           "id": "17-puja-vak:ritual-worship:malya-mala",
@@ -989,28 +989,28 @@
           "devanagari": "अर्घ्य",
           "iast": "arghya",
           "gloss": "water offering",
-          "note": "headword | n. · stem: arghya- · a-stem · KKS 182"
+          "note": "noun · neuter · a-stem · stem: arghya- · KKS 182"
         },
         {
           "id": "17-puja-vak:ritual-worship:padya",
           "devanagari": "पाद्य",
           "iast": "pādya",
           "gloss": "foot-wash water",
-          "note": "headword | n. · stem: pādya- · a-stem · VS passim"
+          "note": "noun · neuter · a-stem · stem: pādya- · VS passim"
         },
         {
           "id": "17-puja-vak:ritual-worship:acamaniya",
           "devanagari": "आचमनीय",
           "iast": "ācamanīya",
           "gloss": "sipping water",
-          "note": "headword | n. · stem: ācamanīya- · a-stem · VS passim"
+          "note": "noun · neuter · a-stem · stem: ācamanīya- · VS passim"
         },
         {
           "id": "17-puja-vak:ritual-worship:tambula",
           "devanagari": "ताम्बूल",
           "iast": "tāmbūla",
           "gloss": "betel",
-          "note": "headword | n. · stem: tāmbūla- · a-stem · LS 472"
+          "note": "noun · neuter · a-stem · stem: tāmbūla- · LS 472"
         }
       ]
     },
@@ -1022,14 +1022,14 @@
           "devanagari": "मन्त्र",
           "iast": "mantra",
           "gloss": "sacred formula",
-          "note": "headword | m. · stem: mantra- · a-stem · from √man · DM passim"
+          "note": "noun · masculine · a-stem · stem: mantra- · from √man · DM passim"
         },
         {
           "id": "17-puja-vak:ritual-worship:bija",
           "devanagari": "बीज",
           "iast": "bīja",
           "gloss": "seed-syllable",
-          "note": "headword | n. · stem: bīja- · a-stem · KKS 614-615"
+          "note": "noun · neuter · a-stem · stem: bīja- · KKS 614-615"
         },
         {
           "id": "17-puja-vak:ritual-worship:hrim",
@@ -1104,84 +1104,77 @@
           "devanagari": "सूक्त",
           "iast": "sūkta",
           "gloss": "hymn",
-          "note": "headword | n. · stem: sūkta- · a-stem · su + ukta · DM 13.10"
+          "note": "noun · neuter · a-stem · stem: sūkta- · su + ukta · DM 13.10"
         },
         {
           "id": "17-puja-vak:ritual-worship:mahatmya",
           "devanagari": "माहात्म्य",
           "iast": "māhātmya",
           "gloss": "glorification text",
-          "note": "headword | n. · stem: māhātmya- · a-stem · DM colophons"
+          "note": "noun · neuter · a-stem · stem: māhātmya- · DM colophons"
         },
         {
           "id": "17-puja-vak:ritual-worship:carita",
           "devanagari": "चरित",
           "iast": "carita",
           "gloss": "narrative of deeds",
-          "note": "headword | n. · stem: carita- · a-stem · DM colophons (prathama/madhyama/uttama carita)"
+          "note": "noun · neuter · a-stem · stem: carita- · DM colophons (prathama/madhyama/uttama carita)"
         },
         {
           "id": "17-puja-vak:ritual-worship:veda",
           "devanagari": "वेद",
           "iast": "veda",
           "gloss": "sacred knowledge",
-          "note": "headword | m. · stem: veda- · a-stem · from √vid · KS passim"
+          "note": "noun · masculine · a-stem · stem: veda- · from √vid · KS passim"
         },
         {
           "id": "17-puja-vak:ritual-worship:sruti",
-          "devanagari": "श्रुति",
-          "iast": "śruti",
+          "devanagari": "श्रुति / आगम",
+          "iast": "śruti / āgama",
           "gloss": "revealed scripture",
-          "note": "headword | f. · stem: śruti- · i-stem · from √śru · LS 474"
+          "note": "noun · śruti feminine, i-stem, from √śru · āgama masculine, a-stem · LS 474; KKS 19"
         },
         {
           "id": "17-puja-vak:ritual-worship:smrti",
           "devanagari": "स्मृति",
           "iast": "smṛti",
           "gloss": "remembered tradition",
-          "note": "headword | f. · stem: smṛti- · i-stem · from √smṛ · LS 475"
+          "note": "noun · feminine · i-stem · stem: smṛti- · from √smṛ · LS 475"
         },
         {
           "id": "17-puja-vak:ritual-worship:vidya",
           "devanagari": "विद्या",
           "iast": "vidyā",
           "gloss": "knowledge, mantra",
-          "note": "headword | f. · stem: vidyā- · ā-stem · from √vid · LS passim"
+          "note": "noun · feminine · ā-stem · stem: vidyā- · from √vid · LS passim"
         },
         {
           "id": "17-puja-vak:ritual-worship:guhyavidya",
           "devanagari": "गुह्यविद्या",
           "iast": "guhyavidyā",
           "gloss": "secret knowledge",
-          "note": "headword | f. · stem: guhyavidyā- · ā-stem · KS passim"
+          "note": "noun · feminine · ā-stem · stem: guhyavidyā- · KS passim"
         },
         {
           "id": "17-puja-vak:ritual-worship:mahavidya",
           "devanagari": "महाविद्या",
           "iast": "mahāvidyā",
           "gloss": "great knowledge",
-          "note": "headword | f. · stem: mahāvidyā- · ā-stem · DM 1.55"
+          "note": "noun · feminine · ā-stem · stem: mahāvidyā- · DM 1.55"
         },
         {
           "id": "17-puja-vak:ritual-worship:tantra",
           "devanagari": "तन्त्र",
           "iast": "tantra",
           "gloss": "esoteric system",
-          "note": "headword | n. · stem: tantra- · a-stem · KKS 307"
+          "note": "noun · neuter · a-stem · stem: tantra- · KKS 307"
         },
         {
           "id": "17-puja-vak:ritual-worship:purana",
           "devanagari": "पुराण",
           "iast": "purāṇa",
           "gloss": "ancient text",
-          "note": "headword | n. · stem: purāṇa- · a-stem · DM colophons"
-        },
-        {
-          "id": "17-puja-vak:ritual-worship:agama",
-          "devanagari": "आगम",
-          "iast": "āgama",
-          "gloss": "revealed scripture",
-          "note": "headword | m. · stem: āgama- · a-stem · KKS 19"
+          "note": "noun · neuter · a-stem · stem: purāṇa- · DM colophons"
         }
       ]
     },
@@ -1193,42 +1186,42 @@
           "devanagari": "पाठ",
           "iast": "pāṭha",
           "gloss": "recitation",
-          "note": "headword | m. · stem: pāṭha- · a-stem · from √paṭh · DM 12.3"
+          "note": "noun · masculine · a-stem · stem: pāṭha- · from √paṭh · DM 12.3"
         },
         {
           "id": "17-puja-vak:ritual-worship:sravana",
           "devanagari": "श्रवण",
           "iast": "śravaṇa",
           "gloss": "listening",
-          "note": "headword | n. · stem: śravaṇa- · a-stem · from √śru · DM 12.3"
+          "note": "noun · neuter · a-stem · stem: śravaṇa- · from √śru · DM 12.3"
         },
         {
           "id": "17-puja-vak:ritual-worship:phala",
           "devanagari": "फल",
           "iast": "phala",
           "gloss": "fruit, result",
-          "note": "headword | n. · stem: phala- · a-stem · DM 12 (phalaśruti)"
+          "note": "noun · neuter · a-stem · stem: phala- · DM 12 (phalaśruti)"
         },
         {
           "id": "17-puja-vak:ritual-worship:phalastuti-phalasruti",
           "devanagari": "फलस्तुति / फलश्रुति",
           "iast": "phalastuti / phalaśruti",
           "gloss": "declaration of merit",
-          "note": "headword | f. · stem: phalastuti- · i-stem · DM Ch.12 title"
+          "note": "noun · feminine · i-stem · stem: phalastuti- · DM Ch.12 title"
         },
         {
           "id": "17-puja-vak:ritual-worship:punya",
           "devanagari": "पुण्य",
           "iast": "puṇya",
           "gloss": "merit",
-          "note": "headword | n. · stem: puṇya- · a-stem · DM 12.3"
+          "note": "noun · neuter · a-stem · stem: puṇya- · DM 12.3"
         },
         {
           "id": "17-puja-vak:ritual-worship:papa",
           "devanagari": "पाप",
           "iast": "pāpa",
           "gloss": "sin",
-          "note": "headword | n. · stem: pāpa- · a-stem · DM 12.9"
+          "note": "noun · neuter · a-stem · stem: pāpa- · DM 12.9"
         },
         {
           "id": "17-puja-vak:ritual-worship:moksa-mukti-apavarga",
@@ -1242,42 +1235,42 @@
           "devanagari": "भोग",
           "iast": "bhoga",
           "gloss": "enjoyment",
-          "note": "headword | m. · stem: bhoga- · a-stem · from √bhuj · DM 12.35"
+          "note": "noun · masculine · a-stem · stem: bhoga- · from √bhuj · DM 12.35"
         },
         {
           "id": "17-puja-vak:ritual-worship:siddhi",
           "devanagari": "सिद्धि",
           "iast": "siddhi",
           "gloss": "perfection, attainment",
-          "note": "headword | f. · stem: siddhi- · i-stem · from √sidh · KKS 146+"
+          "note": "noun · feminine · i-stem · stem: siddhi- · from √sidh · KKS 146+"
         },
         {
           "id": "17-puja-vak:ritual-worship:rddhi",
           "devanagari": "ऋद्धि",
           "iast": "ṛddhi",
           "gloss": "prosperity",
-          "note": "headword | f. · stem: ṛddhi- · i-stem · KS passim"
+          "note": "noun · feminine · i-stem · stem: ṛddhi- · KS passim"
         },
         {
           "id": "17-puja-vak:ritual-worship:vara-varadana",
           "devanagari": "वर / वरदान",
           "iast": "vara / varadāna",
           "gloss": "boon / boon-granting",
-          "note": "headword | m. · stem: vara- · a-stem · DM 4.37"
+          "note": "noun · masculine · a-stem · stem: vara- · DM 4.37"
         },
         {
           "id": "17-puja-vak:ritual-worship:prasada",
           "devanagari": "प्रसाद",
           "iast": "prasāda",
           "gloss": "grace, favor",
-          "note": "headword | m. · stem: prasāda- · a-stem · pra + √sad · DM passim"
+          "note": "noun · masculine · a-stem · stem: prasāda- · pra + √sad · DM passim"
         },
         {
           "id": "17-puja-vak:ritual-worship:anugraha",
           "devanagari": "अनुग्रह",
           "iast": "anugraha",
           "gloss": "grace, blessing",
-          "note": "headword | m. · stem: anugraha- · a-stem · anu + √grah · DM 11.33"
+          "note": "noun · masculine · a-stem · stem: anugraha- · anu + √grah · DM 11.33"
         }
       ]
     }

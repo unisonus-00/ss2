@@ -17,7 +17,7 @@
           "devanagari": "आत्मन्",
           "iast": "ātman",
           "gloss": "the self",
-          "note": "headword | m. · stem: ātman- · an-stem"
+          "note": "noun · masculine · an-stem · stem: ātman-"
         },
         {
           "id": "26-darshana:darsana:maya",
@@ -155,56 +155,56 @@
           "devanagari": "ब्रह्मन्",
           "iast": "brahman",
           "gloss": "the absolute",
-          "note": "headword | n. · stem: brahman- · an-stem · LS passim"
+          "note": "noun · neuter · an-stem · stem: brahman- · LS passim"
         },
         {
           "id": "26-darshana:philosophy-tattvas:parabrahman",
           "devanagari": "परब्रह्मन्",
           "iast": "parabrahman",
           "gloss": "supreme brahman",
-          "note": "headword | n. · stem: parabrahman- · an-stem · KS passim"
+          "note": "noun · neuter · an-stem · stem: parabrahman- · KS passim"
         },
         {
           "id": "26-darshana:philosophy-tattvas:atman",
           "devanagari": "आत्मन्",
           "iast": "ātman",
           "gloss": "self",
-          "note": "headword | m. · stem: ātman- · an-stem · VS passim"
+          "note": "noun · masculine · an-stem · stem: ātman- · VS passim"
         },
         {
           "id": "26-darshana:philosophy-tattvas:paramatman",
           "devanagari": "परमात्मन्",
           "iast": "paramātman",
           "gloss": "supreme self",
-          "note": "headword | m. · stem: paramātman- · an-stem · VS 10"
+          "note": "noun · masculine · an-stem · stem: paramātman- · VS 10"
         },
         {
           "id": "26-darshana:philosophy-tattvas:purusa",
           "devanagari": "पुरुष",
           "iast": "puruṣa",
           "gloss": "the cosmic person",
-          "note": "headword | m. · stem: puruṣa- · a-stem · VS 14"
+          "note": "noun · masculine · a-stem · stem: puruṣa- · VS 14"
         },
         {
           "id": "26-darshana:philosophy-tattvas:prakrti",
           "devanagari": "प्रकृति",
           "iast": "prakṛti",
           "gloss": "primordial nature/matter",
-          "note": "headword | f. · stem: prakṛti- · i-stem · LS 397"
+          "note": "noun · feminine · i-stem · stem: prakṛti- · LS 397"
         },
         {
           "id": "26-darshana:philosophy-tattvas:para-parama",
           "devanagari": "पर / परम",
           "iast": "para / parama",
           "gloss": "supreme, beyond",
-          "note": "headword | adj. · stem: para- · a-stem · DM passim"
+          "note": "adjective · a-stem · stem: para- · DM passim"
         },
         {
           "id": "26-darshana:philosophy-tattvas:turiya",
           "devanagari": "तुरीय",
           "iast": "turīya",
           "gloss": "the fourth (state beyond waking/dream/sleep)",
-          "note": "headword | adj. · stem: turīya- · a-stem · LS 262"
+          "note": "adjective · a-stem · stem: turīya- · LS 262"
         },
         {
           "id": "26-darshana:philosophy-tattvas:advaita",
@@ -218,35 +218,35 @@
           "devanagari": "निर्द्वैता",
           "iast": "nirdvaitā",
           "gloss": "without duality",
-          "note": "headword | f. · stem: nirdvaitā- · ā-stem · LS passim"
+          "note": "noun · feminine · ā-stem · stem: nirdvaitā- · LS passim"
         },
         {
           "id": "26-darshana:philosophy-tattvas:maya",
           "devanagari": "माया",
           "iast": "māyā",
           "gloss": "creative illusion, cosmic power",
-          "note": "headword | f. · stem: māyā- · ā-stem · DM 1.40"
+          "note": "noun · feminine · ā-stem · stem: māyā- · DM 1.40"
         },
         {
           "id": "26-darshana:philosophy-tattvas:mahamaya",
           "devanagari": "महामाया",
           "iast": "mahāmāyā",
           "gloss": "the great māyā",
-          "note": "headword | f. · stem: mahāmāyā- · ā-stem · DM 1.40"
+          "note": "noun · feminine · ā-stem · stem: mahāmāyā- · DM 1.40"
         },
         {
           "id": "26-darshana:philosophy-tattvas:moha",
           "devanagari": "मोह",
           "iast": "moha",
           "gloss": "delusion",
-          "note": "headword | m. · stem: moha- · a-stem · from √muh · DM 1.40"
+          "note": "noun · masculine · a-stem · stem: moha- · from √muh · DM 1.40"
         },
         {
           "id": "26-darshana:philosophy-tattvas:mahamoha",
           "devanagari": "महामोह",
           "iast": "mahāmoha",
           "gloss": "great delusion",
-          "note": "headword | m. · stem: mahāmoha- · a-stem · DM 11.43"
+          "note": "noun · masculine · a-stem · stem: mahāmoha- · DM 11.43"
         },
         {
           "id": "26-darshana:philosophy-tattvas:avidya-ajnana",
@@ -267,7 +267,7 @@
           "devanagari": "विवर्त",
           "iast": "vivarta",
           "gloss": "transformation/illusion",
-          "note": "headword | m. · stem: vivarta- · a-stem · LS passim"
+          "note": "noun · masculine · a-stem · stem: vivarta- · LS passim"
         }
       ]
     },
@@ -279,98 +279,98 @@
           "devanagari": "गुण",
           "iast": "guṇa",
           "gloss": "quality, strand",
-          "note": "headword | m. · stem: guṇa- · a-stem · DM 1.38"
+          "note": "noun · masculine · a-stem · stem: guṇa- · DM 1.38"
         },
         {
           "id": "26-darshana:philosophy-tattvas:sattva",
           "devanagari": "सत्त्व",
           "iast": "sattva",
           "gloss": "purity, being",
-          "note": "headword | n. · stem: sattva- · a-stem · DM 1.38"
+          "note": "noun · neuter · a-stem · stem: sattva- · DM 1.38"
         },
         {
           "id": "26-darshana:philosophy-tattvas:rajas",
           "devanagari": "रजस्",
           "iast": "rajas",
           "gloss": "passion, activity",
-          "note": "headword | n. · stem: rajas- · as-stem · DM 1.38"
+          "note": "noun · neuter · as-stem · stem: rajas- · DM 1.38"
         },
         {
           "id": "26-darshana:philosophy-tattvas:tamas",
           "devanagari": "तमस्",
           "iast": "tamas",
           "gloss": "darkness, inertia",
-          "note": "headword | n. · stem: tamas- · as-stem · DM 1.38"
+          "note": "noun · neuter · as-stem · stem: tamas- · DM 1.38"
         },
         {
           "id": "26-darshana:philosophy-tattvas:sattvarupini",
           "devanagari": "सत्त्वरूपिणी",
           "iast": "sattvarūpiṇī",
           "gloss": "she whose form is sattva",
-          "note": "headword | f. · stem: sattvarūpiṇī- · ī-stem · LS passim"
+          "note": "noun · feminine · ī-stem · stem: sattvarūpiṇī- · LS passim"
         },
         {
           "id": "26-darshana:philosophy-tattvas:nirguna",
           "devanagari": "निर्गुण",
           "iast": "nirguṇa",
           "gloss": "beyond the guṇas",
-          "note": "headword | adj. · stem: nirguṇa- · a-stem · LS 139"
+          "note": "adjective · a-stem · stem: nirguṇa- · LS 139"
         },
         {
           "id": "26-darshana:philosophy-tattvas:triguna-trigunatmika",
           "devanagari": "त्रिगुणा / त्रिगुणात्मिका",
           "iast": "triguṇā / triguṇātmikā",
           "gloss": "she of three guṇas",
-          "note": "headword | f. · stem: triguṇā- · ā-stem · LS passim"
+          "note": "noun · feminine · ā-stem · stem: triguṇā- · LS passim"
         },
         {
           "id": "26-darshana:philosophy-tattvas:srsti",
           "devanagari": "सृष्टि",
           "iast": "sṛṣṭi",
           "gloss": "creation, emission",
-          "note": "headword | f. · stem: sṛṣṭi- · i-stem · from √sṛj · DM 11.5"
+          "note": "noun · feminine · i-stem · stem: sṛṣṭi- · from √sṛj · DM 11.5"
         },
         {
           "id": "26-darshana:philosophy-tattvas:sthiti",
           "devanagari": "स्थिति",
           "iast": "sthiti",
           "gloss": "maintenance, preservation",
-          "note": "headword | f. · stem: sthiti- · i-stem · from √sthā · DM 11.5"
+          "note": "noun · feminine · i-stem · stem: sthiti- · from √sthā · DM 11.5"
         },
         {
           "id": "26-darshana:philosophy-tattvas:samhara-laya-pralaya",
           "devanagari": "संहार / लय / प्रलय",
           "iast": "saṃhāra / laya / pralaya",
           "gloss": "dissolution",
-          "note": "headword | m. · stem: saṃhāra- · a-stem · DM 11.5"
+          "note": "noun · masculine · a-stem · stem: saṃhāra- · DM 11.5"
         },
         {
           "id": "26-darshana:philosophy-tattvas:tirodhana",
           "devanagari": "तिरोधान",
           "iast": "tirodhāna",
           "gloss": "concealment",
-          "note": "headword | n. · stem: tirodhāna- · a-stem · LS 270"
+          "note": "noun · neuter · a-stem · stem: tirodhāna- · LS 270"
         },
         {
           "id": "26-darshana:philosophy-tattvas:anugraha",
           "devanagari": "अनुग्रह",
           "iast": "anugraha",
           "gloss": "grace, revelation",
-          "note": "headword | m. · stem: anugraha- · a-stem · LS 272"
+          "note": "noun · masculine · a-stem · stem: anugraha- · LS 272"
         },
         {
           "id": "26-darshana:philosophy-tattvas:pancakrtya",
           "devanagari": "पञ्चकृत्य",
           "iast": "pañcakṛtya",
           "gloss": "five cosmic acts",
-          "note": "headword | n. · stem: pañcakṛtya- · a-stem · LS 273"
+          "note": "noun · neuter · a-stem · stem: pañcakṛtya- · LS 273"
         },
         {
           "id": "26-darshana:philosophy-tattvas:jagatsrsti",
           "devanagari": "जगत्सृष्टि",
           "iast": "jagatsṛṣṭi",
           "gloss": "world-creation",
-          "note": "headword | f. · stem: jagatsṛṣṭi- · i-stem · DM 11.5"
+          "note": "noun · feminine · i-stem · stem: jagatsṛṣṭi- · DM 11.5"
         }
       ]
     },
@@ -382,21 +382,21 @@
           "devanagari": "ज्ञान",
           "iast": "jñāna",
           "gloss": "knowledge",
-          "note": "headword | n. · stem: jñāna- · a-stem · from √jñā · DM 13.18"
+          "note": "noun · neuter · a-stem · stem: jñāna- · from √jñā · DM 13.18"
         },
         {
           "id": "26-darshana:philosophy-tattvas:vijnana",
           "devanagari": "विज्ञान",
           "iast": "vijñāna",
           "gloss": "discernment, higher knowledge",
-          "note": "headword | n. · stem: vijñāna- · a-stem · LS 253"
+          "note": "noun · neuter · a-stem · stem: vijñāna- · LS 253"
         },
         {
           "id": "26-darshana:philosophy-tattvas:vidya",
           "devanagari": "विद्या",
           "iast": "vidyā",
           "gloss": "knowledge, mantra-knowledge",
-          "note": "headword | f. · stem: vidyā- · ā-stem · DM 1.55"
+          "note": "noun · feminine · ā-stem · stem: vidyā- · DM 1.55"
         },
         {
           "id": "26-darshana:philosophy-tattvas:moksa-mukti-kaivalya",
@@ -410,21 +410,21 @@
           "devanagari": "अपवर्ग",
           "iast": "apavarga",
           "gloss": "liberation (final release)",
-          "note": "headword | m. · stem: apavarga- · a-stem · DM 13.5"
+          "note": "noun · masculine · a-stem · stem: apavarga- · DM 13.5"
         },
         {
           "id": "26-darshana:philosophy-tattvas:bandha",
           "devanagari": "बन्ध",
           "iast": "bandha",
           "gloss": "bondage",
-          "note": "headword | m. · stem: bandha- · a-stem · from √bandh · LS passim"
+          "note": "noun · masculine · a-stem · stem: bandha- · from √bandh · LS passim"
         },
         {
           "id": "26-darshana:philosophy-tattvas:samsara",
           "devanagari": "संसार",
           "iast": "saṃsāra",
           "gloss": "cycle of rebirth",
-          "note": "headword | m. · stem: saṃsāra- · a-stem · DM 1.36"
+          "note": "noun · masculine · a-stem · stem: saṃsāra- · DM 1.36"
         },
         {
           "id": "26-darshana:philosophy-tattvas:karma",
@@ -438,21 +438,21 @@
           "devanagari": "धर्म",
           "iast": "dharma",
           "gloss": "righteousness, duty, cosmic law",
-          "note": "headword | m. · stem: dharma- · a-stem · from √dhṛ · DM passim"
+          "note": "noun · masculine · a-stem · stem: dharma- · from √dhṛ · DM passim"
         },
         {
           "id": "26-darshana:philosophy-tattvas:adharma",
           "devanagari": "अधर्म",
           "iast": "adharma",
           "gloss": "unrighteousness",
-          "note": "headword | m. · stem: adharma- · a-stem · DM passim"
+          "note": "noun · masculine · a-stem · stem: adharma- · DM passim"
         },
         {
           "id": "26-darshana:philosophy-tattvas:cit-citi",
           "devanagari": "चित् / चिति",
           "iast": "cit / citi",
           "gloss": "consciousness",
-          "note": "f. · LS 4 (cidagnikusambhūtā)"
+          "note": "noun · feminine · LS 4 (cidagnikusambhūtā)"
         },
         {
           "id": "26-darshana:philosophy-tattvas:cetana-caitanya",
@@ -466,42 +466,42 @@
           "devanagari": "चिद्रूपिणी",
           "iast": "cidrūpiṇī",
           "gloss": "whose form is consciousness",
-          "note": "headword | f. · stem: cidrūpiṇī- · ī-stem · LS passim"
+          "note": "noun · feminine · ī-stem · stem: cidrūpiṇī- · LS passim"
         },
         {
           "id": "26-darshana:philosophy-tattvas:cinmayi",
           "devanagari": "चिन्मयी",
           "iast": "cinmayī",
           "gloss": "consisting of consciousness",
-          "note": "headword | f. · stem: cinmayī- · ī-stem · LS 251"
+          "note": "noun · feminine · ī-stem · stem: cinmayī- · LS 251"
         },
         {
           "id": "26-darshana:philosophy-tattvas:jiva",
           "devanagari": "जीव",
           "iast": "jīva",
           "gloss": "individual soul",
-          "note": "headword | m. · stem: jīva- · a-stem · VS passim"
+          "note": "noun · masculine · a-stem · stem: jīva- · VS passim"
         },
         {
           "id": "26-darshana:philosophy-tattvas:ahamkara",
           "devanagari": "अहंकार",
           "iast": "ahaṃkāra",
           "gloss": "ego-sense",
-          "note": "headword | m. · stem: ahaṃkāra- · a-stem · LS 162"
+          "note": "noun · masculine · a-stem · stem: ahaṃkāra- · LS 162"
         },
         {
           "id": "26-darshana:philosophy-tattvas:antahkarana",
           "devanagari": "अन्तःकरण",
           "iast": "antaḥkaraṇa",
           "gloss": "inner instrument (mind)",
-          "note": "headword | n. · stem: antaḥkaraṇa- · a-stem · LS passim"
+          "note": "noun · neuter · a-stem · stem: antaḥkaraṇa- · LS passim"
         },
         {
           "id": "26-darshana:philosophy-tattvas:manas",
           "devanagari": "मनस्",
           "iast": "manas",
           "gloss": "mind",
-          "note": "headword | n. · stem: manas- · as-stem · LS passim"
+          "note": "noun · neuter · as-stem · stem: manas- · LS passim"
         }
       ]
     },
@@ -513,63 +513,63 @@
           "devanagari": "शक्ति",
           "iast": "śakti",
           "gloss": "power, energy, goddess",
-          "note": "headword | f. · stem: śakti- · i-stem · from √śak · DM 5.25"
+          "note": "noun · feminine · i-stem · stem: śakti- · from √śak · DM 5.25"
         },
         {
           "id": "26-darshana:philosophy-tattvas:parasakti",
           "devanagari": "पराशक्ति",
           "iast": "parāśakti",
           "gloss": "supreme power",
-          "note": "headword | f. · stem: parāśakti- · i-stem · LS passim"
+          "note": "noun · feminine · i-stem · stem: parāśakti- · LS passim"
         },
         {
           "id": "26-darshana:philosophy-tattvas:icchasakti",
           "devanagari": "इच्छाशक्ति",
           "iast": "icchāśakti",
           "gloss": "will-power",
-          "note": "headword | f. · stem: icchāśakti- · i-stem · LS passim"
+          "note": "noun · feminine · i-stem · stem: icchāśakti- · LS passim"
         },
         {
           "id": "26-darshana:philosophy-tattvas:jnanasakti",
           "devanagari": "ज्ञानशक्ति",
           "iast": "jñānaśakti",
           "gloss": "knowledge-power",
-          "note": "headword | f. · stem: jñānaśakti- · i-stem · LS passim"
+          "note": "noun · feminine · i-stem · stem: jñānaśakti- · LS passim"
         },
         {
           "id": "26-darshana:philosophy-tattvas:kriyasakti",
           "devanagari": "क्रियाशक्ति",
           "iast": "kriyāśakti",
           "gloss": "action-power",
-          "note": "headword | f. · stem: kriyāśakti- · i-stem · LS passim"
+          "note": "noun · feminine · i-stem · stem: kriyāśakti- · LS passim"
         },
         {
           "id": "26-darshana:philosophy-tattvas:kundalini",
           "devanagari": "कुण्डलिनी",
           "iast": "kuṇḍalinī",
           "gloss": "the coiled one (serpent energy)",
-          "note": "headword | f. · stem: kuṇḍalinī- · ī-stem · LS 110"
+          "note": "noun · feminine · ī-stem · stem: kuṇḍalinī- · LS 110"
         },
         {
           "id": "26-darshana:philosophy-tattvas:satcakra",
           "devanagari": "षट्चक्र",
           "iast": "ṣaṭcakra",
           "gloss": "six energy centers",
-          "note": "headword | n. · stem: ṣaṭcakra- · a-stem · KS passim"
+          "note": "noun · neuter · a-stem · stem: ṣaṭcakra- · KS passim"
         },
         {
           "id": "26-darshana:philosophy-tattvas:muladhara",
           "devanagari": "मूलाधार",
           "iast": "mūlādhāra",
           "gloss": "root center",
-          "note": "headword | n. · stem: mūlādhāra- · a-stem · LS passim"
+          "note": "noun · neuter · a-stem · stem: mūlādhāra- · LS passim"
         },
         {
           "id": "26-darshana:philosophy-tattvas:sahasrara",
           "devanagari": "सहस्रार",
           "iast": "sahasrāra",
           "gloss": "thousand-petaled (crown)",
-          "note": "headword | n. · stem: sahasrāra- · a-stem · LS passim"
+          "note": "noun · neuter · a-stem · stem: sahasrāra- · LS passim"
         },
         {
           "id": "26-darshana:philosophy-tattvas:srividya",

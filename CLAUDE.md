@@ -928,6 +928,70 @@ setting them in Devanagari would teach nothing.
 }
 ```
 
+### A reversed deck must still have one answer per cue
+
+Every reveal deck can be run backwards, and in that direction **the gloss is
+the prompt**. Three cards glossed `battle` therefore ask a question with three
+right answers, which no amount of knowing the vocabulary can fix — the learner
+cannot tell which of `yuddha`, `saṃgrāma`, `samara` is wanted, and marks
+themselves wrong for being right.
+
+An audit found 17 such groups, 35 cards. They divide into two kinds, and the
+kinds want opposite fixes:
+
+| | |
+|:--|:--|
+| **lexical synonyms** | merge onto one card — the convention 153 vocabulary cards already used (`sūrya / āditya / ravi / bhānu / divākara` → *sun*) |
+| **a set the curriculum enumerates** | keep the cards and make the gloss carry what tells them apart |
+
+Thirteen groups merged, 14 cards fewer. The merged card lists its words on
+both scripts, so a reversed round shows every acceptable answer and the
+learner can grade honestly.
+
+Four groups were **not** merged, because merging would have cost something the
+lesson owes:
+
+- `Dhātu II` and `Dhātu IV` hold the curriculum's own **50 core dhātus**, and a
+  test fails if one goes missing. `√jñā` and `√vid` both gloss *know* in the
+  reference, so the gloss takes the reference's present 3sg beside it — `to
+  know · jānāti` against `to know · vetti`. Naming the root from its present
+  form is the drill that deck exists for.
+- `31 · Sambodhana` teaches **one vocative ending per stem class**, so `amba`
+  and `mātaḥ` are not interchangeable: the gloss says which stem it wants,
+  `O mother! · from ambā-` against `· from mātṛ-`.
+
+`scripts/test.js` fails if any two reveal cards in a deck share a gloss, and if
+a merged card carries a different number of words in Devanagari and IAST.
+
+**Cross-deck collisions are left alone.** 73 meanings appear in two lists of
+the same lesson — `04 · Āyudha` and `V04 · Weapons` both teach *bow*. A round
+runs one deck, so the cue is unambiguous where it is asked; only a reversed
+mixed review could pair them, and there the two lists are deliberately
+different treatments of the same word.
+
+### The annotation names what a word is, not that it is a card
+
+The morphology chip read `HEADWORD | N. · STEM: YUDDHA- · A-STEM · FROM
+√YUDH`. `HEADWORD` said only that this card is a headword card, which the card
+already is; `N.` was opaque next to a stem spelled out in full two words
+later. All 627 now read:
+
+```
+noun · neuter · a-stem · stem: yuddha- · from √yudh · DM 2.3
+```
+
+The first field was already carrying the distinction — `m.`/`f.`/`n.` for
+nouns, `adj.`, `pp.` — so the part of speech is read off it rather than
+invented. A further 38 cards began with a bare `m. ·`; those are the
+already-merged multi-word cards, and they were expanded the same way, except
+where the card holds a phrase rather than words and calling it a noun would be
+false.
+
+**The chip is set in lower case**, like the choice note and for the same
+reason: it is mostly IAST, nobody writes `√YUDH` in capitals, and the wide
+uppercase tracking ran a two-clause annotation to four shouting lines under
+the answer.
+
 **A back has three parts at most: the answer, what it is, then why.** The
 compound cards used to put all three in the `gloss` — `नीलोत्पलम् ·
 karmadhāraya — "blue lotus"` — so flipping the card produced the answer, a
@@ -1136,7 +1200,7 @@ Three things here are load-bearing for the compatibility list above:
   chain, and keep each step stamping its own version rather than the newest;
   every `localStorage` touch stays guarded, since it can be absent or full.
 
-The app carries 24 lessons, 168 decks, and 2393 cards — 1929 `reveal`, 459
+The app carries 24 lessons, 168 decks, and 2379 cards — 1915 `reveal`, 459
 `choice` and 5 `sequence`, spread over 29 interactive decks in 12 lessons,
 plus the mastery decks holding complete paradigms.
 They are curated practice, not conversions of the reference tables:
@@ -1237,7 +1301,7 @@ the inherited colour, which is how a self-referential token went unnoticed
 until the cross came out cream. A test reads the resolved `rgb` off both
 buttons rather than trusting the declarations.
 
-A choice note is not uppercased the way a reveal card's morphology chip is —
+Neither a choice note nor a reveal card's morphology chip is uppercased —
 a sandhi rule prints vowel values (`guṇa · a + i → e`), and IAST is written
 lowercase.
 

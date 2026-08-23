@@ -258,59 +258,45 @@
       "cards": [
         {
           "id": "07-karaka:war-combat:yuddha",
-          "devanagari": "युद्ध",
-          "iast": "yuddha",
+          "devanagari": "युद्ध / संग्राम / समर",
+          "iast": "yuddha / saṃgrāma / samara",
           "gloss": "battle",
-          "note": "headword | n. · stem: yuddha- · a-stem · from √yudh · DM 2.3"
-        },
-        {
-          "id": "07-karaka:war-combat:samgrama",
-          "devanagari": "संग्राम",
-          "iast": "saṃgrāma",
-          "gloss": "battle",
-          "note": "headword | m. · stem: saṃgrāma- · a-stem · sam + grāma · DM 3.26"
+          "note": "noun · a-stem · neuter (yuddha, samara) · masculine (saṃgrāma) · from √yudh · DM 2.3, 3.25, 3.26"
         },
         {
           "id": "07-karaka:war-combat:rana",
           "devanagari": "रण",
           "iast": "raṇa",
           "gloss": "war, battlefield",
-          "note": "headword | n. · stem: raṇa- · a-stem · DM 3.5+"
+          "note": "noun · neuter · a-stem · stem: raṇa- · DM 3.5+"
         },
         {
           "id": "07-karaka:war-combat:ahava",
           "devanagari": "आहव",
           "iast": "āhava",
           "gloss": "battle, sacrifice",
-          "note": "headword | m. · stem: āhava- · a-stem · ā + √hu · DM 9.5"
-        },
-        {
-          "id": "07-karaka:war-combat:samara",
-          "devanagari": "समर",
-          "iast": "samara",
-          "gloss": "battle",
-          "note": "headword | n. · stem: samara- · a-stem · DM 3.25"
+          "note": "noun · masculine · a-stem · stem: āhava- · ā + √hu · DM 9.5"
         },
         {
           "id": "07-karaka:war-combat:sangarsa",
           "devanagari": "सङ्गर्ष",
           "iast": "saṅgarṣa",
           "gloss": "conflict",
-          "note": "headword | m. · stem: saṅgarṣa- · a-stem · DM passim"
+          "note": "noun · masculine · a-stem · stem: saṅgarṣa- · DM passim"
         },
         {
           "id": "07-karaka:war-combat:vira",
           "devanagari": "वीर",
           "iast": "vīra",
           "gloss": "hero, warrior",
-          "note": "headword | m. · stem: vīra- · a-stem · DM 3.3"
+          "note": "noun · masculine · a-stem · stem: vīra- · DM 3.3"
         },
         {
           "id": "07-karaka:war-combat:yoddha-yodha",
           "devanagari": "योद्ध / योध",
           "iast": "yoddha / yodha",
           "gloss": "fighter",
-          "note": "headword | m. · stem: yoddha- · a-stem · from √yudh · DM 2.55"
+          "note": "noun · masculine · a-stem · stem: yoddha- · from √yudh · DM 2.55"
         },
         {
           "id": "07-karaka:war-combat:sainya-sena-bala-anika",
@@ -324,21 +310,21 @@
           "devanagari": "वाहिनी",
           "iast": "vāhinī",
           "gloss": "division, battalion",
-          "note": "headword | f. · stem: vāhinī- · ī-stem · DM 2.55"
+          "note": "noun · feminine · ī-stem · stem: vāhinī- · DM 2.55"
         },
         {
           "id": "07-karaka:war-combat:ratha",
           "devanagari": "रथ",
           "iast": "ratha",
           "gloss": "chariot",
-          "note": "headword | m. · stem: ratha- · a-stem · DM 2.52"
+          "note": "noun · masculine · a-stem · stem: ratha- · DM 2.52"
         },
         {
           "id": "07-karaka:war-combat:sarathi",
           "devanagari": "सारथि",
           "iast": "sārathi",
           "gloss": "charioteer",
-          "note": "headword | m. · stem: sārathi- · i-stem · DM 2.53"
+          "note": "noun · masculine · i-stem · stem: sārathi- · DM 2.53"
         }
       ]
     },
@@ -350,14 +336,14 @@
           "devanagari": "प्रहार",
           "iast": "prahāra",
           "gloss": "strike, blow",
-          "note": "headword | m. · stem: prahāra- · a-stem · pra + √hṛ · DM 3.24"
+          "note": "noun · masculine · a-stem · stem: prahāra- · pra + √hṛ · DM 3.24"
         },
         {
           "id": "07-karaka:war-combat:praharana",
           "devanagari": "प्रहरण",
           "iast": "praharaṇa",
           "gloss": "weapon/striking",
-          "note": "headword | n. · stem: praharaṇa- · a-stem · DM 2.20"
+          "note": "noun · neuter · a-stem · stem: praharaṇa- · DM 2.20"
         },
         {
           "id": "07-karaka:war-combat:han",
@@ -549,28 +535,28 @@
           "devanagari": "वध",
           "iast": "vadha",
           "gloss": "slaying",
-          "note": "headword | m. · stem: vadha- · a-stem · from √vadh · DM colophons: vadho nāma"
+          "note": "noun · masculine · a-stem · stem: vadha- · from √vadh · DM colophons: vadho nāma"
         },
         {
           "id": "07-karaka:war-combat:samhara",
           "devanagari": "संहार",
           "iast": "saṃhāra",
           "gloss": "annihilation",
-          "note": "headword | m. · stem: saṃhāra- · a-stem · sam + √hṛ · DM 11.5"
+          "note": "noun · masculine · a-stem · stem: saṃhāra- · sam + √hṛ · DM 11.5"
         },
         {
           "id": "07-karaka:war-combat:nasa-vinasa",
           "devanagari": "नाश / विनाश",
           "iast": "nāśa / vināśa",
           "gloss": "destruction",
-          "note": "headword | m. · stem: nāśa- · a-stem · from √naś · DM 11.5"
+          "note": "noun · masculine · a-stem · stem: nāśa- · from √naś · DM 11.5"
         },
         {
           "id": "07-karaka:war-combat:ksaya",
           "devanagari": "क्षय",
           "iast": "kṣaya",
           "gloss": "decay, destruction",
-          "note": "headword | m. · stem: kṣaya- · a-stem · from √kṣi · DM 6.19"
+          "note": "noun · masculine · a-stem · stem: kṣaya- · from √kṣi · DM 6.19"
         },
         {
           "id": "07-karaka:war-combat:bhasma",
@@ -584,28 +570,28 @@
           "devanagari": "चूर्ण",
           "iast": "cūrṇa",
           "gloss": "powder",
-          "note": "headword | n. · stem: cūrṇa- · a-stem · DM 9.14"
+          "note": "noun · neuter · a-stem · stem: cūrṇa- · DM 9.14"
         },
         {
           "id": "07-karaka:war-combat:pralaya",
           "devanagari": "प्रलय",
           "iast": "pralaya",
           "gloss": "dissolution",
-          "note": "headword | m. · stem: pralaya- · a-stem · VS passim"
+          "note": "noun · masculine · a-stem · stem: pralaya- · VS passim"
         },
         {
           "id": "07-karaka:war-combat:nidhana",
           "devanagari": "निधन",
           "iast": "nidhana",
           "gloss": "death, end",
-          "note": "headword | n. · stem: nidhana- · a-stem · DM passim"
+          "note": "noun · neuter · a-stem · stem: nidhana- · DM passim"
         },
         {
           "id": "07-karaka:war-combat:nipata",
           "devanagari": "निपात",
           "iast": "nipāta",
           "gloss": "downfall",
-          "note": "headword | m. · stem: nipāta- · a-stem · ni + √pat · DM passim"
+          "note": "noun · masculine · a-stem · stem: nipāta- · ni + √pat · DM passim"
         },
         {
           "id": "07-karaka:war-combat:nihata",

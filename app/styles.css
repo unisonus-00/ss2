@@ -165,8 +165,12 @@
   .detail-iast { margin-top: .15rem; font-size: .9rem; font-style: italic;
                  letter-spacing: .06em; color: var(--ink); opacity: .75; }
   .detail-iast:empty { display: none; }
-  .tag { margin-top: .6rem; font-size: .7rem; letter-spacing: .14em; line-height: 1.9;
-         text-transform: uppercase; color: var(--kumkuma); }
+  /* Lower case, like the choice note and for the same reason: this chip is
+     mostly IAST — "stem: raṇa- · from √yudh" — and nobody writes it in caps.
+     Uppercasing also set the wide letter-spacing against every word at once,
+     so a two-clause annotation ran to four shouting lines under the answer. */
+  .tag { margin-top: .6rem; font-size: .74rem; letter-spacing: .05em; line-height: 1.75;
+         text-transform: none; color: var(--kumkuma); }
   /* where the exercise came from — provenance, not morphology, so it stays
      outside the annotation chip and its popover */
   .src { margin-top: .45rem; font-size: .68rem; font-style: italic;

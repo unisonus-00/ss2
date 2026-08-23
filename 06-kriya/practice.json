@@ -803,17 +803,10 @@
         },
         {
           "id": "06-kriya:high-frequency-verbs:vid",
-          "devanagari": "√विद्",
-          "iast": "√vid",
+          "devanagari": "√विद् / √ज्ञा",
+          "iast": "√vid / √jñā",
           "gloss": "to know",
-          "note": "dhātu · veda, vetti, vidita · DM passim"
-        },
-        {
-          "id": "06-kriya:high-frequency-verbs:jna",
-          "devanagari": "√ज्ञा",
-          "iast": "√jñā",
-          "gloss": "to know",
-          "note": "dhātu · jānāti, jñātaḥ, jñāna (n.) · DM passim"
+          "note": "dhātu · √vid (veda, vetti, vidita) · √jñā (jānāti, jñātaḥ, jñāna n.) · DM passim"
         },
         {
           "id": "06-kriya:high-frequency-verbs:man",
@@ -845,31 +838,17 @@
         },
         {
           "id": "06-kriya:high-frequency-verbs:vac",
-          "devanagari": "√वच्",
-          "iast": "√vac",
+          "devanagari": "√वच् / √गद्",
+          "iast": "√vac / √gad",
           "gloss": "to speak",
-          "note": "dhātu · uvāca, uktaḥ, vakti · DM throughout"
+          "note": "dhātu · √vac (uvāca, uktaḥ, vakti) · √gad (jagāda) · DM throughout; DM 6.8"
         },
         {
           "id": "06-kriya:high-frequency-verbs:bru",
-          "devanagari": "√ब्रू",
-          "iast": "√brū",
+          "devanagari": "√ब्रू / √अह्",
+          "iast": "√brū / √ah",
           "gloss": "to say",
-          "note": "dhātu · abravīt, brūhi · DM passim"
-        },
-        {
-          "id": "06-kriya:high-frequency-verbs:ah",
-          "devanagari": "√अह्",
-          "iast": "√ah",
-          "gloss": "to say",
-          "note": "dhātu · āha, prāha · DM 6.3"
-        },
-        {
-          "id": "06-kriya:high-frequency-verbs:gad",
-          "devanagari": "√गद्",
-          "iast": "√gad",
-          "gloss": "to speak",
-          "note": "dhātu · jagāda · DM 6.8"
+          "note": "dhātu · √brū (abravīt, brūhi) · √ah (āha, prāha) · DM passim; DM 6.3"
         },
         {
           "id": "06-kriya:high-frequency-verbs:kathay",
@@ -1052,10 +1031,10 @@
       "cards": [
         {
           "id": "06-kriya:high-frequency-verbs:raks",
-          "devanagari": "√रक्ष्",
-          "iast": "√rakṣ",
+          "devanagari": "√रक्ष् / √पा (to protect)",
+          "iast": "√rakṣ / √pā",
           "gloss": "to protect",
-          "note": "dhātu · rakṣatu (imp.), rakṣitā · DM 4.20"
+          "note": "dhātu · √rakṣ (rakṣatu impv., rakṣitā) · √pā (pātu, pālana) · DM 4.20; DM passim"
         },
         {
           "id": "06-kriya:high-frequency-verbs:tra",
@@ -1084,13 +1063,6 @@
           "iast": "√varṣ",
           "gloss": "to rain",
           "note": "dhātu · vavarṣa, vṛṣṭi · DM 3.7"
-        },
-        {
-          "id": "06-kriya:high-frequency-verbs:pa-to-protect",
-          "devanagari": "√पा (to protect)",
-          "iast": "√pā (to protect)",
-          "gloss": "to protect",
-          "note": "dhātu · pātu, pālana · DM passim"
         },
         {
           "id": "06-kriya:high-frequency-verbs:vr",

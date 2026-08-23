@@ -106,14 +106,14 @@
           "id": "09-dhatu:dhatu:jna",
           "devanagari": "√ज्ञा",
           "iast": "√jñā",
-          "gloss": "to know",
+          "gloss": "to know · jānāti",
           "note": "dhātu · 9U · jānāti · jñāna, jñāta"
         },
         {
           "id": "09-dhatu:dhatu:vid",
           "devanagari": "√विद्",
           "iast": "√vid",
-          "gloss": "to know",
+          "gloss": "to know · vetti",
           "note": "dhātu · 2P · vetti · vidyā, vidita"
         },
         {
@@ -155,7 +155,7 @@
           "id": "09-dhatu:dhatu:vac",
           "devanagari": "√वच्",
           "iast": "√vac",
-          "gloss": "to speak",
+          "gloss": "to speak · vakti",
           "note": "dhātu · 2P · vakti · vāc, ukta"
         },
         {
@@ -169,7 +169,7 @@
           "id": "09-dhatu:dhatu:vad",
           "devanagari": "√वद्",
           "iast": "√vad",
-          "gloss": "to speak",
+          "gloss": "to speak · vadati",
           "note": "dhātu · vadati"
         },
         {
@@ -363,14 +363,14 @@
           "id": "09-dhatu:dhatu:raks",
           "devanagari": "√रक्ष्",
           "iast": "√rakṣ",
-          "gloss": "to protect",
+          "gloss": "to protect · rakṣati",
           "note": "dhātu · 1P · rakṣati · rakṣā, rakṣita"
         },
         {
           "id": "09-dhatu:dhatu:pa",
           "devanagari": "√पा",
           "iast": "√pā",
-          "gloss": "to protect",
+          "gloss": "to protect · pāti",
           "note": "dhātu · 2P · pāti · pāla, pālita"
         },
         {

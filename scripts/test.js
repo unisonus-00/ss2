@@ -1537,6 +1537,76 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
+  // ── a reversed deck must still have one answer per cue ─────────────
+  // Every reveal deck can be run backwards, and in that direction the gloss
+  // IS the prompt.  Two cards glossed "battle" therefore ask a question with
+  // two right answers, which no amount of knowing the vocabulary can fix.
+  // Synonyms belong on one card — the convention 150-odd vocabulary cards
+  // already use, "sūrya / āditya / ravi" — and where a deck must keep its
+  // items apart (the 50 core dhātus; one vocative per stem class) the gloss
+  // carries what tells them apart instead.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const norm = s => (s || '').replace(/\s+/g, ' ').trim().toLowerCase();
+      const clash = [], wide = [];
+      Object.entries(DECKS).forEach(([name, cards]) => {
+        const by = {};
+        cards.forEach(c => {
+          if ((c.type || 'reveal') !== 'reveal') return;
+          const k = norm(c.gloss);
+          (by[k] = by[k] || []).push(c.iast);
+        });
+        Object.entries(by).forEach(([k, ws]) => {
+          if (ws.length > 1) clash.push(name + ' · "' + k + '" ← ' + ws.join(', '));
+        });
+      });
+      // a merged card lists its words on the side the reverse round answers with
+      const multi = [];
+      Object.values(DECKS).forEach(cards => cards.forEach(c => {
+        if ((c.type || 'reveal') !== 'reveal') return;
+        if (!(c.iast || '').includes(' / ')) return;
+        multi.push(c);
+        // as many transliterated words as Devanagari ones, so neither side is short
+        if ((c.devanagari || '').split(' / ').length !== c.iast.split(' / ').length)
+          wide.push(c.id + ': ' + c.devanagari + ' ¦ ' + c.iast);
+      }));
+      return { clash, wide, multi: multi.length };
+    });
+    ok('no two cards in a deck answer to the same cue',
+      !r.clash.length, r.clash.slice(0, 5).join(' | '));
+    ok('a merged card carries the same words on both scripts',
+      !r.wide.length, r.wide.slice(0, 3).join(' | '));
+    console.log('        ' + r.multi + ' cards carry more than one word');
+    await p.close();
+  }
+
+  // ── the grammar annotation names what it is, not that it is a card ──
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const notes = [];
+      Object.values(DECKS).forEach(cards => cards.forEach(c => {
+        if (c.note) notes.push({ id: c.id, note: c.note });
+      }));
+      return {
+        headword: notes.filter(n => /^headword\b/i.test(n.note)).map(n => n.id),
+        // "n." and "adj." were opaque next to a stem that spells itself out
+        abbrev: notes.filter(n => /^(m|f|n|adj|pp)\.\s*·/.test(n.note)).map(n => n.id),
+        sample: (notes.find(n => n.id === '07-karaka:war-combat:rana')
+              || notes.find(n => /raṇa/.test(n.id)) || {}).note,
+        n: notes.length,
+      };
+    });
+    ok('no annotation still begins "headword"', !r.headword.length,
+      r.headword.slice(0, 4).join(' | '));
+    ok('nor with a bare gender abbreviation', !r.abbrev.length,
+      r.abbrev.slice(0, 4).join(' | '));
+    ok('an annotation reads as part of speech, class, then stem',
+      /^noun · neuter · a-stem · stem: raṇa-/.test(r.sample || ''), r.sample);
+    await p.close();
+  }
+
   // ── no choice card repeats a reveal card ───────────────────────────
   // A choice card that hands over the same operation and the same answer as
   // a reveal card in the same lesson is strictly the weaker of the two: the

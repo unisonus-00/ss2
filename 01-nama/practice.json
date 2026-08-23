@@ -786,105 +786,105 @@
           "devanagari": "देवी",
           "iast": "devī",
           "gloss": "the Goddess, the shining one",
-          "note": "headword | f. · stem: devī- · ī-stem · from √div · DM 1.57"
+          "note": "noun · feminine · ī-stem · stem: devī- · from √div · DM 1.57"
         },
         {
           "id": "01-nama:goddess-names:durga",
           "devanagari": "दुर्गा",
           "iast": "durgā",
           "gloss": "the inaccessible one",
-          "note": "headword | f. · stem: durgā- · ā-stem · dur + gā · DM 4.11"
+          "note": "noun · feminine · ā-stem · stem: durgā- · dur + gā · DM 4.11"
         },
         {
           "id": "01-nama:goddess-names:ambika",
           "devanagari": "अम्बिका",
           "iast": "ambikā",
           "gloss": "mother",
-          "note": "headword | f. · stem: ambikā- · ā-stem · from ambā · DM 5.88"
+          "note": "noun · feminine · ā-stem · stem: ambikā- · from ambā · DM 5.88"
         },
         {
           "id": "01-nama:goddess-names:bhagavati",
           "devanagari": "भगवती",
           "iast": "bhagavatī",
           "gloss": "the blessed/divine one",
-          "note": "headword | f. · stem: bhagavatī- · ī-stem · from bhaga · DM 4.5"
+          "note": "noun · feminine · ī-stem · stem: bhagavatī- · from bhaga · DM 4.5"
         },
         {
           "id": "01-nama:goddess-names:kali",
           "devanagari": "काली",
           "iast": "kālī",
           "gloss": "the dark one / time-goddess",
-          "note": "headword | f. · stem: kālī- · ī-stem · from kāla · DM 7.6"
+          "note": "noun · feminine · ī-stem · stem: kālī- · from kāla · DM 7.6"
         },
         {
           "id": "01-nama:goddess-names:kalika",
           "devanagari": "कालिका",
           "iast": "kālikā",
           "gloss": "Kālī (diminutive)",
-          "note": "headword | f. · stem: kālikā- · ā-stem · DM 7.23"
+          "note": "noun · feminine · ā-stem · stem: kālikā- · DM 7.23"
         },
         {
           "id": "01-nama:goddess-names:lalita",
           "devanagari": "ललिता",
           "iast": "lalitā",
           "gloss": "she who plays (the sportive one)",
-          "note": "headword | f. · stem: lalitā- · ā-stem · from √laḍ/laḷ · LS 1 (Śrīmātā) + throughout"
+          "note": "noun · feminine · ā-stem · stem: lalitā- · from √laḍ/laḷ · LS 1 (Śrīmātā) + throughout"
         },
         {
           "id": "01-nama:goddess-names:laksmi",
           "devanagari": "लक्ष्मी",
           "iast": "lakṣmī",
           "gloss": "prosperity, beauty, fortune",
-          "note": "headword | f. · stem: lakṣmī- · ī-stem · DM 4.8"
+          "note": "noun · feminine · ī-stem · stem: lakṣmī- · DM 4.8"
         },
         {
           "id": "01-nama:goddess-names:sarasvati",
           "devanagari": "सरस्वती",
           "iast": "sarasvatī",
           "gloss": "she of the flowing (river/speech)",
-          "note": "headword | f. · stem: sarasvatī- · ī-stem · DM 5.79"
+          "note": "noun · feminine · ī-stem · stem: sarasvatī- · DM 5.79"
         },
         {
           "id": "01-nama:goddess-names:parvati",
           "devanagari": "पार्वती",
           "iast": "pārvatī",
           "gloss": "daughter of Parvata (mountain)",
-          "note": "headword | f. · stem: pārvatī- · ī-stem · patronymic · DM 5.38"
+          "note": "noun · feminine · ī-stem · stem: pārvatī- · patronymic · DM 5.38"
         },
         {
           "id": "01-nama:goddess-names:gauri",
           "devanagari": "गौरी",
           "iast": "gaurī",
           "gloss": "the golden/fair one",
-          "note": "headword | f. · stem: gaurī- · ī-stem · DM 11.10"
+          "note": "noun · feminine · ī-stem · stem: gaurī- · DM 11.10"
         },
         {
           "id": "01-nama:goddess-names:siva",
           "devanagari": "शिवा",
           "iast": "śivā",
           "gloss": "the auspicious one",
-          "note": "headword | f. · stem: śivā- · ā-stem · of śiva · DM 4.14"
+          "note": "noun · feminine · ā-stem · stem: śivā- · of śiva · DM 4.14"
         },
         {
           "id": "01-nama:goddess-names:mahalaksmi",
           "devanagari": "महालक्ष्मी",
           "iast": "mahālakṣmī",
           "gloss": "the great Lakṣmī",
-          "note": "headword | f. · stem: mahālakṣmī- · ī-stem · mahā + lakṣmī · DM Ch.2-3 presiding deity"
+          "note": "noun · feminine · ī-stem · stem: mahālakṣmī- · mahā + lakṣmī · DM Ch.2-3 presiding deity"
         },
         {
           "id": "01-nama:goddess-names:mahakali",
           "devanagari": "महाकाली",
           "iast": "mahākālī",
           "gloss": "the great Kālī",
-          "note": "headword | f. · stem: mahākālī- · ī-stem · DM Ch.1 presiding deity"
+          "note": "noun · feminine · ī-stem · stem: mahākālī- · DM Ch.1 presiding deity"
         },
         {
           "id": "01-nama:goddess-names:mahasarasvati",
           "devanagari": "महासरस्वती",
           "iast": "mahāsarasvatī",
           "gloss": "the great Sarasvatī",
-          "note": "headword | f. · stem: mahāsarasvatī- · ī-stem · DM Ch.5-13 presiding deity"
+          "note": "noun · feminine · ī-stem · stem: mahāsarasvatī- · DM Ch.5-13 presiding deity"
         }
       ]
     },
@@ -896,91 +896,91 @@
           "devanagari": "नारायणी",
           "iast": "nārāyaṇī",
           "gloss": "Nārāyaṇa's śakti",
-          "note": "headword | f. · stem: nārāyaṇī- · ī-stem · DM 11.12+"
+          "note": "noun · feminine · ī-stem · stem: nārāyaṇī- · DM 11.12+"
         },
         {
           "id": "01-nama:goddess-names:katyayani",
           "devanagari": "कात्यायनी",
           "iast": "kātyāyanī",
           "gloss": "of sage Kata's lineage",
-          "note": "headword | f. · stem: kātyāyanī- · ī-stem · patronymic · DM 11.2"
+          "note": "noun · feminine · ī-stem · stem: kātyāyanī- · patronymic · DM 11.2"
         },
         {
           "id": "01-nama:goddess-names:camunda",
           "devanagari": "चामुण्डा",
           "iast": "cāmuṇḍā",
           "gloss": "slayer of Caṇḍa-Muṇḍa",
-          "note": "headword | f. · stem: cāmuṇḍā- · ā-stem · DM 7.27"
+          "note": "noun · feminine · ā-stem · stem: cāmuṇḍā- · DM 7.27"
         },
         {
           "id": "01-nama:goddess-names:mahamaya",
           "devanagari": "महामाया",
           "iast": "mahāmāyā",
           "gloss": "the great illusion/power",
-          "note": "headword | f. · stem: mahāmāyā- · ā-stem · DM 1.40"
+          "note": "noun · feminine · ā-stem · stem: mahāmāyā- · DM 1.40"
         },
         {
           "id": "01-nama:goddess-names:visnumaya",
           "devanagari": "विष्णुमाया",
           "iast": "viṣṇumāyā",
           "gloss": "Viṣṇu's māyā-power",
-          "note": "headword | f. · stem: viṣṇumāyā- · ā-stem · DM 1.43"
+          "note": "noun · feminine · ā-stem · stem: viṣṇumāyā- · DM 1.43"
         },
         {
           "id": "01-nama:goddess-names:yoganidra",
           "devanagari": "योगनिद्रा",
           "iast": "yoganidrā",
           "gloss": "the yoga-sleep",
-          "note": "headword | f. · stem: yoganidrā- · ā-stem · DM 1.54"
+          "note": "noun · feminine · ā-stem · stem: yoganidrā- · DM 1.54"
         },
         {
           "id": "01-nama:goddess-names:smasanakalika",
           "devanagari": "श्मशानकालिका",
           "iast": "śmaśānakālikā",
           "gloss": "Kālī of the cremation ground",
-          "note": "headword | f. · stem: śmaśānakālikā- · ā-stem · KS 1"
+          "note": "noun · feminine · ā-stem · stem: śmaśānakālikā- · KS 1"
         },
         {
           "id": "01-nama:goddess-names:bhadrakali",
           "devanagari": "भद्रकाली",
           "iast": "bhadrakālī",
           "gloss": "the auspicious Kālī",
-          "note": "headword | f. · stem: bhadrakālī- · ī-stem · KS 3"
+          "note": "noun · feminine · ī-stem · stem: bhadrakālī- · KS 3"
         },
         {
           "id": "01-nama:goddess-names:kapalini",
           "devanagari": "कपालिनी",
           "iast": "kapālinī",
           "gloss": "bearer of the skull",
-          "note": "headword | f. · stem: kapālinī- · ī-stem · from kapāla · KS 4"
+          "note": "noun · feminine · ī-stem · stem: kapālinī- · from kapāla · KS 4"
         },
         {
           "id": "01-nama:goddess-names:guhyakali",
           "devanagari": "गुह्यकाली",
           "iast": "guhyakālī",
           "gloss": "the secret Kālī",
-          "note": "headword | f. · stem: guhyakālī- · ī-stem · KS 5"
+          "note": "noun · feminine · ī-stem · stem: guhyakālī- · KS 5"
         },
         {
           "id": "01-nama:goddess-names:kurukulla",
           "devanagari": "कुरुकुल्ला",
           "iast": "kurukullā",
           "gloss": "(Tāntric goddess name)",
-          "note": "headword | f. · stem: kurukullā- · ā-stem · KS 7"
+          "note": "noun · feminine · ā-stem · stem: kurukullā- · KS 7"
         },
         {
           "id": "01-nama:goddess-names:virodhini",
           "devanagari": "विरोधिनी",
           "iast": "virodhinī",
           "gloss": "the opposing/obstructing one",
-          "note": "headword | f. · stem: virodhinī- · ī-stem · KS 8"
+          "note": "noun · feminine · ī-stem · stem: virodhinī- · KS 8"
         },
         {
           "id": "01-nama:goddess-names:kalaratri",
           "devanagari": "कालरात्रि",
           "iast": "kālarātri",
           "gloss": "night of dissolution",
-          "note": "headword | f. · stem: kālarātri- · i-stem · KS 11"
+          "note": "noun · feminine · i-stem · stem: kālarātri- · KS 11"
         }
       ]
     },
@@ -992,175 +992,175 @@
           "devanagari": "कामाख्या",
           "iast": "kāmākhyā",
           "gloss": "she named after desire",
-          "note": "headword | f. · stem: kāmākhyā- · ā-stem · KKS 620"
+          "note": "noun · feminine · ā-stem · stem: kāmākhyā- · KKS 620"
         },
         {
           "id": "01-nama:goddess-names:karali",
           "devanagari": "कराली",
           "iast": "karālī",
           "gloss": "the dreadful one",
-          "note": "headword | f. · stem: karālī- · ī-stem · KKS 2"
+          "note": "noun · feminine · ī-stem · stem: karālī- · KKS 2"
         },
         {
           "id": "01-nama:goddess-names:kalyani",
           "devanagari": "कल्याणी",
           "iast": "kalyāṇī",
           "gloss": "the auspicious one",
-          "note": "headword | f. · stem: kalyāṇī- · ī-stem · KKS 3"
+          "note": "noun · feminine · ī-stem · stem: kalyāṇī- · KKS 3"
         },
         {
           "id": "01-nama:goddess-names:kamala",
           "devanagari": "कमला",
           "iast": "kamalā",
           "gloss": "the lotus one",
-          "note": "headword | f. · stem: kamalā- · ā-stem · KKS 4"
+          "note": "noun · feminine · ā-stem · stem: kamalā- · KKS 4"
         },
         {
           "id": "01-nama:goddess-names:kamini",
           "devanagari": "कामिनी",
           "iast": "kāminī",
           "gloss": "the desirable one",
-          "note": "headword | f. · stem: kāminī- · ī-stem · KKS 554"
+          "note": "noun · feminine · ī-stem · stem: kāminī- · KKS 554"
         },
         {
           "id": "01-nama:goddess-names:chinnamasta",
           "devanagari": "छिन्नमस्ता",
           "iast": "chinnamastā",
           "gloss": "she whose head is severed",
-          "note": "headword | f. · stem: chinnamastā- · ā-stem · KS 136"
+          "note": "noun · feminine · ā-stem · stem: chinnamastā- · KS 136"
         },
         {
           "id": "01-nama:goddess-names:tara",
           "devanagari": "तारा",
           "iast": "tārā",
           "gloss": "the star / she who saves",
-          "note": "headword | f. · stem: tārā- · ā-stem · from √tṝ · KS 277"
+          "note": "noun · feminine · ā-stem · stem: tārā- · from √tṝ · KS 277"
         },
         {
           "id": "01-nama:goddess-names:daksina",
           "devanagari": "दक्षिणा",
           "iast": "dakṣiṇā",
           "gloss": "the gracious/southern one",
-          "note": "headword | f. · stem: dakṣiṇā- · ā-stem · KS 133"
+          "note": "noun · feminine · ā-stem · stem: dakṣiṇā- · KS 133"
         },
         {
           "id": "01-nama:goddess-names:digambara",
           "devanagari": "दिगम्बरा",
           "iast": "digambarā",
           "gloss": "sky-clad (naked)",
-          "note": "headword | f. · stem: digambarā- · ā-stem · KS 128"
+          "note": "noun · feminine · ā-stem · stem: digambarā- · KS 128"
         },
         {
           "id": "01-nama:goddess-names:ugratara",
           "devanagari": "उग्रतारा",
           "iast": "ugratārā",
           "gloss": "fierce Tārā",
-          "note": "headword | f. · stem: ugratārā- · ā-stem · KS passim"
+          "note": "noun · feminine · ā-stem · stem: ugratārā- · KS passim"
         },
         {
           "id": "01-nama:goddess-names:srimata",
           "devanagari": "श्रीमाता",
           "iast": "śrīmātā",
           "gloss": "the auspicious mother",
-          "note": "headword | f. · stem: śrīmātā- · ā-stem · LS 1"
+          "note": "noun · feminine · ā-stem · stem: śrīmātā- · LS 1"
         },
         {
           "id": "01-nama:goddess-names:srimaharajni",
           "devanagari": "श्रीमहाराज्ञी",
           "iast": "śrīmahārājñī",
           "gloss": "the great queen",
-          "note": "headword | f. · stem: śrīmahārājñī- · ī-stem · LS 2"
+          "note": "noun · feminine · ī-stem · stem: śrīmahārājñī- · LS 2"
         },
         {
           "id": "01-nama:goddess-names:srimatsimhasanesvari",
           "devanagari": "श्रीमत्सिंहासनेश्वरी",
           "iast": "śrīmatsiṃhāsaneśvarī",
           "gloss": "sovereign of the lion-throne",
-          "note": "headword | f. · stem: śrīmatsiṃhāsaneśvarī- · ī-stem · LS 3"
+          "note": "noun · feminine · ī-stem · stem: śrīmatsiṃhāsaneśvarī- · LS 3"
         },
         {
           "id": "01-nama:goddess-names:cidagnikusambhuta",
           "devanagari": "चिदग्निकुसंभूता",
           "iast": "cidagnikusaṃbhūtā",
           "gloss": "born from the fire of consciousness",
-          "note": "headword | f. · stem: cidagnikusaṃbhūtā- · ā-stem · LS 4"
+          "note": "noun · feminine · ā-stem · stem: cidagnikusaṃbhūtā- · LS 4"
         },
         {
           "id": "01-nama:goddess-names:devakaryasamudyata",
           "devanagari": "देवकार्यसमुद्यता",
           "iast": "devakāryasamudyatā",
           "gloss": "risen for the work of the gods",
-          "note": "headword | f. · stem: devakāryasamudyatā- · ā-stem · LS 5"
+          "note": "noun · feminine · ā-stem · stem: devakāryasamudyatā- · LS 5"
         },
         {
           "id": "01-nama:goddess-names:caturbahusamanvita",
           "devanagari": "चतुर्बाहुसमन्विता",
           "iast": "caturbāhusamanvitā",
           "gloss": "endowed with four arms",
-          "note": "headword | f. · stem: caturbāhusamanvitā- · ā-stem · LS 7"
+          "note": "noun · feminine · ā-stem · stem: caturbāhusamanvitā- · LS 7"
         },
         {
           "id": "01-nama:goddess-names:pancatanmatrasayaka",
           "devanagari": "पञ्चतन्मात्रसायका",
           "iast": "pañcatanmātrasāyakā",
           "gloss": "she whose arrows are five tanmātras",
-          "note": "headword | f. · stem: pañcatanmātrasāyakā- · ā-stem · LS 10"
+          "note": "noun · feminine · ā-stem · stem: pañcatanmātrasāyakā- · LS 10"
         },
         {
           "id": "01-nama:goddess-names:cintamanigrhantastha",
           "devanagari": "चिन्तामणिगृहान्तस्था",
           "iast": "cintāmaṇigṛhāntasthā",
           "gloss": "dwelling in the wish-jewel palace",
-          "note": "headword | f. · stem: cintāmaṇigṛhāntasthā- · ā-stem · LS 57"
+          "note": "noun · feminine · ā-stem · stem: cintāmaṇigṛhāntasthā- · LS 57"
         },
         {
           "id": "01-nama:goddess-names:pancabrahmasanasthita",
           "devanagari": "पञ्चब्रह्मासनस्थिता",
           "iast": "pañcabrahmāsanasthitā",
           "gloss": "seated on the five Brahmā throne",
-          "note": "headword | f. · stem: pañcabrahmāsanasthitā- · ā-stem · LS 58"
+          "note": "noun · feminine · ā-stem · stem: pañcabrahmāsanasthitā- · LS 58"
         },
         {
           "id": "01-nama:goddess-names:mahapadmatavisamstha",
           "devanagari": "महापद्माटवीसंस्था",
           "iast": "mahāpadmāṭavīsaṃsthā",
           "gloss": "dwelling in the great lotus forest",
-          "note": "headword | f. · stem: mahāpadmāṭavīsaṃsthā- · ā-stem · LS 59"
+          "note": "noun · feminine · ā-stem · stem: mahāpadmāṭavīsaṃsthā- · LS 59"
         },
         {
           "id": "01-nama:goddess-names:kamaksi",
           "devanagari": "कामाक्षी",
           "iast": "kāmākṣī",
           "gloss": "she of desire-eyes",
-          "note": "headword | f. · stem: kāmākṣī- · ī-stem · LS 62"
+          "note": "noun · feminine · ī-stem · stem: kāmākṣī- · LS 62"
         },
         {
           "id": "01-nama:goddess-names:kamadhayini",
           "devanagari": "कामधायिनी",
           "iast": "kāmadhāyinī",
           "gloss": "fulfiller of desires",
-          "note": "headword | f. · stem: kāmadhāyinī- · ī-stem · LS 63"
+          "note": "noun · feminine · ī-stem · stem: kāmadhāyinī- · LS 63"
         },
         {
           "id": "01-nama:goddess-names:rajarajesvari",
           "devanagari": "राजराजेश्वरी",
           "iast": "rājarājeśvarī",
           "gloss": "sovereign of the king of kings",
-          "note": "headword | f. · stem: rājarājeśvarī- · ī-stem · LS 684"
+          "note": "noun · feminine · ī-stem · stem: rājarājeśvarī- · LS 684"
         },
         {
           "id": "01-nama:goddess-names:tripura",
           "devanagari": "त्रिपुरा",
           "iast": "tripurā",
           "gloss": "she of the three cities",
-          "note": "headword | f. · stem: tripurā- · ā-stem · LS 533"
+          "note": "noun · feminine · ā-stem · stem: tripurā- · LS 533"
         },
         {
           "id": "01-nama:goddess-names:kamesvaraprananadi",
           "devanagari": "कामेश्वरप्राणनाडी",
           "iast": "kāmeśvaraprāṇanāḍī",
           "gloss": "life-breath of Kāmeśvara",
-          "note": "headword | f. · stem: kāmeśvaraprāṇanāḍī- · ī-stem · LS 372"
+          "note": "noun · feminine · ī-stem · stem: kāmeśvaraprāṇanāḍī- · LS 372"
         }
       ]
     },
@@ -1172,84 +1172,84 @@
           "devanagari": "सृष्टिकर्त्रि",
           "iast": "sṛṣṭikartri",
           "gloss": "creatrix",
-          "note": "headword | f. · stem: sṛṣṭikartri- · i-stem · from √sṛj + √kṛ · DM 11.5"
+          "note": "noun · feminine · i-stem · stem: sṛṣṭikartri- · from √sṛj + √kṛ · DM 11.5"
         },
         {
           "id": "01-nama:goddess-names:goptri",
           "devanagari": "गोप्त्री",
           "iast": "goptrī",
           "gloss": "protectress",
-          "note": "headword | f. · stem: goptrī- · ī-stem · from √gup · LS 266"
+          "note": "noun · feminine · ī-stem · stem: goptrī- · from √gup · LS 266"
         },
         {
           "id": "01-nama:goddess-names:samharini",
           "devanagari": "संहारिणी",
           "iast": "saṃhāriṇī",
           "gloss": "destroyeress",
-          "note": "headword | f. · stem: saṃhāriṇī- · ī-stem · from sam + √hṛ · LS 268"
+          "note": "noun · feminine · ī-stem · stem: saṃhāriṇī- · from sam + √hṛ · LS 268"
         },
         {
           "id": "01-nama:goddess-names:tirodhanakari",
           "devanagari": "तिरोधानकरि",
           "iast": "tirodhānakari",
           "gloss": "she who conceals",
-          "note": "headword | f. · stem: tirodhānakari- · i-stem · LS 270"
+          "note": "noun · feminine · i-stem · stem: tirodhānakari- · LS 270"
         },
         {
           "id": "01-nama:goddess-names:anugrahada",
           "devanagari": "अनुग्रहदा",
           "iast": "anugrahadā",
           "gloss": "bestower of grace",
-          "note": "headword | f. · stem: anugrahadā- · ā-stem · LS 272"
+          "note": "noun · feminine · ā-stem · stem: anugrahadā- · LS 272"
         },
         {
           "id": "01-nama:goddess-names:jagaddhatri",
           "devanagari": "जगद्धात्री",
           "iast": "jagaddhātrī",
           "gloss": "supporter of the world",
-          "note": "headword | f. · stem: jagaddhātrī- · ī-stem · DM 11.15"
+          "note": "noun · feminine · ī-stem · stem: jagaddhātrī- · DM 11.15"
         },
         {
           "id": "01-nama:goddess-names:jaganmata",
           "devanagari": "जगन्माता",
           "iast": "jaganmātā",
           "gloss": "mother of the world",
-          "note": "headword | f. · stem: jaganmātā- · ā-stem · KS 163"
+          "note": "noun · feminine · ā-stem · stem: jaganmātā- · KS 163"
         },
         {
           "id": "01-nama:goddess-names:jaganmayi",
           "devanagari": "जगन्मयी",
           "iast": "jaganmayī",
           "gloss": "she who pervades the world",
-          "note": "headword | f. · stem: jaganmayī- · ī-stem · DM 11.23"
+          "note": "noun · feminine · ī-stem · stem: jaganmayī- · DM 11.23"
         },
         {
           "id": "01-nama:goddess-names:bhuvanesvari",
           "devanagari": "भुवनेश्वरी",
           "iast": "bhuvaneśvarī",
           "gloss": "sovereign of the worlds",
-          "note": "headword | f. · stem: bhuvaneśvarī- · ī-stem · LS 295"
+          "note": "noun · feminine · ī-stem · stem: bhuvaneśvarī- · LS 295"
         },
         {
           "id": "01-nama:goddess-names:visvarupa",
           "devanagari": "विश्वरूपा",
           "iast": "viśvarūpā",
           "gloss": "she of universal form",
-          "note": "headword | f. · stem: viśvarūpā- · ā-stem · DM 11.26"
+          "note": "noun · feminine · ā-stem · stem: viśvarūpā- · DM 11.26"
         },
         {
           "id": "01-nama:goddess-names:jagadisvari",
           "devanagari": "जगदीश्वरी",
           "iast": "jagadīśvarī",
           "gloss": "ruler of the universe",
-          "note": "headword | f. · stem: jagadīśvarī- · ī-stem · DM 4.3"
+          "note": "noun · feminine · ī-stem · stem: jagadīśvarī- · DM 4.3"
         },
         {
           "id": "01-nama:goddess-names:trailokyaraksini",
           "devanagari": "त्रैलोक्यरक्षिणी",
           "iast": "trailokyarakṣiṇī",
           "gloss": "protectress of three worlds",
-          "note": "headword | f. · stem: trailokyarakṣiṇī- · ī-stem · DM 11.12"
+          "note": "noun · feminine · ī-stem · stem: trailokyarakṣiṇī- · DM 11.12"
         }
       ]
     },
@@ -1261,98 +1261,98 @@
           "devanagari": "सर्वभूतहितेरता",
           "iast": "sarvabhūtahiteratā",
           "gloss": "devoted to all beings' welfare",
-          "note": "headword | f. · stem: sarvabhūtahiteratā- · ā-stem · DM 11.8"
+          "note": "noun · feminine · ā-stem · stem: sarvabhūtahiteratā- · DM 11.8"
         },
         {
           "id": "01-nama:goddess-names:sarvamangala",
           "devanagari": "सर्वमङ्गला",
           "iast": "sarvamaṅgalā",
           "gloss": "all-auspicious",
-          "note": "headword | f. · stem: sarvamaṅgalā- · ā-stem · DM 11.10"
+          "note": "noun · feminine · ā-stem · stem: sarvamaṅgalā- · DM 11.10"
         },
         {
           "id": "01-nama:goddess-names:sarvajna",
           "devanagari": "सर्वज्ञा",
           "iast": "sarvajñā",
           "gloss": "all-knowing",
-          "note": "headword | f. · stem: sarvajñā- · ā-stem · DM 4.5"
+          "note": "noun · feminine · ā-stem · stem: sarvajñā- · DM 4.5"
         },
         {
           "id": "01-nama:goddess-names:sarvaga",
           "devanagari": "सर्वगा",
           "iast": "sarvagā",
           "gloss": "all-pervading",
-          "note": "headword | f. · stem: sarvagā- · ā-stem · DM 4.6"
+          "note": "noun · feminine · ā-stem · stem: sarvagā- · DM 4.6"
         },
         {
           "id": "01-nama:goddess-names:sarvamayi",
           "devanagari": "सर्वमयी",
           "iast": "sarvamayī",
           "gloss": "pervading all",
-          "note": "headword | f. · stem: sarvamayī- · ī-stem · DM 11.23"
+          "note": "noun · feminine · ī-stem · stem: sarvamayī- · DM 11.23"
         },
         {
           "id": "01-nama:goddess-names:sarvasvarupini",
           "devanagari": "सर्वस्वरूपिणी",
           "iast": "sarvasvarūpiṇī",
           "gloss": "she of every form",
-          "note": "headword | f. · stem: sarvasvarūpiṇī- · ī-stem · DM 11.6"
+          "note": "noun · feminine · ī-stem · stem: sarvasvarūpiṇī- · DM 11.6"
         },
         {
           "id": "01-nama:goddess-names:aparajita",
           "devanagari": "अपराजिता",
           "iast": "aparājitā",
           "gloss": "unconquered",
-          "note": "headword | f. · stem: aparājitā- · ā-stem · DM 11.10"
+          "note": "noun · feminine · ā-stem · stem: aparājitā- · DM 11.10"
         },
         {
           "id": "01-nama:goddess-names:varada",
           "devanagari": "वरदा",
           "iast": "varadā",
           "gloss": "boon-granting",
-          "note": "headword | f. · stem: varadā- · ā-stem · DM 4.37"
+          "note": "noun · feminine · ā-stem · stem: varadā- · DM 4.37"
         },
         {
           "id": "01-nama:goddess-names:abhayaprada",
           "devanagari": "अभयप्रदा",
           "iast": "abhayapradā",
           "gloss": "bestower of fearlessness",
-          "note": "headword | f. · stem: abhayapradā- · ā-stem · DM 4.37"
+          "note": "noun · feminine · ā-stem · stem: abhayapradā- · DM 4.37"
         },
         {
           "id": "01-nama:goddess-names:caitanyarupini",
           "devanagari": "चैतन्यरूपिणी",
           "iast": "caitanyarūpiṇī",
           "gloss": "whose form is consciousness",
-          "note": "headword | f. · stem: caitanyarūpiṇī- · ī-stem · DM 5.14"
+          "note": "noun · feminine · ī-stem · stem: caitanyarūpiṇī- · DM 5.14"
         },
         {
           "id": "01-nama:goddess-names:sarvabhutesu-x-rupena",
           "devanagari": "सर्वभूतेषु (X)-रूपेण",
           "iast": "sarvabhūteṣu (X)-rūpeṇa",
           "gloss": "in all beings as (X)",
-          "note": "f. · DM 5.17-78 (refrain)"
+          "note": "feminine · DM 5.17-78 (refrain)"
         },
         {
           "id": "01-nama:goddess-names:mahabala",
           "devanagari": "महाबला",
           "iast": "mahābalā",
           "gloss": "of great strength",
-          "note": "headword | f. · stem: mahābalā- · ā-stem · DM 11.18"
+          "note": "noun · feminine · ā-stem · stem: mahābalā- · DM 11.18"
         },
         {
           "id": "01-nama:goddess-names:mahavirya",
           "devanagari": "महावीर्या",
           "iast": "mahāvīryā",
           "gloss": "of great valor",
-          "note": "headword | f. · stem: mahāvīryā- · ā-stem · DM 11.18"
+          "note": "noun · feminine · ā-stem · stem: mahāvīryā- · DM 11.18"
         },
         {
           "id": "01-nama:goddess-names:ameya",
           "devanagari": "अमेया",
           "iast": "ameyā",
           "gloss": "immeasurable",
-          "note": "headword | f. · stem: ameyā- · ā-stem · KS passim"
+          "note": "noun · feminine · ā-stem · stem: ameyā- · KS passim"
         }
       ]
     },
@@ -1364,56 +1364,56 @@
           "devanagari": "ब्राह्मी / ब्रह्माणी",
           "iast": "brāhmī / brahmāṇī",
           "gloss": "śakti of Brahmā",
-          "note": "headword | f. · stem: brāhmī- · ī-stem · DM 8.13"
+          "note": "noun · feminine · ī-stem · stem: brāhmī- · DM 8.13"
         },
         {
           "id": "01-nama:goddess-names:mahesvari",
           "devanagari": "माहेश्वरी",
           "iast": "māheśvarī",
           "gloss": "śakti of Maheśvara",
-          "note": "headword | f. · stem: māheśvarī- · ī-stem · DM 8.14"
+          "note": "noun · feminine · ī-stem · stem: māheśvarī- · DM 8.14"
         },
         {
           "id": "01-nama:goddess-names:kaumari",
           "devanagari": "कौमारी",
           "iast": "kaumārī",
           "gloss": "śakti of Kumāra",
-          "note": "headword | f. · stem: kaumārī- · ī-stem · DM 8.15"
+          "note": "noun · feminine · ī-stem · stem: kaumārī- · DM 8.15"
         },
         {
           "id": "01-nama:goddess-names:vaisnavi",
           "devanagari": "वैष्णवी",
           "iast": "vaiṣṇavī",
           "gloss": "śakti of Viṣṇu",
-          "note": "headword | f. · stem: vaiṣṇavī- · ī-stem · DM 8.16"
+          "note": "noun · feminine · ī-stem · stem: vaiṣṇavī- · DM 8.16"
         },
         {
           "id": "01-nama:goddess-names:varahi",
           "devanagari": "वाराही",
           "iast": "vārāhī",
           "gloss": "śakti of Varāha",
-          "note": "headword | f. · stem: vārāhī- · ī-stem · DM 8.18"
+          "note": "noun · feminine · ī-stem · stem: vārāhī- · DM 8.18"
         },
         {
           "id": "01-nama:goddess-names:narasimhi",
           "devanagari": "नारसिंही",
           "iast": "nārasiṃhī",
           "gloss": "śakti of Narasiṃha",
-          "note": "headword | f. · stem: nārasiṃhī- · ī-stem · DM 8.17"
+          "note": "noun · feminine · ī-stem · stem: nārasiṃhī- · DM 8.17"
         },
         {
           "id": "01-nama:goddess-names:aindri-indrani",
           "devanagari": "ऐन्द्री / इन्द्राणी",
           "iast": "aindrī / indrāṇī",
           "gloss": "śakti of Indra",
-          "note": "headword | f. · stem: aindrī- · ī-stem · DM 8.19"
+          "note": "noun · feminine · ī-stem · stem: aindrī- · DM 8.19"
         },
         {
           "id": "01-nama:goddess-names:sivaduti",
           "devanagari": "शिवदूती",
           "iast": "śivadūtī",
           "gloss": "she who sent Śiva as envoy",
-          "note": "headword | f. · stem: śivadūtī- · ī-stem · DM 8.28"
+          "note": "noun · feminine · ī-stem · stem: śivadūtī- · DM 8.28"
         }
       ]
     },
@@ -1584,21 +1584,21 @@
           "devanagari": "माया",
           "iast": "māyā",
           "gloss": "creative illusion — her power; his illusory power",
-          "note": "headword | f. · stem: māyā- · ā-stem · DM 1.40; VS 73"
+          "note": "noun · feminine · ā-stem · stem: māyā- · DM 1.40; VS 73"
         },
         {
           "id": "01-nama:goddess-names:sri",
           "devanagari": "श्री",
           "iast": "śrī",
           "gloss": "sacred beauty; (of Viṣṇu) his consort, his glory",
-          "note": "headword | f. · stem: śrī- · ī-stem · LS throughout; VS 22, 178"
+          "note": "noun · feminine · ī-stem · stem: śrī- · LS throughout; VS 22, 178"
         },
         {
           "id": "01-nama:goddess-names:padmanabhasahodari",
           "devanagari": "पद्मनाभसहोदरी",
           "iast": "padmanābhasahodarī",
           "gloss": "sister of the lotus-naveled",
-          "note": "headword | f. · stem: padmanābhasahodarī- · ī-stem · LS 253"
+          "note": "noun · feminine · ī-stem · stem: padmanābhasahodarī- · LS 253"
         },
         {
           "id": "01-nama:goddess-names:acyuta-acyuta",
@@ -1624,126 +1624,126 @@
           "devanagari": "विष्णु",
           "iast": "viṣṇu",
           "gloss": "the all-pervader",
-          "note": "headword | m. · stem: viṣṇu- · u-stem · from √viṣ · DM 1.13+"
+          "note": "noun · masculine · u-stem · stem: viṣṇu- · from √viṣ · DM 1.13+"
         },
         {
           "id": "01-nama:god-names-celestials:siva-sankara",
           "devanagari": "शिव / शङ्कर",
           "iast": "śiva / śaṅkara",
           "gloss": "auspicious / benefactor",
-          "note": "headword | m. · stem: śiva- · a-stem · DM 2.15"
+          "note": "noun · masculine · a-stem · stem: śiva- · DM 2.15"
         },
         {
           "id": "01-nama:god-names-celestials:mahesvara",
           "devanagari": "महेश्वर",
           "iast": "maheśvara",
           "gloss": "great lord",
-          "note": "headword | m. · stem: maheśvara- · a-stem · mahā + īśvara · DM 2.14"
+          "note": "noun · masculine · a-stem · stem: maheśvara- · mahā + īśvara · DM 2.14"
         },
         {
           "id": "01-nama:god-names-celestials:sadasiva",
           "devanagari": "सदाशिव",
           "iast": "sadāśiva",
           "gloss": "eternally auspicious",
-          "note": "headword | m. · stem: sadāśiva- · a-stem · LS 271"
+          "note": "noun · masculine · a-stem · stem: sadāśiva- · LS 271"
         },
         {
           "id": "01-nama:god-names-celestials:rudra",
           "devanagari": "रुद्र",
           "iast": "rudra",
           "gloss": "the howler/weeper",
-          "note": "headword | m. · stem: rudra- · a-stem · from √rud · DM 11.10"
+          "note": "noun · masculine · a-stem · stem: rudra- · from √rud · DM 11.10"
         },
         {
           "id": "01-nama:god-names-celestials:hara",
           "devanagari": "हर",
           "iast": "hara",
           "gloss": "the seizer/destroyer",
-          "note": "headword | m. · stem: hara- · a-stem · from √hṛ · KS passim"
+          "note": "noun · masculine · a-stem · stem: hara- · from √hṛ · KS passim"
         },
         {
           "id": "01-nama:god-names-celestials:narayana",
           "devanagari": "नारायण",
           "iast": "nārāyaṇa",
           "gloss": "dwelling in beings/waters",
-          "note": "headword | m. · stem: nārāyaṇa- · a-stem · DM 1.73"
+          "note": "noun · masculine · a-stem · stem: nārāyaṇa- · DM 1.73"
         },
         {
           "id": "01-nama:god-names-celestials:hari",
           "devanagari": "हरि",
           "iast": "hari",
           "gloss": "the remover (of sin)",
-          "note": "headword | m. · stem: hari- · i-stem · from √hṛ · VS 4"
+          "note": "noun · masculine · i-stem · stem: hari- · from √hṛ · VS 4"
         },
         {
           "id": "01-nama:god-names-celestials:kesava",
           "devanagari": "केशव",
           "iast": "keśava",
           "gloss": "long-haired / slayer of Keśin",
-          "note": "headword | m. · stem: keśava- · a-stem · VS 23"
+          "note": "noun · masculine · a-stem · stem: keśava- · VS 23"
         },
         {
           "id": "01-nama:god-names-celestials:madhava",
           "devanagari": "माधव",
           "iast": "mādhava",
           "gloss": "of Madhu's clan / spring lord",
-          "note": "headword | m. · stem: mādhava- · a-stem · VS 73"
+          "note": "noun · masculine · a-stem · stem: mādhava- · VS 73"
         },
         {
           "id": "01-nama:god-names-celestials:govinda",
           "devanagari": "गोविन्द",
           "iast": "govinda",
           "gloss": "cow-finder / earth-finder",
-          "note": "headword | m. · stem: govinda- · a-stem · VS 187"
+          "note": "noun · masculine · a-stem · stem: govinda- · VS 187"
         },
         {
           "id": "01-nama:god-names-celestials:janardana",
           "devanagari": "जनार्दन",
           "iast": "janārdana",
           "gloss": "agitator of beings",
-          "note": "headword | m. · stem: janārdana- · a-stem · VS 126"
+          "note": "noun · masculine · a-stem · stem: janārdana- · VS 126"
         },
         {
           "id": "01-nama:god-names-celestials:vasudeva",
           "devanagari": "वासुदेव",
           "iast": "vāsudeva",
           "gloss": "son of Vasudeva / indwelling god",
-          "note": "headword | m. · stem: vāsudeva- · a-stem · VS 332"
+          "note": "noun · masculine · a-stem · stem: vāsudeva- · VS 332"
         },
         {
           "id": "01-nama:god-names-celestials:padmanabha",
           "devanagari": "पद्मनाभ",
           "iast": "padmanābha",
           "gloss": "lotus-naveled",
-          "note": "headword | m. · stem: padmanābha- · a-stem · VS 48"
+          "note": "noun · masculine · a-stem · stem: padmanābha- · VS 48"
         },
         {
           "id": "01-nama:god-names-celestials:damodara",
           "devanagari": "दामोदर",
           "iast": "dāmodara",
           "gloss": "rope-bellied (bound by Yaśodā)",
-          "note": "headword | m. · stem: dāmodara- · a-stem · VS 367"
+          "note": "noun · masculine · a-stem · stem: dāmodara- · VS 367"
         },
         {
           "id": "01-nama:god-names-celestials:trivikrama",
           "devanagari": "त्रिविक्रम",
           "iast": "trivikrama",
           "gloss": "three-strider",
-          "note": "headword | m. · stem: trivikrama- · a-stem · VS 530"
+          "note": "noun · masculine · a-stem · stem: trivikrama- · VS 530"
         },
         {
           "id": "01-nama:god-names-celestials:vamana",
           "devanagari": "वामन",
           "iast": "vāmana",
           "gloss": "the dwarf",
-          "note": "headword | m. · stem: vāmana- · a-stem · VS 153"
+          "note": "noun · masculine · a-stem · stem: vāmana- · VS 153"
         },
         {
           "id": "01-nama:god-names-celestials:purusottama",
           "devanagari": "पुरुषोत्तम",
           "iast": "puruṣottama",
           "gloss": "supreme person",
-          "note": "headword | m. · stem: puruṣottama- · a-stem · VS 24"
+          "note": "noun · masculine · a-stem · stem: puruṣottama- · VS 24"
         }
       ]
     },
@@ -1982,98 +1982,98 @@
           "devanagari": "इन्द्र / शक्र",
           "iast": "indra / śakra",
           "gloss": "lord of devas / mighty one",
-          "note": "headword | m. · stem: indra- · a-stem · DM 2.9"
+          "note": "noun · masculine · a-stem · stem: indra- · DM 2.9"
         },
         {
           "id": "01-nama:god-names-celestials:agni",
           "devanagari": "अग्नि",
           "iast": "agni",
           "gloss": "fire",
-          "note": "headword | m. · stem: agni- · i-stem · DM 2.14"
+          "note": "noun · masculine · i-stem · stem: agni- · DM 2.14"
         },
         {
           "id": "01-nama:god-names-celestials:varuna",
           "devanagari": "वरुण",
           "iast": "varuṇa",
           "gloss": "lord of waters",
-          "note": "headword | m. · stem: varuṇa- · a-stem · DM 2.15"
+          "note": "noun · masculine · a-stem · stem: varuṇa- · DM 2.15"
         },
         {
           "id": "01-nama:god-names-celestials:vayu",
           "devanagari": "वायु",
           "iast": "vāyu",
           "gloss": "wind",
-          "note": "headword | m. · stem: vāyu- · u-stem · DM 2.15"
+          "note": "noun · masculine · u-stem · stem: vāyu- · DM 2.15"
         },
         {
           "id": "01-nama:god-names-celestials:yama",
           "devanagari": "यम",
           "iast": "yama",
           "gloss": "lord of death/restraint",
-          "note": "headword | m. · stem: yama- · a-stem · from √yam · DM 2.15"
+          "note": "noun · masculine · a-stem · stem: yama- · from √yam · DM 2.15"
         },
         {
           "id": "01-nama:god-names-celestials:kubera",
           "devanagari": "कुबेर",
           "iast": "kubera",
           "gloss": "lord of wealth",
-          "note": "headword | m. · stem: kubera- · a-stem · DM 2.15"
+          "note": "noun · masculine · a-stem · stem: kubera- · DM 2.15"
         },
         {
           "id": "01-nama:god-names-celestials:surya-aditya-ravi-bhanu-divakara",
           "devanagari": "सूर्य / आदित्य / रवि / भानु / दिवाकर",
           "iast": "sūrya / āditya / ravi / bhānu / divākara",
           "gloss": "sun",
-          "note": "m. · DM 2.14"
+          "note": "noun · masculine · DM 2.14"
         },
         {
           "id": "01-nama:god-names-celestials:candra-soma-indu-sasin",
           "devanagari": "चन्द्र / सोम / इन्दु / शशिन्",
           "iast": "candra / soma / indu / śaśin",
           "gloss": "moon",
-          "note": "m. · DM 2.14"
+          "note": "noun · masculine · DM 2.14"
         },
         {
           "id": "01-nama:god-names-celestials:kumara-skanda-karttikeya",
           "devanagari": "कुमार / स्कन्द / कार्त्तिकेय",
           "iast": "kumāra / skanda / kārttikeya",
           "gloss": "the youthful war-god",
-          "note": "headword | m. · stem: kumāra- · a-stem · DM 8.15"
+          "note": "noun · masculine · a-stem · stem: kumāra- · DM 8.15"
         },
         {
           "id": "01-nama:god-names-celestials:ganesa-ganapati",
           "devanagari": "गणेश / गणपति",
           "iast": "gaṇeśa / gaṇapati",
           "gloss": "lord of gaṇas",
-          "note": "m. · LS passim"
+          "note": "noun · masculine · LS passim"
         },
         {
           "id": "01-nama:god-names-celestials:kama-kamadeva-manmatha",
           "devanagari": "काम / कामदेव / मन्मथ",
           "iast": "kāma / kāmadeva / manmatha",
           "gloss": "god of desire",
-          "note": "headword | m. · stem: kāma- · a-stem · LS 10"
+          "note": "noun · masculine · a-stem · stem: kāma- · LS 10"
         },
         {
           "id": "01-nama:god-names-celestials:prajapati",
           "devanagari": "प्रजापति",
           "iast": "prajāpati",
           "gloss": "lord of creatures",
-          "note": "headword | m. · stem: prajāpati- · i-stem · VS 70"
+          "note": "noun · masculine · i-stem · stem: prajāpati- · VS 70"
         },
         {
           "id": "01-nama:god-names-celestials:deva-sura-amara",
           "devanagari": "देव / सुर / अमर",
           "iast": "deva / sura / amara",
           "gloss": "god, immortal",
-          "note": "headword | m. · stem: deva- · a-stem · DM throughout"
+          "note": "noun · masculine · a-stem · stem: deva- · DM throughout"
         },
         {
           "id": "01-nama:god-names-celestials:devagana-suragana",
           "devanagari": "देवगण / सुरगण",
           "iast": "devagaṇa / suragaṇa",
           "gloss": "host of gods",
-          "note": "headword | m. · stem: devagaṇa- · a-stem · DM 2.9"
+          "note": "noun · masculine · a-stem · stem: devagaṇa- · DM 2.9"
         }
       ]
     },
@@ -2085,56 +2085,56 @@
           "devanagari": "ऋषि",
           "iast": "ṛṣi",
           "gloss": "seer",
-          "note": "headword | m. · stem: ṛṣi- · i-stem · DM 1.1"
+          "note": "noun · masculine · i-stem · stem: ṛṣi- · DM 1.1"
         },
         {
           "id": "01-nama:god-names-celestials:maharsi",
           "devanagari": "महर्षि",
           "iast": "maharṣi",
           "gloss": "great seer",
-          "note": "headword | m. · stem: maharṣi- · i-stem · DM 3.44"
+          "note": "noun · masculine · i-stem · stem: maharṣi- · DM 3.44"
         },
         {
           "id": "01-nama:god-names-celestials:muni",
           "devanagari": "मुनि",
           "iast": "muni",
           "gloss": "silent sage",
-          "note": "headword | m. · stem: muni- · i-stem · from √man · DM passim"
+          "note": "noun · masculine · i-stem · stem: muni- · from √man · DM passim"
         },
         {
           "id": "01-nama:god-names-celestials:gandharva",
           "devanagari": "गन्धर्व",
           "iast": "gandharva",
           "gloss": "celestial musician",
-          "note": "headword | m. · stem: gandharva- · a-stem · DM 3.44"
+          "note": "noun · masculine · a-stem · stem: gandharva- · DM 3.44"
         },
         {
           "id": "01-nama:god-names-celestials:apsaras",
           "devanagari": "अप्सरस्",
           "iast": "apsaras",
           "gloss": "celestial nymph",
-          "note": "headword | f. · stem: apsaras- · as-stem · DM 3.44"
+          "note": "noun · feminine · as-stem · stem: apsaras- · DM 3.44"
         },
         {
           "id": "01-nama:god-names-celestials:yaksa",
           "devanagari": "यक्ष",
           "iast": "yakṣa",
           "gloss": "nature spirit",
-          "note": "headword | m. · stem: yakṣa- · a-stem · DM 6.5"
+          "note": "noun · masculine · a-stem · stem: yakṣa- · DM 6.5"
         },
         {
           "id": "01-nama:god-names-celestials:siddha",
           "devanagari": "सिद्ध",
           "iast": "siddha",
           "gloss": "perfected being",
-          "note": "headword | m. · stem: siddha- · a-stem · DM passim"
+          "note": "noun · masculine · a-stem · stem: siddha- · DM passim"
         },
         {
           "id": "01-nama:god-names-celestials:vidyadhara",
           "devanagari": "विद्याधर",
           "iast": "vidyādhara",
           "gloss": "wisdom-bearer (aerial being)",
-          "note": "headword | m. · stem: vidyādhara- · a-stem · KS passim"
+          "note": "noun · masculine · a-stem · stem: vidyādhara- · KS passim"
         },
         {
           "id": "01-nama:god-names-celestials:kinnara-kinnari",
@@ -2148,49 +2148,49 @@
           "devanagari": "नाग",
           "iast": "nāga",
           "gloss": "serpent deity",
-          "note": "headword | m. · stem: nāga- · a-stem · VS passim"
+          "note": "noun · masculine · a-stem · stem: nāga- · VS passim"
         },
         {
           "id": "01-nama:god-names-celestials:markandeya",
           "devanagari": "मार्कण्डेय",
           "iast": "mārkaṇḍeya",
           "gloss": "the narrator-sage",
-          "note": "headword | m. · stem: mārkaṇḍeya- · a-stem · patronymic · DM 1.1"
+          "note": "noun · masculine · a-stem · stem: mārkaṇḍeya- · patronymic · DM 1.1"
         },
         {
           "id": "01-nama:god-names-celestials:suratha",
           "devanagari": "सुरथ",
           "iast": "suratha",
           "gloss": "king Suratha",
-          "note": "headword | m. · stem: suratha- · a-stem · DM 1.5+"
+          "note": "noun · masculine · a-stem · stem: suratha- · DM 1.5+"
         },
         {
           "id": "01-nama:god-names-celestials:samadhi",
           "devanagari": "समाधि",
           "iast": "samādhi",
           "gloss": "the merchant (also: concentration)",
-          "note": "headword | m. · stem: samādhi- · i-stem · DM 1.21+"
+          "note": "noun · masculine · i-stem · stem: samādhi- · DM 1.21+"
         },
         {
           "id": "01-nama:god-names-celestials:medhas",
           "devanagari": "मेधस्",
           "iast": "medhas",
           "gloss": "the sage Medhas",
-          "note": "headword | m. · stem: medhas- · as-stem · DM 1.4"
+          "note": "noun · masculine · as-stem · stem: medhas- · DM 1.4"
         },
         {
           "id": "01-nama:god-names-celestials:savarnih",
           "devanagari": "सावर्णिः",
           "iast": "sāvarṇiḥ",
           "gloss": "Sāvarṇi, the 8th Manu",
-          "note": "headword | m. · stem: sāvarṇiḥ- · i-stem · DM 13.23"
+          "note": "noun · masculine · i-stem · stem: sāvarṇiḥ- · DM 13.23"
         },
         {
           "id": "01-nama:god-names-celestials:vivasvan",
           "devanagari": "विवस्वान्",
           "iast": "vivasvān",
           "gloss": "the sun-god (father of Manu)",
-          "note": "m. · DM 13.22"
+          "note": "noun · masculine · DM 13.22"
         }
       ]
     },
@@ -2202,84 +2202,84 @@
           "devanagari": "असुर",
           "iast": "asura",
           "gloss": "demon, anti-god",
-          "note": "headword | m. · stem: asura- · a-stem · a + sura · DM throughout"
+          "note": "noun · masculine · a-stem · stem: asura- · a + sura · DM throughout"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:daitya",
           "devanagari": "दैत्य",
           "iast": "daitya",
           "gloss": "son of Diti",
-          "note": "headword | m. · stem: daitya- · a-stem · patronymic · DM 2.5+"
+          "note": "noun · masculine · a-stem · stem: daitya- · patronymic · DM 2.5+"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:danava",
           "devanagari": "दानव",
           "iast": "dānava",
           "gloss": "son of Danu",
-          "note": "headword | m. · stem: dānava- · a-stem · patronymic · DM 3.23+"
+          "note": "noun · masculine · a-stem · stem: dānava- · patronymic · DM 3.23+"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:raksasa",
           "devanagari": "राक्षस",
           "iast": "rākṣasa",
           "gloss": "one who guards/harms",
-          "note": "headword | m. · stem: rākṣasa- · a-stem · DM passim"
+          "note": "noun · masculine · a-stem · stem: rākṣasa- · DM passim"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:daityaraja",
           "devanagari": "दैत्यराज",
           "iast": "daityarāja",
           "gloss": "demon-king",
-          "note": "headword | m. · stem: daityarāja- · a-stem · tatpuruṣa · DM 5.100+"
+          "note": "noun · masculine · a-stem · stem: daityarāja- · tatpuruṣa · DM 5.100+"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:daityanayaka",
           "devanagari": "दैत्यनायक",
           "iast": "daityanāyaka",
           "gloss": "demon-leader",
-          "note": "headword | m. · stem: daityanāyaka- · a-stem · DM 2.42"
+          "note": "noun · masculine · a-stem · stem: daityanāyaka- · DM 2.42"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:daityapungava",
           "devanagari": "दैत्यपुङ्गव",
           "iast": "daityapuṅgava",
           "gloss": "bull among demons",
-          "note": "headword | m. · stem: daityapuṅgava- · a-stem · DM 9.16"
+          "note": "noun · masculine · a-stem · stem: daityapuṅgava- · DM 9.16"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:asuradhipa",
           "devanagari": "असुराधिप",
           "iast": "asurādhipa",
           "gloss": "overlord of asuras",
-          "note": "headword | m. · stem: asurādhipa- · a-stem · DM 5.115"
+          "note": "noun · masculine · a-stem · stem: asurādhipa- · DM 5.115"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:asuresvara",
           "devanagari": "असुरेश्वर",
           "iast": "asureśvara",
           "gloss": "lord of asuras",
-          "note": "headword | m. · stem: asureśvara- · a-stem · DM 9.10"
+          "note": "noun · masculine · a-stem · stem: asureśvara- · DM 9.10"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:danavendra",
           "devanagari": "दानवेन्द्र",
           "iast": "dānavendra",
           "gloss": "chief of dānavas",
-          "note": "headword | m. · stem: dānavendra- · a-stem · DM 3.31"
+          "note": "noun · masculine · a-stem · stem: dānavendra- · DM 3.31"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:surasatru",
           "devanagari": "सुरशत्रु",
           "iast": "suraśatru",
           "gloss": "enemy of the gods",
-          "note": "headword | m. · stem: suraśatru- · u-stem · DM 2.55"
+          "note": "noun · masculine · u-stem · stem: suraśatru- · DM 2.55"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:amarari",
           "devanagari": "अमरारि",
           "iast": "amarāri",
           "gloss": "foe of immortals",
-          "note": "headword | m. · stem: amarāri- · i-stem · DM 9.34"
+          "note": "noun · masculine · i-stem · stem: amarāri- · DM 9.34"
         }
       ]
     },
@@ -2291,154 +2291,140 @@
           "devanagari": "मधु",
           "iast": "madhu",
           "gloss": "demon Madhu (lit. honey)",
-          "note": "headword | m. · stem: madhu- · u-stem · DM 1.72+"
+          "note": "noun · masculine · u-stem · stem: madhu- · DM 1.72+"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:kaitabha",
           "devanagari": "कैटभ",
           "iast": "kaiṭabha",
           "gloss": "demon Kaiṭabha",
-          "note": "headword | m. · stem: kaiṭabha- · a-stem · DM 1.72+"
+          "note": "noun · masculine · a-stem · stem: kaiṭabha- · DM 1.72+"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:mahisasura",
           "devanagari": "महिषासुर",
           "iast": "mahiṣāsura",
           "gloss": "buffalo-demon",
-          "note": "headword | m. · stem: mahiṣāsura- · a-stem · mahiṣa + asura · DM 2.3+"
+          "note": "noun · masculine · a-stem · stem: mahiṣāsura- · mahiṣa + asura · DM 2.3+"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:ciksura",
-          "devanagari": "चिक्षुर",
-          "iast": "cikṣura",
+          "devanagari": "चिक्षुर / चामर",
+          "iast": "cikṣura / cāmara",
           "gloss": "demon general",
-          "note": "headword | m. · stem: cikṣura- · a-stem · DM 2.42"
-        },
-        {
-          "id": "01-nama:asuras-demon-vocabulary:camara",
-          "devanagari": "चामर",
-          "iast": "cāmara",
-          "gloss": "demon general",
-          "note": "headword | m. · stem: cāmara- · a-stem · DM 2.43"
+          "note": "noun · masculine · a-stem · DM 2.42, 2.43"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:karala",
           "devanagari": "कराल",
           "iast": "karāla",
           "gloss": "the dreadful one",
-          "note": "headword | m. · stem: karāla- · a-stem · DM 2.47"
+          "note": "noun · masculine · a-stem · stem: karāla- · DM 2.47"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:udagra",
           "devanagari": "उदग्र",
           "iast": "udagra",
           "gloss": "the lofty one",
-          "note": "headword | m. · stem: udagra- · a-stem · DM 2.48"
+          "note": "noun · masculine · a-stem · stem: udagra- · DM 2.48"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:asiloma",
           "devanagari": "असिलोमा",
           "iast": "asilomā",
           "gloss": "sword-haired",
-          "note": "headword | m. · stem: asilomā- · ā-stem · bahuvrīhi · DM 2.48"
+          "note": "noun · masculine · ā-stem · stem: asilomā- · bahuvrīhi · DM 2.48"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:baskala",
-          "devanagari": "बाष्कल",
-          "iast": "bāṣkala",
+          "devanagari": "बाष्कल / बिदाल",
+          "iast": "bāṣkala / bidāla",
           "gloss": "demon warrior",
-          "note": "headword | m. · stem: bāṣkala- · a-stem · DM 2.48"
+          "note": "noun · masculine · a-stem · DM 2.48, 2.50"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:tamra",
           "devanagari": "ताम्र",
           "iast": "tāmra",
           "gloss": "copper-hued",
-          "note": "headword | m. · stem: tāmra- · a-stem · DM 2.49"
-        },
-        {
-          "id": "01-nama:asuras-demon-vocabulary:bidala",
-          "devanagari": "बिदाल",
-          "iast": "bidāla",
-          "gloss": "demon warrior",
-          "note": "headword | m. · stem: bidāla- · a-stem · DM 2.50"
+          "note": "noun · masculine · a-stem · stem: tāmra- · DM 2.49"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:ugradarsana",
           "devanagari": "उग्रदर्शन",
           "iast": "ugradarśana",
           "gloss": "terrible-looking",
-          "note": "headword | m. · stem: ugradarśana- · a-stem · DM 2.50"
+          "note": "noun · masculine · a-stem · stem: ugradarśana- · DM 2.50"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:uddhata",
           "devanagari": "उद्धत",
           "iast": "uddhata",
           "gloss": "the arrogant",
-          "note": "headword | m. · stem: uddhata- · a-stem · DM 2.50"
+          "note": "noun · masculine · a-stem · stem: uddhata- · DM 2.50"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:sumbha",
           "devanagari": "शुम्भ",
           "iast": "śumbha",
           "gloss": "demon Śumbha",
-          "note": "headword | m. · stem: śumbha- · a-stem · DM 5.4+"
+          "note": "noun · masculine · a-stem · stem: śumbha- · DM 5.4+"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:nisumbha",
           "devanagari": "निशुम्भ",
           "iast": "niśumbha",
           "gloss": "demon Niśumbha",
-          "note": "headword | m. · stem: niśumbha- · a-stem · DM 5.4+"
+          "note": "noun · masculine · a-stem · stem: niśumbha- · DM 5.4+"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:raktabija",
           "devanagari": "रक्तबीज",
           "iast": "raktabīja",
           "gloss": "blood-seed demon",
-          "note": "headword | m. · stem: raktabīja- · a-stem · rakta + bīja · DM 8.40+"
+          "note": "noun · masculine · a-stem · stem: raktabīja- · rakta + bīja · DM 8.40+"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:dhumralocana",
           "devanagari": "धूम्रलोचन",
           "iast": "dhūmralocana",
           "gloss": "smoky-eyed",
-          "note": "headword | m. · stem: dhūmralocana- · a-stem · bahuvrīhi · DM 6.3+"
+          "note": "noun · masculine · a-stem · stem: dhūmralocana- · bahuvrīhi · DM 6.3+"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:canda",
           "devanagari": "चण्ड",
           "iast": "caṇḍa",
           "gloss": "the fierce one",
-          "note": "headword | m. · stem: caṇḍa- · a-stem · DM 7.1+"
+          "note": "noun · masculine · a-stem · stem: caṇḍa- · DM 7.1+"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:munda",
           "devanagari": "मुण्ड",
           "iast": "muṇḍa",
           "gloss": "the shaven-headed",
-          "note": "headword | m. · stem: muṇḍa- · a-stem · DM 7.1+"
+          "note": "noun · masculine · a-stem · stem: muṇḍa- · DM 7.1+"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:durgama",
           "devanagari": "दुर्गम",
           "iast": "durgama",
           "gloss": "hard to traverse (demon name)",
-          "note": "headword | m. · stem: durgama- · a-stem · DM 11.47"
+          "note": "noun · masculine · a-stem · stem: durgama- · DM 11.47"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:sugriva",
           "devanagari": "सुग्रीव",
           "iast": "sugrīva",
           "gloss": "the messenger demon",
-          "note": "headword | m. · stem: sugrīva- · a-stem · DM 5.100+"
+          "note": "noun · masculine · a-stem · stem: sugrīva- · DM 5.100+"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:bhandasura",
           "devanagari": "भण्डासुर",
           "iast": "bhaṇḍāsura",
           "gloss": "the jester-demon",
-          "note": "headword | m. · stem: bhaṇḍāsura- · a-stem · LS 67+"
+          "note": "noun · masculine · a-stem · stem: bhaṇḍāsura- · LS 67+"
         }
       ]
     },
@@ -2450,21 +2436,14 @@
           "devanagari": "भण्डपुत्र",
           "iast": "bhaṇḍaputra",
           "gloss": "son of Bhaṇḍa",
-          "note": "headword | m. · stem: bhaṇḍaputra- · a-stem · LS 73"
+          "note": "noun · masculine · a-stem · stem: bhaṇḍaputra- · LS 73"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:visukra",
-          "devanagari": "विशुक्र",
-          "iast": "viśukra",
+          "devanagari": "विशुक्र / विशङ्ग",
+          "iast": "viśukra / viśaṅga",
           "gloss": "demon general",
-          "note": "headword | m. · stem: viśukra- · a-stem · LS 77"
-        },
-        {
-          "id": "01-nama:asuras-demon-vocabulary:visanga",
-          "devanagari": "विशङ्ग",
-          "iast": "viśaṅga",
-          "gloss": "demon general",
-          "note": "headword | m. · stem: viśaṅga- · a-stem · LS 75"
+          "note": "noun · masculine · a-stem · LS 75, 77"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:daityasena",
@@ -2560,42 +2539,42 @@
           "devanagari": "चक्र",
           "iast": "cakra",
           "gloss": "discus",
-          "note": "headword | n. · stem: cakra- · a-stem · from √car · DM 2.21"
+          "note": "noun · neuter · a-stem · stem: cakra- · from √car · DM 2.21"
         },
         {
           "id": "01-nama:weapons-battle-gear:dhanus",
-          "devanagari": "धनुस्",
-          "iast": "dhanus",
+          "devanagari": "धनुस् / कोदण्ड",
+          "iast": "dhanus / kodaṇḍa",
           "gloss": "bow",
-          "note": "headword | n. · stem: dhanus- · us-stem · from √dhan · DM 2.22"
+          "note": "noun · dhanus neuter, us-stem, from √dhan · kodaṇḍa masculine, a-stem · DM 2.22; LS 10"
         },
         {
           "id": "01-nama:weapons-battle-gear:bana-sara-sayaka-isu",
           "devanagari": "बाण / शर / सायक / इषु",
           "iast": "bāṇa / śara / sāyaka / iṣu",
           "gloss": "arrow",
-          "note": "m. · DM 2.22"
+          "note": "noun · masculine · DM 2.22"
         },
         {
           "id": "01-nama:weapons-battle-gear:khadga-asi",
           "devanagari": "खड्ग / असि",
           "iast": "khaḍga / asi",
           "gloss": "sword",
-          "note": "m. · DM 2.24"
+          "note": "noun · masculine · DM 2.24"
         },
         {
           "id": "01-nama:weapons-battle-gear:sakti",
           "devanagari": "शक्ति",
           "iast": "śakti",
           "gloss": "spear/javelin (also: power)",
-          "note": "headword | f. · stem: śakti- · i-stem · DM 2.23"
+          "note": "noun · feminine · i-stem · stem: śakti- · DM 2.23"
         },
         {
           "id": "01-nama:weapons-battle-gear:parasu-parasvadha",
           "devanagari": "परशु / परश्वध",
           "iast": "paraśu / paraśvadha",
           "gloss": "axe",
-          "note": "m. · DM 2.23"
+          "note": "noun · masculine · DM 2.23"
         },
         {
           "id": "01-nama:weapons-battle-gear:vajra-kulisa",
@@ -2609,70 +2588,70 @@
           "devanagari": "पाश",
           "iast": "pāśa",
           "gloss": "noose",
-          "note": "headword | m. · stem: pāśa- · a-stem · DM 2.24"
+          "note": "noun · masculine · a-stem · stem: pāśa- · DM 2.24"
         },
         {
           "id": "01-nama:weapons-battle-gear:ankusa",
           "devanagari": "अङ्कुश",
           "iast": "aṅkuśa",
           "gloss": "goad / elephant-hook",
-          "note": "headword | m. · stem: aṅkuśa- · a-stem · DM 2.24"
+          "note": "noun · masculine · a-stem · stem: aṅkuśa- · DM 2.24"
         },
         {
           "id": "01-nama:weapons-battle-gear:kunta",
           "devanagari": "कुन्त",
           "iast": "kunta",
           "gloss": "lance",
-          "note": "headword | m. · stem: kunta- · a-stem · DM 2.51"
+          "note": "noun · masculine · a-stem · stem: kunta- · DM 2.51"
         },
         {
           "id": "01-nama:weapons-battle-gear:pattisa",
           "devanagari": "पट्टिश",
           "iast": "paṭṭiśa",
           "gloss": "sharp-edged spear",
-          "note": "headword | m. · stem: paṭṭiśa- · a-stem · DM 3.10"
+          "note": "noun · masculine · a-stem · stem: paṭṭiśa- · DM 3.10"
         },
         {
           "id": "01-nama:weapons-battle-gear:musala",
           "devanagari": "मुसल",
           "iast": "musala",
           "gloss": "pestle/mace",
-          "note": "headword | m. · stem: musala- · a-stem · DM 2.51"
+          "note": "noun · masculine · a-stem · stem: musala- · DM 2.51"
         },
         {
           "id": "01-nama:weapons-battle-gear:tomara",
           "devanagari": "तोमर",
           "iast": "tomara",
           "gloss": "iron javelin",
-          "note": "headword | m. · stem: tomara- · a-stem · DM 2.51"
+          "note": "noun · masculine · a-stem · stem: tomara- · DM 2.51"
         },
         {
           "id": "01-nama:weapons-battle-gear:bhindipala",
           "devanagari": "भिन्दिपाल",
           "iast": "bhindipāla",
           "gloss": "sling/slingshot",
-          "note": "headword | m. · stem: bhindipāla- · a-stem · DM 2.51"
+          "note": "noun · masculine · a-stem · stem: bhindipāla- · DM 2.51"
         },
         {
           "id": "01-nama:weapons-battle-gear:danda",
           "devanagari": "दण्ड",
           "iast": "daṇḍa",
           "gloss": "staff/rod (Yama's)",
-          "note": "headword | m. · stem: daṇḍa- · a-stem · DM 2.24"
+          "note": "noun · masculine · a-stem · stem: daṇḍa- · DM 2.24"
         },
         {
           "id": "01-nama:weapons-battle-gear:hala",
           "devanagari": "हल",
           "iast": "hala",
           "gloss": "plough",
-          "note": "headword | m. · stem: hala- · a-stem · DM 2.23"
+          "note": "noun · masculine · a-stem · stem: hala- · DM 2.23"
         },
         {
           "id": "01-nama:weapons-battle-gear:khetaka",
           "devanagari": "खेटक",
           "iast": "kheṭaka",
           "gloss": "small shield",
-          "note": "headword | m. · stem: kheṭaka- · a-stem · DM 3.10"
+          "note": "noun · masculine · a-stem · stem: kheṭaka- · DM 3.10"
         },
         {
           "id": "01-nama:weapons-battle-gear:carma",
@@ -2686,14 +2665,7 @@
           "devanagari": "पिणाक",
           "iast": "piṇāka",
           "gloss": "Śiva's bow",
-          "note": "headword | m. · stem: piṇāka- · a-stem · KS passim"
-        },
-        {
-          "id": "01-nama:weapons-battle-gear:kodanda",
-          "devanagari": "कोदण्ड",
-          "iast": "kodaṇḍa",
-          "gloss": "bow",
-          "note": "headword | m. · stem: kodaṇḍa- · a-stem · LS 10"
+          "note": "noun · masculine · a-stem · stem: piṇāka- · KS passim"
         },
         {
           "id": "01-nama:weapons-battle-gear:khadgapani",
@@ -2712,91 +2684,91 @@
           "devanagari": "शरवृष्टि",
           "iast": "śaravṛṣṭi",
           "gloss": "rain of arrows",
-          "note": "headword | f. · stem: śaravṛṣṭi- · i-stem · DM 3.7"
+          "note": "noun · feminine · i-stem · stem: śaravṛṣṭi- · DM 3.7"
         },
         {
           "id": "01-nama:weapons-battle-gear:saraugha",
           "devanagari": "शरौघ",
           "iast": "śaraugha",
           "gloss": "flood of arrows",
-          "note": "headword | m. · stem: śaraugha- · a-stem · DM 3.12"
+          "note": "noun · masculine · a-stem · stem: śaraugha- · DM 3.12"
         },
         {
           "id": "01-nama:weapons-battle-gear:sarottama",
           "devanagari": "शरोत्तम",
           "iast": "śarottama",
           "gloss": "excellent arrow",
-          "note": "headword | m. · stem: śarottama- · a-stem · compound · DM 3.8"
+          "note": "noun · masculine · a-stem · stem: śarottama- · compound · DM 3.8"
         },
         {
           "id": "01-nama:weapons-battle-gear:ksurapra",
           "devanagari": "क्षुरप्रा",
           "iast": "kṣuraprā",
           "gloss": "razor-edged (arrow)",
-          "note": "headword | f. · stem: kṣuraprā- · ā-stem · DM 9.12"
+          "note": "noun · feminine · ā-stem · stem: kṣuraprā- · DM 9.12"
         },
         {
           "id": "01-nama:weapons-battle-gear:sarotkara",
           "devanagari": "शरोत्कर",
           "iast": "śarotkara",
           "gloss": "mass of arrows",
-          "note": "headword | m. · stem: śarotkara- · a-stem · DM 9.10"
+          "note": "noun · masculine · a-stem · stem: śarotkara- · DM 9.10"
         },
         {
           "id": "01-nama:weapons-battle-gear:astraugha",
           "devanagari": "अस्त्रौघ",
           "iast": "astraugha",
           "gloss": "flood of missiles",
-          "note": "headword | m. · stem: astraugha- · a-stem · DM 3.24"
+          "note": "noun · masculine · a-stem · stem: astraugha- · DM 3.24"
         },
         {
           "id": "01-nama:weapons-battle-gear:ayudha",
           "devanagari": "आयुध",
           "iast": "āyudha",
           "gloss": "weapon (general)",
-          "note": "headword | n. · stem: āyudha- · a-stem · from ā + √yudh · DM 2.20+"
+          "note": "noun · neuter · a-stem · stem: āyudha- · from ā + √yudh · DM 2.20+"
         },
         {
           "id": "01-nama:weapons-battle-gear:sastra",
           "devanagari": "शस्त्र",
           "iast": "śastra",
           "gloss": "edged weapon",
-          "note": "headword | n. · stem: śastra- · a-stem · from √śas · DM 3.14"
+          "note": "noun · neuter · a-stem · stem: śastra- · from √śas · DM 3.14"
         },
         {
           "id": "01-nama:weapons-battle-gear:astra",
           "devanagari": "अस्त्र",
           "iast": "astra",
           "gloss": "missile weapon",
-          "note": "headword | n. · stem: astra- · a-stem · from √as · DM 3.25"
+          "note": "noun · neuter · a-stem · stem: astra- · from √as · DM 3.25"
         },
         {
           "id": "01-nama:weapons-battle-gear:praharana",
           "devanagari": "प्रहरण",
           "iast": "praharaṇa",
           "gloss": "weapon, instrument of striking",
-          "note": "headword | n. · stem: praharaṇa- · a-stem · from pra + √hṛ · DM 2.20"
+          "note": "noun · neuter · a-stem · stem: praharaṇa- · from pra + √hṛ · DM 2.20"
         },
         {
           "id": "01-nama:weapons-battle-gear:ayudhopeta",
           "devanagari": "आयुधोपेत",
           "iast": "āyudhopeta",
           "gloss": "equipped with weapons",
-          "note": "headword | adj. · stem: āyudhopeta- · a-stem · KS passim"
+          "note": "adjective · a-stem · stem: āyudhopeta- · KS passim"
         },
         {
           "id": "01-nama:weapons-battle-gear:sayudha",
           "devanagari": "सायुधा",
           "iast": "sāyudhā",
           "gloss": "bearing weapons",
-          "note": "headword | adj. · stem: sāyudhā- · ā-stem · DM 8.16"
+          "note": "adjective · ā-stem · stem: sāyudhā- · DM 8.16"
         },
         {
           "id": "01-nama:weapons-battle-gear:sarvayudhadhara",
           "devanagari": "सर्वायुधधर",
           "iast": "sarvāyudhadhara",
           "gloss": "wielder of all weapons",
-          "note": "headword | adj. · stem: sarvāyudhadhara- · a-stem · KS passim"
+          "note": "adjective · a-stem · stem: sarvāyudhadhara- · KS passim"
         }
       ]
     },
@@ -2808,77 +2780,77 @@
           "devanagari": "शङ्ख",
           "iast": "śaṅkha",
           "gloss": "conch",
-          "note": "headword | m. · stem: śaṅkha- · a-stem · DM 2.26"
+          "note": "noun · masculine · a-stem · stem: śaṅkha- · DM 2.26"
         },
         {
           "id": "01-nama:weapons-battle-gear:dundubhi",
           "devanagari": "दुन्दुभि",
           "iast": "dundubhi",
           "gloss": "war-drum",
-          "note": "headword | m. · stem: dundubhi- · i-stem · DM 3.42"
+          "note": "noun · masculine · i-stem · stem: dundubhi- · DM 3.42"
         },
         {
           "id": "01-nama:weapons-battle-gear:bheri",
           "devanagari": "भेरी",
           "iast": "bherī",
           "gloss": "kettledrum",
-          "note": "headword | f. · stem: bherī- · ī-stem · DM 3.42"
+          "note": "noun · feminine · ī-stem · stem: bherī- · DM 3.42"
         },
         {
           "id": "01-nama:weapons-battle-gear:jya",
           "devanagari": "ज्या",
           "iast": "jyā",
           "gloss": "bowstring",
-          "note": "headword | f. · stem: jyā- · ā-stem · DM 9.19"
+          "note": "noun · feminine · ā-stem · stem: jyā- · DM 9.19"
         },
         {
           "id": "01-nama:weapons-battle-gear:jyasabda",
           "devanagari": "ज्याशब्द",
           "iast": "jyāśabda",
           "gloss": "bowstring-twang",
-          "note": "headword | m. · stem: jyāśabda- · a-stem · DM 9.19"
+          "note": "noun · masculine · a-stem · stem: jyāśabda- · DM 9.19"
         },
         {
           "id": "01-nama:weapons-battle-gear:aksamala-aksasrak",
           "devanagari": "अक्षमाला / अक्षस्रक्",
           "iast": "akṣamālā / akṣasrak",
           "gloss": "rosary (from Brahmā)",
-          "note": "f. · DM 2.23"
+          "note": "noun · feminine · DM 2.23"
         },
         {
           "id": "01-nama:weapons-battle-gear:kamandalu",
           "devanagari": "कमण्डलु",
           "iast": "kamaṇḍalu",
           "gloss": "water-pot (from Brahmā)",
-          "note": "headword | m. · stem: kamaṇḍalu- · u-stem · DM 2.23"
+          "note": "noun · masculine · u-stem · stem: kamaṇḍalu- · DM 2.23"
         },
         {
           "id": "01-nama:weapons-battle-gear:kapala",
           "devanagari": "कपाल",
           "iast": "kapāla",
           "gloss": "skull-cup",
-          "note": "headword | n. · stem: kapāla- · a-stem · KKS 137+"
+          "note": "noun · neuter · a-stem · stem: kapāla- · KKS 137+"
         },
         {
           "id": "01-nama:weapons-battle-gear:khatvanga",
           "devanagari": "खट्वाङ्ग",
           "iast": "khaṭvāṅga",
           "gloss": "skull-staff",
-          "note": "headword | n. · stem: khaṭvāṅga- · a-stem · KS passim"
+          "note": "noun · neuter · a-stem · stem: khaṭvāṅga- · KS passim"
         },
         {
           "id": "01-nama:weapons-battle-gear:mundamala-nrmundasraj",
           "devanagari": "मुण्डमाला / नृमुण्डस्रज्",
           "iast": "muṇḍamālā / nṛmuṇḍasraj",
           "gloss": "garland of severed heads",
-          "note": "f. · KS passim"
+          "note": "noun · feminine · KS passim"
         },
         {
           "id": "01-nama:weapons-battle-gear:karparahastini",
           "devanagari": "कर्परहस्तिनी",
           "iast": "karparahastinī",
           "gloss": "skull-bowl in hand",
-          "note": "headword | f. · stem: karparahastinī- · ī-stem · KS passim"
+          "note": "noun · feminine · ī-stem · stem: karparahastinī- · KS passim"
         }
       ]
     },
@@ -2890,70 +2862,70 @@
           "devanagari": "पृथिवी / भूमि / धरा / क्ष्मा / अवनी / मही",
           "iast": "pṛthivī / bhūmi / dharā / kṣmā / avanī / mahī",
           "gloss": "earth",
-          "note": "f. · DM 3.39"
+          "note": "noun · feminine · DM 3.39"
         },
         {
           "id": "01-nama:nature-cosmos:bhutala",
           "devanagari": "भूतल",
           "iast": "bhūtala",
           "gloss": "surface of earth",
-          "note": "headword | n. · stem: bhūtala- · a-stem · DM 9.16"
+          "note": "noun · neuter · a-stem · stem: bhūtala- · DM 9.16"
         },
         {
           "id": "01-nama:nature-cosmos:jagat",
           "devanagari": "जगत्",
           "iast": "jagat",
           "gloss": "world, moving things",
-          "note": "n. · DM throughout"
+          "note": "noun · neuter · DM throughout"
         },
         {
           "id": "01-nama:nature-cosmos:loka",
           "devanagari": "लोक",
           "iast": "loka",
           "gloss": "world, realm",
-          "note": "headword | m. · stem: loka- · a-stem · DM 4.10"
+          "note": "noun · masculine · a-stem · stem: loka- · DM 4.10"
         },
         {
           "id": "01-nama:nature-cosmos:visva-visvam",
           "devanagari": "विश्व / विश्वम्",
           "iast": "viśva / viśvam",
           "gloss": "universe",
-          "note": "n. · VS 1"
+          "note": "noun · neuter · VS 1"
         },
         {
           "id": "01-nama:nature-cosmos:brahmanda",
           "devanagari": "ब्रह्माण्ड",
           "iast": "brahmāṇḍa",
           "gloss": "cosmic egg",
-          "note": "headword | n. · stem: brahmāṇḍa- · a-stem · LS 11"
+          "note": "noun · neuter · a-stem · stem: brahmāṇḍa- · LS 11"
         },
         {
           "id": "01-nama:nature-cosmos:bhuvana",
           "devanagari": "भुवन",
           "iast": "bhuvana",
           "gloss": "world",
-          "note": "headword | n. · stem: bhuvana- · a-stem · LS 295"
+          "note": "noun · neuter · a-stem · stem: bhuvana- · LS 295"
         },
         {
           "id": "01-nama:nature-cosmos:akasa-gagana-nabhas-kha-vyoman",
           "devanagari": "आकाश / गगन / नभस् / ख / व्योमन्",
           "iast": "ākāśa / gagana / nabhas / kha / vyoman",
           "gloss": "sky, space",
-          "note": "n. · DM 3.30"
+          "note": "noun · neuter · DM 3.30"
         },
         {
           "id": "01-nama:nature-cosmos:antariksa",
           "devanagari": "अन्तरीक्ष",
           "iast": "antarīkṣa",
           "gloss": "mid-air, atmosphere",
-          "note": "headword | n. · stem: antarīkṣa- · a-stem · DM 3.30"
+          "note": "noun · neuter · a-stem · stem: antarīkṣa- · DM 3.30"
         },
         {
           "id": "01-nama:nature-cosmos:div-dyu",
           "devanagari": "दिव् / द्यु",
           "iast": "div / dyu",
           "gloss": "heaven/sky",
-          "note": "f. · DM passim"
+          "note": "noun · feminine · DM passim"
         },
         {
           "id": "01-nama:nature-cosmos:jala-toya-apas-udaka-nira-vari-ambu",
@@ -2967,35 +2939,35 @@
           "devanagari": "सागर / समुद्र / अर्णव / सिन्धु",
           "iast": "sāgara / samudra / arṇava / sindhu",
           "gloss": "ocean",
-          "note": "m. · DM 4.10"
+          "note": "noun · masculine · DM 4.10"
         },
         {
           "id": "01-nama:nature-cosmos:ganga",
           "devanagari": "गङ्गा",
           "iast": "gaṅgā",
           "gloss": "the Ganges",
-          "note": "headword | f. · stem: gaṅgā- · ā-stem · KS passim"
+          "note": "noun · feminine · ā-stem · stem: gaṅgā- · KS passim"
         },
         {
           "id": "01-nama:nature-cosmos:kalindi-yamuna",
           "devanagari": "कालिन्दी / यमुना",
           "iast": "kālindī / yamunā",
           "gloss": "the Yamunā",
-          "note": "f. · KKS 688"
+          "note": "noun · feminine · KKS 688"
         },
         {
           "id": "01-nama:nature-cosmos:kaveri",
           "devanagari": "कावेरी",
           "iast": "kāverī",
           "gloss": "the Kāverī",
-          "note": "headword | f. · stem: kāverī- · ī-stem · KKS 705"
+          "note": "noun · feminine · ī-stem · stem: kāverī- · KKS 705"
         },
         {
           "id": "01-nama:nature-cosmos:mandakini",
           "devanagari": "मन्दाकिनी",
           "iast": "mandākinī",
           "gloss": "celestial Ganges",
-          "note": "headword | f. · stem: mandākinī- · ī-stem · KS passim"
+          "note": "noun · feminine · ī-stem · stem: mandākinī- · KS passim"
         },
         {
           "id": "01-nama:nature-cosmos:taranga-urmi",
@@ -3009,7 +2981,7 @@
           "devanagari": "तरङ्गिणी",
           "iast": "taraṅgiṇī",
           "gloss": "flowing with waves (river)",
-          "note": "headword | f. · stem: taraṅgiṇī- · ī-stem · KS passim"
+          "note": "noun · feminine · ī-stem · stem: taraṅgiṇī- · KS passim"
         }
       ]
     },
@@ -3021,63 +2993,63 @@
           "devanagari": "अग्नि / वह्नि / अनल / पावक / हुताशन",
           "iast": "agni / vahni / anala / pāvaka / hutāśana",
           "gloss": "fire",
-          "note": "m. · DM 2.14"
+          "note": "noun · masculine · DM 2.14"
         },
         {
           "id": "01-nama:nature-cosmos:jvala",
           "devanagari": "ज्वाला",
           "iast": "jvālā",
           "gloss": "flame",
-          "note": "headword | f. · stem: jvālā- · ā-stem · DM 10.25"
+          "note": "noun · feminine · ā-stem · stem: jvālā- · DM 10.25"
         },
         {
           "id": "01-nama:nature-cosmos:jyoti",
           "devanagari": "ज्योति",
           "iast": "jyoti",
           "gloss": "light",
-          "note": "headword | n. · stem: jyoti- · i-stem · LS passim"
+          "note": "noun · neuter · i-stem · stem: jyoti- · LS passim"
         },
         {
           "id": "01-nama:nature-cosmos:dipa",
           "devanagari": "दीप",
           "iast": "dīpa",
           "gloss": "lamp",
-          "note": "headword | m. · stem: dīpa- · a-stem · KKS 140"
+          "note": "noun · masculine · a-stem · stem: dīpa- · KKS 140"
         },
         {
           "id": "01-nama:nature-cosmos:tejas",
           "devanagari": "तेजस्",
           "iast": "tejas",
           "gloss": "fiery brilliance",
-          "note": "headword | n. · stem: tejas- · as-stem · DM 2.10+"
+          "note": "noun · neuter · as-stem · stem: tejas- · DM 2.10+"
         },
         {
           "id": "01-nama:nature-cosmos:prabha",
           "devanagari": "प्रभा",
           "iast": "prabhā",
           "gloss": "radiance",
-          "note": "headword | f. · stem: prabhā- · ā-stem · DM 2.10"
+          "note": "noun · feminine · ā-stem · stem: prabhā- · DM 2.10"
         },
         {
           "id": "01-nama:nature-cosmos:vidyut",
           "devanagari": "विद्युत्",
           "iast": "vidyut",
           "gloss": "lightning",
-          "note": "f. · DM 11.44"
+          "note": "noun · feminine · DM 11.44"
         },
         {
           "id": "01-nama:nature-cosmos:ravi-surya-bhanu-divakara",
           "devanagari": "रवि / सूर्य / भानु / दिवाकर",
           "iast": "ravi / sūrya / bhānu / divākara",
           "gloss": "sun",
-          "note": "m. · DM 2.14"
+          "note": "noun · masculine · DM 2.14"
         },
         {
           "id": "01-nama:nature-cosmos:candra-indu-sasin-soma",
           "devanagari": "चन्द्र / इन्दु / शशिन् / सोम",
           "iast": "candra / indu / śaśin / soma",
           "gloss": "moon",
-          "note": "m. · DM 2.14"
+          "note": "noun · masculine · DM 2.14"
         },
         {
           "id": "01-nama:nature-cosmos:tara-naksatra",
@@ -3091,49 +3063,49 @@
           "devanagari": "गिरि / पर्वत / अचल / अद्रि / शैल",
           "iast": "giri / parvata / acala / adri / śaila",
           "gloss": "mountain",
-          "note": "m. · DM 6.8"
+          "note": "noun · masculine · DM 6.8"
         },
         {
           "id": "01-nama:nature-cosmos:himavan-himacala-tuhinacala",
           "devanagari": "हिमवान् / हिमाचल / तुहिनाचल",
           "iast": "himavān / himācala / tuhinācala",
           "gloss": "Himālaya",
-          "note": "m. · DM 6.8"
+          "note": "noun · masculine · DM 6.8"
         },
         {
           "id": "01-nama:nature-cosmos:meru-sumeru",
           "devanagari": "मेरु / सुमेरु",
           "iast": "meru / sumeru",
           "gloss": "cosmic axis-mountain",
-          "note": "headword | m. · stem: meru- · u-stem · LS 55"
+          "note": "noun · masculine · u-stem · stem: meru- · LS 55"
         },
         {
           "id": "01-nama:nature-cosmos:vindhya",
           "devanagari": "विन्ध्य",
           "iast": "vindhya",
           "gloss": "Vindhya mountains",
-          "note": "headword | m. · stem: vindhya- · a-stem · LS 318"
+          "note": "noun · masculine · a-stem · stem: vindhya- · LS 318"
         },
         {
           "id": "01-nama:nature-cosmos:kailasa",
           "devanagari": "कैलास",
           "iast": "kailāsa",
           "gloss": "Śiva's mountain",
-          "note": "headword | m. · stem: kailāsa- · a-stem · LS passim"
+          "note": "noun · masculine · a-stem · stem: kailāsa- · LS passim"
         },
         {
           "id": "01-nama:nature-cosmos:kancanadri",
           "devanagari": "काञ्चनाद्रि",
           "iast": "kāñcanādri",
           "gloss": "golden mountain (Meru)",
-          "note": "headword | m. · stem: kāñcanādri- · i-stem · KKS 728"
+          "note": "noun · masculine · i-stem · stem: kāñcanādri- · KKS 728"
         },
         {
           "id": "01-nama:nature-cosmos:srnga",
           "devanagari": "शृङ्ग",
           "iast": "śṛṅga",
           "gloss": "peak, summit",
-          "note": "headword | n. · stem: śṛṅga- · a-stem · LS 55"
+          "note": "noun · neuter · a-stem · stem: śṛṅga- · LS 55"
         }
       ]
     },
@@ -3145,84 +3117,84 @@
           "devanagari": "वन / अरण्य / कानन",
           "iast": "vana / araṇya / kānana",
           "gloss": "forest",
-          "note": "headword | n. · stem: vana- · a-stem · DM 1.6"
+          "note": "noun · neuter · a-stem · stem: vana- · DM 1.6"
         },
         {
           "id": "01-nama:nature-cosmos:vrksa",
           "devanagari": "वृक्ष",
           "iast": "vṛkṣa",
           "gloss": "tree",
-          "note": "headword | m. · stem: vṛkṣa- · a-stem · KKS 111+"
+          "note": "noun · masculine · a-stem · stem: vṛkṣa- · KKS 111+"
         },
         {
           "id": "01-nama:nature-cosmos:kusuma-puspa",
           "devanagari": "कुसुम / पुष्प",
           "iast": "kusuma / puṣpa",
           "gloss": "flower",
-          "note": "headword | n. · stem: kusuma- · a-stem · DM 4.30"
+          "note": "noun · neuter · a-stem · stem: kusuma- · DM 4.30"
         },
         {
           "id": "01-nama:nature-cosmos:padma-kamala-aravinda",
           "devanagari": "पद्म / कमल / अरविन्द",
           "iast": "padma / kamala / aravinda",
           "gloss": "lotus",
-          "note": "headword | n. · stem: padma- · a-stem · VS passim"
+          "note": "noun · neuter · a-stem · stem: padma- · VS passim"
         },
         {
           "id": "01-nama:nature-cosmos:kadamba",
           "devanagari": "कदम्ब",
           "iast": "kadamba",
           "gloss": "Kadamba tree",
-          "note": "headword | m. · stem: kadamba- · a-stem · LS 60"
+          "note": "noun · masculine · a-stem · stem: kadamba- · LS 60"
         },
         {
           "id": "01-nama:nature-cosmos:kadali",
           "devanagari": "कदली",
           "iast": "kadalī",
           "gloss": "plantain/banana",
-          "note": "headword | f. · stem: kadalī- · ī-stem · KKS 187-195"
+          "note": "noun · feminine · ī-stem · stem: kadalī- · KKS 187-195"
         },
         {
           "id": "01-nama:nature-cosmos:tulasi",
           "devanagari": "तुलसी",
           "iast": "tulasī",
           "gloss": "sacred basil",
-          "note": "headword | f. · stem: tulasī- · ī-stem · KS passim"
+          "note": "noun · feminine · ī-stem · stem: tulasī- · KS passim"
         },
         {
           "id": "01-nama:nature-cosmos:ketaki",
           "devanagari": "केतकी",
           "iast": "ketakī",
           "gloss": "screw-pine",
-          "note": "headword | f. · stem: ketakī- · ī-stem · KKS 929"
+          "note": "noun · feminine · ī-stem · stem: ketakī- · KKS 929"
         },
         {
           "id": "01-nama:nature-cosmos:karavira",
           "devanagari": "करवीर",
           "iast": "karavīra",
           "gloss": "oleander",
-          "note": "headword | m. · stem: karavīra- · a-stem · KKS 512"
+          "note": "noun · masculine · a-stem · stem: karavīra- · KKS 512"
         },
         {
           "id": "01-nama:nature-cosmos:karanja",
           "devanagari": "करञ्ज",
           "iast": "karañja",
           "gloss": "pongam tree",
-          "note": "headword | m. · stem: karañja- · a-stem · KKS 111-115"
+          "note": "noun · masculine · a-stem · stem: karañja- · KKS 111-115"
         },
         {
           "id": "01-nama:nature-cosmos:phala",
           "devanagari": "फल",
           "iast": "phala",
           "gloss": "fruit",
-          "note": "headword | n. · stem: phala- · a-stem · DM 12 (phalastuti)"
+          "note": "noun · neuter · a-stem · stem: phala- · DM 12 (phalastuti)"
         },
         {
           "id": "01-nama:nature-cosmos:bija",
           "devanagari": "बीज",
           "iast": "bīja",
           "gloss": "seed",
-          "note": "headword | n. · stem: bīja- · a-stem · DM 8.40 (raktabīja)"
+          "note": "noun · neuter · a-stem · stem: bīja- · DM 8.40 (raktabīja)"
         }
       ]
     },
@@ -3234,7 +3206,7 @@
           "devanagari": "दिश् / ककुभ्",
           "iast": "diś / kakubh",
           "gloss": "direction, quarter",
-          "note": "f. · DM 3.30"
+          "note": "noun · feminine · DM 3.30"
         },
         {
           "id": "01-nama:nature-cosmos:dasa-disah",
@@ -3318,7 +3290,7 @@
           "devanagari": "स्वर्ग",
           "iast": "svarga",
           "gloss": "heaven",
-          "note": "headword | m. · stem: svarga- · a-stem · DM 5.4"
+          "note": "noun · masculine · a-stem · stem: svarga- · DM 5.4"
         },
         {
           "id": "01-nama:nature-cosmos:martya-bhuloka",
@@ -3332,7 +3304,7 @@
           "devanagari": "पाताल",
           "iast": "pātāla",
           "gloss": "netherworld",
-          "note": "headword | m. · stem: pātāla- · a-stem · DM 5.4"
+          "note": "noun · masculine · a-stem · stem: pātāla- · DM 5.4"
         }
       ]
     },
@@ -3393,56 +3365,56 @@
           "devanagari": "गज / हस्तिन् / इभ / कुञ्जर / करिन् / द्विप",
           "iast": "gaja / hastin / ibha / kuñjara / karin / dvipa",
           "gloss": "elephant",
-          "note": "m. · DM 2.52"
+          "note": "noun · masculine · DM 2.52"
         },
         {
           "id": "01-nama:animals-mounts:airavata",
           "devanagari": "ऐरावत",
           "iast": "airāvata",
           "gloss": "Indra's elephant",
-          "note": "headword | m. · stem: airāvata- · a-stem · DM 2.20"
+          "note": "noun · masculine · a-stem · stem: airāvata- · DM 2.20"
         },
         {
           "id": "01-nama:animals-mounts:kumbha",
           "devanagari": "कुम्भ",
           "iast": "kumbha",
           "gloss": "forehead-dome of elephant",
-          "note": "headword | m. · stem: kumbha- · a-stem · KS passim"
+          "note": "noun · masculine · a-stem · stem: kumbha- · KS passim"
         },
         {
           "id": "01-nama:animals-mounts:matanga",
           "devanagari": "मातङ्ग",
           "iast": "mātaṅga",
           "gloss": "elephant (also: Mātaṅgī goddess)",
-          "note": "headword | m. · stem: mātaṅga- · a-stem · KS passim"
+          "note": "noun · masculine · a-stem · stem: mātaṅga- · KS passim"
         },
         {
           "id": "01-nama:animals-mounts:asva-haya-turaga-vajin",
           "devanagari": "अश्व / हय / तुरग / वाजिन्",
           "iast": "aśva / haya / turaga / vājin",
           "gloss": "horse",
-          "note": "m. · DM 2.52"
+          "note": "noun · masculine · DM 2.52"
         },
         {
           "id": "01-nama:animals-mounts:sarpa-naga-ahi-bhujanga",
           "devanagari": "सर्प / नाग / अहि / भुजङ्ग",
           "iast": "sarpa / nāga / ahi / bhujaṅga",
           "gloss": "serpent",
-          "note": "m. · VS passim"
+          "note": "noun · masculine · VS passim"
         },
         {
           "id": "01-nama:animals-mounts:ananta-sesa",
           "devanagari": "अनन्त / शेष",
           "iast": "ananta / śeṣa",
           "gloss": "the infinite serpent-bed",
-          "note": "headword | m. · stem: ananta- · a-stem · VS 659"
+          "note": "noun · masculine · a-stem · stem: ananta- · VS 659"
         },
         {
           "id": "01-nama:animals-mounts:nagayajnopavita",
           "devanagari": "नागयज्ञोपवीत",
           "iast": "nāgayajñopavīta",
           "gloss": "serpent as sacred thread",
-          "note": "headword | adj. · stem: nāgayajñopavīta- · a-stem · KS passim"
+          "note": "adjective · a-stem · stem: nāgayajñopavīta- · KS passim"
         }
       ]
     },
@@ -3454,91 +3426,91 @@
           "devanagari": "मृग",
           "iast": "mṛga",
           "gloss": "deer, wild animal",
-          "note": "headword | m. · stem: mṛga- · a-stem · DM passim"
+          "note": "noun · masculine · a-stem · stem: mṛga- · DM passim"
         },
         {
           "id": "01-nama:animals-mounts:kuranga-harina",
           "devanagari": "कुरङ्ग / हरिण",
           "iast": "kuraṅga / hariṇa",
           "gloss": "deer",
-          "note": "headword | m. · stem: kuraṅga- · a-stem · KKS 764"
+          "note": "noun · masculine · a-stem · stem: kuraṅga- · KKS 764"
         },
         {
           "id": "01-nama:animals-mounts:svan-kukkura",
           "devanagari": "श्वन् / कुक्कुर",
           "iast": "śvan / kukkura",
           "gloss": "dog",
-          "note": "m. · KKS 871-873 (kukkura)"
+          "note": "noun · masculine · KKS 871-873 (kukkura)"
         },
         {
           "id": "01-nama:animals-mounts:go-dhenu",
           "devanagari": "गो / धेनु",
           "iast": "go / dhenu",
           "gloss": "cow",
-          "note": "f. · LS passim"
+          "note": "noun · feminine · LS passim"
         },
         {
           "id": "01-nama:animals-mounts:kurma",
           "devanagari": "कूर्म",
           "iast": "kūrma",
           "gloss": "tortoise",
-          "note": "headword | m. · stem: kūrma- · a-stem · KKS 883"
+          "note": "noun · masculine · a-stem · stem: kūrma- · KKS 883"
         },
         {
           "id": "01-nama:animals-mounts:varaha",
           "devanagari": "वराह",
           "iast": "varāha",
           "gloss": "boar",
-          "note": "headword | m. · stem: varāha- · a-stem · DM 8.18"
+          "note": "noun · masculine · a-stem · stem: varāha- · DM 8.18"
         },
         {
           "id": "01-nama:animals-mounts:vyaghra",
           "devanagari": "व्याघ्र",
           "iast": "vyāghra",
           "gloss": "tiger",
-          "note": "headword | m. · stem: vyāghra- · a-stem · KS passim"
+          "note": "noun · masculine · a-stem · stem: vyāghra- · KS passim"
         },
         {
           "id": "01-nama:animals-mounts:kokila",
           "devanagari": "कोकिल",
           "iast": "kokila",
           "gloss": "cuckoo",
-          "note": "headword | f. · stem: kokila- · a-stem · KKS 959"
+          "note": "noun · feminine · a-stem · stem: kokila- · KKS 959"
         },
         {
           "id": "01-nama:animals-mounts:kira-suka",
           "devanagari": "कीर / शुक",
           "iast": "kīra / śuka",
           "gloss": "parrot",
-          "note": "headword | m. · stem: kīra- · a-stem · KS passim"
+          "note": "noun · masculine · a-stem · stem: kīra- · KS passim"
         },
         {
           "id": "01-nama:animals-mounts:hamsi",
           "devanagari": "हंसी",
           "iast": "haṃsī",
           "gloss": "female swan",
-          "note": "headword | f. · stem: haṃsī- · ī-stem · KS passim"
+          "note": "noun · feminine · ī-stem · stem: haṃsī- · KS passim"
         },
         {
           "id": "01-nama:animals-mounts:camari",
           "devanagari": "चामरी",
           "iast": "cāmarī",
           "gloss": "yak",
-          "note": "headword | f. · stem: cāmarī- · ī-stem · KS passim"
+          "note": "noun · feminine · ī-stem · stem: cāmarī- · KS passim"
         },
         {
           "id": "01-nama:animals-mounts:mina-matsya",
           "devanagari": "मीन / मत्स्य",
           "iast": "mīna / matsya",
           "gloss": "fish",
-          "note": "headword | m. · stem: mīna- · a-stem · LS 18"
+          "note": "noun · masculine · a-stem · stem: mīna- · LS 18"
         },
         {
           "id": "01-nama:animals-mounts:sarabha",
           "devanagari": "शरभ",
           "iast": "śarabha",
           "gloss": "mythical eight-legged beast",
-          "note": "headword | m. · stem: śarabha- · a-stem · KS passim"
+          "note": "noun · masculine · a-stem · stem: śarabha- · KS passim"
         }
       ]
     },
@@ -3550,56 +3522,56 @@
           "devanagari": "रथ",
           "iast": "ratha",
           "gloss": "chariot",
-          "note": "headword | m. · stem: ratha- · a-stem · DM 2.52"
+          "note": "noun · masculine · a-stem · stem: ratha- · DM 2.52"
         },
         {
           "id": "01-nama:animals-mounts:sarathi",
           "devanagari": "सारथि",
           "iast": "sārathi",
           "gloss": "charioteer",
-          "note": "headword | m. · stem: sārathi- · i-stem · DM 2.53"
+          "note": "noun · masculine · i-stem · stem: sārathi- · DM 2.53"
         },
         {
           "id": "01-nama:animals-mounts:vahana",
           "devanagari": "वाहन",
           "iast": "vāhana",
           "gloss": "mount, vehicle",
-          "note": "headword | n. · stem: vāhana- · a-stem · from √vah · DM 6.15"
+          "note": "noun · neuter · a-stem · stem: vāhana- · from √vah · DM 6.15"
         },
         {
           "id": "01-nama:animals-mounts:simhavahini",
           "devanagari": "सिंहवाहिनी",
           "iast": "siṃhavāhinī",
           "gloss": "she whose vehicle is the lion",
-          "note": "headword | f. · stem: siṃhavāhinī- · ī-stem · DM 2.29"
+          "note": "noun · feminine · ī-stem · stem: siṃhavāhinī- · DM 2.29"
         },
         {
           "id": "01-nama:animals-mounts:vrsavahini",
           "devanagari": "वृषवाहिनी",
           "iast": "vṛṣavāhinī",
           "gloss": "she whose vehicle is the bull",
-          "note": "headword | f. · stem: vṛṣavāhinī- · ī-stem · KS passim"
+          "note": "noun · feminine · ī-stem · stem: vṛṣavāhinī- · KS passim"
         },
         {
           "id": "01-nama:animals-mounts:cakrarajaratha",
           "devanagari": "चक्रराजरथ",
           "iast": "cakrarājaratha",
           "gloss": "chariot of Śrīcakra",
-          "note": "headword | m. · stem: cakrarājaratha- · a-stem · LS 65"
+          "note": "noun · masculine · a-stem · stem: cakrarājaratha- · LS 65"
         },
         {
           "id": "01-nama:animals-mounts:geyacakraratha",
           "devanagari": "गेयचक्ररथ",
           "iast": "geyacakraratha",
           "gloss": "chariot of Geyacakra",
-          "note": "headword | m. · stem: geyacakraratha- · a-stem · LS 66"
+          "note": "noun · masculine · a-stem · stem: geyacakraratha- · LS 66"
         },
         {
           "id": "01-nama:animals-mounts:kiricakraratha",
           "devanagari": "किरिचक्ररथ",
           "iast": "kiricakraratha",
           "gloss": "chariot of Kiricakra",
-          "note": "headword | m. · stem: kiricakraratha- · a-stem · LS 67"
+          "note": "noun · masculine · a-stem · stem: kiricakraratha- · LS 67"
         }
       ]
     },
@@ -3845,28 +3817,28 @@
           "devanagari": "काल",
           "iast": "kāla",
           "gloss": "time; also death",
-          "note": "headword | m. · stem: kāla- · a-stem · DM 1.78"
+          "note": "noun · masculine · a-stem · stem: kāla- · DM 1.78"
         },
         {
           "id": "01-nama:numbers-time-space:yuga",
           "devanagari": "युग",
           "iast": "yuga",
           "gloss": "cosmic age",
-          "note": "headword | n. · stem: yuga- · a-stem · DM passim"
+          "note": "noun · neuter · a-stem · stem: yuga- · DM passim"
         },
         {
           "id": "01-nama:numbers-time-space:kalpa",
           "devanagari": "कल्प",
           "iast": "kalpa",
           "gloss": "cosmic cycle (day of Brahmā)",
-          "note": "headword | m. · stem: kalpa- · a-stem · KKS 367+"
+          "note": "noun · masculine · a-stem · stem: kalpa- · KKS 367+"
         },
         {
           "id": "01-nama:numbers-time-space:manvantara",
           "devanagari": "मन्वन्तर",
           "iast": "manvantara",
           "gloss": "Manu-period",
-          "note": "headword | n. · stem: manvantara- · a-stem · DM colophons (sāvarṇike manvantare)"
+          "note": "noun · neuter · a-stem · stem: manvantara- · DM colophons (sāvarṇike manvantare)"
         },
         {
           "id": "01-nama:numbers-time-space:samvatsara-varsa-abda",
@@ -3880,14 +3852,14 @@
           "devanagari": "मास",
           "iast": "māsa",
           "gloss": "month",
-          "note": "headword | m. · stem: māsa- · a-stem · DM passim"
+          "note": "noun · masculine · a-stem · stem: māsa- · DM passim"
         },
         {
           "id": "01-nama:numbers-time-space:paksa",
           "devanagari": "पक्ष",
           "iast": "pakṣa",
           "gloss": "fortnight (bright/dark)",
-          "note": "headword | m. · stem: pakṣa- · a-stem · DM passim"
+          "note": "noun · masculine · a-stem · stem: pakṣa- · DM passim"
         },
         {
           "id": "01-nama:numbers-time-space:dina-ahar-divasa",
@@ -3901,49 +3873,49 @@
           "devanagari": "रात्रि",
           "iast": "rātri",
           "gloss": "night",
-          "note": "headword | f. · stem: rātri- · i-stem · DM 1.78 (kālarātri)"
+          "note": "noun · feminine · i-stem · stem: rātri- · DM 1.78 (kālarātri)"
         },
         {
           "id": "01-nama:numbers-time-space:rtu",
           "devanagari": "ऋतु",
           "iast": "ṛtu",
           "gloss": "season",
-          "note": "headword | m. · stem: ṛtu- · u-stem · DM passim"
+          "note": "noun · masculine · u-stem · stem: ṛtu- · DM passim"
         },
         {
           "id": "01-nama:numbers-time-space:ksana-muhurta-nimesa",
           "devanagari": "क्षण / मुहूर्त / निमेष",
           "iast": "kṣaṇa / muhūrta / nimeṣa",
           "gloss": "moment",
-          "note": "headword | m. · stem: kṣaṇa- · a-stem · DM 6.19"
+          "note": "noun · masculine · a-stem · stem: kṣaṇa- · DM 6.19"
         },
         {
           "id": "01-nama:numbers-time-space:sandhya",
           "devanagari": "सन्ध्या",
           "iast": "sandhyā",
           "gloss": "twilight junction",
-          "note": "headword | f. · stem: sandhyā- · ā-stem · LS passim"
+          "note": "noun · feminine · ā-stem · stem: sandhyā- · LS passim"
         },
         {
           "id": "01-nama:numbers-time-space:pralaya",
           "devanagari": "प्रलय",
           "iast": "pralaya",
           "gloss": "cosmic dissolution",
-          "note": "headword | m. · stem: pralaya- · a-stem · VS passim"
+          "note": "noun · masculine · a-stem · stem: pralaya- · VS passim"
         },
         {
           "id": "01-nama:numbers-time-space:srsti",
           "devanagari": "सृष्टि",
           "iast": "sṛṣṭi",
           "gloss": "creation-time",
-          "note": "headword | f. · stem: sṛṣṭi- · i-stem · LS 264"
+          "note": "noun · feminine · i-stem · stem: sṛṣṭi- · LS 264"
         },
         {
           "id": "01-nama:numbers-time-space:sthiti",
           "devanagari": "स्थिति",
           "iast": "sthiti",
           "gloss": "maintenance-time",
-          "note": "headword | f. · stem: sthiti- · i-stem · LS 265"
+          "note": "noun · feminine · i-stem · stem: sthiti- · LS 265"
         }
       ]
     },
@@ -3962,63 +3934,63 @@
           "devanagari": "निलय / आलय",
           "iast": "nilaya / ālaya",
           "gloss": "abode, dwelling",
-          "note": "headword | m. · stem: nilaya- · a-stem · KKS 31+"
+          "note": "noun · masculine · a-stem · stem: nilaya- · KKS 31+"
         },
         {
           "id": "01-nama:numbers-time-space:sthana",
           "devanagari": "स्थान",
           "iast": "sthāna",
           "gloss": "place, station",
-          "note": "headword | n. · stem: sthāna- · a-stem · KKS passim"
+          "note": "noun · neuter · a-stem · stem: sthāna- · KKS passim"
         },
         {
           "id": "01-nama:numbers-time-space:grha-geha-bhavana",
           "devanagari": "गृह / गेह / भवन",
           "iast": "gṛha / geha / bhavana",
           "gloss": "house, dwelling",
-          "note": "headword | n. · stem: gṛha- · a-stem · KKS 75+"
+          "note": "noun · neuter · a-stem · stem: gṛha- · KKS 75+"
         },
         {
           "id": "01-nama:numbers-time-space:ksetra",
           "devanagari": "क्षेत्र",
           "iast": "kṣetra",
           "gloss": "field, sacred place",
-          "note": "headword | n. · stem: kṣetra- · a-stem · LS 317"
+          "note": "noun · neuter · a-stem · stem: kṣetra- · LS 317"
         },
         {
           "id": "01-nama:numbers-time-space:tirtha",
           "devanagari": "तीर्थ",
           "iast": "tīrtha",
           "gloss": "sacred ford/place",
-          "note": "headword | n. · stem: tīrtha- · a-stem · VS passim"
+          "note": "noun · neuter · a-stem · stem: tīrtha- · VS passim"
         },
         {
           "id": "01-nama:numbers-time-space:pitha",
           "devanagari": "पीठ",
           "iast": "pīṭha",
           "gloss": "seat, sacred seat",
-          "note": "headword | n. · stem: pīṭha- · a-stem · LS passim"
+          "note": "noun · neuter · a-stem · stem: pīṭha- · LS passim"
         },
         {
           "id": "01-nama:numbers-time-space:simhasana",
           "devanagari": "सिंहासन",
           "iast": "siṃhāsana",
           "gloss": "lion-throne",
-          "note": "headword | n. · stem: siṃhāsana- · a-stem · LS 3"
+          "note": "noun · neuter · a-stem · stem: siṃhāsana- · LS 3"
         },
         {
           "id": "01-nama:numbers-time-space:asana",
           "devanagari": "आसन",
           "iast": "āsana",
           "gloss": "seat",
-          "note": "headword | n. · stem: āsana- · a-stem · KKS 129"
+          "note": "noun · neuter · a-stem · stem: āsana- · KKS 129"
         },
         {
           "id": "01-nama:numbers-time-space:vasa",
           "devanagari": "वास",
           "iast": "vāsa",
           "gloss": "dwelling",
-          "note": "headword | m. · stem: vāsa- · a-stem · KKS passim"
+          "note": "noun · masculine · a-stem · stem: vāsa- · KKS passim"
         }
       ]
     },
@@ -4121,7 +4093,7 @@
           "devanagari": "चिता",
           "iast": "citā",
           "gloss": "funeral pyre",
-          "note": "headword | f. · stem: citā- · ā-stem · KS passim"
+          "note": "noun · feminine · ā-stem · stem: citā- · KS passim"
         },
         {
           "id": "01-nama:sacred-geography-plants:ganga",
@@ -4203,56 +4175,56 @@
           "devanagari": "अमृत",
           "iast": "amṛta",
           "gloss": "nectar of immortality",
-          "note": "headword | n. · stem: amṛta- · a-stem · VS passim"
+          "note": "noun · neuter · a-stem · stem: amṛta- · VS passim"
         },
         {
           "id": "01-nama:sacred-geography-plants:sudha",
           "devanagari": "सुधा",
           "iast": "sudhā",
           "gloss": "nectar",
-          "note": "headword | f. · stem: sudhā- · ā-stem · LS 61"
+          "note": "noun · feminine · ā-stem · stem: sudhā- · LS 61"
         },
         {
           "id": "01-nama:sacred-geography-plants:pitha",
           "devanagari": "पीठ",
           "iast": "pīṭha",
           "gloss": "sacred seat (śākta)",
-          "note": "headword | n. · stem: pīṭha- · a-stem · LS passim"
+          "note": "noun · neuter · a-stem · stem: pīṭha- · LS passim"
         },
         {
           "id": "01-nama:sacred-geography-plants:yajnopavita",
           "devanagari": "यज्ञोपवीत",
           "iast": "yajñopavīta",
           "gloss": "sacred thread",
-          "note": "headword | n. · stem: yajñopavīta- · a-stem · KS passim"
+          "note": "noun · neuter · a-stem · stem: yajñopavīta- · KS passim"
         },
         {
           "id": "01-nama:sacred-geography-plants:kapala",
           "devanagari": "कपाल",
           "iast": "kapāla",
           "gloss": "skull-bowl",
-          "note": "headword | n. · stem: kapāla- · a-stem · KKS 137+"
+          "note": "noun · neuter · a-stem · stem: kapāla- · KKS 137+"
         },
         {
           "id": "01-nama:sacred-geography-plants:rudraksa",
           "devanagari": "रुद्राक्ष",
           "iast": "rudrākṣa",
           "gloss": "Rudra's eye (prayer bead)",
-          "note": "headword | m. · stem: rudrākṣa- · a-stem · KS passim"
+          "note": "noun · masculine · a-stem · stem: rudrākṣa- · KS passim"
         },
         {
           "id": "01-nama:sacred-geography-plants:kalasa",
           "devanagari": "कलश",
           "iast": "kalaśa",
           "gloss": "sacred pot",
-          "note": "headword | m. · stem: kalaśa- · a-stem · KKS 520"
+          "note": "noun · masculine · a-stem · stem: kalaśa- · KKS 520"
         },
         {
           "id": "01-nama:sacred-geography-plants:dipa",
           "devanagari": "दीप",
           "iast": "dīpa",
           "gloss": "sacred lamp",
-          "note": "headword | m. · stem: dīpa- · a-stem · KKS 140"
+          "note": "noun · masculine · a-stem · stem: dīpa- · KKS 140"
         }
       ]
     },
