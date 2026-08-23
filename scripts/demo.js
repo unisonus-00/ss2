@@ -18,7 +18,16 @@ const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
 const SRC = path.join(ROOT, 'dist', 'abhyasah.html');
-const OUT = process.argv[2] || path.join(ROOT, 'dist', 'abhyasah.demo.html');
+/* The demo is published for someone to try, so it carries a version they can
+   name in a message: abhyasa-demo-v7, then v8.  `demo-version` is tracked, so
+   the number keeps counting across sessions rather than restarting. */
+const VFILE = path.join(ROOT, 'demo-version');
+const VERSION = (() => {
+  const n = (parseInt(fs.existsSync(VFILE) ? fs.readFileSync(VFILE, 'utf8') : '0', 10) || 0) + 1;
+  fs.writeFileSync(VFILE, n + '\n');
+  return n;
+})();
+const OUT = path.join(ROOT, 'dist', `abhyasa-demo-v${VERSION}.html`);
 
 const html = fs.readFileSync(SRC, 'utf8');
 
@@ -45,6 +54,6 @@ if (stray) {
 }
 
 console.log(
-  `demo: ${path.relative(ROOT, OUT)}  ` +
+  `demo v${VERSION}: ${path.relative(ROOT, OUT)}  ` +
   `${(out.length / 1024).toFixed(0)} KB, ${styles.length} style block(s)`
 );

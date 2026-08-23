@@ -1,5 +1,21 @@
 {
   "lesson": "05-rupa",
+  "overview": {
+    "lead": "This is the big one, and the one that unlocks reading. A Sanskrit noun changes its ending to show what it is doing in the sentence — eight cases, three numbers. Learn the pattern once and it repeats across the language.",
+    "plan": [
+      "Vibhakti-vacana teaches the names first: what each case is called in Sanskrit, what it is called in English, and what number means.",
+      "Vibhakti-rūpa then asks you to recognise a case when you see one.",
+      "The Rūpa-siddhi lists hand you a bare stem and ask for one named form. Start with Śiva.",
+      "The Śabda-rūpa lists run the other way — a form is shown and you say what it is."
+    ],
+    "note": "Eight cases sounds like a lot. It is really one table, and most stems reuse it with a different vowel — which is why some lists are short: they only drill what actually changes.",
+    "mentions": [
+      "Vibhakti-vacana",
+      "Vibhakti-rūpa",
+      "Rūpa-siddhi · Śiva"
+    ],
+    "lists": 24
+  },
   "decks": [
     {
       "name": "11 · Vibhakti-vacana — case and number terms",

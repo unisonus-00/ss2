@@ -1,5 +1,19 @@
 {
   "lesson": "04-guna",
+  "overview": {
+    "lead": "Adjectives let you say what something is like. In Sanskrit an adjective copies its noun's gender, number and case, so learning them is also your first taste of agreement.",
+    "plan": [
+      "Guṇa gives you the core qualities.",
+      "Viśeṣaṇa then asks you to make an adjective agree with a noun you are given.",
+      "Five vocabulary lists follow, sorted by the kind of quality — fierce, beautiful, vast, the negations, colours."
+    ],
+    "note": "Every agreement card tells you the noun's gender in brackets, so you are never guessing at two things at once. Stage 5 is where the endings themselves are taught.",
+    "mentions": [
+      "Guṇa",
+      "Viśeṣaṇa"
+    ],
+    "lists": 7
+  },
   "decks": [
     {
       "name": "03 · Guṇa — adjectives",

@@ -1,5 +1,20 @@
 {
   "lesson": "10-paryaya",
+  "overview": {
+    "lead": "Sanskrit has many words for the same thing, and poets choose between them by sound and syllable count. Knowing a set of synonyms — not just one word — is what makes composition possible.",
+    "plan": [
+      "Paryāya gives the sets themselves: the words for water, sun, lotus, fire and the rest.",
+      "Paryāya-varga then asks which group of names belongs entirely to one thing.",
+      "Bhinna-pada asks the opposite: which one name does not belong with the others."
+    ],
+    "note": "These are harder than they look, and deliberately so. Recognising one word is easy; deciding that a whole set is pure means checking every member of it.",
+    "mentions": [
+      "Paryāya",
+      "Paryāya-varga",
+      "Bhinna-pada"
+    ],
+    "lists": 3
+  },
   "decks": [
     {
       "name": "30 · Paryāya — synonym sets",

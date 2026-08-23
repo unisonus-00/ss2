@@ -482,6 +482,61 @@ the drawer. A track that folds counts what it actually holds — `· 11 lists`,
 Where a folded lesson's name differs from its track's, the subheading keeps it
 (`Avadhāna` / *Samasyāpūraṇa · 1 list*) so nothing is silently lost.
 
+### The stage page
+
+A lesson says what it gives you before it asks anything of you. Expanding a
+lesson in the drawer leads with **About this stage**, which opens a page on
+the same palm-leaf surface:
+
+```
+BHĀṢĀ-VIDYĀ
+Rūpa · Case, Number, and Gender
+This is the big one, and the one that unlocks reading…
+
+HOW THIS STAGE RUNS
+1. Vibhakti-vacana teaches the names first…
+2. Vibhakti-rūpa then asks you to recognise a case…
+│ Eight cases sounds like a lot. It is really one table…
+Tap the red line under any answer for the grammar behind it, and the
+book icon beside the list name to read the lesson's reference.
+[ Begin — Vibhakti-vacana ]
+```
+
+- **The prose is written for someone who has never met the material.** The
+  lead says what the stage gives you, the plan says how it runs and names the
+  lists where naming them helps, and one optional italic aside defuses the
+  hardest idea in the stage — that Sanskrit counts persons the other way
+  round, that a pratyāhāra is only a shorthand, that eight cases are really
+  one table.
+- **It points at the two places to get unstuck**: the red annotation under an
+  answer, and the Study icon. Neither is discoverable on its own.
+- **The prompt changes once the stage has been started.** Untouched, it reads
+  `Begin — <first list>`. With progress, the page shows stage percentage and
+  lists complete, and the button reads `Continue — <first unfinished list>`.
+- **The row carries no percentage.** It is a way in, not a list, and
+  `rowButton` prints nothing where a row passes no `pct`.
+
+**The overview lives in the lesson's own `practice.json`**, beside the lists
+it describes, and declares its coupling to them:
+
+```json
+"overview": {
+  "lead": "…", "plan": ["…"], "note": "…",
+  "mentions": ["Vibhakti-vacana", "Vibhakti-rūpa"],
+  "lists": 24
+}
+```
+
+**`scripts/build.js` fails if that coupling goes stale** — if `lists` no longer
+matches the lesson's list count, or if a name in `mentions` is not a list
+there. Prose does not update itself when a list is added, renamed or split, so
+the build says so instead: *the overview may need rewriting*. `scripts/test.js`
+separately requires every lesson with practice to have one, with a real lead
+and a plan.
+
+**The cross-cutting vyākaraṇam lists have a page too**, saying what they are
+for and that nothing depends on them.
+
 ### The landing card
 
 The app opens on a card, not on a menu — and the first one is a welcome
@@ -1569,11 +1624,13 @@ app itself has no dependencies and should keep none. Run it after any change
 to `app/`.
 
 **Publishing a testable demo** — `node scripts/demo.js` rewrites
-`dist/abhyasah.html` into `dist/abhyasah.demo.html`, stripping the
+`dist/abhyasah.html` into `dist/abhyasa-demo-v<N>.html`, stripping the
 `<!doctype>`/`<html>`/`<head>`/`<body>` wrapper that the Artifact host supplies
 itself. Publish that file to give the learner a live page to try on a phone.
 The demo is generated and git-ignored; `dist/abhyasah.html` remains the real
-distributable.
+distributable. **The version counts up on every run** — `demo-version` is
+tracked, so the number keeps going across sessions and a published demo can be
+named in a message without ambiguity.
 
 ### Known conflicts
 

@@ -52,6 +52,28 @@
 <div class="panel">
   <!-- The landing card.  The app still opens on a card rather than a menu:
        this is simply the first one, and choosing any list replaces it. -->
+  <!-- The stage page: what a lesson gives you, said before it asks anything.
+       Same palm-leaf surface as the landing card, and the same rule — any
+       list that starts replaces it. -->
+  <div class="welcome" id="stagecard" hidden>
+    <div class="w-eyebrow" id="s-track"></div>
+    <h2 class="w-head" id="s-name"></h2>
+    <p class="w-lead" id="s-lead"></p>
+    <div class="s-plan"><div class="s-h">How this stage runs</div>
+      <ol id="s-plan"></ol></div>
+    <p class="s-note" id="s-note"></p>
+    <p class="s-help">Tap the red line under any answer for the grammar behind it, and the
+      <span aria-hidden="true">book</span> icon beside the list name to read the lesson's own
+      reference while you practise.</p>
+    <div class="w-stats" id="s-stats" hidden>
+      <div class="w-stat"><span>Stage progress</span><b id="s-pct"></b></div>
+      <div class="w-stat"><span>Lists complete</span><b id="s-done"></b></div>
+    </div>
+    <div class="w-actions">
+      <button id="s-go" class="primary"></button>
+    </div>
+  </div>
+
   <div class="welcome" id="welcome" hidden>
     <div class="w-mark">अभ्यास</div>
     <h2 class="w-head">Welcome to Abhyāsa!</h2>
@@ -62,6 +84,9 @@
       multiple choice and sequence.</p>
     <p>Material you master returns through Abhyāsa Review, helping earlier lessons
       stay active as you progress.</p>
+    <p class="s-help">Every stage opens with a page telling you what it gives you and how it
+      runs — start there. While you practise, the red line under an answer explains the
+      grammar, and the <span aria-hidden="true">book</span> icon opens the lesson's reference.</p>
     <div class="w-stats">
       <div class="w-stat"><span>Overall mastery</span><b id="w-mastery">0%</b></div>
       <div class="w-stat"><span>Lists complete</span><b id="w-lists">0</b></div>

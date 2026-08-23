@@ -1,5 +1,20 @@
 {
   "lesson": "09-dhatu",
+  "overview": {
+    "lead": "Underneath every Sanskrit noun and verb is a root — a dhātu, usually one syllable. Learn the fifty the curriculum names and you can often guess a word you have never met.",
+    "plan": [
+      "Four lists of roots, grouped by what they do: being and motion, knowing and speaking, worship and offering, doing and holding.",
+      "Kṛt and Taddhita then show how suffixes turn roots into nouns and adjectives.",
+      "Upasarga shows how prefixes change a root's meaning — often completely."
+    ],
+    "note": "Each root card shows a number and a letter, like `1P`. The number is which class the root belongs to; the letter is which set of endings it takes. The card spells both out.",
+    "mentions": [
+      "Dhātu I",
+      "Kṛt",
+      "Upasarga"
+    ],
+    "lists": 9
+  },
   "decks": [
     {
       "name": "Dhātu I — being, motion and dwelling",

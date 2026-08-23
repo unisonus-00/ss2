@@ -1,5 +1,16 @@
 {
   "lesson": "21-chandas-ii",
+  "overview": {
+    "lead": "The anuṣṭubh, or śloka, is the workhorse of Sanskrit verse — four lines of eight syllables. Most of it is free; only a few positions are fixed, which is why it can be composed at speed.",
+    "plan": [
+      "One practice list: the pattern itself — how many pādas, how many syllables, and which positions the metre actually constrains."
+    ],
+    "note": "Only syllables five, six and seven of the even lines are really fixed. Everything else you may choose. That is the whole constraint.",
+    "mentions": [
+      "Anuṣṭubh"
+    ],
+    "lists": 1
+  },
   "decks": [
     {
       "name": "Anuṣṭubh — the śloka pattern · practice",

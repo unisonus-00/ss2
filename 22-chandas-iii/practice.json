@@ -1,5 +1,17 @@
 {
   "lesson": "22-chandas-iii",
+  "overview": {
+    "lead": "Beyond the śloka are the fixed metres — every syllable's weight determined, each with its own mood. Knowing a handful gives you a register to choose from.",
+    "plan": [
+      "One list: Vṛtta, giving each metre by its pattern, its syllable count and its gaṇa formula.",
+      "The composition itself is the badge's business; this list is the set of shapes to compose into."
+    ],
+    "note": "Each card shows a run of ∪ and — marks. Those are the light and heavy syllables from Stage 19; nothing new is being asked of your ear.",
+    "mentions": [
+      "Vṛtta"
+    ],
+    "lists": 1
+  },
   "decks": [
     {
       "name": "28 · Vṛtta — the classical metres",

@@ -1,5 +1,20 @@
 {
   "lesson": "03-sandhi",
+  "overview": {
+    "lead": "Sanskrit words change shape where they touch. Sandhi is the set of rules for those joins — and knowing them is what lets you read a line of verse as words rather than as one long string.",
+    "plan": [
+      "Three rule lists first, one per kind of join: vowels, consonants, visarga.",
+      "Then Saṃyoga asks you to combine two words, and Viccheda to take a joined form apart and name the rule that made it.",
+      "Prakriyā is the only place in Abhyāsa that asks for an order: a few derivations have to pass through their stages in sequence, because the grammar forces it."
+    ],
+    "note": "You do not have to memorise rule names to start. Do the joins first; the names attach themselves after a few rounds.",
+    "mentions": [
+      "Saṃyoga",
+      "Viccheda",
+      "Prakriyā"
+    ],
+    "lists": 6
+  },
   "decks": [
     {
       "name": "S · Ac sandhi — vowel joins",

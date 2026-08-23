@@ -156,6 +156,21 @@
   /* On the leaf, not on the ground.  The app's buttons are inked --leaf for
      the dark background, which is invisible on a light card — the same
      reason the choice options carry their own palette. */
+  .w-eyebrow { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase;
+               color: var(--faded); margin-bottom: .3rem; }
+  .s-plan { margin: .2rem 0 1rem; }
+  .s-h { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase;
+         color: var(--faded); margin-bottom: .5rem; }
+  .s-plan ol { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: .5rem;
+               font-size: .9rem; line-height: 1.55; }
+  .s-plan li::marker { color: var(--faded); font-size: .8rem; }
+  /* the one paragraph that defuses a hard idea, marked as an aside rather
+     than as more of the same prose */
+  .s-note { font-size: .88rem; line-height: 1.55; font-style: italic;
+            border-left: 2px solid var(--leaf-edge); padding-left: .8rem; margin: 0 0 1rem; }
+  .s-note:empty { display: none; }
+  /* where to look when a card is not enough */
+  .s-help { font-size: .82rem; line-height: 1.5; color: var(--faded); margin: 0 0 1rem; }
   .w-actions { display: flex; gap: .6rem; margin-top: 1.3rem; }
   .w-actions button {
     flex: 1; background: transparent; color: var(--ink);
@@ -664,6 +679,9 @@
   .ls-head.leaf .ls-sub, .tr-head.leaf .tr-sub { font-style: normal; }
 
   /* a deck: the row that actually starts a round */
+  /* The stage page's row leads a lesson's lists but is not one of them, so
+     it shares their shape and takes no percentage. */
+  .about,
   .dk {
     display: grid; width: 100%; text-align: left; cursor: pointer;
     grid-template-columns: 1fr auto; gap: 0 .6rem;
@@ -672,9 +690,13 @@
     border: 1px solid transparent; border-radius: 2px;
     padding: .45rem .5rem; min-height: 44px;
   }
+  .about:hover,
   .dk:hover { border-color: rgba(125,112,92,.5); }
   .dk.on { border-color: var(--leaf); }
+  .about-name,
   .dk-name { grid-area: name; font-size: .86rem; }
+  .about-name { font-style: italic; }
+  .about-sub,
   .dk-sub { grid-area: sub; font-size: .66rem; color: var(--faded); }
   .dk-pct { grid-area: pct; align-self: center; font-size: .74rem;
             color: var(--faded); font-variant-numeric: tabular-nums; }

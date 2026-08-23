@@ -1,5 +1,20 @@
 {
   "lesson": "02-varna-vidya",
+  "overview": {
+    "lead": "Sanskrit's alphabet is arranged by where each sound is made in the mouth, not by accident. Once you see that order, spelling, sandhi and mantra all stop looking arbitrary.",
+    "plan": [
+      "Varṇa gives you the sounds and their places — throat, palate, teeth, lips.",
+      "Pratyāhāra gives you the fourteen Maheśvara sūtras, the compression trick Pāṇini uses to name any group of sounds in two letters.",
+      "Then one short practice list, which asks you to expand those codes and to decide what falls inside them."
+    ],
+    "note": "A pratyāhāra is just a shorthand: take a first sound, take a marker letter later in the list, and you mean everything between them. `ac` means all the vowels. That is the whole idea.",
+    "mentions": [
+      "Varṇa",
+      "Pratyāhāra",
+      "Pratyāhāra-vistāra"
+    ],
+    "lists": 3
+  },
   "decks": [
     {
       "name": "15 · Varṇa — sounds and articulation",

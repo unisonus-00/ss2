@@ -12,13 +12,13 @@
    Cards with no `type` are `reveal`, which is what every migrated card is. */
 const CARD_TYPES = ["reveal", "choice", "sequence"];
 
-const [DECKS, DECK_STAGE, DECK_LESSON, LESSON_LABEL, LESSON_GLOSS, DECK_PAIR, DECK_ROLE, PARSE] = (() => {
-  const decks = {}, stages = {}, lessons = {}, labels = {}, glosses = {}, pairs = {},
+const [DECKS, DECK_STAGE, DECK_LESSON, LESSON_LABEL, LESSON_GLOSS, DECK_PAIR, DECK_ROLE, OVERVIEW, PARSE] = (() => {
+  const decks = {}, stages = {}, lessons = {}, labels = {}, glosses = {}, pairs = {}, over = {},
         /* "terms": the list teaches the vocabulary a later list assumes, so it
            leads its lesson.  Nothing else reads this; it is the progression
            written down where the progression lives. */
         roles = {}, skipped = [];
-  const fail = why => [decks, stages, lessons, labels, glosses, pairs, roles,
+  const fail = why => [decks, stages, lessons, labels, glosses, pairs, roles, over,
                        { count: 0, decks: 0, skipped, fatal: why }];
 
   const src = document.getElementById('practice');
@@ -31,6 +31,7 @@ const [DECKS, DECK_STAGE, DECK_LESSON, LESSON_LABEL, LESSON_GLOSS, DECK_PAIR, DE
   (data.lessons || []).forEach(L => {
     labels[L.lesson] = L.label || L.lesson;
     glosses[L.lesson] = L.gloss || '';
+    if (L.overview) over[L.lesson] = L.overview;
     (L.decks || []).forEach(d => {
       if (!d.name || !Array.isArray(d.cards) || !d.cards.length) return;
       const cards = d.cards.filter(c => {
@@ -53,7 +54,7 @@ const [DECKS, DECK_STAGE, DECK_LESSON, LESSON_LABEL, LESSON_GLOSS, DECK_PAIR, DE
   });
 
   const count = Object.values(decks).reduce((a, b) => a + b.length, 0);
-  return [decks, stages, lessons, labels, glosses, pairs, roles,
+  return [decks, stages, lessons, labels, glosses, pairs, roles, over,
           { count, decks: Object.keys(decks).length, skipped }];
 })();
 
@@ -809,12 +810,15 @@ const count = (n, word) => n + ' ' + word + (n === 1 ? '' : 's');
    standing in for its lesson keeps the lesson's size and indent. */
 function rowButton(cls, { name, pct, sub, full, on, bar, title }) {
   const b = document.createElement('button');
-  /* a deck row is `.dk`; the two levels above it are `.tr-head` / `.ls-head` */
-  b.className = (cls === 'dk' ? 'dk' : cls + '-head') + (on ? ' on' : '');
+  /* a deck row is `.dk` and the stage-page row `.about`; the two levels above
+     them are `.tr-head` / `.ls-head` */
+  b.className = (cls === 'dk' || cls === 'about' ? cls : cls + '-head') + (on ? ' on' : '');
   b.innerHTML = `<span class="${cls}-name"></span><span class="${cls}-pct"></span>`
               + `<span class="${cls}-sub"></span>` + (bar ? '<span class="bar"><i></i></span>' : '');
   fillRow(b, { ['.' + cls + '-name']: name,
-               ['.' + cls + '-pct']: full ? '✓' : pct + '%',
+               /* a row with no percentage to show is not a list — the stage
+                  page's row is a way in, and has no progress of its own */
+               ['.' + cls + '-pct']: pct === undefined ? '' : (full ? '✓' : pct + '%'),
                ['.' + cls + '-sub']: sub });
   if (bar) setBar(b, pct);
   if (title) b.title = title;
@@ -864,6 +868,19 @@ function lessonRow(L) {
   const body = document.createElement('div');
   body.className = 'ls-body';
   body.hidden = !open;
+  /* The stage page leads the lists, because it is what the learner should
+     read before choosing one.  A lesson with no overview simply does not get
+     the row — the drawer navigates what exists. */
+  if (OVERVIEW[L.lesson]) {
+    const about = rowButton('about', {
+      name: 'About this stage',
+      sub: 'what it gives you, and how it runs',
+      title: L.label
+    });
+    about.classList.add('leaf');
+    about.addEventListener('click', () => { closeDrawer(); showStage(L.lesson); });
+    body.appendChild(about);
+  }
   L.decks.forEach(name => body.appendChild(deckRow(name)));
   wrap.appendChild(body);
   return wrap;
@@ -1068,29 +1085,91 @@ function renderWelcome() {
   go.setAttribute('aria-label', go.title);
 }
 
-function showWelcome() {
-  renderWelcome();
-  $('welcome').hidden = false;
+/* ── the stage page ────────────────────────────────────────
+   A lesson says what it gives you before it asks anything.  On a first visit
+   it ends in "Begin the first list"; once there is progress it shows that
+   instead and offers the next unfinished list. */
+let stageShown = null;
+
+function lessonDecks(lesson) {
+  return Object.keys(DECKS).filter(n => DECK_LESSON[n] === lesson);
+}
+
+function renderStage(lesson) {
+  const o = OVERVIEW[lesson];
+  if (!o) return false;
+  const names = lessonDecks(lesson);
+  const track = TRACK_ROWS.find(r => r.lessons.some(L => L.lesson === lesson));
+  fillRow(document, {
+    '#s-track': track ? track.track.name : '',
+    '#s-name': LESSON_LABEL[lesson] + (LESSON_GLOSS[lesson] ? ' \u00b7 ' + LESSON_GLOSS[lesson] : ''),
+    '#s-lead': o.lead,
+    '#s-note': o.note || '',
+  });
+  const ol = $('s-plan');
+  ol.textContent = '';
+  (o.plan || []).forEach(step => {
+    const li = document.createElement('li');
+    li.textContent = step;
+    ol.appendChild(li);
+  });
+  const p = progressOf(new Set([].concat(...names.map(n => [...DECK_IDS[n]]))));
+  const done = names.filter(n => finishedDecks().indexOf(n) >= 0).length;
+  const started = p.done > 0;
+  $('s-stats').hidden = !started;
+  if (started) fillRow(document, { '#s-pct': p.pct + '%', '#s-done': done + ' of ' + names.length });
+  /* the next list worth opening: the first that is not finished yet */
+  const next = names.find(n => finishedDecks().indexOf(n) < 0) || names[0];
+  const go = $('s-go');
+  go.textContent = started ? 'Continue \u2014 ' + DECK_SHORT(next) : 'Begin \u2014 ' + DECK_SHORT(next);
+  go.onclick = () => chooseDeck(next);
+  stageShown = lesson;
+  return true;
+}
+
+function showStage(lesson) {
+  if (!renderStage(lesson)) return;
+  leavePage();
+  $('stagecard').hidden = false;
+  quietChrome();
+}
+
+/* everything a running card owns, put away */
+function quietChrome() {
   $('card').style.display = 'none';
   $('review').style.display = 'none';
   $('tally').style.visibility = 'hidden';
   $('grade').hidden = true;
   $('after').hidden = true;
   $('keys').hidden = true;
-  $('controls').hidden = true;      // they change a card; none is showing
+  $('controls').hidden = true;
   $('stage').textContent = '';
-  $('study-btn').hidden = true;     // no lesson is in play yet
+  $('study-btn').hidden = true;
 }
 
-function leaveWelcome() {
-  if ($('welcome').hidden) return;
+function showWelcome() {
+  leavePage();
+  renderWelcome();
+  $('welcome').hidden = false;
+  quietChrome();
+}
+
+/* Leaves whichever page is showing — the landing card or a stage page — and
+   gives the cards their chrome back.  Every surface that starts a round calls
+   it, so none of them has to know a page exists. */
+function leavePage() {
+  const on = !$('welcome').hidden || !$('stagecard').hidden;
   $('welcome').hidden = true;
+  $('stagecard').hidden = true;
+  stageShown = null;
+  if (!on) return;
   relabelAll();                     // Study reappears if the lesson has a reference
   $('card').style.display = 'flex';
   $('tally').style.visibility = 'visible';
   $('keys').hidden = false;
   $('controls').hidden = false;
 }
+const leaveWelcome = leavePage;     // the name the rest of the app grew up with
 
 function loadDeck(name) {
   leaveWelcome();
@@ -2299,6 +2378,7 @@ function closePanel() {
   panelOpen = null;
   relabelAll();
   $('welcome').hidden = panelWas.welcome;
+  $('stagecard').hidden = panelWas.stagecard;
   $('card').style.display = panelWas.card;
   $('review').style.display = panelWas.review;
   $('tally').style.visibility = panelWas.tally;
@@ -2316,13 +2396,14 @@ function openPanel(which) {
   if (panelOpen === which) { PANELS[which].render(); return; }
   if (panelOpen) closePanel();                  // swapping one panel for the other
   panelWas = {
-    welcome: $('welcome').hidden,
+    welcome: $('welcome').hidden, stagecard: $('stagecard').hidden,
     card: $('card').style.display, review: $('review').style.display,
     tally: $('tally').style.visibility, grade: $('grade').hidden,
     after: $('after').hidden, keys: $('keys').hidden,
     controls: $('controls').hidden
   };
   $('welcome').hidden = true;
+  $('stagecard').hidden = true;
   $('card').style.display = 'none';
   $('review').style.display = 'none';
   $('tally').style.visibility = 'hidden';

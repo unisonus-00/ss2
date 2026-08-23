@@ -1,5 +1,21 @@
 {
   "lesson": "12-vakya",
+  "overview": {
+    "lead": "Everything so far now goes into sentences of your own. The aim is to stop translating from English and start assembling in Sanskrit directly.",
+    "plan": [
+      "Vākya-siddhi shows six complete sentences worked through, with every word's case named.",
+      "Sarvanāma-avyaya gives you the pronouns and the small joining words.",
+      "Vākya-pūraṇa then hands you a sentence with a hole in it and asks for the piece that fits.",
+      "Four lists of particles and adverbs follow — the words that give a sentence its time, place and shading."
+    ],
+    "note": "Sanskrit word order is free, so the exercises never ask you to arrange a sentence. They ask for the decision the sentence actually turns on: the case, the agreement, the connector.",
+    "mentions": [
+      "Vākya-siddhi",
+      "Sarvanāma-avyaya",
+      "Vākya-pūraṇa"
+    ],
+    "lists": 7
+  },
   "decks": [
     {
       "name": "Vākya-siddhi — the sentence, worked through",

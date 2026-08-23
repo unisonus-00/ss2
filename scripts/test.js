@@ -1926,6 +1926,89 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
+  // ── a stage says what it gives you before it asks anything ─────────
+  {
+    const p = await browser.newPage();
+    p.on('pageerror', e => { console.log('  PAGEERROR ' + e.message); fail.push('pageerror'); });
+    await p.goto(FILE, { waitUntil: 'load' });
+    const r = await p.evaluate(() => {
+      const lessons = [...new Set(Object.values(DECK_LESSON))];
+      const missing = lessons.filter(L => !OVERVIEW[L]);
+      /* the coupling the build checks is the count and the named lists; here
+         it is that the prose is actually usable */
+      const thin = lessons.filter(L => OVERVIEW[L]
+        && (OVERVIEW[L].lead.split(/\s+/).length < 15 || !OVERVIEW[L].plan.length));
+      showStage('05-rupa');
+      const shown = {
+        on: !document.getElementById('stagecard').hidden
+            && getComputedStyle(document.getElementById('card')).display === 'none',
+        name: document.getElementById('s-name').textContent,
+        track: document.getElementById('s-track').textContent,
+        steps: document.querySelectorAll('#s-plan li').length,
+        go: document.getElementById('s-go').textContent,
+        stats: !document.getElementById('s-stats').hidden,
+        help: document.querySelector('#stagecard .s-help').textContent.replace(/\s+/g, ' '),
+      };
+      return { missing, thin, shown, lessons: lessons.length };
+    });
+    ok('every lesson with practice has a stage page',
+      !r.missing.length, r.missing.join(' | '));
+    ok('and each one leads with real prose and a plan', !r.thin.length, r.thin.join(' | '));
+    ok('the stage page opens over the cards', r.shown.on);
+    ok('it names the stage and its track',
+      /Rūpa/.test(r.shown.name) && /Bhāṣā/.test(r.shown.track),
+      r.shown.track + ' · ' + r.shown.name);
+    ok('it walks through how the stage runs', r.shown.steps >= 2, r.shown.steps + ' steps');
+    ok('it points at the annotation and at Study',
+      /red line/.test(r.shown.help) && /book icon/.test(r.shown.help), r.shown.help.slice(0, 50));
+    ok('an untouched stage offers to begin',
+      /^Begin/.test(r.shown.go) && !r.shown.stats, r.shown.go);
+
+    // begin hands over to the first list, and the page gets out of the way
+    await p.click('#s-go');
+    const gone = await p.evaluate(() => ({
+      page: document.getElementById('stagecard').hidden,
+      card: getComputedStyle(document.getElementById('card')).display,
+      deck: deckName, lesson: DECK_LESSON[deckName], running: !!current,
+    }));
+    ok('“Begin” opens the lesson’s first list',
+      gone.page && gone.card !== 'none' && gone.running && gone.lesson === '05-rupa',
+      JSON.stringify(gone));
+
+    // once there is progress the page reports it instead of offering to start
+    const again = await p.evaluate(() => {
+      Object.keys(DECKS).filter(n => DECK_LESSON[n] === '05-rupa').slice(0, 6)
+        .forEach(n => DECKS[n].forEach(c => { SAVED.mastered[c.id] = 1; }));
+      showStage('05-rupa');
+      return { go: document.getElementById('s-go').textContent,
+               stats: !document.getElementById('s-stats').hidden,
+               pct: document.getElementById('s-pct').textContent,
+               done: document.getElementById('s-done').textContent };
+    });
+    ok('a stage in progress reports it rather than offering to begin',
+      /^Continue/.test(again.go) && again.stats && /^\d+%$/.test(again.pct)
+      && /^\d+ of \d+$/.test(again.done),
+      again.go + ' · ' + again.pct + ' · ' + again.done);
+
+    // and the drawer leads each lesson's lists with the way in
+    const drawer = await p.evaluate(() => {
+      /* expand through the app's own state rather than by clicking: a track
+         left open by an earlier step would otherwise be collapsed by the click */
+      const row = TRACK_ROWS.find(r => r.lessons.some(L => L.lesson === '05-rupa'));
+      openDrawer();
+      openTracks.add(row.track.id);
+      openLessons.add('05-rupa');
+      renderDrawer();
+      const body = [...document.querySelectorAll('.ls-body:not([hidden])')]
+        .find(b => b.querySelector('[title="Rūpa"], .dk')) || document.querySelector('.ls-body:not([hidden])');
+      return { first: body.firstElementChild.className,
+               label: body.firstElementChild.textContent.replace(/\s+/g, ' ').trim() };
+    });
+    ok('the stage page leads its lesson’s lists in the drawer',
+      /about/.test(drawer.first), drawer.first + ' · ' + drawer.label);
+    await p.close();
+  }
+
   // ── no choice card repeats a reveal card ───────────────────────────
   // A choice card that hands over the same operation and the same answer as
   // a reveal card in the same lesson is strictly the weaker of the two: the
