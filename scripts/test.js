@@ -96,7 +96,7 @@ const open = async (browser, opts = {}) => {
       JSON.stringify(['Nāma', 'Varṇa-Vidyā', 'Sandhi', 'Guṇa']),
       r.groups.slice(0, 4).join(' | '));
     ok('cross-cutting practice comes last',
-      r.groups[r.groups.length - 1] === 'Vyākaraṇam',
+      r.groups[r.groups.length - 1] === 'Saṃjñā',
       r.groups[r.groups.length - 1]);
     // a stage number is repository layout, not something a learner reads
     ok('no lesson name carries a stage number',
@@ -821,9 +821,16 @@ const open = async (browser, opts = {}) => {
     const r = await p.evaluate(() => {
       const VIB = ['prathamā','dvitīyā','tṛtīyā','caturthī','pañcamī','ṣaṣṭhī','saptamī','sambodhana'];
       const NUM = { ekavacana: 'sg', dvivacana: 'du', bahuvacana: 'pl' };
-      const table = [];
+      /* A table deck says in its own name whether it is a paradigm shown
+         whole or a delta against one that is.  The reference gives ONE
+         ṛ-stem table for mātṛ, pitṛ and kartṛ together, so declining both in
+         full drills one paradigm twice; Mātṛ keeps the cell the feminine
+         does not share.  Only the decks that claim all 24 cells are held to
+         all 24. */
+      const table = [], deltas = [];
       Object.keys(DECKS).forEach(n => {
-        if (n.startsWith('Śabda-rūpa')) table.push(...DECKS[n]);
+        if (!n.startsWith('Śabda-rūpa')) return;
+        (n.includes('all 24 cells') ? table : deltas).push(...DECKS[n]);
       });
       const cells = {};
       table.forEach(c => {
@@ -839,6 +846,13 @@ const open = async (browser, opts = {}) => {
       const incomplete = Object.entries(cells)
         .filter(([, set]) => set.size !== 24)
         .map(([stem, set]) => stem + ':' + set.size);
+      /* A delta is not a short table: every card in one has to name a real
+         cell, and to say what it is a delta against. */
+      const VIBRE = new RegExp('(' + VIB.join('|') + ')');
+      const badDelta = deltas.filter(c =>
+        !VIBRE.test(c.gloss || '')
+        || !Object.keys(NUM).some(n => (c.gloss || '').includes(n))
+        || !/\bas |declines as |where the masculine/.test(c.note || '')).map(c => c.id);
 
       const conj = [];
       Object.keys(DECKS).forEach(n => {
@@ -865,10 +879,14 @@ const open = async (browser, opts = {}) => {
         });
       });
       return { stems: Object.keys(cells).length, incomplete,
+               deltas: deltas.length, badDelta,
                roots: Object.keys(byRoot).length, shortRoots, conj: conj.length, dupes };
     });
     ok('every declension stem covers all 24 cells',
-      r.stems === 9 && r.incomplete.length === 0, r.stems + ' stems; short: ' + r.incomplete.join(', '));
+      r.stems === 8 && r.incomplete.length === 0, r.stems + ' stems; short: ' + r.incomplete.join(', '));
+    ok('a delta table names a real cell and what it derives from',
+      r.deltas > 0 && r.badDelta.length === 0,
+      r.deltas + ' delta cards; loose: ' + r.badDelta.join(', '));
     ok('every conjugated dhātu has all 9 laṭ forms',
       r.roots === 3 && r.conj === 27 && r.shortRoots.length === 0,
       r.roots + ' roots, ' + r.conj + ' forms; short: ' + r.shortRoots.join(', '));
@@ -895,21 +913,26 @@ const open = async (browser, opts = {}) => {
     const r = await p.evaluate(() => {
       const raw = JSON.parse(localStorage.getItem('abhyāsaḥ'));
       return {
-        moved: raw.decks['Vibhakti-rūpa — recognise and produce · practice'],
+        /* Two hops: this deck was renamed once before and again in the
+           curation pass, so the store has to walk the chain rather than stop
+           at the first leg.  That only works while a new entry goes at the
+           END of DECK_RENAMES, which is what this proves. */
+        moved: raw.decks['Vibhakti-prayoga — the case a sentence calls for · practice'],
         movedKriya: raw.decks['Puruṣa-lakāra — person, tense and mood · practice'],
-        oldGone: !raw.decks['Rūpa practice — case and form'],
-        lastDeckMoved: raw.deck === 'Vibhakti-rūpa — recognise and produce · practice',
+        oldGone: !raw.decks['Rūpa practice — case and form']
+              && !raw.decks['Vibhakti-rūpa — recognise and produce · practice'],
+        lastDeckMoved: raw.deck === 'Vibhakti-prayoga — the case a sentence calls for · practice',
         /* "finished" is now every card mastered rather than a best score at
            any score, so mastering both renamed decks is what proves it */
         finished: (() => {
-          ['Vibhakti-rūpa — recognise and produce · practice',
+          ['Vibhakti-prayoga — the case a sentence calls for · practice',
            'Puruṣa-lakāra — person, tense and mood · practice']
             .forEach(n => DECKS[n].forEach(c => { SAVED.mastered[c.id] = 1; }));
           return finishedDecks().length;
         })(),
       };
     });
-    ok('a renamed deck keeps its best score',
+    ok('a renamed deck keeps its best score across two hops',
       r.moved && r.moved.best[0] === 13 && r.movedKriya && r.movedKriya.best[0] === 18,
       JSON.stringify(r.moved && r.moved.best));
     ok('the old deck name is cleared away', r.oldGone);
@@ -1750,7 +1773,8 @@ const open = async (browser, opts = {}) => {
     });
     ok('the app opens on the welcome card', r.on);
     ok('it says what Abhyāsa is',
-      /Welcome to Abhyāsa/.test(r.txt) && /36-stage path/.test(r.txt)
+      /Welcome to Abhyāsa/.test(r.txt) && /a handful of units/.test(r.txt)
+      && /never required/.test(r.txt)
       && /Abhyāsa Review/.test(r.txt), r.txt.slice(0, 60));
     ok('it carries the two figures the drawer carries',
       /^\d+%$/.test(r.mastery) && /^\d+$/.test(r.lists), r.mastery + ' · ' + r.lists);
@@ -1767,7 +1791,7 @@ const open = async (browser, opts = {}) => {
       r.nav.sample && r.nav.bars && r.nav.caret && /Finding your way/i.test(r.txt),
       JSON.stringify(r.nav));
     ok('and says it is what tracks progress and moves you on',
-      /progress marked against every track, stage and list/.test(r.txt)
+      /progress marked at every level down to the list/.test(r.txt)
       && /five tracks/.test(r.txt), '');
     ok('the sample is not a second navigation button', r.nav.inert);
     ok('nothing that belongs to a running card is showing', r.quiet);
@@ -2100,8 +2124,12 @@ const open = async (browser, opts = {}) => {
       !r.unknown.length, r.unknown.join(' | '));
     ok('nothing below a track has a page of its own', r.pages);
     ok('the track page opens over the cards', r.shown.on);
+    /* A track that groups its stages into units says so: four units is what
+       Bhāṣā-Vidyā asks of a learner, and thirteen stages is how the
+       repository stores them. */
     ok('it names the track and what it holds',
-      /Bhāṣā-Vidyā/.test(r.shown.name) && /^\d+ stages · \d+ lists$/.test(r.shown.held),
+      /Bhāṣā-Vidyā/.test(r.shown.name)
+        && /^\d+ (stages|units) · \d+ lists$/.test(r.shown.held),
       r.shown.held + ' · ' + r.shown.name);
     ok('it walks through how the track runs', r.shown.steps >= 2, r.shown.steps + ' steps');
     ok('it shows the annotation as it appears — red, and underlined',
@@ -2345,7 +2373,12 @@ const open = async (browser, opts = {}) => {
          sandhi derivations and the 4 metres worth naming, and both are that
          size because the content is, not because a split went wrong. */
       const tiny = Object.entries(DECKS)
-        .filter(([, cs]) => cs.length < 4).map(([n, cs]) => n + ':' + cs.length);
+        .filter(([n, cs]) => cs.length < 4
+          /* a delta table is short because the delta is: the reference gives
+             one ṛ-stem table for mātṛ and pitṛ together, so the feminine list
+             holds the cell it does not share and says so */
+          && !(n.startsWith('Śabda-rūpa') && !n.includes('all 24 cells')))
+        .map(([n, cs]) => n + ':' + cs.length);
       return { big, clash, tiny, decks: Object.keys(DECKS).length,
                cards: Object.values(DECKS).reduce((a, b) => a + b.length, 0) };
     });
@@ -3265,9 +3298,19 @@ const open = async (browser, opts = {}) => {
       /* and every list is still reached: the order is a permutation */
       const order = recommendOrder(row);
       out.isPermutation = order.length === nav.length
-        && order.every(n => nav.indexOf(n) >= 0);
-      out.spineThenBreadth = order.findIndex(isBreadth)
-        > order.map(isBreadth).lastIndexOf(false);
+        && order.every(n => nav.indexOf(n) >= 0)
+        && new Set(order).size === order.length;
+      /* Within the path the spine still leads and its breadth follows; the
+         whole optional stream then follows both.  "Continue —" walks the
+         path alone, so nothing optional can appear in it at all. */
+      const walked = recommendPath(row);
+      /* Where a track separates its streams there is no breadth on the path
+         at all, which is the stronger form of the same promise. */
+      out.spineThenBreadth = walked.findIndex(isBreadth) < 0
+        || walked.findIndex(isBreadth) > walked.map(isBreadth).lastIndexOf(false);
+      out.pathIsCore = walked.every(isCore);
+      out.pathThenRest = order.slice(0, walked.length).join('|') === walked.join('|');
+      out.restIsOptional = order.slice(walked.length).every(n => !isCore(n));
 
       /* the marking is a property of the source, not of a name prefix read
          at runtime — but the two must agree, or one has drifted */
@@ -3289,7 +3332,11 @@ const open = async (browser, opts = {}) => {
     ok('every breadth list is still drawn, and none is locked by this',
       r.breadthDrawn && !r.breadthLocked);
     ok('the recommendation is a permutation, so nothing is dropped',
-      r.isPermutation && r.spineThenBreadth);
+      r.isPermutation && r.spineThenBreadth,
+      'permutation ' + r.isPermutation + ' · spine-then-breadth ' + r.spineThenBreadth);
+    ok('and what it walks is the core stream, with the optional after it',
+      r.pathIsCore && r.pathThenRest && r.restIsOptional,
+      [r.pathIsCore, r.pathThenRest, r.restIsOptional].join('/'));
     ok('and the breadth marking has not drifted from the naming convention',
       !r.drift.length, r.drift.slice(0, 4).join(' | '));
     await p.close();
@@ -4239,6 +4286,11 @@ const open = async (browser, opts = {}) => {
         rowNames: TRACK_ROWS.map(r => r.track.name),
         crossLast: TRACK_ROWS[TRACK_ROWS.length - 1].track.id,
         crossStages: TRACK_ROWS[TRACK_ROWS.length - 1].lessons.map(L => L.stage),
+        /* Whatever stage a list in this section came from, it is here
+           because it is grammar — never because a stage was moved. */
+        crossNotGrammar: [].concat(...TRACK_ROWS[TRACK_ROWS.length - 1]
+          .lessons.map(L => L.decks))
+          .filter(n => DECK_STAGE[n] !== 0 && streamOf(n) !== 'grammar'),
       };
     });
     ok('there are five course tracks', r.names.length === 5, r.names.join(' | '));
@@ -4254,8 +4306,12 @@ const open = async (browser, opts = {}) => {
     ok('stage 17 is Pūjā-Vāk', JSON.stringify(r.stage17) === '["puja"]', r.stage17.join(', '));
     // cross-cutting grammar is listed after the five, and is not a sixth track
     ok('cross-cutting practice trails the tracks', r.crossLast === 'vyakaranam', r.crossLast);
-    ok('nothing but stage 0 is cross-cutting',
-      r.crossStages.every(n => n === 0), r.crossStages.join(', '));
+    /* A stage's own formal layer is drawn here — the Maheśvara sūtras, the
+       named sandhi rules, the kṛt and taddhita affixes, the ten lakāras — so
+       the section reaches into four stages.  What it may never do is take a
+       list that is on the acquisition path. */
+    ok('only grammar-stream lists are drawn as cross-cutting',
+      !r.crossNotGrammar.length, r.crossNotGrammar.join(', '));
     await p.close();
   }
 
@@ -4267,7 +4323,7 @@ const open = async (browser, opts = {}) => {
       const small = LESSONS.slice().sort((a, b) => a.ids.size - b.ids.size)[0];
       small.ids.forEach(k => { SAVED.mastered[k] = 1; });
       save();
-      const row = TRACK_ROWS.find(x => x.lessons.includes(small));
+      const row = TRACK_ROWS.find(x => x.lessons.some(L => L.lesson === small.lesson));
       const lessonP = progressOf(small.ids);
       const trackP = progressOf(row.ids);
       // what an average of lesson percentages would have said instead
@@ -4343,6 +4399,125 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
+  // ── three streams, and a track that asks for one of them ──────────
+  // A track used to be one flat run of lessons: Bhāṣā-Vidyā drew thirteen
+  // stage rows over 137 lists, more than half of them vocabulary bank, and
+  // every one of them counted against the track's percentage.  The streams
+  // separate what the track asks for from what it merely offers, and the
+  // units say what the asking adds up to.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const row = TRACK_ROWS.find(x => x.track.id === 'bhasha');
+      const cross = TRACK_ROWS.find(x => x.track.id === 'vyakaranam');
+      const opt = row.groups.filter(g => g.optional);
+      const pathNames = recommendPath(row);
+      /* what the drawer actually draws under the track */
+      openTracks.clear(); openLessons.clear();
+      openTracks.add('bhasha');
+      row.groups.forEach(g => openLessons.add(g.lesson));
+      SAVED.guided = false;
+      renderDrawer();
+      const tr = [...document.querySelectorAll('#dr-tracks .tr')]
+        .find(x => x.querySelector('.tr-name').textContent === 'Bhāṣā-Vidyā');
+      const heads = [...tr.querySelectorAll('.tr-body > .ls > .ls-head .ls-name')]
+        .map(e => e.textContent);
+      /* every stage a unit gathers is captioned inside it, so folding the
+         stage level away does not delete a curriculum name */
+      const captioned = new Set([...tr.querySelectorAll('.ls-cap')].map(e => e.textContent));
+      const stagesInUnits = new Set();
+      row.groups.forEach(g => {
+        if (g.optional) return;
+        g.parts.forEach(part => stagesInUnits.add(part.label));
+      });
+      /* the streams, as the source declares them */
+      const byStream = {};
+      Object.keys(DECKS).forEach(n => {
+        const k = streamOf(n);
+        byStream[k] = (byStream[k] || 0) + DECKS[n].length;
+      });
+      return {
+        units: row.units.map(g => g.label),
+        heads,
+        optional: opt.map(g => g.label),
+        /* the enrichment stream is in the track and out of its figure */
+        enrichIn: opt.reduce((a, g) => a + g.ids.size, 0),
+        pathCards: row.pathIds.size,
+        allCards: row.ids.size,
+        pathLists: pathNames.length,
+        allLists: trackDecks(row).length,
+        pathHasOptional: pathNames.some(n => !isCore(n)),
+        /* every stage a unit gathers is named somewhere the learner can see */
+        uncaptioned: [...stagesInUnits].filter(x => !captioned.has(x)),
+        /* the formal layer is drawn under Vyākaraṇam, whatever stage it is in */
+        grammarStages: [...new Set(Object.keys(DECKS).filter(n => streamOf(n) === 'grammar')
+          .map(n => DECK_STAGE[n]))].sort((a, b) => a - b),
+        grammarUnderCross: Object.keys(DECKS).filter(n => streamOf(n) === 'grammar')
+          .every(n => trackIdOf(n) === 'vyakaranam'),
+        crossHolds: cross.groups.map(g => g.label),
+        byStream,
+        /* the two dependencies the ordering had backwards: a root before the
+           verb built on it, and the case system before agreeing with it */
+        order: pathNames.map(n => DECK_LESSON[n]),
+      };
+    });
+    const first = l => r.order.indexOf(l);
+    ok('the track shows four units, not thirteen stages',
+      r.units.length === 4 && r.heads.length === 5, r.heads.join(' | '));
+    ok('and the fifth row is the optional one',
+      r.optional.length === 1 && r.optional[0] === 'Enrichment'
+        && r.heads[4] === 'Enrichment', r.optional.join(' | '));
+    ok('every stage a unit gathers is still named inside it',
+      !r.uncaptioned.length, r.uncaptioned.join(' | '));
+    ok('enrichment is in the track and out of its figure',
+      r.enrichIn > 0 && r.pathCards + r.enrichIn === r.allCards
+        && r.pathCards < r.allCards / 2,
+      r.pathCards + ' of ' + r.allCards + ' cards asked for');
+    ok('and out of the workload the track recommends',
+      !r.pathHasOptional && r.pathLists < r.allLists,
+      r.pathLists + ' of ' + r.allLists + ' lists on the path');
+    ok('the formal grammar of four stages is drawn under Vyākaraṇam',
+      r.grammarUnderCross && r.grammarStages.length === 4
+        && r.byStream.grammar > 0,
+      'stages ' + r.grammarStages.join(', ') + ' · ' + r.byStream.grammar + ' cards');
+    ok('and the terminology lists still lead that section',
+      r.crossHolds[0] === 'Saṃjñā', r.crossHolds.join(' | '));
+    ok('a root is recommended before the verb built on it',
+      first('09-dhatu') >= 0 && first('09-dhatu') < first('06-kriya'),
+      '09-dhatu at ' + first('09-dhatu') + ', 06-kriya at ' + first('06-kriya'));
+    ok('and the case system before agreeing an adjective with it',
+      first('05-rupa') >= 0 && first('05-rupa') < first('04-guna'),
+      '05-rupa at ' + first('05-rupa') + ', 04-guna at ' + first('04-guna'));
+
+    /* Finishing what the track asks for finishes the track: the percentage,
+       the tick and the award all read the same set of cards, or the drawer
+       says 100% beside an award that never arrives. */
+    const done = await p.evaluate(() => {
+      const row = TRACK_ROWS.find(x => x.track.id === 'bhasha');
+      SAVED.mastered = {}; SAVED.awards = {};
+      row.pathIds.forEach(k => { SAVED.mastered[k] = 1; });
+      renderDrawer();
+      const tr = [...document.querySelectorAll('#dr-tracks .tr')]
+        .find(x => x.querySelector('.tr-name').textContent === 'Bhāṣā-Vidyā');
+      showTrack('bhasha');
+      return {
+        pct: progressOf(row.pathIds).pct,
+        ticked: tr.classList.contains('full'),
+        award: earnedNow().some(a => a.key === 'track:bhasha'),
+        /* and not one enrichment card was needed to get there */
+        enrichLeft: [...row.ids].filter(k => !SAVED.mastered[k]).length,
+        go: document.getElementById('s-go').textContent,
+      };
+    });
+    ok('finishing the units finishes the track',
+      done.pct === 100 && done.ticked && done.award && done.enrichLeft > 0,
+      done.pct + '% · ticked ' + done.ticked + ' · award ' + done.award
+        + ' · ' + done.enrichLeft + ' optional cards untouched');
+    ok('and the page then offers the review rather than a list',
+      /^Every unit complete/.test(done.go), done.go);
+    await p.close();
+  }
+
   // ── the drawer navigates, and starts a round ───────────────────────
   {
     const p = await browser.newPage({ viewport: { width: 360, height: 740 } });
@@ -4383,8 +4558,8 @@ const open = async (browser, opts = {}) => {
        single lesson has been folded away, or cards where it comes down to one
        list. */
     ok('a track subheading ends in a count of what it holds',
-      script.subs.every(t => / · \d+ (lessons?|lists?|cards)$/.test(t)),
-      script.subs.find(t => !/ · \d+ (lessons?|lists?|cards)$/.test(t)) || '');
+      script.subs.every(t => / · \d+ (lessons?|units?|lists?|cards)$/.test(t)),
+      script.subs.find(t => !/ · \d+ (lessons?|units?|lists?|cards)$/.test(t)) || '');
     await p.evaluate(() => closeDrawer());
 
     await p.click('#nav');
@@ -4396,15 +4571,18 @@ const open = async (browser, opts = {}) => {
       lessons: document.querySelectorAll('.tr-body:not([hidden]) .ls-head').length,
       /* the lesson holding the current list is marked, so opening the drawer
          mid-round shows where you are */
+      /* the group holding the current list — a unit where the track has
+         them, a lesson where it does not */
       here: [...document.querySelectorAll('.tr-body:not([hidden]) .ls-head')]
-        .some(b => b.querySelector('.ls-name').textContent === LESSON_LABEL[DECK_LESSON[deckName]]),
+        .some(b => b.querySelector('.ls-name').textContent
+                   === (GROUP_OF.get(deckName) || {}).label),
       cards: document.getElementById('dp-cards').textContent,
       heads: [...document.querySelectorAll('#dr-prog .dp-h')].map(x => x.textContent).join(' | '),
     }));
     ok('the handle opens the drawer', opened.open && opened.veil);
     ok('every track is a heading', opened.tracks === 6, opened.tracks + ' headings');
-    ok('the drawer lands on the current lesson', opened.lessons > 0 && opened.here,
-      opened.lessons + ' lessons showing');
+    ok('the drawer lands on the group holding the current list',
+      opened.lessons > 0 && opened.here, opened.lessons + ' groups showing');
     /* The section's own statistic is lists carried to 100%, not a card count
        already folded into the figure above it. */
     ok('course progress is counted in lists, not cards',
@@ -4482,8 +4660,8 @@ const open = async (browser, opts = {}) => {
           decks: {
             // perfect, and the deck is still that size: every card was cold
             'Puruṣa-lakāra — person, tense and mood · practice': { best: [21, 21], pile: [] },
-            // perfect, but set when the deck was smaller — cannot be attributed
-            'Vibhakti-rūpa — recognise and produce · practice': { best: [9, 9], pile: [] },
+            // perfect, but set when the deck was larger — cannot be attributed
+            'Vibhakti-prayoga — the case a sentence calls for · practice': { best: [9, 9], pile: [] },
             // not perfect: which cards were cold is simply not recorded
             'Saṃyoga — combine the two words · practice': { best: [19, 20], pile: [] },
           },
@@ -4497,7 +4675,7 @@ const open = async (browser, opts = {}) => {
       return {
         v: JSON.parse(localStorage.getItem('abhyāsaḥ')).v,
         exact: of('Puruṣa-lakāra — person, tense and mood · practice'),
-        resized: of('Vibhakti-rūpa — recognise and produce · practice'),
+        resized: of('Vibhakti-prayoga — the case a sentence calls for · practice'),
         partial: of('Saṃyoga — combine the two words · practice'),
       };
     });

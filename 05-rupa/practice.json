@@ -667,7 +667,7 @@
       "role": "table"
     },
     {
-      "name": "Śabda-rūpa · Mātṛ — ṛ-stem, all 24 cells",
+      "name": "Śabda-rūpa · Mātṛ — ṛ-stem, where the feminine parts",
       "pair": "form → analysis",
       "cards": [
         {
@@ -675,112 +675,21 @@
           "devanagari": "माता",
           "iast": "mātā",
           "gloss": "Mātṛ — prathamā ekavacana",
-          "note": "prathamā | nom. sg. · f. · stem: mātṛ- · ṛ-stem"
-        },
-        {
-          "id": "05-rupa:deity-vibhakti:matarau",
-          "devanagari": "मातरौ",
-          "iast": "mātarau",
-          "gloss": "Mātṛ — prathamā/dvitīyā/sambodhana dvivacana",
-          "note": "prathamā/dvitīyā/sambodhana | nom./acc./voc. du. · f. · stem: mātṛ- · ṛ-stem"
-        },
-        {
-          "id": "05-rupa:deity-vibhakti:matarah",
-          "devanagari": "मातरः",
-          "iast": "mātaraḥ",
-          "gloss": "Mātṛ — prathamā/sambodhana bahuvacana",
-          "note": "prathamā/sambodhana | nom./voc. pl. · f. · stem: mātṛ- · ṛ-stem"
-        },
-        {
-          "id": "05-rupa:deity-vibhakti:mataram",
-          "devanagari": "मातरम्",
-          "iast": "mātaram",
-          "gloss": "Mātṛ — dvitīyā ekavacana",
-          "note": "dvitīyā | acc. sg. · f. · stem: mātṛ- · ṛ-stem"
+          "note": "prathamā | nom. sg. · f. · stem: mātṛ- · ṛ-stem · declines as pitṛ-"
         },
         {
           "id": "05-rupa:deity-vibhakti:matrh",
           "devanagari": "मातॄः",
           "iast": "mātṝḥ",
           "gloss": "Mātṛ — dvitīyā bahuvacana",
-          "note": "dvitīyā | acc. pl. · f. · stem: mātṛ- · ṛ-stem"
-        },
-        {
-          "id": "05-rupa:deity-vibhakti:matra",
-          "devanagari": "मात्रा",
-          "iast": "mātrā",
-          "gloss": "Mātṛ — tṛtīyā ekavacana",
-          "note": "tṛtīyā | instr. sg. · f. · stem: mātṛ- · ṛ-stem"
-        },
-        {
-          "id": "05-rupa:deity-vibhakti:matrbhyam",
-          "devanagari": "मातृभ्याम्",
-          "iast": "mātṛbhyām",
-          "gloss": "Mātṛ — tṛtīyā/caturthī/pañcamī dvivacana",
-          "note": "tṛtīyā/caturthī/pañcamī | instr./dat./abl. du. · f. · stem: mātṛ- · ṛ-stem"
-        },
-        {
-          "id": "05-rupa:deity-vibhakti:matrbhih",
-          "devanagari": "मातृभिः",
-          "iast": "mātṛbhiḥ",
-          "gloss": "Mātṛ — tṛtīyā bahuvacana",
-          "note": "tṛtīyā | instr. pl. · f. · stem: mātṛ- · ṛ-stem"
-        },
-        {
-          "id": "05-rupa:deity-vibhakti:matre",
-          "devanagari": "मात्रे",
-          "iast": "mātre",
-          "gloss": "Mātṛ — caturthī ekavacana",
-          "note": "caturthī | dat. sg. · f. · stem: mātṛ- · ṛ-stem"
-        },
-        {
-          "id": "05-rupa:deity-vibhakti:matrbhyah",
-          "devanagari": "मातृभ्यः",
-          "iast": "mātṛbhyaḥ",
-          "gloss": "Mātṛ — caturthī/pañcamī bahuvacana",
-          "note": "caturthī/pañcamī | dat./abl. pl. · f. · stem: mātṛ- · ṛ-stem"
-        },
-        {
-          "id": "05-rupa:deity-vibhakti:matuh",
-          "devanagari": "मातुः",
-          "iast": "mātuḥ",
-          "gloss": "Mātṛ — pañcamī/ṣaṣṭhī ekavacana",
-          "note": "pañcamī/ṣaṣṭhī | abl./gen. sg. · f. · stem: mātṛ- · ṛ-stem"
-        },
-        {
-          "id": "05-rupa:deity-vibhakti:matroh",
-          "devanagari": "मात्रोः",
-          "iast": "mātroḥ",
-          "gloss": "Mātṛ — ṣaṣṭhī/saptamī dvivacana",
-          "note": "ṣaṣṭhī/saptamī | gen./loc. du. · f. · stem: mātṛ- · ṛ-stem"
-        },
-        {
-          "id": "05-rupa:deity-vibhakti:matrnam",
-          "devanagari": "मातॄणाम्",
-          "iast": "mātṝṇām",
-          "gloss": "Mātṛ — ṣaṣṭhī bahuvacana",
-          "note": "ṣaṣṭhī | gen. pl. · f. · stem: mātṛ- · ṛ-stem"
-        },
-        {
-          "id": "05-rupa:deity-vibhakti:matari",
-          "devanagari": "मातरि",
-          "iast": "mātari",
-          "gloss": "Mātṛ — saptamī ekavacana",
-          "note": "saptamī | loc. sg. · f. · stem: mātṛ- · ṛ-stem"
-        },
-        {
-          "id": "05-rupa:deity-vibhakti:matrsu",
-          "devanagari": "मातृषु",
-          "iast": "mātṛṣu",
-          "gloss": "Mātṛ — saptamī bahuvacana",
-          "note": "saptamī | loc. pl. · f. · stem: mātṛ- · ṛ-stem"
+          "note": "dvitīyā | acc. pl. · f. · stem: mātṛ- · ṛ-stem · -ṝḥ where the masculine has -ṝn, as pitṝn — the one cell the feminine does not share"
         },
         {
           "id": "05-rupa:deity-vibhakti:matah",
           "devanagari": "मातः",
           "iast": "mātaḥ",
           "gloss": "Mātṛ — sambodhana ekavacana",
-          "note": "sambodhana | voc. sg. · f. · stem: mātṛ- · ṛ-stem"
+          "note": "sambodhana | voc. sg. · f. · stem: mātṛ- · ṛ-stem · as pitaḥ"
         }
       ],
       "role": "table"
@@ -1129,73 +1038,8 @@
       "role": "table"
     },
     {
-      "name": "Vibhakti-rūpa — recognise and produce · practice",
+      "name": "Vibhakti-prayoga — the case a sentence calls for · practice",
       "cards": [
-        {
-          "id": "05-rupa:parse:sivam",
-          "type": "choice",
-          "front": "Identify the case: śivam",
-          "options": [
-            "dvitīyā",
-            "prathamā",
-            "tṛtīyā"
-          ],
-          "answer": "dvitīyā",
-          "note": "accusative · the object · “whom?”",
-          "source": "workbook A1"
-        },
-        {
-          "id": "05-rupa:parse:devaya",
-          "type": "choice",
-          "front": "Identify the case: devāya",
-          "options": [
-            "caturthī",
-            "ṣaṣṭhī",
-            "saptamī"
-          ],
-          "answer": "caturthī",
-          "note": "dative · for / to · “for whom?”",
-          "source": "workbook A1"
-        },
-        {
-          "id": "05-rupa:parse:mandire",
-          "type": "choice",
-          "front": "Identify the case: mandire",
-          "options": [
-            "saptamī",
-            "dvitīyā",
-            "tṛtīyā"
-          ],
-          "answer": "saptamī",
-          "note": "locative · in / on · “where?”",
-          "source": "workbook A1"
-        },
-        {
-          "id": "05-rupa:parse:puspena",
-          "type": "choice",
-          "front": "Identify the case: puṣpeṇa",
-          "options": [
-            "tṛtīyā",
-            "caturthī",
-            "prathamā"
-          ],
-          "answer": "tṛtīyā",
-          "note": "instrumental · by / with · “by what?”",
-          "source": "workbook A1"
-        },
-        {
-          "id": "05-rupa:form:siva-acc",
-          "type": "choice",
-          "front": "Change to accusative singular: śivaḥ",
-          "options": [
-            "śivam",
-            "śivena",
-            "śivāya"
-          ],
-          "answer": "śivam",
-          "note": "a-stem m. · dvitīyā ekavacana",
-          "source": "workbook C1"
-        },
         {
           "id": "05-rupa:form:mandira-loc",
           "type": "choice",
@@ -1207,71 +1051,6 @@
           ],
           "answer": "mandire",
           "note": "a-stem n. · saptamī ekavacana",
-          "source": "workbook C1"
-        },
-        {
-          "id": "05-rupa:form:mala-instr",
-          "type": "choice",
-          "front": "Change to instrumental singular: mālā",
-          "options": [
-            "mālayā",
-            "mālāyāḥ",
-            "mālām"
-          ],
-          "answer": "mālayā",
-          "note": "ā-stem f. · tṛtīyā ekavacana",
-          "source": "workbook C1"
-        },
-        {
-          "id": "05-rupa:form:agni-dat",
-          "type": "choice",
-          "front": "Change to dative singular: agniḥ",
-          "options": [
-            "agnaye",
-            "agneḥ",
-            "agninā"
-          ],
-          "answer": "agnaye",
-          "note": "i-stem m. · caturthī ekavacana",
-          "source": "workbook C1"
-        },
-        {
-          "id": "05-rupa:form:puspa-instr",
-          "type": "choice",
-          "front": "Change to instrumental singular: puṣpam",
-          "options": [
-            "puṣpeṇa",
-            "puṣpāya",
-            "puṣpe"
-          ],
-          "answer": "puṣpeṇa",
-          "note": "a-stem n. · tṛtīyā ekavacana · ṇ by ṇatva after ṣ",
-          "source": "workbook C1"
-        },
-        {
-          "id": "05-rupa:form:visnu-gen",
-          "type": "choice",
-          "front": "Change to genitive singular: viṣṇuḥ",
-          "options": [
-            "viṣṇoḥ",
-            "viṣṇave",
-            "viṣṇunā"
-          ],
-          "answer": "viṣṇoḥ",
-          "note": "u-stem m. · ṣaṣṭhī ekavacana",
-          "source": "workbook C1"
-        },
-        {
-          "id": "05-rupa:form:devi-gen",
-          "type": "choice",
-          "front": "Change to genitive singular: devī",
-          "options": [
-            "devyāḥ",
-            "devyai",
-            "devyām"
-          ],
-          "answer": "devyāḥ",
-          "note": "ī-stem f. · ṣaṣṭhī ekavacana",
           "source": "workbook C1"
         },
         {

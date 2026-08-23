@@ -145,19 +145,6 @@
           "source": "workbook A1"
         },
         {
-          "id": "11-samasa:type:pitambara",
-          "type": "choice",
-          "front": "Name the compound: pīta-ambara",
-          "options": [
-            "bahuvrīhi",
-            "karmadhāraya",
-            "dvandva"
-          ],
-          "answer": "bahuvrīhi",
-          "note": "“he who wears yellow cloth” — again someone outside the compound",
-          "source": "workbook A1"
-        },
-        {
           "id": "11-samasa:vibhakti:vanavasa",
           "type": "choice",
           "front": "Which vibhakti unpacks vana-vāsa?",

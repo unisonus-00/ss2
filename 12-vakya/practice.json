@@ -204,19 +204,6 @@
           "source": "workbook A2"
         },
         {
-          "id": "12-vakya:case:sisyaya",
-          "type": "choice",
-          "front": "“The guru tells a story to the student.”\nguruḥ ___ kathāṃ kathayati",
-          "options": [
-            "śiṣyāya",
-            "śiṣyam",
-            "śiṣyeṇa"
-          ],
-          "answer": "śiṣyāya",
-          "note": "caturthī · the one told to",
-          "source": "workbook A2"
-        },
-        {
           "id": "12-vakya:case:grhe",
           "type": "choice",
           "front": "“I read at home.”\naham ___ paṭhāmi",
@@ -227,58 +214,6 @@
           ],
           "answer": "gṛhe",
           "note": "saptamī · where the reading happens",
-          "source": "workbook A2"
-        },
-        {
-          "id": "12-vakya:case:puspena",
-          "type": "choice",
-          "front": "“The devotee worships with a flower.”\nbhaktaḥ ___ pūjayati",
-          "options": [
-            "puṣpeṇa",
-            "puṣpam",
-            "puṣpāya"
-          ],
-          "answer": "puṣpeṇa",
-          "note": "tṛtīyā · the instrument",
-          "source": "workbook A2"
-        },
-        {
-          "id": "12-vakya:case:bhaktam",
-          "type": "choice",
-          "front": "“The goddess protects the devotee.”\ndevī ___ rakṣati",
-          "options": [
-            "bhaktam",
-            "bhaktāya",
-            "bhaktasya"
-          ],
-          "answer": "bhaktam",
-          "note": "dvitīyā · the one protected",
-          "source": "workbook A2"
-        },
-        {
-          "id": "12-vakya:case:katham",
-          "type": "choice",
-          "front": "“The guru tells a story.”\nguruḥ ___ kathayati",
-          "options": [
-            "kathām",
-            "kathayā",
-            "kathāyāḥ"
-          ],
-          "answer": "kathām",
-          "note": "dvitīyā · what is told",
-          "source": "workbook A2"
-        },
-        {
-          "id": "12-vakya:case:which-to-the-student",
-          "type": "choice",
-          "front": "Which form means “to the student”?",
-          "options": [
-            "śiṣyāya",
-            "śiṣyam",
-            "śiṣyeṇa"
-          ],
-          "answer": "śiṣyāya",
-          "note": "caturthī · “to / for” · śiṣyam is the object, śiṣyeṇa the instrument",
           "source": "workbook A2"
         },
         {

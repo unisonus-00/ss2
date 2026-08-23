@@ -60,48 +60,6 @@
           "iast": "hetuḥ",
           "gloss": "cause",
           "note": "noun · masculine · u-stem · stem: hetu-"
-        },
-        {
-          "id": "07-karaka:karaka:ramah-banena-ravanam-hanti",
-          "devanagari": "[रामः] बाणेन रावणं हन्ति",
-          "iast": "[rāmaḥ] bāṇena rāvaṇaṃ hanti",
-          "gloss": "kartṛ — the agent",
-          "note": "kāraka · rāmaḥ is prathamā | nom. sg."
-        },
-        {
-          "id": "07-karaka:karaka:ramah-banena-ravanam-hanti-2",
-          "devanagari": "रामः बाणेन [रावणं] हन्ति",
-          "iast": "rāmaḥ bāṇena [rāvaṇaṃ] hanti",
-          "gloss": "karma — the object",
-          "note": "kāraka · rāvaṇam is dvitīyā | acc. sg."
-        },
-        {
-          "id": "07-karaka:karaka:ramah-banena-ravanam-hanti-3",
-          "devanagari": "रामः [बाणेन] रावणं हन्ति",
-          "iast": "rāmaḥ [bāṇena] rāvaṇaṃ hanti",
-          "gloss": "karaṇa — the instrument",
-          "note": "kāraka · bāṇena is tṛtīyā | instr. sg."
-        },
-        {
-          "id": "07-karaka:karaka:ramah-vipraya-dhanam-dadati",
-          "devanagari": "रामः [विप्राय] धनं ददाति",
-          "iast": "rāmaḥ [viprāya] dhanaṃ dadāti",
-          "gloss": "sampradāna — the recipient",
-          "note": "kāraka · viprāya is caturthī | dat. sg."
-        },
-        {
-          "id": "07-karaka:karaka:vrksat-patram-patati",
-          "devanagari": "[वृक्षात्] पत्रं पतति",
-          "iast": "[vṛkṣāt] patraṃ patati",
-          "gloss": "apādāna — the source",
-          "note": "kāraka · vṛkṣāt is pañcamī | abl. sg."
-        },
-        {
-          "id": "07-karaka:karaka:ramah-vane-vasati",
-          "devanagari": "रामः [वने] वसति",
-          "iast": "rāmaḥ [vane] vasati",
-          "gloss": "adhikaraṇa — the locus",
-          "note": "kāraka · vane is saptamī | loc. sg."
         }
       ],
       "role": "core"
@@ -185,19 +143,6 @@
           ],
           "answer": "karaṇa · instrument",
           "note": "karaṇa · instrument — “with devotion” · tṛtīyā",
-          "source": "workbook B1"
-        },
-        {
-          "id": "07-karaka:role:devaya-arpayati",
-          "type": "choice",
-          "front": "Role of devāya:\nbhaktaḥ bhaktyā devāya puṣpam arpayati",
-          "options": [
-            "sampradāna · recipient",
-            "karma · object",
-            "adhikaraṇa · location"
-          ],
-          "answer": "sampradāna · recipient",
-          "note": "sampradāna · recipient — to whom it is offered · caturthī",
           "source": "workbook B1"
         },
         {

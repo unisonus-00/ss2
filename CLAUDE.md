@@ -241,8 +241,9 @@ curriculum cannot drift apart.
 The build refuses to ship a broken or non-offline page. It rejects duplicate
 card ids, unknown types, a `choice` without options or whose answer is not
 among them, a `sequence` whose answer uses pieces absent from `parts`, a
-`practice.json` naming a lesson it does not sit in, and one in a directory that
-is never loaded. It then scans its own output for `<script src>`, `fetch`,
+`practice.json` naming a lesson it does not sit in, one in a directory that
+is never loaded, an unknown `stream`, and a `breadth` list claiming the core
+stream. It then scans its own output for `<script src>`, `fetch`,
 `@import`, remote `url()` and the like, so an accidental network dependency
 fails the build rather than shipping.
 
@@ -557,6 +558,77 @@ rather than `· 1 lesson`.
 Where a folded lesson's name differs from its track's, the subheading keeps it
 (`Avadhāna` / *Samasyāpūraṇa · 1 list*) so nothing is silently lost.
 
+### Three streams, and four units
+
+A track was one flat run of lessons, and it mixed together what a learner has
+to do with what they may. **Bhāṣā-Vidyā drew thirteen stage rows over 137
+lists and 1,836 cards** — more than half of them the vocabulary bank, another
+slice the grammarians' own terminology — and every one of them counted against
+the track's percentage and stood between the learner and the end of it. The
+path looked more fragmented than the skills underneath it are, and far longer
+than it is.
+
+Two separations fix it, and neither deletes anything.
+
+**A list declares its stream.** `stream` on a deck in `practice.json`, one of
+three, defaulting to the first:
+
+| | |
+|:--|:--|
+| **core** | the acquisition path. What the track's percentage is measured against, what `Continue —` walks, and the only thing a learner has to finish. |
+| **enrichment** | vocabulary breadth and the lexical stages — Paryāya, Bhāva, the 82 bank lists. Present, open from the start, and deliberately outside the figure: a learner who takes none of it has still finished the track. |
+| **grammar** | the formal, Pāṇinian layer — the Maheśvara sūtras and pratyāhāras, the named sandhi rules, the kṛt and taddhita affixes, the ten lakāras. Real Sanskrit grammar, and optional to a *reader*, so it is drawn under Vyākaraṇam with the rest of the metalanguage rather than in the middle of the path. |
+
+`role: "breadth"` already said *this list widens rather than carries*, so it
+reads as enrichment without 82 lists having to say it twice; a deck's own
+`stream` overrides. The build rejects an unknown stream, and refuses a breadth
+list that claims the core.
+
+**A track may declare units.** `units` in `TRACKS` groups the track's stages
+into the abilities they add up to, and the drawer draws those instead of the
+stages:
+
+```json
+{ "id": "rupa", "name": "Rūpa", "gloss": "the shape of a word",
+  "lessons": ["05-rupa", "04-guna", "08-sambodhana"] }
+```
+
+Bhāṣā-Vidyā's four are **Śabda** *words and sounds*, **Rūpa** *the shape of a
+word*, **Kriyā** *the shape of an action*, **Vākya** *words into sentences*,
+with **Enrichment** below them as a fifth row marked optional. The walk is
+still three deep — track → unit → list — because a unit **captions** the
+stages inside it rather than adding a level to tap through: one line of small
+uppercase type per stage, so no curriculum name is lost.
+
+- **A unit's `lessons` are ordered, and two of those orders are corrections.**
+  `05-rupa` comes before `04-guna`, because agreeing an adjective needs the
+  gender and case Rūpa teaches — every card in Viśeṣaṇa already carried the
+  gender inline to cover for it. `09-dhatu` comes before `06-kriya`, because a
+  root is what a verb is conjugated from. Directory numbers are unchanged;
+  they are how the repository stores the curriculum, not how a learner has to
+  meet it.
+- **Every figure the track reports is measured against `pathIds`**, which is
+  the core stream alone — the percentage, the rank, the unit count, and the
+  track's own completion award. Anything else and the drawer would read 100%
+  beside an award that never arrived. `ids` is still everything in the track,
+  for anything that wants it; overall mastery and course coverage are still
+  measured over the whole app, because enrichment is still part of the
+  course — it is just not part of what a track asks.
+- **`recommendPath()` is what `Continue —` walks**, and an optional list is
+  not in it at all. `recommendOrder()` is that plus the optional, for anything
+  that wants every list of a track in a sensible order.
+- **The stages are still there.** `LESSONS` is unchanged, a stage award is
+  still earned per stage, and Study still opens the lesson's own reference.
+  What changed is what the drawer draws.
+- **Only Bhāṣā-Vidyā declares units so far.** The mechanism is general — a
+  track without them draws its lessons exactly as before — and Kāvya-Racanā,
+  at eleven, is the obvious next candidate.
+
+Bhāṣā-Vidyā now asks for **4 units, 56 lists and 694 cards**. The other 73
+lists and 1,001 cards are still in the drawer, in the enrichment row, counting
+towards nothing; the 8 grammar lists and 88 cards are under Vyākaraṇam, which
+counts towards no track's percentage either.
+
 ### The track page
 
 A track says what it gives you before it asks anything of you, and **it is not
@@ -564,14 +636,14 @@ optional**: tapping the track name in the drawer opens this page, and the
 track's lists stay shut until `Begin` is pressed on it.
 
 ```
-13 STAGES · 137 LISTS
+4 UNITS · 56 LISTS
 Bhāṣā-Vidyā · Language Acquisition
 This is the track that teaches you to read. You start with words…
 
 HOW THIS TRACK RUNS
-1. Words first. Nāma gives you several hundred of them…
-2. Then the two things that change a word's shape…
-│ Nothing here has to be finished before the next thing makes sense…
+1. Śabda — words and sounds. Nāma gives you several hundred words…
+2. Rūpa — the shape of a word. The eight cases that say what a word is…
+│ Enrichment sits below the four, and is exactly that…
 
 WHILE YOU PRACTISE
 noun · neuter · a-stem   The red line under an answer. Tap it and it says
@@ -580,7 +652,8 @@ noun · neuter · a-stem   The red line under an answer. Tap it and it says
                          lesson's own reference to read while you practise.
 
 TRACK PROGRESS                                                        12%
-[ Continue — Vibhakti-rūpa ]  [ Abhyāsa review ]
+UNITS COMPLETE                                                     1 of 4
+[ Continue — Vibhakti-prayoga ]  [ Abhyāsa review ]
 Abhyāsa mixes cards from every list you have completed, so what you learn
 here keeps coming back.
 ```
@@ -605,14 +678,18 @@ here keeps coming back.
   either stops matching a card's own.
 - **A track with nothing left to finish offers the review.** `Continue —
   <first list>` pointed back at list one once every list was complete, which
-  is the one moment the review is exactly the right next thing.
+  is the one moment the review is exactly the right next thing. On a track
+  with units the button reads `Every unit complete — review it`: enrichment
+  lists may well be unfinished, and *every list* would be false.
+- **It counts units where the track has them, stages where it does not.**
+  Four is a course; thirteen is a wall, and it was the same material.
 - **The prompt changes once the track has been begun.** Untouched, the page
-  reports nothing and reads `Begin — <first list>`; that press is what opens
-  the track. After it, the page carries **one** figure — track progress — and
-  the button reads `Continue — <first unfinished list>`. `Begin` is never
-  offered twice.
+  reports nothing at all and reads `Begin — <first list>`; that press is what
+  opens the track. After it, the page reports where you have got to and the
+  button reads `Continue — <first unfinished list>`. `Begin` is never offered
+  twice.
 - **It carries no list menu.** The lists are in the drawer, where navigation
-  lives; repeating all 137 of them here would make an orientation page into a
+  lives; repeating all 129 of them here would make an orientation page into a
   directory. One aggregate figure, and the next action.
 - **Abhyāsa is a reminder, not a section.** One line under the actions saying
   that completed lists come back, and a button that opens the review. It is
@@ -689,7 +766,8 @@ loads a deck, which is exactly what dismisses the landing card.
 Navigation is a **left drawer**, opened
 from a selector at the top left — aligned with the card, not centred over it —
 which names the lesson and list in play. Inside is the curriculum's own shape:
-**track → lesson → deck**.
+**track → lesson → deck**, or **track → unit → deck** where a track groups its
+stages into units — see **Three streams, and four units**.
 
 The five tracks are the course. Stage ranges are given here because this is a
 maintainer's file; **they are not shown in the app**:
@@ -705,9 +783,13 @@ maintainer's file; **they are not shown in the app**:
 `TRACKS` in `app.js` is the only place this lives, and the drawer is built from
 it alone, so navigation cannot drift from the curriculum. Cross-cutting
 vyākaraṇam practice is **not a sixth track**: it is listed after the five and
-counts towards no track's percentage. A track with no practice yet is left out
+counts towards no track's percentage. It now carries the grammar stream too —
+the formal layer of Varṇa-Vidyā, Sandhi, Kriyā and Dhātu — with its own
+terminology lists (`Saṃjñā`) leading, because inside that section they are the
+subject and the rest hang off them. A track with no practice yet is left out
 rather than shown as an empty 0% — the drawer navigates what exists, and a
-track's subheading counts the lessons actually in it, not the stages it spans.
+track's subheading counts what it actually holds: its units where it has them,
+otherwise the lessons actually in it, never the stages it spans.
 
 **Pūjā-Vāk, Svara-Vidyā and Avadhāna are the curriculum's own names.
 Bhāṣā-Vidyā and Kāvya-Racanā are not** — nothing in the repository names those
@@ -1486,6 +1568,16 @@ neuter -a. The other tables stop at row 7, so those decks hold 21 cells and not
 `bhagavan`) that these tables do not supply; every other form in them agrees
 with the reference exactly, which is how these thirteen were checked.
 
+**A table can be a delta too.** The reference gives **one** ṛ-stem table,
+headed *(mātṛ, pitṛ, kartṛ)* — so declining both in full drilled one paradigm
+twice, sixteen cards each way. Pitṛ is the table; `Śabda-rūpa · Mātṛ` holds
+three cards, and only one of them is a fact Pitṛ does not supply: `mātṝḥ`
+against `pitṝn` in the accusative plural, which is where the feminine parts.
+The name says so rather than claiming *all 24 cells*, and `scripts/test.js`
+holds the eight full tables to 24 cells apiece and requires a delta card to
+name a real cell and say what it derives from. The other eight tables stand:
+each is a pattern the reference states in its own right.
+
 Thirteen paradigms are carded: the eight nominal types the reference tables,
 plus `asmad`, `yuṣmad` and `tad` in all three genders — masculine and feminine
 from `reference.md`, neuter from `bricks.md`, whose tad tables agree with the
@@ -1611,8 +1703,18 @@ carry it: the nine `Śabda-rūpa` declensions and the three `Dhātu-rūpa`
 conjugations. See **A paradigm is shown before it is produced from**.
 
 **A list marked `"role": "breadth"` follows the course rather than carrying
-it.** The 82 vocab-bank lists carry it, and it decides one thing: what
-`Continue —` points at next. See **The course leads, the vocabulary follows**.
+it.** The 82 vocab-bank lists carry it, and it decides two things: what
+`Continue —` points at next, and — since a list that widens rather than
+carries is enrichment by definition — which stream it is in without 82 lists
+having to say so twice. See **The course leads, the vocabulary follows** and
+**Three streams, and four units**.
+
+**A list marked `"stream"` says which of the three it is in** —
+`enrichment` or `grammar`; absent is the core acquisition path. It is a
+separate field from `role` because it answers a separate question: `role` is
+what the list is *for* within its lesson, `stream` is whether the track asks
+for it at all. Thirteen lists carry one; the 82 breadth lists are read as
+enrichment without it.
 
 **A list marked `"role": "core"` leads its lesson.** It holds what the
 lesson's own tests rest on, and `DECK_ROLE` carries the mark into the app so
@@ -2044,46 +2146,67 @@ Three things here are load-bearing for the compatibility list above:
   chain, and keep each step stamping its own version rather than the newest;
   every `localStorage` touch stays guarded, since it can be absent or full.
 
-The app carries 28 lessons, 178 decks, and 2344 cards — 1955 `reveal`, 384
+The app carries 28 lessons, 178 decks, and 2291 cards — 1930 `reveal`, 356
 `choice` and 5 `sequence`, spread over 34 interactive decks in 16 lessons,
 plus the mastery decks holding complete paradigms.
 They are curated practice, not conversions of the reference tables:
 
 - `06-kriya` — 21 cards: person, tense, imperative, optative, and parsing.
+  The ten-lakāra terminology list is the **grammar** stream: the course
+  practises laṭ, and the prompts here name the tense in English, so the ten
+  names were a vocabulary obligation ahead of any need for them. The three
+  conjugation tables stay whole — the badge asks for three dhātus in all nine
+  forms, and that is not a card-count problem to solve.
 - `03-sandhi` — 31 cards: joins, splits, naming the rule, and the
   ac / hal / viśeṣa categories, mapping onto the three badge requirements.
-  The 27 rule-name `reveal` cards stay as their own deck; the plan keeps
-  terminology where terminology is the point, and the operation is now
-  drilled separately.
+  The 27 rule-name `reveal` cards stay as their own three decks and are the
+  **grammar** stream: joining two words is what a reader does, and knowing
+  the join is called *guṇa* is the grammarian's layer. The categories
+  themselves stay on the path — the badge examines them by name.
 
-- `04-guna` — 11 cards: adjective agreement, including the contrast that
-  `sundara` takes a feminine in -ī where `divya` takes -ā. Adjective
-  *vocabulary* stays `reveal`.
-- `05-rupa` — 15 cards: recognise a case, produce a form, and pick the case a
-  devotional phrase needs. Selected contrasts across stems, never a paradigm
-  table transcribed. Beside them 180 cards in 13 `Form mastery` decks, which
-  are the opposite: every distinct form the reference tables, asked for by
-  name, with a delta or transfer check where one table derives from another. See
-  **Producing a form is not recognising one**.
-- `07-karaka` — 11 cards: the role a word plays in a real sentence, plus the
-  role→vibhakti mapping and the fact that ṣaṣṭhī is not a kāraka at all. Each
+- `04-guna` — 7 cards: adjective agreement, including the contrast that
+  `sundara` takes a feminine in -ī where `divya` takes -ā, and three cards
+  that ask for a wrong agreement to be *fixed*. One instance of each rule,
+  not three: `divya + dīpaḥ` after `sundara + devaḥ` drills nothing the first
+  did. Adjective *vocabulary* stays `reveal`.
+- `05-rupa` — 5 cards: the case a governing word demands — `___ namaḥ` takes
+  the dative and `___ namāmi` an object. Recognising a case is what the nine
+  `Śabda-rūpa` tables do and producing one is what the thirteen `Rūpa-siddhi`
+  lists do, so the nine cards that did either here were the same drill a third
+  time. Beside them 180 cards in 13 `Form mastery` decks: every distinct form
+  the reference tables, asked for by name, with a delta or transfer check
+  where one table derives from another. See **Producing a form is not
+  recognising one**.
+- `07-karaka` — 10 cards: the role a word plays in a real sentence, plus the
+  role→vibhakti mapping and the fact that ṣaṣṭhī is not a kāraka at all. The
+  six `reveal` cards that asked the same question of the same sentences went:
+  naming the role of a marked word is what the `choice` deck does, and it
+  grades the answer where those asked the learner to grade themselves. Each
   answer names **both** the semantic role and the morphological case
   (`karaṇa · instrument · tṛtīyā · instr. sg.`), which is the distinction the
   lesson exists to teach.
 - `02-varna-vidya` — 11 cards: what each pratyāhāra covers, and how one is
   formed, plus 4 set cards asking whether a given handful of sounds falls
   inside `ik`, `ac` or `hal`. No articulation widget, as the plan forbids.
+  These and the 20 Maheśvara sūtra cards beside them are the **grammar**
+  stream: what a learner needs to read is on the acquisition path, and the
+  sūtras the pratyāhāras are cut from are Vyākaraṇam's.
 - `17-puja-vak` — 12 cards in two decks, and the stage's first exercises of
   any kind: the offering formula (`śrī-___ namaḥ · gandhaṃ samarpayāmi`,
   which is the dative-against-accusative discrimination the badge turns on)
   and the five closing words of aṅga-nyāsa. Every answer and every distractor
   is the workbook's own — sections D1–D3 and B2 — and the three numbered
   lists that feed them are marked `core`.
-- `10-paryaya` — 21 cards in two decks, and the lesson's first exercises of
-  any kind: pick the set that is entirely one category, and spot the one name
-  that does not belong. See **An option may be a set**.
-- `08-sambodhana` — 9 cards: form the vocative across five stem types. The
-  confusable pair is i-stems (`agne`) against u-stems (`viṣṇo`).
+- `10-paryaya` — 17 cards in two decks: pick the set that is entirely one
+  category, and spot the one name that does not belong. A rival set and a
+  contaminated set of the same category asked one question twice, so where
+  both existed the contaminated one — the harder — was kept. The whole lesson
+  is **enrichment**: it prepares Paryāya-Chandas and the poetry, and it is
+  lexical rather than structural. See **An option may be a set**.
+- `08-sambodhana` — 6 cards: form the vocative, one per stem class, which is
+  what the lesson teaches. The confusable pair is i-stems (`agne`) against
+  u-stems (`viṣṇo`). The `reveal` list beside it keeps 10 forms rather than
+  14: one per class, plus the irregular `amba` and the ones no rule covers.
 - `09-dhatu` — the curriculum's **50 core dhātus**, all of them. The
   reference's own table names 50; the app carried 14, so 36 were added from it
   with their class and present 3sg (`dhātu · 1P · bhavati · bhava, bhūta`),
@@ -2091,13 +2214,18 @@ They are curated practice, not conversions of the reference tables:
   They sit in four lists by what the root does — being and motion, knowing and
   speaking, worship and offering, doing and holding — plus `√vad` and `√vand`,
   which the app already taught and which the reference's fifty do not include.
-- `11-samasa` — 11 cards: name the compound type, and the vibhakti a
+  The kṛt and taddhita affix lists beside them are the **grammar** stream:
+  they are Pāṇinian affix names — `kta`, `śatṛ`, `tumun`, `matup`, `tarap` —
+  rather than anything a reader has to have.
+- `11-samasa` — 10 cards: name the compound type, and the vibhakti a
   tatpuruṣa unpacks with. `choice` before any compound builder, as the plan
   requires.
 - `19-chandas-i` — 11 cards: scan a word into laghu/guru, then name the gaṇa.
   Scansion is the operation the lesson exists to teach.
-- `12-vakya` — 18 cards: a sentence with a hole in it, and options that force
-  a grammatical decision — case, agreement, verb form, connector. Constituent
+- `12-vakya` — 13 cards: a sentence with a hole in it, and options that force
+  a grammatical decision — case, agreement, verb form, connector. The five
+  that dropped were case selection on the very words `07-karaka` selects a
+  case for; what is left is what only this deck asks. Constituent
   order is deliberately *not* tested; see **`sequence` is only for orders the
   grammar forces**.
 - `03-sandhi` — 5 `sequence` cards: order the stages of a derivation. The only

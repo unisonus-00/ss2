@@ -12,13 +12,6 @@
           "note": "sambodhana | voc. sg. · m. · stem: rāma- · a-stem"
         },
         {
-          "id": "08-sambodhana:sambodhana:deva",
-          "devanagari": "देव",
-          "iast": "deva",
-          "gloss": "O god!",
-          "note": "sambodhana | voc. sg. · m. · stem: deva- · a-stem"
-        },
-        {
           "id": "08-sambodhana:sambodhana:devi",
           "devanagari": "देवि",
           "iast": "devi",
@@ -40,25 +33,11 @@
           "note": "sambodhana | voc. sg. · f. · stem: mātṛ- · ṛ-stem"
         },
         {
-          "id": "08-sambodhana:sambodhana:hare",
-          "devanagari": "हरे",
-          "iast": "hare",
-          "gloss": "O Hari!",
-          "note": "sambodhana | voc. sg. · m. · stem: hari- · i-stem"
-        },
-        {
           "id": "08-sambodhana:sambodhana:visno",
           "devanagari": "विष्णो",
           "iast": "viṣṇo",
           "gloss": "O Viṣṇu!",
           "note": "sambodhana | voc. sg. · m. · stem: viṣṇu- · u-stem"
-        },
-        {
-          "id": "08-sambodhana:sambodhana:laksmi",
-          "devanagari": "लक्ष्मि",
-          "iast": "lakṣmi",
-          "gloss": "O Lakṣmī!",
-          "note": "sambodhana | voc. sg. · f. · stem: lakṣmī- · ī-stem"
         },
         {
           "id": "08-sambodhana:sambodhana:bhagavan",
@@ -73,13 +52,6 @@
           "iast": "ātman",
           "gloss": "O self!",
           "note": "sambodhana | voc. sg. · m. · stem: ātman- · an-stem"
-        },
-        {
-          "id": "08-sambodhana:sambodhana:guro",
-          "devanagari": "गुरो",
-          "iast": "guro",
-          "gloss": "O teacher!",
-          "note": "sambodhana | voc. sg. · m. · stem: guru- · u-stem"
         },
         {
           "id": "08-sambodhana:sambodhana:sive",
@@ -174,19 +146,6 @@
           "source": "workbook A1"
         },
         {
-          "id": "08-sambodhana:voc:jagadamba",
-          "type": "choice",
-          "front": "Change to vocative: jagadambā",
-          "options": [
-            "he jagadambe!",
-            "he jagadamba!",
-            "he jagadambi!"
-          ],
-          "answer": "he jagadambe!",
-          "note": "ā-stem f. · a compound behaves as its final member does",
-          "source": "workbook A2"
-        },
-        {
           "id": "08-sambodhana:voc:bhagavan",
           "type": "choice",
           "front": "Change to vocative: bhagavān",
@@ -198,32 +157,6 @@
           "answer": "he bhagavan!",
           "note": "consonant stem · the long ā shortens",
           "source": "workbook A2"
-        },
-        {
-          "id": "08-sambodhana:voc:sundari",
-          "type": "choice",
-          "front": "Change to vocative: sundarī (devī)",
-          "options": [
-            "he sundari!",
-            "he sundare!",
-            "he sundarī!"
-          ],
-          "answer": "he sundari!",
-          "note": "ī-stem f. · same shortening as devi",
-          "source": "workbook A2"
-        },
-        {
-          "id": "08-sambodhana:rule:i-vs-u",
-          "type": "choice",
-          "front": "Vocative ending of an i-stem:",
-          "options": [
-            "-e, as agniḥ → agne",
-            "-o, as agniḥ → agno",
-            "-i, as agniḥ → agni"
-          ],
-          "answer": "-e, as agniḥ → agne",
-          "note": "i-stems give -e, u-stems give -o · the two are easily swapped",
-          "source": "theory · vocative forms"
         }
       ]
     },

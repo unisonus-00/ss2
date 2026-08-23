@@ -755,5 +755,13 @@
   .dk.locked:hover, .tr-head.locked:hover { border-color: transparent; }
   .ls-shut { font-size: .68rem; line-height: 1.4; font-style: italic;
              color: var(--faded); padding: .1rem .5rem .35rem; }
+  /* Which stage a unit's lists came from.  A caption rather than a row: the
+     curriculum name has to stay visible, but it is not somewhere to go. */
+  .ls-cap { font-size: .6rem; letter-spacing: .1em; text-transform: uppercase;
+            color: var(--faded); padding: .5rem .5rem .15rem; }
+  .ls-cap:first-child { padding-top: .15rem; }
+  /* An optional group — the enrichment stream — is drawn as what it is:
+     present, open, and not part of the figure above it. */
+  .ls.opt > .ls-head .ls-name { color: var(--faded); }
 
   .drawer button:focus-visible { outline: 2px solid var(--kumkuma); outline-offset: 2px; }

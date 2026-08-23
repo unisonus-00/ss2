@@ -87,8 +87,10 @@
       <div class="w-stat" id="s-rankrow" hidden>
         <span>Track mastery</span><b id="s-rank"></b>
       </div>
+      <!-- A track that groups its stages into units counts the units, which
+           are what it asks of the learner; one that does not counts stages. -->
       <div class="w-stat" id="s-stagerow" hidden>
-        <span>Stages complete</span><b id="s-stages"></b>
+        <span id="s-steplabel">Stages complete</span><b id="s-stages"></b>
       </div>
     </div>
     <div class="w-actions">
@@ -103,9 +105,10 @@
     <h2 class="w-head">Welcome to Abhyāsa!</h2>
     <p class="w-lead">Learn Sanskrit through practice, from your first words to
       composition, poetry, Vedic recitation, and Avadhāna.</p>
-    <p>Abhyāsa follows a 36-stage path. Each lesson introduces a new ability, then
-      gives you several ways to make it your own. Card types include recall,
-      multiple choice and sequence.</p>
+    <p>Each track is a handful of units, and each unit a new ability with several
+      ways to make it your own. Card types include recall, multiple choice and
+      sequence. Beside the units sits enrichment — vocabulary and expression,
+      open from the start and never required.</p>
     <p>Material you master returns through Abhyāsa Review, helping earlier lessons
       stay active as you progress.</p>
     <!-- The control the whole app is navigated by, shown as it appears rather
@@ -118,7 +121,7 @@
       </span>
       <p>The menu, top left of every screen. It names the list you are on, and
         opens the five tracks — language, poetry, ritual, Vedic recitation and
-        Avadhāna — with your progress marked against every track, stage and list.
+        Avadhāna — with your progress marked at every level down to the list.
         Tap a track name for what it gives you and where to start.</p>
     </div>
     <div class="w-stats">

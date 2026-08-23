@@ -142,19 +142,6 @@
           "source": "workbook A1"
         },
         {
-          "id": "04-guna:agree:sundara-n",
-          "type": "choice",
-          "front": "Make it agree: sundara + phalam (n.)",
-          "options": [
-            "sundaram phalam",
-            "sundaraḥ phalam",
-            "sundarī phalam"
-          ],
-          "answer": "sundaram phalam",
-          "note": "neuter -am",
-          "source": "workbook A1"
-        },
-        {
           "id": "04-guna:agree:divya-f",
           "type": "choice",
           "front": "Make it agree: divya + mūrtiḥ (f.)",
@@ -179,45 +166,6 @@
           "answer": "divyam mandiram",
           "note": "neuter -am",
           "source": "workbook A2"
-        },
-        {
-          "id": "04-guna:agree:divya-m",
-          "type": "choice",
-          "front": "Make it agree: divya + dīpaḥ (m.)",
-          "options": [
-            "divyaḥ dīpaḥ",
-            "divyā dīpaḥ",
-            "divyam dīpaḥ"
-          ],
-          "answer": "divyaḥ dīpaḥ",
-          "note": "masculine -aḥ",
-          "source": "workbook A2"
-        },
-        {
-          "id": "04-guna:agree:parama-f",
-          "type": "choice",
-          "front": "Make it agree: parama + śaktiḥ (f.)",
-          "options": [
-            "paramā śaktiḥ",
-            "parama śaktiḥ",
-            "paramī śaktiḥ"
-          ],
-          "answer": "paramā śaktiḥ",
-          "note": "feminine -ā · śakti is feminine however it ends",
-          "source": "theory · agreement rule"
-        },
-        {
-          "id": "04-guna:fem:sundara-rule",
-          "type": "choice",
-          "front": "Feminine of sundara:",
-          "options": [
-            "sundarī",
-            "sundarā",
-            "sundaram"
-          ],
-          "answer": "sundarī",
-          "note": "-ra adjectives take -ī · most other -a adjectives take -ā, as divya → divyā",
-          "source": "workbook A1 / A2"
         },
         {
           "id": "04-guna:fix:santa-devi",

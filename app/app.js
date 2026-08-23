@@ -12,13 +12,17 @@
    Cards with no `type` are `reveal`, which is what every migrated card is. */
 const CARD_TYPES = ["reveal", "choice", "sequence"];
 
-const [DECKS, DECK_STAGE, DECK_LESSON, LESSON_LABEL, LESSON_GLOSS, DECK_PAIR, DECK_ROLE, PARSE] = (() => {
+const [DECKS, DECK_STAGE, DECK_LESSON, LESSON_LABEL, LESSON_GLOSS, DECK_PAIR, DECK_ROLE,
+       DECK_STREAM, PARSE] = (() => {
   const decks = {}, stages = {}, lessons = {}, labels = {}, glosses = {}, pairs = {},
         /* "terms": the list teaches the vocabulary a later list assumes, so it
            leads its lesson.  Nothing else reads this; it is the progression
            written down where the progression lives. */
-        roles = {}, skipped = [];
-  const fail = why => [decks, stages, lessons, labels, glosses, pairs, roles,
+        roles = {},
+        /* Which of the three streams a list belongs to — see `streamOf`.
+           Absent means the core acquisition path. */
+        streams = {}, skipped = [];
+  const fail = why => [decks, stages, lessons, labels, glosses, pairs, roles, streams,
                        { count: 0, decks: 0, skipped, fatal: why }];
 
   const src = document.getElementById('practice');
@@ -49,11 +53,12 @@ const [DECKS, DECK_STAGE, DECK_LESSON, LESSON_LABEL, LESSON_GLOSS, DECK_PAIR, DE
       lessons[d.name] = L.lesson;
       if (d.pair) pairs[d.name] = d.pair;
       if (d.role) roles[d.name] = d.role;
+      if (d.stream) streams[d.name] = d.stream;
     });
   });
 
   const count = Object.values(decks).reduce((a, b) => a + b.length, 0);
-  return [decks, stages, lessons, labels, glosses, pairs, roles,
+  return [decks, stages, lessons, labels, glosses, pairs, roles, streams,
           { count, decks: Object.keys(decks).length, skipped }];
 })();
 
@@ -305,6 +310,17 @@ const DECK_RENAMES = {
   /* Stage 5's case list grew the number terms alongside the case terms, so
      it is no longer "the seven cases". */
   '11 · Vibhakti — the seven cases':             '11 · Vibhakti-vacana — case and number terms',
+  /* The reference tables one ṛ-stem for mātṛ, pitṛ and kartṛ together, so
+     declining both in full drilled one paradigm twice.  Mātṛ keeps the cell
+     the feminine does not share and says so; Pitṛ is the table. */
+  'Śabda-rūpa · Mātṛ — ṛ-stem, all 24 cells':
+    'Śabda-rūpa · Mātṛ — ṛ-stem, where the feminine parts',
+  /* Recognising a case is what the nine Śabda-rūpa tables do and producing
+     one is what the thirteen Rūpa-siddhi lists do, so this list was two
+     drills it was not needed for.  What is left is the one it was: which
+     case the governing word demands. */
+  'Vibhakti-rūpa — recognise and produce · practice':
+    'Vibhakti-prayoga — the case a sentence calls for · practice',
 };
 /* A SPLIT is not a rename and has no entry here.  When a long list is broken
    into chunks, no one chunk is the old deck, so its best score and missed pile
@@ -633,6 +649,34 @@ const isRetained = k => !!SAVED.mastered[k] && streakOf(k) >= RETAIN;
 const countIn = (ids, test) => { let n = 0; ids.forEach(k => { if (test(k)) n++; }); return n; };
 const allRetained = ids => ids.size > 0 && countIn(ids, isRetained) === ids.size;
 
+/* ── the three streams ──────────────────────────────────────
+   A track used to be one flat run of lessons, and it mixed together things a
+   learner has to do with things they may.  Bhāṣā-Vidyā ran 137 lists and
+   1,836 cards, of which the vocabulary bank was more than half and the
+   grammarians' own terminology another slice — and every one of them counted
+   against the track's percentage and stood between the learner and the end
+   of it.  So a list now declares which stream it is in, and the streams are
+   kept apart:
+
+     core        the acquisition path.  What the track's percentage is
+                 measured against, what "Continue —" walks, and the only
+                 thing a learner has to finish.
+     enrichment  vocabulary breadth and the lexical stages.  Present, open
+                 from the start, and deliberately outside the figure: a
+                 learner who takes none of it has still finished the track.
+     grammar     the formal, Pāṇinian layer — the Maheśvara sūtras, the named
+                 sandhi rules, the kṛt and taddhita affixes, the ten lakāras.
+                 It is real Sanskrit grammar and it is optional to a reader,
+                 so it is drawn under Vyākaraṇam with the rest of the
+                 metalanguage rather than in the middle of the path.
+
+   `role: "breadth"` already said "this list widens rather than carries", so
+   it is read as enrichment without 82 lists having to say it twice; a deck's
+   own `stream` overrides. */
+const streamOf = name => DECK_STREAM[name]
+  || (DECK_ROLE[name] === 'breadth' ? 'enrichment' : 'core');
+const isCore = name => streamOf(name) === 'core';
+
 /* ── the five course tracks ─────────────────────────────
    The curriculum's own shape, one level above the numbered lessons.  A stage
    belongs to exactly one track, and the drawer is built from this table and
@@ -666,25 +710,46 @@ const allRetained = ids => ids.size > 0 && countIn(ids, isRetained) === ids.size
 const TRACKS = [
   { id: 'bhasha',   name: 'Bhāṣā-Vidyā',  gloss: 'Language Acquisition',
     has: s => s >= 1 && s <= 13,
+    /* Four units, not thirteen stages.  The stages are still there — they are
+       how the curriculum is written and how a stage award is earned — but the
+       learner is shown the four abilities they add up to, in the order the
+       grammar actually depends on them.  Two of those orders are corrections:
+       Rūpa comes before Guṇa, because agreeing an adjective needs the gender
+       and case Rūpa teaches, and Dhātu comes before Kriyā, because a root is
+       what a verb is conjugated from. */
+    units: [
+      { id: 'sabda', name: 'Śabda', gloss: 'words and sounds',
+        lessons: ['01-nama', '02-varna-vidya'] },
+      { id: 'rupa',  name: 'Rūpa',  gloss: 'the shape of a word',
+        lessons: ['05-rupa', '04-guna', '08-sambodhana'] },
+      { id: 'kriya', name: 'Kriyā', gloss: 'the shape of an action',
+        lessons: ['09-dhatu', '06-kriya'] },
+      { id: 'vakya', name: 'Vākya', gloss: 'words into sentences',
+        lessons: ['03-sandhi', '07-karaka', '11-samasa', '12-vakya'] },
+    ],
     lead: 'This is the track that teaches you to read. You start with words — the '
         + 'names of the divine, the things on an altar, the parts of a day — and '
         + 'end able to assemble a Sanskrit sentence of your own and follow one you '
         + 'have never seen. Nothing here assumes you already know grammar: every '
         + 'term is taught before it is used.',
     plan: [
-      'Words first. Nāma gives you several hundred of them, and Varṇa-Vidyā the '
-      + 'order the alphabet is really in — by where in the mouth each sound is made.',
-      'Then the two things that change a word\u2019s shape. Sandhi is what happens '
-      + 'where words touch; Rūpa is the eight cases that say what a word is doing '
-      + 'in its sentence. Rūpa is the big one, and the one that unlocks reading.',
-      'Kriyā and Dhātu do the same for verbs — person and number marked on the '
-      + 'verb itself, and the one-syllable roots underneath almost every word.',
-      'Kāraka, Samāsa and Vākya put it to work: the part a word plays in an '
-      + 'action, how two words weld into one, and finally sentences of your own.',
+      'Śabda — words and sounds. Nāma gives you several hundred words, and '
+      + 'Varṇa-Vidyā the order the alphabet is really in: by where in the mouth '
+      + 'each sound is made.',
+      'Rūpa — the shape of a word. The eight cases that say what a word is doing '
+      + 'in its sentence, then adjectives agreeing with it and the form you call '
+      + 'it by. This is the big one, and the one that unlocks reading.',
+      'Kriyā — the shape of an action. Dhātu gives you the one-syllable roots '
+      + 'under almost every word; Kriyā marks person and number on the verb '
+      + 'itself.',
+      'Vākya — words into sentences. Sandhi for what happens where words touch, '
+      + 'Kāraka for the part a word plays in an action, Samāsa for how two words '
+      + 'weld into one, and Vākya for sentences of your own.',
     ],
-    note: 'Nothing here has to be finished before the next thing makes sense. A '
-        + 'list is a sitting of a dozen or two cards, and what slips comes back on '
-        + 'its own in later rounds.',
+    note: 'Enrichment sits below the four, and is exactly that: the vocabulary '
+        + 'bank, the synonym sets and the names for inner states. It is open from '
+        + 'the start and counts towards nothing — finish the four units and you '
+        + 'have finished the track.',
     mentions: ['Nāma', 'Varṇa-Vidyā', 'Sandhi', 'Rūpa', 'Kriyā', 'Dhātu',
                'Kāraka', 'Samāsa', 'Vākya'],
     lessons: 13 },
@@ -772,13 +837,20 @@ const CROSS_TRACK = {
     'Vyākaraṇam I gives the building blocks: root, suffix, prefix, stem, junction.',
     'Vyākaraṇam II gives the words for what a sentence is made of, and the terms '
     + 'grammarians use about their own terms.',
+    'Then the formal layer of four acquisition stages, drawn here rather than in '
+    + 'the middle of them: Varṇa-Vidyā\u2019s Maheśvara sūtras and pratyāhāras, '
+    + 'Sandhi\u2019s named rules, Dhātu\u2019s kṛt and taddhita affixes, and '
+    + 'Kriyā\u2019s ten lakāras.',
     'Take these whenever a word in a red annotation is doing more work than you '
     + 'can follow. Nothing else depends on them.',
   ],
-  note: 'This is not a track and it is not required. It is the shortest way to '
-      + 'make the annotations on every other card readable.',
-  mentions: ['Vyākaraṇam I', 'Vyākaraṇam II'],
-  lessons: 1,
+  note: 'This is not a track and it is not required. Joining a word to the next '
+      + 'one is on the acquisition path; knowing that the join is called guṇa is '
+      + 'here. It is the shortest way to make the annotations on every other card '
+      + 'readable.',
+  mentions: ['Vyākaraṇam I', 'Vyākaraṇam II', 'Varṇa-Vidyā', 'Sandhi', 'Dhātu',
+             'Kriyā'],
+  lessons: 5,
 };
 const trackOf = stage => TRACKS.find(t => t.has(stage)) || CROSS_TRACK;
 
@@ -802,20 +874,101 @@ const LESSONS = (() => {
   return [...by.values()];
 })();
 
-/* The drawer's spine: each track that has any practice at all, with its
-   lessons and the union of their cards.  A track with no practice yet is
-   left out rather than shown as an empty 0% — the drawer navigates what
-   exists. */
+/* Which track a LIST belongs to.  Almost always its stage's track — but a
+   list in the grammar stream is drawn under Vyākaraṇam whatever stage it sits
+   in, because that is what it is: the formal layer of that stage, not a step
+   on the way through it. */
+const trackOfDeck = name => streamOf(name) === 'grammar' ? CROSS_TRACK
+                                                        : trackOf(DECK_STAGE[name]);
+
+/* ── what the drawer draws under a track ───────────────────
+   A GROUP is one expandable row: a unit for a track that declares them, and
+   a lesson for one that does not.  Thirteen stage rows made the path look
+   more fragmented than the skills underneath it are, so Bhāṣā-Vidyā shows the
+   four abilities its stages add up to and captions the stages inside them —
+   the curriculum name is never lost, it stops being a level you have to tap
+   through.
+
+   A group keyed `lesson` on purpose: the drawer, the open/shut set and the
+   scroll-to-here all took a lesson before this, and take a group now without
+   knowing the difference. */
+function makeGroup(key, label, gloss, names, optional) {
+  const ids = new Set();
+  names.forEach(n => DECK_IDS[n].forEach(k => ids.add(k)));
+  /* Which lesson each list came from, in run-lengths, so a group spanning
+     several can caption them rather than running them together. */
+  const parts = [];
+  names.forEach(n => {
+    const les = DECK_LESSON[n];
+    const last = parts[parts.length - 1];
+    if (last && last.lesson === les) last.decks.push(n);
+    else parts.push({ lesson: les, label: LESSON_LABEL[les] || les, decks: [n] });
+  });
+  return { lesson: key, label, gloss, decks: names, ids, parts, optional: !!optional };
+}
+
+/* The drawer's spine: each track that has any practice at all, with the
+   groups it draws, the lessons it holds, and the union of their cards.  A
+   track with no practice yet is left out rather than shown as an empty 0% —
+   the drawer navigates what exists.
+
+   `ids` is everything in the track; `pathIds` is the core stream alone, and
+   that is what every percentage the track reports is measured against.  A
+   learner who never opens the vocabulary bank has still finished the track,
+   so the bank must not sit in the denominator. */
 const TRACK_ROWS = (() => {
   const rows = [];
   [...TRACKS, CROSS_TRACK].forEach(track => {
-    const lessons = LESSONS.filter(L => trackOf(L.stage) === track);
-    if (!lessons.length) return;
-    const ids = new Set();
-    lessons.forEach(L => L.ids.forEach(k => ids.add(k)));
-    rows.push({ track, lessons, ids });
+    const mine = Object.keys(DECKS).filter(n => trackOfDeck(n) === track);
+    if (!mine.length) return;
+    const lessons = LESSONS.filter(L => L.decks.some(n => mine.indexOf(n) >= 0))
+      .map(L => Object.assign({}, L, { decks: L.decks.filter(n => mine.indexOf(n) >= 0) }));
+    lessons.forEach(L => {
+      L.ids = new Set();
+      L.decks.forEach(n => DECK_IDS[n].forEach(k => L.ids.add(k)));
+    });
+    const groups = [];
+    if (track.units) {
+      track.units.forEach(u => {
+        const names = [];
+        u.lessons.forEach(les =>
+          mine.forEach(n => { if (DECK_LESSON[n] === les && isCore(n)) names.push(n); }));
+        if (names.length)
+          groups.push(makeGroup(track.id + '/' + u.id, u.name, u.gloss, names));
+      });
+      /* Everything the units left behind — which is the enrichment stream,
+         since the grammar stream is drawn under Vyākaraṇam and the units take
+         the core.  One row, marked optional, at the foot of the track. */
+      const rest = mine.filter(n => !isCore(n));
+      if (rest.length)
+        groups.push(makeGroup(track.id + '/enrichment', 'Enrichment',
+          'optional \u00b7 vocabulary and expression', rest, true));
+    } else {
+      /* Curriculum order, with one correction the build's own order cannot
+         make: practice that belongs to no stage is discovered last, because
+         the app should open on stage 1 vocabulary rather than on abstract
+         terminology — but inside the cross-cutting section those lists are
+         the subject, and the four stages' formal layers hang off them. */
+      lessons.slice()
+        .sort((a, b) => (a.stage || -1) - (b.stage || -1))
+        .forEach(L =>
+          groups.push(makeGroup(L.lesson, L.label, LESSON_GLOSS[L.lesson], L.decks)));
+    }
+    const ids = new Set(), pathIds = new Set();
+    groups.forEach(g => g.ids.forEach(k => {
+      ids.add(k);
+      if (!g.optional) pathIds.add(k);
+    }));
+    rows.push({ track, groups, lessons, ids, pathIds,
+                units: groups.filter(g => !g.optional) });
   });
   return rows;
+})();
+/* Which group holds a list, so opening the drawer can open it. */
+const GROUP_OF = (() => {
+  const m = new Map();
+  TRACK_ROWS.forEach(r => r.groups.forEach(g => g.decks.forEach(n => m.set(n, g))));
+  return m;
 })();
 const ALL_IDS = (() => {
   const s = new Set();
@@ -831,7 +984,7 @@ const ALL_IDS = (() => {
 
    `SAVED.begun` holds what has been opened — `home`, and a track id for each
    track whose Begin has been pressed. */
-const trackIdOf = name => trackOf(DECK_STAGE[name]).id;
+const trackIdOf = name => trackOfDeck(name).id;
 /* Guided order off opens everything at once: nothing to press through when
    the point is to reach a particular list — checking a change, or testing. */
 const trackBegun = id => !SAVED.guided || !!SAVED.begun[id];
@@ -908,7 +1061,10 @@ function completable() {
   const out = [];
   Object.keys(DECKS).forEach(n => out.push(['list:' + n, DECK_SHORT(n), 'list', DECK_IDS[n]]));
   LESSONS.forEach(L => out.push(['stage:' + L.lesson, L.label, 'stage', L.ids]));
-  TRACK_ROWS.forEach(r => out.push(['track:' + r.track.id, r.track.name, 'track', r.ids]));
+  /* A track is complete when what it ASKS for is: the same cards its
+     percentage is measured against.  Anything else and the drawer would read
+     100% beside an award that never arrives. */
+  TRACK_ROWS.forEach(r => out.push(['track:' + r.track.id, r.track.name, 'track', r.pathIds]));
   return out;
 }
 
@@ -1252,7 +1408,7 @@ const setBar = (el, pct) => { const i = el.querySelector('.bar i'); if (i) i.sty
    Folded by what exists, never by a list of exceptions — so the level comes
    back on its own the moment a second lesson or a second list does, and the
    curriculum's own shape is still the only thing driving the drawer. */
-const soleLesson = row => row.lessons.length === 1 ? row.lessons[0] : null;
+const soleLesson = row => row.groups.length === 1 ? row.groups[0] : null;
 const soleDeck   = L   => L.decks.length === 1 ? L.decks[0] : null;
 /* A row that has folded a level away keeps that level's name: `inner` leads
    the subheading unless it merely repeats the name already on the row, in
@@ -1294,7 +1450,7 @@ function recommendedSet() {
   recCache = new Set();
   TRACK_ROWS.forEach(row => {
     if (!trackBegun(row.track.id)) return;
-    const next = recommendOrder(row).find(n => done.indexOf(n) < 0);
+    const next = recommendPath(row).find(n => done.indexOf(n) < 0);
     if (next) recCache.add(next);
   });
   return recCache;
@@ -1331,7 +1487,7 @@ function deckRow(name, cls) {
   if (deckLocked(name)) {
     b.disabled = true;
     b.classList.add('locked');
-    b.title = name + ' — begin ' + trackOf(DECK_STAGE[name]).name + ' to open it';
+    b.title = name + ' — begin ' + trackOfDeck(name).name + ' to open it';
   } else b.addEventListener('click', () => chooseDeck(name));
   return b;
 }
@@ -1344,10 +1500,13 @@ function deckRow(name, cls) {
    on a first visit, is the only thing that opens its lists; it leaves the
    track standing expanded for the way back. */
 function trackRow(row, over) {
-  const t = row.track, p = progressOf(row.ids);
+  const t = row.track, p = progressOf(row.pathIds);
   const b = rowButton('tr', Object.assign({
     name: t.name, pct: p.pct, full: p.full, bar: true,
-    sub: t.gloss + ' · ' + count(row.lessons.length, 'lesson'),
+    /* What the track asks of you, which is its units — the enrichment row
+       below them is drawn but not counted, because it is not asked. */
+    sub: t.gloss + ' · ' + (t.units ? count(row.units.length, 'unit')
+                                    : count(row.lessons.length, 'lesson')),
   }, over || {}));
   b.classList.add('leaf');
   if (!started()) {
@@ -1367,7 +1526,7 @@ function trackRow(row, over) {
 function lessonRow(L) {
   const one = soleDeck(L);
   if (one) {
-    /* The lesson IS that list — but the row still has to say which lesson.
+    /* The group IS that list — but the row still has to say which group.
        Folding may not silently delete a curriculum name: `Chandas II` read
        simply `Vṛtta`, and the drawer then had a Chandas I and no Chandas II. */
     const r = deckRow(one, 'ls');
@@ -1378,10 +1537,10 @@ function lessonRow(L) {
   }
   const p = progressOf(L.ids), open = openLessons.has(L.lesson);
   const wrap = document.createElement('div');
-  wrap.className = 'ls' + (p.full ? ' full' : '');
+  wrap.className = 'ls' + (p.full ? ' full' : '') + (L.optional ? ' opt' : '');
   const head = rowButton('ls', {
     name: L.label, pct: p.pct, full: p.full, bar: true,
-    sub: [LESSON_GLOSS[L.lesson], count(L.decks.length, 'list')].filter(Boolean).join(' · ')
+    sub: [L.gloss, count(L.decks.length, 'list')].filter(Boolean).join(' · ')
   });
   head.setAttribute('aria-expanded', open ? 'true' : 'false');
   head.addEventListener('click', () => { toggleIn(openLessons, L.lesson); renderDrawer(); });
@@ -1389,7 +1548,19 @@ function lessonRow(L) {
   const body = document.createElement('div');
   body.className = 'ls-body';
   body.hidden = !open;
-  L.decks.forEach(name => body.appendChild(deckRow(name)));
+  /* A unit gathers several stages, so each stage is captioned above its own
+     lists.  One line of type rather than one more level to tap through: the
+     curriculum name stays visible without the path growing a step. */
+  const many = (L.parts || []).length > 1;
+  (L.parts || [{ decks: L.decks }]).forEach(part => {
+    if (many) {
+      const cap = document.createElement('div');
+      cap.className = 'ls-cap';
+      cap.textContent = part.label;
+      body.appendChild(cap);
+    }
+    part.decks.forEach(name => body.appendChild(deckRow(name)));
+  });
   wrap.appendChild(body);
   return wrap;
 }
@@ -1429,7 +1600,7 @@ function renderDrawer() {
     const t = row.track, open = openTracks.has(t.id);
     const only = soleLesson(row);
     const wrap = document.createElement('div');
-    wrap.className = 'tr' + (progressOf(row.ids).full ? ' full' : '');
+    wrap.className = 'tr' + (progressOf(row.pathIds).full ? ' full' : '');
 
     /* A track with a single lesson IS that lesson: naming both would say the
        same thing twice, so the row keeps the track's name and the lesson's
@@ -1457,9 +1628,9 @@ function renderDrawer() {
       body.appendChild(shutNote(started()
         ? 'Tap the name above and press Begin to open these.'
         : 'Open Home and press Begin to start.'));
-    /* one lesson: its lists stand directly under the track */
+    /* one group: its lists stand directly under the track */
     if (only) only.decks.forEach(n => body.appendChild(deckRow(n)));
-    else row.lessons.forEach(L => body.appendChild(lessonRow(L)));
+    else row.groups.forEach(L => body.appendChild(lessonRow(L)));
     wrap.appendChild(body);
     host.appendChild(wrap);
   });
@@ -1469,8 +1640,8 @@ function openDrawer() {
   closePop();
   /* Land on where you are rather than on a wall of shut headings: the track
      and lesson holding the current list are opened on the way in. */
-  const L = LESSONS.find(x => x.lesson === DECK_LESSON[deckName]);
-  if (L) { openTracks.add(trackOf(L.stage).id); openLessons.add(L.lesson); }
+  const g = GROUP_OF.get(deckName);
+  if (g) { openTracks.add(trackIdOf(deckName)); openLessons.add(g.lesson); }
   renderDrawer();
   relabelAll();
   $('dveil').hidden = false;
@@ -1635,17 +1806,22 @@ function renderWelcome() {
    somewhere you have to be introduced to twice. */
 let trackShown = null;
 
-/* Every list in a track, in curriculum order. */
+/* Every list in a track, in the order the drawer draws them. */
 function trackDecks(row) {
-  return [].concat(...row.lessons.map(L => L.decks));
+  return [].concat(...row.groups.map(g => g.decks));
 }
 
 function renderTrack(id) {
   const row = TRACK_ROWS.find(r => r.track.id === id);
   if (!row || !row.track.lead) return false;
   const t = row.track, names = trackDecks(row);
-  /* Aggregate only: what is in the track, never a directory of it. */
-  const held = t === CROSS_TRACK ? count(names.length, 'list')
+  const path = recommendPath(row);
+  /* Aggregate only: what is in the track, never a directory of it — and for a
+     track with units, what it ASKS of you rather than everything it holds.
+     Thirteen stages and 137 lists is a wall; four units and the lists that
+     make them up is a course. */
+  const held = t.units ? count(row.units.length, 'unit') + ' · ' + count(path.length, 'list')
+    : t === CROSS_TRACK ? count(names.length, 'list')
     : count(row.lessons.length, 'stage') + ' · ' + count(names.length, 'list');
   fillRow(document, {
     '#s-held': held,
@@ -1665,31 +1841,38 @@ function renderTrack(id) {
      you have got to, and the next list to take.  Begin is not offered twice,
      and only one figure is given — the track as a whole. */
   const begun = trackBegun(id);
-  const p = progressOf(row.ids);
+  const p = progressOf(row.pathIds);
   $('s-stats').hidden = !begun;
   if (begun) $('s-pct').textContent = p.pct + '%';
   /* Two aggregates, never a directory: what of this track you have learnt,
      and — once a review has set an accuracy — the same mastery figure the
      drawer carries, measured against this track alone. */
-  const rank = rankOf(row.ids);
+  const rank = rankOf(row.pathIds);
   $('s-rankrow').hidden = !begun || rank.score === null;
   if (rank.score !== null) $('s-rank').textContent = rank.score + '% \u00b7 ' + rank.name;
   /* A count, never a list of which ones: the drawer is where you look them
-     up.  A one-stage track has nothing to count. */
-  const stages = row.lessons.filter(L => progressOf(L.ids).full).length;
-  $('s-stagerow').hidden = !begun || row.lessons.length < 2;
-  $('s-stages').textContent = stages + ' of ' + row.lessons.length;
+     up.  A track with units counts those, because they are what it asks; one
+     without counts its stages.  A track holding one of either has nothing to
+     count. */
+  const level = t.units ? row.units : row.lessons;
+  const done = level.filter(L => progressOf(L.ids).full).length;
+  $('s-stagerow').hidden = !begun || level.length < 2;
+  $('s-steplabel').textContent = t.units ? 'Units complete' : 'Stages complete';
+  $('s-stages').textContent = done + ' of ' + level.length;
   /* Nothing left to finish here: the track's own next step is the review,
      not its first list over again. */
   /* The same order the end-of-round handoff uses: the course first, then the
      vocabulary that widens it. */
-  const next = recommendOrder(row).find(n => finishedDecks().indexOf(n) < 0);
+  const next = path.find(n => finishedDecks().indexOf(n) < 0);
   const go = $('s-go');
   if (next) {
     go.textContent = (begun ? 'Continue — ' : 'Begin — ') + DECK_SHORT(next);
     go.onclick = () => { beginTrack(id); chooseDeck(next); };
   } else {
-    go.textContent = 'Every list complete — review it';
+    /* Nothing left that this track asks for.  It may still hold enrichment,
+       and saying "every list" there would be false. */
+    go.textContent = (t.units ? 'Every unit complete' : 'Every list complete')
+      + ' — review it';
     go.onclick = () => { beginTrack(id); openPanel('reviewpanel'); };
   }
   /* Abhyāsa is a reminder here, not a section: one line and a way in — and
@@ -2795,9 +2978,22 @@ function renderAwards() {
    wants deity names can take them whenever they like; this decides one
    button's target, and the button is a recommendation. */
 const isBreadth = name => DECK_ROLE[name] === 'breadth';
+/* The lists the track actually asks for, in the order it asks for them: the
+   units in unit order, and within a track that declares none, the spine
+   before the breadth exactly as before.  An optional group is not in here at
+   all — "Continue —" must not walk a learner into 1,001 cards of vocabulary
+   and call it the rest of the track. */
+const recommendPath = row => {
+  const path = [];
+  row.groups.forEach(g => { if (!g.optional) path.push(...g.decks); });
+  return path.filter(n => !isBreadth(n)).concat(path.filter(isBreadth));
+};
+/* The same, plus what is optional — for anything that wants every list of a
+   track in a sensible order rather than the next one to take. */
 const recommendOrder = row => {
-  const names = trackDecks(row);
-  return names.filter(n => !isBreadth(n)).concat(names.filter(isBreadth));
+  const extra = [];
+  row.groups.forEach(g => { if (g.optional) extra.push(...g.decks); });
+  return recommendPath(row).concat(extra);
 };
 
 /* The next list worth opening after this one: the first unfinished list in
@@ -2807,10 +3003,12 @@ const recommendOrder = row => {
 function nextList(name) {
   const row = TRACK_ROWS.find(r => r.track.id === trackIdOf(name));
   if (!row) return null;
-  const names = recommendOrder(row);
+  const names = recommendPath(row);
   const here = names.indexOf(name);
   const done = finishedDecks();
-  const after = names.slice(here + 1).find(n => done.indexOf(n) < 0);
+  /* A list off the path — an enrichment one — has no place in the path to
+     carry on from, so the next unfinished one on it is the answer. */
+  const after = here < 0 ? null : names.slice(here + 1).find(n => done.indexOf(n) < 0);
   return after || names.find(n => n !== name && done.indexOf(n) < 0) || null;
 }
 

@@ -55,7 +55,8 @@
           "note": "sandhi rule · pararūpa · a + a → a"
         }
       ],
-      "role": "core"
+      "role": "core",
+      "stream": "grammar"
     },
     {
       "name": "S · Hal sandhi — consonant joins",
@@ -146,7 +147,8 @@
           "note": "sandhi rule · satva · final n + c → ṃś"
         }
       ],
-      "role": "core"
+      "role": "core",
+      "stream": "grammar"
     },
     {
       "name": "S · Visarga sandhi — visarga joins",
@@ -209,7 +211,8 @@
           "note": "sandhi rule · visarga rephādeśa · avyaya ḥ + vowel → r"
         }
       ],
-      "role": "core"
+      "role": "core",
+      "stream": "grammar"
     },
     {
       "name": "Saṃyoga — combine the two words · practice",

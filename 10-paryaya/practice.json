@@ -110,51 +110,12 @@
           "note": "also: sura, amara, vibudha, tridaśa"
         }
       ],
-      "role": "core"
+      "role": "core",
+      "stream": "enrichment"
     },
     {
       "name": "Paryāya-varga — which set is whole · practice",
       "cards": [
-        {
-          "id": "10-paryaya:set:siva-rivals",
-          "type": "choice",
-          "front": "Which set consists entirely of names for Śiva?",
-          "options": [
-            "haraḥ · śambhuḥ · rudraḥ",
-            "hariḥ · keśavaḥ · mādhavaḥ",
-            "induḥ · somaḥ · vidhuḥ",
-            "ambā · gaurī · lalitā"
-          ],
-          "answer": "haraḥ · śambhuḥ · rudraḥ",
-          "note": "the others are Viṣṇu, the moon and Devī — each a whole set of its own",
-          "source": "reference · Deities"
-        },
-        {
-          "id": "10-paryaya:set:visnu-rivals",
-          "type": "choice",
-          "front": "Which set consists entirely of names for Viṣṇu?",
-          "options": [
-            "govindaḥ · acyutaḥ · janārdanaḥ",
-            "īśaḥ · bhavaḥ · tryambakaḥ",
-            "arkaḥ · raviḥ · bhānuḥ"
-          ],
-          "answer": "govindaḥ · acyutaḥ · janārdanaḥ",
-          "note": "īśa, bhava and tryambaka are Śiva; arka, ravi and bhānu the sun",
-          "source": "reference · Deities"
-        },
-        {
-          "id": "10-paryaya:set:devi-rivals",
-          "type": "choice",
-          "front": "Which set consists entirely of names for Devī?",
-          "options": [
-            "durgā · caṇḍikā · kālikā",
-            "bhairavaḥ · vāmadevaḥ · sadāśivaḥ",
-            "ambaram · vyoma · nabhaḥ"
-          ],
-          "answer": "durgā · caṇḍikā · kālikā",
-          "note": "the fierce name is not the giveaway — bhairava is Śiva, caṇḍikā Devī",
-          "source": "reference · Deities"
-        },
         {
           "id": "10-paryaya:set:sun-rivals",
           "type": "choice",
@@ -179,19 +140,6 @@
           ],
           "answer": "toyam · salilam · payaḥ",
           "note": "nīraja, jalaja and ambuja all mean water-born — and all name the lotus",
-          "source": "reference · Nature Synonyms"
-        },
-        {
-          "id": "10-paryaya:set:fire-rivals",
-          "type": "choice",
-          "front": "Which set consists entirely of synonyms for fire?",
-          "options": [
-            "vahniḥ · hutāśanaḥ · kṛśānuḥ",
-            "prabhākaraḥ · dinamaṇiḥ · savitā",
-            "ākāśaḥ · kham · antarikṣam"
-          ],
-          "answer": "vahniḥ · hutāśanaḥ · kṛśānuḥ",
-          "note": "the light-makers are the sun, not the fire",
           "source": "reference · Nature Synonyms"
         },
         {
@@ -298,7 +246,8 @@
           "note": "dinamaṇi and prabhākara burn in the sky, not on the altar",
           "source": "reference · Nature Synonyms"
         }
-      ]
+      ],
+      "stream": "enrichment"
     },
     {
       "name": "Bhinna-pada — which name does not belong · practice",
@@ -401,7 +350,8 @@
           "note": "the rest are fire · dhūrjaṭi carries the matted load — Śiva",
           "source": "reference · Deities"
         }
-      ]
+      ],
+      "stream": "enrichment"
     }
   ]
 }

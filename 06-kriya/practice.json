@@ -125,7 +125,8 @@
           "note": "lakāra · a wish or intention, in the Vedic language alone · chandas only"
         }
       ],
-      "role": "core"
+      "role": "core",
+      "stream": "grammar"
     },
     {
       "name": "Dhātu-rūpa · √nam — laṭ, all 9 forms",
@@ -619,13 +620,6 @@
       "name": "10 · Kriyā — verbs in form",
       "cards": [
         {
-          "id": "06-kriya:kriya:namami",
-          "devanagari": "नमामि",
-          "iast": "namāmi",
-          "gloss": "I bow",
-          "note": "1 sg. pres. · √nam · parasmaipada"
-        },
-        {
           "id": "06-kriya:kriya:vande",
           "devanagari": "वन्दे",
           "iast": "vande",
@@ -638,13 +632,6 @@
           "iast": "karomi",
           "gloss": "I do",
           "note": "1 sg. pres. · √kṛ · parasmaipada"
-        },
-        {
-          "id": "06-kriya:kriya:bhavati",
-          "devanagari": "भवति",
-          "iast": "bhavati",
-          "gloss": "he/she becomes",
-          "note": "3 sg. pres. · √bhū · parasmaipada"
         },
         {
           "id": "06-kriya:kriya:gacchati",
@@ -737,7 +724,8 @@
           "gloss": "he/she sits down",
           "note": "3 sg. pres. · upa + √viś · parasmaipada"
         }
-      ]
+      ],
+      "stream": "enrichment"
     },
     {
       "name": "V10 · Gati — motion and position · DM",

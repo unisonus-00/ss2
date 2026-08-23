@@ -43,6 +43,11 @@ const LOGO = '<!--logo-->';
 const BUILD = '<!--build-->';
 
 const CARD_TYPES = new Set(['reveal', 'choice', 'sequence']);
+/* The three streams a list can be in: the core acquisition path (the
+   default, and what a track's percentage is measured against), the
+   enrichment that widens it, and the formal grammar drawn under
+   Vyākaraṇam.  See `streamOf` in app.js. */
+const STREAMS = new Set(['core', 'enrichment', 'grammar']);
 
 /* ── discover ───────────────────────────────────────────────────────── */
 
@@ -59,8 +64,12 @@ const CARD_TYPES = new Set(['reveal', 'choice', 'sequence']);
  * A trailing parenthetical is dropped too — "Case, Number, and Gender
  * (Declension)" is longer than a subheading can carry. */
 function lessonTitle(dir) {
+  /* Named for what the lists hold rather than for the section they sit in:
+     Vyākaraṇam now heads a section that also carries the formal layer of four
+     acquisition stages, and a group inside it called Vyākaraṇam would be the
+     same word one level down. */
   if (dir === '00-overview') {
-    return { label: 'Vyākaraṇam', gloss: 'Terminology Used Throughout' };
+    return { label: 'Saṃjñā', gloss: 'Terminology Used Throughout' };
   }
   const p = path.join(ROOT, dir, 'theory.md');
   let label = dir.slice(3), gloss = '';
@@ -148,6 +157,21 @@ function loadPractice() {
       if (!deck.name) { problems.push(`${at}: no name`); return; }
       if (!Array.isArray(deck.cards) || !deck.cards.length) {
         problems.push(`${at} ("${deck.name}"): no cards`); return;
+      }
+      /* Which of the three streams the list is in.  Absent is the core
+         acquisition path; a typo here would quietly drop a list out of the
+         track's percentage or move it to another section altogether. */
+      if (deck.stream !== undefined && !STREAMS.has(deck.stream)) {
+        problems.push(`${at} ("${deck.name}"): unknown stream "${deck.stream}" — `
+          + `expected one of ${[...STREAMS].join(', ')}`);
+        return;
+      }
+      /* "breadth" already says the list widens rather than carries, so a
+         breadth list on the core path is a contradiction rather than a
+         choice. */
+      if (deck.role === 'breadth' && deck.stream === 'core') {
+        problems.push(`${at} ("${deck.name}"): a breadth list cannot be in the core stream`);
+        return;
       }
       /* `pair` names what a reveal card runs between, so the direction button
          can say so and say the reverse.  Both labels come from this one
