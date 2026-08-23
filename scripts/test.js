@@ -152,10 +152,15 @@ const open = async (browser, opts = {}) => {
         newRec: raw.trouble['01-nama:devi:kamaksi'] || null,
         deckBestKept: raw.decks['01 · Devī — goddess names'],
         clearedKept: raw.cleared,
+        /* v5 gates a stage behind its introduction, and a learner already
+           holding a best score in Nāma has plainly been through it */
+        begun: raw.begun || {},
       };
     });
     // the chain runs to the end, not just to the step under test
-    ok('saved state runs the whole migration chain', r.version === 4, 'v' + r.version);
+    ok('saved state runs the whole migration chain', r.version === 5, 'v' + r.version);
+    ok('a stage already practised is not re-gated', !!r.begun['01-nama'],
+      Object.keys(r.begun).join(' | ') || 'none');
     ok('old text key removed', r.oldGone);
     ok('record moved onto the stable id', r.newRec && r.newRec.w === 3, JSON.stringify(r.newRec));
     ok('per-deck best score untouched', r.deckBestKept && r.deckBestKept.best === 12, JSON.stringify(r.deckBestKept));
@@ -1027,10 +1032,12 @@ const open = async (browser, opts = {}) => {
           name: h.querySelector('.tr-name').textContent,
           leaf: h.classList.contains('leaf'),
           /* a child is a deck button, a lesson-level leaf button, or a
-             wrapper holding a lesson heading */
-          kids: body ? [...body.children].map(c =>
-            (c.matches('.dk, .ls-head') ? c : c.querySelector('.ls-head'))
-              .querySelector('.dk-name, .ls-name').textContent) : [],
+             wrapper holding a lesson heading — anything else (the note on a
+             stage that has not been begun) is not a row */
+          kids: body ? [...body.children]
+            .map(c => c.matches('.dk, .ls-head') ? c : c.querySelector('.ls-head'))
+            .filter(Boolean)
+            .map(c => c.querySelector('.dk-name, .ls-name').textContent) : [],
         };
       });
       return {
@@ -1055,8 +1062,9 @@ const open = async (browser, opts = {}) => {
       ['Pūjā-Vāk', 'Svara-Vidyā', 'Avadhāna'].every(n => leaves.includes(n)),
       leaves.join(' | '));
     const puja = r.rows.find(x => x.name === 'Pūjā-Vāk');
-    ok('and has no level underneath repeating it',
-      puja && !puja.kids.length, puja ? puja.kids.join(' | ') : 'missing');
+    ok('and carries its lists directly, with no heading repeating it',
+      puja && puja.kids.length === 11 && !puja.kids.includes('Pūjā-Vāk'),
+      puja ? puja.kids.length + ' rows' : 'missing');
     const folded = await p.evaluate(() => {
       const row = [...document.querySelectorAll('.tr-head.leaf')]
         .find(b => b.querySelector('.tr-name').textContent === 'Pūjā-Vāk');
@@ -1722,24 +1730,45 @@ const open = async (browser, opts = {}) => {
       && /Abhyāsa Review/.test(r.txt), r.txt.slice(0, 60));
     ok('it carries the two figures the drawer carries',
       /^\d+%$/.test(r.mastery) && /^\d+$/.test(r.lists), r.mastery + ' · ' + r.lists);
-    ok('it offers the list and the scoreboard',
-      JSON.stringify(r.buttons) === '["In progress","Scoreboard"]', r.buttons.join(' | '));
+    /* Nothing has been begun on a first run, so there is nothing "in
+       progress": the card opens the first stage instead of dropping a
+       beginner into a list with no idea what it is for. */
+    ok('a first visit offers the first stage and the scoreboard',
+      /^Begin — /.test(r.buttons[0]) && r.buttons[1] === 'Scoreboard', r.buttons.join(' | '));
     ok('its buttons are legible on the leaf', r.readable);
     ok('nothing that belongs to a running card is showing', r.quiet);
     ok('and it adds no h1 to the page', r.h1 === 0, r.h1 + ' found');
     ok('it fits a phone without sideways scroll', !r.overflow);
 
-    // "In progress" hands over to the cards, and the round is intact
+    // the first-visit button hands over to the stage, not to a card
     await p.click('#w-go');
-    const after = await p.evaluate(() => ({
+    const first = await p.evaluate(() => ({
       gone: document.getElementById('welcome').hidden,
-      card: getComputedStyle(document.getElementById('card')).display,
-      controls: document.getElementById('controls').hidden,
-      running: !!current,
+      stage: !document.getElementById('stagecard').hidden,
+      name: document.getElementById('s-name').textContent,
+      go: document.getElementById('s-go').textContent,
     }));
+    ok('“Begin” hands over to the stage, not straight to a card',
+      first.gone && first.stage && /^Begin — /.test(first.go),
+      first.name + ' · ' + first.go);
+
+    /* Once a stage has been begun there IS something in progress, and the
+       card offers it. */
+    const resumed = await p.evaluate(() => {
+      beginStage(DECK_LESSON[deckName]);
+      showWelcome();
+      const label = document.getElementById('w-go').textContent;
+      document.getElementById('w-go').click();
+      return { label,
+               gone: document.getElementById('welcome').hidden,
+               card: getComputedStyle(document.getElementById('card')).display,
+               controls: document.getElementById('controls').hidden,
+               running: !!current };
+    });
     ok('“In progress” hands over to the cards',
-      after.gone && after.card !== 'none' && !after.controls && after.running,
-      JSON.stringify(after));
+      resumed.label === 'In progress' && resumed.gone && resumed.card !== 'none'
+      && !resumed.controls && resumed.running,
+      JSON.stringify(resumed));
 
     /* Picking the list you are already on is the case that nearly broke:
        chooseDeck() used to return early for it, which on the landing card
@@ -1935,6 +1964,9 @@ const open = async (browser, opts = {}) => {
   }
 
   // ── a stage says what it gives you before it asks anything ─────────
+  // The stage name IS the introduction: tapping it in the drawer opens the
+  // page, the page gates the stage's lists until Begin is pressed, and every
+  // visit after that reports where the learner has got to.
   {
     const p = await browser.newPage();
     p.on('pageerror', e => { console.log('  PAGEERROR ' + e.message); fail.push('pageerror'); });
@@ -1946,42 +1978,101 @@ const open = async (browser, opts = {}) => {
          it is that the prose is actually usable */
       const thin = lessons.filter(L => OVERVIEW[L]
         && (OVERVIEW[L].lead.split(/\s+/).length < 15 || !OVERVIEW[L].plan.length));
+      /* a stage's confidence note must not explain a control the page below
+         it demonstrates — that was the same thing said twice */
+      const doubled = lessons.filter(L => OVERVIEW[L] && OVERVIEW[L].note
+        && /red line|book icon|Study icon|tool ?tip/i.test(OVERVIEW[L].note));
       showStage('05-rupa');
+      const card = document.getElementById('stagecard');
+      const tools = card.querySelector('.s-tools');
       const shown = {
-        on: !document.getElementById('stagecard').hidden
+        on: !card.hidden
             && getComputedStyle(document.getElementById('card')).display === 'none',
         name: document.getElementById('s-name').textContent,
         track: document.getElementById('s-track').textContent,
         steps: document.querySelectorAll('#s-plan li').length,
         go: document.getElementById('s-go').textContent,
         stats: !document.getElementById('s-stats').hidden,
-        help: document.querySelector('#stagecard .s-help').textContent.replace(/\s+/g, ' '),
+        review: !document.getElementById('s-review').hidden,
+        /* the two controls, shown as they appear rather than named: the red
+           dotted annotation and the Study glyph itself */
+        tagInk: getComputedStyle(tools.querySelector('.ann')).color,
+        tagLine: getComputedStyle(tools.querySelector('.ann')).borderBottomStyle,
+        glyph: !!tools.querySelector('.studybtn svg'),
+        /* no list menu on the page: the lists are in the drawer, under the
+           stage's own name */
+        menu: card.querySelectorAll('.dk').length,
+        /* nor the decorative binding holes, which belong to a flashcard */
+        holes: getComputedStyle(card, '::before').content,
+        /* the same pigment the annotation carries on a card, resolved rather
+           than compared as a declaration */
+        kumkuma: (() => {
+          const probe = document.createElement('span');
+          probe.style.color = 'var(--kumkuma)';
+          card.appendChild(probe);
+          const c = getComputedStyle(probe).color;
+          probe.remove();
+          return c;
+        })(),
       };
-      return { missing, thin, shown, lessons: lessons.length };
+      return { missing, thin, doubled, shown };
     });
     ok('every lesson with practice has a stage page',
       !r.missing.length, r.missing.join(' | '));
     ok('and each one leads with real prose and a plan', !r.thin.length, r.thin.join(' | '));
+    ok('no stage note repeats what the page itself demonstrates',
+      !r.doubled.length, r.doubled.join(' | '));
     ok('the stage page opens over the cards', r.shown.on);
     ok('it names the stage and its track',
       /Rūpa/.test(r.shown.name) && /Bhāṣā/.test(r.shown.track),
       r.shown.track + ' · ' + r.shown.name);
     ok('it walks through how the stage runs', r.shown.steps >= 2, r.shown.steps + ' steps');
-    ok('it points at the annotation and at Study',
-      /red line/.test(r.shown.help) && /book icon/.test(r.shown.help), r.shown.help.slice(0, 50));
-    ok('an untouched stage offers to begin',
-      /^Begin/.test(r.shown.go) && !r.shown.stats, r.shown.go);
+    ok('it shows the annotation as it appears — red, and underlined',
+      r.shown.tagLine === 'dotted' && r.shown.kumkuma === r.shown.tagInk,
+      r.shown.tagInk + ' · ' + r.shown.tagLine);
+    ok('and the Study control as the glyph it is', r.shown.glyph);
+    ok('the page carries no list menu', r.shown.menu === 0, r.shown.menu + ' rows');
+    ok('and no binding holes: it is read, not answered',
+      r.shown.holes === 'none', r.shown.holes);
+    ok('an untouched stage offers to begin, with no progress to report',
+      /^Begin/.test(r.shown.go) && !r.shown.stats && !r.shown.review, r.shown.go);
+
+    // until then its lists are visible in the drawer but shut
+    const shut = await p.evaluate(() => {
+      openDrawer();
+      const row = TRACK_ROWS.find(r => r.lessons.some(L => L.lesson === '05-rupa'));
+      openTracks.add(row.track.id); openLessons.add('05-rupa'); renderDrawer();
+      const rows = [...document.querySelectorAll('.ls-body .dk')]
+        .filter(b => DECK_LESSON[b.title.split(' — ')[0]] === '05-rupa'
+                  || /Rūpa|Vibhakti|Śabda|Sarva|Asmad|Yuṣmad|Tad/.test(b.textContent));
+      const mine = Object.keys(DECKS).filter(n => DECK_LESSON[n] === '05-rupa');
+      const drawn = [...document.querySelectorAll('.ls-body .dk')]
+        .filter(b => mine.some(n => b.title.indexOf(n) === 0));
+      return { drawn: drawn.length, locked: drawn.filter(b => b.disabled).length,
+               said: !!document.querySelector('.ls-shut'),
+               rows: rows.length };
+    });
+    ok('the stage’s lists are drawn under its name in the drawer',
+      shut.drawn > 0, shut.drawn + ' rows');
+    ok('and every one is shut until the stage has been begun',
+      shut.locked === shut.drawn && shut.said,
+      shut.locked + ' of ' + shut.drawn + ' shut');
 
     // begin hands over to the first list, and the page gets out of the way
+    await p.evaluate(() => closeDrawer());
     await p.click('#s-go');
     const gone = await p.evaluate(() => ({
       page: document.getElementById('stagecard').hidden,
       card: getComputedStyle(document.getElementById('card')).display,
       deck: deckName, lesson: DECK_LESSON[deckName], running: !!current,
+      begun: !!SAVED.begun['05-rupa'],
+      open: [...document.querySelectorAll('.ls-body .dk')].filter(b => !b.disabled).length,
     }));
     ok('“Begin” opens the lesson’s first list',
       gone.page && gone.card !== 'none' && gone.running && gone.lesson === '05-rupa',
-      JSON.stringify(gone));
+      JSON.stringify({ deck: gone.deck, running: gone.running }));
+    ok('and unlocks the stage for good', gone.begun && gone.open > 0,
+      gone.open + ' lists open');
 
     // once there is progress the page reports it instead of offering to start
     const again = await p.evaluate(() => {
@@ -1991,46 +2082,50 @@ const open = async (browser, opts = {}) => {
       return { go: document.getElementById('s-go').textContent,
                stats: !document.getElementById('s-stats').hidden,
                pct: document.getElementById('s-pct').textContent,
-               done: document.getElementById('s-done').textContent };
+               review: !document.getElementById('s-review').hidden,
+               side: document.getElementById('s-side').textContent.replace(/\s+/g, ' ').trim(),
+               figures: document.querySelectorAll('#s-stats .w-stat').length };
     });
     ok('a stage in progress reports it rather than offering to begin',
-      /^Continue/.test(again.go) && again.stats && /^\d+%$/.test(again.pct)
-      && /^\d+ of \d+$/.test(again.done),
-      again.go + ' · ' + again.pct + ' · ' + again.done);
+      /^Continue/.test(again.go) && again.stats && /^\d+%$/.test(again.pct),
+      again.go + ' · ' + again.pct);
+    ok('and reports one figure, not a breakdown', again.figures === 1,
+      again.figures + ' figures');
+    ok('Abhyāsa is a reminder with a way in, not a section',
+      again.review && /Abhyāsa mixes cards/.test(again.side), again.side.slice(0, 40));
 
-    /* The stage name in the drawer IS the way in: tapping it opens the page,
-       and the page carries the lesson's lists, so nothing moved further away. */
+    // and that way in opens the review, returning to the stage afterwards
+    await p.click('#s-review');
+    const rev = await p.evaluate(() => ({
+      panel: getComputedStyle(document.getElementById('reviewpanel')).display !== 'none',
+      page: document.getElementById('stagecard').hidden,
+    }));
+    await p.click('#p-back');
+    const back = await p.evaluate(() => !document.getElementById('stagecard').hidden);
+    ok('the reminder’s button opens Abhyāsa', rev.panel && rev.page);
+    ok('and closing it returns to the stage', back);
+
+    /* The stage name in the drawer IS the way in: tapping it opens the page.
+       The introduction is not a panel nested under the name. */
     const drawer = await p.evaluate(() => {
-      const row = TRACK_ROWS.find(r => r.lessons.some(L => L.lesson === '05-rupa'));
+      const row = TRACK_ROWS.find(r => r.lessons.some(L => L.lesson === '01-nama'));
       openDrawer();
       openTracks.add(row.track.id);
       renderDrawer();
       const head = [...document.querySelectorAll('.tr-body:not([hidden]) .ls-head')]
-        .find(b => b.querySelector('.ls-name').textContent === LESSON_LABEL['05-rupa']);
+        .find(b => b.querySelector('.ls-name').textContent === LESSON_LABEL['01-nama']);
       head.click();
-      const lists = [...document.querySelectorAll('#s-decks .dk')].map(b => b.title);
       return { shut: document.getElementById('drawer').hidden,
                page: !document.getElementById('stagecard').hidden,
                name: document.getElementById('s-name').textContent,
-               heading: document.getElementById('s-lists-h').textContent,
-               lists: lists.length,
-               all: lists.length === Object.keys(DECKS).filter(n => DECK_LESSON[n] === '05-rupa').length,
-               deep: document.querySelectorAll('.ls-body .dk').length };
+               /* no row inside the lesson stands for the introduction */
+               nested: [...document.querySelectorAll('.ls-body button')]
+                 .filter(b => /about this stage|introduction/i.test(b.textContent)).length };
     });
     ok('tapping a stage name in the drawer opens its page',
-      drawer.shut && drawer.page && /Rūpa/.test(drawer.name), drawer.name);
-    ok('and the page carries every list in the stage',
-      drawer.all && /^\d+ lists in this stage$/.test(drawer.heading),
-      drawer.heading + ' · ' + drawer.lists + ' rows');
-    ok('so no list is buried a level deeper in the drawer',
-      drawer.deep === 0, drawer.deep + ' rows nested');
-    const reach = await p.evaluate(() => {
-      const rows = [...document.querySelectorAll('#s-decks .dk')];
-      return { minH: Math.min(...rows.map(b => b.getBoundingClientRect().height)),
-               overflow: document.documentElement.scrollWidth > window.innerWidth };
-    });
-    ok('and every list row on the page is a 44px target',
-      reach.minH >= 44 && !reach.overflow, reach.minH + 'px');
+      drawer.shut && drawer.page && /Nāma/.test(drawer.name), drawer.name);
+    ok('and no row is nested under the name to stand for it',
+      drawer.nested === 0, drawer.nested + ' rows');
     await p.close();
   }
 
@@ -3225,24 +3320,27 @@ const open = async (browser, opts = {}) => {
       opened.heads + ' · ' + opened.cards);
 
     const reach = await p.evaluate(() => {
-      // shut everything, then walk down: track -> stage page -> deck
+      // shut everything, then walk down: track -> stage -> Begin -> its lists
       openTracks.clear(); openLessons.clear(); renderDrawer();
       const before = document.querySelectorAll('.tr-body:not([hidden]) .ls-head').length;
       document.querySelector('.tr-head').click();
       const afterTrack = document.querySelectorAll('.tr-body:not([hidden]) .ls-head').length;
       document.querySelector('.tr-body:not([hidden]) .ls-head').click();
       const page = !document.getElementById('stagecard').hidden;
-      const afterLesson = document.querySelectorAll('#s-decks .dk').length;
-      return { before, afterTrack, page, afterLesson,
-               name: document.querySelector('#s-decks .dk').title };
+      const shut = document.querySelectorAll('.ls-body .dk:disabled').length;
+      document.getElementById('s-go').click();      // Begin opens the stage
+      openDrawer();
+      const afterLesson =
+        document.querySelectorAll('.ls-body:not([hidden]) .dk:not(:disabled)').length;
+      return { before, afterTrack, page, shut, afterLesson };
     });
     ok('collapsed tracks hide their lessons', reach.before === 0, reach.before + ' showing');
     ok('a track expands to its lessons', reach.afterTrack > 0, reach.afterTrack + ' lessons');
     ok('a lesson opens its stage page', reach.page);
-    ok('and the stage page carries that lesson’s lists',
-      reach.afterLesson > 0, reach.afterLesson + ' lists');
+    ok('whose lists are shut until it is begun', reach.shut > 0, reach.shut + ' shut');
+    ok('and open once it is', reach.afterLesson > 0, reach.afterLesson + ' lists');
 
-    await p.click('#s-decks .dk');
+    await p.click('.ls-body:not([hidden]) .dk:not(.on):not(:disabled)');
     const chosen = await p.evaluate(() => ({
       shut: document.getElementById('drawer').hidden,
       deck: deckName, running: !!current,
@@ -3264,7 +3362,9 @@ const open = async (browser, opts = {}) => {
       /* scoped to the drawer: the stage page's list rows are the same `.dk`
          button, and it is hidden behind the round that is running */
       const rows = [...document.querySelectorAll('#drawer .tr-head, #drawer .ls-head, '
-        + '#drawer .dk, #drawer .dr-mode, #drawer .dr-x')];
+        + '#drawer .dk, #drawer .dr-mode, #drawer .dr-x')]
+        /* a row inside a shut lesson body has no size to measure */
+        .filter(b => b.offsetParent !== null);
       const r = document.getElementById('drawer').getBoundingClientRect();
       return {
         minH: Math.min(...rows.map(x => x.getBoundingClientRect().height)),
@@ -3313,7 +3413,7 @@ const open = async (browser, opts = {}) => {
     ok('a perfect round on a smaller deck seeds nothing',
       r.resized.done === 0, r.resized.done + ' seeded');
     ok('a partial best score seeds nothing', r.partial.done === 0, r.partial.done + ' seeded');
-    ok('the store is stamped v4', r.v === 4, 'v' + r.v);
+    ok('the store is stamped v5', r.v === 5, 'v' + r.v);
     await p.close();
   }
 

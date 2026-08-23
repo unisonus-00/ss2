@@ -130,18 +130,10 @@
      The same palm-leaf surface as a flashcard, but set as prose: this is
      read once, not answered, so it is left-aligned and its type is the
      reading size rather than the display size a headword takes. */
+  /* No binding holes here.  They mark a flashcard as a leaf of the manuscript;
+     on a page that is read rather than answered they are two dots interrupting
+     the prose, and these pages are for orientation. */
   .welcome { padding: 2rem 1.6rem 1.7rem; }
-  /* the binding holes belong to the leaf, not to the flashcard layout */
-  .welcome::before, .welcome::after {
-    content: ""; position: absolute; top: 50%; width: 9px; height: 9px;
-    border-radius: 50%; background: var(--ground); opacity: .28; transform: translateY(-50%);
-  }
-  .welcome::before { left: 14px; }
-  .welcome::after { right: 14px; }
-  /* A stage page runs as long as the stage has lists, and holes at its
-     midpoint would sit somewhere down the list menu rather than on the leaf's
-     edge where the eye expects them.  They stay up beside the prose. */
-  #stagecard::before, #stagecard::after { top: 3.6rem; transform: none; }
   .w-mark {
     font-family: "Noto Serif Devanagari", "Kohinoor Devanagari", serif;
     font-size: 2.1rem; line-height: 1.2; letter-spacing: .01em;
@@ -175,6 +167,26 @@
   .s-note:empty { display: none; }
   /* where to look when a card is not enough */
   .s-help { font-size: .82rem; line-height: 1.5; color: var(--faded); margin: 0 0 1rem; }
+  /* The two controls a learner cannot discover on their own.  Each is shown
+     as it actually appears while practising — the red dotted annotation, the
+     book glyph — rather than described in words, so the page teaches the
+     interface instead of naming it. */
+  /* one grid over both rows, so the samples share a column and the prose
+     beside them starts at the same place */
+  .s-tools { display: grid; grid-template-columns: max-content 1fr; gap: .6rem .8rem;
+             align-items: baseline; margin: .1rem 0 1.2rem; }
+  .s-tools p { min-width: 0; margin: 0 !important; font-size: .82rem !important; line-height: 1.5;
+               color: var(--faded); }
+  .s-tools .tag { margin: 0; display: inline-block; white-space: nowrap; }
+  .s-tools .ann { cursor: default; }
+  /* the control's own rule pulls it to the front of a flex row (order: -1);
+     inside this grid it must stay where the markup puts it */
+  .s-tools .studybtn { color: var(--ink); margin: 0 auto; order: 0; align-self: baseline; }
+  .s-tools .studybtn::after { content: none; }
+  /* the reminder that Abhyāsa is there — a line under the actions, not a
+     section of its own */
+  .s-side { font-size: .78rem !important; line-height: 1.5; color: var(--faded);
+            margin: .7rem 0 0 !important; }
   /* The lesson's own menu, on the page the lesson opens with.  The drawer's
      rows are inked --leaf for the dark ground; here they take the card's
      palette, the same swap the buttons above them make. */
@@ -189,6 +201,9 @@
   }
   .w-actions button:hover { border-color: var(--faded); }
   .w-actions button.primary { border-color: var(--ink); }
+  /* Abhyāsa is a way back to consolidation, not the thing this page is for:
+     it takes the width it needs and the stage's own action takes the rest. */
+  .w-actions #s-review { flex: 0 1 auto; font-size: .85rem; padding: .6rem .9rem; }
   .card {
     min-height: 250px; display: flex; flex-direction: column;
     justify-content: center; align-items: center;
@@ -707,5 +722,11 @@
   .dk-pct { grid-area: pct; align-self: center; font-size: .74rem;
             color: var(--faded); font-variant-numeric: tabular-nums; }
   .dk.full .dk-pct { color: var(--patra); font-size: .9rem; }
+  /* A list whose stage has not been begun: visible, so the learner sees what
+     is coming, but not yet a way in. */
+  .dk.locked { opacity: .42; cursor: default; }
+  .dk.locked:hover { border-color: transparent; }
+  .ls-shut { font-size: .68rem; line-height: 1.4; font-style: italic;
+             color: var(--faded); padding: .1rem .5rem .35rem; }
 
   .drawer button:focus-visible { outline: 2px solid var(--kumkuma); outline-offset: 2px; }

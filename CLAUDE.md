@@ -464,17 +464,21 @@ fixed on its own in any case: `build.py` holds it byte-identical to
 
 ### Navigation and progress
 
-**The drawer stops at the stage name.** It holds two levels and no more:
+**A lesson's row is its stage.** Tapping it opens the stage page — the
+introduction is not a panel nested under the name, it is what the name leads
+to — and leaves the lesson's lists standing open underneath for the way back.
+So the walk is track → stage → list, and the tap that used to expand a
+heading now opens the page that says what the heading is for.
 
-| | |
-|:--|:--|
-| a track | expands to its lessons |
-| a lesson | **opens its stage page** — which carries that lesson's lists |
+**A stage's lists are shut until it has been begun.** They are drawn greyed
+rather than hidden, under one line saying what opens them — *Read the stage
+and press Begin to open these* — so a learner can see what is coming and
+still cannot start it without being told what it is for. Pressing `Begin` on
+the stage page opens all of them at once, and they stay open.
 
-So the walk is track → stage → list: the same three taps expanding a lesson
-used to take, with the stage's own prose on the way through. Nothing is
-nested under a lesson row any more, and a test asserts that no list sits a
-level deeper in the drawer.
+**A menu of one is not a menu.** Where a lesson holds a single list, no body
+is drawn at all: the stage page's own `Begin` is the way to it, and repeating
+its name under the stage's would say the same thing twice.
 
 **One child is folded away.** A level that has a single child adds a step
 without adding information, so the drawer skips it: **a track with one lesson
@@ -483,8 +487,8 @@ inside `Pūjā-Vāk` was the same name twice. `Svara-Vidyā` and `Avadhāna` fol
 the same way.
 
 A lesson with one list is no longer folded onto that list: it has a stage page
-like every other lesson, and the list is the one row on it. Folding now
-governs which *name* a row carries, not where it leads.
+like every other lesson, reached by its own name. Folding now governs which
+*name* a row carries, not where it leads.
 
 **Folded by what exists, never by a list of exceptions.** `soleLesson` reads
 the tree, so the level reappears by itself the moment a second lesson does,
@@ -496,9 +500,9 @@ Where a folded lesson's name differs from its track's, the subheading keeps it
 
 ### The stage page
 
-A lesson says what it gives you before it asks anything of you. **Tapping the
-stage name in the drawer opens its page** — that is what a lesson row does
-now — on the same palm-leaf surface:
+A lesson says what it gives you before it asks anything of you, and **it is
+not optional**: tapping the stage name in the drawer opens this page, and the
+stage's lists stay shut until `Begin` is pressed on it.
 
 ```
 BHĀṢĀ-VIDYĀ
@@ -509,16 +513,17 @@ HOW THIS STAGE RUNS
 1. Vibhakti-vacana teaches the names first…
 2. Vibhakti-rūpa then asks you to recognise a case…
 │ Eight cases sounds like a lot. It is really one table…
-Tap the red line under any answer for the grammar behind it, and the
-book icon beside the list name to read the lesson's reference.
-[ Begin — Vibhakti-vacana ]
 
-24 LISTS IN THIS STAGE
-Vibhakti-vacana                                              0%
-the eight cases · 8 cards
-Vibhakti-rūpa                                                0%
-case and form · practice · 15 cards
-…
+WHILE YOU PRACTISE
+noun · neuter · a-stem   The red line under an answer. Tap it and it says
+                         what the word is and why the form is the form it is.
+        📖               The Study icon, beside the list name. It opens this
+                         lesson's own reference to read while you practise.
+
+STAGE PROGRESS                                                        12%
+[ Continue — Vibhakti-rūpa ]  [ Abhyāsa review ]
+Abhyāsa mixes cards from every list you have completed, so what you learn
+here keeps coming back.
 ```
 
 - **The prose is written for someone who has never met the material.** The
@@ -527,19 +532,31 @@ case and form · practice · 15 cards
   hardest idea in the stage — that Sanskrit counts persons the other way
   round, that a pratyāhāra is only a shorthand, that eight cases are really
   one table.
-- **It points at the two places to get unstuck**: the red annotation under an
-  answer, and the Study icon. Neither is discoverable on its own.
-- **The prompt changes once the stage has been started.** Untouched, it reads
-  `Begin — <first list>`. With progress, the page shows stage percentage and
-  lists complete, and the button reads `Continue — <first unfinished list>`.
-- **The page carries the lesson's lists.** They are the drawer's own rows,
-  drawn by `deckRow` and re-inked for the leaf, so a list shows the same
-  percentage, the same descriptor and the same `on` marking it had in the
-  drawer. This is why moving the page onto the lesson row costs no step: the
-  level that used to expand under the row is now the menu at the bottom of
-  the page, under prose saying what the lists are for.
-- **`Begin` leads, the menu follows.** The button is the answer for a learner
-  who does not yet know which list to take; the menu is for one who does.
+- **The page shows the two controls rather than naming them.** The red line
+  and the Study icon are the two things a learner cannot discover on their
+  own, and prose describing them taught nothing: the page now carries a real
+  annotation, in kumkuma under its dotted rule, and the Study glyph itself.
+  A test resolves the colour and the border style off the sample and fails if
+  either stops matching a card's own. **So the note above must not explain
+  them a second time** — Stage 1's aside used to describe the red line
+  immediately above the block demonstrating it, and a test now fails any
+  overview note that names one of these controls.
+- **The prompt changes once the stage has been begun.** Untouched, the page
+  reports nothing and reads `Begin — <first list>`; that press is what opens
+  the stage. After it, the page carries **one** figure — stage progress — and
+  the button reads `Continue — <first unfinished list>`. `Begin` is never
+  offered twice.
+- **It carries no list menu.** The lists are in the drawer under the stage's
+  own name, where navigation lives; repeating all 41 of them here made an
+  orientation page into a directory. One aggregate figure, and the next
+  action.
+- **Abhyāsa is a reminder, not a section.** One line under the actions saying
+  that completed lists come back, and a button that opens the review. It is
+  deliberately the smaller of the two buttons: the stage's own next list is
+  what this page is for.
+- **No binding holes.** They mark a flashcard as a leaf of the manuscript; on
+  a page that is read rather than answered they are two dots interrupting the
+  prose. The landing card lost them too.
 
 **The overview lives in the lesson's own `practice.json`**, beside the lists
 it describes, and declares its coupling to them:
@@ -576,7 +593,7 @@ poetry, Vedic recitation, and Avadhāna.
 …
 OVERALL MASTERY                    0%
 LISTS COMPLETE                      0
-[ In progress ]      [ Scoreboard ]
+[ Begin — Nāma ]     [ Scoreboard ]
 ```
 
 - **It says where the stages are.** A learner who has never opened the drawer
@@ -586,10 +603,15 @@ LISTS COMPLETE                      0
   `startRound()` both call `leaveWelcome()`, so every other surface — the
   drawer, a review draw, the trouble drill — reaches the cards without
   knowing the landing card exists. It is never something to get past.
-- **`In progress` resumes the list you were on.** Boot still runs
-  `loadDeck(SAVED.deck)` first, so the round is loaded and labelled behind
-  the welcome and the button only has to uncover it. The button's `title`
-  names the list.
+- **It carries the same gate the stages do.** With nothing begun there is
+  nothing in progress, and `In progress` would have dropped a first-time
+  learner into a list with no idea what it was for — boot loads `SAVED.deck`
+  behind the welcome whether or not it has ever been opened. So on a first
+  visit the button reads `Begin — <first stage>` and opens that stage's page,
+  whose own `Begin` opens its lists. One flag, `SAVED.begun`, decides both.
+- **`In progress` resumes the list you were on**, once anything has been
+  begun. Boot has already loaded and labelled the round behind the welcome,
+  so the button only has to uncover it. Its `title` names the list.
 - **A panel opened from it returns to it.** `openPanel` records the welcome's
   state alongside the card's, so the scoreboard closes back onto the landing
   card rather than onto cards the learner never chose.
@@ -1526,12 +1548,17 @@ Three things here are load-bearing for the compatibility list above:
   the brand settled on the bare stem **Abhyāsa**, and left alone: it is
   invisible plumbing, not displayed text, and renaming it would only add
   migration risk for no visible benefit. Versioned by `SAVED.v`
-  (now 4). v1 keyed trouble history by `devanagari + '¦' + gloss`; the app
+  (now 5). v1 keyed trouble history by `devanagari + '¦' + gloss`; the app
   lifts those records onto stable ids on first load. v2→v3 seeds `SAVED.mastered`
   from the one case that can be resolved exactly rather than guessed at — a
   deck whose best round was perfect *and* whose size has not changed since.
   v3→v4 adds the per-card review history that paces the draw, starting empty
   because no record of *which* cards a past session showed ever existed.
+  v4→v5 adds `SAVED.begun`, the stages whose introduction has been read, and
+  seeds it from progress: a learner already part way through a stage has
+  plainly met it and must not be sent back to the door, so any stage holding a
+  mastered card, a list with a best score or a missed pile, or the list that
+  was open when the app was last closed, is marked begun.
   `OLD_KEYS` separately lifts state out of earlier storage key names. Keep every
   chain, and keep each step stamping its own version rather than the newest;
   every `localStorage` touch stays guarded, since it can be absent or full.

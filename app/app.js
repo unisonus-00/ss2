@@ -326,6 +326,9 @@ SAVED.review.cards = SAVED.review.cards || {};
 SAVED.trouble = SAVED.trouble || {};       // per-card history, keyed by card
 SAVED.cleared = SAVED.cleared || 0;        // cards that have left the trouble list
 SAVED.mastered = SAVED.mastered || {};     // card ids answered right on a cold showing
+/* Stages whose introduction has been read: a stage's lists stay shut until
+   the learner has been through what the stage is for and pressed Begin. */
+SAVED.begun = SAVED.begun || {};
 if (SAVED.deck === MIX) delete SAVED.deck;      // the review is no longer a picker choice
 function save() {
   try { localStorage.setItem(STORE_KEY, JSON.stringify(SAVED)); } catch (e) {}
@@ -344,7 +347,7 @@ const deckState = name => SAVED.decks[name] = SAVED.decks[name] || {};
 
    SAVED.decks is keyed by deck NAME, and deck names did not change in the
    migration, so per-deck best scores need no rescue. */
-const SAVED_VERSION = 4;
+const SAVED_VERSION = 5;
 if ((SAVED.v || 1) < 2) {
   let moved = 0;
   Object.values(DECKS).forEach(cards => cards.forEach(c => {
@@ -391,8 +394,34 @@ if ((SAVED.v || 1) < 3) {
    the whole pool, exactly as it did before, and pacing begins from there. */
 if ((SAVED.v || 1) < 4) {
   SAVED.review.cards = SAVED.review.cards || {};
+  SAVED.v = 4;                        // this step only — v5 runs below
+  save();
+}
+
+/* v5 gates a stage's lists behind its introduction.  A learner already part
+   way through a stage has plainly begun it and must not be sent back to the
+   door: every stage holding a card that has come back cold, or a list with a
+   best score, or the list that was open when the app was last closed, is
+   marked begun.  Anything else is a stage that has genuinely not been met. */
+if ((SAVED.v || 1) < 5) {
+  const begin = n => { if (DECK_LESSON[n]) SAVED.begun[DECK_LESSON[n]] = 1; };
+  Object.keys(DECKS).forEach(n => {
+    const ds = SAVED.decks[n];
+    if ((ds && (ds.best || ds.missed)) || DECKS[n].some(c => SAVED.mastered[c.id])) begin(n);
+  });
+  if (SAVED.deck) begin(SAVED.deck);
   SAVED.v = SAVED_VERSION;
   save();
+}
+
+/* A stage with no introduction has no door to open, so it is never shut. */
+const stageBegun = lesson => !OVERVIEW[lesson] || !!SAVED.begun[lesson];
+const deckLocked = name => !stageBegun(DECK_LESSON[name]);
+function beginStage(lesson) {
+  if (SAVED.begun[lesson]) return;
+  SAVED.begun[lesson] = 1;
+  save();
+  renderDrawer();          // its lists are open now, and the drawer says so
 }
 
 /* ── trouble cards ─────────────────────────────────────────
@@ -826,12 +855,22 @@ function deckRow(name, cls) {
   cls = cls || 'dk';
   const p = progressOf(DECK_IDS[name]);
   const b = rowButton(cls, {
-    name: DECK_SHORT(name), pct: p.pct, full: p.full, on: name === deckName,
+    name: DECK_SHORT(name), pct: p.pct, full: p.full,
+    /* a shut list is not "where you are", whatever was loaded behind the
+       landing card */
+    on: name === deckName && !deckLocked(name),
     bar: cls !== 'dk', title: name,
     sub: [DECK_DESC(name), DECKS[name].length + ' cards'].filter(Boolean).join(' · ')
   });
   b.classList.add('leaf');
-  b.addEventListener('click', () => chooseDeck(name));
+  /* Shut until the stage has been begun.  The learner meets the stage before
+     its lists, so a list that has not been introduced is greyed rather than
+     hidden — what is coming is visible, and one press opens all of it. */
+  if (deckLocked(name)) {
+    b.disabled = true;
+    b.classList.add('locked');
+    b.title = name + ' — begin the stage to open its lists';
+  } else b.addEventListener('click', () => chooseDeck(name));
   return b;
 }
 
@@ -846,40 +885,78 @@ function stageRow(cls, L, over) {
     sub: [LESSON_GLOSS[L.lesson], count(L.decks.length, 'list')].filter(Boolean).join(' \u00b7 '),
   }, over || {}));
   b.classList.add('leaf');
-  b.addEventListener('click', () => { closeDrawer(); showStage(L.lesson); });
+  b.addEventListener('click', () => {
+    openLessons.add(L.lesson);          // the lists are there on the way back
+    closeDrawer();
+    showStage(L.lesson);
+  });
   return b;
 }
 
 function lessonRow(L) {
   /* A lesson with no overview has no page to open, so it keeps the older
-     behaviour and expands.  The drawer navigates what exists. */
-  if (OVERVIEW[L.lesson]) return stageRow('ls', L);
+     behaviour and simply expands.  The drawer navigates what exists. */
+  if (!OVERVIEW[L.lesson]) return plainLessonRow(L);
 
+  const wrap = document.createElement('div');
+  wrap.className = 'ls' + (progressOf(L.ids).full ? ' full' : '');
+  const open = openLessons.has(L.lesson);
+  /* The row IS the stage: it opens the stage page, and leaves the lesson's
+     lists standing open underneath for the next time the drawer is opened.
+     The introduction is not a panel nested under the name — it is what the
+     name leads to, and the lists are what it lets you at. */
+  const head = stageRow('ls', L);
+  head.setAttribute('aria-expanded', open ? 'true' : 'false');
+  wrap.appendChild(head);
+
+  const body = lessonBody(L, 'ls');
+  if (body) wrap.appendChild(body);
+  else head.removeAttribute('aria-expanded');
+  return wrap;
+}
+
+/* A lesson's lists, standing open or shut with the lesson.  Until the stage
+   has been begun they are greyed and say so, rather than being hidden: what
+   is coming should be visible, and one press opens all of it. */
+function lessonBody(L, cls) {
+  /* A menu of one is not a menu: where the lesson holds a single list, the
+     stage page's own Begin is the way to it, and repeating its name under the
+     stage's would only say the same thing twice. */
+  if (L.decks.length === 1) return null;
+  const body = document.createElement('div');
+  body.className = cls + '-body';
+  body.hidden = !openLessons.has(L.lesson);
+  if (!stageBegun(L.lesson)) {
+    const why = document.createElement('div');
+    why.className = 'ls-shut';
+    why.textContent = 'Read the stage and press Begin to open these.';
+    body.appendChild(why);
+  }
+  L.decks.forEach(name => body.appendChild(deckRow(name)));
+  return body;
+}
+
+/* The older shape, for a lesson the build has given no overview: a heading
+   that expands, or the single list it comes down to. */
+function plainLessonRow(L) {
   const one = soleDeck(L);
   if (one) {
-    /* The lesson IS that list \u2014 but the row still has to say which lesson.
-       Folding may not silently delete a curriculum name: `Chandas II` read
-       simply `V\u1e5btta`, and the drawer then had a Chandas I and no Chandas II.
-       So the lesson's name leads, exactly as a folded track's does, and the
-       list's own name is kept in the subheading wherever it differs. */
     const r = deckRow(one, 'ls');
     fillRow(r, { '.ls-name': L.label,
       '.ls-sub': foldedSub(DECK_SHORT(one), L.label, DECK_DESC(one),
                            [DECKS[one].length + ' cards']) });
     return r;
   }
-
   const p = progressOf(L.ids), open = openLessons.has(L.lesson);
   const wrap = document.createElement('div');
   wrap.className = 'ls' + (p.full ? ' full' : '');
   const head = rowButton('ls', {
     name: L.label, pct: p.pct, full: p.full, bar: true,
-    sub: [LESSON_GLOSS[L.lesson], count(L.decks.length, 'list')].filter(Boolean).join(' \u00b7 ')
+    sub: [LESSON_GLOSS[L.lesson], count(L.decks.length, 'list')].filter(Boolean).join(' · ')
   });
   head.setAttribute('aria-expanded', open ? 'true' : 'false');
   head.addEventListener('click', () => { toggleIn(openLessons, L.lesson); renderDrawer(); });
   wrap.appendChild(head);
-
   const body = document.createElement('div');
   body.className = 'ls-body';
   body.hidden = !open;
@@ -918,11 +995,15 @@ function renderDrawer() {
        the lesson folded away is named something else, that name takes the
        subheading, so no level of the curriculum vanishes without trace. */
     if (only && OVERVIEW[only.lesson]) {
-      wrap.appendChild(stageRow('tr', only, {
+      const head = stageRow('tr', only, {
         name: t.name, pct: p.pct, full: p.full,
         sub: foldedSub(only.label, t.name, t.gloss,
                        [count(only.decks.length, 'list')]),
-      }));
+      });
+      const body = lessonBody(only, 'tr');
+      if (body) head.setAttribute('aria-expanded', openLessons.has(only.lesson) ? 'true' : 'false');
+      wrap.appendChild(head);
+      if (body) wrap.appendChild(body);
       host.appendChild(wrap);
       return;
     }
@@ -1094,10 +1175,27 @@ function renderWelcome() {
      to mean something. */
   $('w-mastery').textContent = (r.score === null ? 0 : r.score) + '%';
   $('w-lists').textContent = finishedDecks().length;
+  /* The same gate the stages carry.  With nothing begun there is nothing in
+     progress, and "In progress" would drop a first-time learner into a list
+     with no idea what it was for; the button opens the first stage instead,
+     and that stage's own Begin opens its lists. */
   const go = $('w-go');
-  go.title = deckName ? 'Continue ' + DECK_SHORT(deckName) : 'Start the first list';
+  const first = TRACK_ROWS[0].lessons[0];
+  if (started()) {
+    go.textContent = 'In progress';
+    go.title = deckName ? 'Continue ' + DECK_SHORT(deckName) : 'Continue where you left off';
+    go.onclick = leavePage;
+  } else {
+    go.textContent = 'Begin — ' + first.label;
+    go.title = 'Read what ' + first.label + ' gives you, then start its first list';
+    go.onclick = () => showStage(first.lesson);
+  }
   go.setAttribute('aria-label', go.title);
 }
+
+/* Has the learner met any stage at all?  One flag decides what the landing
+   card offers, exactly as it decides whether a stage's lists are open. */
+const started = () => Object.keys(SAVED.begun).length > 0;
 
 /* ── the stage page ────────────────────────────────────────
    A lesson says what it gives you before it asks anything.  On a first visit
@@ -1116,7 +1214,7 @@ function renderStage(lesson) {
   const track = TRACK_ROWS.find(r => r.lessons.some(L => L.lesson === lesson));
   fillRow(document, {
     '#s-track': track ? track.track.name : '',
-    '#s-name': LESSON_LABEL[lesson] + (LESSON_GLOSS[lesson] ? ' \u00b7 ' + LESSON_GLOSS[lesson] : ''),
+    '#s-name': LESSON_LABEL[lesson] + (LESSON_GLOSS[lesson] ? ' · ' + LESSON_GLOSS[lesson] : ''),
     '#s-lead': o.lead,
     '#s-note': o.note || '',
   });
@@ -1127,24 +1225,22 @@ function renderStage(lesson) {
     li.textContent = step;
     ol.appendChild(li);
   });
+  /* First visit: the stage is shut, and Begin is what opens it — the lists
+     are greyed in the drawer until it is pressed.  Every visit after: where
+     you have got to, and the next list to take.  Begin is not offered twice,
+     and only one figure is given — the stage as a whole. */
+  const begun = stageBegun(lesson);
   const p = progressOf(new Set([].concat(...names.map(n => [...DECK_IDS[n]]))));
-  const done = names.filter(n => finishedDecks().indexOf(n) >= 0).length;
-  const started = p.done > 0;
-  $('s-stats').hidden = !started;
-  if (started) fillRow(document, { '#s-pct': p.pct + '%', '#s-done': done + ' of ' + names.length });
-  /* the next list worth opening: the first that is not finished yet */
+  $('s-stats').hidden = !begun;
+  if (begun) $('s-pct').textContent = p.pct + '%';
   const next = names.find(n => finishedDecks().indexOf(n) < 0) || names[0];
   const go = $('s-go');
-  go.textContent = started ? 'Continue \u2014 ' + DECK_SHORT(next) : 'Begin \u2014 ' + DECK_SHORT(next);
-  go.onclick = () => chooseDeck(next);
-  /* The page carries the lesson's own lists, because it is the lesson's way
-     in: the drawer's rows stop at the stage name, and picking a list happens
-     here, under the prose that says what the lists are for.  Same rows the
-     drawer drew, so progress and the list in play read exactly as before. */
-  const host = $('s-decks');
-  host.textContent = '';
-  names.forEach(n => host.appendChild(deckRow(n)));
-  $('s-lists-h').textContent = count(names.length, 'list') + ' in this stage';
+  go.textContent = (begun ? 'Continue — ' : 'Begin — ') + DECK_SHORT(next);
+  go.onclick = () => { beginStage(lesson); chooseDeck(next); };
+  /* Abhyāsa is a reminder here, not a section: one line and a way in. */
+  $('s-review').hidden = !begun;
+  $('s-side').hidden = !begun;
+  $('s-review').onclick = () => openPanel('reviewpanel');
   stageShown = lesson;
   return true;
 }
@@ -2677,7 +2773,6 @@ relabelAll();
 /* ...and then land on the welcome, so the list is one tap away rather than
    already running.  loadDeck() above has left the app ready for it. */
 showWelcome();
-$('w-go').addEventListener('click', leaveWelcome);
 $('w-board').addEventListener('click', () => openPanel('board'));
 
 /* Load-time validation.  Silent while the card block is clean — the counts
