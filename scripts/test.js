@@ -3095,6 +3095,107 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
+  // ── the review asks harder as a card holds up ──────────────────────
+  // Recognising a form and producing one are not the same skill, and the
+  // badges want the second.  But reversal was entirely learner-driven, the
+  // setting defaults to recognition, and a draw ran whichever way the toggle
+  // happened to sit — so a card could be learned, reviewed twice and called
+  // RETAINED without the produce direction ever being attempted.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const out = {};
+      /* a small all-reveal pool, just over the unlock threshold, so cards
+         come back rather than fresh material leading every draw */
+      const names = [];
+      let n = 0;
+      for (const name of Object.keys(DECKS)) {
+        if (!DECKS[name].every(c => (c.type || 'reveal') === 'reveal')) continue;
+        names.push(name); n += DECKS[name].length;
+        if (n >= 42) break;
+      }
+      SAVED.mastered = {}; SAVED.pending = {}; SAVED.trouble = {}; SAVED.decks = {};
+      names.forEach(nm => DECKS[nm].forEach(c => { SAVED.mastered[c.id] = 1; }));
+      SAVED.review = { runs: 0, right: 0, seen: 0, cards: {} };
+      setDir('reveal');                       // the learner's own setting
+
+      const dn = () => document.getElementById('dn').textContent;
+      const DEVA = /[\u0900-\u097F]/;
+
+      out.sessions = [];
+      for (let sn = 0; sn < 4; sn++) {
+        SAVED.review.day = '2000-01-0' + (sn + 1);       // a new day each time
+        startMixedReview();
+        const rec = { produced: 0, recognised: 0, latinFronts: 0 };
+        let g = 0;
+        while (current && g++ < 60) {
+          if (askedDir(current.card) === 'produce') {
+            rec.produced++;
+            if (!DEVA.test(dn())) rec.latinFronts++;
+            rec.cue = document.getElementById('cue').textContent;
+            rec.toggle = document.getElementById('dir-label').textContent;
+            rec.locked = document.getElementById('dir').disabled;
+            rec.typography = document.body.classList.contains('mode-produce');
+            reveal();
+            rec.backIsDevanagari = DEVA.test(document.getElementById('gloss').textContent);
+          } else {
+            rec.recognised++;
+            if (!rec.firstReturnFront) rec.firstReturnFront = DEVA.test(dn());
+          }
+          reveal(); knew();
+        }
+        out.sessions.push(rec);
+      }
+      out.settingUntouched = SAVED.dir;
+
+      /* ordinary practice is still the learner's, and the toggle is live */
+      loadDeck(names[0]);
+      out.practice = { deva: DEVA.test(dn()),
+                       live: !document.getElementById('dir').disabled,
+                       label: document.getElementById('dir-label').textContent };
+
+      /* the trouble drill is not escalated: these are cards already being
+         lost, and the harder direction is the last thing they need */
+      const card = DECKS[names[0]][0];
+      SAVED.review.cards[card.id] = [SAVED.review.runs, 3];
+      SAVED.trouble[card.id] = { w: 3, r: 0, s: '' };
+      startTroubleDrill();
+      out.troubleDir = askedDir(current.card);
+
+      /* an interactive card in a review runs one way, as it always did */
+      const ch = Object.keys(DECKS).find(nm => DECKS[nm].every(c => c.type === 'choice'));
+      const cc = DECKS[ch][0];
+      SAVED.mastered[cc.id] = 1;
+      SAVED.review.cards[cc.id] = [SAVED.review.runs, 3];
+      startRound([cc], { mixed: true });
+      out.choiceDir = askedDir(cc);
+      out.choiceLabel = document.getElementById('dir-label').textContent;
+      return out;
+    });
+    const later = r.sessions[3], early = r.sessions[0];
+    ok('a card the review has never checked is asked for recognition',
+      early.produced === 0 && early.recognised > 0, JSON.stringify(early));
+    ok('and one that has come back once is asked to be produced',
+      later.produced > 0, JSON.stringify({ produced: later.produced,
+                                           recognised: later.recognised }));
+    ok('the card really is reversed, not merely relabelled',
+      later.latinFronts === later.produced && later.backIsDevanagari,
+      JSON.stringify({ latinFronts: later.latinFronts, back: later.backIsDevanagari }));
+    ok('the cue and the typography follow the direction asked',
+      later.cue === 'Produce the word' && later.typography, later.cue);
+    ok('the toggle states what is being asked rather than offering to change it',
+      later.locked && /\u2192/.test(later.toggle) && later.toggle !== 'one direction only',
+      later.toggle);
+    ok('and the learner\u2019s own setting is left alone',
+      r.settingUntouched === 'reveal' && r.practice.deva && r.practice.live,
+      JSON.stringify(r.practice));
+    ok('the trouble drill is never escalated', r.troubleDir === 'reveal', r.troubleDir);
+    ok('nor is an interactive card, which runs one way',
+      r.choiceDir === 'reveal' && r.choiceLabel === 'one direction only',
+      r.choiceLabel);
+    await p.close();
+  }
+
   // ── what "learned" means, and what Abhyāsa draws on ───────────────
   // A list played to the end used to be complete at any score, which fed the
   // review with material the learner had never got right and moved the

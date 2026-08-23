@@ -179,6 +179,22 @@ single-success. *Pedagogy · effort medium.*
 
 ### H4. Production is never scheduled; mastery is direction-blind
 
+> **Resolved.** In a review, a card that has already come back right once is
+> asked to **produce** the form instead of recognising it (`askedDir`). The
+> first return re-establishes the card; every return after that is production,
+> so `retained` now means two review sessions days apart with at least one of
+> them producing. Nothing new is stored — the run of first-try corrects was
+> already kept per card and is exactly the right signal, so difficulty rises
+> as the card proves it can carry it. The toggle gained a third state: the
+> learner's to change, the review's to state, or none at all — a locked toggle
+> shows the real pair rather than the false *one direction only*. The
+> learner's own `SAVED.dir` is never written by a review, interactive cards
+> and the trouble drill are exempt, and the produce typography now follows the
+> direction actually asked. Verified across four sessions on a 44-card pool:
+> sessions 1–2 recognition while fresh material leads, then 16 of 20 and 20 of
+> 20 produced, fronts genuinely reversed. Eight checks added; the suite is now
+> 448.
+
 `SAVED.mastered` has no direction dimension: a card answered once,
 Devanagari→meaning, is "learned" — and later "retained" — though the
 produce direction was never attempted. The direction toggle exists and the
@@ -387,7 +403,7 @@ per-deck pairs and cues correct. Recurring smaller issues:
 | H1 | Replay rounds grant mastery moments after answer shown | ~~High~~ **fixed** | small | pedagogy/engineering |
 | H2 | Session-counted spacing; "retained" attainable in one sitting | ~~High~~ **fixed** | small | pedagogy |
 | H3 | Choice-card guessing counts as cold recall | ~~High~~ **fixed** | medium | pedagogy |
-| H4 | Production direction never scheduled; mastery direction-blind | High | medium | pedagogy |
+| H4 | Production direction never scheduled; mastery direction-blind | ~~High~~ **fixed** | medium | pedagogy |
 | H5 | Guided path fronts 609 vocab cards before any grammar | High | medium | pedagogy/UX |
 | M1 | Stage 5/6: production forced above recognition tables by order rule | Medium | medium | content/pedagogy |
 | M2 | Alaṅkāra/Rasa bounded identification sections uncarded | Medium | small | content |

@@ -318,6 +318,47 @@ JOINS AND SPLITS            31 LEFT  0 LEARNED  0 MISSED
 - **Branding is out of the drawer.** Navigation stays functional and compact,
   and a test asserts the drawer holds neither the name nor the mark.
 
+### Recognising a form is not producing one
+
+`DIR` is the learner's own setting, and for ordinary practice it decides. A
+review is different: it is the app asking, and it asks harder as a card holds
+up.
+
+The badges want production — a noun *through all 8 vibhaktis × 3 vacanas* —
+but reversal was entirely learner-driven, the setting defaults to recognition,
+and a draw ran in whichever way the toggle happened to be sitting. So a card
+could be learned, reviewed twice and called **retained** with the produce
+direction never once attempted: the strongest claim the app makes rested on
+the easier half of the card.
+
+So in a review, **a card that has already come back right once is asked the
+other way round.** The first return re-establishes it; every return after that
+is production. `retained` therefore now means what it sounds like — two review
+sessions days apart, at least one of them producing the form rather than
+recognising it.
+
+- **Nothing is stored for it.** The run of first-try corrects is already kept
+  per card, and it is exactly the right signal: difficulty rises as the card
+  proves it can carry it. `askedDir()` is the whole rule.
+- **The toggle states what is being asked, and does not offer to change it.**
+  A third state was needed: the learner's to change, the review's to state, or
+  none at all. `one direction only` would be false on a reveal card and a
+  blank would be worse, so a locked toggle shows the real pair (`meaning →
+  word`) with a title saying Abhyāsa chose it.
+- **The learner's own setting is untouched.** `SAVED.dir` is not written by a
+  review; ordinary practice comes back exactly as they left it.
+- **Two rounds are deliberately exempt.** An interactive card runs one way by
+  construction, and the trouble drill is not escalated — those are cards the
+  learner is already losing, and the harder direction is the last thing they
+  need.
+- **The typography follows the direction actually asked**, not the stored
+  setting: `mode-produce` decides which side is set in Devanagari, so it is
+  applied per card during a review and cleared for interactive cards.
+
+The flip prompt moved into `paint()` for the same reason. `next()` sets it
+before the card is dequeued, which was harmless while the direction was one
+global setting and wrong the moment it became a fact about the card.
+
 ### The direction toggle
 
 `word → meaning` was printed over lists that hold no meanings. A paradigm cell
@@ -869,6 +910,11 @@ The paragraph above is a promise, and four small rules keep it. They live in
    large list cannot swamp a session. A complete declension table is a
    hundred-odd cards; a flat draw would make every review mostly that table.
    Broad representation is a property of the draw, not of luck.
+
+5. **The direction rises with the card** — a card the review has never checked
+   is asked for recognition; one that has already come back right is asked to
+   **produce** the form instead. `askedDir()` reads the run of first-try
+   corrects that is already stored, so nothing new is kept.
 
 Rules 3 and 4 divide the work: **the round-robin decides the spread, urgency
 decides what leads.** The tier sort is applied to the finished round-robin

@@ -972,10 +972,47 @@ const pairOf = name => DECK_PAIR[name] || DEFAULT_PAIR;
 /* A cross-list draw has no single pair, so it falls back to the general one. */
 const currentPair = () => (mixed || !deckName ? DEFAULT_PAIR : pairOf(deckName));
 
-function dirLabel() {
+/* ── which way round a card is asked ───────────────────────
+   `DIR` is the learner's own setting, and for ordinary practice it decides.
+   A review is different: it is the app asking, and it asks harder as a card
+   holds up.
+
+   Recognising a form and producing one are not the same skill, and the badges
+   want the second — a noun "through all 8 vibhaktis × 3 vacanas". But
+   reversal was entirely learner-driven, the setting defaults to recognition,
+   and a draw ran in whichever way the toggle happened to be sitting. So a
+   card could be learned, reviewed twice and called RETAINED without the
+   produce direction ever being attempted: the strongest claim the app makes
+   rested on the easier half of the card.
+
+   So in a review a card that has already come back right once is asked the
+   other way round. The first return re-establishes it, and every return after
+   that is production. Nothing is stored for this — the run of first-try
+   corrects is already kept per card, and it is exactly the right signal:
+   difficulty rises as the card proves it can carry it.
+
+   `retained` therefore now means something it did not before: two review
+   sessions days apart, at least one of them producing the form rather than
+   recognising it. Interactive cards are untouched — a transformation runs one
+   way — and so is the trouble drill, where the cards are ones the learner is
+   already losing and the last thing they need is the harder direction. */
+function askedDir(card) {
+  if (!card || !mixed || trouble) return DIR;
+  if ((card.type || 'reveal') !== 'reveal') return DIR;
+  return streakOf(cardKey(card)) >= 1 ? 'produce' : 'reveal';
+}
+/* The direction in play right now, which is the review's choice while one is
+   running and the learner's everywhere else. */
+const dirNow = () => (current ? askedDir(current.card) : DIR);
+/* Is the review dictating it?  Then the toggle shows what is being asked and
+   does not offer to change it. */
+const dirLocked = () => !!current && mixed && !trouble
+  && (current.card.type || 'reveal') === 'reveal';
+
+function dirLabel(d) {
   const half = currentPair().split(' \u2192 ');
-  return DIR === 'produce' ? half[1] + ' \u2192 ' + half[0]
-                           : half[0] + ' \u2192 ' + half[1];
+  return (d || DIR) === 'produce' ? half[1] + ' \u2192 ' + half[0]
+                                  : half[0] + ' \u2192 ' + half[1];
 }
 
 /* The task cue.
@@ -1011,7 +1048,7 @@ const CUES = {
    direction and the front in the reverse one. */
 function cueText() {
   const half = currentPair().split(' \u2192 ');
-  return CUES[DIR === 'produce' ? half[0] : half[1]] || '';
+  return CUES[dirNow() === 'produce' ? half[0] : half[1]] || '';
 }
 
 /* The IAST toggle hides a TRANSLITERATION.  A card whose front carries no
@@ -1042,14 +1079,24 @@ const showDetailIast = c => IAST || !detailTransliterates(c);
    one way, and the IAST there *is* the content rather than a gloss of it.
    They are greyed for as long as one is showing, and the direction button
    stops claiming a pair it cannot offer. */
-function setToggles(dirOn, iastOn) {
+function setToggles(dirOn, iastOn, asked) {
   if (iastOn === undefined) iastOn = dirOn;
   $('dir').disabled = !dirOn;
   $('iast-on').disabled = !iastOn;
-  $('dir-label').textContent = dirOn ? dirLabel() : 'one direction only';
+  /* Three states, not two: the learner's to change, the review's to state, or
+     none at all.  A card the review is asking one way round still says which
+     way — "one direction only" would be false, and a blank would be worse. */
+  $('dir-label').textContent = dirOn ? dirLabel()
+    : asked ? dirLabel(asked) : 'one direction only';
   $('dir').setAttribute('aria-label', dirOn
     ? 'Direction: ' + dirLabel() + '. Tap to reverse.'
+    : asked
+    ? 'Abhyāsa is asking this one ' + dirLabel(asked) + '.'
     : 'This list runs one way, so the direction cannot be reversed.');
+  $('dir').title = !dirOn && asked
+    ? 'Abhyāsa chooses the direction: a card that has come back once is asked '
+      + 'the other way round.'
+    : '';
   $('iast-on').title = iastOn ? ''
     : 'This card has no Devanagari, so its second line is content rather than '
       + 'a transliteration, and is always shown.';
@@ -1059,7 +1106,7 @@ function setDir(d) {
   DIR = d; SAVED.dir = d; save();
   document.body.classList.toggle('mode-produce', d === 'produce');
   setToggles(!$('dir').disabled);
-  if (current) paint();
+  if (current) paint();          // repaints in whichever direction applies
 }
 
 function setIast(on) {
@@ -2254,14 +2301,24 @@ function paint() {
   $('choices').hidden = true;
   $('choices').textContent = '';
   $('keys').textContent = KEYS_REVEAL;
-  setToggles(true, hasIastToggle(c));
+  /* The review's choice while one is running, the learner's otherwise. */
+  const asked = askedDir(c), locked = dirLocked();
+  setToggles(!locked, hasIastToggle(c), locked ? asked : null);
+  /* Set here rather than in next(), which runs before the card is dequeued —
+     harmless while the direction was one global setting, wrong once it is a
+     fact about the card being painted. */
+  $('card').setAttribute('aria-label',
+    asked === 'produce' ? 'Show the word' : 'Show the meaning');
+  /* The class carries the typography — which side is set in Devanagari — so
+     it follows the direction actually being asked, not the stored setting. */
+  document.body.classList.toggle('mode-produce', asked === 'produce');
   $('src').textContent = '';
   /* The transliteration goes on whichever side the Devanagari is, as its own
      line.  It used to be appended to the annotation in the produce direction,
      so the card showed no IAST at all and the toggle appeared to rewrite the
      morphology instead. */
   const iast = showIast(c) ? c.iast : '';
-  if (DIR === 'produce') {
+  if (asked === 'produce') {
     $('dn').textContent        = c.gloss;
     $('iast').textContent      = '';
     $('gloss').textContent     = c.devanagari;
@@ -2326,6 +2383,7 @@ function paintStemClass(c) {
 
 function paintChoice(c) {
   choiceRight = null;
+  document.body.classList.toggle('mode-produce', false);
   $('seq').hidden = true;
   $('card').classList.remove('seq-card');
   $('card').classList.add('choice');
@@ -2396,6 +2454,7 @@ let seqBuilt = null;                     // array of part indices, or null
 let seqRight = null;                     // null until checked, then true/false
 
 function paintSequence(c) {
+  document.body.classList.toggle('mode-produce', false);
   seqBuilt = [];
   seqRight = null;
   $('choices').hidden = true;
@@ -2506,8 +2565,6 @@ function gradedNext() {
 
 function next() {
   $('card').classList.remove('open');
-  $('card').setAttribute('aria-label',
-    DIR === 'produce' ? 'Show the word' : 'Show the meaning');
   $('grade').hidden = true;
   $('graded-next').hidden = true;
   $('seq-actions').hidden = true;
