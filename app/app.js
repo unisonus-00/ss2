@@ -328,6 +328,9 @@ SAVED.mastered = SAVED.mastered || {};     // card ids answered right on a cold 
 /* Stages whose introduction has been read: a stage's lists stay shut until
    the learner has been through what the stage is for and pressed Begin. */
 SAVED.begun = SAVED.begun || {};
+SAVED.awards = SAVED.awards || {};             // what has been completed, and when
+SAVED.streak = SAVED.streak || { last: '', run: 0 };   // consecutive days practised
+if (SAVED.guided === undefined) SAVED.guided = true;   // the two gates, on by default
 if (SAVED.deck === MIX) delete SAVED.deck;      // the review is no longer a picker choice
 function save() {
   try { localStorage.setItem(STORE_KEY, JSON.stringify(SAVED)); } catch (e) {}
@@ -346,7 +349,7 @@ const deckState = name => SAVED.decks[name] = SAVED.decks[name] || {};
 
    SAVED.decks is keyed by deck NAME, and deck names did not change in the
    migration, so per-deck best scores need no rescue. */
-const SAVED_VERSION = 6;
+const SAVED_VERSION = 7;
 if ((SAVED.v || 1) < 2) {
   let moved = 0;
   Object.values(DECKS).forEach(cards => cards.forEach(c => {
@@ -704,9 +707,11 @@ const ALL_IDS = (() => {
    `SAVED.begun` holds what has been opened — `home`, and a track id for each
    track whose Begin has been pressed. */
 const trackIdOf = name => trackOf(DECK_STAGE[name]).id;
-const trackBegun = id => !!SAVED.begun[id];
+/* Guided order off opens everything at once: nothing to press through when
+   the point is to reach a particular list — checking a change, or testing. */
+const trackBegun = id => !SAVED.guided || !!SAVED.begun[id];
 const deckLocked = name => !trackBegun(trackIdOf(name));
-const started = () => !!SAVED.begun.home;
+const started = () => !SAVED.guided || !!SAVED.begun.home;
 
 function beginHome() {
   if (SAVED.begun.home) return;
@@ -763,6 +768,66 @@ function progressOf(ids) {
   if (pct === 100 && done < total) pct = 99;
   if (pct === 0 && done > 0) pct = 1;
   return { done, total, pct, full: total > 0 && done === total };
+}
+
+/* ── what has been completed ───────────────────────────────
+   Three levels, two states each, all derived from cards: a list, a stage and
+   a track are complete when every card in them has come back cold, and
+   retained when every card has held up in Abhyāsa as well.
+
+   An award is kept once earned.  The drawer already shows what is true now;
+   this is the record of what was done, which is the thing worth keeping. */
+const today = () => new Date().toISOString().slice(0, 10);
+
+function completable() {
+  const out = [];
+  Object.keys(DECKS).forEach(n => out.push(['list:' + n, DECK_SHORT(n), 'list', DECK_IDS[n]]));
+  LESSONS.forEach(L => out.push(['stage:' + L.lesson, L.label, 'stage', L.ids]));
+  TRACK_ROWS.forEach(r => out.push(['track:' + r.track.id, r.track.name, 'track', r.ids]));
+  return out;
+}
+
+/* Everything true right now, as award keys.  `+` is the retained tier. */
+function earnedNow() {
+  const out = [];
+  completable().forEach(([key, label, level, ids]) => {
+    if (!ids.size) return;
+    if (progressOf(ids).full) out.push({ key: key, label: label, level: level, tier: 'complete' });
+    if (allRetained(ids)) out.push({ key: key + '+', label: label, level: level, tier: 'retained' });
+  });
+  return out;
+}
+
+/* Newly earned since the last round, stamped with the day so it is announced
+   once and only once.  Biggest first: finishing a track is the news, not the
+   list that happened to complete it. */
+const AWARD_ORDER = { track: 0, stage: 1, list: 2 };
+function claimAwards() {
+  const fresh = earnedNow().filter(a => !SAVED.awards[a.key]);
+  if (!fresh.length) return fresh;
+  fresh.forEach(a => { SAVED.awards[a.key] = today(); });
+  save();
+  return fresh.sort((a, b) => AWARD_ORDER[a.level] - AWARD_ORDER[b.level]);
+}
+
+/* Days in a row with a round finished.  Not an achievement to chase past the
+   point of use: one round counts, and the figure is the only reward. */
+function bumpStreak() {
+  const now = today(), st = SAVED.streak;
+  if (st.last === now) return;
+  const yesterday = new Date(Date.now() - 864e5).toISOString().slice(0, 10);
+  st.run = st.last === yesterday ? st.run + 1 : 1;
+  st.last = now;
+  save();
+}
+
+/* v7 adds all three.  The awards are seeded from what is already true, so a
+   learner who upgrades mid-course is not handed a wall of announcements for
+   work they finished weeks ago. */
+if ((SAVED.v || 1) < 7) {
+  earnedNow().forEach(a => { SAVED.awards[a.key] = SAVED.awards[a.key] || 'earlier'; });
+  SAVED.v = SAVED_VERSION;
+  save();
 }
 
 /* Two independent settings now:
@@ -1302,6 +1367,8 @@ function renderWelcome() {
      to mean something. */
   $('w-mastery').textContent = (r.score === null ? 0 : r.score) + '%';
   $('w-lists').textContent = finishedDecks().length;
+  $('w-streak').textContent = SAVED.streak.run || 0;
+  $('w-guided').checked = !!SAVED.guided;
   /* The first of the two gates.  With nothing begun there is nothing in
      progress, and "In progress" would drop a first-time learner into a list
      with no idea what it was for; the button opens the first track instead,
@@ -1368,6 +1435,11 @@ function renderTrack(id) {
   const rank = rankOf(row.ids);
   $('s-rankrow').hidden = !begun || rank.score === null;
   if (rank.score !== null) $('s-rank').textContent = rank.score + '% \u00b7 ' + rank.name;
+  /* A count, never a list of which ones: the drawer is where you look them
+     up.  A one-stage track has nothing to count. */
+  const stages = row.lessons.filter(L => progressOf(L.ids).full).length;
+  $('s-stagerow').hidden = !begun || row.lessons.length < 2;
+  $('s-stages').textContent = stages + ' of ' + row.lessons.length;
   const next = names.find(n => finishedDecks().indexOf(n) < 0) || names[0];
   const go = $('s-go');
   go.textContent = (begun ? 'Continue — ' : 'Begin — ') + DECK_SHORT(next);
@@ -2332,6 +2404,32 @@ function byListSummary(host, cards, missedCards) {
 }
 
 /* ── end of round ──────────────────────────────────────── */
+/* One line per thing just finished, above the score it came from.  Nothing
+   is announced twice: `claimAwards` stamps each key the first time it is
+   true.  Three at once is already a rare evening; more than that would be a
+   wall rather than news. */
+function renderAwards() {
+  const fresh = claimAwards().slice(0, 3);
+  const host = $('r-awards');
+  host.textContent = '';
+  host.hidden = !fresh.length;
+  const WHY = {
+    'list:complete':     'every card known cold',
+    'list:retained':     'and it has held up in Abhyāsa',
+    'stage:complete':    'every list in the stage',
+    'stage:retained':    'the whole stage has held up in Abhyāsa',
+    'track:complete':    'every stage in the track',
+    'track:retained':    'the whole track has held up in Abhyāsa',
+  };
+  fresh.forEach(a => {
+    const el = document.createElement('div');
+    el.innerHTML = '<b></b> <span></span>';
+    el.querySelector('b').textContent = a.label + ' ' + a.tier;
+    el.querySelector('span').textContent = '\u00b7 ' + WHY[a.level + ':' + a.tier];
+    host.appendChild(el);
+  });
+}
+
 function finish() {
   const total = roundSource.length;
   const firstPass = total - missed.length;
@@ -2365,6 +2463,7 @@ function finish() {
     missed.forEach(c => { const k = cardKey(c); if (!ds.pile.includes(k)) ds.pile.push(k); });
     save();
   }
+  bumpStreak();                       // a day with a round finished in it
   relabelAll();                       // a finished list may have opened the review
   refreshPile();
   $('card').style.display = 'none';
@@ -2388,6 +2487,7 @@ function finish() {
   if (justCleared)
     scoreLine += "<br><b>" + justCleared + "</b> left the trouble list";
   $('r-score').innerHTML = scoreLine;
+  renderAwards();
 
   const list = $('r-list');
   list.innerHTML = "";
@@ -2927,6 +3027,13 @@ relabelAll();
    already running.  loadDeck() above has left the app ready for it. */
 showWelcome();
 $('w-board').addEventListener('click', () => openPanel('board'));
+/* Turning guided order off opens every track and list at once; turning it
+   back on restores whichever gates have not been pressed through. */
+$('w-guided').addEventListener('change', e => {
+  SAVED.guided = e.target.checked;
+  save();
+  renderDrawer();
+});
 
 /* Load-time validation.  Silent while the card block is clean — the counts
    are for whoever edits the deck data, not for whoever is studying — but

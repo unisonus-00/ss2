@@ -87,6 +87,9 @@
       <div class="w-stat" id="s-rankrow" hidden>
         <span>Track mastery</span><b id="s-rank"></b>
       </div>
+      <div class="w-stat" id="s-stagerow" hidden>
+        <span>Stages complete</span><b id="s-stages"></b>
+      </div>
     </div>
     <div class="w-actions">
       <button id="s-go" class="primary"></button>
@@ -111,11 +114,16 @@
     <div class="w-stats">
       <div class="w-stat"><span>Overall mastery</span><b id="w-mastery">0%</b></div>
       <div class="w-stat"><span>Lists complete</span><b id="w-lists">0</b></div>
+      <div class="w-stat"><span>Day streak</span><b id="w-streak">0</b></div>
     </div>
     <div class="w-actions">
       <button id="w-go" class="primary">In progress</button>
       <button id="w-board">Scoreboard</button>
     </div>
+    <!-- The two gates, in one switch.  Off, every track and list is open at
+         once — which is what checking a particular card needs. -->
+    <label class="w-switch"><input type="checkbox" id="w-guided" checked>
+      <span>Guided order — read a track before its lists open</span></label>
   </div>
 
   <div class="card" id="card" tabindex="0" role="button" aria-label="Show meaning">
@@ -155,6 +163,9 @@
 
   <div class="review" id="review">
     <h2 id="r-title">Round finished</h2>
+    <!-- What was just finished, if anything was: the one place the app says
+         well done, and it says it in terms of the thing completed. -->
+    <div class="awards" id="r-awards" hidden></div>
     <div class="score" id="r-score"></div>
     <div id="r-list"></div>
   </div>

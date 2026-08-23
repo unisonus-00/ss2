@@ -762,23 +762,36 @@ screen — a test asserts that.
 
 The whole model is one sentence:
 
-> Practise a list → complete it → it enters Abhyāsa → review performance
-> maintains its mastery.
+> Get a card right cold → it enters Abhyāsa → Abhyāsa keeps it alive.
 
 Every number follows from it:
 
 | | |
 |:--|:--|
 | **review accuracy** | correct on the first try, across everything reviewed |
-| **course coverage** | how much of the material has actually entered review — which is the cards of the lists you have completed |
+| **course coverage** | how much of the material has entered review — which is the cards you have got right cold at least once |
 | **overall mastery** | the two together, as one figure with a rank beside it |
 | **course progress** | lists complete, out of all of them |
 
-Coverage used to be *cards mastered*, which was a second and invisible notion
-of progress sitting next to the visible one. Reading it off the review pool
-instead makes it the same act the learner already understands — finish a list
-and it starts coming back — and it is why completing a list moves two numbers
-at once.
+**The pool is cards, not lists, and that is a correction.** A list used to
+enter the review by being *completed*, and `finishedDecks()` read completion
+off `ds.best` — which is set on the first finish at **any** score. A 15-card
+list played through at 0/15 was therefore complete: it counted in `Lists
+complete`, its cards fed the review, and it moved coverage and the mastery
+figure on the strength of material the learner had never once got right. One
+careless pass through Nāma's 609 cards put a beginner at 26% coverage.
+
+So a card enters when it comes back cold, and **a list is complete when every
+card in it has**. The model is shorter than the one it replaces, the review
+unlocks *sooner* for an honest learner — 40 mastered cards is three small
+lists — and it can no longer be handed material nobody has learnt. A test
+plays a list to the end at zero and fails if either figure moves.
+
+**`rankOf(ids)` takes a set of cards**, so the same figure in the same words
+can be given for one track against its own material. Over 2298 cards nothing
+a learner does in an evening visibly moves the number, which is why it read
+as dead; over one track's it moves. The track page carries it as `TRACK
+MASTERY 8% · Learner` under its own progress figure.
 
 **Cards are the evidence; lists are the unit of completion.** The top
 statistic was *873 of 2079 cards mastered*, which competed with the mastery
@@ -786,9 +799,15 @@ figure above it and named the wrong unit. Cards still drive the per-lesson and
 per-track percentages down the drawer, where fine grain is what is wanted.
 
 Before there is a figure the drawer reads `Unranked`, and the card says what
-to do instead — *Complete more lists — 12 of 40 cards so far*, then *Reviewing
-20 cards from 4 completed lists*. **The mode's own name is never the thing
+to do instead — *Learn 40 cards to unlock — 12 so far*, then *Reviewing 20
+cards from 59 learned · 12 due now*. **The mode's own name is never the thing
 being explained.**
+
+**Abhyāsa says what is waiting.** The drawer's button reads `abhyāsa · 12 due`
+and the track page's reminder counts the same cards; `dueCount()` is
+`overdueBy(c) >= 0` over the pool, which the draw already computed and never
+said out loud. A figure that changes on its own, without the learner doing
+anything, is the one thing on these surfaces worth coming back for.
 
 The review window says the same things in the same words:
 
@@ -796,7 +815,7 @@ The review window says the same things in the same words:
 Abhyāsa
 MASTERY REVIEW
 65% correct on first try
-Reviewing 20 cards from 4 completed lists
+Reviewing 20 cards from 59 learned · 12 due now
 
 Abhyāsa checks how well your studied material is holding up over time.
 It mixes cards from completed lists and counts only your first answer.
@@ -834,6 +853,58 @@ the figure. Weighted practice is what the trouble drill is for.
 the running totals were kept, and no record survives of *which* cards a past
 session showed — so it starts empty, every card is due, and the first session
 after upgrading draws from the whole pool exactly as it used to.
+
+### Two strengths, and what completing something gets you
+
+A faultless run says a card can be produced minutes after being taught. It
+does not say it will be there next week — and the review already measured
+that and told nobody: `SAVED.review.cards[id]` keeps, per card, how many
+consecutive Abhyāsa sessions it has come back right on the first try, and it
+was feeding nothing but the rest interval.
+
+| | |
+|:--|:--|
+| **learned** | right on a first showing at least once — `SAVED.mastered` |
+| **retained** | and right first try in **two** separate review sessions since, days apart, drawn out of its list |
+
+Neither stores anything new. A third tier was considered and cut: two states
+a learner can name are worth more than three they have to look up.
+
+**A list, a stage and a track are each complete when every card in them is
+learned, and retained when every card is retained.** The drawer marks a
+retained list in its descriptor (`the eight śaktis · LS · 8 cards ·
+retained`), and finishing any of the six things announces itself once, on the
+results screen, in the right-answer pigment:
+
+```
+समाप्तम् — clean round
+Mātṛkā complete · every card known cold
+Known on the first showing: 8 of 8
+```
+
+- **Once, and biggest first.** `claimAwards()` stamps each key the first time
+  it is true, so nothing is announced twice; a track finishing is the news,
+  not the list that happened to complete it. Three at a time is the cap.
+- **An award is kept.** Losing a card later moves the drawer's percentage,
+  which is what a live figure is for; it does not un-finish what was
+  finished. `SAVED.awards[key]` holds the day it was earned.
+- **The day streak counts days, not rounds.** One finished round marks the
+  day; two on the same day change nothing; a gap resets it. It is on the
+  landing card and nowhere else, because a streak is a reason to come back
+  rather than a thing to look at while working.
+
+### Guided order, and the switch that turns it off
+
+The two gates — the landing card opens the tracks, a track opens its lists —
+are one setting. **Off, every track and list is open at once**, which is what
+reaching a particular card needs: checking a change, or testing. The switch
+sits at the foot of the landing card, on by default, and a test asserts that
+nothing in the drawer is left shut when it is off.
+
+This is deliberately the only gating in the app. Locking stage by stage would
+make it hostile to the person building it and to anyone who already reads
+some Sanskrit; the recommendation the learner needs is `Continue — <next
+list>`, which the track page already carries.
 
 ### The end of a review
 
@@ -1549,12 +1620,15 @@ Three things here are load-bearing for the compatibility list above:
   the brand settled on the bare stem **Abhyāsa**, and left alone: it is
   invisible plumbing, not displayed text, and renaming it would only add
   migration risk for no visible benefit. Versioned by `SAVED.v`
-  (now 6). v1 keyed trouble history by `devanagari + '¦' + gloss`; the app
+  (now 7). v1 keyed trouble history by `devanagari + '¦' + gloss`; the app
   lifts those records onto stable ids on first load. v2→v3 seeds `SAVED.mastered`
   from the one case that can be resolved exactly rather than guessed at — a
   deck whose best round was perfect *and* whose size has not changed since.
   v3→v4 adds the per-card review history that paces the draw, starting empty
   because no record of *which* cards a past session showed ever existed.
+  v6→v7 adds `SAVED.awards` (seeded from what is already true, so upgrading
+  mid-course does not hand back a wall of announcements for work finished
+  weeks ago), `SAVED.streak`, and `SAVED.guided`.
   v4→v5 added `SAVED.begun`, and v5→v6 re-keyed it from stages to tracks when
   the introduction moved up a level: a v5 store's lesson keys are lifted onto
   their tracks rather than thrown away. Both steps seed it from progress — a

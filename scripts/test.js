@@ -158,7 +158,7 @@ const open = async (browser, opts = {}) => {
       };
     });
     // the chain runs to the end, not just to the step under test
-    ok('saved state runs the whole migration chain', r.version === 6, 'v' + r.version);
+    ok('saved state runs the whole migration chain', r.version === 7, 'v' + r.version);
     ok('a track already practised in is not re-gated',
       !!r.begun.bhasha && !!r.begun.home,
       Object.keys(r.begun).join(' | ') || 'none');
@@ -2790,6 +2790,79 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
+  // ── what the learner gets back for finishing something ────────────
+  // One announcement per thing completed, once; a day streak; and one switch
+  // that opens both gates for anyone who needs to reach a list directly.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const out = {};
+      const small = Object.keys(DECKS).find(n => DECKS[n].length <= 10);
+      SAVED.mastered = {}; SAVED.awards = {};
+      SAVED.review = { runs: 0, right: 0, seen: 0, cards: {} };
+
+      /* nothing finished, nothing to say */
+      out.quiet = claimAwards().length;
+
+      /* a list finished announces itself, with its stage and track still open */
+      DECKS[small].forEach(c => { SAVED.mastered[c.id] = 1; });
+      const first = claimAwards();
+      out.first = first.map(a => a.key);
+      out.tier = first.length ? first[0].tier : '';
+      /* and never announces itself twice */
+      out.again = claimAwards().length;
+
+      /* the same list retained is a second, later thing */
+      SAVED.review.runs = 2;
+      DECKS[small].forEach(c => { SAVED.review.cards[c.id] = [2, 2]; });
+      out.retained = claimAwards().map(a => a.tier);
+
+      /* finishing a whole track announces the track, biggest first */
+      const row = TRACK_ROWS.find(x => x.track.id === 'svara');
+      SAVED.awards = {}; SAVED.mastered = {};
+      row.lessons.forEach(L => L.decks.forEach(n =>
+        DECKS[n].forEach(c => { SAVED.mastered[c.id] = 1; })));
+      out.track = claimAwards().map(a => a.level);
+
+      /* the day streak counts days, not rounds */
+      SAVED.streak = { last: '', run: 0 };
+      bumpStreak(); const one = SAVED.streak.run;
+      bumpStreak(); out.sameDay = SAVED.streak.run === one && one === 1;
+      SAVED.streak.last = new Date(Date.now() - 864e5).toISOString().slice(0, 10);
+      bumpStreak(); out.nextDay = SAVED.streak.run;
+      SAVED.streak.last = new Date(Date.now() - 3 * 864e5).toISOString().slice(0, 10);
+      bumpStreak(); out.brokeIt = SAVED.streak.run;
+
+      /* the switch opens both gates at once */
+      SAVED.begun = {}; SAVED.guided = true;
+      out.gated = { tracks: started(), lists: trackBegun('bhasha') };
+      SAVED.guided = false;
+      out.open = { tracks: started(), lists: trackBegun('bhasha') };
+      openDrawer(); renderDrawer();
+      out.noneLocked = document.querySelectorAll('#drawer .locked').length;
+      closeDrawer();
+      SAVED.guided = true;
+      return out;
+    });
+    ok('nothing finished, nothing announced', r.quiet === 0, r.quiet + ' announced');
+    ok('a list finished announces the list alone',
+      r.first.length === 1 && /^list:/.test(r.first[0]) && r.tier === 'complete',
+      r.first.join(' | '));
+    ok('and never announces it twice', r.again === 0, r.again + ' repeated');
+    ok('retained is a second thing, earned later',
+      JSON.stringify(r.retained) === '["retained"]', r.retained.join(' | '));
+    ok('a finished track is the news, not the list that completed it',
+      r.track[0] === 'track', r.track.join(' → '));
+    ok('the day streak counts days, not rounds',
+      r.sameDay && r.nextDay === 2 && r.brokeIt === 1,
+      'same day ' + r.sameDay + ' · next day ' + r.nextDay + ' · after a gap ' + r.brokeIt);
+    ok('guided order gates both levels', r.gated.tracks === false && r.gated.lists === false);
+    ok('and turning it off opens everything at once',
+      r.open.tracks && r.open.lists && r.noneLocked === 0,
+      r.noneLocked + ' rows still shut');
+    await p.close();
+  }
+
   // ── the results say which lists held up ───────────────────────────
   // A review crosses lists, so "which cards went wrong" is the wrong
   // question at the end of one; the learner-facing unit is the list.
@@ -3528,7 +3601,7 @@ const open = async (browser, opts = {}) => {
     ok('a perfect round on a smaller deck seeds nothing',
       r.resized.done === 0, r.resized.done + ' seeded');
     ok('a partial best score seeds nothing', r.partial.done === 0, r.partial.done + ' seeded');
-    ok('the store is stamped v6', r.v === 6, 'v' + r.v);
+    ok('the store is stamped v7', r.v === 7, 'v' + r.v);
     await p.close();
   }
 

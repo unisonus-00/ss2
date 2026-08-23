@@ -194,6 +194,10 @@
   .s-lists .dk { color: var(--ink); }
   .s-lists .dk:hover { border-color: var(--leaf-edge); }
   .s-lists .dk.on { border-color: var(--ink); }
+  /* the one switch that opens both gates at once */
+  .w-switch { display: flex; align-items: center; gap: .5rem; margin-top: 1.1rem;
+              font-size: .78rem; color: var(--faded); cursor: pointer; }
+  .w-switch input { accent-color: var(--ink); }
   .w-actions { display: flex; gap: .6rem; margin-top: 1.3rem; }
   .w-actions button {
     flex: 1; background: transparent; color: var(--ink);
@@ -357,6 +361,14 @@
   }
   .card.seq-card .tag { text-transform: none; letter-spacing: .06em; font-size: .78rem; }
 
+  /* What was just completed.  The right-answer pigment, because that is what
+     it is: the round's own good news, above the score it came from. */
+  .awards { margin: 0 0 .9rem; display: flex; flex-direction: column; gap: .35rem; }
+  /* the pigment, not its tint: this sits on the palm leaf, and --patra-ink
+     is the lightened version for the dark ground */
+  .awards div { font-size: .9rem; line-height: 1.4; color: var(--patra); }
+  .awards b { font-weight: 600; }
+  .awards span { color: var(--faded); }
   .actions { display: flex; gap: .7rem; margin-top: 1.4rem; flex-wrap: wrap; justify-content: center; }
   button {
     touch-action: manipulation;
