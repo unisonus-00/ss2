@@ -20,6 +20,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 const markdown = require('./markdown');
 
 const ROOT = path.resolve(__dirname, '..');
@@ -39,6 +40,7 @@ const TOC_FROM = 5;
    without touching the markup, and is inlined here — the distributable has to
    stay one file with nothing to fetch. */
 const LOGO = '<!--logo-->';
+const BUILD = '<!--build-->';
 
 const CARD_TYPES = new Set(['reveal', 'choice', 'sequence']);
 
@@ -264,7 +266,12 @@ function build() {
     }
     html = html.replace(tag, open + '\n' + read(file).replace(/\s*$/, '') + '\n' + close);
   }
-  return { html, lessons, cards, decks, refs: Object.keys(references).length };
+  /* Which build this is, stamped into the page so a report can name it.
+     Derived from the output itself rather than from the clock: a timestamp
+     would make --check fail every day for no reason. */
+  const stamp = crypto.createHash('sha256').update(html).digest('hex').slice(0, 7);
+  html = html.replace(BUILD, stamp);
+  return { html, lessons, cards, decks, stamp, refs: Object.keys(references).length };
 }
 
 /* A page that reaches the network is a broken page here, so the build refuses
@@ -287,7 +294,7 @@ function assertSelfContained(html) {
   }
 }
 
-const { html, lessons, cards, decks, refs } = build();
+const { html, lessons, cards, decks, stamp, refs } = build();
 assertSelfContained(html);
 
 if (process.argv.includes('--check')) {
@@ -304,5 +311,5 @@ fs.mkdirSync(path.dirname(OUT), { recursive: true });
 fs.writeFileSync(OUT, html);
 console.log(
   `build: dist/abhyasah.html  ${(html.length / 1024).toFixed(0)} KB  ` +
-  `${lessons.length} lessons, ${decks} decks, ${cards} cards, ${refs} references`
+  `${lessons.length} lessons, ${decks} decks, ${cards} cards, ${refs} references  · ${stamp}`
 );

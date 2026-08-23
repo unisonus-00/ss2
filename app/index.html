@@ -223,6 +223,9 @@
     </div>
     <div class="score" id="b-sub"></div>
     <div id="b-list"></div>
+    <!-- Which build this is.  A bug report that cannot name the build it came
+         from cannot be acted on, and several are in the wild at once. -->
+    <div class="b-build">build <!--build--></div>
   </div>
 </div>
 
@@ -247,6 +250,13 @@
   <button id="s-check" class="primary">Check</button>
 </div>
 
+<!-- The two things a tester needs and a learner never touches: a copy of
+     their own state to send back, and a way to start over. -->
+<div class="actions" id="b-actions" hidden>
+  <button id="b-copy">Copy my progress</button>
+  <button id="b-reset" class="danger">Reset progress</button>
+</div>
+
 <div class="actions" id="rp-actions" hidden>
   <button id="rp-draw" class="primary"></button>
 </div>
@@ -263,9 +273,14 @@
   <button id="p-back">Back to the cards</button>
 </div>
 
+<!-- What to do next, in the order a learner wants it: clear up what was
+     missed, go on to the next list, run this one again, or answer what
+     Abhyāsa has waiting. -->
 <div class="actions" id="after" hidden>
   <button id="again-missed" class="primary">Practise these again</button>
+  <button id="next-list" hidden></button>
   <button id="restart">Whole deck again</button>
+  <button id="review-due" hidden></button>
   <button id="share">Share score</button>
 </div>
 

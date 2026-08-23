@@ -2879,6 +2879,99 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
+  // ── the end of a round is not a dead end ──────────────────────────
+  // Practise these again / Whole deck again / Share was every way on, so a
+  // session stopped there: the next list and the review were both behind the
+  // drawer.  Both are on the results screen now.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(async () => {
+      const out = {};
+      SAVED.mastered = {}; SAVED.decks = {};
+      SAVED.review = { runs: 0, right: 0, seen: 0, cards: {} };
+      beginHome(); beginTrack('bhasha');
+      const names = trackDecks(TRACK_ROWS.find(x => x.track.id === 'bhasha'));
+      /* nothing learnt yet: a next list, and no review to offer */
+      loadDeck(names[0]);
+      while (current) knew();
+      out.next = $('next-list').hidden ? null : $('next-list').title;
+      out.nextIsNotThisOne = out.next !== names[0];
+      out.reviewShut = $('review-due').hidden;
+
+      /* enough learnt to unlock: the review is offered too */
+      names.slice(0, 6).forEach(n => DECKS[n].forEach(c => { SAVED.mastered[c.id] = 1; }));
+      loadDeck(names[1]);
+      while (current) knew();
+      out.due = $('review-due').hidden ? null : $('review-due').textContent;
+      /* and it is a session, never the whole backlog */
+      out.pool = reviewPool().length;
+
+      /* a review round offers neither: there is no list to be next to */
+      $('review-due').click();
+      while (current) knew();
+      out.inReview = { next: $('next-list').hidden, review: $('review-due').hidden,
+                       mixed: mixed };
+      return out;
+    });
+    ok('a finished list points at the next one',
+      !!r.next && r.nextIsNotThisOne, r.next);
+    ok('with no review offered before it is unlocked', r.reviewShut);
+    ok('and once it is, the review is offered too',
+      /^Abhyāsa · \d+\+? due$/.test(r.due || ''), r.due);
+    ok('as a session, not as a backlog of ' + r.pool,
+      /20\+ due$/.test(r.due || ''), r.due);
+    ok('a review round offers neither — nothing is next to a draw',
+      r.inReview.mixed && r.inReview.next && r.inReview.review,
+      JSON.stringify(r.inReview));
+    await p.close();
+  }
+
+  // ── the two controls a tester needs ───────────────────────────────
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      openPanel('board');
+      return { actions: !document.getElementById('b-actions').hidden,
+               copy: !!document.getElementById('b-copy'),
+               reset: !!document.getElementById('b-reset'),
+               danger: document.getElementById('b-reset').classList.contains('danger'),
+               stamp: document.querySelector('.b-build').textContent.trim() };
+    });
+    ok('the scoreboard carries the tester’s two controls',
+      r.actions && r.copy && r.reset && r.danger);
+    ok('and names the build it is', /^build [0-9a-f]{7}$/.test(r.stamp), r.stamp);
+
+    // copying reports back whether it got the state out
+    await p.click('#b-copy');
+    await p.waitForFunction(
+      () => document.getElementById('b-copy').textContent !== 'Copy my progress');
+    const label = await p.textContent('#b-copy');
+    ok('copying says whether it worked', /copied|Ctrl/.test(label), label);
+
+    // resetting erases the store and starts the app over
+    const after = await p.evaluate(() => {
+      SAVED.mastered['01-nama:devi:kamaksi'] = 1; SAVED.begun.home = 1; save();
+      return !!JSON.parse(localStorage.getItem('abhyāsaḥ')).mastered['01-nama:devi:kamaksi'];
+    });
+    await p.click('#b-reset');
+    await p.click('#ask-yes');
+    await p.waitForLoadState('load');
+    /* The store is written again the moment the reloaded page saves its own
+       defaults — what has to be gone is the progress in it. */
+    const fresh = await p.evaluate(() => {
+      const raw = JSON.parse(localStorage.getItem('abhyāsaḥ') || '{}');
+      return { mastered: Object.keys(raw.mastered || {}).length,
+               begun: Object.keys(raw.begun || {}).length,
+               welcome: !document.getElementById('welcome').hidden,
+               go: document.getElementById('w-go').textContent };
+    });
+    ok('progress was there to erase', after);
+    ok('reset erases it and starts the app over',
+      !fresh.mastered && !fresh.begun && fresh.welcome && /^Begin — /.test(fresh.go),
+      JSON.stringify(fresh));
+    await p.close();
+  }
+
   // ── the results say which lists held up ───────────────────────────
   // A review crosses lists, so "which cards went wrong" is the wrong
   // question at the end of one; the learner-facing unit is the list.
@@ -3014,7 +3107,7 @@ const open = async (browser, opts = {}) => {
     ok('the review card states the score plainly',
       /^\d+% correct on first try$/.test(r.panelScore), r.panelScore);
     ok('and what it is drawing on, and what is waiting',
-      /^Reviewing \d+ cards from \d+ learned · \d+ due now$/.test(r.panelWhat), r.panelWhat);
+      /^Reviewing \d+ cards from \d+ learned · \d+\+? due now$/.test(r.panelWhat), r.panelWhat);
     ok('the explanation describes the mode, not the arithmetic',
       /^Abhyāsa checks how well your studied material is holding up over time\./
         .test(r.panelNote)
@@ -3083,7 +3176,7 @@ const open = async (browser, opts = {}) => {
     ok('so does the trouble drill', leads(r.troubleRows, 't-actions'),
       r.troubleRows.join(' | '));
     ok('unlocked and unused, the card says what it draws on',
-      /^Reviewing \d+ cards from \d+ learned · \d+ due now$/.test(r.cardBefore),
+      /^Reviewing \d+ cards from \d+ learned · \d+\+? due now$/.test(r.cardBefore),
       JSON.stringify(r.cardBefore));
     ok('the drawer carries only the figure and its rank',
       /^\d+% · (Novice|Learner|Skilled|Expert|Master)$/.test(r.rankRow),

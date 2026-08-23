@@ -375,6 +375,11 @@
   .awards b { font-weight: 600; }
   .awards span { color: var(--faded); }
   .actions { display: flex; gap: .7rem; margin-top: 1.4rem; flex-wrap: wrap; justify-content: center; }
+  /* Starting over cannot be undone, so it is marked in the app's own colour
+     for wrong — the same signal Test mode carries. */
+  button.danger { color: var(--kumkuma-ink); border-color: var(--kumkuma); }
+  .b-build { margin-top: 1.4rem; font-size: .66rem; letter-spacing: .08em;
+             color: var(--faded); text-align: right; }
   button {
     touch-action: manipulation;
     font-family: inherit; font-size: .95rem; min-height: 44px;
@@ -446,7 +451,9 @@
   .row .r-dn { font-family: "Noto Serif Devanagari", "Kohinoor Devanagari", serif; font-size: 1.35rem; }
   .row .r-iast { font-style: italic; margin-left: .5rem; }
   .row .r-gloss { display: block; font-size: .95rem; margin-top: .15rem; }
-  .row .r-tag { font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--faded); }
+  /* the same annotation the card carries, and set the same way: mostly IAST,
+     and nobody writes √YUDH in capitals */
+  .row .r-tag { font-size: .72rem; letter-spacing: .04em; color: var(--faded); }
   .clean { font-size: 1rem; padding: .6rem 0 .2rem; }
 
   /* scoreboard — same shell as the review screen */

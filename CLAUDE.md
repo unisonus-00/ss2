@@ -858,6 +858,43 @@ the running totals were kept, and no record survives of *which* cards a past
 session showed — so it starts empty, every card is due, and the first session
 after upgrading draws from the whole pool exactly as it used to.
 
+### The end of a round is not a dead end
+
+`Practise these again` / `Whole deck again` / `Share score` was every way on
+from a finished round, so a session stopped there: the next list and the
+review were both behind the drawer, and nothing on the screen said so. Two
+more buttons:
+
+- **`Next — <list>`** is the first unfinished list in the same track, taken in
+  curriculum order from where you are. A finished track has none, and a
+  cross-list round has none either — nothing is "next" to a draw.
+- **`Abhyāsa · 20+ due`** appears once the review is unlocked and something is
+  waiting, and never inside a review, where it would be the button you just
+  pressed.
+
+**The due figure is said as a session, not as a queue.** A card that has never
+been reviewed is `Infinity` overdue, so on a first pass *every* card in the
+pool is due — a mid-course learner was being told `abhyāsa · 920 due`, which
+is a backlog to feel guilty about rather than an invitation. Past a full draw
+the figure stops counting and reads `20+ due`; below it, the true number.
+`dueLabel()` is the one place that decides, and the drawer, the track page and
+the review window all read it.
+
+### The two controls a tester needs
+
+Not for the learner, and deliberately in the Scoreboard rather than anywhere
+a learner is working:
+
+- **`Copy my progress`** puts the whole store on the clipboard. A report that
+  cannot be reproduced cannot be acted on.
+- **`Reset progress`**, in kumkuma behind a confirm, removes the store and
+  every earlier key and reloads. Seeing the first run again should not require
+  knowing where a browser keeps its site data.
+- **The build stamp** — `build 3ce8096` at the foot of the Scoreboard, and on
+  the build line. It is a hash of the page's own bytes, not a timestamp:
+  several demos are in the wild at once, a report has to name one, and a clock
+  would make `--check` fail every day for no reason.
+
 ### Two strengths, and what completing something gets you
 
 A faultless run says a card can be produced minutes after being taught. It

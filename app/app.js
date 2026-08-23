@@ -465,6 +465,11 @@ function reviewPool() {
    is the same test, counted rather than sorted, so the mode can say what is
    waiting instead of only saying what it is. */
 const dueCount = () => reviewPool().filter(c => overdueBy(c) >= 0).length;
+/* A session is twenty cards, so a pool of 920 waiting is not news the learner
+   can act on — every card that has never been reviewed is due at once, which
+   on a first pass is all of them.  Past a full draw the figure stops counting
+   and says there is a session there. */
+const dueLabel = n => (n > REVIEW_SIZE ? REVIEW_SIZE + '+' : n) + ' due';
 
 /* ── mastery ───────────────────────────────────────
    A card is mastered once it has come back right on its FIRST showing in a
@@ -1180,7 +1185,7 @@ function renderDrawer() {
     /* the figure and its rank, and nothing else: what it is made of is on
        the card this button opens.  Beside the name, the one thing that
        changes on its own and is worth coming back for. */
-    '#dp-label': due ? 'abhyāsa · ' + due + ' due' : 'abhyāsa',
+    '#dp-label': due ? 'abhyāsa · ' + dueLabel(due) : 'abhyāsa',
     '#dp-pct': r.score === null ? 'Unranked' : r.score + '% \u00b7 ' + r.name,
     '#dp-cards': done + ' of ' + all
   });
@@ -1299,7 +1304,7 @@ function renderReviewPanel() {
   $('rp-what').textContent = !ready
     ? "Learn " + REVIEW_MIN + " cards to unlock \u2014 " + pool + " so far"
     : "Reviewing " + REVIEW_SIZE + " cards from " + pool + " learned \u00b7 "
-      + due + " due now";
+      + dueLabel(due) + " now";
   $('rp-note').textContent = "Abhy\u0101sa checks how well your studied material is "
     + "holding up over time. A card joins it the moment you answer it right "
     + "first time, and only your first answer counts here. Cards you remember "
@@ -1448,11 +1453,14 @@ function renderTrack(id) {
      the line says what is waiting rather than only what the mode is. */
   const due = reviewPool().length >= REVIEW_MIN ? dueCount() : 0;
   $('s-review').hidden = !begun;
-  $('s-review').textContent = due ? 'Abhyāsa \u00b7 ' + due + ' due' : 'Abhyāsa review';
+  $('s-review').textContent = due ? 'Abhyāsa \u00b7 ' + dueLabel(due) : 'Abhyāsa review';
   $('s-side').hidden = !begun;
   $('s-side').textContent = due
-    ? 'Abhyāsa has ' + due + ' card' + (due === 1 ? '' : 's') + ' waiting: cards you '
-      + 'have already got right, brought back before they fade.'
+    ? (due > REVIEW_SIZE
+        ? 'Abhyāsa has a full session waiting: cards you have already got right, '
+          + 'brought back before they fade.'
+        : 'Abhyāsa has ' + due + ' card' + (due === 1 ? '' : 's') + ' waiting: cards you '
+          + 'have already got right, brought back before they fade.')
     : 'A card joins Abhyāsa the moment you get it right first time, and comes '
       + 'back later to see whether it stayed.';
   $('s-review').onclick = () => openPanel('reviewpanel');
@@ -2430,6 +2438,43 @@ function renderAwards() {
   });
 }
 
+/* The next list worth opening after this one: the first unfinished list in
+   the same track, taken in curriculum order from where you are.  A track you
+   have finished has none, and neither does a cross-list round — a draw does
+   not belong to a list, so there is nothing to be "next" to. */
+function nextList(name) {
+  const row = TRACK_ROWS.find(r => r.track.id === trackIdOf(name));
+  if (!row) return null;
+  const names = trackDecks(row);
+  const here = names.indexOf(name);
+  const done = finishedDecks();
+  const after = names.slice(here + 1).find(n => done.indexOf(n) < 0);
+  return after || names.find(n => n !== name && done.indexOf(n) < 0) || null;
+}
+
+/* The two handoffs at the end of a round: on to the next list, and over to
+   whatever Abhyāsa has waiting.  Without them the results screen is where a
+   session stops — every other way on is behind the drawer. */
+function renderHandoff() {
+  const onward = mixed ? null : nextList(deckName);
+  const go = $('next-list');
+  go.hidden = !onward;
+  if (onward) {
+    go.textContent = 'Next \u2014 ' + DECK_SHORT(onward);
+    go.title = onward;
+    go.onclick = () => chooseDeck(onward);
+  }
+  /* not offered inside a review: "review 20 due" while reviewing is the
+     button you already pressed */
+  const due = !mixed && reviewPool().length >= REVIEW_MIN ? dueCount() : 0;
+  const rev = $('review-due');
+  rev.hidden = !due;
+  if (due) {
+    rev.textContent = 'Abhyāsa \u00b7 ' + dueLabel(due);
+    rev.onclick = () => { leavePage(); startMixedReview(); };
+  }
+}
+
 function finish() {
   const total = roundSource.length;
   const firstPass = total - missed.length;
@@ -2488,6 +2533,7 @@ function finish() {
     scoreLine += "<br><b>" + justCleared + "</b> left the trouble list";
   $('r-score').innerHTML = scoreLine;
   renderAwards();
+  renderHandoff();
 
   const list = $('r-list');
   list.innerHTML = "";
@@ -2665,6 +2711,9 @@ function rankOf(ids) {
    and the review mastery line above the list comes from the same tally
    the draws keep. */
 function renderBoard() {
+  /* Each panel shows its own action bar; closePanel hides whichever the
+     open panel declared. */
+  $('b-actions').hidden = false;
   /* Always on show, in one of three states, so the review is legible as a
      thing that exists well before there is a figure to put against it. */
   const mastery = masteryPct(), pool = reviewPool().length;
@@ -2736,7 +2785,7 @@ function syncBoardUI() {
    button can never be left reading "back to the cards" for a shut panel. */
 const PANELS = {
   study:       { render: renderStudy,       relabel: syncStudyUI },
-  board:       { render: renderBoard,       relabel: syncBoardUI },
+  board:       { render: renderBoard,       relabel: syncBoardUI,   actions: 'b-actions' },
   reviewpanel: { render: renderReviewPanel, relabel: syncReviewUI,  actions: 'rp-actions' },
   trouble:     { render: renderTrouble,     relabel: syncTroubleUI, actions: 't-actions' }
 };
@@ -2932,6 +2981,24 @@ $('t-copy').addEventListener('click', async () => {
   setTimeout(() => { b.textContent = "Copy the list"; }, 1800);
 });
 $('share').addEventListener('click', shareScore);
+
+/* ── the two controls a tester needs ───────────────────────
+   A report that cannot be reproduced is a report you cannot act on, and a
+   tester who wants to see the first run again should not have to know where
+   a browser keeps its site data. */
+$('b-copy').addEventListener('click', async () => {
+  const b = $('b-copy'), ok = await copyText(JSON.stringify(SAVED));
+  b.textContent = ok ? 'copied \u2713' : 'press \u2318/Ctrl+C';
+  setTimeout(() => { b.textContent = 'Copy my progress'; }, 1800);
+});
+$('b-reset').addEventListener('click', async () => {
+  if (!await ask('Start over? Every score, every card learnt and every list '
+                 + 'completed will be forgotten. This cannot be undone.',
+                 'Erase everything')) return;
+  try { localStorage.removeItem(STORE_KEY); OLD_KEYS.forEach(k => localStorage.removeItem(k)); }
+  catch (e) {}
+  location.reload();
+});
 
 /* switching lists or jumping to the pile discards a round in progress —
    ask first once anything has been graded */
