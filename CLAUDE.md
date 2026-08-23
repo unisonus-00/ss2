@@ -996,6 +996,42 @@ the running totals were kept, and no record survives of *which* cards a past
 session showed — so it starts empty, every card is due, and the first session
 after upgrading draws from the whole pool exactly as it used to.
 
+### A paradigm is shown before it is produced from
+
+The `Rūpa-siddhi` lists are **deliberately a second pass** over the same
+tables — the `Śabda-rūpa` tables being the first, and the section above says
+why the second pass earns its place. The order had them the wrong way round.
+
+The ordering rule read its bands off the **card type**: core first, then
+anything interactive, then plain recall. That was a proxy for "the exercises,
+then the breadth lists", and it held while breadth was the only thing made of
+recall cards. A paradigm table is recall too, and a production deck is
+interactive, so the rule forced all thirteen `Rūpa-siddhi` decks above all
+nine `Śabda-rūpa` tables — and `Continue —` reached *Form the caturthī
+singular of devī-* before a single declension table had been drilled. Stage 6
+had the same shape, with the person-and-tense practice above the three
+conjugation tables.
+
+The bands are now read off `role`, which is a fact about the source rather
+than a guess from the cards:
+
+| | |
+|:--|:--|
+| **core** | the equivalences, or the raw material an exercise draws from |
+| **table** | a paradigm shown whole — recognition, before anything produces out of it |
+| *(unmarked)* | the lesson's exercises and its other lists |
+| **breadth** | the vocab bank, which widens rather than carries |
+
+Stage 5 now runs terms → nine tables → the sampler exercise → thirteen
+production lists, and Stage 6 terms → three conjugations → the practice.
+Nothing was rewritten to do it: the decks were reordered and twelve gained a
+`role`, with every card, name and pair untouched — deck names key the saved
+scores and card ids key everything else, so no learner history moves.
+
+Making `breadth` explicit is what let the rule be stated properly. The old
+proxy existed because there was no way to say "this list widens rather than
+carries"; now there is, and the rule says what it means.
+
 ### The course leads, the vocabulary follows
 
 `Continue —` is the one instruction the app gives, and it walked a track in
@@ -1530,6 +1566,11 @@ Which vibhakti (case) typically expresses karaṇa (instrument)?
 card rather than depending on the order lists happen to be taken in. Every
 part of it is sourced: `instrumental` from Stage 5's own case list, `3rd`
 from the reference's `#` column and from the kāraka table's `3rd (tṛtīyā)`.
+
+**A list marked `"role": "table"` is a paradigm shown whole**, and comes
+before anything that asks the learner to produce out of it. Twelve lists
+carry it: the nine `Śabda-rūpa` declensions and the three `Dhātu-rūpa`
+conjugations. See **A paradigm is shown before it is produced from**.
 
 **A list marked `"role": "breadth"` follows the course rather than carrying
 it.** The 82 vocab-bank lists carry it, and it decides one thing: what

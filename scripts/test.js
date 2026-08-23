@@ -1841,10 +1841,21 @@ const open = async (browser, opts = {}) => {
   }
 
   // ── fundamentals come before the cards that use them ───────────────
-  // term → equivalent → relationship → application.  A list marked
-  // `"role": "core"` holds what this lesson's own tests rest on — the
-  // equivalences, or the raw material the exercise draws from — so it leads
-  // the lesson; the exercises follow, and the breadth lists come last.
+  // term → equivalent → relationship → application, in four bands:
+  //
+  //   core     the equivalences, or the raw material an exercise draws from
+  //   table    a paradigm shown whole — recognition, before anything asks
+  //            the learner to produce out of it
+  //   (rest)   the lesson's exercises and its other lists
+  //   breadth  the vocab bank, which widens rather than carries
+  //
+  // The bands are read off `role`, which is a fact about the source.  The
+  // rule used to read them off the CARD TYPE — interactive above reveal —
+  // which was a proxy for "exercise above breadth list" and got the two
+  // paradigm lessons exactly backwards: every Rūpa-siddhi production deck
+  // was forced above the Śabda-rūpa tables they are documented as a second
+  // pass over, so "Continue" reached "Form the caturthī singular of devī-"
+  // before any declension table had been drilled.
   {
     const p = await open(browser);
     const r = await p.evaluate(() => {
@@ -1855,11 +1866,17 @@ const open = async (browser, opts = {}) => {
       const late = [], early = [];
       Object.entries(byLesson).forEach(([L, names]) => {
         const kind = n => DECK_ROLE[n] === 'core' ? 0
-                        : DECKS[n].some(c => (c.type || 'reveal') !== 'reveal') ? 1 : 2;
+                        : DECK_ROLE[n] === 'table' ? 1
+                        : DECK_ROLE[n] === 'breadth' ? 3 : 2;
+        const tests = n => DECKS[n].some(c => (c.type || 'reveal') !== 'reveal');
         const seq = names.map(kind);
-        // a terms list may never sit below an exercise that leans on it
+        // a terms list may never sit below anything that leans on it
         seq.forEach((k, i) => {
-          if (k === 0 && seq.slice(0, i).some(x => x === 1)) late.push(L);
+          if (k === 0 && seq.slice(0, i).some(x => x > 0)) late.push(L);
+        });
+        // nor a paradigm below the exercises that produce out of it
+        seq.forEach((k, i) => {
+          if (k === 1 && seq.slice(0, i).some(x => x === 2)) late.push(L + ' (table below its exercises)');
         });
         /* Every lesson that tests must show its fundamentals somewhere first —
            in the lesson itself, or in an earlier one. Three rest entirely on
@@ -1867,11 +1884,11 @@ const open = async (browser, opts = {}) => {
            śloka, and Paryāya-Chandas on both of the stages it is named for —
            the synonym sets of Paryāya and the scansion of Chandas I. */
         const RESTS_EARLIER = ['15-stotra-ii', '21-chandas-ii', '23-paryaya-chandas'];
-        if (seq.includes(1) && !seq.includes(0) && !RESTS_EARLIER.includes(L))
+        if (names.some(tests) && !seq.includes(0) && !RESTS_EARLIER.includes(L))
           late.push(L + ' (no fundamentals list at all)');
-        // and an exercise may never sit below a plain recall list
+        // and nothing that carries the course may sit below a breadth list
         seq.forEach((k, i) => {
-          if (k === 1 && seq.slice(0, i).some(x => x === 2)) early.push(L);
+          if (k < 3 && seq.slice(0, i).some(x => x === 3)) early.push(L);
         });
       });
       /* The equivalences a later stage leans on, each taught by its own
@@ -1922,7 +1939,7 @@ const open = async (browser, opts = {}) => {
     ok('and the worked sentences lead Stage 12', r.worked >= 4, r.worked + ' cards');
     ok('no card names a grammatical mood or voice without saying what it does',
       !r.bare.length, r.bare.slice(0, 4).join(' | '));
-    ok('and the exercises still lead the breadth lists', !r.early.length, r.early.join(' | '));
+    ok('and the breadth lists still trail the course', !r.early.length, r.early.join(' | '));
     ok('every equivalence a later card leans on is taught by a card',
       !r.untaught.length, r.untaught.join(' | '));
     ok('a case card does not simply assert a kāraka',
@@ -3272,6 +3289,64 @@ const open = async (browser, opts = {}) => {
       r.isPermutation && r.spineThenBreadth);
     ok('and the breadth marking has not drifted from the naming convention',
       !r.drift.length, r.drift.slice(0, 4).join(' | '));
+    await p.close();
+  }
+
+  // ── a paradigm is shown before it is produced from ─────────────────
+  // The Rūpa-siddhi lists are documented as "deliberately a second pass over
+  // the same tables" — the Śabda-rūpa tables being the first.  The old
+  // ordering rule read the bands off the card type, so every production deck
+  // (choice) was forced above every table (reveal) and the second pass came
+  // first: "Continue" reached "Form the caturthī singular of devī-" before a
+  // single declension table had been drilled.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const out = {};
+      const pos = (L, pat) => {
+        const names = LESSONS.find(x => x.lesson === L).decks;
+        return { first: names.findIndex(n => pat.test(n)),
+                 last: names.map(n => pat.test(n)).lastIndexOf(true) };
+      };
+      const rupa = { table: pos('05-rupa', /^Śabda-rūpa/),
+                     produce: pos('05-rupa', /^Rūpa-siddhi/) };
+      const kriya = { table: pos('06-kriya', /^Dhātu-rūpa/),
+                      practice: pos('06-kriya', /practice$/) };
+      out.rupaOrdered = rupa.table.last < rupa.produce.first;
+      out.kriyaOrdered = kriya.table.last < kriya.practice.first;
+      out.rupa = rupa; out.kriya = kriya;
+
+      /* every list marked `table` really is a paradigm shown whole: all
+         recall, and running form → analysis */
+      out.tables = Object.keys(DECKS).filter(n => DECK_ROLE[n] === 'table');
+      out.tablesAreRecall = out.tables.every(n =>
+        DECKS[n].every(c => (c.type || 'reveal') === 'reveal')
+        && DECK_PAIR[n] === 'form \u2192 analysis');
+
+      /* and the learner walking the recommended path meets one before being
+         asked to produce out of it */
+      SAVED.mastered = {}; SAVED.pending = {}; SAVED.decks = {};
+      const row = TRACK_ROWS.find(x => x.track.id === 'bhasha');
+      let name = recommendOrder(row)[0], firstTable = -1, firstProduce = -1, i = 0;
+      for (; i < 40 && name; i++) {
+        if (firstTable < 0 && DECK_ROLE[name] === 'table') firstTable = i;
+        if (firstProduce < 0 && /^Rūpa-siddhi/.test(name)) firstProduce = i;
+        if (firstTable >= 0 && firstProduce >= 0) break;
+        DECKS[name].forEach(c => { SAVED.mastered[c.id] = 1; });
+        name = nextList(name);
+      }
+      out.path = { firstTable: firstTable, firstProduce: firstProduce };
+      return out;
+    });
+    ok('Rūpa shows every declension table before asking for a form',
+      r.rupaOrdered, JSON.stringify(r.rupa));
+    ok('and Kriyā shows the conjugations before drilling person and tense',
+      r.kriyaOrdered, JSON.stringify(r.kriya));
+    ok('every list marked a table is a paradigm shown whole',
+      r.tables.length === 12 && r.tablesAreRecall, r.tables.length + ' tables');
+    ok('so the recommended path meets a table before producing from one',
+      r.path.firstTable >= 0 && r.path.firstTable < r.path.firstProduce,
+      JSON.stringify(r.path));
     await p.close();
   }
 

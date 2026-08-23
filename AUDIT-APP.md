@@ -246,7 +246,15 @@ effort medium.*
   strongest prerequisite discipline I have seen in an app this size. The
   in-card popover glossary (case/type/gender/stem notes) covers the
   remaining jargon well.
-- **M1 — Stage 5/6 order inversion.** The test rule "an exercise may never
+- **M1 — Stage 5/6 order inversion.** *(Resolved.* The ordering rule now reads
+  its bands off `role` — core → table → exercises → breadth — rather than
+  guessing them from the card type, which was a proxy that held only while
+  breadth was the only thing made of recall cards. Twelve paradigm lists gained
+  `"role": "table"`; Stage 5 runs terms → nine tables → sampler → thirteen
+  production lists, Stage 6 terms → three conjugations → practice. Decks were
+  reordered and nothing rewritten: every card, name and pair is untouched, so no
+  learner history moves. Making `breadth` explicit in H5 is what let the rule be
+  stated properly. Four checks added; the suite is now 459.*) The test rule "an exercise may never
   sit below a plain recall list" (`test.js:1872`) classifies decks
   core/interactive/reveal and forces every choice deck above every reveal
   deck in a lesson. In Stage 5 that puts 13 production decks (~180 choice
@@ -418,7 +426,7 @@ per-deck pairs and cues correct. Recurring smaller issues:
 | H3 | Choice-card guessing counts as cold recall | ~~High~~ **fixed** | medium | pedagogy |
 | H4 | Production direction never scheduled; mastery direction-blind | ~~High~~ **fixed** | medium | pedagogy |
 | H5 | Guided path fronts 609 vocab cards before any grammar | ~~High~~ **fixed** | medium | pedagogy/UX |
-| M1 | Stage 5/6: production forced above recognition tables by order rule | Medium | medium | content/pedagogy |
+| M1 | Stage 5/6: production forced above recognition tables by order rule | ~~Medium~~ **fixed** | medium | content/pedagogy |
 | M2 | Alaṅkāra/Rasa bounded identification sections uncarded | Medium | small | content |
 | M3 | Trouble-clear "sitting" = page load (long-lived tab never clears) | Medium | small | engineering |
 | M4 | Lifetime review-accuracy average never reflects current ability | Medium | small | pedagogy |
