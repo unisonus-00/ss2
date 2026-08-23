@@ -9,105 +9,105 @@
           "devanagari": "कामाक्षी",
           "iast": "kāmākṣī",
           "gloss": "she of loving eyes",
-          "note": "nom. sg. · f. · stem: kāmākṣī- · ī-stem"
+          "note": "noun · feminine · ī-stem · stem: kāmākṣī-"
         },
         {
           "id": "01-nama:devi:lalita",
           "devanagari": "ललिता",
           "iast": "lalitā",
           "gloss": "the playful one",
-          "note": "nom. sg. · f. · stem: lalitā- · ā-stem"
+          "note": "noun · feminine · ā-stem · stem: lalitā-"
         },
         {
           "id": "01-nama:devi:tripurasundari",
           "devanagari": "त्रिपुरसुन्दरी",
           "iast": "tripurasundarī",
           "gloss": "beauty of the three cities",
-          "note": "nom. sg. · f. · stem: tripurasundarī- · ī-stem"
+          "note": "noun · feminine · ī-stem · stem: tripurasundarī-"
         },
         {
           "id": "01-nama:devi:rajarajesvari",
           "devanagari": "राजराजेश्वरी",
           "iast": "rājarājeśvarī",
           "gloss": "sovereign of sovereigns",
-          "note": "nom. sg. · f. · stem: rājarājeśvarī- · ī-stem"
+          "note": "noun · feminine · ī-stem · stem: rājarājeśvarī-"
         },
         {
           "id": "01-nama:devi:bala",
           "devanagari": "बाला",
           "iast": "bālā",
           "gloss": "the young one",
-          "note": "nom. sg. · f. · stem: bālā- · ā-stem"
+          "note": "noun · feminine · ā-stem · stem: bālā-"
         },
         {
           "id": "01-nama:devi:durga",
           "devanagari": "दुर्गा",
           "iast": "durgā",
           "gloss": "the unassailable",
-          "note": "nom. sg. · f. · stem: durgā- · ā-stem"
+          "note": "noun · feminine · ā-stem · stem: durgā-"
         },
         {
           "id": "01-nama:devi:parvati",
           "devanagari": "पार्वती",
           "iast": "pārvatī",
           "gloss": "daughter of the mountain",
-          "note": "nom. sg. · f. · stem: pārvatī- · ī-stem"
+          "note": "noun · feminine · ī-stem · stem: pārvatī-"
         },
         {
           "id": "01-nama:devi:sarasvati",
           "devanagari": "सरस्वती",
           "iast": "sarasvatī",
           "gloss": "she of the flowing speech",
-          "note": "nom. sg. · f. · stem: sarasvatī- · ī-stem"
+          "note": "noun · feminine · ī-stem · stem: sarasvatī-"
         },
         {
           "id": "01-nama:devi:laksmih",
           "devanagari": "लक्ष्मीः",
           "iast": "lakṣmīḥ",
           "gloss": "fortune, splendour",
-          "note": "nom. sg. · f. · stem: lakṣmī- · ī-stem"
+          "note": "noun · feminine · ī-stem · stem: lakṣmī-"
         },
         {
           "id": "01-nama:devi:gauri",
           "devanagari": "गौरी",
           "iast": "gaurī",
           "gloss": "the radiant, fair one",
-          "note": "nom. sg. · f. · stem: gaurī- · ī-stem"
+          "note": "noun · feminine · ī-stem · stem: gaurī-"
         },
         {
           "id": "01-nama:devi:candika",
           "devanagari": "चण्डिका",
           "iast": "caṇḍikā",
           "gloss": "the fierce one",
-          "note": "nom. sg. · f. · stem: caṇḍikā- · ā-stem"
+          "note": "noun · feminine · ā-stem · stem: caṇḍikā-"
         },
         {
           "id": "01-nama:devi:syama",
           "devanagari": "श्यामा",
           "iast": "śyāmā",
-          "gloss": "the dark one",
-          "note": "nom. sg. · f. · stem: śyāmā- · ā-stem"
+          "gloss": "the dusky one",
+          "note": "noun · feminine · ā-stem · stem: śyāmā-"
         },
         {
           "id": "01-nama:devi:bhavani",
           "devanagari": "भवानी",
           "iast": "bhavānī",
           "gloss": "consort of Bhava",
-          "note": "nom. sg. · f. · stem: bhavānī- · ī-stem"
+          "note": "noun · feminine · ī-stem · stem: bhavānī-"
         },
         {
           "id": "01-nama:devi:amba",
           "devanagari": "अम्बा",
           "iast": "ambā",
           "gloss": "mother",
-          "note": "nom. sg. · f. · stem: ambā- · ā-stem"
+          "note": "noun · feminine · ā-stem · stem: ambā-"
         },
         {
           "id": "01-nama:devi:kundalini",
           "devanagari": "कुण्डलिनी",
           "iast": "kuṇḍalinī",
           "gloss": "the coiled one",
-          "note": "nom. sg. · f. · stem: kuṇḍalinī- · ī-stem"
+          "note": "noun · feminine · ī-stem · stem: kuṇḍalinī-"
         }
       ]
     },
@@ -119,98 +119,98 @@
           "devanagari": "शिवः",
           "iast": "śivaḥ",
           "gloss": "the auspicious one",
-          "note": "nom. sg. · m. · stem: śiva- · a-stem"
+          "note": "noun · masculine · a-stem · stem: śiva-"
         },
         {
           "id": "01-nama:deva:visnuh",
           "devanagari": "विष्णुः",
           "iast": "viṣṇuḥ",
           "gloss": "the all-pervading",
-          "note": "nom. sg. · m. · stem: viṣṇu- · u-stem"
+          "note": "noun · masculine · u-stem · stem: viṣṇu-"
         },
         {
           "id": "01-nama:deva:harih",
           "devanagari": "हरिः",
           "iast": "hariḥ",
           "gloss": "the remover",
-          "note": "nom. sg. · m. · stem: hari- · i-stem"
+          "note": "noun · masculine · i-stem · stem: hari-"
         },
         {
           "id": "01-nama:deva:ganesah",
           "devanagari": "गणेशः",
           "iast": "gaṇeśaḥ",
           "gloss": "lord of the hosts",
-          "note": "nom. sg. · m. · stem: gaṇeśa- · a-stem"
+          "note": "noun · masculine · a-stem · stem: gaṇeśa-"
         },
         {
           "id": "01-nama:deva:skandah",
           "devanagari": "स्कन्दः",
           "iast": "skandaḥ",
           "gloss": "Kārttikeya",
-          "note": "nom. sg. · m. · stem: skanda- · a-stem"
+          "note": "noun · masculine · a-stem · stem: skanda-"
         },
         {
           "id": "01-nama:deva:bhairavah",
           "devanagari": "भैरवः",
           "iast": "bhairavaḥ",
           "gloss": "the terrifying one",
-          "note": "nom. sg. · m. · stem: bhairava- · a-stem"
+          "note": "noun · masculine · a-stem · stem: bhairava-"
         },
         {
           "id": "01-nama:deva:rudrah",
           "devanagari": "रुद्रः",
           "iast": "rudraḥ",
           "gloss": "the howler",
-          "note": "nom. sg. · m. · stem: rudra- · a-stem"
+          "note": "noun · masculine · a-stem · stem: rudra-"
         },
         {
           "id": "01-nama:deva:brahma",
           "devanagari": "ब्रह्मा",
           "iast": "brahmā",
           "gloss": "the creator",
-          "note": "nom. sg. · m. · stem: brahman- · an-stem"
+          "note": "noun · masculine · an-stem · stem: brahman-"
         },
         {
           "id": "01-nama:deva:suryah",
           "devanagari": "सूर्यः",
           "iast": "sūryaḥ",
           "gloss": "the sun",
-          "note": "nom. sg. · m. · stem: sūrya- · a-stem"
+          "note": "noun · masculine · a-stem · stem: sūrya-"
         },
         {
           "id": "01-nama:deva:indrah",
           "devanagari": "इन्द्रः",
           "iast": "indraḥ",
           "gloss": "lord of the gods",
-          "note": "nom. sg. · m. · stem: indra- · a-stem"
+          "note": "noun · masculine · a-stem · stem: indra-"
         },
         {
           "id": "01-nama:deva:ramah",
           "devanagari": "रामः",
           "iast": "rāmaḥ",
           "gloss": "the delightful one",
-          "note": "nom. sg. · m. · stem: rāma- · a-stem"
+          "note": "noun · masculine · a-stem · stem: rāma-"
         },
         {
           "id": "01-nama:deva:krsnah",
           "devanagari": "कृष्णः",
           "iast": "kṛṣṇaḥ",
           "gloss": "the dark one",
-          "note": "nom. sg. · m. · stem: kṛṣṇa- · a-stem"
+          "note": "noun · masculine · a-stem · stem: kṛṣṇa-"
         },
         {
           "id": "01-nama:deva:bhagavan",
           "devanagari": "भगवान्",
           "iast": "bhagavān",
           "gloss": "the blessed lord",
-          "note": "nom. sg. · m. · stem: bhagavat- · at-stem"
+          "note": "noun · masculine · at-stem · stem: bhagavat-"
         },
         {
           "id": "01-nama:deva:atma",
           "devanagari": "आत्मा",
           "iast": "ātmā",
           "gloss": "self",
-          "note": "nom. sg. · m. · stem: ātman- · an-stem"
+          "note": "noun · masculine · an-stem · stem: ātman-"
         },
         {
           "id": "01-nama:deva:mahesvarah",
@@ -229,98 +229,98 @@
           "devanagari": "त्रिशूलम्",
           "iast": "triśūlam",
           "gloss": "trident",
-          "note": "nom./acc. sg. · n. · stem: triśūla- · a-stem"
+          "note": "noun · neuter · a-stem · stem: triśūla-"
         },
         {
           "id": "01-nama:ayudha:cakram",
           "devanagari": "चक्रम्",
           "iast": "cakram",
           "gloss": "discus",
-          "note": "nom./acc. sg. · n. · stem: cakra- · a-stem"
+          "note": "noun · neuter · a-stem · stem: cakra-"
         },
         {
           "id": "01-nama:ayudha:sankhah",
           "devanagari": "शङ्खः",
           "iast": "śaṅkhaḥ",
           "gloss": "conch",
-          "note": "nom. sg. · m. · stem: śaṅkha- · a-stem"
+          "note": "noun · masculine · a-stem · stem: śaṅkha-"
         },
         {
           "id": "01-nama:ayudha:gada",
           "devanagari": "गदा",
           "iast": "gadā",
           "gloss": "mace",
-          "note": "nom. sg. · f. · stem: gadā- · ā-stem"
+          "note": "noun · feminine · ā-stem · stem: gadā-"
         },
         {
           "id": "01-nama:ayudha:dhanuh",
           "devanagari": "धनुः",
           "iast": "dhanuḥ",
           "gloss": "bow",
-          "note": "nom./acc. sg. · n. · stem: dhanus- · us-stem"
+          "note": "noun · neuter · us-stem · stem: dhanus-"
         },
         {
           "id": "01-nama:ayudha:banah",
           "devanagari": "बाणः",
           "iast": "bāṇaḥ",
           "gloss": "arrow",
-          "note": "nom. sg. · m. · stem: bāṇa- · a-stem"
+          "note": "noun · masculine · a-stem · stem: bāṇa-"
         },
         {
           "id": "01-nama:ayudha:pasah",
           "devanagari": "पाशः",
           "iast": "pāśaḥ",
           "gloss": "noose",
-          "note": "nom. sg. · m. · stem: pāśa- · a-stem"
+          "note": "noun · masculine · a-stem · stem: pāśa-"
         },
         {
           "id": "01-nama:ayudha:ankusah",
           "devanagari": "अङ्कुशः",
           "iast": "aṅkuśaḥ",
           "gloss": "goad",
-          "note": "nom. sg. · m. · stem: aṅkuśa- · a-stem"
+          "note": "noun · masculine · a-stem · stem: aṅkuśa-"
         },
         {
           "id": "01-nama:ayudha:khadgah",
           "devanagari": "खड्गः",
           "iast": "khaḍgaḥ",
           "gloss": "sword",
-          "note": "nom. sg. · m. · stem: khaḍga- · a-stem"
+          "note": "noun · masculine · a-stem · stem: khaḍga-"
         },
         {
           "id": "01-nama:ayudha:vajram",
           "devanagari": "वज्रम्",
           "iast": "vajram",
           "gloss": "thunderbolt",
-          "note": "nom./acc. sg. · n. · stem: vajra- · a-stem"
+          "note": "noun · neuter · a-stem · stem: vajra-"
         },
         {
           "id": "01-nama:ayudha:damaruh",
           "devanagari": "डमरुः",
           "iast": "ḍamaruḥ",
           "gloss": "hand-drum",
-          "note": "nom. sg. · m. · stem: ḍamaru- · u-stem"
+          "note": "noun · masculine · u-stem · stem: ḍamaru-"
         },
         {
           "id": "01-nama:ayudha:aksamala",
           "devanagari": "अक्षमाला",
           "iast": "akṣamālā",
           "gloss": "rosary",
-          "note": "nom. sg. · f. · stem: akṣamālā- · ā-stem"
+          "note": "noun · feminine · ā-stem · stem: akṣamālā-"
         },
         {
           "id": "01-nama:ayudha:kapalam",
           "devanagari": "कपालम्",
           "iast": "kapālam",
           "gloss": "skull-bowl",
-          "note": "nom./acc. sg. · n. · stem: kapāla- · a-stem"
+          "note": "noun · neuter · a-stem · stem: kapāla-"
         },
         {
           "id": "01-nama:ayudha:padmam",
           "devanagari": "पद्मम्",
           "iast": "padmam",
-          "gloss": "lotus",
-          "note": "nom./acc. sg. · n. · stem: padma- · a-stem"
+          "gloss": "lotus, as an emblem held in the hand",
+          "note": "noun · neuter · a-stem · stem: padma-"
         }
       ]
     },
@@ -332,105 +332,105 @@
           "devanagari": "दीपः",
           "iast": "dīpaḥ",
           "gloss": "lamp",
-          "note": "nom. sg. · m. · stem: dīpa- · a-stem"
+          "note": "noun · masculine · a-stem · stem: dīpa-"
         },
         {
           "id": "01-nama:puja-dravya:puspam",
           "devanagari": "पुष्पम्",
           "iast": "puṣpam",
           "gloss": "flower",
-          "note": "nom./acc. sg. · n. · stem: puṣpa- · a-stem"
+          "note": "noun · neuter · a-stem · stem: puṣpa-"
         },
         {
           "id": "01-nama:puja-dravya:dhupah",
           "devanagari": "धूपः",
           "iast": "dhūpaḥ",
           "gloss": "incense",
-          "note": "nom. sg. · m. · stem: dhūpa- · a-stem"
+          "note": "noun · masculine · a-stem · stem: dhūpa-"
         },
         {
           "id": "01-nama:puja-dravya:naivedyam",
           "devanagari": "नैवेद्यम्",
           "iast": "naivedyam",
           "gloss": "food offering",
-          "note": "nom./acc. sg. · n. · stem: naivedya- · a-stem"
+          "note": "noun · neuter · a-stem · stem: naivedya-"
         },
         {
           "id": "01-nama:puja-dravya:gandhah",
           "devanagari": "गन्धः",
           "iast": "gandhaḥ",
           "gloss": "fragrant paste",
-          "note": "nom. sg. · m. · stem: gandha- · a-stem"
+          "note": "noun · masculine · a-stem · stem: gandha-"
         },
         {
           "id": "01-nama:puja-dravya:aksatah",
           "devanagari": "अक्षताः",
           "iast": "akṣatāḥ",
           "gloss": "unbroken rice",
-          "note": "nom. pl. · m. · stem: akṣata- · a-stem"
+          "note": "noun · masculine · plural · a-stem · stem: akṣata-"
         },
         {
           "id": "01-nama:puja-dravya:kalasah",
           "devanagari": "कलशः",
           "iast": "kalaśaḥ",
           "gloss": "water pot",
-          "note": "nom. sg. · m. · stem: kalaśa- · a-stem"
+          "note": "noun · masculine · a-stem · stem: kalaśa-"
         },
         {
           "id": "01-nama:puja-dravya:asanam",
           "devanagari": "आसनम्",
           "iast": "āsanam",
           "gloss": "seat",
-          "note": "nom./acc. sg. · n. · stem: āsana- · a-stem"
+          "note": "noun · neuter · a-stem · stem: āsana-"
         },
         {
           "id": "01-nama:puja-dravya:arghyam",
           "devanagari": "अर्घ्यम्",
           "iast": "arghyam",
           "gloss": "offering water",
-          "note": "nom./acc. sg. · n. · stem: arghya- · a-stem"
+          "note": "noun · neuter · a-stem · stem: arghya-"
         },
         {
           "id": "01-nama:puja-dravya:padyam",
           "devanagari": "पाद्यम्",
           "iast": "pādyam",
           "gloss": "water for the feet",
-          "note": "nom./acc. sg. · n. · stem: pādya- · a-stem"
+          "note": "noun · neuter · a-stem · stem: pādya-"
         },
         {
           "id": "01-nama:puja-dravya:tambulam",
           "devanagari": "ताम्बूलम्",
           "iast": "tāmbūlam",
           "gloss": "betel offering",
-          "note": "nom./acc. sg. · n. · stem: tāmbūla- · a-stem"
+          "note": "noun · neuter · a-stem · stem: tāmbūla-"
         },
         {
           "id": "01-nama:puja-dravya:karpurah",
           "devanagari": "कर्पूरः",
           "iast": "karpūraḥ",
           "gloss": "camphor",
-          "note": "nom. sg. · m. · stem: karpūra- · a-stem"
+          "note": "noun · masculine · a-stem · stem: karpūra-"
         },
         {
           "id": "01-nama:puja-dravya:ghanta",
           "devanagari": "घण्टा",
           "iast": "ghaṇṭā",
           "gloss": "bell",
-          "note": "nom. sg. · f. · stem: ghaṇṭā- · ā-stem"
+          "note": "noun · feminine · ā-stem · stem: ghaṇṭā-"
         },
         {
           "id": "01-nama:puja-dravya:camaram",
           "devanagari": "चामरम्",
           "iast": "cāmaram",
           "gloss": "fly-whisk",
-          "note": "nom./acc. sg. · n. · stem: cāmara- · a-stem"
+          "note": "noun · neuter · a-stem · stem: cāmara-"
         },
         {
           "id": "01-nama:puja-dravya:vastram",
           "devanagari": "वस्त्रम्",
           "iast": "vastram",
           "gloss": "cloth",
-          "note": "nom./acc. sg. · n. · stem: vastra- · a-stem"
+          "note": "noun · neuter · a-stem · stem: vastra-"
         }
       ]
     },
@@ -442,105 +442,105 @@
           "devanagari": "जलम्",
           "iast": "jalam",
           "gloss": "water",
-          "note": "nom./acc. sg. · n. · stem: jala- · a-stem"
+          "note": "noun · neuter · a-stem · stem: jala-"
         },
         {
           "id": "01-nama:prakrti:agnih",
           "devanagari": "अग्निः",
           "iast": "agniḥ",
           "gloss": "fire",
-          "note": "nom. sg. · m. · stem: agni- · i-stem"
+          "note": "noun · masculine · i-stem · stem: agni-"
         },
         {
           "id": "01-nama:prakrti:vayuh",
           "devanagari": "वायुः",
           "iast": "vāyuḥ",
           "gloss": "wind",
-          "note": "nom. sg. · m. · stem: vāyu- · u-stem"
+          "note": "noun · masculine · u-stem · stem: vāyu-"
         },
         {
           "id": "01-nama:prakrti:akasah",
           "devanagari": "आकाशः",
           "iast": "ākāśaḥ",
           "gloss": "space, ether",
-          "note": "nom. sg. · m. · stem: ākāśa- · a-stem"
+          "note": "noun · masculine · a-stem · stem: ākāśa-"
         },
         {
           "id": "01-nama:prakrti:prthivi",
           "devanagari": "पृथिवी",
           "iast": "pṛthivī",
           "gloss": "earth",
-          "note": "nom. sg. · f. · stem: pṛthivī- · ī-stem"
+          "note": "noun · feminine · ī-stem · stem: pṛthivī-"
         },
         {
           "id": "01-nama:prakrti:candrah",
           "devanagari": "चन्द्रः",
           "iast": "candraḥ",
           "gloss": "moon",
-          "note": "nom. sg. · m. · stem: candra- · a-stem"
+          "note": "noun · masculine · a-stem · stem: candra-"
         },
         {
           "id": "01-nama:prakrti:naksatram",
           "devanagari": "नक्षत्रम्",
           "iast": "nakṣatram",
           "gloss": "star, lunar mansion",
-          "note": "nom./acc. sg. · n. · stem: nakṣatra- · a-stem"
+          "note": "noun · neuter · a-stem · stem: nakṣatra-"
         },
         {
           "id": "01-nama:prakrti:parvatah",
           "devanagari": "पर्वतः",
           "iast": "parvataḥ",
           "gloss": "mountain",
-          "note": "nom. sg. · m. · stem: parvata- · a-stem"
+          "note": "noun · masculine · a-stem · stem: parvata-"
         },
         {
           "id": "01-nama:prakrti:nadi",
           "devanagari": "नदी",
           "iast": "nadī",
           "gloss": "river",
-          "note": "nom. sg. · f. · stem: nadī- · ī-stem"
+          "note": "noun · feminine · ī-stem · stem: nadī-"
         },
         {
           "id": "01-nama:prakrti:vrksah",
           "devanagari": "वृक्षः",
           "iast": "vṛkṣaḥ",
           "gloss": "tree",
-          "note": "nom. sg. · m. · stem: vṛkṣa- · a-stem"
+          "note": "noun · masculine · a-stem · stem: vṛkṣa-"
         },
         {
           "id": "01-nama:prakrti:vanam",
           "devanagari": "वनम्",
           "iast": "vanam",
           "gloss": "forest",
-          "note": "nom./acc. sg. · n. · stem: vana- · a-stem"
+          "note": "noun · neuter · a-stem · stem: vana-"
         },
         {
           "id": "01-nama:prakrti:samudrah",
           "devanagari": "समुद्रः",
           "iast": "samudraḥ",
           "gloss": "ocean",
-          "note": "nom. sg. · m. · stem: samudra- · a-stem"
+          "note": "noun · masculine · a-stem · stem: samudra-"
         },
         {
           "id": "01-nama:prakrti:meghah",
           "devanagari": "मेघः",
           "iast": "meghaḥ",
           "gloss": "cloud",
-          "note": "nom. sg. · m. · stem: megha- · a-stem"
+          "note": "noun · masculine · a-stem · stem: megha-"
         },
         {
           "id": "01-nama:prakrti:kamalam",
           "devanagari": "कमलम्",
           "iast": "kamalam",
-          "gloss": "lotus",
-          "note": "nom./acc. sg. · n. · stem: kamala- · a-stem"
+          "gloss": "lotus, the flower",
+          "note": "noun · neuter · a-stem · stem: kamala-"
         },
         {
           "id": "01-nama:prakrti:jyotih",
           "devanagari": "ज्योतिः",
           "iast": "jyotiḥ",
           "gloss": "light",
-          "note": "nom./acc. sg. · n. · stem: jyotis- · is-stem"
+          "note": "noun · neuter · is-stem · stem: jyotis-"
         }
       ]
     },
@@ -552,105 +552,105 @@
           "devanagari": "एकम्",
           "iast": "ekam",
           "gloss": "one",
-          "note": "nom./acc. sg. · n. · stem: eka- · numeral"
+          "note": "numeral · neuter · stem: eka-"
         },
         {
           "id": "01-nama:sankhya-kala:dve",
           "devanagari": "द्वे",
           "iast": "dve",
           "gloss": "two",
-          "note": "nom./acc. du. · f./n. · stem: dvi- · numeral"
+          "note": "numeral · feminine or neuter · dual · stem: dvi-"
         },
         {
           "id": "01-nama:sankhya-kala:trini",
           "devanagari": "त्रीणि",
           "iast": "trīṇi",
           "gloss": "three",
-          "note": "nom./acc. pl. · n. · stem: tri- · numeral"
+          "note": "numeral · neuter · plural · stem: tri-"
         },
         {
           "id": "01-nama:sankhya-kala:catvari",
           "devanagari": "चत्वारि",
           "iast": "catvāri",
           "gloss": "four",
-          "note": "nom./acc. pl. · n. · stem: catur- · numeral"
+          "note": "numeral · neuter · plural · stem: catur-"
         },
         {
           "id": "01-nama:sankhya-kala:panca",
           "devanagari": "पञ्च",
           "iast": "pañca",
           "gloss": "five",
-          "note": "nom./acc. pl. · stem: pañcan- · numeral"
+          "note": "numeral · plural · stem: pañcan-"
         },
         {
           "id": "01-nama:sankhya-kala:sat",
           "devanagari": "षट्",
           "iast": "ṣaṭ",
           "gloss": "six",
-          "note": "nom./acc. pl. · stem: ṣaṣ- · numeral"
+          "note": "numeral · plural · stem: ṣaṣ-"
         },
         {
           "id": "01-nama:sankhya-kala:sapta",
           "devanagari": "सप्त",
           "iast": "sapta",
           "gloss": "seven",
-          "note": "nom./acc. pl. · stem: saptan- · numeral"
+          "note": "numeral · plural · stem: saptan-"
         },
         {
           "id": "01-nama:sankhya-kala:asta",
           "devanagari": "अष्ट",
           "iast": "aṣṭa",
           "gloss": "eight",
-          "note": "nom./acc. pl. · stem: aṣṭan- · numeral"
+          "note": "numeral · plural · stem: aṣṭan-"
         },
         {
           "id": "01-nama:sankhya-kala:nava",
           "devanagari": "नव",
           "iast": "nava",
           "gloss": "nine",
-          "note": "nom./acc. pl. · stem: navan- · numeral"
+          "note": "numeral · plural · stem: navan-"
         },
         {
           "id": "01-nama:sankhya-kala:dasa",
           "devanagari": "दश",
           "iast": "daśa",
           "gloss": "ten",
-          "note": "nom./acc. pl. · stem: daśan- · numeral"
+          "note": "numeral · plural · stem: daśan-"
         },
         {
           "id": "01-nama:sankhya-kala:kalah",
           "devanagari": "कालः",
           "iast": "kālaḥ",
           "gloss": "time",
-          "note": "nom. sg. · m. · stem: kāla- · a-stem"
+          "note": "noun · masculine · a-stem · stem: kāla-"
         },
         {
           "id": "01-nama:sankhya-kala:dinam",
           "devanagari": "दिनम्",
           "iast": "dinam",
           "gloss": "day",
-          "note": "nom./acc. sg. · n. · stem: dina- · a-stem"
+          "note": "noun · neuter · a-stem · stem: dina-"
         },
         {
           "id": "01-nama:sankhya-kala:ratrih",
           "devanagari": "रात्रिः",
           "iast": "rātriḥ",
           "gloss": "night",
-          "note": "nom. sg. · f. · stem: rātri- · i-stem"
+          "note": "noun · feminine · i-stem · stem: rātri-"
         },
         {
           "id": "01-nama:sankhya-kala:masah",
           "devanagari": "मासः",
           "iast": "māsaḥ",
           "gloss": "month",
-          "note": "nom. sg. · m. · stem: māsa- · a-stem"
+          "note": "noun · masculine · a-stem · stem: māsa-"
         },
         {
           "id": "01-nama:sankhya-kala:varsam",
           "devanagari": "वर्षम्",
           "iast": "varṣam",
           "gloss": "year",
-          "note": "nom./acc. sg. · n. · stem: varṣa- · a-stem"
+          "note": "noun · neuter · a-stem · stem: varṣa-"
         },
         {
           "id": "01-nama:sankhya-kala:adya",
@@ -683,98 +683,98 @@
           "devanagari": "माता",
           "iast": "mātā",
           "gloss": "mother",
-          "note": "nom. sg. · f. · stem: mātṛ- · ṛ-stem"
+          "note": "noun · feminine · ṛ-stem · stem: mātṛ-"
         },
         {
           "id": "01-nama:jana:pita",
           "devanagari": "पिता",
           "iast": "pitā",
           "gloss": "father",
-          "note": "nom. sg. · m. · stem: pitṛ- · ṛ-stem"
+          "note": "noun · masculine · ṛ-stem · stem: pitṛ-"
         },
         {
           "id": "01-nama:jana:putrah",
           "devanagari": "पुत्रः",
           "iast": "putraḥ",
           "gloss": "son",
-          "note": "nom. sg. · m. · stem: putra- · a-stem"
+          "note": "noun · masculine · a-stem · stem: putra-"
         },
         {
           "id": "01-nama:jana:putri",
           "devanagari": "पुत्री",
           "iast": "putrī",
           "gloss": "daughter",
-          "note": "nom. sg. · f. · stem: putrī- · ī-stem"
+          "note": "noun · feminine · ī-stem · stem: putrī-"
         },
         {
           "id": "01-nama:jana:bhrata",
           "devanagari": "भ्राता",
           "iast": "bhrātā",
           "gloss": "brother",
-          "note": "nom. sg. · m. · stem: bhrātṛ- · ṛ-stem"
+          "note": "noun · masculine · ṛ-stem · stem: bhrātṛ-"
         },
         {
           "id": "01-nama:jana:bhagini",
           "devanagari": "भगिनी",
           "iast": "bhaginī",
           "gloss": "sister",
-          "note": "nom. sg. · f. · stem: bhaginī- · ī-stem"
+          "note": "noun · feminine · ī-stem · stem: bhaginī-"
         },
         {
           "id": "01-nama:jana:guruh",
           "devanagari": "गुरुः",
           "iast": "guruḥ",
           "gloss": "teacher",
-          "note": "nom. sg. · m. · stem: guru- · u-stem"
+          "note": "noun · masculine · u-stem · stem: guru-"
         },
         {
           "id": "01-nama:jana:sisyah",
           "devanagari": "शिष्यः",
           "iast": "śiṣyaḥ",
           "gloss": "student",
-          "note": "nom. sg. · m. · stem: śiṣya- · a-stem"
+          "note": "noun · masculine · a-stem · stem: śiṣya-"
         },
         {
           "id": "01-nama:jana:mitram",
           "devanagari": "मित्रम्",
           "iast": "mitram",
           "gloss": "friend",
-          "note": "nom./acc. sg. · n. · stem: mitra- · a-stem"
+          "note": "noun · neuter · a-stem · stem: mitra-"
         },
         {
           "id": "01-nama:jana:patih",
           "devanagari": "पतिः",
           "iast": "patiḥ",
           "gloss": "husband, lord",
-          "note": "nom. sg. · m. · stem: pati- · i-stem"
+          "note": "noun · masculine · i-stem · stem: pati-"
         },
         {
           "id": "01-nama:jana:patni",
           "devanagari": "पत्नी",
           "iast": "patnī",
           "gloss": "wife",
-          "note": "nom. sg. · f. · stem: patnī- · ī-stem"
+          "note": "noun · feminine · ī-stem · stem: patnī-"
         },
         {
           "id": "01-nama:jana:kavih",
           "devanagari": "कविः",
           "iast": "kaviḥ",
           "gloss": "poet",
-          "note": "nom. sg. · m. · stem: kavi- · i-stem"
+          "note": "noun · masculine · i-stem · stem: kavi-"
         },
         {
           "id": "01-nama:jana:narah",
           "devanagari": "नरः",
           "iast": "naraḥ",
           "gloss": "man",
-          "note": "nom. sg. · m. · stem: nara- · a-stem"
+          "note": "noun · masculine · a-stem · stem: nara-"
         },
         {
           "id": "01-nama:jana:janah",
           "devanagari": "जनः",
           "iast": "janaḥ",
           "gloss": "person, people",
-          "note": "nom. sg. · m. · stem: jana- · a-stem"
+          "note": "noun · masculine · a-stem · stem: jana-"
         }
       ]
     },
@@ -1425,91 +1425,91 @@
           "devanagari": "बुद्धि",
           "iast": "buddhi",
           "gloss": "intellect",
-          "note": "DM 5.17-18"
+          "note": "noun · feminine · i-stem · stem: buddhi- · DM 5.17-18"
         },
         {
           "id": "01-nama:goddess-names:nidra",
           "devanagari": "निद्रा",
           "iast": "nidrā",
           "gloss": "sleep",
-          "note": "DM 5.19-20"
+          "note": "noun · feminine · ā-stem · stem: nidrā- · DM 5.19-20"
         },
         {
           "id": "01-nama:goddess-names:ksudha",
           "devanagari": "क्षुधा",
           "iast": "kṣudhā",
           "gloss": "hunger",
-          "note": "DM 5.21-22"
+          "note": "noun · feminine · ā-stem · stem: kṣudhā- · DM 5.21-22"
         },
         {
           "id": "01-nama:goddess-names:chaya",
           "devanagari": "छाया",
           "iast": "chāyā",
           "gloss": "shadow",
-          "note": "DM 5.23-24"
+          "note": "noun · feminine · ā-stem · stem: chāyā- · DM 5.23-24"
         },
         {
           "id": "01-nama:goddess-names:sakti",
           "devanagari": "शक्ति",
           "iast": "śakti",
           "gloss": "power",
-          "note": "DM 5.25-26"
+          "note": "noun · feminine · i-stem · stem: śakti- · DM 5.25-26"
         },
         {
           "id": "01-nama:goddess-names:trsna",
           "devanagari": "तृष्णा",
           "iast": "tṛṣṇā",
           "gloss": "thirst",
-          "note": "DM 5.27-28"
+          "note": "noun · feminine · ā-stem · stem: tṛṣṇā- · DM 5.27-28"
         },
         {
           "id": "01-nama:goddess-names:ksanti",
           "devanagari": "क्षान्ति",
           "iast": "kṣānti",
           "gloss": "patience",
-          "note": "DM 5.29-30"
+          "note": "noun · feminine · i-stem · stem: kṣānti- · DM 5.29-30"
         },
         {
           "id": "01-nama:goddess-names:jati",
           "devanagari": "जाति",
           "iast": "jāti",
           "gloss": "birth/species",
-          "note": "DM 5.31-32"
+          "note": "noun · feminine · i-stem · stem: jāti- · DM 5.31-32"
         },
         {
           "id": "01-nama:goddess-names:lajja",
           "devanagari": "लज्जा",
           "iast": "lajjā",
           "gloss": "modesty",
-          "note": "DM 5.33-34; KS passim"
+          "note": "noun · feminine · ā-stem · stem: lajjā- · DM 5.33-34; KS passim"
         },
         {
           "id": "01-nama:goddess-names:santi",
           "devanagari": "शान्ति",
           "iast": "śānti",
           "gloss": "peace",
-          "note": "DM 5.35-36"
+          "note": "noun · feminine · i-stem · stem: śānti- · DM 5.35-36"
         },
         {
           "id": "01-nama:goddess-names:sraddha",
           "devanagari": "श्रद्धा",
           "iast": "śraddhā",
           "gloss": "faith",
-          "note": "DM 5.37-38"
+          "note": "noun · feminine · ā-stem · stem: śraddhā- · DM 5.37-38"
         },
         {
           "id": "01-nama:goddess-names:kanti",
           "devanagari": "कान्ति",
           "iast": "kānti",
           "gloss": "beauty/radiance",
-          "note": "DM 5.39-40; LS 396"
+          "note": "noun · feminine · i-stem · stem: kānti- · DM 5.39-40; LS 396"
         },
         {
           "id": "01-nama:goddess-names:vrtti",
           "devanagari": "वृत्ति",
           "iast": "vṛtti",
           "gloss": "activity/occupation",
-          "note": "DM 5.43-44"
+          "note": "noun · feminine · i-stem · stem: vṛtti- · DM 5.43-44"
         }
       ]
     },
@@ -1521,63 +1521,63 @@
           "devanagari": "स्मृति",
           "iast": "smṛti",
           "gloss": "memory",
-          "note": "DM 5.45-46; LS 475"
+          "note": "noun · feminine · i-stem · stem: smṛti- · DM 5.45-46; LS 475"
         },
         {
           "id": "01-nama:goddess-names:daya",
           "devanagari": "दया",
           "iast": "dayā",
           "gloss": "compassion",
-          "note": "DM 5.47-48; KS passim"
+          "note": "noun · feminine · ā-stem · stem: dayā- · DM 5.47-48; KS passim"
         },
         {
           "id": "01-nama:goddess-names:tusti",
           "devanagari": "तुष्टि",
           "iast": "tuṣṭi",
           "gloss": "contentment",
-          "note": "DM 5.49-50; LS 394"
+          "note": "noun · feminine · i-stem · stem: tuṣṭi- · DM 5.49-50; LS 394"
         },
         {
           "id": "01-nama:goddess-names:matr",
           "devanagari": "मातृ",
           "iast": "mātṛ",
           "gloss": "motherhood",
-          "note": "DM 5.51-52"
+          "note": "noun · feminine · ṛ-stem · stem: mātṛ- · DM 5.51-52"
         },
         {
           "id": "01-nama:goddess-names:bhranti",
           "devanagari": "भ्रान्ति",
           "iast": "bhrānti",
           "gloss": "delusion/error",
-          "note": "DM 5.53-54"
+          "note": "noun · feminine · i-stem · stem: bhrānti- · DM 5.53-54"
         },
         {
           "id": "01-nama:goddess-names:cetana",
           "devanagari": "चेतना",
           "iast": "cetanā",
           "gloss": "consciousness",
-          "note": "DM 5.14"
+          "note": "noun · feminine · ā-stem · stem: cetanā- · DM 5.14"
         },
         {
           "id": "01-nama:goddess-names:medha",
           "devanagari": "मेधा",
           "iast": "medhā",
           "gloss": "wisdom/intelligence",
-          "note": "DM 5.55-56; LS 476"
+          "note": "noun · feminine · ā-stem · stem: medhā- · DM 5.55-56; LS 476"
         },
         {
           "id": "01-nama:goddess-names:dhrti",
           "devanagari": "धृति",
           "iast": "dhṛti",
           "gloss": "steadfastness",
-          "note": "DM 5.57-58; LS 393"
+          "note": "noun · feminine · i-stem · stem: dhṛti- · DM 5.57-58; LS 393"
         },
         {
           "id": "01-nama:goddess-names:pusti",
           "devanagari": "पुष्टि",
           "iast": "puṣṭi",
           "gloss": "nourishment",
-          "note": "DM 5.59-60; LS 394"
+          "note": "noun · feminine · i-stem · stem: puṣṭi- · DM 5.59-60; LS 394"
         },
         {
           "id": "01-nama:goddess-names:maya",
@@ -2456,8 +2456,8 @@
           "id": "01-nama:asuras-demon-vocabulary:daityasainye",
           "devanagari": "दैत्यसैन्ये",
           "iast": "daityasainye",
-          "gloss": "in the demon army (loc.)",
-          "note": "loc. sg. · n. · stem: daityasainya- · a-stem · DM 3.5"
+          "gloss": "in the demon army",
+          "note": "noun · neuter · the -e ending is what says “in” · a-stem · stem: daityasainya- · DM 3.5"
         },
         {
           "id": "01-nama:asuras-demon-vocabulary:asuranam-adhipah",
@@ -2658,7 +2658,7 @@
           "devanagari": "चर्म",
           "iast": "carma",
           "gloss": "shield (leather)",
-          "note": "nom./acc. sg. · n. · stem: carman- · an-stem · DM 2.24"
+          "note": "noun · neuter · an-stem · stem: carman- · DM 2.24"
         },
         {
           "id": "01-nama:weapons-battle-gear:pinaka",
@@ -3611,7 +3611,7 @@
           "devanagari": "पञ्च",
           "iast": "pañca",
           "gloss": "5",
-          "note": "nom./acc. pl. · stem: pañcan- · numeral"
+          "note": "numeral · plural · stem: pañcan-"
         },
         {
           "id": "01-nama:numbers-time-space:sas",
@@ -3625,28 +3625,28 @@
           "devanagari": "सप्त",
           "iast": "sapta",
           "gloss": "7",
-          "note": "nom./acc. pl. · stem: saptan- · numeral"
+          "note": "numeral · plural · stem: saptan-"
         },
         {
           "id": "01-nama:numbers-time-space:asta",
           "devanagari": "अष्ट",
           "iast": "aṣṭa",
           "gloss": "8",
-          "note": "nom./acc. pl. · stem: aṣṭan- · numeral"
+          "note": "numeral · plural · stem: aṣṭan-"
         },
         {
           "id": "01-nama:numbers-time-space:nava",
           "devanagari": "नव",
           "iast": "nava",
           "gloss": "9",
-          "note": "nom./acc. pl. · stem: navan- · numeral"
+          "note": "numeral · plural · stem: navan-"
         },
         {
           "id": "01-nama:numbers-time-space:dasa",
           "devanagari": "दश",
           "iast": "daśa",
           "gloss": "10",
-          "note": "nom./acc. pl. · stem: daśan- · numeral"
+          "note": "numeral · plural · stem: daśan-"
         },
         {
           "id": "01-nama:numbers-time-space:ekadasa",

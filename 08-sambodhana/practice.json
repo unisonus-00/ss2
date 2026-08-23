@@ -338,35 +338,35 @@
           "devanagari": "उवाच",
           "iast": "uvāca",
           "gloss": "said (perf. of √vac)",
-          "note": "DM throughout (narrative marker)"
+          "note": "verb · perfect · from √vac · DM throughout (narrative marker)"
         },
         {
           "id": "08-sambodhana:sound-speech:aha",
           "devanagari": "आह",
           "iast": "āha",
           "gloss": "said (perf. of √ah)",
-          "note": "DM passim"
+          "note": "verb · perfect · from √ah · DM passim"
         },
         {
           "id": "08-sambodhana:sound-speech:abravit",
           "devanagari": "अब्रवीत्",
           "iast": "abravīt",
           "gloss": "spoke (impf. of √brū)",
-          "note": "DM passim"
+          "note": "verb · imperfect · from √brū · DM passim"
         },
         {
           "id": "08-sambodhana:sound-speech:jagada",
           "devanagari": "जगाद",
           "iast": "jagāda",
           "gloss": "spoke (perf. of √gad)",
-          "note": "DM 6.8"
+          "note": "verb · perfect · from √gad · DM 6.8"
         },
         {
           "id": "08-sambodhana:sound-speech:praha",
           "devanagari": "प्राह",
           "iast": "prāha",
           "gloss": "spoke forth (perf. of pra + √ah)",
-          "note": "DM 6.3"
+          "note": "verb · perfect · from pra + √ah · DM 6.3"
         },
         {
           "id": "08-sambodhana:sound-speech:abhyadhat",
@@ -380,14 +380,14 @@
           "devanagari": "व्याजहार",
           "iast": "vyājahāra",
           "gloss": "spoke forth (perf. of vi + ā + √hṛ)",
-          "note": "DM 10.24"
+          "note": "verb · perfect · from vi + ā + √hṛ · DM 10.24"
         },
         {
           "id": "08-sambodhana:sound-speech:samacasta",
           "devanagari": "समाचष्ट",
           "iast": "samācaṣṭa",
           "gloss": "reported (perf. of sam + ā + √cakṣ)",
-          "note": "DM 6.2"
+          "note": "verb · perfect · from sam + ā + √cakṣ · DM 6.2"
         },
         {
           "id": "08-sambodhana:sound-speech:vac-vak",

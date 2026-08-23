@@ -10,77 +10,77 @@
           "devanagari": "वर्णः",
           "iast": "varṇaḥ",
           "gloss": "phoneme, letter",
-          "note": "nom. sg. · m. · stem: varṇa- · a-stem"
+          "note": "noun · masculine · a-stem · stem: varṇa-"
         },
         {
           "id": "02-varna-vidya:varna:svarah",
           "devanagari": "स्वरः",
           "iast": "svaraḥ",
           "gloss": "vowel",
-          "note": "nom. sg. · m. · stem: svara- · a-stem"
+          "note": "noun · masculine · a-stem · stem: svara-"
         },
         {
           "id": "02-varna-vidya:varna:vyanjanam",
           "devanagari": "व्यञ्जनम्",
           "iast": "vyañjanam",
           "gloss": "consonant",
-          "note": "nom./acc. sg. · n. · stem: vyañjana- · a-stem"
+          "note": "noun · neuter · a-stem · stem: vyañjana-"
         },
         {
           "id": "02-varna-vidya:varna:sthanam",
           "devanagari": "स्थानम्",
           "iast": "sthānam",
           "gloss": "place of articulation",
-          "note": "nom./acc. sg. · n. · stem: sthāna- · a-stem"
+          "note": "noun · neuter · a-stem · stem: sthāna-"
         },
         {
           "id": "02-varna-vidya:varna:prayatnah",
           "devanagari": "प्रयत्नः",
           "iast": "prayatnaḥ",
           "gloss": "effort of articulation",
-          "note": "nom. sg. · m. · stem: prayatna- · a-stem"
+          "note": "noun · masculine · a-stem · stem: prayatna-"
         },
         {
           "id": "02-varna-vidya:varna:anusvarah",
           "devanagari": "अनुस्वारः",
           "iast": "anusvāraḥ",
           "gloss": "the nasal after-sound ṃ",
-          "note": "nom. sg. · m. · stem: anusvāra- · a-stem"
+          "note": "noun · masculine · a-stem · stem: anusvāra-"
         },
         {
           "id": "02-varna-vidya:varna:visargah",
           "devanagari": "विसर्गः",
           "iast": "visargaḥ",
           "gloss": "the released breath ḥ",
-          "note": "nom. sg. · m. · stem: visarga- · a-stem"
+          "note": "noun · masculine · a-stem · stem: visarga-"
         },
         {
           "id": "02-varna-vidya:varna:hrasvah",
           "devanagari": "ह्रस्वः",
           "iast": "hrasvaḥ",
           "gloss": "short (one mātrā)",
-          "note": "nom. sg. · stem: hrasva- · a-stem"
+          "note": "adjective · a-stem · stem: hrasva-"
         },
         {
           "id": "02-varna-vidya:varna:dirghah",
           "devanagari": "दीर्घः",
           "iast": "dīrghaḥ",
           "gloss": "long (two mātrās)",
-          "note": "nom. sg. · stem: dīrgha- · a-stem"
+          "note": "adjective · a-stem · stem: dīrgha-"
         },
         {
           "id": "02-varna-vidya:varna:plutah",
           "devanagari": "प्लुतः",
           "iast": "plutaḥ",
           "gloss": "protracted (three mātrās)",
-          "note": "nom. sg. · stem: pluta- · a-stem"
+          "note": "adjective · a-stem · stem: pluta-"
         },
         {
           "id": "02-varna-vidya:varna:bijam",
           "devanagari": "बीजम्",
           "iast": "bījam",
           "gloss": "seed-syllable",
-          "note": "nom./acc. sg. · n. · stem: bīja- · a-stem"
+          "note": "noun · neuter · a-stem · stem: bīja-"
         },
         {
           "id": "02-varna-vidya:varna:ka-kha-ga-gha-na",

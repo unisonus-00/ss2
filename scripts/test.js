@@ -1938,13 +1938,19 @@ const open = async (browser, opts = {}) => {
       const VIB = /prathamā|dvitīyā|tṛtīyā|caturthī|pañcamī|ṣaṣṭhī|saptamī|sambodhana/;
       const SAM = /tatpuruṣa|karmadhāraya|dvigu|bahuvrīhi|dvandva|avyayībhāva/;
       const CLS = /\b\d{1,2}[PUA]\b/;
-      const early = { vibhakti: [], samasa: [], klass: [] };
+      /* The English abbreviations are the same rule as the Sanskrit names:
+         "nom. sg." is jargon a beginner has not met, and below Stage 5 it is
+         a constant besides — every headword there is nominative singular, so
+         the field carries nothing until Stage 5 gives it meaning. */
+      const CASE = /^(nom|acc|instr|dat|abl|gen|loc|voc)\b/;
+      const early = { vibhakti: [], samasa: [], klass: [], caseAbbr: [] };
       const plain = [];
       Object.keys(DECKS).forEach(n => {
         const st = DECK_STAGE[n];
         DECKS[n].forEach(c => {
           const note = c.note || '';
           if (st > 0 && st < 5 && VIB.test(note)) early.vibhakti.push(c.id);
+          if (st < 5 && CASE.test(note)) early.caseAbbr.push(c.id);
           /* the list that TEACHES the types is allowed to name them */
           if (st > 0 && st < 11 && SAM.test(note) && DECK_ROLE[n] !== 'core')
             early.samasa.push(c.id);
@@ -1975,6 +1981,8 @@ const open = async (browser, opts = {}) => {
     });
     ok('no card names a vibhakti before Stage 5 teaches it',
       !r.early.vibhakti.length, r.early.vibhakti.slice(0, 3).join(' | '));
+    ok('nor leads its annotation with a case abbreviation there',
+      !r.early.caseAbbr.length, r.early.caseAbbr.slice(0, 3).join(' | '));
     ok('nor a compound type before Stage 11 teaches it',
       !r.early.samasa.length, r.early.samasa.slice(0, 3).join(' | '));
     ok('and the class notation is gone from Stage 6, which does not test it',

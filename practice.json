@@ -10,77 +10,77 @@
           "devanagari": "धातुः",
           "iast": "dhātuḥ",
           "gloss": "verbal root",
-          "note": "nom. sg. · m. · stem: dhātu- · u-stem"
+          "note": "noun · masculine · u-stem · stem: dhātu-"
         },
         {
           "id": "00-overview:vyakaranam:pratyayah",
           "devanagari": "प्रत्ययः",
           "iast": "pratyayaḥ",
           "gloss": "suffix",
-          "note": "nom. sg. · m. · stem: pratyaya- · a-stem"
+          "note": "noun · masculine · a-stem · stem: pratyaya-"
         },
         {
           "id": "00-overview:vyakaranam:upasargah",
           "devanagari": "उपसर्गः",
           "iast": "upasargaḥ",
           "gloss": "prefix",
-          "note": "nom. sg. · m. · stem: upasarga- · a-stem"
+          "note": "noun · masculine · a-stem · stem: upasarga-"
         },
         {
           "id": "00-overview:vyakaranam:pratipadikam",
           "devanagari": "प्रातिपदिकम्",
           "iast": "prātipadikam",
           "gloss": "nominal stem",
-          "note": "nom./acc. sg. · n. · stem: prātipadika- · a-stem"
+          "note": "noun · neuter · a-stem · stem: prātipadika-"
         },
         {
           "id": "00-overview:vyakaranam:sandhih",
           "devanagari": "सन्धिः",
           "iast": "sandhiḥ",
           "gloss": "euphonic junction",
-          "note": "nom. sg. · m. · stem: sandhi- · i-stem"
+          "note": "noun · masculine · i-stem · stem: sandhi-"
         },
         {
           "id": "00-overview:vyakaranam:samasah",
           "devanagari": "समासः",
           "iast": "samāsaḥ",
           "gloss": "compound",
-          "note": "nom. sg. · m. · stem: samāsa- · a-stem"
+          "note": "noun · masculine · a-stem · stem: samāsa-"
         },
         {
           "id": "00-overview:vyakaranam:lingam",
           "devanagari": "लिङ्गम्",
           "iast": "liṅgam",
           "gloss": "gender",
-          "note": "nom./acc. sg. · n. · stem: liṅga- · a-stem"
+          "note": "noun · neuter · a-stem · stem: liṅga-"
         },
         {
           "id": "00-overview:vyakaranam:vacanam",
           "devanagari": "वचनम्",
           "iast": "vacanam",
           "gloss": "number",
-          "note": "nom./acc. sg. · n. · stem: vacana- · a-stem"
+          "note": "noun · neuter · a-stem · stem: vacana-"
         },
         {
           "id": "00-overview:vyakaranam:vibhaktih",
           "devanagari": "विभक्तिः",
           "iast": "vibhaktiḥ",
           "gloss": "case ending",
-          "note": "nom. sg. · f. · stem: vibhakti- · i-stem"
+          "note": "noun · feminine · i-stem · stem: vibhakti-"
         },
         {
           "id": "00-overview:vyakaranam:sutram",
           "devanagari": "सूत्रम्",
           "iast": "sūtram",
           "gloss": "aphoristic rule",
-          "note": "nom./acc. sg. · n. · stem: sūtra- · a-stem"
+          "note": "noun · neuter · a-stem · stem: sūtra-"
         },
         {
           "id": "00-overview:vyakaranam:vrttih",
           "devanagari": "वृत्तिः",
           "iast": "vṛttiḥ",
           "gloss": "commentary, gloss",
-          "note": "nom. sg. · f. · stem: vṛtti- · i-stem"
+          "note": "noun · feminine · i-stem · stem: vṛtti-"
         },
         {
           "id": "00-overview:vyakaranam:gunah",
@@ -108,7 +108,7 @@
           "devanagari": "आगमः",
           "iast": "āgamaḥ",
           "gloss": "augment",
-          "note": "nom. sg. · m. · stem: āgama- · a-stem"
+          "note": "noun · masculine · a-stem · stem: āgama-"
         },
         {
           "id": "00-overview:vyakaranam:avyayam",
@@ -129,21 +129,21 @@
           "devanagari": "पदम्",
           "iast": "padam",
           "gloss": "a finished, inflected word",
-          "note": "nom./acc. sg. · n. · stem: pada- · a-stem"
+          "note": "noun · neuter · a-stem · stem: pada-"
         },
         {
           "id": "00-overview:vyakaranam:sabdah",
           "devanagari": "शब्दः",
           "iast": "śabdaḥ",
           "gloss": "word, sound",
-          "note": "nom. sg. · m. · stem: śabda- · a-stem"
+          "note": "noun · masculine · a-stem · stem: śabda-"
         },
         {
           "id": "00-overview:vyakaranam:aksaram",
           "devanagari": "अक्षरम्",
           "iast": "akṣaram",
           "gloss": "syllable",
-          "note": "nom./acc. sg. · n. · stem: akṣara- · a-stem"
+          "note": "noun · neuter · a-stem · stem: akṣara-"
         }
       ]
     },
@@ -156,49 +156,49 @@
           "devanagari": "कारकम्",
           "iast": "kārakam",
           "gloss": "a noun's relation to the action",
-          "note": "nom./acc. sg. · n. · stem: kāraka- · a-stem"
+          "note": "noun · neuter · a-stem · stem: kāraka-"
         },
         {
           "id": "00-overview:vyakaranam:nama",
           "devanagari": "नाम",
           "iast": "nāma",
           "gloss": "name; noun",
-          "note": "nom./acc. sg. · n. · stem: nāman- · an-stem"
+          "note": "noun · neuter · an-stem · stem: nāman-"
         },
         {
           "id": "00-overview:vyakaranam:rupam",
           "devanagari": "रूपम्",
           "iast": "rūpam",
           "gloss": "form; a declined shape",
-          "note": "nom./acc. sg. · n. · stem: rūpa- · a-stem"
+          "note": "noun · neuter · a-stem · stem: rūpa-"
         },
         {
           "id": "00-overview:vyakaranam:vakyam",
           "devanagari": "वाक्यम्",
           "iast": "vākyam",
           "gloss": "sentence",
-          "note": "nom./acc. sg. · n. · stem: vākya- · a-stem"
+          "note": "noun · neuter · a-stem · stem: vākya-"
         },
         {
           "id": "00-overview:vyakaranam:katha",
           "devanagari": "कथा",
           "iast": "kathā",
           "gloss": "story, narrative",
-          "note": "nom. sg. · f. · stem: kathā- · ā-stem"
+          "note": "noun · feminine · ā-stem · stem: kathā-"
         },
         {
           "id": "00-overview:vyakaranam:kriya",
           "devanagari": "क्रिया",
           "iast": "kriyā",
           "gloss": "action; the verb",
-          "note": "nom. sg. · f. · stem: kriyā- · ā-stem"
+          "note": "noun · feminine · ā-stem · stem: kriyā-"
         },
         {
           "id": "00-overview:vyakaranam:paryayah",
           "devanagari": "पर्यायः",
           "iast": "paryāyaḥ",
           "gloss": "synonym",
-          "note": "nom. sg. · m. · stem: paryāya- · a-stem"
+          "note": "noun · masculine · a-stem · stem: paryāya-"
         },
         {
           "id": "00-overview:vyakaranam:it",

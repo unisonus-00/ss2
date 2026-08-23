@@ -1383,7 +1383,8 @@ subtraction or by moving something to the stage that owns it:
 
 | | |
 |:--|:--|
-| **case names, 159 cards** | every vocabulary annotation read `prathamā \| nom. sg. · …` from Stage 1, four stages before Stage 5 defines `prathamā`. The English half was already there and already enough, so below Stage 5 the note now reads `nom. sg. · …` and the Sanskrit returns at the stage that earns it. |
+| **case names, 159 cards** | every vocabulary annotation read `prathamā \| nom. sg. · …` from Stage 1, four stages before Stage 5 defines `prathamā`. The Sanskrit went, and later the English with it — see below. |
+| **case abbreviations, 157 cards** | dropping the Sanskrit left `nom. sg. · f. · stem: kāmākṣī- · ī-stem` on the first card of the app. `nom. sg.` is jargon a beginner has not met, and below Stage 5 it is a **constant** besides: every headword there is nominative singular, so the field carried nothing until Stage 5 gave it meaning. All 157 now read `noun · feminine · ī-stem · stem: kāmākṣī-`, the shape the other 738 already had; number is kept where it is real (`plural`, `dual`), and the gender line yields `adjective` where a word has none. A test fails any note below Stage 5 that starts with a case abbreviation. |
 | **compound types** | `bahuvrīhi` and `tatpuruṣa` annotated demon names at Stage 1 and were *answers* at Stage 11, and no card defined either. Six terms cards now lead Stage 11, from the reference's own *Compound Types at a Glance*; the three early notes dropped the word. |
 | **the class notation** | `1P`, `9U`, `10P` sat on 70 cards and were unpacked nowhere. Stage 6 does not test a root's class, so it lost the notation; Stage 9, which does, spells it out — `dhātu · class 1 · parasmaipada · bhavati`. |
 | **the classical metres** | `28 · Vṛtta` sat in Stage 21, whose theory and badge are anuṣṭubh only, while Stage 22 — *Multiple Meters* — had no practice at all. The list moved to 22 with its ids intact, and 21 gained six cards on the śloka pattern from its own theory. |
@@ -1455,6 +1456,12 @@ later. All 627 now read:
 ```
 noun · neuter · a-stem · stem: yuddha- · from √yudh · DM 2.3
 ```
+
+**157 cards were still on the older shape** — the vocabulary of Stages 1, 2
+and 4 and the vyākaraṇam lists, which is to say everything a learner meets
+first. They now match: `noun · feminine · ī-stem · stem: kāmākṣī-`. See
+**A card may not use a term its stage has not taught** for why the case had
+to go rather than be translated.
 
 The first field was already carrying the distinction — `m.`/`f.`/`n.` for
 nouns, `adj.`, `pp.` — so the part of speech is read off it rather than
