@@ -1074,11 +1074,10 @@ card rather than depending on the order lists happen to be taken in. Every
 part of it is sourced: `instrumental` from Stage 5's own case list, `3rd`
 from the reference's `#` column and from the kāraka table's `3rd (tṛtīyā)`.
 
-**A list marked `"role": "terms"` leads its lesson.** It teaches the
-equivalences a later list assumes, and `DECK_ROLE` carries the mark into the
-app so `scripts/test.js` can assert the order — terms, then exercises, then
-recall. Three lists carry it: Stage 5's case and number terms, Stage 6's
-person and voice terms, and Stage 7's kāraka list.
+**A list marked `"role": "core"` leads its lesson.** It holds what the
+lesson's own tests rest on, and `DECK_ROLE` carries the mark into the app so
+`scripts/test.js` can assert the order — see **Fundamentals lead** below.
+Seventeen lists across eleven lessons carry it.
 
 What the audit found missing, and what was added:
 
@@ -1098,6 +1097,59 @@ Stage 7's to teach, and Stage 7 teaches it.
 twelve equivalences above is not taught by a card of its own, if a case card
 asserts a bare kāraka name, or if a kāraka-to-vibhakti card names only one
 level.
+
+### Fundamentals lead, and the chip explains the term
+
+Two rules, both about a beginner who has never met this material.
+
+**A lesson shows before it tests.** Nine of the thirteen lessons that carry an
+exercise used to open with it, and in seven the list supplying the exercise's
+raw material sat directly below: Stage 2 asked the learner to *expand ik*
+above the Maheśvara sūtras, Stage 19 to *name the gaṇa* above the eight
+gaṇas, Stage 10 which set is entirely Śiva above the synonym sets themselves.
+A list marked **`"role": "core"`** is what the lesson's own tests rest on —
+the equivalences, or the raw material the exercise draws from — and it leads
+the lesson. The order is **fundamentals → tests → breadth**, and
+`scripts/test.js` fails if a core list sits below an exercise, if an exercise
+sits below a breadth list, or if a lesson tests with no core list at all.
+
+Stages 15 and 21 are the two exceptions the test names: both rest on
+fundamentals taught in an earlier stage, which is the progression working
+rather than failing.
+
+**A card that names an English grammatical term says what the term does.**
+Knowing the word *optative* is not knowing what an optative is, and the
+annotation chip is already the card's own "why" slot:
+
+```
+gacchet
+liṅ (vidhiliṅ) · लिङ् — optative
+lakāra · what should or may happen — “he should go” · vidhi · 3.3.161
+```
+
+The gloss stays short, because it is the answer; the chip carries the
+explanation, because it is where the card already explains itself. Six of the
+ten lakāra cards already did this (`liṭ · remote past, unwitnessed`) — the
+other four were brought into line, along with `parasmaipada`/`ātmanepada`,
+the participle and feminine suffixes, `lopa`, `dantya`/`oṣṭhya`, and `laghu`
+and `guru`, which were the cue on every gaṇa card and defined by none.
+
+**None of the wording was invented.** `vyakaranam/ch04-kriyapada` tables every
+lakāra with a plain meaning — *Imperative (command/request)*, *Optative /
+potential*, *Conditional*, *sāmānya-bhūta* — and Stage 2's reference glosses
+`dantya` and `oṣṭhya` as *Teeth* and *Lips*. Those grammar chapters are among
+the sixteen the build publishes nowhere, so this is the first of their content
+to reach a learner.
+
+`scripts/test.js` fails if a gloss names a mood, voice or participle and the
+chip beside it adds nothing but a citation.
+
+**Stage 12 shows the operation before asking for it.** Its exercise completes
+a sentence, but the lists below it were pronoun and particle vocabulary rather
+than a worked example, so it now leads with six sentences from workbook A1 and
+A2 shown whole, each word's case named on the chip — `bhaktaḥ — prathamā ·
+puṣpeṇa — tṛtīyā, with what · pūjayati — 3 sg.` This is the only place in
+these two passes where new cards were the right answer.
 
 ### A card may not use a term its stage has not taught
 
@@ -1377,7 +1429,7 @@ Three things here are load-bearing for the compatibility list above:
   key. **Never rename a deck without adding a line there.** Vocab-bank decks
   still carry their `V01 ·` prefixes; the drawer hides them from display.
 - **Deck order carries the progression.** Within a lesson the drawer reads the
-  **terminology first**, then the exercises, then the recall lists — because that is the order they sit in `practice.json`,
+  **fundamentals first**, then the exercises, then the breadth lists — because that is the order they sit in `practice.json`,
   which the build preserves. Practice prepares generalisation; mastery closes
   known finite gaps. A test walks every lesson and fails if a set of
   interactive cards ends up below a recall list.
@@ -1401,7 +1453,7 @@ Three things here are load-bearing for the compatibility list above:
   chain, and keep each step stamping its own version rather than the newest;
   every `localStorage` touch stays guarded, since it can be absent or full.
 
-The app carries 25 lessons, 171 decks, and 2290 cards — 1929 `reveal`, 356
+The app carries 25 lessons, 172 decks, and 2298 cards — 1937 `reveal`, 356
 `choice` and 5 `sequence`, spread over 30 interactive decks in 13 lessons,
 plus the mastery decks holding complete paradigms.
 They are curated practice, not conversions of the reference tables:

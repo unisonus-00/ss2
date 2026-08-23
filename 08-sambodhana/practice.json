@@ -2,6 +2,110 @@
   "lesson": "08-sambodhana",
   "decks": [
     {
+      "name": "31 · Sambodhana — vocative forms",
+      "cards": [
+        {
+          "id": "08-sambodhana:sambodhana:rama",
+          "devanagari": "राम",
+          "iast": "rāma",
+          "gloss": "O Rāma!",
+          "note": "sambodhana | voc. sg. · m. · stem: rāma- · a-stem"
+        },
+        {
+          "id": "08-sambodhana:sambodhana:deva",
+          "devanagari": "देव",
+          "iast": "deva",
+          "gloss": "O god!",
+          "note": "sambodhana | voc. sg. · m. · stem: deva- · a-stem"
+        },
+        {
+          "id": "08-sambodhana:sambodhana:devi",
+          "devanagari": "देवि",
+          "iast": "devi",
+          "gloss": "O goddess!",
+          "note": "sambodhana | voc. sg. · f. · stem: devī- · ī-stem"
+        },
+        {
+          "id": "08-sambodhana:sambodhana:amba",
+          "devanagari": "अम्ब",
+          "iast": "amba",
+          "gloss": "O mother! · from ambā-",
+          "note": "sambodhana | voc. sg. · f. · stem: ambā- · ā-stem"
+        },
+        {
+          "id": "08-sambodhana:sambodhana:matah",
+          "devanagari": "मातः",
+          "iast": "mātaḥ",
+          "gloss": "O mother! · from mātṛ-",
+          "note": "sambodhana | voc. sg. · f. · stem: mātṛ- · ṛ-stem"
+        },
+        {
+          "id": "08-sambodhana:sambodhana:hare",
+          "devanagari": "हरे",
+          "iast": "hare",
+          "gloss": "O Hari!",
+          "note": "sambodhana | voc. sg. · m. · stem: hari- · i-stem"
+        },
+        {
+          "id": "08-sambodhana:sambodhana:visno",
+          "devanagari": "विष्णो",
+          "iast": "viṣṇo",
+          "gloss": "O Viṣṇu!",
+          "note": "sambodhana | voc. sg. · m. · stem: viṣṇu- · u-stem"
+        },
+        {
+          "id": "08-sambodhana:sambodhana:laksmi",
+          "devanagari": "लक्ष्मि",
+          "iast": "lakṣmi",
+          "gloss": "O Lakṣmī!",
+          "note": "sambodhana | voc. sg. · f. · stem: lakṣmī- · ī-stem"
+        },
+        {
+          "id": "08-sambodhana:sambodhana:bhagavan",
+          "devanagari": "भगवन्",
+          "iast": "bhagavan",
+          "gloss": "O blessed one!",
+          "note": "sambodhana | voc. sg. · m. · stem: bhagavat- · at-stem"
+        },
+        {
+          "id": "08-sambodhana:sambodhana:atman",
+          "devanagari": "आत्मन्",
+          "iast": "ātman",
+          "gloss": "O self!",
+          "note": "sambodhana | voc. sg. · m. · stem: ātman- · an-stem"
+        },
+        {
+          "id": "08-sambodhana:sambodhana:guro",
+          "devanagari": "गुरो",
+          "iast": "guro",
+          "gloss": "O teacher!",
+          "note": "sambodhana | voc. sg. · m. · stem: guru- · u-stem"
+        },
+        {
+          "id": "08-sambodhana:sambodhana:sive",
+          "devanagari": "शिवे",
+          "iast": "śive",
+          "gloss": "O Śivā!",
+          "note": "sambodhana | voc. sg. · f. · stem: śivā- · ā-stem"
+        },
+        {
+          "id": "08-sambodhana:sambodhana:matar-devi",
+          "devanagari": "मातर्देवि",
+          "iast": "mātar devi",
+          "gloss": "O mother goddess!",
+          "note": "sambodhana | voc. sg. · two vocatives together"
+        },
+        {
+          "id": "08-sambodhana:sambodhana:bho",
+          "devanagari": "भो",
+          "iast": "bho",
+          "gloss": "O! (general call)",
+          "note": "indeclinable"
+        }
+      ],
+      "role": "core"
+    },
+    {
       "name": "Āmantraṇa — form the vocative · practice",
       "cards": [
         {
@@ -120,109 +224,6 @@
           "answer": "-e, as agniḥ → agne",
           "note": "i-stems give -e, u-stems give -o · the two are easily swapped",
           "source": "theory · vocative forms"
-        }
-      ]
-    },
-    {
-      "name": "31 · Sambodhana — vocative forms",
-      "cards": [
-        {
-          "id": "08-sambodhana:sambodhana:rama",
-          "devanagari": "राम",
-          "iast": "rāma",
-          "gloss": "O Rāma!",
-          "note": "sambodhana | voc. sg. · m. · stem: rāma- · a-stem"
-        },
-        {
-          "id": "08-sambodhana:sambodhana:deva",
-          "devanagari": "देव",
-          "iast": "deva",
-          "gloss": "O god!",
-          "note": "sambodhana | voc. sg. · m. · stem: deva- · a-stem"
-        },
-        {
-          "id": "08-sambodhana:sambodhana:devi",
-          "devanagari": "देवि",
-          "iast": "devi",
-          "gloss": "O goddess!",
-          "note": "sambodhana | voc. sg. · f. · stem: devī- · ī-stem"
-        },
-        {
-          "id": "08-sambodhana:sambodhana:amba",
-          "devanagari": "अम्ब",
-          "iast": "amba",
-          "gloss": "O mother! · from ambā-",
-          "note": "sambodhana | voc. sg. · f. · stem: ambā- · ā-stem"
-        },
-        {
-          "id": "08-sambodhana:sambodhana:matah",
-          "devanagari": "मातः",
-          "iast": "mātaḥ",
-          "gloss": "O mother! · from mātṛ-",
-          "note": "sambodhana | voc. sg. · f. · stem: mātṛ- · ṛ-stem"
-        },
-        {
-          "id": "08-sambodhana:sambodhana:hare",
-          "devanagari": "हरे",
-          "iast": "hare",
-          "gloss": "O Hari!",
-          "note": "sambodhana | voc. sg. · m. · stem: hari- · i-stem"
-        },
-        {
-          "id": "08-sambodhana:sambodhana:visno",
-          "devanagari": "विष्णो",
-          "iast": "viṣṇo",
-          "gloss": "O Viṣṇu!",
-          "note": "sambodhana | voc. sg. · m. · stem: viṣṇu- · u-stem"
-        },
-        {
-          "id": "08-sambodhana:sambodhana:laksmi",
-          "devanagari": "लक्ष्मि",
-          "iast": "lakṣmi",
-          "gloss": "O Lakṣmī!",
-          "note": "sambodhana | voc. sg. · f. · stem: lakṣmī- · ī-stem"
-        },
-        {
-          "id": "08-sambodhana:sambodhana:bhagavan",
-          "devanagari": "भगवन्",
-          "iast": "bhagavan",
-          "gloss": "O blessed one!",
-          "note": "sambodhana | voc. sg. · m. · stem: bhagavat- · at-stem"
-        },
-        {
-          "id": "08-sambodhana:sambodhana:atman",
-          "devanagari": "आत्मन्",
-          "iast": "ātman",
-          "gloss": "O self!",
-          "note": "sambodhana | voc. sg. · m. · stem: ātman- · an-stem"
-        },
-        {
-          "id": "08-sambodhana:sambodhana:guro",
-          "devanagari": "गुरो",
-          "iast": "guro",
-          "gloss": "O teacher!",
-          "note": "sambodhana | voc. sg. · m. · stem: guru- · u-stem"
-        },
-        {
-          "id": "08-sambodhana:sambodhana:sive",
-          "devanagari": "शिवे",
-          "iast": "śive",
-          "gloss": "O Śivā!",
-          "note": "sambodhana | voc. sg. · f. · stem: śivā- · ā-stem"
-        },
-        {
-          "id": "08-sambodhana:sambodhana:matar-devi",
-          "devanagari": "मातर्देवि",
-          "iast": "mātar devi",
-          "gloss": "O mother goddess!",
-          "note": "sambodhana | voc. sg. · two vocatives together"
-        },
-        {
-          "id": "08-sambodhana:sambodhana:bho",
-          "devanagari": "भो",
-          "iast": "bho",
-          "gloss": "O! (general call)",
-          "note": "indeclinable"
         }
       ]
     },

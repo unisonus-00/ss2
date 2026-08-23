@@ -4,7 +4,6 @@
     {
       "name": "Puruṣa-pada — person and voice terms",
       "pair": "term → definition",
-      "role": "terms",
       "cards": [
         {
           "id": "06-kriya:saṃjñā:prathama-purusa",
@@ -32,16 +31,17 @@
           "devanagari": "परस्मैपदम्",
           "iast": "parasmaipadam",
           "gloss": "active endings",
-          "note": "laṭ -ti, -si, -mi"
+          "note": "the -ti, -si, -mi endings · the act is directed outward, to another"
         },
         {
           "id": "06-kriya:saṃjñā:atmanepadam",
           "devanagari": "आत्मनेपदम्",
           "iast": "ātmanepadam",
           "gloss": "middle-voice endings",
-          "note": "laṭ -te, -se, -e"
+          "note": "the -te, -se, -e endings · the act returns to the doer — sev → seve, “I serve”"
         }
-      ]
+      ],
+      "role": "core"
     },
     {
       "name": "34 · Lakāra — the ten tense-moods",
@@ -87,7 +87,7 @@
           "devanagari": "गच्छतु",
           "iast": "gacchatu",
           "gloss": "loṭ · लोट् — imperative",
-          "note": "lakāra · 3.3.162"
+          "note": "lakāra · a command, request or blessing — “let him go” · āśīḥ/vidhi · 3.3.162"
         },
         {
           "id": "06-kriya:lakara:agacchat",
@@ -101,31 +101,31 @@
           "devanagari": "गच्छेत्",
           "iast": "gacchet",
           "gloss": "liṅ (vidhiliṅ) · लिङ् — optative",
-          "note": "lakāra · 3.3.161"
+          "note": "lakāra · what should or may happen — “he should go” · vidhi · 3.3.161"
         },
         {
           "id": "06-kriya:lakara:agamat",
           "devanagari": "अगमत्",
           "iast": "agamat",
           "gloss": "luṅ · लुङ् — aorist, general past",
-          "note": "lakāra · 3.2.110"
+          "note": "lakāra · a past with no boundary in time — “he went” · sāmānya-bhūta · 3.2.110"
         },
         {
           "id": "06-kriya:lakara:agamisyat",
           "devanagari": "अगमिष्यत्",
           "iast": "agamiṣyat",
           "gloss": "lṛṅ · लृङ् — conditional",
-          "note": "lakāra · 3.3.139"
+          "note": "lakāra · what would have happened, had something else been so · saṅketa · 3.3.139"
         },
         {
           "id": "06-kriya:lakara:let",
           "devanagari": "लेट्",
           "iast": "leṭ",
           "gloss": "the Vedic subjunctive",
-          "note": "lakāra · chandas only"
+          "note": "lakāra · a wish or intention, in the Vedic language alone · chandas only"
         }
       ],
-      "role": "terms"
+      "role": "core"
     },
     {
       "name": "Puruṣa-lakāra — person, tense and mood · practice",

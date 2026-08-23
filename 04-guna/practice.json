@@ -2,6 +2,117 @@
   "lesson": "04-guna",
   "decks": [
     {
+      "name": "03 · Guṇa — adjectives",
+      "cards": [
+        {
+          "id": "04-guna:guna:karunamayi",
+          "devanagari": "करुणामयी",
+          "iast": "karuṇāmayī",
+          "gloss": "full of compassion",
+          "note": "nom. sg. · f. · stem: karuṇāmayī- · ī-stem"
+        },
+        {
+          "id": "04-guna:guna:dayaluh",
+          "devanagari": "दयालुः",
+          "iast": "dayāluḥ",
+          "gloss": "compassionate",
+          "note": "nom. sg. · stem: dayālu- · u-stem"
+        },
+        {
+          "id": "04-guna:guna:sundarah",
+          "devanagari": "सुन्दरः",
+          "iast": "sundaraḥ",
+          "gloss": "beautiful",
+          "note": "nom. sg. · stem: sundara- · a-stem"
+        },
+        {
+          "id": "04-guna:guna:subhah",
+          "devanagari": "शुभः",
+          "iast": "śubhaḥ",
+          "gloss": "auspicious",
+          "note": "nom. sg. · stem: śubha- · a-stem"
+        },
+        {
+          "id": "04-guna:guna:divyah",
+          "devanagari": "दिव्यः",
+          "iast": "divyaḥ",
+          "gloss": "divine",
+          "note": "nom. sg. · stem: divya- · a-stem"
+        },
+        {
+          "id": "04-guna:guna:pavitrah",
+          "devanagari": "पवित्रः",
+          "iast": "pavitraḥ",
+          "gloss": "pure",
+          "note": "nom. sg. · stem: pavitra- · a-stem"
+        },
+        {
+          "id": "04-guna:guna:nityah",
+          "devanagari": "नित्यः",
+          "iast": "nityaḥ",
+          "gloss": "eternal",
+          "note": "nom. sg. · stem: nitya- · a-stem"
+        },
+        {
+          "id": "04-guna:guna:prasannah",
+          "devanagari": "प्रसन्नः",
+          "iast": "prasannaḥ",
+          "gloss": "gracious, serene",
+          "note": "nom. sg. · stem: prasanna- · a-stem"
+        },
+        {
+          "id": "04-guna:guna:ugrah",
+          "devanagari": "उग्रः",
+          "iast": "ugraḥ",
+          "gloss": "fierce",
+          "note": "nom. sg. · stem: ugra- · a-stem"
+        },
+        {
+          "id": "04-guna:guna:santah",
+          "devanagari": "शान्तः",
+          "iast": "śāntaḥ",
+          "gloss": "peaceful",
+          "note": "nom. sg. · stem: śānta- · a-stem"
+        },
+        {
+          "id": "04-guna:guna:mangalah",
+          "devanagari": "मङ्गलः",
+          "iast": "maṅgalaḥ",
+          "gloss": "blessed",
+          "note": "nom. sg. · stem: maṅgala- · a-stem"
+        },
+        {
+          "id": "04-guna:guna:mahan",
+          "devanagari": "महान्",
+          "iast": "mahān",
+          "gloss": "great",
+          "note": "nom. sg. · stem: mahat- · at-stem"
+        },
+        {
+          "id": "04-guna:guna:svetah",
+          "devanagari": "श्वेतः",
+          "iast": "śvetaḥ",
+          "gloss": "white",
+          "note": "nom. sg. · stem: śveta- · a-stem"
+        },
+        {
+          "id": "04-guna:guna:raktah",
+          "devanagari": "रक्तः",
+          "iast": "raktaḥ",
+          "gloss": "red",
+          "note": "nom. sg. · stem: rakta- · a-stem"
+        },
+        {
+          "id": "04-guna:guna:krpaluh",
+          "devanagari": "कृपालुः",
+          "iast": "kṛpāluḥ",
+          "gloss": "merciful",
+          "note": "nom. sg. · stem: kṛpālu- · u-stem"
+        }
+      ],
+      "role": "core"
+    },
+    {
       "name": "Viśeṣaṇa — adjective agreement · practice",
       "cards": [
         {
@@ -146,116 +257,6 @@
           "answer": "pavitrā gaṅgā",
           "note": "gaṅgā is feminine",
           "source": "workbook A3"
-        }
-      ]
-    },
-    {
-      "name": "03 · Guṇa — adjectives",
-      "cards": [
-        {
-          "id": "04-guna:guna:karunamayi",
-          "devanagari": "करुणामयी",
-          "iast": "karuṇāmayī",
-          "gloss": "full of compassion",
-          "note": "nom. sg. · f. · stem: karuṇāmayī- · ī-stem"
-        },
-        {
-          "id": "04-guna:guna:dayaluh",
-          "devanagari": "दयालुः",
-          "iast": "dayāluḥ",
-          "gloss": "compassionate",
-          "note": "nom. sg. · stem: dayālu- · u-stem"
-        },
-        {
-          "id": "04-guna:guna:sundarah",
-          "devanagari": "सुन्दरः",
-          "iast": "sundaraḥ",
-          "gloss": "beautiful",
-          "note": "nom. sg. · stem: sundara- · a-stem"
-        },
-        {
-          "id": "04-guna:guna:subhah",
-          "devanagari": "शुभः",
-          "iast": "śubhaḥ",
-          "gloss": "auspicious",
-          "note": "nom. sg. · stem: śubha- · a-stem"
-        },
-        {
-          "id": "04-guna:guna:divyah",
-          "devanagari": "दिव्यः",
-          "iast": "divyaḥ",
-          "gloss": "divine",
-          "note": "nom. sg. · stem: divya- · a-stem"
-        },
-        {
-          "id": "04-guna:guna:pavitrah",
-          "devanagari": "पवित्रः",
-          "iast": "pavitraḥ",
-          "gloss": "pure",
-          "note": "nom. sg. · stem: pavitra- · a-stem"
-        },
-        {
-          "id": "04-guna:guna:nityah",
-          "devanagari": "नित्यः",
-          "iast": "nityaḥ",
-          "gloss": "eternal",
-          "note": "nom. sg. · stem: nitya- · a-stem"
-        },
-        {
-          "id": "04-guna:guna:prasannah",
-          "devanagari": "प्रसन्नः",
-          "iast": "prasannaḥ",
-          "gloss": "gracious, serene",
-          "note": "nom. sg. · stem: prasanna- · a-stem"
-        },
-        {
-          "id": "04-guna:guna:ugrah",
-          "devanagari": "उग्रः",
-          "iast": "ugraḥ",
-          "gloss": "fierce",
-          "note": "nom. sg. · stem: ugra- · a-stem"
-        },
-        {
-          "id": "04-guna:guna:santah",
-          "devanagari": "शान्तः",
-          "iast": "śāntaḥ",
-          "gloss": "peaceful",
-          "note": "nom. sg. · stem: śānta- · a-stem"
-        },
-        {
-          "id": "04-guna:guna:mangalah",
-          "devanagari": "मङ्गलः",
-          "iast": "maṅgalaḥ",
-          "gloss": "blessed",
-          "note": "nom. sg. · stem: maṅgala- · a-stem"
-        },
-        {
-          "id": "04-guna:guna:mahan",
-          "devanagari": "महान्",
-          "iast": "mahān",
-          "gloss": "great",
-          "note": "nom. sg. · stem: mahat- · at-stem"
-        },
-        {
-          "id": "04-guna:guna:svetah",
-          "devanagari": "श्वेतः",
-          "iast": "śvetaḥ",
-          "gloss": "white",
-          "note": "nom. sg. · stem: śveta- · a-stem"
-        },
-        {
-          "id": "04-guna:guna:raktah",
-          "devanagari": "रक्तः",
-          "iast": "raktaḥ",
-          "gloss": "red",
-          "note": "nom. sg. · stem: rakta- · a-stem"
-        },
-        {
-          "id": "04-guna:guna:krpaluh",
-          "devanagari": "कृपालुः",
-          "iast": "kṛpāluḥ",
-          "gloss": "merciful",
-          "note": "nom. sg. · stem: kṛpālu- · u-stem"
         }
       ]
     },

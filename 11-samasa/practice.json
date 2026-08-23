@@ -4,7 +4,6 @@
     {
       "name": "13 · Samāsa-saṃjñā — the six compound types",
       "pair": "term → definition",
-      "role": "terms",
       "cards": [
         {
           "id": "11-samasa:samjna:tatpurusa",
@@ -48,7 +47,8 @@
           "gloss": "adverbial · the whole becomes indeclinable",
           "note": "the first word is the head · prati-dinam, daily"
         }
-      ]
+      ],
+      "role": "core"
     },
     {
       "name": "Samāsa-bheda — name the type · practice",

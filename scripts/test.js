@@ -1772,10 +1772,11 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
-  // ── terminology comes before the cards that use it ─────────────────
+  // ── fundamentals come before the cards that use them ───────────────
   // term → equivalent → relationship → application.  A list marked
-  // `"role": "terms"` teaches the vocabulary a later list assumes, so it
-  // leads its lesson; the exercises follow, and the recall lists come last.
+  // `"role": "core"` holds what this lesson's own tests rest on — the
+  // equivalences, or the raw material the exercise draws from — so it leads
+  // the lesson; the exercises follow, and the breadth lists come last.
   {
     const p = await open(browser);
     const r = await p.evaluate(() => {
@@ -1785,13 +1786,17 @@ const open = async (browser, opts = {}) => {
       });
       const late = [], early = [];
       Object.entries(byLesson).forEach(([L, names]) => {
-        const kind = n => DECK_ROLE[n] === 'terms' ? 0
+        const kind = n => DECK_ROLE[n] === 'core' ? 0
                         : DECKS[n].some(c => (c.type || 'reveal') !== 'reveal') ? 1 : 2;
         const seq = names.map(kind);
         // a terms list may never sit below an exercise that leans on it
         seq.forEach((k, i) => {
           if (k === 0 && seq.slice(0, i).some(x => x === 1)) late.push(L);
         });
+        // every lesson that tests must show its fundamentals somewhere first —
+        // in the lesson itself, or (Stages 15 and 21) in an earlier one
+        if (seq.includes(1) && !seq.includes(0) && !['15-stotra-ii', '21-chandas-ii'].includes(L))
+          late.push(L + ' (no fundamentals list at all)');
         // and an exercise may never sit below a plain recall list
         seq.forEach((k, i) => {
           if (k === 1 && seq.slice(0, i).some(x => x === 2)) early.push(L);
@@ -1824,11 +1829,28 @@ const open = async (browser, opts = {}) => {
         .filter(c => c.id.startsWith('07-karaka:case:'));
       const monolingual = rel.filter(c => !/·.*·/.test(c.answer)).map(c => c.id);
       const asksBoth = rel.every(c => /vibhakti \(case\)/.test(c.front));
-      return { late: [...new Set(late)], early: [...new Set(early)],
+      /* A gloss may name an English technical term — "optative", "middle-voice
+         endings" — only if the chip beside it says what that term does.  The
+         chip is the card's own "why" slot, and a beginner who does not know
+         the word has nowhere else to look mid-round. */
+      const JARGON = /optative|imperative|aorist|conditional|subjunctive|middle-voice|active endings|participle|elision|indeclinable\b/i;
+      const bare = [];
+      Object.keys(DECKS).forEach(n => DECKS[n].forEach(c => {
+        if ((c.type || 'reveal') !== 'reveal') return;
+        if (!JARGON.test(c.gloss || '')) return;
+        // the chip has to add something beyond a citation or a bare label
+        const chip = (c.note || '').replace(/[\d.]+$/, '').trim();
+        if (chip.replace(/[^ ]+/g, '').length < 5) bare.push(c.id);
+      }));
+      const worked = (DECKS['Vākya-siddhi — the sentence, worked through'] || []).length;
+      return { late: [...new Set(late)], early: [...new Set(early)], bare, worked,
                untaught, conflated, monolingual, asksBoth, rel: rel.length };
     });
-    ok('a terms list leads its lesson', !r.late.length, r.late.join(' | '));
-    ok('and the exercises still lead the recall lists', !r.early.length, r.early.join(' | '));
+    ok('a fundamentals list leads its lesson', !r.late.length, r.late.join(' | '));
+    ok('and the worked sentences lead Stage 12', r.worked >= 4, r.worked + ' cards');
+    ok('no card names a grammatical mood or voice without saying what it does',
+      !r.bare.length, r.bare.slice(0, 4).join(' | '));
+    ok('and the exercises still lead the breadth lists', !r.early.length, r.early.join(' | '));
     ok('every equivalence a later card leans on is taught by a card',
       !r.untaught.length, r.untaught.join(' | '));
     ok('a case card does not simply assert a kāraka',
@@ -1856,7 +1878,7 @@ const open = async (browser, opts = {}) => {
           const note = c.note || '';
           if (st > 0 && st < 5 && VIB.test(note)) early.vibhakti.push(c.id);
           /* the list that TEACHES the types is allowed to name them */
-          if (st > 0 && st < 11 && SAM.test(note) && DECK_ROLE[n] !== 'terms')
+          if (st > 0 && st < 11 && SAM.test(note) && DECK_ROLE[n] !== 'core')
             early.samasa.push(c.id);
           if (st === 6 && CLS.test(note)) early.klass.push(c.id);
           // and where it does belong it is spelled out, not left as "1P"

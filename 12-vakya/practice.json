@@ -2,6 +2,192 @@
   "lesson": "12-vakya",
   "decks": [
     {
+      "name": "Vākya-siddhi — the sentence, worked through",
+      "cards": [
+        {
+          "id": "12-vakya:worked:aham-pratah",
+          "devanagari": "अहं प्रातः उत्तिष्ठामि",
+          "iast": "aham prātaḥ uttiṣṭhāmi",
+          "gloss": "I get up in the morning",
+          "note": "aham — prathamā, the subject · prātaḥ — indeclinable, when · uttiṣṭhāmi — 1 sg.",
+          "source": "workbook A1, A2"
+        },
+        {
+          "id": "12-vakya:worked:balah-jalam",
+          "devanagari": "बालः जलं पिबति",
+          "iast": "bālaḥ jalaṃ pibati",
+          "gloss": "the child drinks water",
+          "note": "bālaḥ — prathamā, the subject · jalam — dvitīyā, what is drunk · pibati — 3 sg.",
+          "source": "workbook A1, A2"
+        },
+        {
+          "id": "12-vakya:worked:mata-grhe",
+          "devanagari": "माता गृहे भोजनं पचति",
+          "iast": "mātā gṛhe bhojanaṃ pacati",
+          "gloss": "mother cooks food at home",
+          "note": "mātā — prathamā · gṛhe — saptamī, where · bhojanam — dvitīyā, what · pacati — 3 sg.",
+          "source": "workbook A1, A2"
+        },
+        {
+          "id": "12-vakya:worked:aham-sayam",
+          "devanagari": "अहं सायं मन्दिरं गच्छामि",
+          "iast": "aham sāyaṃ mandiraṃ gacchāmi",
+          "gloss": "I go to the temple in the evening",
+          "note": "aham — prathamā · sāyam — indeclinable, when · mandiram — dvitīyā, where to · gacchāmi — 1 sg.",
+          "source": "workbook A1, A2"
+        },
+        {
+          "id": "12-vakya:worked:bhaktah-puspena",
+          "devanagari": "भक्तः पुष्पेण पूजयति",
+          "iast": "bhaktaḥ puṣpeṇa pūjayati",
+          "gloss": "the devotee worships with a flower",
+          "note": "bhaktaḥ — prathamā · puṣpeṇa — tṛtīyā, with what · pūjayati — 3 sg.",
+          "source": "workbook A1, A2"
+        },
+        {
+          "id": "12-vakya:worked:guruh-sisyaya",
+          "devanagari": "गुरुः शिष्याय कथां कथयति",
+          "iast": "guruḥ śiṣyāya kathāṃ kathayati",
+          "gloss": "the guru tells a story to the student",
+          "note": "guruḥ — prathamā · śiṣyāya — caturthī, to whom · kathām — dvitīyā, what · kathayati — 3 sg.",
+          "source": "workbook A1, A2"
+        }
+      ],
+      "role": "core"
+    },
+    {
+      "name": "24 · Sarvanāma-avyaya — pronouns and particles",
+      "cards": [
+        {
+          "id": "12-vakya:sarvanama-avyaya:aham",
+          "devanagari": "अहम्",
+          "iast": "aham",
+          "gloss": "I",
+          "note": "prathamā | nom. sg. · stem: asmad- · pronoun"
+        },
+        {
+          "id": "12-vakya:sarvanama-avyaya:tvam",
+          "devanagari": "त्वम्",
+          "iast": "tvam",
+          "gloss": "you",
+          "note": "prathamā | nom. sg. · stem: yuṣmad- · pronoun"
+        },
+        {
+          "id": "12-vakya:sarvanama-avyaya:sah",
+          "devanagari": "सः",
+          "iast": "saḥ",
+          "gloss": "he, that one",
+          "note": "prathamā | nom. sg. · m. · stem: tad- · pronoun"
+        },
+        {
+          "id": "12-vakya:sarvanama-avyaya:sa",
+          "devanagari": "सा",
+          "iast": "sā",
+          "gloss": "she, that one",
+          "note": "prathamā | nom. sg. · f. · stem: tad- · pronoun"
+        },
+        {
+          "id": "12-vakya:sarvanama-avyaya:tat",
+          "devanagari": "तत्",
+          "iast": "tat",
+          "gloss": "that, it",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: tad- · pronoun"
+        },
+        {
+          "id": "12-vakya:sarvanama-avyaya:ayam",
+          "devanagari": "अयम्",
+          "iast": "ayam",
+          "gloss": "this one",
+          "note": "prathamā | nom. sg. · m. · stem: idam- · pronoun"
+        },
+        {
+          "id": "12-vakya:sarvanama-avyaya:idam",
+          "devanagari": "इदम्",
+          "iast": "idam",
+          "gloss": "this",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: idam- · pronoun"
+        },
+        {
+          "id": "12-vakya:sarvanama-avyaya:kim",
+          "devanagari": "किम्",
+          "iast": "kim",
+          "gloss": "what?",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: kim- · interrogative pronoun"
+        },
+        {
+          "id": "12-vakya:sarvanama-avyaya:ca",
+          "devanagari": "च",
+          "iast": "ca",
+          "gloss": "and",
+          "note": "indeclinable · enclitic"
+        },
+        {
+          "id": "12-vakya:sarvanama-avyaya:va",
+          "devanagari": "वा",
+          "iast": "vā",
+          "gloss": "or",
+          "note": "indeclinable · enclitic"
+        },
+        {
+          "id": "12-vakya:sarvanama-avyaya:na",
+          "devanagari": "न",
+          "iast": "na",
+          "gloss": "not",
+          "note": "indecl."
+        },
+        {
+          "id": "12-vakya:sarvanama-avyaya:eva",
+          "devanagari": "एव",
+          "iast": "eva",
+          "gloss": "indeed, only",
+          "note": "indeclinable · emphatic"
+        },
+        {
+          "id": "12-vakya:sarvanama-avyaya:api",
+          "devanagari": "अपि",
+          "iast": "api",
+          "gloss": "also, even",
+          "note": "indecl."
+        },
+        {
+          "id": "12-vakya:sarvanama-avyaya:iti",
+          "devanagari": "इति",
+          "iast": "iti",
+          "gloss": "thus (end of quotation)",
+          "note": "indecl."
+        },
+        {
+          "id": "12-vakya:sarvanama-avyaya:atra",
+          "devanagari": "अत्र",
+          "iast": "atra",
+          "gloss": "here",
+          "note": "indecl."
+        },
+        {
+          "id": "12-vakya:sarvanama-avyaya:kutra",
+          "devanagari": "कुत्र",
+          "iast": "kutra",
+          "gloss": "where?",
+          "note": "indecl."
+        },
+        {
+          "id": "12-vakya:sarvanama-avyaya:tatha",
+          "devanagari": "तथा",
+          "iast": "tathā",
+          "gloss": "thus, so",
+          "note": "indecl."
+        },
+        {
+          "id": "12-vakya:sarvanama-avyaya:yadi",
+          "devanagari": "यदि",
+          "iast": "yadi",
+          "gloss": "if",
+          "note": "indecl."
+        }
+      ],
+      "role": "core"
+    },
+    {
       "name": "Vākya-pūraṇa — case, form and connector · practice",
       "cards": [
         {
@@ -237,137 +423,6 @@
           "answer": "yadā … tadā",
           "note": "yadā/tadā is time · yadi/tadā is condition · yaḥ/saḥ is relative",
           "source": "workbook A3"
-        }
-      ]
-    },
-    {
-      "name": "24 · Sarvanāma-avyaya — pronouns and particles",
-      "cards": [
-        {
-          "id": "12-vakya:sarvanama-avyaya:aham",
-          "devanagari": "अहम्",
-          "iast": "aham",
-          "gloss": "I",
-          "note": "prathamā | nom. sg. · stem: asmad- · pronoun"
-        },
-        {
-          "id": "12-vakya:sarvanama-avyaya:tvam",
-          "devanagari": "त्वम्",
-          "iast": "tvam",
-          "gloss": "you",
-          "note": "prathamā | nom. sg. · stem: yuṣmad- · pronoun"
-        },
-        {
-          "id": "12-vakya:sarvanama-avyaya:sah",
-          "devanagari": "सः",
-          "iast": "saḥ",
-          "gloss": "he, that one",
-          "note": "prathamā | nom. sg. · m. · stem: tad- · pronoun"
-        },
-        {
-          "id": "12-vakya:sarvanama-avyaya:sa",
-          "devanagari": "सा",
-          "iast": "sā",
-          "gloss": "she, that one",
-          "note": "prathamā | nom. sg. · f. · stem: tad- · pronoun"
-        },
-        {
-          "id": "12-vakya:sarvanama-avyaya:tat",
-          "devanagari": "तत्",
-          "iast": "tat",
-          "gloss": "that, it",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: tad- · pronoun"
-        },
-        {
-          "id": "12-vakya:sarvanama-avyaya:ayam",
-          "devanagari": "अयम्",
-          "iast": "ayam",
-          "gloss": "this one",
-          "note": "prathamā | nom. sg. · m. · stem: idam- · pronoun"
-        },
-        {
-          "id": "12-vakya:sarvanama-avyaya:idam",
-          "devanagari": "इदम्",
-          "iast": "idam",
-          "gloss": "this",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: idam- · pronoun"
-        },
-        {
-          "id": "12-vakya:sarvanama-avyaya:kim",
-          "devanagari": "किम्",
-          "iast": "kim",
-          "gloss": "what?",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: kim- · interrogative pronoun"
-        },
-        {
-          "id": "12-vakya:sarvanama-avyaya:ca",
-          "devanagari": "च",
-          "iast": "ca",
-          "gloss": "and",
-          "note": "indeclinable · enclitic"
-        },
-        {
-          "id": "12-vakya:sarvanama-avyaya:va",
-          "devanagari": "वा",
-          "iast": "vā",
-          "gloss": "or",
-          "note": "indeclinable · enclitic"
-        },
-        {
-          "id": "12-vakya:sarvanama-avyaya:na",
-          "devanagari": "न",
-          "iast": "na",
-          "gloss": "not",
-          "note": "indecl."
-        },
-        {
-          "id": "12-vakya:sarvanama-avyaya:eva",
-          "devanagari": "एव",
-          "iast": "eva",
-          "gloss": "indeed, only",
-          "note": "indeclinable · emphatic"
-        },
-        {
-          "id": "12-vakya:sarvanama-avyaya:api",
-          "devanagari": "अपि",
-          "iast": "api",
-          "gloss": "also, even",
-          "note": "indecl."
-        },
-        {
-          "id": "12-vakya:sarvanama-avyaya:iti",
-          "devanagari": "इति",
-          "iast": "iti",
-          "gloss": "thus (end of quotation)",
-          "note": "indecl."
-        },
-        {
-          "id": "12-vakya:sarvanama-avyaya:atra",
-          "devanagari": "अत्र",
-          "iast": "atra",
-          "gloss": "here",
-          "note": "indecl."
-        },
-        {
-          "id": "12-vakya:sarvanama-avyaya:kutra",
-          "devanagari": "कुत्र",
-          "iast": "kutra",
-          "gloss": "where?",
-          "note": "indecl."
-        },
-        {
-          "id": "12-vakya:sarvanama-avyaya:tatha",
-          "devanagari": "तथा",
-          "iast": "tathā",
-          "gloss": "thus, so",
-          "note": "indecl."
-        },
-        {
-          "id": "12-vakya:sarvanama-avyaya:yadi",
-          "devanagari": "यदि",
-          "iast": "yadi",
-          "gloss": "if",
-          "note": "indecl."
         }
       ]
     },

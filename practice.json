@@ -101,7 +101,7 @@
           "devanagari": "लोपः",
           "iast": "lopaḥ",
           "gloss": "elision",
-          "note": "nom. sg. · m. · stem: lopa- · a-stem"
+          "note": "a sound dropped at a junction — devāḥ + vadanti → devā vadanti"
         },
         {
           "id": "00-overview:vyakaranam:agamah",
@@ -115,7 +115,7 @@
           "devanagari": "अव्ययम्",
           "iast": "avyayam",
           "gloss": "indeclinable",
-          "note": "nom./acc. sg. · n. · stem: avyaya- · a-stem"
+          "note": "a word that never changes its ending, whatever its role"
         },
         {
           "id": "00-overview:vyakaranam:tin",

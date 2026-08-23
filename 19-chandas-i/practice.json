@@ -2,6 +2,174 @@
   "lesson": "19-chandas-i",
   "decks": [
     {
+      "name": "17 · Chandas — metre",
+      "pair": "term → definition",
+      "cards": [
+        {
+          "id": "19-chandas-i:chandas:guru",
+          "devanagari": "गुरु",
+          "iast": "guru",
+          "gloss": "heavy — a long syllable, –",
+          "note": "a long vowel, or a short one before a conjunct, anusvāra or visarga — saṃ and śi-vaḥ are –"
+        },
+        {
+          "id": "19-chandas-i:chandas:laghu",
+          "devanagari": "लघु",
+          "iast": "laghu",
+          "gloss": "light — a short syllable, ∪",
+          "note": "a short vowel not followed by a conjunct, anusvāra or visarga — na-ma is ∪ ∪"
+        },
+        {
+          "id": "19-chandas-i:chandas:chandah",
+          "devanagari": "छन्दः",
+          "iast": "chandaḥ",
+          "gloss": "metre",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: chandas- · as-stem"
+        },
+        {
+          "id": "19-chandas-i:chandas:anustubh",
+          "devanagari": "अनुष्टुभ्",
+          "iast": "anuṣṭubh",
+          "gloss": "the 8×4 śloka metre",
+          "note": "bh-stem f."
+        },
+        {
+          "id": "19-chandas-i:chandas:tristup",
+          "devanagari": "त्रिष्टुप्",
+          "iast": "triṣṭup",
+          "gloss": "the 11-syllable metre",
+          "note": "p-stem f."
+        },
+        {
+          "id": "19-chandas-i:chandas:gayatri",
+          "devanagari": "गायत्री",
+          "iast": "gāyatrī",
+          "gloss": "the 8×3 metre",
+          "note": "prathamā | nom. sg. · f. · stem: gāyatrī- · ī-stem"
+        },
+        {
+          "id": "19-chandas-i:chandas:jagati",
+          "devanagari": "जगती",
+          "iast": "jagatī",
+          "gloss": "the 12-syllable metre",
+          "note": "prathamā | nom. sg. · f. · stem: jagatī- · ī-stem"
+        },
+        {
+          "id": "19-chandas-i:chandas:padah",
+          "devanagari": "पादः",
+          "iast": "pādaḥ",
+          "gloss": "a quarter of a verse",
+          "note": "prathamā | nom. sg. · m. · stem: pāda- · a-stem"
+        },
+        {
+          "id": "19-chandas-i:chandas:guruh",
+          "devanagari": "गुरुः",
+          "iast": "guruḥ",
+          "gloss": "a heavy syllable",
+          "note": "prathamā | nom. sg. · stem: guru- · u-stem"
+        },
+        {
+          "id": "19-chandas-i:chandas:laghuh",
+          "devanagari": "लघुः",
+          "iast": "laghuḥ",
+          "gloss": "a light syllable",
+          "note": "prathamā | nom. sg. · stem: laghu- · u-stem"
+        },
+        {
+          "id": "19-chandas-i:chandas:ganah",
+          "devanagari": "गणः",
+          "iast": "gaṇaḥ",
+          "gloss": "a triad of syllables",
+          "note": "prathamā | nom. sg. · m. · stem: gaṇa- · a-stem"
+        },
+        {
+          "id": "19-chandas-i:chandas:yatih",
+          "devanagari": "यतिः",
+          "iast": "yatiḥ",
+          "gloss": "caesura, pause",
+          "note": "prathamā | nom. sg. · f. · stem: yati- · i-stem"
+        },
+        {
+          "id": "19-chandas-i:chandas:vrttam",
+          "devanagari": "वृत्तम्",
+          "iast": "vṛttam",
+          "gloss": "a syllable-counted metre",
+          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: vṛtta- · a-stem"
+        },
+        {
+          "id": "19-chandas-i:chandas:slokah",
+          "devanagari": "श्लोकः",
+          "iast": "ślokaḥ",
+          "gloss": "a verse",
+          "note": "prathamā | nom. sg. · m. · stem: śloka- · a-stem"
+        }
+      ],
+      "role": "core"
+    },
+    {
+      "name": "29 · Gaṇa — the eight metrical feet",
+      "pair": "pattern → gaṇa",
+      "cards": [
+        {
+          "id": "19-chandas-i:gana:laghu-guru-guru",
+          "devanagari": "◡ — —",
+          "iast": "laghu guru guru",
+          "gloss": "ya-gaṇa · यगणः",
+          "note": "gaṇa · mnemonic ya-mā-tā"
+        },
+        {
+          "id": "19-chandas-i:gana:guru-guru-guru",
+          "devanagari": "— — —",
+          "iast": "guru guru guru",
+          "gloss": "ma-gaṇa · मगणः",
+          "note": "gaṇa · mnemonic mā-tā-rā"
+        },
+        {
+          "id": "19-chandas-i:gana:guru-guru-laghu",
+          "devanagari": "— — ◡",
+          "iast": "guru guru laghu",
+          "gloss": "ta-gaṇa · तगणः",
+          "note": "gaṇa · mnemonic tā-rā-ja"
+        },
+        {
+          "id": "19-chandas-i:gana:guru-laghu-guru",
+          "devanagari": "— ◡ —",
+          "iast": "guru laghu guru",
+          "gloss": "ra-gaṇa · रगणः",
+          "note": "gaṇa · mnemonic rā-ja-bhā"
+        },
+        {
+          "id": "19-chandas-i:gana:laghu-guru-laghu",
+          "devanagari": "◡ — ◡",
+          "iast": "laghu guru laghu",
+          "gloss": "ja-gaṇa · जगणः",
+          "note": "gaṇa · mnemonic ja-bhā-na"
+        },
+        {
+          "id": "19-chandas-i:gana:guru-laghu-laghu",
+          "devanagari": "— ◡ ◡",
+          "iast": "guru laghu laghu",
+          "gloss": "bha-gaṇa · भगणः",
+          "note": "gaṇa · mnemonic bhā-na-sa"
+        },
+        {
+          "id": "19-chandas-i:gana:laghu-laghu-laghu",
+          "devanagari": "◡ ◡ ◡",
+          "iast": "laghu laghu laghu",
+          "gloss": "na-gaṇa · नगणः",
+          "note": "gaṇa · mnemonic na-sa-la"
+        },
+        {
+          "id": "19-chandas-i:gana:laghu-laghu-guru",
+          "devanagari": "◡ ◡ —",
+          "iast": "laghu laghu guru",
+          "gloss": "sa-gaṇa · सगणः",
+          "note": "gaṇa · mnemonic sa-la-gā"
+        }
+      ],
+      "role": "core"
+    },
+    {
       "name": "Mātrā — scan the syllables · practice",
       "cards": [
         {
@@ -151,158 +319,6 @@
           "answer": "bha",
           "note": "bha-gaṇa · bhā-na-sa",
           "source": "theory · gaṇas"
-        }
-      ]
-    },
-    {
-      "name": "17 · Chandas — metre",
-      "pair": "term → definition",
-      "cards": [
-        {
-          "id": "19-chandas-i:chandas:chandah",
-          "devanagari": "छन्दः",
-          "iast": "chandaḥ",
-          "gloss": "metre",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: chandas- · as-stem"
-        },
-        {
-          "id": "19-chandas-i:chandas:anustubh",
-          "devanagari": "अनुष्टुभ्",
-          "iast": "anuṣṭubh",
-          "gloss": "the 8×4 śloka metre",
-          "note": "bh-stem f."
-        },
-        {
-          "id": "19-chandas-i:chandas:tristup",
-          "devanagari": "त्रिष्टुप्",
-          "iast": "triṣṭup",
-          "gloss": "the 11-syllable metre",
-          "note": "p-stem f."
-        },
-        {
-          "id": "19-chandas-i:chandas:gayatri",
-          "devanagari": "गायत्री",
-          "iast": "gāyatrī",
-          "gloss": "the 8×3 metre",
-          "note": "prathamā | nom. sg. · f. · stem: gāyatrī- · ī-stem"
-        },
-        {
-          "id": "19-chandas-i:chandas:jagati",
-          "devanagari": "जगती",
-          "iast": "jagatī",
-          "gloss": "the 12-syllable metre",
-          "note": "prathamā | nom. sg. · f. · stem: jagatī- · ī-stem"
-        },
-        {
-          "id": "19-chandas-i:chandas:padah",
-          "devanagari": "पादः",
-          "iast": "pādaḥ",
-          "gloss": "a quarter of a verse",
-          "note": "prathamā | nom. sg. · m. · stem: pāda- · a-stem"
-        },
-        {
-          "id": "19-chandas-i:chandas:guruh",
-          "devanagari": "गुरुः",
-          "iast": "guruḥ",
-          "gloss": "a heavy syllable",
-          "note": "prathamā | nom. sg. · stem: guru- · u-stem"
-        },
-        {
-          "id": "19-chandas-i:chandas:laghuh",
-          "devanagari": "लघुः",
-          "iast": "laghuḥ",
-          "gloss": "a light syllable",
-          "note": "prathamā | nom. sg. · stem: laghu- · u-stem"
-        },
-        {
-          "id": "19-chandas-i:chandas:ganah",
-          "devanagari": "गणः",
-          "iast": "gaṇaḥ",
-          "gloss": "a triad of syllables",
-          "note": "prathamā | nom. sg. · m. · stem: gaṇa- · a-stem"
-        },
-        {
-          "id": "19-chandas-i:chandas:yatih",
-          "devanagari": "यतिः",
-          "iast": "yatiḥ",
-          "gloss": "caesura, pause",
-          "note": "prathamā | nom. sg. · f. · stem: yati- · i-stem"
-        },
-        {
-          "id": "19-chandas-i:chandas:vrttam",
-          "devanagari": "वृत्तम्",
-          "iast": "vṛttam",
-          "gloss": "a syllable-counted metre",
-          "note": "prathamā/dvitīyā | nom./acc. sg. · n. · stem: vṛtta- · a-stem"
-        },
-        {
-          "id": "19-chandas-i:chandas:slokah",
-          "devanagari": "श्लोकः",
-          "iast": "ślokaḥ",
-          "gloss": "a verse",
-          "note": "prathamā | nom. sg. · m. · stem: śloka- · a-stem"
-        }
-      ]
-    },
-    {
-      "name": "29 · Gaṇa — the eight metrical feet",
-      "pair": "pattern → gaṇa",
-      "cards": [
-        {
-          "id": "19-chandas-i:gana:laghu-guru-guru",
-          "devanagari": "◡ — —",
-          "iast": "laghu guru guru",
-          "gloss": "ya-gaṇa · यगणः",
-          "note": "gaṇa · mnemonic ya-mā-tā"
-        },
-        {
-          "id": "19-chandas-i:gana:guru-guru-guru",
-          "devanagari": "— — —",
-          "iast": "guru guru guru",
-          "gloss": "ma-gaṇa · मगणः",
-          "note": "gaṇa · mnemonic mā-tā-rā"
-        },
-        {
-          "id": "19-chandas-i:gana:guru-guru-laghu",
-          "devanagari": "— — ◡",
-          "iast": "guru guru laghu",
-          "gloss": "ta-gaṇa · तगणः",
-          "note": "gaṇa · mnemonic tā-rā-ja"
-        },
-        {
-          "id": "19-chandas-i:gana:guru-laghu-guru",
-          "devanagari": "— ◡ —",
-          "iast": "guru laghu guru",
-          "gloss": "ra-gaṇa · रगणः",
-          "note": "gaṇa · mnemonic rā-ja-bhā"
-        },
-        {
-          "id": "19-chandas-i:gana:laghu-guru-laghu",
-          "devanagari": "◡ — ◡",
-          "iast": "laghu guru laghu",
-          "gloss": "ja-gaṇa · जगणः",
-          "note": "gaṇa · mnemonic ja-bhā-na"
-        },
-        {
-          "id": "19-chandas-i:gana:guru-laghu-laghu",
-          "devanagari": "— ◡ ◡",
-          "iast": "guru laghu laghu",
-          "gloss": "bha-gaṇa · भगणः",
-          "note": "gaṇa · mnemonic bhā-na-sa"
-        },
-        {
-          "id": "19-chandas-i:gana:laghu-laghu-laghu",
-          "devanagari": "◡ ◡ ◡",
-          "iast": "laghu laghu laghu",
-          "gloss": "na-gaṇa · नगणः",
-          "note": "gaṇa · mnemonic na-sa-la"
-        },
-        {
-          "id": "19-chandas-i:gana:laghu-laghu-guru",
-          "devanagari": "◡ ◡ —",
-          "iast": "laghu laghu guru",
-          "gloss": "sa-gaṇa · सगणः",
-          "note": "gaṇa · mnemonic sa-la-gā"
         }
       ]
     }
