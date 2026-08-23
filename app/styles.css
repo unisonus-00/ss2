@@ -722,10 +722,10 @@
   .dk-pct { grid-area: pct; align-self: center; font-size: .74rem;
             color: var(--faded); font-variant-numeric: tabular-nums; }
   .dk.full .dk-pct { color: var(--patra); font-size: .9rem; }
-  /* A list whose stage has not been begun: visible, so the learner sees what
-     is coming, but not yet a way in. */
-  .dk.locked { opacity: .42; cursor: default; }
-  .dk.locked:hover { border-color: transparent; }
+  /* A row whose level has not been opened yet: visible, so the learner sees
+     what is coming, but not yet a way in. */
+  .locked { opacity: .42; cursor: default; }
+  .dk.locked:hover, .tr-head.locked:hover { border-color: transparent; }
   .ls-shut { font-size: .68rem; line-height: 1.4; font-style: italic;
              color: var(--faded); padding: .1rem .5rem .35rem; }
 

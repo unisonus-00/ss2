@@ -152,14 +152,15 @@ const open = async (browser, opts = {}) => {
         newRec: raw.trouble['01-nama:devi:kamaksi'] || null,
         deckBestKept: raw.decks['01 · Devī — goddess names'],
         clearedKept: raw.cleared,
-        /* v5 gates a stage behind its introduction, and a learner already
-           holding a best score in Nāma has plainly been through it */
+        /* the gate: a learner already holding a best score in Nāma has
+           plainly met the track it belongs to, and is not sent back to it */
         begun: raw.begun || {},
       };
     });
     // the chain runs to the end, not just to the step under test
-    ok('saved state runs the whole migration chain', r.version === 5, 'v' + r.version);
-    ok('a stage already practised is not re-gated', !!r.begun['01-nama'],
+    ok('saved state runs the whole migration chain', r.version === 6, 'v' + r.version);
+    ok('a track already practised in is not re-gated',
+      !!r.begun.bhasha && !!r.begun.home,
       Object.keys(r.begun).join(' | ') || 'none');
     ok('old text key removed', r.oldGone);
     ok('record moved onto the stable id', r.newRec && r.newRec.w === 3, JSON.stringify(r.newRec));
@@ -1055,24 +1056,28 @@ const open = async (browser, opts = {}) => {
     ok('no track repeats its own name one level down', !dup.length,
       dup.map(x => x.name).join(' | '));
 
-    /* A track that comes down to a single lesson IS that lesson: no heading of
-       its own to expand, and the row opens that lesson's stage page. */
-    const leaves = r.rows.filter(x => x.leaf).map(x => x.name);
-    ok('a track of one lesson is that lesson itself',
-      ['Pūjā-Vāk', 'Svara-Vidyā', 'Avadhāna'].every(n => leaves.includes(n)),
-      leaves.join(' | '));
+    /* A track that comes down to a single lesson IS that lesson: its lists
+       stand directly under the track's name, with no heading between. */
     const puja = r.rows.find(x => x.name === 'Pūjā-Vāk');
-    ok('and carries its lists directly, with no heading repeating it',
+    ok('a track of one lesson shows its lists directly',
       puja && puja.kids.length === 11 && !puja.kids.includes('Pūjā-Vāk'),
       puja ? puja.kids.length + ' rows' : 'missing');
+    /* And one that comes down to a single list draws no row at all: the page
+       the name opens has a Begin, and a menu of one is not a menu. */
+    const singles = r.rows.filter(x => ['Svara-Vidyā', 'Avadhāna'].includes(x.name));
+    ok('a track of one list is reached by its own Begin, not by a row',
+      singles.length === 2 && singles.every(x => !x.kids.length),
+      singles.map(x => x.name + ' ' + x.kids.length).join(' | '));
     const folded = await p.evaluate(() => {
+      beginHome();
+      renderDrawer();
       const row = [...document.querySelectorAll('.tr-head.leaf')]
         .find(b => b.querySelector('.tr-name').textContent === 'Pūjā-Vāk');
       row.click();
-      return { page: !document.getElementById('stagecard').hidden,
+      return { page: !document.getElementById('trackcard').hidden,
                name: document.getElementById('s-name').textContent };
     });
-    ok('a folded track still reaches its stage page',
+    ok('a folded track still reaches its own page',
       folded.page && /Pūjā/.test(folded.name), folded.name);
 
     // a lesson holding one list is still drawn as the lesson
@@ -1744,7 +1749,7 @@ const open = async (browser, opts = {}) => {
     await p.click('#w-go');
     const first = await p.evaluate(() => ({
       gone: document.getElementById('welcome').hidden,
-      stage: !document.getElementById('stagecard').hidden,
+      stage: !document.getElementById('trackcard').hidden,
       name: document.getElementById('s-name').textContent,
       go: document.getElementById('s-go').textContent,
     }));
@@ -1755,7 +1760,7 @@ const open = async (browser, opts = {}) => {
     /* Once a stage has been begun there IS something in progress, and the
        card offers it. */
     const resumed = await p.evaluate(() => {
-      beginStage(DECK_LESSON[deckName]);
+      beginTrack(trackIdOf(deckName));
       showWelcome();
       const label = document.getElementById('w-go').textContent;
       document.getElementById('w-go').click();
@@ -1963,33 +1968,46 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
-  // ── a stage says what it gives you before it asks anything ─────────
-  // The stage name IS the introduction: tapping it in the drawer opens the
-  // page, the page gates the stage's lists until Begin is pressed, and every
-  // visit after that reports where the learner has got to.
+  // ── a track says what it gives you before it asks anything ─────────
+  // Two pages, and nothing under them: the landing card opens the tracks, a
+  // track's own page opens its lists, and a stage is not somewhere a learner
+  // has to be introduced to twice.
   {
     const p = await browser.newPage();
     p.on('pageerror', e => { console.log('  PAGEERROR ' + e.message); fail.push('pageerror'); });
     await p.goto(FILE, { waitUntil: 'load' });
     const r = await p.evaluate(() => {
-      const lessons = [...new Set(Object.values(DECK_LESSON))];
-      const missing = lessons.filter(L => !OVERVIEW[L]);
-      /* the coupling the build checks is the count and the named lists; here
-         it is that the prose is actually usable */
-      const thin = lessons.filter(L => OVERVIEW[L]
-        && (OVERVIEW[L].lead.split(/\s+/).length < 15 || !OVERVIEW[L].plan.length));
-      /* a stage's confidence note must not explain a control the page below
-         it demonstrates — that was the same thing said twice */
-      const doubled = lessons.filter(L => OVERVIEW[L] && OVERVIEW[L].note
-        && /red line|book icon|Study icon|tool ?tip/i.test(OVERVIEW[L].note));
-      showStage('05-rupa');
-      const card = document.getElementById('stagecard');
+      const rows = TRACK_ROWS.map(x => x.track);
+      const missing = rows.filter(t => !t.lead || !(t.plan || []).length);
+      const thin = rows.filter(t => t.lead && t.lead.split(/\s+/).length < 15);
+      /* the coupling that keeps the prose honest: what the track holds, and
+         the names the plan leans on.  Prose does not rewrite itself when a
+         stage is added or a list renamed, so a test says so instead. */
+      const stale = [], unknown = [];
+      TRACK_ROWS.forEach(x => {
+        if (x.track.lessons !== x.lessons.length)
+          stale.push(x.track.name + ': says ' + x.track.lessons
+            + ', holds ' + x.lessons.length);
+        const names = new Set(x.lessons.map(L => L.label));
+        x.lessons.forEach(L => L.decks.forEach(n => {
+          const h = DECK_SHORT(n);
+          names.add(h);
+          if (h.includes(' · ')) names.add(h.split(' · ').slice(1).join(' · '));
+        }));
+        (x.track.mentions || []).forEach(m => {
+          if (!names.has(m)) unknown.push(x.track.name + ': "' + m + '"');
+        });
+      });
+      /* nothing below a track has a page of its own */
+      const pages = typeof showTrack === 'function' && typeof window.showStage === 'undefined';
+      showTrack('bhasha');
+      const card = document.getElementById('trackcard');
       const tools = card.querySelector('.s-tools');
       const shown = {
         on: !card.hidden
             && getComputedStyle(document.getElementById('card')).display === 'none',
         name: document.getElementById('s-name').textContent,
-        track: document.getElementById('s-track').textContent,
+        held: document.getElementById('s-held').textContent,
         steps: document.querySelectorAll('#s-plan li').length,
         go: document.getElementById('s-go').textContent,
         stats: !document.getElementById('s-stats').hidden,
@@ -1999,13 +2017,10 @@ const open = async (browser, opts = {}) => {
         tagInk: getComputedStyle(tools.querySelector('.ann')).color,
         tagLine: getComputedStyle(tools.querySelector('.ann')).borderBottomStyle,
         glyph: !!tools.querySelector('.studybtn svg'),
-        /* no list menu on the page: the lists are in the drawer, under the
-           stage's own name */
+        /* no list menu on the page: the lists are in the drawer */
         menu: card.querySelectorAll('.dk').length,
         /* nor the decorative binding holes, which belong to a flashcard */
         holes: getComputedStyle(card, '::before').content,
-        /* the same pigment the annotation carries on a card, resolved rather
-           than compared as a declaration */
         kumkuma: (() => {
           const probe = document.createElement('span');
           probe.style.color = 'var(--kumkuma)';
@@ -2015,18 +2030,22 @@ const open = async (browser, opts = {}) => {
           return c;
         })(),
       };
-      return { missing, thin, doubled, shown };
+      return { missing, thin, stale, unknown, pages, shown, tracks: rows.length };
     });
-    ok('every lesson with practice has a stage page',
-      !r.missing.length, r.missing.join(' | '));
-    ok('and each one leads with real prose and a plan', !r.thin.length, r.thin.join(' | '));
-    ok('no stage note repeats what the page itself demonstrates',
-      !r.doubled.length, r.doubled.join(' | '));
-    ok('the stage page opens over the cards', r.shown.on);
-    ok('it names the stage and its track',
-      /Rūpa/.test(r.shown.name) && /Bhāṣā/.test(r.shown.track),
-      r.shown.track + ' · ' + r.shown.name);
-    ok('it walks through how the stage runs', r.shown.steps >= 2, r.shown.steps + ' steps');
+    ok('every track carries a lead and a plan',
+      !r.missing.length, r.missing.map(t => t.name).join(' | '));
+    ok('and each one leads with real prose', !r.thin.length,
+      r.thin.map(t => t.name).join(' | '));
+    ok('a track’s prose says what the track actually holds',
+      !r.stale.length, r.stale.join(' | '));
+    ok('and names only lessons and lists that are in it',
+      !r.unknown.length, r.unknown.join(' | '));
+    ok('nothing below a track has a page of its own', r.pages);
+    ok('the track page opens over the cards', r.shown.on);
+    ok('it names the track and what it holds',
+      /Bhāṣā-Vidyā/.test(r.shown.name) && /^\d+ stages · \d+ lists$/.test(r.shown.held),
+      r.shown.held + ' · ' + r.shown.name);
+    ok('it walks through how the track runs', r.shown.steps >= 2, r.shown.steps + ' steps');
     ok('it shows the annotation as it appears — red, and underlined',
       r.shown.tagLine === 'dotted' && r.shown.kumkuma === r.shown.tagInk,
       r.shown.tagInk + ' · ' + r.shown.tagLine);
@@ -2034,27 +2053,22 @@ const open = async (browser, opts = {}) => {
     ok('the page carries no list menu', r.shown.menu === 0, r.shown.menu + ' rows');
     ok('and no binding holes: it is read, not answered',
       r.shown.holes === 'none', r.shown.holes);
-    ok('an untouched stage offers to begin, with no progress to report',
+    ok('an untouched track offers to begin, with no progress to report',
       /^Begin/.test(r.shown.go) && !r.shown.stats && !r.shown.review, r.shown.go);
 
     // until then its lists are visible in the drawer but shut
     const shut = await p.evaluate(() => {
       openDrawer();
-      const row = TRACK_ROWS.find(r => r.lessons.some(L => L.lesson === '05-rupa'));
-      openTracks.add(row.track.id); openLessons.add('05-rupa'); renderDrawer();
-      const rows = [...document.querySelectorAll('.ls-body .dk')]
-        .filter(b => DECK_LESSON[b.title.split(' — ')[0]] === '05-rupa'
-                  || /Rūpa|Vibhakti|Śabda|Sarva|Asmad|Yuṣmad|Tad/.test(b.textContent));
-      const mine = Object.keys(DECKS).filter(n => DECK_LESSON[n] === '05-rupa');
-      const drawn = [...document.querySelectorAll('.ls-body .dk')]
+      openTracks.add('bhasha'); openLessons.add('01-nama'); renderDrawer();
+      const mine = Object.keys(DECKS).filter(n => trackIdOf(n) === 'bhasha');
+      const drawn = [...document.querySelectorAll('.dk')]
         .filter(b => mine.some(n => b.title.indexOf(n) === 0));
       return { drawn: drawn.length, locked: drawn.filter(b => b.disabled).length,
-               said: !!document.querySelector('.ls-shut'),
-               rows: rows.length };
+               said: !!document.querySelector('.ls-shut') };
     });
-    ok('the stage’s lists are drawn under its name in the drawer',
+    ok('the track’s lists are drawn under its name in the drawer',
       shut.drawn > 0, shut.drawn + ' rows');
-    ok('and every one is shut until the stage has been begun',
+    ok('and every one is shut until the track has been begun',
       shut.locked === shut.drawn && shut.said,
       shut.locked + ' of ' + shut.drawn + ' shut');
 
@@ -2062,23 +2076,23 @@ const open = async (browser, opts = {}) => {
     await p.evaluate(() => closeDrawer());
     await p.click('#s-go');
     const gone = await p.evaluate(() => ({
-      page: document.getElementById('stagecard').hidden,
+      page: document.getElementById('trackcard').hidden,
       card: getComputedStyle(document.getElementById('card')).display,
-      deck: deckName, lesson: DECK_LESSON[deckName], running: !!current,
-      begun: !!SAVED.begun['05-rupa'],
-      open: [...document.querySelectorAll('.ls-body .dk')].filter(b => !b.disabled).length,
+      deck: deckName, track: trackIdOf(deckName), running: !!current,
+      begun: !!SAVED.begun.bhasha,
+      open: [...document.querySelectorAll('.dk')].filter(b => !b.disabled).length,
     }));
-    ok('“Begin” opens the lesson’s first list',
-      gone.page && gone.card !== 'none' && gone.running && gone.lesson === '05-rupa',
+    ok('“Begin” opens the track’s first list',
+      gone.page && gone.card !== 'none' && gone.running && gone.track === 'bhasha',
       JSON.stringify({ deck: gone.deck, running: gone.running }));
-    ok('and unlocks the stage for good', gone.begun && gone.open > 0,
+    ok('and unlocks the track for good', gone.begun && gone.open > 0,
       gone.open + ' lists open');
 
     // once there is progress the page reports it instead of offering to start
     const again = await p.evaluate(() => {
-      Object.keys(DECKS).filter(n => DECK_LESSON[n] === '05-rupa').slice(0, 6)
+      Object.keys(DECKS).filter(n => trackIdOf(n) === 'bhasha').slice(0, 6)
         .forEach(n => DECKS[n].forEach(c => { SAVED.mastered[c.id] = 1; }));
-      showStage('05-rupa');
+      showTrack('bhasha');
       return { go: document.getElementById('s-go').textContent,
                stats: !document.getElementById('s-stats').hidden,
                pct: document.getElementById('s-pct').textContent,
@@ -2086,7 +2100,7 @@ const open = async (browser, opts = {}) => {
                side: document.getElementById('s-side').textContent.replace(/\s+/g, ' ').trim(),
                figures: document.querySelectorAll('#s-stats .w-stat').length };
     });
-    ok('a stage in progress reports it rather than offering to begin',
+    ok('a track in progress reports it rather than offering to begin',
       /^Continue/.test(again.go) && again.stats && /^\d+%$/.test(again.pct),
       again.go + ' · ' + again.pct);
     ok('and reports one figure, not a breakdown', again.figures === 1,
@@ -2094,38 +2108,47 @@ const open = async (browser, opts = {}) => {
     ok('Abhyāsa is a reminder with a way in, not a section',
       again.review && /Abhyāsa mixes cards/.test(again.side), again.side.slice(0, 40));
 
-    // and that way in opens the review, returning to the stage afterwards
+    // and that way in opens the review, returning to the track afterwards
     await p.click('#s-review');
     const rev = await p.evaluate(() => ({
       panel: getComputedStyle(document.getElementById('reviewpanel')).display !== 'none',
-      page: document.getElementById('stagecard').hidden,
+      page: document.getElementById('trackcard').hidden,
     }));
     await p.click('#p-back');
-    const back = await p.evaluate(() => !document.getElementById('stagecard').hidden);
+    const back = await p.evaluate(() => !document.getElementById('trackcard').hidden);
     ok('the reminder’s button opens Abhyāsa', rev.panel && rev.page);
-    ok('and closing it returns to the stage', back);
+    ok('and closing it returns to the track', back);
 
-    /* The stage name in the drawer IS the way in: tapping it opens the page.
-       The introduction is not a panel nested under the name. */
-    const drawer = await p.evaluate(() => {
-      const row = TRACK_ROWS.find(r => r.lessons.some(L => L.lesson === '01-nama'));
+    /* Both pages stay reachable once they have been read: the track by its
+       own name in the drawer, the landing card by the row that leads to it. */
+    const again2 = await p.evaluate(() => {
       openDrawer();
-      openTracks.add(row.track.id);
-      renderDrawer();
-      const head = [...document.querySelectorAll('.tr-body:not([hidden]) .ls-head')]
-        .find(b => b.querySelector('.ls-name').textContent === LESSON_LABEL['01-nama']);
+      openTracks.add('bhasha'); renderDrawer();
+      const head = [...document.querySelectorAll('.tr-head')]
+        .find(b => b.querySelector('.tr-name').textContent === 'Bhāṣā-Vidyā');
       head.click();
       return { shut: document.getElementById('drawer').hidden,
-               page: !document.getElementById('stagecard').hidden,
+               page: !document.getElementById('trackcard').hidden,
                name: document.getElementById('s-name').textContent,
-               /* no row inside the lesson stands for the introduction */
-               nested: [...document.querySelectorAll('.ls-body button')]
-                 .filter(b => /about this stage|introduction/i.test(b.textContent)).length };
+               /* no row inside a track stands for an introduction */
+               nested: [...document.querySelectorAll('.tr-body button, .ls-body button')]
+                 .filter(b => /about|introduction/i.test(b.textContent)).length };
     });
-    ok('tapping a stage name in the drawer opens its page',
-      drawer.shut && drawer.page && /Nāma/.test(drawer.name), drawer.name);
+    ok('tapping a track name in the drawer opens its page',
+      again2.shut && again2.page && /Bhāṣā/.test(again2.name), again2.name);
     ok('and no row is nested under the name to stand for it',
-      drawer.nested === 0, drawer.nested + ' rows');
+      again2.nested === 0, again2.nested + ' rows');
+    await p.click('#nav');
+    await p.click('#dr-home');
+    const home = await p.evaluate(() => ({
+      welcome: !document.getElementById('welcome').hidden,
+      shut: document.getElementById('drawer').hidden,
+      go: document.getElementById('w-go').textContent,
+    }));
+    ok('and the landing card is reachable again from the drawer',
+      home.welcome && home.shut, JSON.stringify(home));
+    ok('offering what is in progress rather than a first beginning',
+      home.go === 'In progress', home.go);
     await p.close();
   }
 
@@ -2303,12 +2326,13 @@ const open = async (browser, opts = {}) => {
        opens with; what is left is named in English. */
     ok('the mode rows are named in English',
       JSON.stringify(rows.map(r => r.name)) ===
-        JSON.stringify(['Scoreboard', 'Trouble cards']),
+        JSON.stringify(['Home', 'Scoreboard', 'Trouble cards']),
       rows.map(r => r.name).join(' | '));
+    const sub = n => (rows.find(r => r.name === n) || {}).sub || '';
     ok('the scoreboard row counts what it holds',
-      /\d+ of \d+ lists completed/.test(rows[0].sub), rows[0].sub);
+      /\d+ of \d+ lists completed/.test(sub('Scoreboard')), sub('Scoreboard'));
     ok('the trouble row says what is on the list',
-      /cleared/.test(rows[1].sub), rows[1].sub);
+      /cleared/.test(sub('Trouble cards')), sub('Trouble cards'));
 
     await p.evaluate(() => loadDeck(Object.keys(DECKS)[0]));  // off the landing card
     // and every one of them still opens and renders
@@ -3320,25 +3344,27 @@ const open = async (browser, opts = {}) => {
       opened.heads + ' · ' + opened.cards);
 
     const reach = await p.evaluate(() => {
-      // shut everything, then walk down: track -> stage -> Begin -> its lists
+      /* The two gates are opened here rather than clicked through — the page
+         block above tests them — so that what is left is the walk itself:
+         track name -> its page, then the drawer -> lesson -> list. */
+      beginHome(); beginTrack(TRACK_ROWS[0].track.id);
       openTracks.clear(); openLessons.clear(); renderDrawer();
       const before = document.querySelectorAll('.tr-body:not([hidden]) .ls-head').length;
-      document.querySelector('.tr-head').click();
+      document.querySelector('.tr-head').click();   // -> the track page
+      const page = !document.getElementById('trackcard').hidden;
+      openDrawer();                                 // back to the drawer
+      openLessons.clear(); renderDrawer();
       const afterTrack = document.querySelectorAll('.tr-body:not([hidden]) .ls-head').length;
       document.querySelector('.tr-body:not([hidden]) .ls-head').click();
-      const page = !document.getElementById('stagecard').hidden;
-      const shut = document.querySelectorAll('.ls-body .dk:disabled').length;
-      document.getElementById('s-go').click();      // Begin opens the stage
-      openDrawer();
       const afterLesson =
         document.querySelectorAll('.ls-body:not([hidden]) .dk:not(:disabled)').length;
-      return { before, afterTrack, page, shut, afterLesson };
+      return { before, page, afterTrack, afterLesson };
     });
     ok('collapsed tracks hide their lessons', reach.before === 0, reach.before + ' showing');
-    ok('a track expands to its lessons', reach.afterTrack > 0, reach.afterTrack + ' lessons');
-    ok('a lesson opens its stage page', reach.page);
-    ok('whose lists are shut until it is begun', reach.shut > 0, reach.shut + ' shut');
-    ok('and open once it is', reach.afterLesson > 0, reach.afterLesson + ' lists');
+    ok('a track name opens its page', reach.page);
+    ok('and the track expands to its lessons', reach.afterTrack > 0,
+      reach.afterTrack + ' lessons');
+    ok('a lesson expands to its lists', reach.afterLesson > 0, reach.afterLesson + ' lists');
 
     await p.click('.ls-body:not([hidden]) .dk:not(.on):not(:disabled)');
     const chosen = await p.evaluate(() => ({
@@ -3359,8 +3385,7 @@ const open = async (browser, opts = {}) => {
       document.getElementById('nav').click();
       document.querySelectorAll('.tr-head').forEach(b => { if (b.getAttribute('aria-expanded') === 'false') b.click(); });
       document.querySelectorAll('.ls-head').forEach(b => { if (b.getAttribute('aria-expanded') === 'false') b.click(); });
-      /* scoped to the drawer: the stage page's list rows are the same `.dk`
-         button, and it is hidden behind the round that is running */
+      /* scoped to the drawer: nothing outside it is a row to hit */
       const rows = [...document.querySelectorAll('#drawer .tr-head, #drawer .ls-head, '
         + '#drawer .dk, #drawer .dr-mode, #drawer .dr-x')]
         /* a row inside a shut lesson body has no size to measure */
@@ -3413,7 +3438,7 @@ const open = async (browser, opts = {}) => {
     ok('a perfect round on a smaller deck seeds nothing',
       r.resized.done === 0, r.resized.done + ' seeded');
     ok('a partial best score seeds nothing', r.partial.done === 0, r.partial.done + ' seeded');
-    ok('the store is stamped v5', r.v === 5, 'v' + r.v);
+    ok('the store is stamped v6', r.v === 6, 'v' + r.v);
     await p.close();
   }
 

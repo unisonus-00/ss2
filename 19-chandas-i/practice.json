@@ -1,21 +1,5 @@
 {
   "lesson": "19-chandas-i",
-  "overview": {
-    "lead": "Sanskrit metre counts syllables by weight, not by stress. Once you can hear light and heavy, every classical verse becomes countable.",
-    "plan": [
-      "Chandas names the metres and, first of all, laghu and guru — light and heavy.",
-      "Gaṇa gives the eight three-syllable feet those weights combine into.",
-      "Mātrā then asks you to scan a word, and Gaṇa-nāma to name a foot from its pattern."
-    ],
-    "note": "A syllable is heavy if its vowel is long, or if a cluster, anusvāra or visarga follows it. Everything else is light. That one rule is most of scansion.",
-    "mentions": [
-      "Chandas",
-      "Gaṇa",
-      "Mātrā",
-      "Gaṇa-nāma"
-    ],
-    "lists": 4
-  },
   "decks": [
     {
       "name": "17 · Chandas — metre",

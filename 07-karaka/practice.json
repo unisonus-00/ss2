@@ -1,19 +1,5 @@
 {
   "lesson": "07-karaka",
-  "overview": {
-    "lead": "A kāraka is the part a word plays in an action — who does it, what it is done to, what it is done with. Cases carry those roles, but they are not the same thing, and this stage is where the difference becomes useful.",
-    "plan": [
-      "Kāraka names the six roles and what each one means.",
-      "Kāraka-vicāra then shows you a real sentence and asks what part a given word is playing.",
-      "Four battle-vocabulary lists follow, since the Devī Māhātmya is where these roles are easiest to see at work."
-    ],
-    "note": "Role and case sit at different levels: `karaṇa` is the instrument, `tṛtīyā` is the case that usually carries it. Every card here names both, so the distinction stays visible.",
-    "mentions": [
-      "Kāraka",
-      "Kāraka-vicāra"
-    ],
-    "lists": 6
-  },
   "decks": [
     {
       "name": "12 · Kāraka — semantic roles",

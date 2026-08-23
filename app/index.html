@@ -52,14 +52,14 @@
 <div class="panel">
   <!-- The landing card.  The app still opens on a card rather than a menu:
        this is simply the first one, and choosing any list replaces it. -->
-  <!-- The stage's own entry view: what it gives you on a first visit, where
-       you have got to on every one after.  It carries no list menu — the
-       lists are in the drawer, under the stage's own name. -->
-  <div class="welcome" id="stagecard" hidden>
-    <div class="w-eyebrow" id="s-track"></div>
+  <!-- A track's own entry view: what it gives you on a first visit, where you
+       have got to on every one after.  It carries no list menu — the lists
+       are in the drawer, under the track's own name. -->
+  <div class="welcome" id="trackcard" hidden>
+    <div class="w-eyebrow" id="s-held"></div>
     <h2 class="w-head" id="s-name"></h2>
     <p class="w-lead" id="s-lead"></p>
-    <div class="s-plan"><div class="s-h">How this stage runs</div>
+    <div class="s-plan"><div class="s-h">How this track runs</div>
       <ol id="s-plan"></ol></div>
     <p class="s-note" id="s-note"></p>
 
@@ -80,7 +80,7 @@
     </div>
 
     <div class="w-stats" id="s-stats" hidden>
-      <div class="w-stat"><span>Stage progress</span><b id="s-pct"></b></div>
+      <div class="w-stat"><span>Track progress</span><b id="s-pct"></b></div>
     </div>
     <div class="w-actions">
       <button id="s-go" class="primary"></button>
@@ -100,9 +100,9 @@
       multiple choice and sequence.</p>
     <p>Material you master returns through Abhyāsa Review, helping earlier lessons
       stay active as you progress.</p>
-    <p class="s-help">Open the menu at the top left and tap a stage name — Nāma, Sandhi,
-      Rūpa. The stage tells you what it gives you, how it runs, and which list to start
-      with, and its lists open once you begin it.</p>
+    <p class="s-help">The course runs in five tracks — language, poetry, ritual, Vedic
+      recitation and Avadhāna. Open the menu at the top left and tap one: it tells you
+      what that track gives you, how it runs, and which list to start with.</p>
     <div class="w-stats">
       <div class="w-stat"><span>Overall mastery</span><b id="w-mastery">0%</b></div>
       <div class="w-stat"><span>Lists complete</span><b id="w-lists">0</b></div>
@@ -292,6 +292,13 @@
   </button>
 
   <div class="dr-modes">
+    <!-- The way back to the landing card.  Every page in the app has to stay
+         reachable after it has been read, and this is the only one no track
+         row leads to. -->
+    <button id="dr-home" class="dr-mode">
+      <span class="dm-name">Home</span>
+      <span class="dm-sub" id="dm-home">the welcome page</span>
+    </button>
     <button id="dr-board" class="dr-mode">
       <span class="dm-name">Scoreboard</span>
       <span class="dm-sub" id="dm-board">best scores</span>

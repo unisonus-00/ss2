@@ -1,19 +1,5 @@
 {
   "lesson": "00-overview",
-  "overview": {
-    "lead": "Vyākaraṇam is the grammarians' own vocabulary — the words Sanskrit uses to talk about itself. It cuts across every stage rather than belonging to one, which is why it sits apart at the end of the list.",
-    "plan": [
-      "Vyākaraṇam I gives the building blocks: root, suffix, prefix, stem, junction.",
-      "Vyākaraṇam II gives the words for what a sentence is made of, and the terms grammarians use about their own terms.",
-      "Take these whenever a word in a red annotation is doing more work than you can follow. Nothing else depends on them."
-    ],
-    "note": "This is not a stage and it is not required. It is the shortest way to make the annotations on every other card readable.",
-    "mentions": [
-      "Vyākaraṇam I",
-      "Vyākaraṇam II"
-    ],
-    "lists": 2
-  },
   "decks": [
     {
       "name": "13 · Vyākaraṇam I — bricks and rules",

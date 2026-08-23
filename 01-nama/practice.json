@@ -1,20 +1,5 @@
 {
   "lesson": "01-nama",
-  "overview": {
-    "lead": "You start where every language starts — with names. By the end you can describe your chosen deity in Sanskrit using twenty words or more, and you will recognise most of them the next time you hear a hymn.",
-    "plan": [
-      "The seven curated lists come first — Devī, Deva, Āyudha and the rest. Each is a small sitting, fifteen cards or so.",
-      "Then the wider vocabulary bank, grouped by what the words are about: weapons, creatures, time, sacred places.",
-      "Nothing here asks you to build anything yet. Meet the words; the grammar comes later."
-    ],
-    "note": "You are not asked to hold all of this at once. A list of fifteen is one sitting, and the words that slip come back on their own in later rounds — that is the whole method, and it works without any effort to make it work.",
-    "mentions": [
-      "Devī",
-      "Deva",
-      "Āyudha"
-    ],
-    "lists": 41
-  },
   "decks": [
     {
       "name": "01 · Devī — goddess names",

@@ -464,55 +464,63 @@ fixed on its own in any case: `build.py` holds it byte-identical to
 
 ### Navigation and progress
 
-**A lesson's row is its stage.** Tapping it opens the stage page — the
-introduction is not a panel nested under the name, it is what the name leads
-to — and leaves the lesson's lists standing open underneath for the way back.
-So the walk is track → stage → list, and the tap that used to expand a
-heading now opens the page that says what the heading is for.
+**Two pages, and nothing under them.** The landing card opens the tracks; a
+track's own page opens its lists. A stage is not somewhere a learner has to be
+introduced to twice, so nothing below a track has a page of its own — the
+walk is **home → track → stage → list**, with prose at the first two levels
+and navigation at the last two.
 
-**A stage's lists are shut until it has been begun.** They are drawn greyed
-rather than hidden, under one line saying what opens them — *Read the stage
-and press Begin to open these* — so a learner can see what is coming and
-still cannot start it without being told what it is for. Pressing `Begin` on
-the stage page opens all of them at once, and they stay open.
+| | |
+|:--|:--|
+| a track row | **opens its page**, and leaves the track expanded for the way back |
+| a lesson row | expands to its lists |
+| a list row | starts the round |
 
-**A menu of one is not a menu.** Where a lesson holds a single list, no body
-is drawn at all: the stage page's own `Begin` is the way to it, and repeating
-its name under the stage's would say the same thing twice.
+**Each level is shut until the level above has been read.** Before the landing
+card's `Begin` the track names are greyed; before a track's `Begin` its lists
+are. Nothing is hidden — a learner should see what is coming — and one line at
+the top of the shut group says what opens it, naming whichever gate is
+actually closed: *Open Home and press Begin to start*, then *Tap the name
+above and press Begin to open these*.
+
+`SAVED.begun` is the whole mechanism: `home`, and a track id per track begun.
+Pressing a track's `Begin` sets both, because you cannot be inside a track
+without having got past the door.
+
+**A menu of one is not a menu.** A track that comes down to a single list —
+`Svara-Vidyā`, `Avadhāna` — draws no row under its name at all: the page's own
+`Begin` is the way to it, and drawing it would repeat the name above it.
 
 **One child is folded away.** A level that has a single child adds a step
 without adding information, so the drawer skips it: **a track with one lesson
-*is* that lesson**, and its row opens the stage page directly — `Pūjā-Vāk`
-inside `Pūjā-Vāk` was the same name twice. `Svara-Vidyā` and `Avadhāna` fold
-the same way.
+*is* that lesson**, and its lists stand directly under the track's name —
+`Pūjā-Vāk` inside `Pūjā-Vāk` was the same name twice. `Svara-Vidyā` and
+`Avadhāna` fold the same way, and then fold again by the rule above.
 
-A lesson with one list is no longer folded onto that list: it has a stage page
-like every other lesson, reached by its own name. Folding now governs which
-*name* a row carries, not where it leads.
-
-**Folded by what exists, never by a list of exceptions.** `soleLesson` reads
-the tree, so the level reappears by itself the moment a second lesson does,
-and the curriculum stays the only thing driving the drawer. A track that folds
-counts what it actually holds — `· 11 lists` — rather than `· 1 lesson`.
+**Folded by what exists, never by a list of exceptions.** `soleLesson` and
+`soleDeck` read the tree, so the level reappears by itself the moment a second
+lesson or a second list does, and the curriculum stays the only thing driving
+the drawer. A track that folds counts what it actually holds — `· 11 lists` —
+rather than `· 1 lesson`.
 
 Where a folded lesson's name differs from its track's, the subheading keeps it
 (`Avadhāna` / *Samasyāpūraṇa · 1 list*) so nothing is silently lost.
 
-### The stage page
+### The track page
 
-A lesson says what it gives you before it asks anything of you, and **it is
-not optional**: tapping the stage name in the drawer opens this page, and the
-stage's lists stay shut until `Begin` is pressed on it.
+A track says what it gives you before it asks anything of you, and **it is not
+optional**: tapping the track name in the drawer opens this page, and the
+track's lists stay shut until `Begin` is pressed on it.
 
 ```
-BHĀṢĀ-VIDYĀ
-Rūpa · Case, Number, and Gender
-This is the big one, and the one that unlocks reading…
+13 STAGES · 137 LISTS
+Bhāṣā-Vidyā · Language Acquisition
+This is the track that teaches you to read. You start with words…
 
-HOW THIS STAGE RUNS
-1. Vibhakti-vacana teaches the names first…
-2. Vibhakti-rūpa then asks you to recognise a case…
-│ Eight cases sounds like a lot. It is really one table…
+HOW THIS TRACK RUNS
+1. Words first. Nāma gives you several hundred of them…
+2. Then the two things that change a word's shape…
+│ Nothing here has to be finished before the next thing makes sense…
 
 WHILE YOU PRACTISE
 noun · neuter · a-stem   The red line under an answer. Tap it and it says
@@ -520,64 +528,52 @@ noun · neuter · a-stem   The red line under an answer. Tap it and it says
         📖               The Study icon, beside the list name. It opens this
                          lesson's own reference to read while you practise.
 
-STAGE PROGRESS                                                        12%
+TRACK PROGRESS                                                        12%
 [ Continue — Vibhakti-rūpa ]  [ Abhyāsa review ]
 Abhyāsa mixes cards from every list you have completed, so what you learn
 here keeps coming back.
 ```
 
-- **The prose is written for someone who has never met the material.** The
-  lead says what the stage gives you, the plan says how it runs and names the
-  lists where naming them helps, and one optional italic aside defuses the
-  hardest idea in the stage — that Sanskrit counts persons the other way
-  round, that a pratyāhāra is only a shorthand, that eight cases are really
-  one table.
+- **The prose lives in `TRACKS`**, beside the definition of the track it
+  describes. A track is the app's own grouping rather than a curriculum
+  object — two of the five names were coined here — so its introduction
+  belongs with it, not in a lesson's `practice.json`. Each carries `lead`,
+  `plan`, an optional `note`, and two couplings that keep the prose honest:
+  `lessons`, what the track should hold, and `mentions`, the names the plan
+  leans on. **A test fails when either goes stale**, because prose does not
+  rewrite itself when a stage is added or a list renamed.
+- **It is written for someone who has never met the material.** The lead says
+  what the track gives you, the plan says how it runs in three or four steps
+  and names the stages where naming them helps, and one optional italic aside
+  defuses the thing most likely to put a learner off.
 - **The page shows the two controls rather than naming them.** The red line
   and the Study icon are the two things a learner cannot discover on their
-  own, and prose describing them taught nothing: the page now carries a real
+  own, and prose describing them taught nothing: the page carries a real
   annotation, in kumkuma under its dotted rule, and the Study glyph itself.
   A test resolves the colour and the border style off the sample and fails if
-  either stops matching a card's own. **So the note above must not explain
-  them a second time** — Stage 1's aside used to describe the red line
-  immediately above the block demonstrating it, and a test now fails any
-  overview note that names one of these controls.
-- **The prompt changes once the stage has been begun.** Untouched, the page
+  either stops matching a card's own.
+- **The prompt changes once the track has been begun.** Untouched, the page
   reports nothing and reads `Begin — <first list>`; that press is what opens
-  the stage. After it, the page carries **one** figure — stage progress — and
+  the track. After it, the page carries **one** figure — track progress — and
   the button reads `Continue — <first unfinished list>`. `Begin` is never
   offered twice.
-- **It carries no list menu.** The lists are in the drawer under the stage's
-  own name, where navigation lives; repeating all 41 of them here made an
-  orientation page into a directory. One aggregate figure, and the next
-  action.
+- **It carries no list menu.** The lists are in the drawer, where navigation
+  lives; repeating all 137 of them here would make an orientation page into a
+  directory. One aggregate figure, and the next action.
 - **Abhyāsa is a reminder, not a section.** One line under the actions saying
   that completed lists come back, and a button that opens the review. It is
-  deliberately the smaller of the two buttons: the stage's own next list is
+  deliberately the smaller of the two buttons: the track's own next list is
   what this page is for.
 - **No binding holes.** They mark a flashcard as a leaf of the manuscript; on
   a page that is read rather than answered they are two dots interrupting the
   prose. The landing card lost them too.
 
-**The overview lives in the lesson's own `practice.json`**, beside the lists
-it describes, and declares its coupling to them:
-
-```json
-"overview": {
-  "lead": "…", "plan": ["…"], "note": "…",
-  "mentions": ["Vibhakti-vacana", "Vibhakti-rūpa"],
-  "lists": 24
-}
-```
-
-**`scripts/build.js` fails if that coupling goes stale** — if `lists` no longer
-matches the lesson's list count, or if a name in `mentions` is not a list
-there. Prose does not update itself when a list is added, renamed or split, so
-the build says so instead: *the overview may need rewriting*. `scripts/test.js`
-separately requires every lesson with practice to have one, with a real lead
-and a plan.
-
-**The cross-cutting vyākaraṇam lists have a page too**, saying what they are
-for and that nothing depends on them.
+Stages had a page of their own for one build, one per lesson, with the prose
+in each `practice.json`. It was a page too many: the learner met an
+introduction, then another introduction, before reaching a card. The
+per-lesson `overview` blocks were removed with it (they are in the history at
+`749a342` if a stage-level page is ever wanted again), and `scripts/build.js`
+no longer validates them.
 
 ### The landing card
 
@@ -593,22 +589,27 @@ poetry, Vedic recitation, and Avadhāna.
 …
 OVERALL MASTERY                    0%
 LISTS COMPLETE                      0
-[ Begin — Nāma ]     [ Scoreboard ]
+[ Begin — Bhāṣā-Vidyā ]   [ Scoreboard ]
 ```
 
-- **It says where the stages are.** A learner who has never opened the drawer
-  has no way to know the stage pages exist, so the welcome names the gesture:
-  *open the menu at the top left and tap a stage name — Nāma, Sandhi, Rūpa*.
+- **It says where the tracks are.** A learner who has never opened the drawer
+  has no way to know the track pages exist, so the welcome names the gesture:
+  *the course runs in five tracks — open the menu at the top left and tap
+  one.*
+- **It is reachable again from the drawer.** Every page in the app has to
+  stay open after it has been read, and this is the only one no row in the
+  tracks leads to — so `Home` is the first of the mode rows, above
+  `Scoreboard`.
 - **Anything that starts a round dismisses it.** `loadDeck()` and
   `startRound()` both call `leaveWelcome()`, so every other surface — the
   drawer, a review draw, the trouble drill — reaches the cards without
   knowing the landing card exists. It is never something to get past.
-- **It carries the same gate the stages do.** With nothing begun there is
-  nothing in progress, and `In progress` would have dropped a first-time
-  learner into a list with no idea what it was for — boot loads `SAVED.deck`
-  behind the welcome whether or not it has ever been opened. So on a first
-  visit the button reads `Begin — <first stage>` and opens that stage's page,
-  whose own `Begin` opens its lists. One flag, `SAVED.begun`, decides both.
+- **It is the first of the two gates.** With nothing begun there is nothing
+  in progress, and `In progress` would have dropped a first-time learner into
+  a list with no idea what it was for — boot loads `SAVED.deck` behind the
+  welcome whether or not it has ever been opened. So on a first visit the
+  button reads `Begin — <first track>` and opens that track's page, whose own
+  `Begin` opens its lists.
 - **`In progress` resumes the list you were on**, once anything has been
   begun. Boot has already loaded and labelled the round behind the welcome,
   so the button only has to uncover it. Its `title` names the list.
@@ -1548,17 +1549,19 @@ Three things here are load-bearing for the compatibility list above:
   the brand settled on the bare stem **Abhyāsa**, and left alone: it is
   invisible plumbing, not displayed text, and renaming it would only add
   migration risk for no visible benefit. Versioned by `SAVED.v`
-  (now 5). v1 keyed trouble history by `devanagari + '¦' + gloss`; the app
+  (now 6). v1 keyed trouble history by `devanagari + '¦' + gloss`; the app
   lifts those records onto stable ids on first load. v2→v3 seeds `SAVED.mastered`
   from the one case that can be resolved exactly rather than guessed at — a
   deck whose best round was perfect *and* whose size has not changed since.
   v3→v4 adds the per-card review history that paces the draw, starting empty
   because no record of *which* cards a past session showed ever existed.
-  v4→v5 adds `SAVED.begun`, the stages whose introduction has been read, and
-  seeds it from progress: a learner already part way through a stage has
-  plainly met it and must not be sent back to the door, so any stage holding a
-  mastered card, a list with a best score or a missed pile, or the list that
-  was open when the app was last closed, is marked begun.
+  v4→v5 added `SAVED.begun`, and v5→v6 re-keyed it from stages to tracks when
+  the introduction moved up a level: a v5 store's lesson keys are lifted onto
+  their tracks rather than thrown away. Both steps seed it from progress — a
+  learner already practising in a track has plainly met it and must not be
+  sent back to the door — so any track holding a mastered card, a list with a
+  best score or a missed pile, or the list that was open when the app was last
+  closed, is marked begun, along with `home`.
   `OLD_KEYS` separately lifts state out of earlier storage key names. Keep every
   chain, and keep each step stamping its own version rather than the newest;
   every `localStorage` touch stays guarded, since it can be absent or full.

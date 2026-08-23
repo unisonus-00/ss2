@@ -12,13 +12,13 @@
    Cards with no `type` are `reveal`, which is what every migrated card is. */
 const CARD_TYPES = ["reveal", "choice", "sequence"];
 
-const [DECKS, DECK_STAGE, DECK_LESSON, LESSON_LABEL, LESSON_GLOSS, DECK_PAIR, DECK_ROLE, OVERVIEW, PARSE] = (() => {
-  const decks = {}, stages = {}, lessons = {}, labels = {}, glosses = {}, pairs = {}, over = {},
+const [DECKS, DECK_STAGE, DECK_LESSON, LESSON_LABEL, LESSON_GLOSS, DECK_PAIR, DECK_ROLE, PARSE] = (() => {
+  const decks = {}, stages = {}, lessons = {}, labels = {}, glosses = {}, pairs = {},
         /* "terms": the list teaches the vocabulary a later list assumes, so it
            leads its lesson.  Nothing else reads this; it is the progression
            written down where the progression lives. */
         roles = {}, skipped = [];
-  const fail = why => [decks, stages, lessons, labels, glosses, pairs, roles, over,
+  const fail = why => [decks, stages, lessons, labels, glosses, pairs, roles,
                        { count: 0, decks: 0, skipped, fatal: why }];
 
   const src = document.getElementById('practice');
@@ -31,7 +31,6 @@ const [DECKS, DECK_STAGE, DECK_LESSON, LESSON_LABEL, LESSON_GLOSS, DECK_PAIR, DE
   (data.lessons || []).forEach(L => {
     labels[L.lesson] = L.label || L.lesson;
     glosses[L.lesson] = L.gloss || '';
-    if (L.overview) over[L.lesson] = L.overview;
     (L.decks || []).forEach(d => {
       if (!d.name || !Array.isArray(d.cards) || !d.cards.length) return;
       const cards = d.cards.filter(c => {
@@ -54,7 +53,7 @@ const [DECKS, DECK_STAGE, DECK_LESSON, LESSON_LABEL, LESSON_GLOSS, DECK_PAIR, DE
   });
 
   const count = Object.values(decks).reduce((a, b) => a + b.length, 0);
-  return [decks, stages, lessons, labels, glosses, pairs, roles, over,
+  return [decks, stages, lessons, labels, glosses, pairs, roles,
           { count, decks: Object.keys(decks).length, skipped }];
 })();
 
@@ -347,7 +346,7 @@ const deckState = name => SAVED.decks[name] = SAVED.decks[name] || {};
 
    SAVED.decks is keyed by deck NAME, and deck names did not change in the
    migration, so per-deck best scores need no rescue. */
-const SAVED_VERSION = 5;
+const SAVED_VERSION = 6;
 if ((SAVED.v || 1) < 2) {
   let moved = 0;
   Object.values(DECKS).forEach(cards => cards.forEach(c => {
@@ -396,32 +395,6 @@ if ((SAVED.v || 1) < 4) {
   SAVED.review.cards = SAVED.review.cards || {};
   SAVED.v = 4;                        // this step only — v5 runs below
   save();
-}
-
-/* v5 gates a stage's lists behind its introduction.  A learner already part
-   way through a stage has plainly begun it and must not be sent back to the
-   door: every stage holding a card that has come back cold, or a list with a
-   best score, or the list that was open when the app was last closed, is
-   marked begun.  Anything else is a stage that has genuinely not been met. */
-if ((SAVED.v || 1) < 5) {
-  const begin = n => { if (DECK_LESSON[n]) SAVED.begun[DECK_LESSON[n]] = 1; };
-  Object.keys(DECKS).forEach(n => {
-    const ds = SAVED.decks[n];
-    if ((ds && (ds.best || ds.missed)) || DECKS[n].some(c => SAVED.mastered[c.id])) begin(n);
-  });
-  if (SAVED.deck) begin(SAVED.deck);
-  SAVED.v = SAVED_VERSION;
-  save();
-}
-
-/* A stage with no introduction has no door to open, so it is never shut. */
-const stageBegun = lesson => !OVERVIEW[lesson] || !!SAVED.begun[lesson];
-const deckLocked = name => !stageBegun(DECK_LESSON[name]);
-function beginStage(lesson) {
-  if (SAVED.begun[lesson]) return;
-  SAVED.begun[lesson] = 1;
-  save();
-  renderDrawer();          // its lists are open now, and the drawer says so
 }
 
 /* ── trouble cards ─────────────────────────────────────────
@@ -522,23 +495,127 @@ function unmarkMastered(card) {
    "14–16, 18–26" simply skips it.  Reading 20 the same way — a named track
    lifted out of the range around it — is what the diagram means, so it is
    excluded from the poetic track here rather than counted twice. */
+/* ── the five tracks, and what each of them is for ──────────
+   A track is the app's own grouping, not a curriculum object, so its prose
+   lives here beside its definition rather than in a lesson's practice.json.
+   Each carries what the introduction page shows: a lead, the plan, one
+   optional aside, and the two couplings that keep the prose honest —
+   `lessons` is what the track should hold, and `mentions` the lesson names
+   the plan leans on.  A test fails when either goes stale, because prose
+   does not rewrite itself when a stage is added or renamed. */
 const TRACKS = [
   { id: 'bhasha',   name: 'Bhāṣā-Vidyā',  gloss: 'Language Acquisition',
-    has: s => s >= 1 && s <= 13 },
+    has: s => s >= 1 && s <= 13,
+    lead: 'This is the track that teaches you to read. You start with words — the '
+        + 'names of the divine, the things on an altar, the parts of a day — and '
+        + 'end able to assemble a Sanskrit sentence of your own and follow one you '
+        + 'have never seen. Nothing here assumes you already know grammar: every '
+        + 'term is taught before it is used.',
+    plan: [
+      'Words first. Nāma gives you several hundred of them, and Varṇa-Vidyā the '
+      + 'order the alphabet is really in — by where in the mouth each sound is made.',
+      'Then the two things that change a word\u2019s shape. Sandhi is what happens '
+      + 'where words touch; Rūpa is the eight cases that say what a word is doing '
+      + 'in its sentence. Rūpa is the big one, and the one that unlocks reading.',
+      'Kriyā and Dhātu do the same for verbs — person and number marked on the '
+      + 'verb itself, and the one-syllable roots underneath almost every word.',
+      'Kāraka, Samāsa and Vākya put it to work: the part a word plays in an '
+      + 'action, how two words weld into one, and finally sentences of your own.',
+    ],
+    note: 'Nothing here has to be finished before the next thing makes sense. A '
+        + 'list is a sitting of a dozen or two cards, and what slips comes back on '
+        + 'its own in later rounds.',
+    mentions: ['Nāma', 'Varṇa-Vidyā', 'Sandhi', 'Rūpa', 'Kriyā', 'Dhātu',
+               'Kāraka', 'Samāsa', 'Vākya'],
+    lessons: 13 },
+
   { id: 'kavya',    name: 'Kāvya-Racanā', gloss: 'Poetic Composition',
-    has: s => (s >= 14 && s <= 16) || (s >= 18 && s <= 26 && s !== 20) },
+    has: s => (s >= 14 && s <= 16) || (s >= 18 && s <= 26 && s !== 20),
+    lead: 'Here the language you have becomes something you make. Praise first — '
+        + 'the shapes devotional poetry actually uses — then metre, then the '
+        + 'figures and flavours that separate a correct verse from a good one.',
+    plan: [
+      'Stotra I and Stotra II are composition in one case and then in all of '
+      + 'them: “I bow to X” is most of a genre, and each vibhakti gives a '
+      + 'different relation to the deity.',
+      'Chandas I teaches you to hear a syllable as light or heavy. Chandas II '
+      + 'gives you the śloka, which most Sanskrit verse is written in, and '
+      + 'Chandas III the fixed metres, where every syllable\u2019s weight is set.',
+      'Alaṅkāra and Rasa name what makes a verse land — simile, repeated sound, '
+      + 'the flavour a piece leaves — and Darśana gives the philosophical '
+      + 'vocabulary those verses lean on.',
+    ],
+    note: 'The composing itself belongs to the workbook, where a human reader can '
+        + 'accept what a stored answer cannot. These lists give you the bounded '
+        + 'things worth knowing by heart first.',
+    mentions: ['Stotra I', 'Stotra II', 'Chandas I', 'Chandas II', 'Chandas III',
+               'Alaṅkāra', 'Rasa', 'Darśana'],
+    lessons: 8 },
+
   { id: 'puja',     name: 'Pūjā-Vāk',     gloss: 'Ritual Literacy',
-    has: s => s === 17 },
+    has: s => s === 17,
+    lead: 'Ritual Sanskrit is not simply prayers said in Sanskrit. It is a precise '
+        + 'vocabulary in which the grammar, the mantra and the physical act line '
+        + 'up — and this track gives you that vocabulary.',
+    plan: [
+      'Upacāra names the ritual acts, Aṅga the body and its placements, and '
+      + 'Saṅkalpa-vāk the formulae that declare an intention.',
+      'Then the wider bank: ornament and offering, rites, mantra and bīja, the '
+      + 'texts, and the fruits of practice.',
+    ],
+    note: 'One stage, eleven lists. Take them in any order — each is a field of '
+        + 'its own, and none depends on the one before it.',
+    mentions: ['Upacāra', 'Aṅga', 'Saṅkalpa-vāk'],
+    lessons: 1 },
+
   { id: 'svara',    name: 'Svara-Vidyā',  gloss: 'Vedic Literacy',
-    has: s => s === 20 },
+    has: s => s === 20,
+    lead: 'Vedic recitation carries pitch as well as sound. Three accents, marked '
+        + 'in the text itself, are what distinguish Vedic from classical Sanskrit '
+        + '— and they change what a line means.',
+    plan: [
+      'One list: Svara, giving the three accents, the modes of recitation and the '
+      + 'terms that describe them.',
+    ],
+    note: 'Classical Sanskrit — everything else in Abhyāsa — does not use these '
+        + 'accents. This is a door into a different kind of text, not a '
+        + 'prerequisite for anything else.',
+    mentions: ['Svara'],
+    lessons: 1 },
+
   { id: 'avadhana', name: 'Avadhāna',     gloss: 'Attention Under Pressure',
-    has: s => s >= 27 && s <= 36 }
+    has: s => s >= 27 && s <= 36,
+    lead: 'Avadhāna is composition under constraint, performed live: a verse '
+        + 'completed from its last line, or built round words handed to you by '
+        + 'someone trying to break your concentration.',
+    plan: [
+      'One list to start: the vocabulary of the discipline — the eight challenges, '
+      + 'and the roles in a performance.',
+    ],
+    note: 'The performing is the badge, and it belongs to the workbook. What is '
+        + 'carded here is what you need to be able to name before you try it.',
+    mentions: ['Avadhāna'],
+    lessons: 1 },
 ];
 /* Cross-cutting practice sits outside the stage sequence, so it is not a
    sixth track: it is listed after the five, and belongs to no track's
    percentage.  The five are the course; this is what runs alongside it. */
 const CROSS_TRACK = {
-  id: 'vyakaranam', name: 'Vyākaraṇam', gloss: 'Formal Grammar'
+  id: 'vyakaranam', name: 'Vyākaraṇam', gloss: 'Formal Grammar',
+  lead: 'Vyākaraṇam is the grammarians\u2019 own vocabulary — the words Sanskrit '
+      + 'uses to talk about itself. It cuts across every stage rather than '
+      + 'belonging to one, which is why it sits apart at the end of the list.',
+  plan: [
+    'Vyākaraṇam I gives the building blocks: root, suffix, prefix, stem, junction.',
+    'Vyākaraṇam II gives the words for what a sentence is made of, and the terms '
+    + 'grammarians use about their own terms.',
+    'Take these whenever a word in a red annotation is doing more work than you '
+    + 'can follow. Nothing else depends on them.',
+  ],
+  note: 'This is not a track and it is not required. It is the shortest way to '
+      + 'make the annotations on every other card readable.',
+  mentions: ['Vyākaraṇam I', 'Vyākaraṇam II'],
+  lessons: 1,
 };
 const trackOf = stage => TRACKS.find(t => t.has(stage)) || CROSS_TRACK;
 
@@ -582,6 +659,55 @@ const ALL_IDS = (() => {
   TRACK_ROWS.forEach(r => r.ids.forEach(k => s.add(k)));
   return s;
 })();
+
+/* ── the gate ──────────────────────────────────────────────
+   Each level says what it is for before the level under it opens.  The
+   landing card opens the tracks; a track's own page opens its lists.  Two
+   pages, and nothing under them: a stage is not a place you have to be
+   introduced to twice.
+
+   `SAVED.begun` holds what has been opened — `home`, and a track id for each
+   track whose Begin has been pressed. */
+const trackIdOf = name => trackOf(DECK_STAGE[name]).id;
+const trackBegun = id => !!SAVED.begun[id];
+const deckLocked = name => !trackBegun(trackIdOf(name));
+const started = () => !!SAVED.begun.home;
+
+function beginHome() {
+  if (SAVED.begun.home) return;
+  SAVED.begun.home = 1;
+  save();
+  renderDrawer();
+}
+function beginTrack(id) {
+  if (SAVED.begun[id] && SAVED.begun.home) return;
+  SAVED.begun[id] = 1;
+  SAVED.begun.home = 1;             // you cannot be inside a track without
+  save();
+  renderDrawer();                   // its lists are open now, and the drawer says so
+}
+
+/* v5 kept this by lesson, when every stage had a page of its own.  The gate
+   is a track's now, so those keys are lifted onto their tracks rather than
+   thrown away — and the seed from progress runs again in the same terms: a
+   learner already practising in a track has plainly met it. */
+if ((SAVED.v || 1) < 6) {
+  const lift = id => { SAVED.begun[id] = 1; SAVED.begun.home = 1; };
+  Object.keys(SAVED.begun).forEach(k => {
+    const L = LESSONS.find(x => x.lesson === k);
+    if (!L) return;
+    delete SAVED.begun[k];
+    lift(trackOf(L.stage).id);
+  });
+  Object.keys(DECKS).forEach(n => {
+    const ds = SAVED.decks[n];
+    if ((ds && (ds.best || ds.missed)) || DECKS[n].some(c => SAVED.mastered[c.id]))
+      lift(trackIdOf(n));
+  });
+  if (SAVED.deck && DECKS[SAVED.deck]) lift(trackIdOf(SAVED.deck));
+  SAVED.v = SAVED_VERSION;
+  save();
+}
 
 /* Progress is mastered cards over cards held, counted from cards the whole
    way up: a track's figure is the union of its lessons' cards, never the
@@ -878,69 +1004,36 @@ function deckRow(name, cls) {
    it asks anything, so the tap that used to expand a heading opens that page
    instead — and the page carries the lesson's lists, so nothing moved further
    away: track \u2192 stage \u2192 list is the same three taps expanding was. */
-function stageRow(cls, L, over) {
-  const p = progressOf(L.ids);
-  const b = rowButton(cls, Object.assign({
-    name: L.label, pct: p.pct, full: p.full, bar: true,
-    sub: [LESSON_GLOSS[L.lesson], count(L.decks.length, 'list')].filter(Boolean).join(' \u00b7 '),
+/* A track's row IS its page.  Tapping it says what the track gives you and,
+   on a first visit, is the only thing that opens its lists; it leaves the
+   track standing expanded for the way back. */
+function trackRow(row, over) {
+  const t = row.track, p = progressOf(row.ids);
+  const b = rowButton('tr', Object.assign({
+    name: t.name, pct: p.pct, full: p.full, bar: true,
+    sub: t.gloss + ' · ' + count(row.lessons.length, 'lesson'),
   }, over || {}));
   b.classList.add('leaf');
-  b.addEventListener('click', () => {
-    openLessons.add(L.lesson);          // the lists are there on the way back
+  if (!started()) {
+    /* Before the landing card has been read there is nowhere to go: it names
+       the first track, and that is the way in. */
+    b.disabled = true;
+    b.classList.add('locked');
+    b.title = t.name + ' — open Home and press Begin';
+  } else b.addEventListener('click', () => {
+    openTracks.add(t.id);           // its stages are there on the way back
     closeDrawer();
-    showStage(L.lesson);
+    showTrack(t.id);
   });
   return b;
 }
 
 function lessonRow(L) {
-  /* A lesson with no overview has no page to open, so it keeps the older
-     behaviour and simply expands.  The drawer navigates what exists. */
-  if (!OVERVIEW[L.lesson]) return plainLessonRow(L);
-
-  const wrap = document.createElement('div');
-  wrap.className = 'ls' + (progressOf(L.ids).full ? ' full' : '');
-  const open = openLessons.has(L.lesson);
-  /* The row IS the stage: it opens the stage page, and leaves the lesson's
-     lists standing open underneath for the next time the drawer is opened.
-     The introduction is not a panel nested under the name — it is what the
-     name leads to, and the lists are what it lets you at. */
-  const head = stageRow('ls', L);
-  head.setAttribute('aria-expanded', open ? 'true' : 'false');
-  wrap.appendChild(head);
-
-  const body = lessonBody(L, 'ls');
-  if (body) wrap.appendChild(body);
-  else head.removeAttribute('aria-expanded');
-  return wrap;
-}
-
-/* A lesson's lists, standing open or shut with the lesson.  Until the stage
-   has been begun they are greyed and say so, rather than being hidden: what
-   is coming should be visible, and one press opens all of it. */
-function lessonBody(L, cls) {
-  /* A menu of one is not a menu: where the lesson holds a single list, the
-     stage page's own Begin is the way to it, and repeating its name under the
-     stage's would only say the same thing twice. */
-  if (L.decks.length === 1) return null;
-  const body = document.createElement('div');
-  body.className = cls + '-body';
-  body.hidden = !openLessons.has(L.lesson);
-  if (!stageBegun(L.lesson)) {
-    const why = document.createElement('div');
-    why.className = 'ls-shut';
-    why.textContent = 'Read the stage and press Begin to open these.';
-    body.appendChild(why);
-  }
-  L.decks.forEach(name => body.appendChild(deckRow(name)));
-  return body;
-}
-
-/* The older shape, for a lesson the build has given no overview: a heading
-   that expands, or the single list it comes down to. */
-function plainLessonRow(L) {
   const one = soleDeck(L);
   if (one) {
+    /* The lesson IS that list — but the row still has to say which lesson.
+       Folding may not silently delete a curriculum name: `Chandas II` read
+       simply `Vṛtta`, and the drawer then had a Chandas I and no Chandas II. */
     const r = deckRow(one, 'ls');
     fillRow(r, { '.ls-name': L.label,
       '.ls-sub': foldedSub(DECK_SHORT(one), L.label, DECK_DESC(one),
@@ -965,6 +1058,16 @@ function plainLessonRow(L) {
   return wrap;
 }
 
+/* One line at the top of a track that has not been begun, saying what opens
+   what is under it.  The lists below stay visible and greyed: a learner
+   should see what is coming and still be told what it is for first. */
+function shutNote(text) {
+  const el = document.createElement('div');
+  el.className = 'ls-shut';
+  el.textContent = text;
+  return el;
+}
+
 function renderDrawer() {
   const r = rankOf(), all = Object.keys(DECKS).length;
   /* Lists, not cards.  A card is the evidence underneath; a list is what a
@@ -983,55 +1086,38 @@ function renderDrawer() {
   const host = $('dr-tracks');
   host.innerHTML = '';
   TRACK_ROWS.forEach(row => {
-    const t = row.track, p = progressOf(row.ids), open = openTracks.has(t.id);
+    const t = row.track, open = openTracks.has(t.id);
     const only = soleLesson(row);
-    const onlyDeck = only && soleDeck(only);
     const wrap = document.createElement('div');
-    wrap.className = 'tr' + (p.full ? ' full' : '');
+    wrap.className = 'tr' + (progressOf(row.ids).full ? ' full' : '');
 
-    /* A track that comes down to a single lesson IS that lesson: no heading of
-       its own to expand, since the level underneath would only repeat it.  The
-       row opens the stage page directly.  The track's own name leads; where
-       the lesson folded away is named something else, that name takes the
-       subheading, so no level of the curriculum vanishes without trace. */
-    if (only && OVERVIEW[only.lesson]) {
-      const head = stageRow('tr', only, {
-        name: t.name, pct: p.pct, full: p.full,
-        sub: foldedSub(only.label, t.name, t.gloss,
-                       [count(only.decks.length, 'list')]),
-      });
-      const body = lessonBody(only, 'tr');
-      if (body) head.setAttribute('aria-expanded', openLessons.has(only.lesson) ? 'true' : 'false');
-      wrap.appendChild(head);
-      if (body) wrap.appendChild(body);
-      host.appendChild(wrap);
-      return;
-    }
-    if (onlyDeck) {
-      const head = deckRow(onlyDeck, 'tr');
-      fillRow(head, { '.tr-name': t.name,
-        '.tr-sub': foldedSub(only.label, t.name, t.gloss,
-                             [DECKS[onlyDeck].length + ' cards']) });
-      wrap.appendChild(head);
-      host.appendChild(wrap);
-      return;
-    }
-
-    const head = rowButton('tr', {
-      name: t.name, pct: p.pct, full: p.full, bar: true,
-      /* one lesson: name it here rather than saying "1 lesson" and repeating
-         the track's own name on the row below */
-      sub: only
-        ? foldedSub(only.label, t.name, t.gloss, [count(only.decks.length, 'list')])
-        : t.gloss + ' · ' + count(row.lessons.length, 'lesson')
-    });
-    head.setAttribute('aria-expanded', open ? 'true' : 'false');
-    head.addEventListener('click', () => { toggleIn(openTracks, t.id); renderDrawer(); });
+    /* A track with a single lesson IS that lesson: naming both would say the
+       same thing twice, so the row keeps the track's name and the lesson's
+       goes in the subheading where it differs. */
+    const head = trackRow(row, only ? {
+      sub: foldedSub(only.label, t.name, t.gloss, [count(only.decks.length, 'list')]),
+    } : null);
+    if (started()) head.setAttribute('aria-expanded', open ? 'true' : 'false');
     wrap.appendChild(head);
 
+    /* A menu of one is not a menu: a track that comes down to a single list
+       has nothing to choose between, and the page's own Begin is the way to
+       it.  Drawing the row would only repeat the name above it. */
+    if (only && only.decks.length === 1) {
+      head.removeAttribute('aria-expanded');
+      host.appendChild(wrap);
+      return;
+    }
     const body = document.createElement('div');
     body.className = 'tr-body';
     body.hidden = !open;
+    /* Say what actually opens them.  Before the landing card has been read
+       the name above is shut too, and pointing at it would be a dead end. */
+    if (!trackBegun(t.id))
+      body.appendChild(shutNote(started()
+        ? 'Tap the name above and press Begin to open these.'
+        : 'Open Home and press Begin to start.'));
+    /* one lesson: its lists stand directly under the track */
     if (only) only.decks.forEach(n => body.appendChild(deckRow(n)));
     else row.lessons.forEach(L => body.appendChild(lessonRow(L)));
     wrap.appendChild(body);
@@ -1175,80 +1261,82 @@ function renderWelcome() {
      to mean something. */
   $('w-mastery').textContent = (r.score === null ? 0 : r.score) + '%';
   $('w-lists').textContent = finishedDecks().length;
-  /* The same gate the stages carry.  With nothing begun there is nothing in
+  /* The first of the two gates.  With nothing begun there is nothing in
      progress, and "In progress" would drop a first-time learner into a list
-     with no idea what it was for; the button opens the first stage instead,
-     and that stage's own Begin opens its lists. */
+     with no idea what it was for; the button opens the first track instead,
+     and that track's own Begin opens its lists. */
   const go = $('w-go');
-  const first = TRACK_ROWS[0].lessons[0];
+  const first = TRACK_ROWS[0].track;
   if (started()) {
     go.textContent = 'In progress';
     go.title = deckName ? 'Continue ' + DECK_SHORT(deckName) : 'Continue where you left off';
     go.onclick = leavePage;
   } else {
-    go.textContent = 'Begin — ' + first.label;
-    go.title = 'Read what ' + first.label + ' gives you, then start its first list';
-    go.onclick = () => showStage(first.lesson);
+    go.textContent = 'Begin — ' + first.name;
+    go.title = 'Read what ' + first.name + ' gives you, then start its first list';
+    go.onclick = () => { beginHome(); showTrack(first.id); };
   }
   go.setAttribute('aria-label', go.title);
 }
 
-/* Has the learner met any stage at all?  One flag decides what the landing
-   card offers, exactly as it decides whether a stage's lists are open. */
-const started = () => Object.keys(SAVED.begun).length > 0;
 
-/* ── the stage page ────────────────────────────────────────
-   A lesson says what it gives you before it asks anything.  On a first visit
-   it ends in "Begin the first list"; once there is progress it shows that
-   instead and offers the next unfinished list. */
-let stageShown = null;
+/* ── the track page ────────────────────────────────────────
+   A track says what it gives you before it asks anything, and its Begin is
+   what opens its lists.  On a first visit it ends in "Begin — <first list>";
+   after that it reports the track's own progress and offers the next
+   unfinished list instead.  There is no page below this one: a stage is not
+   somewhere you have to be introduced to twice. */
+let trackShown = null;
 
-function lessonDecks(lesson) {
-  return Object.keys(DECKS).filter(n => DECK_LESSON[n] === lesson);
+/* Every list in a track, in curriculum order. */
+function trackDecks(row) {
+  return [].concat(...row.lessons.map(L => L.decks));
 }
 
-function renderStage(lesson) {
-  const o = OVERVIEW[lesson];
-  if (!o) return false;
-  const names = lessonDecks(lesson);
-  const track = TRACK_ROWS.find(r => r.lessons.some(L => L.lesson === lesson));
+function renderTrack(id) {
+  const row = TRACK_ROWS.find(r => r.track.id === id);
+  if (!row || !row.track.lead) return false;
+  const t = row.track, names = trackDecks(row);
+  /* Aggregate only: what is in the track, never a directory of it. */
+  const held = t === CROSS_TRACK ? count(names.length, 'list')
+    : count(row.lessons.length, 'stage') + ' · ' + count(names.length, 'list');
   fillRow(document, {
-    '#s-track': track ? track.track.name : '',
-    '#s-name': LESSON_LABEL[lesson] + (LESSON_GLOSS[lesson] ? ' · ' + LESSON_GLOSS[lesson] : ''),
-    '#s-lead': o.lead,
-    '#s-note': o.note || '',
+    '#s-held': held,
+    '#s-name': t.name + ' · ' + t.gloss,
+    '#s-lead': t.lead,
+    '#s-note': t.note || '',
   });
   const ol = $('s-plan');
   ol.textContent = '';
-  (o.plan || []).forEach(step => {
+  (t.plan || []).forEach(step => {
     const li = document.createElement('li');
     li.textContent = step;
     ol.appendChild(li);
   });
-  /* First visit: the stage is shut, and Begin is what opens it — the lists
+  /* First visit: the track is shut, and Begin is what opens it — its lists
      are greyed in the drawer until it is pressed.  Every visit after: where
      you have got to, and the next list to take.  Begin is not offered twice,
-     and only one figure is given — the stage as a whole. */
-  const begun = stageBegun(lesson);
-  const p = progressOf(new Set([].concat(...names.map(n => [...DECK_IDS[n]]))));
+     and only one figure is given — the track as a whole. */
+  const begun = trackBegun(id);
+  const p = progressOf(row.ids);
   $('s-stats').hidden = !begun;
   if (begun) $('s-pct').textContent = p.pct + '%';
   const next = names.find(n => finishedDecks().indexOf(n) < 0) || names[0];
   const go = $('s-go');
   go.textContent = (begun ? 'Continue — ' : 'Begin — ') + DECK_SHORT(next);
-  go.onclick = () => { beginStage(lesson); chooseDeck(next); };
+  go.onclick = () => { beginTrack(id); chooseDeck(next); };
   /* Abhyāsa is a reminder here, not a section: one line and a way in. */
   $('s-review').hidden = !begun;
   $('s-side').hidden = !begun;
   $('s-review').onclick = () => openPanel('reviewpanel');
-  stageShown = lesson;
+  trackShown = id;
   return true;
 }
 
-function showStage(lesson) {
-  if (!renderStage(lesson)) return;
+function showTrack(id) {
+  if (!renderTrack(id)) return;
   leavePage();
-  $('stagecard').hidden = false;
+  $('trackcard').hidden = false;
   quietChrome();
 }
 
@@ -1265,8 +1353,8 @@ function quietChrome() {
   $('study-btn').hidden = true;
 }
 
-/* Is a page — the landing card or a stage — standing over the cards? */
-const onPage = () => !$('welcome').hidden || !$('stagecard').hidden;
+/* Is a page — the landing card or a track — standing over the cards? */
+const onPage = () => !$('welcome').hidden || !$('trackcard').hidden;
 
 function showWelcome() {
   leavePage();
@@ -1275,14 +1363,14 @@ function showWelcome() {
   quietChrome();
 }
 
-/* Leaves whichever page is showing — the landing card or a stage page — and
+/* Leaves whichever page is showing — the landing card or a track page — and
    gives the cards their chrome back.  Every surface that starts a round calls
    it, so none of them has to know a page exists. */
 function leavePage() {
   const on = onPage();
   $('welcome').hidden = true;
-  $('stagecard').hidden = true;
-  stageShown = null;
+  $('trackcard').hidden = true;
+  trackShown = null;
   if (!on) return;
   relabelAll();                     // Study reappears if the lesson has a reference
   $('card').style.display = 'flex';
@@ -2499,7 +2587,7 @@ function closePanel() {
   panelOpen = null;
   relabelAll();
   $('welcome').hidden = panelWas.welcome;
-  $('stagecard').hidden = panelWas.stagecard;
+  $('trackcard').hidden = panelWas.trackcard;
   $('card').style.display = panelWas.card;
   $('review').style.display = panelWas.review;
   $('tally').style.visibility = panelWas.tally;
@@ -2517,14 +2605,14 @@ function openPanel(which) {
   if (panelOpen === which) { PANELS[which].render(); return; }
   if (panelOpen) closePanel();                  // swapping one panel for the other
   panelWas = {
-    welcome: $('welcome').hidden, stagecard: $('stagecard').hidden,
+    welcome: $('welcome').hidden, trackcard: $('trackcard').hidden,
     card: $('card').style.display, review: $('review').style.display,
     tally: $('tally').style.visibility, grade: $('grade').hidden,
     after: $('after').hidden, keys: $('keys').hidden,
     controls: $('controls').hidden
   };
   $('welcome').hidden = true;
-  $('stagecard').hidden = true;
+  $('trackcard').hidden = true;
   $('card').style.display = 'none';
   $('review').style.display = 'none';
   $('tally').style.visibility = 'hidden';
@@ -2657,6 +2745,7 @@ $('again-missed').addEventListener('click', () => {
 $('nav').addEventListener('click', () => drawerOpen() ? closeDrawer() : openDrawer());
 $('dr-close').addEventListener('click', closeDrawer);
 $('dveil').addEventListener('click', closeDrawer);
+$('dr-home').addEventListener('click', () => openFromDrawer(showWelcome));
 $('dr-board').addEventListener('click', () => openFromDrawer(() => openPanel('board')));
 $('dr-prog').addEventListener('click', () => openFromDrawer(() => openPanel('reviewpanel')));
 $('dr-trouble').addEventListener('click', () => openFromDrawer(() => openPanel('trouble')));

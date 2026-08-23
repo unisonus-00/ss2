@@ -1,21 +1,5 @@
 {
   "lesson": "06-kriya",
-  "overview": {
-    "lead": "Verbs are how you say what is happening. Sanskrit marks person and number on the verb itself, so a single word can mean “I bow” with nothing else around it.",
-    "plan": [
-      "Puruṣa-pada names the persons and the two sets of endings.",
-      "Lakāra names the ten tense-moods — present, past, imperative and the rest.",
-      "Puruṣa-lakāra then asks you to change a verb: make it “I”, make it past, make it a command.",
-      "The Dhātu-rūpa lists give three verbs through all nine present forms."
-    ],
-    "note": "One thing to know early: Sanskrit counts persons the other way round from English. `prathama puruṣa` — “first person” — is what English calls the third. The first card in the stage says so.",
-    "mentions": [
-      "Puruṣa-pada",
-      "Lakāra",
-      "Puruṣa-lakāra"
-    ],
-    "lists": 12
-  },
   "decks": [
     {
       "name": "Puruṣa-pada — person and voice terms",

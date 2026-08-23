@@ -207,33 +207,7 @@ function loadPractice() {
       decks++;
     });
 
-    /* The stage overview: what the lesson gives you, said before it asks
-       anything.  `lists` and `mentions` are its coupling to the lists below
-       — if either goes stale the test says so, because prose does not
-       update itself when a list is added or renamed. */
-    if (data.overview) {
-      const o = data.overview;
-      if (!o.lead || !Array.isArray(o.plan) || !o.plan.length) {
-        problems.push(`${dir}/practice.json: overview needs a lead and a plan`);
-      }
-      if (o.lists !== outDecks.length) {
-        problems.push(`${dir}/practice.json: overview says ${o.lists} lists, the lesson has `
-          + `${outDecks.length} — the overview may need rewriting`);
-      }
-      const heads = new Set();
-      outDecks.forEach(d => {
-        const h = d.name.split(' — ')[0];
-        heads.add(h);
-        if (h.includes(' · ')) heads.add(h.split(' · ').slice(1).join(' · '));
-      });
-      (o.mentions || []).forEach(m => {
-        if (!heads.has(m)) {
-          problems.push(`${dir}/practice.json: the overview names "${m}", which is not a list here`);
-        }
-      });
-    }
-    lessons.push({ lesson: dir, stage, ...lessonTitle(dir),
-                   overview: data.overview || null, decks: outDecks });
+    lessons.push({ lesson: dir, stage, ...lessonTitle(dir), decks: outDecks });
   }
 
   /* A practice.json somewhere it does not belong is a silent no-op otherwise:
