@@ -47,6 +47,12 @@ function stems(word) {
   out.push(bare.replace(/m$/, ''));                   // cakram → cakra
   if (/ī$/.test(bare)) out.push(bare.replace(/ī$/, 'in'));   // kapardī → kapardin
   if (/ā$/.test(bare)) out.push(bare.replace(/ā$/, 'a'));    // durgā → durga
+  /* An -an stem is cited without its n — karman is written karma on a card,
+     janman janma, nāman nāma — so a card looking its own headword up has to
+     reach the stem the lexicon files it under.  Without this the two words
+     the reference itself names as derivatives of √kṛ and √jan were invisible
+     to the layer that exists to link them. */
+  if (/a$/.test(bare)) out.push(bare + 'n');                 // karma → karman
   return [...new Set(out)].filter(Boolean);
 }
 /* The form a stem is FILED under: the citation form folded once, which is

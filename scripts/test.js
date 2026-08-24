@@ -4196,9 +4196,12 @@ const open = async (browser, opts = {}) => {
     ok('a root clue is one part, and a prefixed root still one',
       r.root.indexOf('root:√hṛ') >= 0 && r.prefixed.length === 1,
       r.root.join(' ') + ' || ' + r.prefixed.join(' '));
+    /* A member attested in two senses keeps both — kāma is love and desire,
+       pati husband and lord — because choosing one would make half the
+       compounds that use it read wrongly. */
     ok('every member of the compound gets its own meaning',
       r.heads.indexOf('kāma') >= 0 && r.heads.indexOf('akṣi') >= 0
-        && r.senses.indexOf('love') >= 0 && r.senses.indexOf('eye') >= 0,
+        && r.senses.some(x => /love/.test(x)) && r.senses.some(x => /eye/.test(x)),
       r.heads.join(' | ') + ' → ' + r.senses.join(' | '));
     ok('and the compound paragraph is said once, not per member',
       r.bodies === r.heads.length - 1, r.bodies + ' bodies for ' + r.heads.length + ' sections');

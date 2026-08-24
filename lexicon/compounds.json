@@ -2208,6 +2208,443 @@
     "analysis": "curriculum",
     "sense": "curriculum"
    }
+  },
+  {
+   "iast": "siṃhavāhinī",
+   "parts": [
+    {
+     "iast": "siṃha",
+     "sense": "lion"
+    },
+    {
+     "iast": "vāhinī",
+     "sense": "carrying"
+    }
+   ],
+   "clue": "she whose vehicle is the lion",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "siṃhanāda",
+   "parts": [
+    {
+     "iast": "siṃha",
+     "sense": "lion"
+    },
+    {
+     "iast": "nāda",
+     "sense": "roar"
+    }
+   ],
+   "clue": "lion-roar",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "mahiṣāsura",
+   "parts": [
+    {
+     "iast": "mahiṣa",
+     "sense": "buffalo"
+    },
+    {
+     "iast": "asura",
+     "sense": "demon"
+    }
+   ],
+   "clue": "the buffalo demon",
+   "type": "karmadhāraya",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "bhaṇḍāsura",
+   "parts": [
+    {
+     "iast": "bhaṇḍa",
+     "sense": "jester"
+    },
+    {
+     "iast": "asura",
+     "sense": "demon"
+    }
+   ],
+   "clue": "the jester demon",
+   "type": "karmadhāraya",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "raktabīja",
+   "parts": [
+    {
+     "iast": "rakta",
+     "sense": "blood"
+    },
+    {
+     "iast": "bīja",
+     "sense": "seed"
+    }
+   ],
+   "clue": "whose seed is blood",
+   "type": "bahuvrīhi",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "dhūmralocana",
+   "parts": [
+    {
+     "iast": "dhūmra",
+     "sense": "smoky"
+    },
+    {
+     "iast": "locana",
+     "sense": "eye"
+    }
+   ],
+   "clue": "smoke-eyed",
+   "type": "bahuvrīhi",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "ugradarśana",
+   "parts": [
+    {
+     "iast": "ugra",
+     "sense": "fierce"
+    },
+    {
+     "iast": "darśana",
+     "sense": "look"
+    }
+   ],
+   "clue": "fierce to look upon",
+   "type": "bahuvrīhi",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "tripurā",
+   "parts": [
+    {
+     "iast": "tri",
+     "sense": "three"
+    },
+    {
+     "iast": "pura",
+     "sense": "city"
+    }
+   ],
+   "clue": "she of the three cities",
+   "type": "dvigu",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "trinetrā",
+   "parts": [
+    {
+     "iast": "tri",
+     "sense": "three"
+    },
+    {
+     "iast": "netra",
+     "sense": "eye"
+    }
+   ],
+   "clue": "three-eyed",
+   "type": "bahuvrīhi",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "mahābalā",
+   "parts": [
+    {
+     "iast": "mahā",
+     "sense": "great"
+    },
+    {
+     "iast": "bala",
+     "sense": "strength"
+    }
+   ],
+   "clue": "of great strength",
+   "type": "bahuvrīhi",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "śrīmātā",
+   "parts": [
+    {
+     "iast": "śrī",
+     "sense": "splendour, the auspicious"
+    },
+    {
+     "iast": "mātā",
+     "sense": "mother"
+    }
+   ],
+   "clue": "the auspicious mother",
+   "type": "karmadhāraya",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "jagaddhātrī",
+   "parts": [
+    {
+     "iast": "jagat",
+     "sense": "the world"
+    },
+    {
+     "iast": "dhātrī",
+     "sense": "upholding"
+    }
+   ],
+   "clue": "upholder of the world",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "bhūtala",
+   "parts": [
+    {
+     "iast": "bhū",
+     "sense": "earth"
+    },
+    {
+     "iast": "tala",
+     "sense": "surface"
+    }
+   ],
+   "clue": "the surface of the earth",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "kāmakalā",
+   "parts": [
+    {
+     "iast": "kāma",
+     "sense": "desire"
+    },
+    {
+     "iast": "kalā",
+     "sense": "digit, art"
+    }
+   ],
+   "clue": "the digit of desire",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "viśālākṣī",
+   "parts": [
+    {
+     "iast": "viśāla",
+     "sense": "wide"
+    },
+    {
+     "iast": "akṣi",
+     "sense": "eye"
+    }
+   ],
+   "clue": "wide-eyed",
+   "type": "bahuvrīhi",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "sarvadarśana",
+   "parts": [
+    {
+     "iast": "sarva",
+     "sense": "all"
+    },
+    {
+     "iast": "darśana",
+     "sense": "seeing"
+    }
+   ],
+   "clue": "all-seeing",
+   "type": "bahuvrīhi",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "padmāsana",
+   "parts": [
+    {
+     "iast": "padma",
+     "sense": "lotus"
+    },
+    {
+     "iast": "āsana",
+     "sense": "seat"
+    }
+   ],
+   "clue": "the lotus seat",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "candramaṇḍala",
+   "parts": [
+    {
+     "iast": "candra",
+     "sense": "moon"
+    },
+    {
+     "iast": "maṇḍala",
+     "sense": "disc"
+    }
+   ],
+   "clue": "the disc of the moon",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "sūryamaṇḍala",
+   "parts": [
+    {
+     "iast": "sūrya",
+     "sense": "sun"
+    },
+    {
+     "iast": "maṇḍala",
+     "sense": "disc"
+    }
+   ],
+   "clue": "the disc of the sun",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "devasenā",
+   "parts": [
+    {
+     "iast": "deva",
+     "sense": "god"
+    },
+    {
+     "iast": "senā",
+     "sense": "army"
+    }
+   ],
+   "clue": "the army of the gods",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "jagatprasūti",
+   "parts": [
+    {
+     "iast": "jagat",
+     "sense": "the world"
+    },
+    {
+     "iast": "prasūti",
+     "sense": "bringing forth"
+    }
+   ],
+   "clue": "the origin of the world",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "vindhyācala",
+   "parts": [
+    {
+     "iast": "vindhya",
+     "sense": "the Vindhya"
+    },
+    {
+     "iast": "acala",
+     "sense": "mountain"
+    }
+   ],
+   "clue": "the Vindhya mountain",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "kāmeśvarī",
+   "parts": [
+    {
+     "iast": "kāma",
+     "sense": "desire"
+    },
+    {
+     "iast": "īśvarī",
+     "sense": "sovereign lady"
+    }
+   ],
+   "clue": "sovereign lady of desire",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
   }
  ],
  "opaque": [

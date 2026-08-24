@@ -1942,6 +1942,48 @@ member means, which is the one thing this section needs. Where it would earn
 its place is checking `10-paryaya`'s synonym categories against the tradition
 they come from. `lexicon/sources.json` records that.
 
+#### Every simple word that links to a verified root already carries it
+
+*All simple words that can be linked to a verified dhātu should be annotated.*
+They are: a scan of the built page for a headword the index resolves to a root
+family, carrying no root in its chip, returns **nought**. What limits the
+coverage is not the mechanism but the size of the verified set — 180
+derivatives across the 52 roots, and every one of them that appears on a card
+in a `word → meaning` list is clued.
+
+Two words the reference itself names were missing, and the reason was a fold:
+**an `-an` stem is cited without its n.** `karman` is written `karma` on a
+card and `janman` `janma`, so `stems()` never reached the entry the lexicon
+files them under, and √kṛ's and √jan's own key derivatives were invisible to
+the layer built to link them. One line in `stems()` fixes the class, not the
+two words.
+
+#### 47 more compounds, in two verified batches
+
+`rājarājeśvarī`, `padmanābha`, `mahiṣāsura`, `dhūmralocana`, `siṃhavāhinī`,
+`tripurā`, `bhuvaneśvarī`, `jaganmātā`, `bhadrakālī`, `viśālākṣī` — 134
+analyses now, against 87. Each is the regular sandhi of members the app itself
+glosses, so `source.analysis` is `curriculum` rather than `mw-parts`, and a
+test requires such an entry to take its senses from the curriculum too.
+
+**Every one was checked against its word before it was written**, by the same
+open-and-close rule the suite applies to a shipped clue: the first member has
+to open the word, the last to close it. Seven candidates failed and were
+dropped — five already analysed, `naivedya` (whose `ni-` becomes `nai-` by
+vṛddhi rather than sandhi) and `asilomā` (`loman` does not close it).
+
+**Splitting words mechanically was tried and rejected.** A search for
+headwords that divide into two members the lexicon already glosses returns 16,
+and most are nonsense: `śrīmātā` as `śrī + naṭa`, `kāmakalā` as `kāma + jala`,
+`mahābalā` as `mahā + jala`. A tail match loose enough to allow for sandhi is
+loose enough to find a wrong member, so the batches stay hand-checked. This is
+the same rule as everywhere else here: an invented derivation is worse than
+none, because it is memorable and wrong.
+
+**A member attested in two senses keeps both.** `kāma` is love and desire,
+`pati` husband and lord; the popover prints `love; desire`, because choosing
+one would make half the compounds that use it read wrongly.
+
 #### What the generators refuse to do
 
 Every selection is a fact about the course, never a judgement about the word.
