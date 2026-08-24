@@ -1729,7 +1729,7 @@ function lessonRow(L) {
   }
   const p = progressOf(L.ids), open = openLessons.has(L.lesson);
   const wrap = document.createElement('div');
-  wrap.className = 'ls' + (p.full ? ' full' : '') + (L.optional ? ' opt' : '');
+  wrap.className = 'ls' + (p.full ? ' full' : '') + (L.optional ? ' elective' : '');
   const head = rowButton('ls', {
     name: L.label, pct: p.pct, full: p.full, bar: true,
     sub: [L.gloss, count(L.decks.length, 'list')].filter(Boolean).join(' · ')
@@ -1798,7 +1798,7 @@ function renderDrawer() {
     const only = soleLesson(row);
     const wrap = document.createElement('div');
     wrap.className = 'tr' + (progressOf(row.pathIds).full ? ' full' : '')
-                   + (t.optional ? ' opt' : '');
+                   + (t.optional ? ' elective' : '');
 
     /* A track with a single lesson IS that lesson: naming both would say the
        same thing twice, so the row keeps the track's name and the lesson's

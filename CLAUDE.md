@@ -714,13 +714,29 @@ Script Literacy · 14 lists
   never points into it from inside Bhāṣā-Vidyā, and a learner who already
   reads the script has skipped nothing. First in the drawer, because that is
   where it belongs in *time*.
-- **And it says so, in the words the enrichment row already uses.**
-  `optional: true` on the track draws it exactly as the enrichment group
-  inside a track is drawn — the name in `--faded`, and `optional · ` leading
-  the subheading (`optional · Script Literacy · 14 lists`). It is a **mark on
-  the row, not a layout**: the section opens and shuts like every other one,
-  and a track drawn open by default would be the only thing in the drawer
-  behaving differently from its neighbours.
+- **And it says so in one word, not in a colour.** `optional: true` on the
+  track puts `optional · ` at the head of its subheading
+  (`optional · Script Literacy · 14 lists`) and does nothing else. It is a
+  **mark on the row, not a layout**: the section opens and shuts like every
+  other one, and a track drawn open by default would be the only thing in
+  the drawer behaving differently from its neighbours.
+
+  **The row is drawn identically to a course track** — same ink, same face,
+  same divider, same percentage and bar. It was faded once, to match the
+  enrichment group *inside* a track, and that was wrong for a whole section
+  at the top of the drawer: greyed, it reads as **disabled** rather than as
+  elective, and the one learner it exists for — the one who cannot yet read
+  the script — meets it first and reads it as shut. The enrichment group
+  inside a track keeps `--faded`, where it is one row among its siblings and
+  the contrast means *this one is not counted*.
+
+  **The marker class is `elective`, and the name matters.** It was `opt`,
+  which is also the choice card's answer button, so `<div class="tr opt">`
+  inherited that button whole: a 1px box, a radius, `min-height: 46px`,
+  centred text, and `--leaf-edge` — a **light-card** token — on the dark
+  drawer ground. That, more than the fading, is what made the row look
+  unlike everything under it. A test now asserts the row's box matches a
+  course track's and that nothing in the drawer wears `.opt` at all.
 - **And the app does not land in it.** `loadDeck` with nothing remembered
   fell back to `Object.keys(DECKS)[0]`, which this track now is — so a
   first-time learner's current list was a script list, and since `openDrawer`

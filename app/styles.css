@@ -834,10 +834,20 @@
             color: var(--faded); padding: .5rem .5rem .15rem; }
   .ls-cap:first-child { padding-top: .15rem; }
   /* An optional group — the enrichment stream — is drawn as what it is:
-     present, open, and not part of the figure above it. */
-  .ls.opt > .ls-head .ls-name { color: var(--faded); }
-  /* and a whole optional SECTION the same way — Devanagari is drawn above
-     the five tracks and asked of nobody */
-  .tr.opt > .tr-head .tr-name { color: var(--faded); }
+     present, open, and not part of the figure above it.
+
+     The class is `elective`, NOT `opt`: `.opt` is the choice card's answer
+     button, and a drawer row marked with it silently inherited that button
+     entire — a 1px box, a radius, min-height 46px, centred text, and
+     --leaf-edge, which is a LIGHT-card token, on the dark drawer ground.
+     That is what made the Devanagari row look unlike every track under it.
+     Two unrelated things must not share a class name. */
+  .ls.elective > .ls-head .ls-name { color: var(--faded); }
+  /* A whole optional SECTION carries no mark of its own at all.  Devanagari
+     was faded to match the enrichment row inside a track, and at the top of
+     the drawer that read as disabled rather than as elective — the first
+     thing a learner who cannot yet read the script sees, greyed out.  A
+     track row is a track row: the only mark is the word "optional" leading
+     its subheading.  `.tr.elective` stays as a hook for what the row IS. */
 
   .drawer button:focus-visible { outline: 2px solid var(--kumkuma); outline-offset: 2px; }
