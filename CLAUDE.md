@@ -1807,7 +1807,9 @@ derivative ↔ compound member ↔ synonym set ↔ curriculum occurrence** — a
 
 ```
 lexicon/roots.json      52 roots: sense, semantic development, family, prefix family
+lexicon/dhatupatha.json the Dhātu-pāṭha entire: 888 roots with their senses
 lexicon/compounds.json  87 words readable off their parts — and 32 deliberately not
+lexicon/nirukti.json    traditional derivations the rules cannot confirm, hand-checked
 lexicon/synonyms.json   how the reference's 12 synonym sets are to be read
 lexicon/sources.json    what a source id means
 ```
@@ -2121,6 +2123,74 @@ On the app's own vocabulary it added 26 links and none of them is wrong.
 **The popover can gloss any of them.** All 886 roots with a sense go into the
 page, not the 53 the lexicon files: a clue that cannot be explained is worse
 than no clue.
+
+#### The tooltip guarantee — every vocabulary card that can name its dhātu does
+
+*This is a standing invariant, enforced by the build. Do not weaken it.*
+
+Every vocabulary card whose dhātu the layer can establish carries it, in a
+fixed division of labour: the **chip carries the form alone** — `from √kṛṣ` —
+and the **popover carries the meaning**, off the Dhātu-pāṭha (or the
+curriculum's own wording, which wins where it has one). `scripts/lexicon.js`
+**fails the build** on any of three regressions:
+
+1. **a card names a root the popover cannot gloss** — a dhātu is never shown
+   without its meaning, anywhere in the app;
+2. **a card that could carry its root ships without it** — the check calls
+   the same `establishedRoot` the clue pass writes with, so the two cannot
+   drift apart;
+3. **the count of vocabulary cards carrying their dhātu falls below
+   `TOOLTIP_ROOT_FLOOR`** — the floor records what has been achieved, and it
+   only ever moves up. Raise it when coverage genuinely grows; never lower
+   it to make a build pass.
+
+The suite proves the shipped page agrees: it reads every card's annotation
+with the app's own `readAnnotation`, opens the real popover on `from √kṛṣ`
+and on a member chain, and asserts the sense is there.
+
+Three changes made the guarantee worth stating:
+
+- **The citation fold reached the finder and the glossary.** The derive index
+  filed roots under the Dhātu-pāṭha's Pāṇinian citations — ṇaś, kṝt, ṣidh —
+  so the derivatives of any such root were invisible to a card that writes
+  the plain form, and six cards named roots (√naś, √kīrt, √sidh, √kḷp,
+  √vadh, √dhan) the popover could not gloss. `plainsOf`/`citationsOf` in
+  `scripts/lexicon.js` are now the one place that correspondence lives; a
+  root's homonymous senses are joined sense by sense (viṣ is "to sprinkle;
+  to pervade", as kāma is "love; desire"), and the finder files one root
+  under all its spellings as ONE candidate, so it cannot silence itself as
+  its own ambiguity.
+- **The agreement test consults every attested sense** — the curriculum's
+  wording AND each Dhātu-pāṭha homonym. `hari` is √hṛ by the extract's "to
+  take, remove, steal" even though the curriculum words the root "to take,
+  carry"; and the clue pass folds the headword (`lalitā → lalita`) and reads
+  `x / y` alternatives, cluing only when the FIRST resolves and no
+  alternative names a different root — a root true only of the third word
+  would sit under the wrong one, and `garva / darpa / mada` (three words,
+  three roots) rightly stays silent. A curādi root spelt like its own noun
+  (`√rūpa` for `rūpam`) explains the thing by itself and is refused.
+- **`lexicon/nirukti.json` carries the traditional derivations the rules can
+  never confirm.** For a divine name glossed as an epithet — kṛṣṇa, "the
+  dark one" — the root's sense and the gloss share no word, however sound
+  the vyutpatti, so the automatic link rightly stays silent and the
+  screenshots showed kṛṣṇaḥ and viṣṇuḥ with a stem and no root. The curated
+  file states what tradition itself states (√kṛṣ, √viṣ, √śī, √rud, √lakṣ,
+  √bhū, √muc, √pū), each entry saying WHY and citing `traditional` (defined
+  in `sources.json`: MW's etymological notes, the Uṇādi-sūtras, the
+  Nirukta). Every entry is validated — the root must be one the Dhātu-pāṭha
+  or `roots.json` senses, an entry no card uses fails the build — and
+  `members`/`roots` sections chain compound members (`ga → √gam` for durgā)
+  and carry the rare root outside both canonical lists (√vadh, which the
+  classical language keeps for the aorist of han). The bar for adding an
+  entry is the file's own: a derivation the tradition does not state is not
+  entered.
+
+Coverage when the guarantee was laid down: **226** of 1,506 vocabulary-round
+reveal cards carry their dhātu (the build prints the number). The rest are
+words with no establishable root — denominals, borrowings, words whose
+etymology is genuinely contested (indra, sūrya as a simple word, ambā) — and
+the honest limit moves only by adding verified links: a curriculum family, a
+nirukti entry, or a rule the curriculum itself states.
 
 #### What the generators refuse to do
 

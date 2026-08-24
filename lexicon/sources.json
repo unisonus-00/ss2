@@ -16,6 +16,11 @@
    "detail": "The traditional list of verbal roots, in Maṇḍala Pati dāsa's edition (sourceforge.net/p/dhatu-patha), extracted to lexicon/dhatupatha.json. It states each root's gaṇa, pada, iṭ, transitivity and — the reason it earns a place here — its sense in English, which no other source in this repository gives for a root.",
    "authority": "canonical for roots — the whole list, 1,159 entries over 888 roots, is checked in. It agrees with 09-dhatu/reference.md on the gaṇa and the present form of every one of the fifty, and where the two ever disagree the lesson wins and the build says so"
   },
+  "traditional": {
+   "label": "traditional derivation",
+   "detail": "A vyutpatti the tradition itself states — recorded in Monier-Williams' etymological notes, the Uṇādi-sūtras, or the Nirukta — for a word whose gloss on the card and root's sense in the Dhātu-pāṭha share no English word, so the automatic link rightly stays silent. Used only in lexicon/nirukti.json, where every entry must say why the link holds, and the root must still be one the Dhātu-pāṭha or roots.json senses.",
+   "authority": "enrichment only — never overrides the curriculum, and never invents: a derivation the tradition does not state is not entered"
+  },
   "mw-parts": {
    "label": "Monier-Williams, read off the parts",
    "detail": "The compound is not split by Monier-Williams in its own headword, but every member of it is a Monier-Williams headword and the reading is the sum of them. Kept apart from `mw` so an analysis that rests on the parts is never reported as one the dictionary states.",

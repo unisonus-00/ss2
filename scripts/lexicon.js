@@ -34,6 +34,45 @@ const readJSON = f => JSON.parse(fs.readFileSync(path.join(LEX, f), 'utf8'));
 const derive = require('./derive');
 const readLesson = f => fs.readFileSync(path.join(ROOT, f), 'utf8');
 
+/* ── the Pāṇinian citation and the plain spelling ────────────────────
+   The Dhātu-pāṭha files a root under its own citation form — ṇam for nam,
+   ṣṭhā for sthā, pracch for prach, kṝt for kīrt, kṛp for kḷp — and the
+   curriculum and the cards write the plain one.  That correspondence lives
+   here and nowhere else: `citationsOf` folds a plain id towards the forms
+   the extract may file it under, and `plainsOf` folds a citation towards
+   the spellings a card may write, canonical spelling first.  A lookup that
+   knows neither reports a root missing when it is there — which is how six
+   cards came to name a root the popover could not gloss. */
+function citationsOf(id) {
+  const tries = [id];
+  if (/^n/.test(id)) tries.push('ṇ' + id.slice(1));
+  if (/^s/.test(id)) {
+    tries.push('ṣ' + id.slice(1));
+    if (/^st/.test(id)) tries.push('ṣṭ' + id.slice(2));
+  }
+  if (/c$/.test(id)) tries.push(id + 'ch');
+  if (/ch$/.test(id)) tries.push(id.slice(0, -2) + 'cch');   // prach → pracch
+  if (/ai$/.test(id)) tries.push(id.slice(0, -2) + 'ā');
+  if (/īr/.test(id)) tries.push(id.replace('īr', 'ṝ'));      // kīrt → kṝt
+  if (/ūr/.test(id)) tries.push(id.replace('ūr', 'ṝ'));
+  if (/ḷ/.test(id)) tries.push(id.replace('ḷ', 'ṛ'));        // kḷp → kṛp
+  return [...new Set(tries)];
+}
+function plainsOf(citation) {
+  let plain = citation;
+  if (/^ṇ/.test(plain)) plain = 'n' + plain.slice(1);
+  else if (/^ṣṭ/.test(plain)) plain = 'st' + plain.slice(2);
+  else if (/^ṣ/.test(plain)) plain = 's' + plain.slice(1);
+  if (/cch$/.test(plain)) plain = plain.slice(0, -3) + 'ch';
+  if (/ṝ/.test(plain)) plain = plain.replace('ṝ', 'īr');
+  const out = [plain, citation];
+  /* ḷ ⇄ ṛ is an alternation rather than a citation convention — kḷp and kṛp
+     are both written — so both spellings are offered, neither replacing the
+     other. */
+  if (/ṛ/.test(plain)) out.push(plain.replace('ṛ', 'ḷ'));
+  return [...new Set(out)];
+}
+
 /* ── stems ──────────────────────────────────────────────────────────
    The curriculum writes a headword in its citation form — `śivaḥ`, `cakram`,
    `kapardī` — and the lexicon writes stems.  Matching them is the whole join,
@@ -70,6 +109,7 @@ function load() {
   const dhatupatha = readJSON('dhatupatha.json');
   const comp = readJSON('compounds.json');
   const syn = readJSON('synonyms.json');
+  const nir = readJSON('nirukti.json');
 
   const SOURCE_IDS = new Set(Object.keys(sources.sources));
   const sourced = (where, obj) => {
@@ -109,16 +149,7 @@ function load() {
     (DP.get(d.id) || DP.set(d.id, []).get(d.id)).push(d);
   });
   const dpFind = id => {
-    const tries = [id];
-    if (/^n/.test(id)) tries.push('ṇ' + id.slice(1));
-    if (/^s/.test(id)) {
-      tries.push('ṣ' + id.slice(1));
-      if (/^st/.test(id)) tries.push('ṣṭ' + id.slice(2));
-    }
-    if (/c$/.test(id)) tries.push(id + 'ch');
-    if (/ch$/.test(id)) tries.push(id.slice(0, -2) + 'cch');   // prach → pracch
-    if (/ai$/.test(id)) tries.push(id.slice(0, -2) + 'ā');
-    for (const t of tries) if (DP.has(t)) return DP.get(t);
+    for (const t of citationsOf(id)) if (DP.has(t)) return DP.get(t);
     return null;
   };
   const notAttested = new Set(dhatupatha.notAttested || []);
@@ -239,8 +270,64 @@ function load() {
     cautions.set(c.iast, c);
   });
 
-  return { problems, sources, roots, byRoot, compounds, opaque,
-           category, cautions, home, dhatupatha };
+  /* 4. a curated derivation is verified before it is trusted -------------
+     nirukti.json carries the traditional derivations the rules cannot
+     confirm — kṛṣṇa from √kṛṣ, viṣṇu from √viṣ — where the epithet's gloss
+     and the root's sense share no word, so the automatic link (which
+     requires both the form and the meaning to agree) rightly stays silent.
+     Each entry names its root, says why the link holds, and cites a source;
+     and the root must be one the Dhātu-pāṭha or roots.json actually senses,
+     because a dhātu the popover cannot gloss is worse than none. */
+  /* A root neither canonical list senses may still stand behind a card —
+     √vadh has no present and no Dhātu-pāṭha row, yet vadha is its noun — so
+     nirukti may carry the root itself, sense and source and all.  Only
+     where neither list already senses it: a second wording of a root both
+     know would be two answers to one question. */
+  const niruktiRoots = new Map();
+  const senseless = id => {
+    if (byRoot.has(id) && byRoot.get(id).sense) return false;
+    if (niruktiRoots.has(id)) return false;
+    const ds = dpFind(id);
+    return !(ds && ds.some(d => d.sense));
+  };
+  (nir.roots || []).forEach(e => {
+    const at = `lexicon/nirukti.json √${e.id}`;
+    if (!e.id || !e.sense) { problems.push(`${at}: a root entry needs id and sense`); return; }
+    sourced(at, { sense: e.source });
+    if (!senseless(e.id)) {
+      problems.push(`${at}: already sensed by the Dhātu-pāṭha or roots.json — say it there`);
+      return;
+    }
+    niruktiRoots.set(e.id, e);
+  });
+  const nirukti = new Map();
+  (nir.words || []).forEach(e => {
+    const at = `lexicon/nirukti.json ${e.iast}`;
+    if (!e.iast || !e.root) { problems.push(`${at}: an entry needs iast and root`); return; }
+    if (!e.why) problems.push(`${at}: a derivation with no reason given`);
+    sourced(at, { root: e.source });
+    if (senseless(e.root)) {
+      problems.push(`${at}: √${e.root} has no sense in the Dhātu-pāṭha or roots.json, `
+        + 'so the popover could name it but never gloss it');
+      return;
+    }
+    if (nirukti.has(key(e.iast))) { problems.push(`${at}: derived twice`); return; }
+    nirukti.set(key(e.iast), e);
+  });
+  const niruktiMembers = new Map();
+  (nir.members || []).forEach(e => {
+    const at = `lexicon/nirukti.json member ${e.member}`;
+    if (!e.member || !e.root) { problems.push(`${at}: an entry needs member and root`); return; }
+    sourced(at, { root: e.source });
+    if (senseless(e.root)) {
+      problems.push(`${at}: √${e.root} has no sense in the Dhātu-pāṭha or roots.json`);
+      return;
+    }
+    niruktiMembers.set(e.member, e.root);
+  });
+
+  return { problems, sources, roots, byRoot, compounds, opaque, category,
+           cautions, home, dhatupatha, nirukti, niruktiMembers, niruktiRoots };
 }
 
 /* ── the relationship index ─────────────────────────────────────────────
@@ -343,25 +430,45 @@ const shareSense = (a, b) => {
 };
 
 function rootFinder(lex) {
-  const dp = new Map();                       // id → the entry with a sense
+  /* Every sensed entry is filed under every spelling a card might write —
+     the Dhātu-pāṭha's citation AND its plain fold, so ṇaś's derivatives are
+     found under naś and kṝt's under kīrt.  The spellings of one root share
+     one group, or the same root would stand as two candidates and silence
+     itself as an ambiguity. */
+  const groups = new Map();                   // canonical plain id → group
+  const spell = new Map();                    // any spelling → its group
   lex.dhatupatha.roots.forEach(d => {
-    if (d.gana && d.sense && !dp.has(d.id)) dp.set(d.id, d);
+    if (!d.gana || !d.sense) return;
+    const plains = plainsOf(d.id);
+    let g = spell.get(plains[0]);
+    if (!g) {
+      g = { id: plains[0], senses: [] };
+      groups.set(g.id, g);
+      plains.forEach(p => { if (!spell.has(p)) spell.set(p, g); });
+    }
+    if (g.senses.indexOf(d.sense) < 0) g.senses.push(d.sense);
   });
   const taught = new Set(lex.roots.map(r => r.id));
+  /* Every sense the root is attested in — the curriculum's own wording AND
+     each of the Dhātu-pāṭha's homonymous entries.  hari is √hṛ, and the
+     match is in the extract's "to take, remove, steal" even though the
+     curriculum words the root "to take, carry": one attested sense agreeing
+     is agreement, and only one root may have it. */
   const senseOf = id => {
     const r = lex.roots.find(x => x.id === id);
-    return r ? r.sense : (dp.get(id) || {}).sense;
+    const g = spell.get(id);
+    return [r && r.sense, ...(g ? g.senses : [])].filter(Boolean).join('; ');
   };
-  const made = derive.indexOf([...dp.keys()]);
+  const made = derive.indexOf([...spell.keys()]);
   return function find(word, gloss) {
     const cands = made.get(word);
     if (!cands) return null;
-    const ids = [...new Set(cands.map(c => c.root))];
+    const ids = [...new Set(cands.map(c => spell.get(c.root).id))];
     for (const pool of [ids.filter(i => taught.has(i)), ids.filter(i => !taught.has(i))]) {
       const agree = pool.filter(i => shareSense(senseOf(i), gloss));
       if (agree.length === 1) {
         return { root: agree[0], sense: senseOf(agree[0]),
-                 suffix: cands.find(c => c.root === agree[0]).suffix };
+                 suffix: cands.find(c => spell.get(c.root).id === agree[0]).suffix };
       }
       if (agree.length > 1) return null;      // two equals — say nothing
     }
@@ -409,32 +516,71 @@ function clueFor(entry, card) {
   return null;
 }
 
-function addClues(lex, ix, lessons) {
+/* Whether a deck is a vocabulary list: its pair answers with a MEANING.
+   This is the one definition of "vocabulary" the layer has — the clue pass,
+   the tooltip guarantee and the tests all read it, so they cannot drift. */
+function isVocabDeck(d) {
+  const want = (d.pair || 'word → meaning').split(' → ')[1];
+  return ['meaning', 'definition', 'sense'].includes(want);
+}
+
+/* The root the layer can establish for a card beyond what the curriculum
+   states — nirukti's curated derivation first, then the rules (form rebuilt
+   AND sense agreeing).  One function, used both to WRITE the clue and to
+   CHECK that every card that could carry one does, so the two cannot
+   disagree. */
+function establishedRoot(lex, findRoot, c) {
+  if (/√/.test(c.note || '') || /√/.test(c.gloss || '')) return null;
+  /* a root's own card is not a vocabulary word — "from √sthā" on √sthā
+     would explain the thing by itself */
+  if (/^√/.test(String(c.iast || '').trim())) return null;
+  /* a headword may offer alternatives — nāśa / vināśa — and the FIRST is
+     the one the chip describes, so the first must be the one that resolves:
+     a root true only of a later alternative would sit under the wrong word.
+     And a later alternative that resolves to a DIFFERENT root makes any
+     clue a half-truth, so it silences it. */
+  const words = String(c.iast || '').trim().split(/\s*\/\s*/).filter(Boolean);
+  if (!words.length) return null;
+  const resolve = (w, gloss) => {
+    for (const st of stems(w)) {
+      const cur = lex.nirukti.get(st);
+      if (cur) return { root: cur.root };
+      const f = findRoot(st, gloss);
+      /* a curādi root spelt like its own noun — rūpa, √rūpa — explains the
+         thing by itself, which is no explanation */
+      if (f && f.root !== st) return f;
+    }
+    return null;
+  };
+  if (words.some(w => /[\s+]/.test(w))) return null;
+  const found = resolve(words[0], c.gloss);
+  if (!found) return null;
+  for (const w of words.slice(1)) {
+    const f = resolve(w, c.gloss);
+    if (f && f.root !== found.root) return null;
+  }
+  return found;
+}
+
+function addClues(lex, ix, lessons, findRoot) {
   let n = 0;
-  const findRoot = rootFinder(lex);
   lessons.forEach(L => {
     L.decks.forEach(d => {
       /* A clue belongs where the word is being learnt as vocabulary, and the
-         deck's own pair says whether it is: a list that answers with a
-         MEANING is one.  A paradigm cell answers with an analysis, a sandhi
-         rule with a join, and a compound list with its vigraha — where a
-         clue naming the parts would hand over the answer. */
-      const want = (d.pair || 'word → meaning').split(' → ')[1];
-      if (!['meaning', 'definition', 'sense'].includes(want)) return;
+         deck's own pair says whether it is.  A paradigm cell answers with an
+         analysis, a sandhi rule with a join, and a compound list with its
+         vigraha — where a clue naming the parts would hand over the answer. */
+      if (!isVocabDeck(d)) return;
       d.cards.forEach(c => {
       if ((c.type || 'reveal') !== 'reveal') return;
       const e = ix.find(c.iast || '');
       if (e && e.opaque) return;
       let clue = e ? clueFor(e, c) : null;
-      /* Nothing the curriculum states reached this card.  The rules may still
-         establish its root — and only if the senses agree. */
-      if (!clue && !/√/.test(c.note || '')) {
-        const w = (c.iast || '').trim();
-        /* one word, and not a verb form that already names its own root */
-        if (w && !/[\s+]/.test(w) && !/√/.test(c.gloss || '')) {
-          const f = findRoot(key(w), c.gloss);
-          if (f) clue = 'from √' + f.root;
-        }
+      /* Nothing the curriculum states reached this card.  A curated
+         derivation or the rules may still establish its root. */
+      if (!clue) {
+        const f = establishedRoot(lex, findRoot, c);
+        if (f) clue = 'from √' + f.root;
       }
       if (!clue) return;
       /* A card that already said "from bhaga" and now gets "bhaga + -vatī"
@@ -771,7 +917,8 @@ function apply(lessons) {
   if (problems.length) return { problems };
 
   const ix = index(lex, lessons);
-  const clued = addClues(lex, ix, lessons) + clueAnswers(lex, ix, lessons);
+  const findRoot = rootFinder(lex);
+  const clued = addClues(lex, ix, lessons, findRoot) + clueAnswers(lex, ix, lessons);
   const roots = enrichRoots(lex, lessons);
 
   const made = [];
@@ -813,9 +960,75 @@ function apply(lessons) {
     });
   }));
 
-  return { problems, clued, roots, made, glossary: glossary(lex),
-           words: ix.of.size, chains: roots.chains };
+  /* ── the tooltip guarantee ─────────────────────────────────────────────
+     Every vocabulary card whose dhātu the layer can establish carries it,
+     and no card ever names a root its own popover cannot gloss.  The chip
+     stays form-only — `from √kṛṣ` — and the MEANING lives in the popover,
+     which is exactly the division the app is built on.  Checked here, at
+     build time, so no future change to the lessons, the lexicon or this
+     file can quietly ship a vocabulary round that lost its roots. */
+  const glossed = glossary(lex, findRoot);
+  let rooted = 0;
+  lessons.forEach(L => L.decks.forEach(d => {
+    if (!isVocabDeck(d)) return;
+    d.cards.forEach(c => {
+      if ((c.type || 'reveal') !== 'reveal') return;
+      const at = `"${d.name}" ${c.iast}`;
+      const said = tooltipRoot(glossed, c.note);
+      if (said && !(glossed.roots[said] && glossed.roots[said].sense)) {
+        problems.push(`${at}: the chip names √${said}, which the popover cannot gloss — `
+          + 'a dhātu is never shown without its meaning');
+        return;
+      }
+      if (said) { rooted++; return; }
+      const could = establishedRoot(lex, findRoot, c);
+      if (could) {
+        problems.push(`${at}: √${could.root} is established for this card but the chip `
+          + 'does not carry it — every vocabulary card that can name its dhātu must');
+      }
+    });
+  }));
+  if (rooted < TOOLTIP_ROOT_FLOOR) {
+    problems.push(`the tooltip guarantee: ${rooted} vocabulary cards carry their dhātu, `
+      + `below the floor of ${TOOLTIP_ROOT_FLOOR} — a change has cost cards their roots. `
+      + 'Restore the links; the floor in scripts/lexicon.js only ever moves up.');
+  }
+  /* a curated derivation no card uses is dead data, and dead data drifts */
+  lex.nirukti.forEach((e, k) => {
+    const used = lessons.some(L => L.decks.some(d => isVocabDeck(d)
+      && d.cards.some(c => (c.note || '').includes('from √' + e.root)
+        && String(c.iast || '').split(/\s*\/\s*/)
+             .some(w => stems(w).includes(k)))));
+    if (!used) problems.push(`lexicon/nirukti.json ${e.iast}: no vocabulary card carries it`);
+  });
+
+  return { problems, clued, roots, made, glossary: glossed,
+           words: ix.of.size, chains: roots.chains, rooted };
 }
+
+/* What the popover would say a card's root is, reading the annotation the
+   way app.js reads it: a √ in the chip, or failing that a compound member
+   the glossary can chain to its root.  Kept in step with `readAnnotation`
+   in app/app.js — the test suite opens the real popover to prove it. */
+function tooltipRoot(glossed, note) {
+  const t = String(note || '');
+  const m = t.match(/√([^\s·]+)/);
+  if (m) return m[1];
+  const cx = t.match(/(?:^|·\s*)([^·]*?\s\+\s[^·]*?)(?:\s+—\s+([^·]+))?(?=\s*·|$)/);
+  if (cx && !/√/.test(cx[1])) {
+    for (const w of cx[1].split(/\s*\+\s*/)) {
+      const mm = w.trim();
+      if (mm && glossed.members[mm] && glossed.from[mm]) return glossed.from[mm];
+    }
+  }
+  return null;
+}
+
+/* The floor under the tooltip guarantee: how many vocabulary cards carry
+   their dhātu.  It records what has been achieved so a regression fails the
+   build; raise it when coverage genuinely grows, never lower it to make a
+   build pass. */
+const TOOLTIP_ROOT_FLOOR = 226;
 
 /* ── what the card's own annotation can be asked about ────────────────
    The chip already reads "kāma + akṣi — loving-eyed" and "· from √hṛ", and
@@ -833,7 +1046,7 @@ function apply(lessons) {
    A member with two attested senses keeps both, separated as the cards
    separate them — `pati` is husband and lord, and choosing one would make
    half the compounds that use it read wrongly. */
-function glossary(lex) {
+function glossary(lex, findRoot) {
   const parts = {};
   lex.compounds.forEach(c => c.parts.forEach(p => {
     const at = parts[p.iast] = parts[p.iast] || [];
@@ -846,30 +1059,67 @@ function glossary(lex) {
   /* Every root the Dhātu-pāṭha names, so a card clued with one can always be
      asked about.  888 short entries — the page carries the whole list rather
      than a subset, because a clue that cannot be explained is worse than no
-     clue.  The curriculum's own wording wins where it has one. */
+     clue.  Three rules govern an entry:
+     - a root with homonymous entries keeps every distinct sense, as a
+       compound member keeps both of its (kāma is love AND desire): viṣ is
+       "to sprinkle; to pervade", and choosing one would gloss viṣṇu wrongly;
+     - each entry is filed under every spelling a card may write — the
+       citation and its plain fold — so √naś and √kīrt gloss although the
+       extract files ṇaś and kṝt;
+     - the curriculum's own wording wins where it has one. */
   const PADA = { P: 'parasmaipada', A: 'ātmanepada', U: 'both padas' };
   lex.dhatupatha.roots.forEach(d => {
-    if (!d.sense || roots[d.id]) return;
-    roots[d.id] = { sense: d.sense, gana: d.gana, pada: PADA[d.pada] || d.pada,
-                    present: d.present };
+    if (!d.sense) return;
+    plainsOf(d.id).forEach(id => {
+      const at = roots[id];
+      if (!at) {
+        roots[id] = { sense: d.sense, gana: d.gana, pada: PADA[d.pada] || d.pada,
+                      present: d.present };
+      } else {
+        /* joined sense by sense, not entry by entry: kṛṣ is "to plough" and
+           "to plough; to pull, attract", and the join is "to plough; to
+           pull, attract" — never the same sense twice */
+        d.sense.split('; ').forEach(s => {
+          if (at.sense.split('; ').indexOf(s) < 0) at.sense += '; ' + s;
+        });
+      }
+    });
   });
   lex.roots.forEach(r => {
     roots[r.id] = { sense: r.sense, gana: r.gana, pada: r.pada, present: r.present };
   });
+  /* and the roots nirukti itself carries, for the few — √vadh — that stand
+     behind a card but outside both canonical lists */
+  lex.niruktiRoots.forEach((e, id) => {
+    if (!roots[id]) roots[id] = { sense: e.sense };
+  });
   /* And where a member is itself a word grown from a root, the popover can
      carry the last step of the derivation too: saras is a member of
      sarasvatī, and saras is √sṛ's.  That is how a chain reaches a learner —
-     one link per section, each of them separately sourced. */
+     one link per section, each of them separately sourced.  The link comes
+     from roots.json where the curriculum states it, from nirukti.json where
+     tradition does, and from the rules — the member's own sense agreeing
+     with the root's — where they can establish it. */
   const from = {};
   lex.roots.forEach(r => (r.family || []).forEach(f => {
     const k = key(f.iast);
     if (members[k] && !from[k]) from[k] = r.id;
     if (members[f.iast] && !from[f.iast]) from[f.iast] = r.id;
   }));
+  lex.niruktiMembers.forEach((rid, m) => {
+    if (members[m] && !from[m]) from[m] = rid;
+  });
+  Object.keys(members).forEach(m => {
+    if (from[m] || /-/.test(m)) return;       // a suffix or prefix has no root
+    const f = findRoot(m, members[m]);
+    /* a curādi root spelt like its own noun — aṅka, √aṅka — is no chain */
+    if (f && f.root !== m && roots[f.root]) from[m] = f.root;
+  });
   return { members, roots, from };
 }
 
-module.exports = { apply, load, index, stems, key };
+module.exports = { apply, load, index, stems, key,
+                   isVocabDeck, tooltipRoot, TOOLTIP_ROOT_FLOOR };
 
 if (require.main === module) {
   const { problems } = load();

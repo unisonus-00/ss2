@@ -4213,6 +4213,65 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
+  // ── the tooltip guarantee ─────────────────────────────────────────
+  // Every vocabulary card whose dhātu the layer can establish carries it,
+  // and the popover always has the MEANING behind the form: the chip says
+  // `from √kṛṣ` and the popover says what √kṛṣ means, off the Dhātu-pāṭha.
+  // The build enforces this (scripts/lexicon.js fails on a regression);
+  // this proves the shipped page and the real popover agree with it.
+  {
+    const FLOOR = require('./lexicon').TOOLTIP_ROOT_FLOOR;
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const out = { naked: [], rooted: 0 };
+      const vocab = n => ['meaning', 'definition', 'sense']
+        .includes((DECK_PAIR[n] || 'word → meaning').split(' → ')[1]);
+      Object.keys(DECKS).forEach(n => DECKS[n].forEach(c => {
+        /* the annotation is read exactly as the popover reads it */
+        const parts = readAnnotation(c.note || '');
+        const root = parts.find(x => x.kind === 'root');
+        if (root && !(LEXICON.roots[root.id] && LEXICON.roots[root.id].sense)) {
+          out.naked.push(c.id + ' names ' + root.value);
+        }
+        if (!vocab(n) || (c.type || 'reveal') !== 'reveal') return;
+        const chained = parts.some(x => x.kind === 'member' && LEXICON.from[x.value]);
+        if (root || chained) out.rooted++;
+      }));
+
+      /* and the popover itself: the god names of the very first list carry
+         their dhātu with its meaning — form on the chip, sense behind it */
+      const card = { devanagari: 'कृष्णः', iast: 'kṛṣṇaḥ', gloss: 'the dark one',
+                     note: 'noun · masculine · a-stem · stem: kṛṣṇa- · from √kṛṣ' };
+      startRound([card], {}); reveal();
+      openPop(document.querySelector('#tag .ann'));
+      const heads = [...document.querySelectorAll('#pop .sec-t')].map(e => e.textContent);
+      const at = heads.indexOf('√kṛṣ');
+      out.pop = at < 0 ? '(no √kṛṣ section)'
+        : document.querySelectorAll('#pop .sec-e')[at].textContent;
+
+      /* the chain form of the same promise: a compound member's root and
+         sense reach the popover — durgā is hard to GO through, √gam */
+      const dc = { devanagari: 'दुर्गा', iast: 'durgā', gloss: 'the unassailable',
+                   note: 'noun · feminine · ā-stem · stem: durgā- · dur- + ga — hard to go through' };
+      startRound([dc], {}); reveal();
+      openPop(document.querySelector('#tag .ann'));
+      out.chain = [...document.querySelectorAll('#pop .eg-iast')].map(e => e.textContent).join(' ');
+      out.chainSense = [...document.querySelectorAll('#pop .eg-tr')].map(e => e.textContent).join(' ');
+
+      return out;
+    });
+    ok('no card anywhere names a root the popover cannot gloss',
+      !r.naked.length, r.naked.slice(0, 4).join(' | '));
+    ok('the vocabulary cards carrying their dhātu hold the build’s floor',
+      r.rooted >= FLOOR, r.rooted + ' rooted, floor ' + FLOOR);
+    ok('the popover glosses √kṛṣ under kṛṣṇa with the Dhātu-pāṭha’s sense',
+      /plough/.test(r.pop), r.pop);
+    ok('a compound member chains to its root and sense in the popover',
+      /√gam/.test(r.chain) && /to go/.test(r.chainSense),
+      r.chain + ' · ' + r.chainSense);
+    await p.close();
+  }
+
   // ── a stem is a stem ──────────────────────────────────────────────
   // "stem: sāvarṇiḥ-" is a citation form with a hyphen after it, not a stem,
   // and the chip is the one place on the card that claims to say what the

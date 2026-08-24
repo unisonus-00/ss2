@@ -9,7 +9,11 @@ so that a lesson can use them without a second copy being written into it.
 ```
 roots.json      52 verbal roots — sense, semantic development, family,
                 upasarga family
+dhatupatha.json the Dhātu-pāṭha entire — 1,159 entries over 888 roots, the
+                canonical source for what a root means (see scripts/dhatupatha.js)
 compounds.json  87 words readable off their parts, and 32 deliberately not
+nirukti.json    traditional derivations the rules cannot confirm — kṛṣṇa from
+                √kṛṣ — hand-checked, each saying why and citing where
 synonyms.json   how the reference's 12 synonym sets are to be read
 sources.json    what a `source` id means
 ```
@@ -82,3 +86,24 @@ Nothing is generated that the data does not support, and the generator drops a
 card rather than guess: see `scripts/lexicon.js` for the checks, which include
 refusing any card whose English cue would have more than one right Sanskrit
 answer.
+
+## The tooltip guarantee
+
+Every vocabulary card whose dhātu this layer can establish carries it, and a
+dhātu is never shown without its meaning. The division of labour is fixed:
+the **chip** carries the form alone — `from √kṛṣ` — and the **popover**
+carries the meaning, taken from the Dhātu-pāṭha (or the curriculum, where it
+words the root itself). A link comes from one of three places, in order:
+
+1. the curriculum — `roots.json` families and prefix families;
+2. the rules — `scripts/derive.js` must rebuild the headword exactly AND the
+   root's sense must share a word with the card's gloss, both always;
+3. `nirukti.json` — the traditional derivation, hand-checked and sourced, for
+   the names whose gloss is an epithet the root's sense can never share a
+   word with.
+
+`scripts/lexicon.js` **fails the build** if a card names a root the popover
+cannot gloss, if a card that could carry its root ships without it, or if the
+count of vocabulary cards carrying their dhātu falls below the recorded floor
+(`TOOLTIP_ROOT_FLOOR`) — so no future change can quietly lose this. The floor
+only ever moves up.

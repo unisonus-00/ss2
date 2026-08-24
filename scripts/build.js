@@ -373,6 +373,7 @@ console.log(
 if (lex && lex.made) {
   console.log(
     `       lexicon: ${lex.words} words indexed · ${lex.clued} cards clued · ` +
+    `${lex.rooted} vocabulary cards carry their dhātu · ` +
     `${lex.roots.n} roots enriched, ${lex.chains} with a sense chain · ` +
     lex.made.map(m => `${m.cards} ${m.name.split(' — ')[0]}`).join(', ')
   );

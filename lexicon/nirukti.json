@@ -1,0 +1,81 @@
+{
+ "note": "Traditional derivations (vyutpatti) the rules cannot confirm. The automatic link in scripts/lexicon.js requires the root's sense and the card's gloss to share a word, and for a divine name glossed as an epithet — kṛṣṇa, 'the dark one' — they never will, however sound the derivation. What tradition itself states goes here instead: hand-checked, one root per word, each entry saying why the link holds and citing where it is recorded. The chip carries only the form (`from √kṛṣ`); the meaning comes from the Dhātu-pāṭha in the popover, so nothing written here can drift from the canonical sense. `members` links a compound member to its root the same way, for the popover's chain. `roots` carries the rare root that stands behind a card but has no row in the Dhātu-pāṭha and no entry in roots.json — with its own sense, sourced.",
+ "words": [
+  {
+   "iast": "kṛṣṇa",
+   "root": "kṛṣ",
+   "why": "the tradition derives the name from √kṛṣ, to draw or plough — he who draws all to himself; the Mahābhārata states the vyutpatti and Monier-Williams records the connection",
+   "source": "traditional"
+  },
+  {
+   "iast": "viṣṇu",
+   "root": "viṣ",
+   "why": "Monier-Williams derives the name from √viṣ, to pervade — the card's own gloss, the all-pervading, is this derivation",
+   "source": "traditional"
+  },
+  {
+   "iast": "śiva",
+   "root": "śī",
+   "why": "the Uṇādi-sūtras derive the name from √śī, to lie — he in whom all things lie; recorded by Monier-Williams",
+   "source": "traditional"
+  },
+  {
+   "iast": "rudra",
+   "root": "rud",
+   "why": "Monier-Williams derives the name from √rud, to cry, howl — the card's own gloss, the howler, is this derivation",
+   "source": "traditional"
+  },
+  {
+   "iast": "lakṣmī",
+   "root": "lakṣ",
+   "why": "the Uṇādi-sūtras derive the name from √lakṣ, to perceive, mark — she who is marked, the sign of fortune; recorded by Monier-Williams",
+   "source": "traditional"
+  },
+  {
+   "iast": "bhavānī",
+   "root": "bhū",
+   "why": "the feminine of Bhava, the Existent — a name of Śiva from √bhū that the card's own gloss points at",
+   "source": "traditional"
+  },
+  {
+   "iast": "mokṣa",
+   "root": "muc",
+   "why": "muc + -sa — the rules rebuild mukti beside it but not this s-formation; Monier-Williams files mokṣa under √muc, to release",
+   "source": "traditional"
+  },
+  {
+   "iast": "pavitra",
+   "root": "pū",
+   "why": "pū + -itra, the instrument suffix the rules do not carry — Monier-Williams files pavitra, the purifier, under √pū",
+   "source": "traditional"
+  }
+ ],
+ "members": [
+  {
+   "member": "ga",
+   "root": "gam",
+   "why": "ga at the end of a compound is 'going', the bare root gam as Monier-Williams files it — durgā is hard to GO through",
+   "source": "mw"
+  },
+  {
+   "member": "īśvarī",
+   "root": "īś",
+   "why": "īśvara, the one able to rule, is √īś with -vara on it, and īśvarī its feminine — Monier-Williams files both under the root",
+   "source": "mw"
+  }
+ ],
+ "roots": [
+  {
+   "id": "vadh",
+   "sense": "to strike, slay",
+   "why": "no present and no Dhātu-pāṭha row — the classical language conjugates han and keeps vadh for the aorist — but vadha is its noun and Monier-Williams carries the root",
+   "source": "mw"
+  },
+  {
+   "id": "dhan",
+   "sense": "to cause to run or move quickly",
+   "why": "not in this Dhātu-pāṭha's list; Monier-Williams carries it (cl. 3, dadhanti) and derives dhanus, the bow, from it",
+   "source": "mw"
+  }
+ ]
+}
