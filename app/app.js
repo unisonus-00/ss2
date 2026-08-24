@@ -1460,6 +1460,14 @@ function syncNav() {
     'Study \u00b7 ' + LESSON_LABEL[DECK_LESSON[deckName]] + ' reference';
 }
 
+/* The practice screen is laid out for a thumb — the card takes the height
+   going spare and the tray sits at the foot of the screen — and that only
+   makes sense while a card is actually showing.  Every surface that shows or
+   hides the card says so here. */
+function practising(on) {
+  document.body.classList.toggle('practising', !!on);
+}
+
 function fillRow(el, parts) {
   Object.entries(parts).forEach(([sel, text]) => {
     const t = el.querySelector(sel);
@@ -1503,6 +1511,47 @@ function rowButton(cls, { name, pct, sub, full, on, bar, title }) {
   return b;
 }
 
+/* ── finding a list ─────────────────────────────────────────
+   176 lists under five tracks, and a learner who remembers a name should not
+   have to know which track holds it.  The query narrows the drawer to the
+   lists it matches; it replaces nothing, and it is empty every time the
+   drawer is opened.
+
+   Matched without diacritics, both ways round, because the names are IAST and
+   a phone keyboard does not carry ā, ṛ or ṣ: `vrtta` has to find `Vṛtta`.
+   NFD splits every one of them into a letter and a combining mark, so
+   dropping the marks is the whole rule. */
+let dQuery = '';
+const fold = s => (s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+
+/* A list matches on anything that names it in the drawer — its own head and
+   descriptor, and the group and track it is drawn under, so `rūpa` finds the
+   unit's lists and `ritual` finds Pūjā-Vāk's. */
+function deckMatches(name, q) {
+  const g = GROUP_OF.get(name), t = trackOfDeck(name);
+  return fold([DECK_SHORT(name), name, DECK_DESC(name),
+               g && g.label, g && g.gloss, LESSON_LABEL[DECK_LESSON[name]],
+               t.name, t.gloss].filter(Boolean).join(' ')).includes(q);
+}
+
+/* The results, in curriculum order, each saying where it lives.  Flat rather
+   than a filtered tree: a tree with one list left in it is three headings and
+   a row, and the headings are what the learner was trying to skip. */
+function renderFound(host, q) {
+  const hits = [];
+  TRACK_ROWS.forEach(row => row.groups.forEach(g => g.decks.forEach(name => {
+    if (deckMatches(name, q)) hits.push([name, g, row.track]);
+  })));
+  const head = document.createElement('div');
+  head.className = 'dr-found';
+  head.textContent = hits.length ? count(hits.length, 'list') + ' found'
+                                 : 'No list matches that';
+  host.appendChild(head);
+  hits.forEach(([name, g, t]) => host.appendChild(deckRow(name, 'dk',
+    /* a track whose one group carries its own name would say it twice */
+    g.label === t.name ? t.name : t.name + ' \u00b7 ' + g.label)));
+}
+
 /* A list, drawn at whatever level it has been folded up to. */
 /* The one list `Continue` would open in each track: the first unfinished one
    in recommendation order.  Marked rather than enforced — every other list
@@ -1524,7 +1573,10 @@ function recommendedSet() {
   return recCache;
 }
 
-function deckRow(name, cls) {
+/* `where` names the group a list sits in, and is passed only when the row is
+   drawn away from it — a search result has to say where it lives, since the
+   headings that would have said so are exactly what the filter took away. */
+function deckRow(name, cls, where) {
   cls = cls || 'dk';
   const p = progressOf(DECK_IDS[name]);
   const b = rowButton(cls, {
@@ -1533,7 +1585,7 @@ function deckRow(name, cls) {
        landing card */
     on: name === deckName && !deckLocked(name),
     bar: cls !== 'dk', title: name,
-    sub: [DECK_DESC(name), DECKS[name].length + ' cards',
+    sub: [where, DECK_DESC(name), DECKS[name].length + ' cards',
           allRetained(DECK_IDS[name]) ? 'retained'
             : confirmingIn(DECK_IDS[name])
               ? confirmingIn(DECK_IDS[name]) + ' to confirm' : ''
@@ -1664,6 +1716,11 @@ function renderDrawer() {
 
   const host = $('dr-tracks');
   host.innerHTML = '';
+  /* A query narrows the drawer to what it matches.  The tracks are still
+     what the drawer IS — this is a way through them, not a second
+     navigation, so it draws the same rows and nothing else. */
+  const q = fold(dQuery.trim());
+  if (q) { renderFound(host, q); return; }
   TRACK_ROWS.forEach(row => {
     const t = row.track, open = openTracks.has(t.id);
     const only = soleLesson(row);
@@ -1704,12 +1761,15 @@ function renderDrawer() {
   });
 }
 
+const clearFind = () => { dQuery = ''; $('dr-q').value = ''; };
+
 function openDrawer() {
   closePop();
   /* Land on where you are rather than on a wall of shut headings: the track
      and lesson holding the current list are opened on the way in. */
   const g = GROUP_OF.get(deckName);
   if (g) { openTracks.add(trackIdOf(deckName)); openLessons.add(g.lesson); }
+  clearFind();                    // opening the drawer lands on the tracks
   renderDrawer();
   relabelAll();
   $('dveil').hidden = false;
@@ -1826,9 +1886,15 @@ function startRound(cards, opt) {
   else if (reviewing)     $('stage').textContent = "review \u00b7 " + cards.length + " cards you missed";
   $('review').style.display = 'none';
   $('card').style.display = 'flex';
+  practising(true);
   $('after').hidden = true;
   $('tally').style.visibility = 'visible';
   $('keys').hidden = false;
+  /* The toggles are hidden while the results screen is up, and a round can
+     start from there — from "Whole deck again" or from a review draw — so
+     they are given back here rather than only on the way out of a page. */
+  $('controls').hidden = false;
+  refreshPile();
   next();
 }
 
@@ -1970,6 +2036,7 @@ function showTrack(id) {
 /* everything a running card owns, put away */
 function quietChrome() {
   $('card').style.display = 'none';
+  practising(false);
   $('review').style.display = 'none';
   $('tally').style.visibility = 'hidden';
   $('grade').hidden = true;
@@ -2001,6 +2068,7 @@ function leavePage() {
   if (!on) return;
   relabelAll();                     // Study reappears if the lesson has a reference
   $('card').style.display = 'flex';
+  practising(true);
   $('tally').style.visibility = 'visible';
   $('keys').hidden = false;
   $('controls').hidden = false;
@@ -2238,7 +2306,10 @@ function pileCards() {
 }
 function refreshPile() {
   const n = pileCards().length;
-  $('pile').hidden = !n;
+  /* Not while the results screen is up: "practise the 7 missed last time" and
+     "Practise these 7 again" are the same round, in the same words, six inches
+     apart. */
+  $('pile').hidden = !n || !$('after').hidden;
   if (n) $('pile').textContent = "practise the " + n + " missed last time";
 }
 
@@ -3095,7 +3166,25 @@ function renderHandoff() {
     rev.textContent = 'Abhyāsa \u00b7 ' + dueLabel(due);
     rev.onclick = () => { leavePage(); startMixedReview(); };
   }
+
+  /* One next step, said once.  Four buttons of equal weight are four
+     decisions, and the useful one is decided by what has just happened: clear
+     up what was missed, else go on to the next list, else answer what Abhyāsa
+     has waiting, else run this one again.  That one is drawn full width and
+     first; the others stay, smaller, as the alternatives they are.  Nothing is
+     removed — the dead end this screen used to be is what the row is for. */
+  const lead = missed.length ? 'again-missed'
+             : onward       ? 'next-list'
+             : due          ? 'review-due'
+             : 'restart';
+  AFTER_BUTTONS.forEach(id => {
+    $(id).classList.toggle('lead', id === lead);
+    /* `primary` is the app's word for the button a screen is about, and on
+       this screen that is whichever one leads. */
+    $(id).classList.toggle('primary', id === lead);
+  });
 }
+const AFTER_BUTTONS = ['again-missed', 'next-list', 'restart', 'review-due', 'share'];
 
 function finish() {
   const total = roundSource.length;
@@ -3154,13 +3243,19 @@ function finish() {
   }
   bumpStreak();                       // a day with a round finished in it
   relabelAll();                       // a finished list may have opened the review
-  refreshPile();
   $('card').style.display = 'none';
+  practising(false);
   $('review').style.display = 'block';
   $('tally').style.visibility = 'hidden';
   $('grade').hidden = true;
   $('keys').hidden = true;
+  /* The toggles change how a card is shown, and none is — the same reason a
+     panel puts them away. */
+  $('controls').hidden = true;
   $('after').hidden = false;
+  /* after the results screen is up, so the pile button knows to stand down:
+     it offers the round this screen is already offering, in the same words */
+  refreshPile();
 
   const isReview = reviewing || mixed;
   $('r-title').textContent = trouble
@@ -3476,6 +3571,7 @@ function closePanel() {
   $('welcome').hidden = panelWas.welcome;
   $('trackcard').hidden = panelWas.trackcard;
   $('card').style.display = panelWas.card;
+  practising(panelWas.card !== 'none');
   $('review').style.display = panelWas.review;
   $('tally').style.visibility = panelWas.tally;
   $('grade').hidden = panelWas.grade;
@@ -3501,6 +3597,7 @@ function openPanel(which) {
   $('welcome').hidden = true;
   $('trackcard').hidden = true;
   $('card').style.display = 'none';
+  practising(false);
   $('review').style.display = 'none';
   $('tally').style.visibility = 'hidden';
   $('grade').hidden = true;
@@ -3629,6 +3726,15 @@ $('again-missed').addEventListener('click', () => {
   if (!missed.length) return;          // nothing to review — should be unreachable
   startRound([...missed], { review: true, mixed, trouble });   // only the ones marked "Didn't know it"
 });
+/* Typing narrows the tracks under it; the field itself is outside the part
+   of the drawer that is redrawn, so what is being typed survives the redraw. */
+$('dr-q').addEventListener('input', e => { dQuery = e.target.value; renderDrawer(); });
+/* Enter takes the first list found, which is what a search is for. */
+$('dr-q').addEventListener('keydown', e => {
+  if (e.key !== 'Enter' || !dQuery.trim()) return;
+  const first = $('dr-tracks').querySelector('.dk:not(:disabled)');
+  if (first) { e.preventDefault(); first.click(); }
+});
 $('nav').addEventListener('click', () => drawerOpen() ? closeDrawer() : openDrawer());
 $('dr-close').addEventListener('click', closeDrawer);
 $('dveil').addEventListener('click', closeDrawer);
@@ -3721,7 +3827,12 @@ document.addEventListener('keydown', e => {
     return;
   }
   if (drawerOpen()) {                    // the drawer is modal over the round
-    if (e.key === 'Escape') { e.preventDefault(); closeDrawer(); }
+    /* Escape undoes the last thing done: a query if there is one, the drawer
+       itself if there is not. */
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      if (dQuery) { clearFind(); renderDrawer(); } else closeDrawer();
+    }
     return;
   }
   const t = e.target.tagName;

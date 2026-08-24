@@ -220,8 +220,22 @@
   /* Abhyāsa is a way back to consolidation, not the thing this page is for:
      it takes the width it needs and the stage's own action takes the rest. */
   .w-actions #s-review { flex: 0 1 auto; font-size: .85rem; padding: .6rem .9rem; }
+  /* The card takes the height that is going spare.  It used to be a fixed
+     250px at the top of the screen: on a 390x844 phone that put the two
+     buttons pressed on every single card at 45% of the height and left some
+     400px of bare ground under them, with the exercise itself crammed into
+     the top half.  The floor is the old 250px, so a phone held sideways is
+     no worse than it was; the ceiling stops a desktop window stretching one
+     word down a whole screen; and the 20rem taken off is the chrome above
+     plus the tray below, so the tray lands at the foot of the screen rather
+     than past it.  min-height rather than a height or a flex-grow: a tall
+     choice card grows past it instead of being clipped by it.  The dvh line
+     wins where it parses, and mobile browsers are exactly where the URL bar
+     makes vh wrong. */
   .card {
-    min-height: 250px; display: flex; flex-direction: column;
+    min-height: clamp(250px, 100vh - 20rem, 520px);
+    min-height: clamp(250px, 100dvh - 20rem, 520px);
+    display: flex; flex-direction: column;
     justify-content: center; align-items: center;
     text-align: center; padding: 2rem 1.6rem; cursor: pointer; touch-action: manipulation;
   }
@@ -381,7 +395,28 @@
   .awards div { font-size: .9rem; line-height: 1.4; color: var(--patra); }
   .awards b { font-weight: 600; }
   .awards span { color: var(--faded); }
+  /* Everything under the card, in one column, so the whole of it can be held
+     at the foot of the screen.  During practice the tray keeps a constant
+     height and hugs its own bottom edge: the grade row appears in reserved
+     space when an answer is revealed, instead of pushing the toggles under
+     it down the screen. */
+  .tray { width: 100%; max-width: 440px;
+          display: flex; flex-direction: column; align-items: center; }
+  body.practising .tray { min-height: 10rem; justify-content: flex-end; }
+  /* The page ends at the tray while a card is up, so the generous bottom
+     padding the panels want would only push the grade row off a short
+     phone.  The inset keeps it clear of a home indicator. */
+  body.practising { padding-bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px)); }
+
   .actions { display: flex; gap: .7rem; margin-top: 1.4rem; flex-wrap: wrap; justify-content: center; }
+  /* ── the end of a round ────────────────────────────────────
+     Four buttons of equal weight are four decisions, and which one is useful
+     depends entirely on what just happened.  The one that does is drawn as a
+     row of its own, full width and first whatever its place in the markup;
+     the rest stay, smaller, as the alternatives they are. */
+  #after .lead { order: -1; flex: 1 0 100%; font-size: 1rem; min-height: 50px; }
+  #after button:not(.lead) { font-size: .82rem; min-height: 40px;
+                             padding: .45rem .9rem; }
   /* Starting over cannot be undone, so it is marked in the app's own colour
      for wrong — the same signal Test mode carries. */
   button.danger { color: var(--kumkuma-ink); border-color: var(--kumkuma); }
@@ -438,6 +473,9 @@
   button:focus-visible, .card:focus-visible { outline: 2px solid var(--kumkuma); outline-offset: 3px; }
   .stage { font-size: .66rem; letter-spacing: .1em;
            text-transform: uppercase; color: var(--faded); line-height: 1.55; }
+  /* silent while the card data is clean, and a 2.2rem margin on an empty
+     block is enough to make a phone scroll for nothing */
+  .validate:empty { display: none; }
   .validate { margin-top: 2.2rem; font-size: .7rem; letter-spacing: .1em;
               color: var(--faded); text-align: center; max-width: 440px; }
   .validate.bad { color: var(--kumkuma-ink); }
@@ -686,6 +724,22 @@
   .dm-name { display: block; font-size: .95rem; }
   .dm-sub { display: block; margin-top: .1rem; font-size: .69rem;
             font-style: italic; color: var(--faded); }
+
+  /* Narrowing the tree, not replacing it.  A search field rather than a row,
+     because it is the one thing in the drawer that is typed into. */
+  .dr-find {
+    display: block; width: 100%; min-height: 44px; margin: 0 0 .7rem;
+    padding: .5rem .7rem; border-radius: 2px;
+    background: transparent; color: var(--leaf);
+    border: 1px solid rgba(125,112,92,.55);
+    font-family: inherit; font-size: .9rem;
+  }
+  .dr-find:hover { border-color: var(--faded); }
+  .dr-find::placeholder { color: var(--faded); opacity: 1; }
+  .dr-find:focus-visible { outline: 2px solid var(--kumkuma); outline-offset: 2px; }
+  /* what the query found, in the drawer's own caption voice */
+  .dr-found { font-size: .66rem; letter-spacing: .12em; text-transform: uppercase;
+              color: var(--faded); margin: .2rem .2rem .5rem; }
 
   /* a track: its stage range, its name, what it covers, how much is back */
   .tr { border-bottom: 1px solid rgba(125,112,92,.3); }
@@ -1016,73 +1070,81 @@
     <div id="b-list"></div>
     <!-- Which build this is.  A bug report that cannot name the build it came
          from cannot be acted on, and several are in the wild at once. -->
-    <div class="b-build">build 19d3fad</div>
+    <div class="b-build">build 7b38178</div>
   </div>
 </div>
 
-<div class="actions" id="grade" hidden>
-  <!-- One bit each, and the most-tapped control in the app: the mark itself
-       rather than a sentence about it.  The glyph is decorative; the name a
-       screen reader reads is on the button. -->
-  <button id="miss" class="miss grade" aria-label="Didn't know it" title="Didn't know it"><span aria-hidden="true">✕</span></button>
-  <button id="knew" class="knew grade" aria-label="Knew it" title="Knew it"><span aria-hidden="true">✓</span></button>
-</div>
+<!-- Everything under the card, in one tray.  On a phone the card takes the
+     height that is going spare and this sits at the bottom of the screen,
+     where a thumb is: the grade buttons used to land at about 45% of the
+     height with 400px of bare ground beneath them.  The tray keeps a
+     constant height during practice, so revealing an answer brings the grade
+     row into reserved space rather than pushing the toggles down. -->
+<div class="tray">
+  <div class="actions" id="grade" hidden>
+    <!-- One bit each, and the most-tapped control in the app: the mark itself
+         rather than a sentence about it.  The glyph is decorative; the name a
+         screen reader reads is on the button. -->
+    <button id="miss" class="miss grade" aria-label="Didn't know it" title="Didn't know it"><span aria-hidden="true">✕</span></button>
+    <button id="knew" class="knew grade" aria-label="Knew it" title="Knew it"><span aria-hidden="true">✓</span></button>
+  </div>
 
-<!-- A choice or sequence card grades itself from what was tapped, so it needs
-     one button where a reveal card needs two. -->
-<div class="actions" id="graded-next" hidden>
-  <button id="g-next" class="primary">Next</button>
-</div>
+  <!-- A choice or sequence card grades itself from what was tapped, so it needs
+       one button where a reveal card needs two. -->
+  <div class="actions" id="graded-next" hidden>
+    <button id="g-next" class="primary">Next</button>
+  </div>
 
-<!-- Assembling is done entirely by tapping: no dragging, no typing. -->
-<div class="actions" id="seq-actions" hidden>
-  <button id="s-back">Back</button>
-  <button id="s-reset">Reset</button>
-  <button id="s-check" class="primary">Check</button>
-</div>
+  <!-- Assembling is done entirely by tapping: no dragging, no typing. -->
+  <div class="actions" id="seq-actions" hidden>
+    <button id="s-back">Back</button>
+    <button id="s-reset">Reset</button>
+    <button id="s-check" class="primary">Check</button>
+  </div>
 
-<!-- The two things a tester needs and a learner never touches: a copy of
-     their own state to send back, and a way to start over. -->
-<div class="actions" id="b-actions" hidden>
-  <button id="b-copy">Copy my progress</button>
-  <button id="b-reset" class="danger">Reset progress</button>
-</div>
+  <!-- The two things a tester needs and a learner never touches: a copy of
+       their own state to send back, and a way to start over. -->
+  <div class="actions" id="b-actions" hidden>
+    <button id="b-copy">Copy my progress</button>
+    <button id="b-reset" class="danger">Reset progress</button>
+  </div>
 
-<div class="actions" id="rp-actions" hidden>
-  <button id="rp-draw" class="primary"></button>
-</div>
+  <div class="actions" id="rp-actions" hidden>
+    <button id="rp-draw" class="primary"></button>
+  </div>
 
-<div class="actions" id="t-actions" hidden>
-  <button id="t-drill" class="primary">Practise these</button>
-  <button id="t-copy">Copy the list</button>
-</div>
+  <div class="actions" id="t-actions" hidden>
+    <button id="t-drill" class="primary">Practise these</button>
+    <button id="t-copy">Copy the list</button>
+  </div>
 
-<!-- The way out of a panel, and deliberately BELOW the panel's own action:
-     a window that describes a mode and then offers only "back" reads as
-     having nothing to start.  The mode's button leads; this follows it. -->
-<div class="actions" id="panel-back" hidden>
-  <button id="p-back">Back to the cards</button>
-</div>
+  <!-- The way out of a panel, and deliberately BELOW the panel's own action:
+       a window that describes a mode and then offers only "back" reads as
+       having nothing to start.  The mode's button leads; this follows it. -->
+  <div class="actions" id="panel-back" hidden>
+    <button id="p-back">Back to the cards</button>
+  </div>
 
-<!-- What to do next, in the order a learner wants it: clear up what was
-     missed, go on to the next list, run this one again, or answer what
-     Abhyāsa has waiting. -->
-<div class="actions" id="after" hidden>
-  <button id="again-missed" class="primary">Practise these again</button>
-  <button id="next-list" hidden></button>
-  <button id="restart">Whole deck again</button>
-  <button id="review-due" hidden></button>
-  <button id="share">Share score</button>
-</div>
+  <!-- What to do next.  Which one of these is useful depends on what has
+       just happened, so renderHandoff() marks that one `lead` and it is drawn
+       full width and first; the rest stay as the alternatives they are. -->
+  <div class="actions" id="after" hidden>
+    <button id="again-missed" class="primary">Practise these again</button>
+    <button id="next-list" hidden></button>
+    <button id="restart">Whole deck again</button>
+    <button id="review-due" hidden></button>
+    <button id="share">Share score</button>
+  </div>
 
-<!-- Below the card, centred: these change how a card is shown, so they
-     belong under the thing they change rather than above it. -->
-<div class="controls" id="controls">
-  <button id="dir" title="Tap to reverse"><span class="swap" aria-hidden="true">⇄</span><span id="dir-label">word → meaning</span></button>
-  <label class="check" for="iast-on"><input type="checkbox" id="iast-on" checked> IAST</label>
-</div>
+  <!-- Below the card, centred: these change how a card is shown, so they
+       belong under the thing they change rather than above it. -->
+  <div class="controls" id="controls">
+    <button id="dir" title="Tap to reverse"><span class="swap" aria-hidden="true">⇄</span><span id="dir-label">word → meaning</span></button>
+    <label class="check" for="iast-on"><input type="checkbox" id="iast-on" checked> IAST</label>
+  </div>
 
-<div class="keys" id="keys">tap / space — flip · 1 — didn't know · 2 — knew it</div>
+  <div class="keys" id="keys">tap / space — flip · 1 — didn't know · 2 — knew it</div>
+</div>
 
 <!-- Navigation: the five course tracks, each expanding to its lessons and
      their decks, with review, trouble and the scoreboard alongside.  A left
@@ -1142,6 +1204,13 @@
       <span class="dm-sub" id="dm-trouble">repeat offenders</span>
     </button>
   </div>
+
+  <!-- 176 lists live under the five tracks, and a learner who remembers a
+       name should not have to know which track holds it.  This narrows the
+       tree; it does not replace it, and it is empty every time the drawer
+       is opened. -->
+  <input id="dr-q" class="dr-find" type="search" autocomplete="off"
+         spellcheck="false" placeholder="Find a list" aria-label="Find a list">
 
   <div class="dr-tracks" id="dr-tracks"></div>
 </nav>
@@ -2631,6 +2700,14 @@ function syncNav() {
     'Study \u00b7 ' + LESSON_LABEL[DECK_LESSON[deckName]] + ' reference';
 }
 
+/* The practice screen is laid out for a thumb — the card takes the height
+   going spare and the tray sits at the foot of the screen — and that only
+   makes sense while a card is actually showing.  Every surface that shows or
+   hides the card says so here. */
+function practising(on) {
+  document.body.classList.toggle('practising', !!on);
+}
+
 function fillRow(el, parts) {
   Object.entries(parts).forEach(([sel, text]) => {
     const t = el.querySelector(sel);
@@ -2674,6 +2751,47 @@ function rowButton(cls, { name, pct, sub, full, on, bar, title }) {
   return b;
 }
 
+/* ── finding a list ─────────────────────────────────────────
+   176 lists under five tracks, and a learner who remembers a name should not
+   have to know which track holds it.  The query narrows the drawer to the
+   lists it matches; it replaces nothing, and it is empty every time the
+   drawer is opened.
+
+   Matched without diacritics, both ways round, because the names are IAST and
+   a phone keyboard does not carry ā, ṛ or ṣ: `vrtta` has to find `Vṛtta`.
+   NFD splits every one of them into a letter and a combining mark, so
+   dropping the marks is the whole rule. */
+let dQuery = '';
+const fold = s => (s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+
+/* A list matches on anything that names it in the drawer — its own head and
+   descriptor, and the group and track it is drawn under, so `rūpa` finds the
+   unit's lists and `ritual` finds Pūjā-Vāk's. */
+function deckMatches(name, q) {
+  const g = GROUP_OF.get(name), t = trackOfDeck(name);
+  return fold([DECK_SHORT(name), name, DECK_DESC(name),
+               g && g.label, g && g.gloss, LESSON_LABEL[DECK_LESSON[name]],
+               t.name, t.gloss].filter(Boolean).join(' ')).includes(q);
+}
+
+/* The results, in curriculum order, each saying where it lives.  Flat rather
+   than a filtered tree: a tree with one list left in it is three headings and
+   a row, and the headings are what the learner was trying to skip. */
+function renderFound(host, q) {
+  const hits = [];
+  TRACK_ROWS.forEach(row => row.groups.forEach(g => g.decks.forEach(name => {
+    if (deckMatches(name, q)) hits.push([name, g, row.track]);
+  })));
+  const head = document.createElement('div');
+  head.className = 'dr-found';
+  head.textContent = hits.length ? count(hits.length, 'list') + ' found'
+                                 : 'No list matches that';
+  host.appendChild(head);
+  hits.forEach(([name, g, t]) => host.appendChild(deckRow(name, 'dk',
+    /* a track whose one group carries its own name would say it twice */
+    g.label === t.name ? t.name : t.name + ' \u00b7 ' + g.label)));
+}
+
 /* A list, drawn at whatever level it has been folded up to. */
 /* The one list `Continue` would open in each track: the first unfinished one
    in recommendation order.  Marked rather than enforced — every other list
@@ -2695,7 +2813,10 @@ function recommendedSet() {
   return recCache;
 }
 
-function deckRow(name, cls) {
+/* `where` names the group a list sits in, and is passed only when the row is
+   drawn away from it — a search result has to say where it lives, since the
+   headings that would have said so are exactly what the filter took away. */
+function deckRow(name, cls, where) {
   cls = cls || 'dk';
   const p = progressOf(DECK_IDS[name]);
   const b = rowButton(cls, {
@@ -2704,7 +2825,7 @@ function deckRow(name, cls) {
        landing card */
     on: name === deckName && !deckLocked(name),
     bar: cls !== 'dk', title: name,
-    sub: [DECK_DESC(name), DECKS[name].length + ' cards',
+    sub: [where, DECK_DESC(name), DECKS[name].length + ' cards',
           allRetained(DECK_IDS[name]) ? 'retained'
             : confirmingIn(DECK_IDS[name])
               ? confirmingIn(DECK_IDS[name]) + ' to confirm' : ''
@@ -2835,6 +2956,11 @@ function renderDrawer() {
 
   const host = $('dr-tracks');
   host.innerHTML = '';
+  /* A query narrows the drawer to what it matches.  The tracks are still
+     what the drawer IS — this is a way through them, not a second
+     navigation, so it draws the same rows and nothing else. */
+  const q = fold(dQuery.trim());
+  if (q) { renderFound(host, q); return; }
   TRACK_ROWS.forEach(row => {
     const t = row.track, open = openTracks.has(t.id);
     const only = soleLesson(row);
@@ -2875,12 +3001,15 @@ function renderDrawer() {
   });
 }
 
+const clearFind = () => { dQuery = ''; $('dr-q').value = ''; };
+
 function openDrawer() {
   closePop();
   /* Land on where you are rather than on a wall of shut headings: the track
      and lesson holding the current list are opened on the way in. */
   const g = GROUP_OF.get(deckName);
   if (g) { openTracks.add(trackIdOf(deckName)); openLessons.add(g.lesson); }
+  clearFind();                    // opening the drawer lands on the tracks
   renderDrawer();
   relabelAll();
   $('dveil').hidden = false;
@@ -2997,9 +3126,15 @@ function startRound(cards, opt) {
   else if (reviewing)     $('stage').textContent = "review \u00b7 " + cards.length + " cards you missed";
   $('review').style.display = 'none';
   $('card').style.display = 'flex';
+  practising(true);
   $('after').hidden = true;
   $('tally').style.visibility = 'visible';
   $('keys').hidden = false;
+  /* The toggles are hidden while the results screen is up, and a round can
+     start from there — from "Whole deck again" or from a review draw — so
+     they are given back here rather than only on the way out of a page. */
+  $('controls').hidden = false;
+  refreshPile();
   next();
 }
 
@@ -3141,6 +3276,7 @@ function showTrack(id) {
 /* everything a running card owns, put away */
 function quietChrome() {
   $('card').style.display = 'none';
+  practising(false);
   $('review').style.display = 'none';
   $('tally').style.visibility = 'hidden';
   $('grade').hidden = true;
@@ -3172,6 +3308,7 @@ function leavePage() {
   if (!on) return;
   relabelAll();                     // Study reappears if the lesson has a reference
   $('card').style.display = 'flex';
+  practising(true);
   $('tally').style.visibility = 'visible';
   $('keys').hidden = false;
   $('controls').hidden = false;
@@ -3409,7 +3546,10 @@ function pileCards() {
 }
 function refreshPile() {
   const n = pileCards().length;
-  $('pile').hidden = !n;
+  /* Not while the results screen is up: "practise the 7 missed last time" and
+     "Practise these 7 again" are the same round, in the same words, six inches
+     apart. */
+  $('pile').hidden = !n || !$('after').hidden;
   if (n) $('pile').textContent = "practise the " + n + " missed last time";
 }
 
@@ -4266,7 +4406,25 @@ function renderHandoff() {
     rev.textContent = 'Abhyāsa \u00b7 ' + dueLabel(due);
     rev.onclick = () => { leavePage(); startMixedReview(); };
   }
+
+  /* One next step, said once.  Four buttons of equal weight are four
+     decisions, and the useful one is decided by what has just happened: clear
+     up what was missed, else go on to the next list, else answer what Abhyāsa
+     has waiting, else run this one again.  That one is drawn full width and
+     first; the others stay, smaller, as the alternatives they are.  Nothing is
+     removed — the dead end this screen used to be is what the row is for. */
+  const lead = missed.length ? 'again-missed'
+             : onward       ? 'next-list'
+             : due          ? 'review-due'
+             : 'restart';
+  AFTER_BUTTONS.forEach(id => {
+    $(id).classList.toggle('lead', id === lead);
+    /* `primary` is the app's word for the button a screen is about, and on
+       this screen that is whichever one leads. */
+    $(id).classList.toggle('primary', id === lead);
+  });
 }
+const AFTER_BUTTONS = ['again-missed', 'next-list', 'restart', 'review-due', 'share'];
 
 function finish() {
   const total = roundSource.length;
@@ -4325,13 +4483,19 @@ function finish() {
   }
   bumpStreak();                       // a day with a round finished in it
   relabelAll();                       // a finished list may have opened the review
-  refreshPile();
   $('card').style.display = 'none';
+  practising(false);
   $('review').style.display = 'block';
   $('tally').style.visibility = 'hidden';
   $('grade').hidden = true;
   $('keys').hidden = true;
+  /* The toggles change how a card is shown, and none is — the same reason a
+     panel puts them away. */
+  $('controls').hidden = true;
   $('after').hidden = false;
+  /* after the results screen is up, so the pile button knows to stand down:
+     it offers the round this screen is already offering, in the same words */
+  refreshPile();
 
   const isReview = reviewing || mixed;
   $('r-title').textContent = trouble
@@ -4647,6 +4811,7 @@ function closePanel() {
   $('welcome').hidden = panelWas.welcome;
   $('trackcard').hidden = panelWas.trackcard;
   $('card').style.display = panelWas.card;
+  practising(panelWas.card !== 'none');
   $('review').style.display = panelWas.review;
   $('tally').style.visibility = panelWas.tally;
   $('grade').hidden = panelWas.grade;
@@ -4672,6 +4837,7 @@ function openPanel(which) {
   $('welcome').hidden = true;
   $('trackcard').hidden = true;
   $('card').style.display = 'none';
+  practising(false);
   $('review').style.display = 'none';
   $('tally').style.visibility = 'hidden';
   $('grade').hidden = true;
@@ -4800,6 +4966,15 @@ $('again-missed').addEventListener('click', () => {
   if (!missed.length) return;          // nothing to review — should be unreachable
   startRound([...missed], { review: true, mixed, trouble });   // only the ones marked "Didn't know it"
 });
+/* Typing narrows the tracks under it; the field itself is outside the part
+   of the drawer that is redrawn, so what is being typed survives the redraw. */
+$('dr-q').addEventListener('input', e => { dQuery = e.target.value; renderDrawer(); });
+/* Enter takes the first list found, which is what a search is for. */
+$('dr-q').addEventListener('keydown', e => {
+  if (e.key !== 'Enter' || !dQuery.trim()) return;
+  const first = $('dr-tracks').querySelector('.dk:not(:disabled)');
+  if (first) { e.preventDefault(); first.click(); }
+});
 $('nav').addEventListener('click', () => drawerOpen() ? closeDrawer() : openDrawer());
 $('dr-close').addEventListener('click', closeDrawer);
 $('dveil').addEventListener('click', closeDrawer);
@@ -4892,7 +5067,12 @@ document.addEventListener('keydown', e => {
     return;
   }
   if (drawerOpen()) {                    // the drawer is modal over the round
-    if (e.key === 'Escape') { e.preventDefault(); closeDrawer(); }
+    /* Escape undoes the last thing done: a query if there is one, the drawer
+       itself if there is not. */
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      if (dQuery) { clearFind(); renderDrawer(); } else closeDrawer();
+    }
     return;
   }
   const t = e.target.tagName;

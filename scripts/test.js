@@ -5016,6 +5016,178 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
+  // ── the practice screen is laid out for a thumb ────────────────────
+  // The card was a fixed 250px at the top of the screen and the two buttons
+  // pressed on every card landed at about 45% of the height, with some 400px
+  // of bare ground under them.  The card takes the height going spare now and
+  // the tray sits at the foot of the screen.
+  {
+    for (const [w, h] of [[390, 844], [360, 640]]) {
+      const p = await browser.newPage({ viewport: { width: w, height: h } });
+      p.on('pageerror', e => { console.log('  PAGEERROR ' + e.message); fail.push('pageerror'); });
+      await p.goto(FILE, { waitUntil: 'load' });
+      /* a deck that flips: a choice card grades itself and shows no grade row */
+      await p.evaluate(() => loadDeck(Object.keys(DECKS).find(
+        n => DECKS[n].every(c => !c.type || c.type === 'reveal'))));
+      const r = await p.evaluate(() => {
+        const box = s => {
+          const e = document.querySelector(s);
+          return e && !e.hidden ? e.getBoundingClientRect() : null;
+        };
+        const read = () => ({
+          card: box('.panel').bottom,
+          grade: box('#grade') && box('#grade').top,
+          controls: box('.controls').top,
+          keys: box('.keys').bottom,
+        });
+        const front = read();
+        reveal();
+        const back = read();
+        return {
+          front, back,
+          view: window.innerHeight,
+          /* the whole practice screen fits: nothing a learner taps is below
+             the fold, and the page does not scroll to reach it */
+          scrolls: document.documentElement.scrollHeight > window.innerHeight + 1,
+          practising: document.body.classList.contains('practising'),
+        };
+      });
+      ok('the card takes the height going spare at ' + w + 'x' + h,
+        r.front.card > r.view * 0.5, 'card ends ' + Math.round(r.front.card)
+          + ' of ' + r.view);
+      ok('the grade buttons sit in the lower third at ' + w + 'x' + h,
+        r.back.grade > r.view * 0.66 && r.back.grade + 52 <= r.view,
+        'grade at ' + Math.round(r.back.grade) + ' of ' + r.view);
+      ok('the practice screen does not scroll at ' + w + 'x' + h, !r.scrolls);
+      /* revealing the answer must not move the controls under it: the tray
+         keeps a constant height and the grade row appears in reserved space */
+      ok('revealing an answer moves nothing under the card at ' + w + 'x' + h,
+        r.front.controls === r.back.controls && r.front.keys === r.back.keys,
+        r.front.controls + ' → ' + r.back.controls);
+      ok('the toggles still sit below the card at ' + w + 'x' + h,
+        r.back.controls > r.back.card && r.practising);
+      await p.close();
+    }
+
+    /* and the layout is a fact about what is on screen: a page, a panel or
+       the results screen is read rather than answered */
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const on = () => document.body.classList.contains('practising');
+      const out = { card: on() };
+      showWelcome();     out.welcome = on();
+      loadDeck(deckName); out.back = on();
+      openPanel('board'); out.panel = on();
+      closePanel();      out.closed = on();
+      while (current) knew();
+      out.results = on();
+      return out;
+    });
+    ok('the practice layout is on for a card and off for a page',
+      r.card && !r.welcome && r.back && !r.panel && r.closed && !r.results,
+      JSON.stringify(r));
+    await p.close();
+  }
+
+  // ── finding a list among 176 ───────────────────────────────────────
+  // A learner who remembers a name should not have to know which track holds
+  // it, and a phone keyboard does not carry ā, ṛ or ṣ.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const find = q => {
+        const el = document.getElementById('dr-q');
+        el.value = q;
+        el.dispatchEvent(new Event('input'));
+        return [...document.querySelectorAll('#dr-tracks .dk')].map(b => ({
+          name: b.querySelector('.dk-name').textContent,
+          sub: b.querySelector('.dk-sub').textContent,
+        }));
+      };
+      SAVED.guided = false;            // the gate is not what is under test
+      openDrawer();
+      const out = { tree: document.querySelectorAll('#dr-tracks .tr-head').length };
+      /* typed without diacritics, matched with them */
+      const bare = find('vrtta');
+      out.bare = bare.length === 1 && /^Vṛtta/.test(bare[0].name);
+      /* every hit says where it lives, since the headings that would have
+         said so are what the filter took away */
+      out.where = bare.length === 1 && bare[0].sub.startsWith('Kāvya-Racanā');
+      /* a track's own name and gloss find its lists */
+      out.byTrack = find('ritual').some(x => x.sub.startsWith('Pūjā-Vāk'));
+      out.none = find('zzzz').length === 0
+              && /No list matches/.test(document.querySelector('.dr-found').textContent);
+      out.count = (find('vrtta'), document.querySelector('.dr-found').textContent);
+      /* Enter takes the first list found */
+      const el = document.getElementById('dr-q');
+      el.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true, cancelable: true }));
+      out.opened = deckName;
+      /* and the drawer opens on the tracks every time, never on a stale query */
+      openDrawer();
+      out.reopened = document.getElementById('dr-q').value === ''
+                  && document.querySelectorAll('#dr-tracks .tr-head').length === out.tree
+                  && !document.querySelector('.dr-found');
+      return out;
+    });
+    ok('a list is found without its diacritics', r.bare);
+    ok('and says which track and group holds it', r.where);
+    ok('a track name finds the lists under it', r.byTrack);
+    ok('a query that matches nothing says so', r.none);
+    ok('the results are counted', /^1 list found$/.test(r.count), r.count);
+    ok('Enter opens the first list found', /Vṛtta/.test(r.opened), r.opened);
+    ok('the drawer opens on the tracks, never on a stale query', r.reopened);
+    await p.close();
+  }
+
+  // ── the end of a round leads with one thing ────────────────────────
+  // Four buttons of equal weight are four decisions, and which one is useful
+  // depends on what has just happened.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const state = () => ({
+        lead: [...document.querySelectorAll('#after .lead')].map(b => b.id),
+        shown: [...document.querySelectorAll('#after button')]
+                 .filter(b => !b.hidden).length,
+        /* the pile button offers the round this screen is already offering */
+        pile: !document.getElementById('pile').hidden,
+        /* the toggles change how a card is shown, and none is */
+        controls: document.getElementById('controls').hidden,
+      });
+      SAVED.mastered = {}; SAVED.decks = {};
+      beginHome(); beginTrack('bhasha');
+      const names = trackDecks(TRACK_ROWS.find(x => x.track.id === 'bhasha'));
+      const out = {};
+      /* a round with misses leads with clearing them up */
+      loadDeck(names[0]);
+      while (current) didntKnow();
+      out.missed = state();
+      /* a clean round has nothing to clear, so the next list leads */
+      loadDeck(names[1]);
+      while (current) knew();
+      out.clean = state();
+      /* and the toggles come back with the next round */
+      document.getElementById('restart').click();
+      out.playing = document.getElementById('controls').hidden;
+      return out;
+    });
+    ok('a round with misses leads with practising them',
+      r.missed.lead.length === 1 && r.missed.lead[0] === 'again-missed',
+      JSON.stringify(r.missed.lead));
+    ok('a clean round leads with the next list',
+      r.clean.lead.length === 1 && r.clean.lead[0] === 'next-list',
+      JSON.stringify(r.clean.lead));
+    ok('exactly one button leads, whatever else is offered',
+      r.missed.shown > 1 && r.clean.shown > 1,
+      r.missed.shown + ' and ' + r.clean.shown + ' offered');
+    ok('the missed pile stands down while the results offer the same round',
+      !r.missed.pile);
+    ok('the results screen puts the card toggles away',
+      r.missed.controls && r.clean.controls);
+    ok('and the next round gets them back', !r.playing);
+    await p.close();
+  }
+
   await browser.close();
   console.log(fail.length ? `\n${fail.length} FAILED: ${fail.join(', ')}` : '\nall checks passed');
   process.exit(fail.length ? 1 : 0);

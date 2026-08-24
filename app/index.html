@@ -235,69 +235,77 @@
   </div>
 </div>
 
-<div class="actions" id="grade" hidden>
-  <!-- One bit each, and the most-tapped control in the app: the mark itself
-       rather than a sentence about it.  The glyph is decorative; the name a
-       screen reader reads is on the button. -->
-  <button id="miss" class="miss grade" aria-label="Didn't know it" title="Didn't know it"><span aria-hidden="true">✕</span></button>
-  <button id="knew" class="knew grade" aria-label="Knew it" title="Knew it"><span aria-hidden="true">✓</span></button>
-</div>
+<!-- Everything under the card, in one tray.  On a phone the card takes the
+     height that is going spare and this sits at the bottom of the screen,
+     where a thumb is: the grade buttons used to land at about 45% of the
+     height with 400px of bare ground beneath them.  The tray keeps a
+     constant height during practice, so revealing an answer brings the grade
+     row into reserved space rather than pushing the toggles down. -->
+<div class="tray">
+  <div class="actions" id="grade" hidden>
+    <!-- One bit each, and the most-tapped control in the app: the mark itself
+         rather than a sentence about it.  The glyph is decorative; the name a
+         screen reader reads is on the button. -->
+    <button id="miss" class="miss grade" aria-label="Didn't know it" title="Didn't know it"><span aria-hidden="true">✕</span></button>
+    <button id="knew" class="knew grade" aria-label="Knew it" title="Knew it"><span aria-hidden="true">✓</span></button>
+  </div>
 
-<!-- A choice or sequence card grades itself from what was tapped, so it needs
-     one button where a reveal card needs two. -->
-<div class="actions" id="graded-next" hidden>
-  <button id="g-next" class="primary">Next</button>
-</div>
+  <!-- A choice or sequence card grades itself from what was tapped, so it needs
+       one button where a reveal card needs two. -->
+  <div class="actions" id="graded-next" hidden>
+    <button id="g-next" class="primary">Next</button>
+  </div>
 
-<!-- Assembling is done entirely by tapping: no dragging, no typing. -->
-<div class="actions" id="seq-actions" hidden>
-  <button id="s-back">Back</button>
-  <button id="s-reset">Reset</button>
-  <button id="s-check" class="primary">Check</button>
-</div>
+  <!-- Assembling is done entirely by tapping: no dragging, no typing. -->
+  <div class="actions" id="seq-actions" hidden>
+    <button id="s-back">Back</button>
+    <button id="s-reset">Reset</button>
+    <button id="s-check" class="primary">Check</button>
+  </div>
 
-<!-- The two things a tester needs and a learner never touches: a copy of
-     their own state to send back, and a way to start over. -->
-<div class="actions" id="b-actions" hidden>
-  <button id="b-copy">Copy my progress</button>
-  <button id="b-reset" class="danger">Reset progress</button>
-</div>
+  <!-- The two things a tester needs and a learner never touches: a copy of
+       their own state to send back, and a way to start over. -->
+  <div class="actions" id="b-actions" hidden>
+    <button id="b-copy">Copy my progress</button>
+    <button id="b-reset" class="danger">Reset progress</button>
+  </div>
 
-<div class="actions" id="rp-actions" hidden>
-  <button id="rp-draw" class="primary"></button>
-</div>
+  <div class="actions" id="rp-actions" hidden>
+    <button id="rp-draw" class="primary"></button>
+  </div>
 
-<div class="actions" id="t-actions" hidden>
-  <button id="t-drill" class="primary">Practise these</button>
-  <button id="t-copy">Copy the list</button>
-</div>
+  <div class="actions" id="t-actions" hidden>
+    <button id="t-drill" class="primary">Practise these</button>
+    <button id="t-copy">Copy the list</button>
+  </div>
 
-<!-- The way out of a panel, and deliberately BELOW the panel's own action:
-     a window that describes a mode and then offers only "back" reads as
-     having nothing to start.  The mode's button leads; this follows it. -->
-<div class="actions" id="panel-back" hidden>
-  <button id="p-back">Back to the cards</button>
-</div>
+  <!-- The way out of a panel, and deliberately BELOW the panel's own action:
+       a window that describes a mode and then offers only "back" reads as
+       having nothing to start.  The mode's button leads; this follows it. -->
+  <div class="actions" id="panel-back" hidden>
+    <button id="p-back">Back to the cards</button>
+  </div>
 
-<!-- What to do next, in the order a learner wants it: clear up what was
-     missed, go on to the next list, run this one again, or answer what
-     Abhyāsa has waiting. -->
-<div class="actions" id="after" hidden>
-  <button id="again-missed" class="primary">Practise these again</button>
-  <button id="next-list" hidden></button>
-  <button id="restart">Whole deck again</button>
-  <button id="review-due" hidden></button>
-  <button id="share">Share score</button>
-</div>
+  <!-- What to do next.  Which one of these is useful depends on what has
+       just happened, so renderHandoff() marks that one `lead` and it is drawn
+       full width and first; the rest stay as the alternatives they are. -->
+  <div class="actions" id="after" hidden>
+    <button id="again-missed" class="primary">Practise these again</button>
+    <button id="next-list" hidden></button>
+    <button id="restart">Whole deck again</button>
+    <button id="review-due" hidden></button>
+    <button id="share">Share score</button>
+  </div>
 
-<!-- Below the card, centred: these change how a card is shown, so they
-     belong under the thing they change rather than above it. -->
-<div class="controls" id="controls">
-  <button id="dir" title="Tap to reverse"><span class="swap" aria-hidden="true">⇄</span><span id="dir-label">word → meaning</span></button>
-  <label class="check" for="iast-on"><input type="checkbox" id="iast-on" checked> IAST</label>
-</div>
+  <!-- Below the card, centred: these change how a card is shown, so they
+       belong under the thing they change rather than above it. -->
+  <div class="controls" id="controls">
+    <button id="dir" title="Tap to reverse"><span class="swap" aria-hidden="true">⇄</span><span id="dir-label">word → meaning</span></button>
+    <label class="check" for="iast-on"><input type="checkbox" id="iast-on" checked> IAST</label>
+  </div>
 
-<div class="keys" id="keys">tap / space — flip · 1 — didn't know · 2 — knew it</div>
+  <div class="keys" id="keys">tap / space — flip · 1 — didn't know · 2 — knew it</div>
+</div>
 
 <!-- Navigation: the five course tracks, each expanding to its lessons and
      their decks, with review, trouble and the scoreboard alongside.  A left
@@ -357,6 +365,13 @@
       <span class="dm-sub" id="dm-trouble">repeat offenders</span>
     </button>
   </div>
+
+  <!-- 176 lists live under the five tracks, and a learner who remembers a
+       name should not have to know which track holds it.  This narrows the
+       tree; it does not replace it, and it is empty every time the drawer
+       is opened. -->
+  <input id="dr-q" class="dr-find" type="search" autocomplete="off"
+         spellcheck="false" placeholder="Find a list" aria-label="Find a list">
 
   <div class="dr-tracks" id="dr-tracks"></div>
 </nav>

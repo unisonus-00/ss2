@@ -294,11 +294,39 @@ creeps back.
                                          ABHYĀSA
 JOINS AND SPLITS            31 LEFT  0 LEARNED  0 MISSED
 ┌──────────────────────────────────────────────────────┐
+│                                                       │
 │                       the card                        │
+│                                                       │
+│              (all the height going spare)             │
+│                                                       │
 └──────────────────────────────────────────────────────┘
                       [ ✕ ]      [ ✓ ]      ← kumkuma / patra
                  ⇄ join → result    ☑ IAST
 ```
+
+**The card takes the height that is going spare, and everything under it sits
+at the foot of the screen.** It was a fixed 250px block at the top: on a
+390×844 phone the exercise finished at 370px, the two buttons pressed on
+*every single card* landed at 394px — 45% of the height — and the whole bottom
+half of the phone, some 400px of it, was bare ground. The card now runs 522px
+there and the grade row sits at 664px, in the thumb's own reach.
+
+- **A floor and a ceiling, and both are the point.** `clamp(250px, 100dvh -
+  20rem, 520px)` — the floor is the old height, so a phone held sideways is no
+  worse than it was; the ceiling stops a desktop window stretching one word
+  down a whole screen; the 20rem is the chrome above plus the tray below, so
+  the tray lands at the foot of the screen rather than past it. A test walks
+  390×844 and 360×640 and fails if the practice screen scrolls at all.
+- **It is a `min-height`, never a height or a flex-grow.** A tall choice card
+  has to grow past it; a fixed height would clip the leaf's own edge, and
+  `overflow` cannot help — the background stops where the box does.
+- **Everything under the card is one tray, and it keeps a constant height
+  while a card is up.** Revealing an answer used to push the toggles down the
+  screen with the grade row; the row appears in reserved space now, and a test
+  fails if anything under the card moves between the front and the back.
+- **The layout is a fact about what is on screen.** `body.practising` is set
+  by the six places that show or hide the card, so a page, a panel and the
+  results screen — read rather than answered — flow as they always did.
 
 - **Navigation top left, the logo top right**, on one row. There is no centred
   logo during practice; a test asserts there is no `h1` at all.
@@ -867,6 +895,36 @@ which names the lesson and list in play. Inside is the curriculum's own shape:
 **track → lesson → deck**, or **track → unit → deck** where a track groups its
 stages into units — see **Four streams, and four units**.
 
+**A learner who remembers a name should not have to know which track holds
+it.** 176 lists is 1,700px of drawer with every track shut, and there was no
+way through it but the tree: `Vṛtta` is findable only by knowing it moved to
+Chandas III. One field above the tracks narrows them.
+
+```
+[ vrtta                                    ✕ ]
+1 LIST FOUND
+Vṛtta
+Kāvya-Racanā · Chandas III · the classical metres · 14 cards
+```
+
+- **Matched without diacritics, both ways round.** The names are IAST and a
+  phone keyboard carries no ā, ṛ or ṣ, so `vrtta` has to find `Vṛtta`. NFD
+  splits every one of those into a letter and a combining mark, and dropping
+  the marks is the whole rule.
+- **A list matches on anything that names it in the drawer** — its own head
+  and descriptor, and the group and track it is drawn under. So `rūpa` finds
+  the unit's lists and `ritual` finds Pūjā-Vāk's, which is how a learner who
+  has forgotten the Sanskrit name still gets there.
+- **The results are flat, and each says where it lives.** A filtered *tree*
+  with one list left in it is three headings and a row, and the headings are
+  what the learner was trying to skip; the row carries `<track> · <group>` in
+  front of its own descriptor instead. It is the same `deckRow` the tree
+  draws, so a locked list is still greyed, `· next` is still marked, and the
+  percentage still shows.
+- **It narrows, it does not replace.** Enter takes the first list found,
+  Escape empties the field before it closes the drawer, and opening the drawer
+  always lands on the tracks — a stale query is not where you are.
+
 The five tracks are the course. Stage ranges are given here because this is a
 maintainer's file; **they are not shown in the app**:
 
@@ -1284,6 +1342,25 @@ more buttons:
 - **`Abhyāsa · 20+ due`** appears once the review is unlocked and something is
   waiting, and never inside a review, where it would be the button you just
   pressed.
+
+**One of them leads, and which one is decided by what just happened.** Five
+buttons of near-equal weight are five decisions at the moment a learner is
+least inclined to make one — and the `primary` mark sat permanently on
+`Practise these again`, so a clean round ended with four buttons and no lead
+at all. The order is: clear up what was missed, else go on to the next list,
+else answer what Abhyāsa has waiting, else run this one again. That one is
+drawn full width and first whatever its place in the markup (`order: -1`); the
+others stay, smaller, as the alternatives they are. Nothing was removed — the
+dead end this screen used to be is what the row is for.
+
+**And the screen stops saying it twice.** The missed pile's own button —
+*practise the 7 missed last time* — stood at the top of the same screen that
+offered *Practise these 7 again*: one round, two controls, six inches apart.
+`refreshPile()` stands it down while the results are up. The direction and
+IAST toggles went the same way: they change how a card is shown, and none is —
+the reason a panel has always put them away. A round started from here gets
+them back, which is why `startRound` now hands them over rather than leaving
+it to the way out of a page.
 
 **The due figure is said as a session, not as a queue.** A card that has never
 been reviewed is `Infinity` overdue, so on a first pass *every* card in the

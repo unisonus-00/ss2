@@ -213,8 +213,22 @@
   /* Abhyāsa is a way back to consolidation, not the thing this page is for:
      it takes the width it needs and the stage's own action takes the rest. */
   .w-actions #s-review { flex: 0 1 auto; font-size: .85rem; padding: .6rem .9rem; }
+  /* The card takes the height that is going spare.  It used to be a fixed
+     250px at the top of the screen: on a 390x844 phone that put the two
+     buttons pressed on every single card at 45% of the height and left some
+     400px of bare ground under them, with the exercise itself crammed into
+     the top half.  The floor is the old 250px, so a phone held sideways is
+     no worse than it was; the ceiling stops a desktop window stretching one
+     word down a whole screen; and the 20rem taken off is the chrome above
+     plus the tray below, so the tray lands at the foot of the screen rather
+     than past it.  min-height rather than a height or a flex-grow: a tall
+     choice card grows past it instead of being clipped by it.  The dvh line
+     wins where it parses, and mobile browsers are exactly where the URL bar
+     makes vh wrong. */
   .card {
-    min-height: 250px; display: flex; flex-direction: column;
+    min-height: clamp(250px, 100vh - 20rem, 520px);
+    min-height: clamp(250px, 100dvh - 20rem, 520px);
+    display: flex; flex-direction: column;
     justify-content: center; align-items: center;
     text-align: center; padding: 2rem 1.6rem; cursor: pointer; touch-action: manipulation;
   }
@@ -374,7 +388,28 @@
   .awards div { font-size: .9rem; line-height: 1.4; color: var(--patra); }
   .awards b { font-weight: 600; }
   .awards span { color: var(--faded); }
+  /* Everything under the card, in one column, so the whole of it can be held
+     at the foot of the screen.  During practice the tray keeps a constant
+     height and hugs its own bottom edge: the grade row appears in reserved
+     space when an answer is revealed, instead of pushing the toggles under
+     it down the screen. */
+  .tray { width: 100%; max-width: 440px;
+          display: flex; flex-direction: column; align-items: center; }
+  body.practising .tray { min-height: 10rem; justify-content: flex-end; }
+  /* The page ends at the tray while a card is up, so the generous bottom
+     padding the panels want would only push the grade row off a short
+     phone.  The inset keeps it clear of a home indicator. */
+  body.practising { padding-bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px)); }
+
   .actions { display: flex; gap: .7rem; margin-top: 1.4rem; flex-wrap: wrap; justify-content: center; }
+  /* ── the end of a round ────────────────────────────────────
+     Four buttons of equal weight are four decisions, and which one is useful
+     depends entirely on what just happened.  The one that does is drawn as a
+     row of its own, full width and first whatever its place in the markup;
+     the rest stay, smaller, as the alternatives they are. */
+  #after .lead { order: -1; flex: 1 0 100%; font-size: 1rem; min-height: 50px; }
+  #after button:not(.lead) { font-size: .82rem; min-height: 40px;
+                             padding: .45rem .9rem; }
   /* Starting over cannot be undone, so it is marked in the app's own colour
      for wrong — the same signal Test mode carries. */
   button.danger { color: var(--kumkuma-ink); border-color: var(--kumkuma); }
@@ -431,6 +466,9 @@
   button:focus-visible, .card:focus-visible { outline: 2px solid var(--kumkuma); outline-offset: 3px; }
   .stage { font-size: .66rem; letter-spacing: .1em;
            text-transform: uppercase; color: var(--faded); line-height: 1.55; }
+  /* silent while the card data is clean, and a 2.2rem margin on an empty
+     block is enough to make a phone scroll for nothing */
+  .validate:empty { display: none; }
   .validate { margin-top: 2.2rem; font-size: .7rem; letter-spacing: .1em;
               color: var(--faded); text-align: center; max-width: 440px; }
   .validate.bad { color: var(--kumkuma-ink); }
@@ -679,6 +717,22 @@
   .dm-name { display: block; font-size: .95rem; }
   .dm-sub { display: block; margin-top: .1rem; font-size: .69rem;
             font-style: italic; color: var(--faded); }
+
+  /* Narrowing the tree, not replacing it.  A search field rather than a row,
+     because it is the one thing in the drawer that is typed into. */
+  .dr-find {
+    display: block; width: 100%; min-height: 44px; margin: 0 0 .7rem;
+    padding: .5rem .7rem; border-radius: 2px;
+    background: transparent; color: var(--leaf);
+    border: 1px solid rgba(125,112,92,.55);
+    font-family: inherit; font-size: .9rem;
+  }
+  .dr-find:hover { border-color: var(--faded); }
+  .dr-find::placeholder { color: var(--faded); opacity: 1; }
+  .dr-find:focus-visible { outline: 2px solid var(--kumkuma); outline-offset: 2px; }
+  /* what the query found, in the drawer's own caption voice */
+  .dr-found { font-size: .66rem; letter-spacing: .12em; text-transform: uppercase;
+              color: var(--faded); margin: .2rem .2rem .5rem; }
 
   /* a track: its stage range, its name, what it covers, how much is back */
   .tr { border-bottom: 1px solid rgba(125,112,92,.3); }
