@@ -825,6 +825,9 @@
   /* A row whose level has not been opened yet: visible, so the learner sees
      what is coming, but not yet a way in. */
   .locked { opacity: .42; cursor: default; }
+  /* A shut track or unit is greyed but still expands — the gate withholds
+     starting a list, never seeing what is coming — so it keeps a pointer. */
+  .tr-head.locked, .ls-head.locked { cursor: pointer; }
   .dk.locked:hover, .tr-head.locked:hover { border-color: transparent; }
   .ls-shut { font-size: .68rem; line-height: 1.4; font-style: italic;
              color: var(--faded); padding: .1rem .5rem .35rem; }

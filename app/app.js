@@ -1069,9 +1069,25 @@ const trackBegun = id => !SAVED.guided || !!SAVED.begun[id];
 const deckLocked = name => !trackBegun(trackIdOf(name));
 const started = () => !SAVED.guided || !!SAVED.begun.home;
 
+/* The tracks a beginner can actually start in: the first course track, and
+   whatever is drawn before it — which is the script, because the script
+   comes before the words.  Read off TRACK_ROWS rather than named, so a
+   track added ahead of the course opens with it and nothing here has to
+   know its id. */
+const openingTracks = () => {
+  const at = TRACK_ROWS.findIndex(r => TRACKS.indexOf(r.track) >= 0);
+  return at < 0 ? [] : TRACK_ROWS.slice(0, at + 1).map(r => r.track.id);
+};
+/* Begin on the landing card opens those two.  It used to set `home` alone,
+   which ungreyed every track NAME and left every list in the drawer still
+   shut — so the one press the card offers a beginner did not reach a single
+   card, and the two tracks they can actually start in looked as barred as
+   the nine stages they cannot. */
 function beginHome() {
-  if (SAVED.begun.home) return;
+  const want = openingTracks();
+  if (SAVED.begun.home && want.every(id => SAVED.begun[id])) return;
   SAVED.begun.home = 1;
+  want.forEach(id => { SAVED.begun[id] = 1; });
   save();
   renderDrawer();
 }
@@ -1628,6 +1644,12 @@ function recommendedSet() {
   recCache = new Set();
   TRACK_ROWS.forEach(row => {
     if (!trackBegun(row.track.id)) return;
+    /* An optional track is never what the app tells you to do next.  The
+       landing card's own Begin names the first COURSE track for the same
+       reason: pointing a beginner at an elective misdescribes it.  Now that
+       Begin opens the script track too, without this the drawer would carry
+       two `next` marks and the one instruction the app gives would be two. */
+    if (row.track.optional) return;
     const next = recommendPath(row).find(n => done.indexOf(n) < 0);
     if (next) recCache.add(next);
   });
@@ -1698,11 +1720,15 @@ function trackRow(row, over) {
   }
   b.classList.add('leaf');
   if (!started()) {
-    /* Before the landing card has been read there is nowhere to go: it names
-       the first track, and that is the way in. */
-    b.disabled = true;
+    /* Before the landing card has been read there is nowhere to GO: it names
+       the first track, and that is the way in.  But the row still expands,
+       and still carries its caret — seeing what is coming is not what the
+       gate withholds, and a row that is visibly expanded while wearing no
+       caret and answering no tap is the one thing in the drawer behaving
+       unlike its neighbours. */
     b.classList.add('locked');
     b.title = t.name + ' — open Home and press Begin';
+    b.addEventListener('click', () => { toggleIn(openTracks, t.id); renderDrawer(); });
   } else b.addEventListener('click', () => {
     /* Expand or collapse, and open the track's page behind the menu.  The
        menu stays up.  A tap that navigated AND closed the drawer left no way
@@ -1715,7 +1741,7 @@ function trackRow(row, over) {
   return b;
 }
 
-function lessonRow(L) {
+function lessonRow(L, locked) {
   const one = soleDeck(L);
   if (one) {
     /* The group IS that list — but the row still has to say which group.
@@ -1735,6 +1761,15 @@ function lessonRow(L) {
     sub: [L.gloss, count(L.decks.length, 'list')].filter(Boolean).join(' · ')
   });
   head.setAttribute('aria-expanded', open ? 'true' : 'false');
+  /* Greyed while the track above it is shut, exactly as its own lists are.
+     Without this the units stood in full ink under a greyed track name and
+     above greyed lists — the one level of the tree the gate had missed, and
+     it read as the only thing on the page that was open. */
+  if (locked) {
+    head.classList.add('locked');
+    head.title = L.label + ' — begin ' + '\u201c' + trackOfDeck(L.decks[0]).name
+               + '\u201d' + ' to open its lists';
+  }
   head.addEventListener('click', () => { toggleIn(openLessons, L.lesson); renderDrawer(); });
   wrap.appendChild(head);
   const body = document.createElement('div');
@@ -1806,7 +1841,7 @@ function renderDrawer() {
     const head = trackRow(row, only ? {
       sub: foldedSub(only.label, t.name, t.gloss, [count(only.decks.length, 'list')]),
     } : null);
-    if (started()) head.setAttribute('aria-expanded', open ? 'true' : 'false');
+    head.setAttribute('aria-expanded', open ? 'true' : 'false');
     wrap.appendChild(head);
 
     /* A menu of one is not a menu: a track that comes down to a single list
@@ -1828,7 +1863,7 @@ function renderDrawer() {
         : 'Open Home and press Begin to start.'));
     /* one group: its lists stand directly under the track */
     if (only) only.decks.forEach(n => body.appendChild(deckRow(n)));
-    else row.groups.forEach(L => body.appendChild(lessonRow(L)));
+    else row.groups.forEach(L => body.appendChild(lessonRow(L, !trackBegun(t.id))));
     wrap.appendChild(body);
     host.appendChild(wrap);
   });
@@ -2072,7 +2107,13 @@ function renderTrack(id) {
   const next = path.find(n => finishedDecks().indexOf(n) < 0);
   const go = $('s-go');
   if (next) {
-    go.textContent = (begun ? 'Continue — ' : 'Begin — ') + DECK_SHORT(next);
+    /* "Continue" only where there is something to continue.  The label used
+       to key off `begun`, and once the landing card's Begin started this
+       track for the learner, a page they had never opened greeted them with
+       "Continue —" before they had answered a single card.  Progress is the
+       honest test: a track with nothing mastered in it is one you begin. */
+    const touched = progressOf(row.pathIds).done > 0;
+    go.textContent = (touched ? 'Continue — ' : 'Begin — ') + DECK_SHORT(next);
     go.onclick = () => { beginTrack(id); chooseDeck(next); };
   } else {
     /* Nothing left that this track asks for.  It may still hold enrichment,

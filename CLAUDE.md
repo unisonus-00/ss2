@@ -582,17 +582,47 @@ and a ▾ glyph is missing from some Devanagari-first stacks. It is shown only
 where `aria-expanded` is actually set, so a row standing in for a single list
 carries none rather than pointing at nothing.
 
-**Each level is shut until the level above has been read.** Before the landing
-card's `Begin` the track names are greyed; before a track's `Begin` its lists
-are. Nothing is hidden — a learner should see what is coming — and one line at
+**Each level is shut until the level above has been read**, and *every* level
+with it — the track name, the units under it and the lists under those, all
+greyed together. The units were once missed: on a clean load they stood in
+full ink between a greyed track name and greyed lists, which read as the one
+thing on the page that was open. Before the landing card's `Begin` everything
+in the drawer is greyed; before a track's `Begin` its units and lists are. Nothing is hidden — a learner should see what is coming — and one line at
 the top of the shut group says what opens it, naming whichever gate is
 actually closed: *Open Home and press Begin to start*, then *Tap the name
 above to open its page, then close this menu and press Begin* — which is what
 the two taps now are, since the page opens behind the menu.
 
+**A greyed row still expands, and still carries its caret.** What the gate
+withholds is *starting a list*, never *seeing what is coming* — the prose has
+always said nothing is hidden. A track drawn expanded while wearing no caret
+and answering no tap was the one row in the drawer behaving unlike its
+neighbours, so a shut track toggles like an open one and only declines to
+open its page.
+
 `SAVED.begun` is the whole mechanism: `home`, and a track id per track begun.
 Pressing a track's `Begin` sets both, because you cannot be inside a track
 without having got past the door.
+
+**And the landing card's `Begin` opens the two tracks you can start in** — the
+first course track, and whatever is drawn before it, which is the script. It
+used to set `home` alone: every track *name* ungreyed and every list in the
+drawer stayed shut, so the single press the card offers a beginner reached no
+card at all, and the two tracks they can actually begin looked as barred as
+the nine stages they cannot. `openingTracks()` reads them off `TRACK_ROWS`
+rather than naming them, so a track added ahead of the course opens with it.
+
+Two labels follow from that, and both were wrong for a moment:
+
+- **`Continue —` only where there is something to continue.** The track
+  page's button keyed off `begun`, so a page the learner had never opened
+  greeted them with *Continue* before they had answered a card. It keys off
+  progress now: a track with nothing mastered in it is one you *begin*.
+- **The `· next` mark never points into an optional track.** The landing
+  card's own `Begin` names the first *course* track for exactly this reason —
+  pointing a beginner at an elective misdescribes it — and without the same
+  rule in `recommendedSet()` the drawer would carry two `next` marks and the
+  one instruction the app gives would be two.
 
 **A menu of one is not a menu.** A track that comes down to a single list —
 `Svara-Vidyā`, `Avadhāna` — draws no row under its name at all: the page's own

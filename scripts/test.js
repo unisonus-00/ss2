@@ -3579,6 +3579,74 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
+  // ── the gate is one state, at every level of the tree ─────────────
+  // On a clean load the units stood in full ink between a greyed track
+  // name and greyed lists — the one level the gate had missed, and it read
+  // as the only thing on the page that was open.  And a track drawn
+  // expanded carried no caret, so the row was visibly open while wearing
+  // nothing to say so and answering no tap.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const out = {};
+      const survey = () => {
+        const o = { ink: [], noCaret: [] };
+        document.querySelectorAll('#dr-tracks .tr').forEach(w => {
+          const h = w.querySelector('.tr-head');
+          const nm = h.querySelector('.tr-name').textContent;
+          if (!h.classList.contains('locked')) o.ink.push('track ' + nm);
+          /* a row standing in for a single list has no body and rightly no
+             caret; every row that HAS one must show it */
+          if (w.querySelector('.tr-body') && !h.hasAttribute('aria-expanded')) o.noCaret.push(nm);
+          w.querySelectorAll('.ls-head').forEach(lh => {
+            if (!lh.classList.contains('locked')) {
+              o.ink.push('unit ' + lh.querySelector('.ls-name').textContent);
+            }
+          });
+          w.querySelectorAll('.dk').forEach(d => {
+            if (!d.classList.contains('locked')) {
+              o.ink.push('list ' + d.querySelector('.dk-name').textContent);
+            }
+          });
+        });
+        return o;
+      };
+      SAVED.guided = true; SAVED.begun = {};
+      openDrawer();
+      /* expand everything there is, so nothing is merely hidden */
+      TRACK_ROWS.forEach(x => openTracks.add(x.track.id));
+      renderDrawer();
+      out.shut = survey();
+
+      beginHome();
+      TRACK_ROWS.forEach(x => openTracks.add(x.track.id));
+      renderDrawer();
+      const after = survey();
+      out.openedTracks = [...new Set(after.ink.filter(x => /^track /.test(x)))].length;
+      /* which tracks' LISTS the one press opened */
+      out.reachable = [...new Set([...document.querySelectorAll('#dr-tracks .tr')]
+        .filter(w => [...w.querySelectorAll('.dk')].some(d => !d.classList.contains('locked')))
+        .map(w => w.querySelector('.tr-name').textContent))];
+      out.stillShut = [...new Set([...document.querySelectorAll('#dr-tracks .ls-head.locked')]
+        .map(e => e.querySelector('.ls-name').textContent))].length;
+      closeDrawer();
+      return out;
+    });
+    ok('nothing in the drawer is ungreyed before Begin is pressed',
+      !r.shut.ink.length, r.shut.ink.slice(0, 5).join(' | '));
+    ok('and every track that has a body still carries its caret',
+      !r.shut.noCaret.length, r.shut.noCaret.join(' | '));
+    /* Begin used to set `home` alone: every track NAME ungreyed and every
+       list stayed shut, so the one press the landing card offers a beginner
+       reached no card at all. */
+    ok('Begin opens the script track and the first course track',
+      r.reachable.length === 2 && r.reachable.indexOf('Devanāgarī') >= 0
+        && r.reachable.indexOf('Bhāṣā-Vidyā') >= 0, r.reachable.join(' | '));
+    ok('and leaves the rest of the course for its own page to open',
+      r.stillShut > 0, r.stillShut + ' units still shut');
+    await p.close();
+  }
+
   // ── the end of a round is not a dead end ──────────────────────────
   // Practise these again / Whole deck again / Share was every way on, so a
   // session stopped there: the next list and the review were both behind the
