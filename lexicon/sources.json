@@ -14,7 +14,7 @@
   "dhatupatha": {
    "label": "the Dhātu-pāṭha",
    "detail": "The traditional list of verbal roots, in Maṇḍala Pati dāsa's edition (sourceforge.net/p/dhatu-patha), extracted to lexicon/dhatupatha.json. It states each root's gaṇa, pada, iṭ, transitivity and — the reason it earns a place here — its sense in English, which no other source in this repository gives for a root.",
-   "authority": "secondary canonical, for roots only — it agrees with 09-dhatu/reference.md on the gaṇa and the present form of every one of the fifty, and where the two ever disagree the lesson wins and the build says so"
+   "authority": "canonical for roots — the whole list, 1,159 entries over 888 roots, is checked in. It agrees with 09-dhatu/reference.md on the gaṇa and the present form of every one of the fifty, and where the two ever disagree the lesson wins and the build says so"
   },
   "mw-parts": {
    "label": "Monier-Williams, read off the parts",

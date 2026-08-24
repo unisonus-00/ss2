@@ -2049,10 +2049,13 @@ states a paradigm. There is no disagreement to record.
   reports a root missing when it is there. Each extracted row carries the
   `citation` it was found under and the `hom` index of which homonymous entry
   it is, so every claim is traceable to a row.
-- **Only what the project carries is extracted.** `lexicon/dhatupatha.json`
-  holds 52 roots, not 1,159: nothing is fetched at build time and the page has
-  to stay one self-contained file. `√vand` is not attested in it and is listed
-  as such, so a silent gap cannot pass for agreement.
+- **The whole list is checked in.** `lexicon/dhatupatha.json` holds all 1,159
+  entries over 888 roots — 142 KB, which a 959 KB page can carry. The rule
+  the app actually has is that nothing is **fetched**; holding a large source
+  in the repository breaks nothing, and an earlier pass that extracted only
+  52 roots was reading that rule as a size limit it never was. `√vand` is not
+  in the Dhātu-pāṭha and is listed as unattested, so a silent gap cannot pass
+  for agreement.
 - **The curriculum still wins.** The build cross-checks every root in
   `roots.json` against the extract and **fails on a disagreement** rather than
   applying one — the lesson is canonical, and a divergence is for a person to
@@ -2074,6 +2077,50 @@ to go, move, run, flow
 Thirteen members carry such a link. Each is separately sourced: the member's
 sense from the lexicon, the suffix's function from `vocab/16`, the root's
 sense from the Dhātu-pāṭha.
+
+#### The root behind an ordinary word
+
+`roots.json` links a word to its root only where the curriculum spells the
+pair out — 180 derivatives across the fifty — so most of the vocabulary
+carried no root at all, and the honest answer for a long time was that the
+verified set was the limit. It was not: the limit was that nothing here knew
+what a root **meant** or how a word is **built** from one. The Dhātu-pāṭha
+supplies the first for 888 roots, and Stage 3 has always stated the second.
+
+**A link is established, never guessed, and it takes two independent
+conditions:**
+
+1. **The rules must rebuild the headword exactly.** `scripts/derive.js`
+   implements the grades — guṇa and vṛddhi, and the `e → ay`, `o → av` split
+   before a vowel — and the joins Stage 3 teaches: ṇatva (`hṛ + ana` is
+   *haraṇa*), the palatal hardening before `t` (`muc + ta` is *mukta*), the
+   aspirate throwback (`labh + ta` is *labdha*), the nasal drop (`gam + ti` is
+   *gati*). Against the 89 root-and-derivative pairs `09-dhatu/reference.md`
+   states itself, they rebuild **73**; the sixteen they do not are the
+   genuinely irregular ones — `vac → ukta`, `yaj → iṣṭa`, `as → sat`.
+2. **The root's sense and the card's gloss must share a word.**
+
+**The second condition is what makes it safe, and dropping it is a disaster.**
+Without it the layer links `mātā` to √man *to think*, `patiḥ` to √pat *to
+fall*, `karṇa` to √kṛ *to hurt*, `carma` to √car *to go*. With it, the same
+run offers √mā *to measure* for `māyā`, √ram *to delight in* for `rāmaḥ`,
+√śuc *to grieve* for `śokaḥ`, √kav for `kāvya` — each confirmed twice, by the
+form and by the meaning.
+
+- **A root the curriculum teaches beats one it does not**, so where the course
+  has an opinion the course wins.
+- **Two roots of equal standing that both agree means silence.** An etymology
+  with two answers is not one.
+- **A verb card is skipped**, since its gloss already names its own root.
+
+Measured on the 89 known pairs the filter labels 51 correctly and mislabels
+three — `datta` to √dad rather than √dā, `pāla` and `pālita` to √pāl rather
+than √pā — and all three are real alternative derivations rather than errors.
+On the app's own vocabulary it added 26 links and none of them is wrong.
+
+**The popover can gloss any of them.** All 886 roots with a sense go into the
+page, not the 53 the lexicon files: a clue that cannot be explained is worse
+than no clue.
 
 #### What the generators refuse to do
 

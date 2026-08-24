@@ -31,6 +31,7 @@ const ROOT = path.resolve(__dirname, '..');
 const LEX = path.join(ROOT, 'lexicon');
 
 const readJSON = f => JSON.parse(fs.readFileSync(path.join(LEX, f), 'utf8'));
+const derive = require('./derive');
 const readLesson = f => fs.readFileSync(path.join(ROOT, f), 'utf8');
 
 /* ── stems ──────────────────────────────────────────────────────────
@@ -98,21 +99,46 @@ function load() {
      the gaṇa and the present of every one of the fifty; this keeps it that
      way, and where the two ever diverge the LESSON wins — the disagreement
      is reported so a person decides, never silently applied. */
-  const DP = new Map(dhatupatha.roots.map(d => [d.id, d]));
+  /* The Dhātu-pāṭha files a root under its own citation form, which is often
+     the Pāṇinian one — ṇam for nam, ṣṭhā for sthā, pracch for prach — and it
+     lists homonyms separately, so one root id can have several entries with
+     different gaṇas.  A lookup that knows neither reports a root missing when
+     it is there, and a disagreement when there is none. */
+  const DP = new Map();
+  dhatupatha.roots.forEach(d => {
+    (DP.get(d.id) || DP.set(d.id, []).get(d.id)).push(d);
+  });
+  const dpFind = id => {
+    const tries = [id];
+    if (/^n/.test(id)) tries.push('ṇ' + id.slice(1));
+    if (/^s/.test(id)) {
+      tries.push('ṣ' + id.slice(1));
+      if (/^st/.test(id)) tries.push('ṣṭ' + id.slice(2));
+    }
+    if (/c$/.test(id)) tries.push(id + 'ch');
+    if (/ch$/.test(id)) tries.push(id.slice(0, -2) + 'cch');   // prach → pracch
+    if (/ai$/.test(id)) tries.push(id.slice(0, -2) + 'ā');
+    for (const t of tries) if (DP.has(t)) return DP.get(t);
+    return null;
+  };
   const notAttested = new Set(dhatupatha.notAttested || []);
   roots.forEach(r => {
-    const d = DP.get(r.id);
+    const ds = dpFind(r.id);
     const at = `lexicon/dhatupatha.json ${r.iast}`;
-    if (!d) {
-      if (!notAttested.has(r.id)) problems.push(`${at}: not extracted, and not listed as unattested`);
+    if (!ds) {
+      if (!notAttested.has(r.id)) problems.push(`${at}: not in the Dhātu-pāṭha, and not listed as unattested`);
       return;
     }
-    if (d.gana !== r.gana) {
-      problems.push(`${at}: gaṇa ${d.gana}, but roots.json says ${r.gana} — the lesson wins, `
-        + `so either fix roots.json or record the disagreement`);
+    /* it agrees if ANY of its homonymous entries does — the reference names
+       one root of a set the Dhātu-pāṭha keeps apart */
+    if (!ds.some(d => d.gana === r.gana)) {
+      problems.push(`${at}: gaṇa ${ds.map(d => d.gana).join('/')}, but roots.json says ${r.gana}`
+        + ` — the lesson wins, so either fix roots.json or record the disagreement`);
     }
-    if (d.present && r.present && d.present !== r.present) {
-      problems.push(`${at}: present "${d.present}", but roots.json says "${r.present}"`);
+    const pres = ds.filter(d => d.present);
+    if (pres.length && r.present && !pres.some(d => d.present === r.present)) {
+      problems.push(`${at}: present ${pres.map(d => `"${d.present}"`).join('/')}, `
+        + `but roots.json says "${r.present}"`);
     }
   });
   const byRoot = new Map();
@@ -214,7 +240,7 @@ function load() {
   });
 
   return { problems, sources, roots, byRoot, compounds, opaque,
-           category, cautions, home };
+           category, cautions, home, dhatupatha };
 }
 
 /* ── the relationship index ─────────────────────────────────────────────
@@ -287,6 +313,62 @@ function index(lex, lessons) {
   return { of, find, taught };
 }
 
+/* ── the root behind an ordinary word ─────────────────────────────────
+   `roots.json` links a word to its root only where the curriculum spells the
+   pair out — 180 derivatives across the fifty — so most of the vocabulary
+   carried no root at all.  The Dhātu-pāṭha names 888 of them with a sense
+   apiece, and Stage 3 states the rules a word is built by, so the link can be
+   established rather than guessed:
+
+     1. the grade and join rules must REBUILD the headword exactly from the
+        root and one of the suffixes vocab/16 names, and
+     2. the root's own sense and the card's own gloss must share a word.
+
+   Both, always.  The second is what makes it safe: dropping it links `mātā`
+   to √man, `patiḥ` to √pat "to fall" and `karṇa` to √kṛ "to hurt".  With it,
+   the layer offers √mā "to measure" for `māyā`, √ram "to delight" for
+   `rāmaḥ`, √śuc "to grieve" for `śokaḥ` — each confirmed twice over.
+
+   A root the curriculum teaches is preferred to one it does not, so where the
+   course has an opinion the course wins; where two roots of the same standing
+   both agree, nothing is offered at all. */
+const STOP = new Set(('a an the of to and or in on for with that which who is are '
+  + 'be being one what its as by from at').split(' '));
+const senseWords = t => new Set(String(t || '').toLowerCase().match(/[a-z]{3,}/g)
+  ?.filter(w => !STOP.has(w)).map(w => w.slice(0, 4)) || []);
+const shareSense = (a, b) => {
+  const A = senseWords(a);
+  for (const w of senseWords(b)) if (A.has(w)) return true;
+  return false;
+};
+
+function rootFinder(lex) {
+  const dp = new Map();                       // id → the entry with a sense
+  lex.dhatupatha.roots.forEach(d => {
+    if (d.gana && d.sense && !dp.has(d.id)) dp.set(d.id, d);
+  });
+  const taught = new Set(lex.roots.map(r => r.id));
+  const senseOf = id => {
+    const r = lex.roots.find(x => x.id === id);
+    return r ? r.sense : (dp.get(id) || {}).sense;
+  };
+  const made = derive.indexOf([...dp.keys()]);
+  return function find(word, gloss) {
+    const cands = made.get(word);
+    if (!cands) return null;
+    const ids = [...new Set(cands.map(c => c.root))];
+    for (const pool of [ids.filter(i => taught.has(i)), ids.filter(i => !taught.has(i))]) {
+      const agree = pool.filter(i => shareSense(senseOf(i), gloss));
+      if (agree.length === 1) {
+        return { root: agree[0], sense: senseOf(agree[0]),
+                 suffix: cands.find(c => c.root === agree[0]).suffix };
+      }
+      if (agree.length > 1) return null;      // two equals — say nothing
+    }
+    return null;
+  };
+}
+
 /* ── 2. clues on cards that already exist ────────────────────────────── */
 
 /* A clue is appended to the card's own annotation, in the idiom the cards
@@ -329,6 +411,7 @@ function clueFor(entry, card) {
 
 function addClues(lex, ix, lessons) {
   let n = 0;
+  const findRoot = rootFinder(lex);
   lessons.forEach(L => {
     L.decks.forEach(d => {
       /* A clue belongs where the word is being learnt as vocabulary, and the
@@ -341,13 +424,23 @@ function addClues(lex, ix, lessons) {
       d.cards.forEach(c => {
       if ((c.type || 'reveal') !== 'reveal') return;
       const e = ix.find(c.iast || '');
-      if (!e || e.opaque) return;
-      const clue = clueFor(e, c);
+      if (e && e.opaque) return;
+      let clue = e ? clueFor(e, c) : null;
+      /* Nothing the curriculum states reached this card.  The rules may still
+         establish its root — and only if the senses agree. */
+      if (!clue && !/√/.test(c.note || '')) {
+        const w = (c.iast || '').trim();
+        /* one word, and not a verb form that already names its own root */
+        if (w && !/[\s+]/.test(w) && !/√/.test(c.gloss || '')) {
+          const f = findRoot(key(w), c.gloss);
+          if (f) clue = 'from √' + f.root;
+        }
+      }
       if (!clue) return;
       /* A card that already said "from bhaga" and now gets "bhaga + -vatī"
          would say the same thing twice, the weaker way first.  The fuller
          reading replaces it rather than trailing after it. */
-      const first = (e.compound ? e.compound.parts[0].iast : '').trim();
+      const first = (e && e.compound ? e.compound.parts[0].iast : '').trim();
       const weaker = first && new RegExp('(?:^| · )from ' + first.replace(
         /[.*+?^${}()|[\]\\]/g, '\\$&') + '(?= · |$)');
       if (weaker && weaker.test(c.note || '')) {
@@ -750,6 +843,16 @@ function glossary(lex) {
   Object.keys(parts).sort().forEach(k => { members[k] = parts[k].join('; '); });
 
   const roots = {};
+  /* Every root the Dhātu-pāṭha names, so a card clued with one can always be
+     asked about.  888 short entries — the page carries the whole list rather
+     than a subset, because a clue that cannot be explained is worse than no
+     clue.  The curriculum's own wording wins where it has one. */
+  const PADA = { P: 'parasmaipada', A: 'ātmanepada', U: 'both padas' };
+  lex.dhatupatha.roots.forEach(d => {
+    if (!d.sense || roots[d.id]) return;
+    roots[d.id] = { sense: d.sense, gana: d.gana, pada: PADA[d.pada] || d.pada,
+                    present: d.present };
+  });
   lex.roots.forEach(r => {
     roots[r.id] = { sense: r.sense, gana: r.gana, pada: r.pada, present: r.present };
   });
