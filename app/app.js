@@ -1400,11 +1400,11 @@ const REFERENCES = (() => {
    same `sense` field. Absent-tolerant, like every other island. */
 const LEXICON = (() => {
   const src = document.getElementById('lexicon');
-  const empty = { members: {}, roots: {} };
+  const empty = { members: {}, roots: {}, from: {} };
   if (!src) return empty;
   try {
     const d = JSON.parse(src.textContent) || {};
-    return { members: d.members || {}, roots: d.roots || {} };
+    return { members: d.members || {}, roots: d.roots || {}, from: d.from || {} };
   } catch (e) { return empty; }
 })();
 
@@ -2649,9 +2649,14 @@ function openPop(btn) {
     } else if (part.kind === 'member') {
       /* Said once, over the first member: a compound has two or three of
          these, and the same paragraph three times is most of a phone screen. */
+      /* and where the member is itself grown from a root, the last step of
+         the derivation: saras is a member of sarasvatī, and saras is √sṛ's */
+      const rid = LEXICON.from[part.value];
+      const rr = rid && LEXICON.roots[rid];
       pop.appendChild(section(part.value, LEXICON.members[part.value], said
         ? "" : "One part of the compound on this card. Take the members in turn and "
-             + "the whole word can be read rather than memorised.", null));
+             + "the whole word can be read rather than memorised.",
+        rr ? { dn: '', iast: '\u221a' + rid, tr: rr.sense } : null));
       said = true;
     } else {
       const c = GLOSSARY[part.value];

@@ -2478,6 +2478,39 @@
     "sense": "mw",
     "family": "mw"
    }
+  },
+  {
+   "id": "sṛ",
+   "iast": "√sṛ",
+   "gana": 1,
+   "pada": "parasmaipada",
+   "present": "sarati",
+   "sense": "to go, move, run, flow",
+   "keyDerivatives": [
+    "saras",
+    "sarasvatī"
+   ],
+   "family": [
+    {
+     "iast": "saras",
+     "formation": "-as",
+     "sense": "a pool: what flows and stands"
+    },
+    {
+     "iast": "sarasvatī",
+     "formation": "saras + -vatī",
+     "sense": "she who possesses the waters"
+    }
+   ],
+   "development": "flow → the waters that flow → she of the flowing, of speech and learning",
+   "source": {
+    "gana": "dhatupatha",
+    "pada": "dhatupatha",
+    "present": "dhatupatha",
+    "sense": "dhatupatha",
+    "family": "curriculum"
+   },
+   "extra": true
   }
  ]
 }
