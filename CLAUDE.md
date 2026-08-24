@@ -698,6 +698,13 @@ Script Literacy · 14 lists
   never points into it from inside Bhāṣā-Vidyā, and a learner who already
   reads the script has skipped nothing. First in the drawer, because that is
   where it belongs in *time*.
+- **And it says so, in the words the enrichment row already uses.**
+  `optional: true` on the track draws it exactly as the enrichment group
+  inside a track is drawn — the name in `--faded`, and `optional · ` leading
+  the subheading (`optional · Script Literacy · 14 lists`). It is a **mark on
+  the row, not a layout**: the section opens and shuts like every other one,
+  and a track drawn open by default would be the only thing in the drawer
+  behaving differently from its neighbours.
 - **The landing card names it**, because nothing else would. The one thing
   that can stop a learner before the course has begun deserves a sentence on
   the page they open on; the `Begin` button still names the first **course**

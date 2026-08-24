@@ -820,5 +820,8 @@
   /* An optional group — the enrichment stream — is drawn as what it is:
      present, open, and not part of the figure above it. */
   .ls.opt > .ls-head .ls-name { color: var(--faded); }
+  /* and a whole optional SECTION the same way — Devanagari is drawn above
+     the five tracks and asked of nobody */
+  .tr.opt > .tr-head .tr-name { color: var(--faded); }
 
   .drawer button:focus-visible { outline: 2px solid var(--kumkuma); outline-offset: 2px; }

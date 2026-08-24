@@ -4956,6 +4956,28 @@ const open = async (browser, opts = {}) => {
       out.known = DECKS['Pada-pāṭha — reading a word you have met'].map(c => c.devanagari);
       out.unknown = DECKS['Apūrva-pada — reading a word you have not met'].map(c => c.devanagari);
 
+      /* Drawn the way the enrichment row inside a track is drawn — faded,
+         "optional" leading the subheading.  A mark on the row, not a
+         layout: it opens and shuts like every other section. */
+      /* the boot state, which is what "open by default" means — openTracks is
+         seeded once at load, so a learner who shuts the section keeps it shut */
+      openLessons.clear(); renderDrawer();
+      const opt = document.querySelector('.tr.opt');
+      const course = document.querySelector('.tr:not(.opt) .tr-name');
+      out.optName = opt && opt.querySelector('.tr-name').textContent;
+      out.optSub = opt && opt.querySelector('.tr-sub').textContent;
+      out.optFaded = !!opt && !!course
+        && getComputedStyle(opt.querySelector('.tr-name')).color
+           !== getComputedStyle(course).color;
+      /* shut on arrival, like every other section: this is a mark on the
+         row, not a layout of its own */
+      out.anyOpen = [...document.querySelectorAll('.tr')]
+        .filter(x => x.querySelector('.tr-body') && !x.querySelector('.tr-body').hidden)
+        .length;
+      /* the same word the enrichment row uses, so the two read as one idea */
+      out.enrich = [...document.querySelectorAll('.ls.opt .ls-sub')]
+        .map(e => e.textContent).find(Boolean) || '';
+
       /* both members of every confusable set, because picking one out does
          not mean you can pick out the other */
       DECKS['Sadṛśa — the letters that look alike · practice'].forEach(c => {
@@ -4982,6 +5004,13 @@ const open = async (browser, opts = {}) => {
     ok('and the words you have not met are not',
       r.unknown.length >= 10 && !r.unknown.some(w => nama.has(w)),
       r.unknown.filter(w => nama.has(w)).join(' '));
+    ok('it is drawn as the optional section it is',
+      r.optName === 'Devanāgarī' && /^optional · /.test(r.optSub || '') && r.optFaded,
+      r.optName + ' · ' + r.optSub);
+    ok('and shut on arrival, like every other section',
+      r.anyOpen === 0, r.anyOpen + ' sections open');
+    ok('in the same words the enrichment row uses',
+      /^optional · /.test(r.enrich), r.enrich);
     ok('every confusable set is drilled from both sides',
       Object.keys(r.sets).length === 8
         && Object.values(r.sets).every(n => n === 2),

@@ -835,6 +835,10 @@ const TRACKS = [
    which is a different subject and a different badge. */
 const SCRIPT_TRACK = {
   id: 'devanagari', name: 'Devanāgarī', gloss: 'Script Literacy',
+  /* Drawn the way the enrichment row inside a track is drawn: faded name,
+     and "optional" leading the subheading.  It is a mark, not a layout —
+     the section opens and shuts like every other one. */
+  optional: true,
   lead: 'Every word in this app is written in the Devanāgarī script, and if that '
       + 'script is still a puzzle then every list after this one is really two '
       + 'puzzles at once. This track is the script on its own, and it asks one '
@@ -1679,6 +1683,13 @@ function trackRow(row, over) {
     sub: t.gloss + ' · ' + (t.units ? count(row.units.length, 'unit')
                                     : count(row.lessons.length, 'lesson')),
   }, over || {}));
+  /* An optional section says so first, in the words the enrichment row
+     already uses — before its gloss rather than after its count, so it is
+     read before the learner decides whether the row is for them. */
+  if (t.optional) {
+    const sub = b.querySelector('.tr-sub');
+    sub.textContent = 'optional · ' + sub.textContent;
+  }
   b.classList.add('leaf');
   if (!started()) {
     /* Before the landing card has been read there is nowhere to go: it names
@@ -1776,7 +1787,8 @@ function renderDrawer() {
     const t = row.track, open = openTracks.has(t.id);
     const only = soleLesson(row);
     const wrap = document.createElement('div');
-    wrap.className = 'tr' + (progressOf(row.pathIds).full ? ' full' : '');
+    wrap.className = 'tr' + (progressOf(row.pathIds).full ? ' full' : '')
+                   + (t.optional ? ' opt' : '');
 
     /* A track with a single lesson IS that lesson: naming both would say the
        same thing twice, so the row keeps the track's name and the lesson's
