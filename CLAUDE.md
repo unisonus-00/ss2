@@ -239,15 +239,18 @@ app/logo.svg           app/logo.png, base64-wrapped for the build
 app/styles.css
 app/app.js
 scripts/build.js       discovers, validates and inlines -> dist/abhyasah.html
+scripts/lexicon.js     the lexical layer: validates lexicon/, clues cards, generates lists
 scripts/markdown.js    reference.md -> HTML, at build time, for Study
 scripts/demo.js        repackages the distributable for publishing as an Artifact
+lexicon/*.json         roots, compounds, synonym-set readings, and their sources
 NN-lesson/practice.json   the lesson's curated practice
 NN-lesson/reference.md    the lesson's reference, shown by Study
 practice.json             cross-cutting practice, beside 00-overview.md
 ```
 
 `node scripts/build.js` inlines the CSS, the JS, the mark, and every
-`practice.json` into one file. `--check` builds in memory and fails if `dist/` is stale, without
+`practice.json` into one file, running the lexical layer over the practice
+data on the way — see **The lexical layer** below. `--check` builds in memory and fails if `dist/` is stale, without
 writing.
 
 Practice files are **discovered, not listed** — any numbered lesson directory
@@ -882,7 +885,7 @@ which names the lesson and list in play. Inside is the curriculum's own shape:
 stages into units — see **Four streams, and four units**.
 
 **A learner who remembers a name should not have to know which track holds
-it.** 176 lists is 1,700px of drawer with every track shut, and there was no
+it.** 180 lists is 1,700px of drawer with every track shut, and there was no
 way through it but the tree: `Vṛtta` is findable only by knowing it moved to
 Chandas III. One field above the tracks narrows them.
 
@@ -1304,7 +1307,7 @@ carries"; now there is, and the rule says what it means.
 ### The course leads, the vocabulary follows
 
 `Continue —` is the one instruction the app gives, and it walked a track in
-flat curriculum order. **82 of the 176 lists widen the vocabulary rather than
+flat curriculum order. **82 of the 180 lists widen the vocabulary rather than
 carrying the course, and 34 of those sit in Nāma** — so the recommended path
 ran all 41 of Stage 1's lists, 609 cards and a quarter of the whole app,
 before Varṇa-Vidyā so much as introduced the sound system. A learner
@@ -1792,6 +1795,131 @@ The `Form mastery` decks are the one deliberate exception, and
 grade what a reveal card can only ask the learner to grade themselves, they
 force a discrimination against the neighbouring cell, and they carry a
 scaffold a reveal card has nowhere to put.
+
+### The lexical layer
+
+A word learnt on its own is a word learnt once. `bhakti` beside `bhakta`
+beside `bhajana` is one root learnt three times over, and `paṅkaja` stops
+being a fourth word for the lotus the moment a learner reads it as *mud-born*.
+`lexicon/` holds those relationships — **word ↔ root ↔ upasarga ↔ suffix ↔
+derivative ↔ compound member ↔ synonym set ↔ curriculum occurrence** — and
+`scripts/lexicon.js` joins them to the practice data at build time.
+
+```
+lexicon/roots.json      52 roots: sense, semantic development, family, prefix family
+lexicon/compounds.json  87 words readable off their parts — and 32 deliberately not
+lexicon/synonyms.json   how the reference's 12 synonym sets are to be read
+lexicon/sources.json    what a source id means
+```
+
+**Nothing is fetched, at build time or at run time.** The dictionary was read
+once while this data was written; what is checked in is the data, so
+`node scripts/build.js` works with no network exactly as the page does.
+
+**The curriculum stays authoritative, and the build proves it.** The fifty
+roots live in `09-dhatu/reference.md` with their gaṇa, pada, present form and
+key derivatives; the twelve synonym sets live in `10-paryaya/reference.md`.
+Neither is copied into `lexicon/`: the build reads them out of the lesson and
+**fails** if the lexicon disagrees about a single cell. A dictionary enriches
+and checks the enrichment; it never overrules a lesson.
+
+**Every enriched claim names its source**, and the three ids mean different
+things. `curriculum` is a lesson file here. `mw` is Monier-Williams, in the
+Cologne text. **`mw-parts` is the one that earns its keep:** Monier-Williams
+splits a compound it recognises in its own headword field — `niśā—kara`,
+`giri—śa` — so 61 of the 87 analyses are its, and the other 26 are read off
+members it attests, which is a weaker claim. Reporting the second as the first
+would be the lexical equivalent of an invented form.
+
+**A compound nobody can read off its parts is not explained.** `dāmodara` is
+lexicalized out of a story, `govinda` has two traditional analyses and the app
+already gives both, `anala`'s *a-nala* is a folk etymology. Thirty-two such
+words sit in an `opaque` list with the reason, and the generator will not clue
+one. An invented derivation is worse than none: it is memorable, and wrong.
+
+**No name-against-epithet line is drawn.** Nearly every Sanskrit deity name
+describes — `hara` is the remover, `rudra` the howler, `īśa` the lord — so
+sorting a set into names and descriptions cannot be done honestly. What *is*
+clean is that a deity set holds epithets of one being while a nature set holds
+words for one thing, and `kind` carries that.
+
+#### What reaches a learner
+
+Two things, both at build time, both from the same data.
+
+**Clues on cards that already exist** — 73 of them, in the idiom the cards
+already used (`· from √hṛ`, `· mahā + īśvara`). Three rules keep them honest:
+
+| | |
+|:--|:--|
+| **where** | only lists whose `pair` answers with a *meaning*. A paradigm cell answers with an analysis, a sandhi rule with a join, and `compound → vigraha` with the very parts a clue would give away |
+| **what** | a prefixed form is preferred to a plain one, because it says more: `anugraha` is `anu- + √grah — seize after`, and *from √grah* leaves out the half that makes it mean grace |
+| **how much** | where the gloss already says the reading, only the parts are added — `padmanābha → lotus-navelled` needs `padma + nābha`, not its own gloss again in other words |
+
+An interactive card is clued off its **answer**, which is how the relationship
+reaches Stage 23: *which word for the lotus scans ∪∪∪* now says that
+`paṅkaja` is `paṅka + ja`, mud-born.
+
+**And four generated lists**, each testing a relationship rather than a word:
+
+| | |
+|:--|:--|
+| **09 · Kula** | a family, and the root it grew from — `bhakti · bhakta · bhajana` → `√bhaj`, with the note naming the kṛt suffix (`bhakti is √bhaj + -ti`) |
+| **09 · Upasarga-artha** | the prefix, as a **transfer**: one member handed over worked, another inferred — *anu + √grah is anugraha, grace. What does ni + √grah give?* A family of exactly three has no room for that, so it is asked the other way round, from the sense back to the prefix |
+| **10 · Anekārtha** | the synonym that is not a free swap — *toyam, payaḥ and vāri all name water. Which of them also means milk?* |
+| **11 · Vyutpatti** | the compound read off its parts — *paṅka (mud) + ja (born)* |
+
+**The root cards themselves are enriched rather than clued.** All 52 now
+annotate the same way — `dhātu · class 1 · both padas · bhajati · bhakti,
+bhakta`, where eleven of them said only `dhātu · vadati` or wrote the class as
+`4Ā` — and 23 carry the **semantic development** on `detail`: *share out →
+partake of, receive a share → resort to, attend on → be devoted to*. `detail`
+is a second line of the **answer**, so a reversed card cannot be answered by
+reading it.
+
+#### What the generators refuse to do
+
+Every selection is a fact about the course, never a judgement about the word.
+
+- **A family is carded when the learner meets it** — three or more members in
+  the lexicon, two of them said somewhere in the app. Words on an interactive
+  card count: a synonym is met as an option quite as much as as a headword,
+  and without that the eleven words for the lotus read as material the course
+  never carries.
+- **One derivation, carded once.** `jaladhi`, `vāridhi`, `udadhi` and `abdhi`
+  are one reading — *holder of waters* — with the word for water swapped. A
+  learner who reads the first is not going to miss the fourth.
+- **Distractors come from the same paradigm**: roots that look alike, other
+  prefixes on the same root, other words in the same synonym set, the other
+  two gods. So a miss is a specific confusion rather than a blank.
+- **A question that would have two right answers is not written.** The
+  synonym cards name the second sense — *which of them also means a friend* —
+  rather than asking which word has one, because most of the distractors have
+  a second sense of their own and the other question would be false.
+- **And the reverse-recall guard is in the build, not only in the tests.**
+  Every reveal list can be run backwards, and there the gloss is the prompt;
+  two cards in one list glossed *battle* ask a question with two right
+  answers. `scripts/lexicon.js` fails the build on one, so a generated card
+  can never introduce one and ship.
+
+`node scripts/lexicon.js` validates the data on its own. `scripts/test.js`
+adds the rest: that every claim names a source the registry defines, that a
+word is analysed or refused and never both, that every refusal says why, that
+**every compound clue opens and closes the word it explains** — sandhi meets
+in the middle, so `mahā + īśvara` is checked against the ends of `maheśvara` —
+and that no generated card repeats a question, repeats an option, or offers an
+option that contains its own answer.
+
+#### Six duplicates the layer turned up
+
+Testing a stem fold that treats `jñānam` and `jñāna` as one word — which the
+older check did not, folding only the visarga — found six pairs sitting in one
+lesson apiece: `cakra`, `āsana`, `bhaya`, `vairāgya`, `hṛdaya`, `jñāna`. In
+every one the bank copy carried a citation and a root clue the curated copy
+lacked, and the curated copy was the one on the course path. So the citation
+moved onto the curated card as its `source`, the lexical layer now supplies
+the root clue to every card that wants one, and the bank copy went. The test's
+fold was tightened so the shape cannot hide again.
 
 ### Card schema
 
@@ -2511,9 +2639,11 @@ Three things here are load-bearing for the compatibility list above:
   chain, and keep each step stamping its own version rather than the newest;
   every `localStorage` touch stays guarded, since it can be absent or full.
 
-The app carries 28 lessons, 176 decks, and 2166 cards — 1805 `reveal`, 356
-`choice` and 5 `sequence`, spread over 34 interactive decks in 16 lessons,
-plus the mastery decks holding complete paradigms.
+The app carries 28 lessons, 180 decks, and 2219 cards — 1799 `reveal`, 415
+`choice` and 5 `sequence`, spread over 38 interactive decks in 17 lessons,
+plus the mastery decks holding complete paradigms. Four of those lists are
+**generated from `lexicon/` at build time** rather than authored in a
+`practice.json`; see **The lexical layer**.
 They are curated practice, not conversions of the reference tables:
 
 - `06-kriya` — 21 cards: person, tense, imperative, optative, and parsing.
@@ -2653,10 +2783,15 @@ lowercase.
 Chromium from `file://` and checks the compatibility list above: saved
 progress and its migration, review replay, both toggles,
 morphology, mobile touch targets, the choice interaction, drawer navigation
-down to a deck, and the mastery figure at every level. It needs
+down to a deck, and the mastery figure at every level. It runs the lexical
+layer over the sources too, so a generated list is counted and checked exactly
+as an authored one is. It needs
 `playwright-core` on the path but is deliberately not in a `package.json`; the
 app itself has no dependencies and should keep none. Run it after any change
-to `app/`.
+to `app/`, to `lexicon/`, or to `scripts/lexicon.js`.
+
+`node scripts/lexicon.js` validates the lexical data on its own, without a
+browser, and is the quick check while editing it.
 
 **Publishing a testable demo** — `node scripts/demo.js` rewrites
 `dist/abhyasah.html` into `dist/abhyasa-demo-v<N>.html`, stripping the

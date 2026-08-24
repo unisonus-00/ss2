@@ -1,0 +1,1879 @@
+{
+ "note": "Compound and derivative analyses. A word is here only when its meaning is recoverable from its parts; anything lexicalized or disputed goes in \"opaque\" instead, with the reason. See lexicon/README.md.",
+ "compounds": [
+  {
+   "iast": "paṅkaja",
+   "parts": [
+    {
+     "iast": "paṅka",
+     "sense": "mud"
+    },
+    {
+     "iast": "ja",
+     "sense": "born"
+    }
+   ],
+   "clue": "mud-born",
+   "names": "the lotus",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "jalaja",
+   "parts": [
+    {
+     "iast": "jala",
+     "sense": "water"
+    },
+    {
+     "iast": "ja",
+     "sense": "born"
+    }
+   ],
+   "clue": "water-born",
+   "names": "the lotus",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "nīraja",
+   "parts": [
+    {
+     "iast": "nīra",
+     "sense": "water"
+    },
+    {
+     "iast": "ja",
+     "sense": "born"
+    }
+   ],
+   "clue": "water-born",
+   "names": "the lotus",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "ambuja",
+   "parts": [
+    {
+     "iast": "ambu",
+     "sense": "water"
+    },
+    {
+     "iast": "ja",
+     "sense": "born"
+    }
+   ],
+   "clue": "water-born",
+   "names": "the lotus",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "vārija",
+   "parts": [
+    {
+     "iast": "vāri",
+     "sense": "water"
+    },
+    {
+     "iast": "ja",
+     "sense": "born"
+    }
+   ],
+   "clue": "water-born",
+   "names": "the lotus",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "sarasija",
+   "parts": [
+    {
+     "iast": "saras",
+     "sense": "pool"
+    },
+    {
+     "iast": "ja",
+     "sense": "born"
+    }
+   ],
+   "clue": "pool-born",
+   "names": "the lotus",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "saroja",
+   "parts": [
+    {
+     "iast": "saras",
+     "sense": "pool"
+    },
+    {
+     "iast": "ja",
+     "sense": "born"
+    }
+   ],
+   "clue": "pool-born",
+   "names": "the lotus",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "divākara",
+   "parts": [
+    {
+     "iast": "divā",
+     "sense": "by day"
+    },
+    {
+     "iast": "kara",
+     "sense": "maker"
+    }
+   ],
+   "clue": "day-maker",
+   "names": "the sun",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "prabhākara",
+   "parts": [
+    {
+     "iast": "prabhā",
+     "sense": "light"
+    },
+    {
+     "iast": "kara",
+     "sense": "maker"
+    }
+   ],
+   "clue": "light-maker",
+   "names": "the sun",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "bhāskara",
+   "parts": [
+    {
+     "iast": "bhās",
+     "sense": "light"
+    },
+    {
+     "iast": "kara",
+     "sense": "maker"
+    }
+   ],
+   "clue": "light-maker",
+   "names": "the sun",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "dinamaṇi",
+   "parts": [
+    {
+     "iast": "dina",
+     "sense": "day"
+    },
+    {
+     "iast": "maṇi",
+     "sense": "jewel"
+    }
+   ],
+   "clue": "day-jewel",
+   "names": "the sun",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "niśākara",
+   "parts": [
+    {
+     "iast": "niśā",
+     "sense": "night"
+    },
+    {
+     "iast": "kara",
+     "sense": "maker"
+    }
+   ],
+   "clue": "night-maker",
+   "names": "the moon",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "sudhākara",
+   "parts": [
+    {
+     "iast": "sudhā",
+     "sense": "nectar"
+    },
+    {
+     "iast": "kara",
+     "sense": "maker"
+    }
+   ],
+   "clue": "nectar-maker",
+   "names": "the moon",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw-parts",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "himāṃśu",
+   "parts": [
+    {
+     "iast": "hima",
+     "sense": "cool, frost"
+    },
+    {
+     "iast": "aṃśu",
+     "sense": "ray"
+    }
+   ],
+   "clue": "cool-rayed",
+   "names": "the moon",
+   "type": "bahuvrīhi",
+   "source": {
+    "analysis": "mw-parts",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "mṛgāṅka",
+   "parts": [
+    {
+     "iast": "mṛga",
+     "sense": "deer"
+    },
+    {
+     "iast": "aṅka",
+     "sense": "mark"
+    }
+   ],
+   "clue": "deer-marked",
+   "names": "the moon",
+   "type": "bahuvrīhi",
+   "source": {
+    "analysis": "mw-parts",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "oṣadhīśa",
+   "parts": [
+    {
+     "iast": "oṣadhi",
+     "sense": "herb"
+    },
+    {
+     "iast": "īśa",
+     "sense": "lord"
+    }
+   ],
+   "clue": "lord of the herbs",
+   "names": "the moon",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw-parts",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "kaumudīpati",
+   "parts": [
+    {
+     "iast": "kaumudī",
+     "sense": "moonlight"
+    },
+    {
+     "iast": "pati",
+     "sense": "lord"
+    }
+   ],
+   "clue": "lord of the moonlight",
+   "names": "the moon",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "śaśin",
+   "parts": [
+    {
+     "iast": "śaśa",
+     "sense": "hare"
+    },
+    {
+     "iast": "-in",
+     "sense": "having"
+    }
+   ],
+   "clue": "the one with the hare",
+   "names": "the moon",
+   "type": "derivative",
+   "source": {
+    "analysis": "mw-parts",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "hutāśana",
+   "parts": [
+    {
+     "iast": "huta",
+     "sense": "what is offered"
+    },
+    {
+     "iast": "aśana",
+     "sense": "eater"
+    }
+   ],
+   "clue": "eater of the oblation",
+   "names": "fire",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw-parts",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "vibhāvasu",
+   "parts": [
+    {
+     "iast": "vibhā",
+     "sense": "radiance"
+    },
+    {
+     "iast": "vasu",
+     "sense": "wealth"
+    }
+   ],
+   "clue": "rich in radiance",
+   "names": "fire",
+   "type": "bahuvrīhi",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "śikhin",
+   "parts": [
+    {
+     "iast": "śikhā",
+     "sense": "flame, crest"
+    },
+    {
+     "iast": "-in",
+     "sense": "having"
+    }
+   ],
+   "clue": "the crested one",
+   "names": "fire",
+   "type": "derivative",
+   "source": {
+    "analysis": "mw-parts",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "pānīya",
+   "parts": [
+    {
+     "iast": "√pā",
+     "sense": "drink"
+    },
+    {
+     "iast": "-anīya",
+     "sense": "to be —ed"
+    }
+   ],
+   "clue": "what is to be drunk",
+   "names": "water",
+   "type": "derivative",
+   "source": {
+    "analysis": "mw-parts",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "vasundharā",
+   "parts": [
+    {
+     "iast": "vasu",
+     "sense": "wealth"
+    },
+    {
+     "iast": "dharā",
+     "sense": "bearer"
+    }
+   ],
+   "clue": "wealth-bearer",
+   "names": "the earth",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw-parts",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "bhūdhara",
+   "parts": [
+    {
+     "iast": "bhū",
+     "sense": "earth"
+    },
+    {
+     "iast": "dhara",
+     "sense": "bearer"
+    }
+   ],
+   "clue": "earth-bearer",
+   "names": "a mountain",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "naga",
+   "parts": [
+    {
+     "iast": "na",
+     "sense": "not"
+    },
+    {
+     "iast": "ga",
+     "sense": "going"
+    }
+   ],
+   "clue": "not going",
+   "names": "a mountain",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "acala",
+   "parts": [
+    {
+     "iast": "a-",
+     "sense": "not"
+    },
+    {
+     "iast": "cala",
+     "sense": "moving"
+    }
+   ],
+   "clue": "unmoving",
+   "names": "a mountain",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw-parts",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "ratnākara",
+   "parts": [
+    {
+     "iast": "ratna",
+     "sense": "jewel"
+    },
+    {
+     "iast": "ākara",
+     "sense": "mine"
+    }
+   ],
+   "clue": "mine of jewels",
+   "names": "the ocean",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw-parts",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "jaladhi",
+   "parts": [
+    {
+     "iast": "jala",
+     "sense": "water"
+    },
+    {
+     "iast": "dhi",
+     "sense": "holder"
+    }
+   ],
+   "clue": "holder of waters",
+   "names": "the ocean",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "vāridhi",
+   "parts": [
+    {
+     "iast": "vāri",
+     "sense": "water"
+    },
+    {
+     "iast": "dhi",
+     "sense": "holder"
+    }
+   ],
+   "clue": "holder of waters",
+   "names": "the ocean",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "ambhodhi",
+   "parts": [
+    {
+     "iast": "ambhas",
+     "sense": "water"
+    },
+    {
+     "iast": "dhi",
+     "sense": "holder"
+    }
+   ],
+   "clue": "holder of waters",
+   "names": "the ocean",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "udadhi",
+   "parts": [
+    {
+     "iast": "uda",
+     "sense": "water"
+    },
+    {
+     "iast": "dhi",
+     "sense": "holder"
+    }
+   ],
+   "clue": "holder of waters",
+   "names": "the ocean",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "abdhi",
+   "parts": [
+    {
+     "iast": "ap",
+     "sense": "water"
+    },
+    {
+     "iast": "dhi",
+     "sense": "holder"
+    }
+   ],
+   "clue": "holder of waters",
+   "names": "the ocean",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw-parts",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "digambara",
+   "parts": [
+    {
+     "iast": "diś",
+     "sense": "the quarters of the sky"
+    },
+    {
+     "iast": "ambara",
+     "sense": "garment"
+    }
+   ],
+   "clue": "clad in the directions",
+   "names": "Śiva",
+   "type": "bahuvrīhi",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "nīlakaṇṭha",
+   "parts": [
+    {
+     "iast": "nīla",
+     "sense": "blue"
+    },
+    {
+     "iast": "kaṇṭha",
+     "sense": "throat"
+    }
+   ],
+   "clue": "blue-throated",
+   "names": "Śiva",
+   "type": "bahuvrīhi",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "gaṅgādhara",
+   "parts": [
+    {
+     "iast": "gaṅgā",
+     "sense": "the Ganges"
+    },
+    {
+     "iast": "dhara",
+     "sense": "bearer"
+    }
+   ],
+   "clue": "bearer of Gaṅgā",
+   "names": "Śiva",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "candraśekhara",
+   "parts": [
+    {
+     "iast": "candra",
+     "sense": "moon"
+    },
+    {
+     "iast": "śekhara",
+     "sense": "crest"
+    }
+   ],
+   "clue": "moon-crested",
+   "names": "Śiva",
+   "type": "bahuvrīhi",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "trilocana",
+   "parts": [
+    {
+     "iast": "tri",
+     "sense": "three"
+    },
+    {
+     "iast": "locana",
+     "sense": "eye"
+    }
+   ],
+   "clue": "three-eyed",
+   "names": "Śiva",
+   "type": "bahuvrīhi",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "paśupati",
+   "parts": [
+    {
+     "iast": "paśu",
+     "sense": "beast, creature"
+    },
+    {
+     "iast": "pati",
+     "sense": "lord"
+    }
+   ],
+   "clue": "lord of creatures",
+   "names": "Śiva",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "vyomakeśa",
+   "parts": [
+    {
+     "iast": "vyoman",
+     "sense": "sky"
+    },
+    {
+     "iast": "keśa",
+     "sense": "hair"
+    }
+   ],
+   "clue": "sky-haired",
+   "names": "Śiva",
+   "type": "bahuvrīhi",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "pinākapāṇi",
+   "parts": [
+    {
+     "iast": "pināka",
+     "sense": "Śiva’s bow"
+    },
+    {
+     "iast": "pāṇi",
+     "sense": "hand"
+    }
+   ],
+   "clue": "Pināka in hand",
+   "names": "Śiva",
+   "type": "bahuvrīhi",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "vṛṣabhadhvaja",
+   "parts": [
+    {
+     "iast": "vṛṣabha",
+     "sense": "bull"
+    },
+    {
+     "iast": "dhvaja",
+     "sense": "banner"
+    }
+   ],
+   "clue": "bull-bannered",
+   "names": "Śiva",
+   "type": "bahuvrīhi",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "tripurāntaka",
+   "parts": [
+    {
+     "iast": "tripura",
+     "sense": "the three cities"
+    },
+    {
+     "iast": "antaka",
+     "sense": "ender"
+    }
+   ],
+   "clue": "ender of the three cities",
+   "names": "Śiva",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "umāpati",
+   "parts": [
+    {
+     "iast": "umā",
+     "sense": "Umā"
+    },
+    {
+     "iast": "pati",
+     "sense": "husband"
+    }
+   ],
+   "clue": "husband of Umā",
+   "names": "Śiva",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "girīśa",
+   "parts": [
+    {
+     "iast": "giri",
+     "sense": "mountain"
+    },
+    {
+     "iast": "īśa",
+     "sense": "lord"
+    }
+   ],
+   "clue": "lord of the mountain",
+   "names": "Śiva",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "giriśa",
+   "parts": [
+    {
+     "iast": "giri",
+     "sense": "mountain"
+    },
+    {
+     "iast": "śa",
+     "sense": "lying, dwelling"
+    }
+   ],
+   "clue": "the mountain-dweller",
+   "names": "Śiva",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "kālakāla",
+   "parts": [
+    {
+     "iast": "kāla",
+     "sense": "death"
+    },
+    {
+     "iast": "kāla",
+     "sense": "death"
+    }
+   ],
+   "clue": "the death of death",
+   "names": "Śiva",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw-parts",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "bhūteśvara",
+   "parts": [
+    {
+     "iast": "bhūta",
+     "sense": "being"
+    },
+    {
+     "iast": "īśvara",
+     "sense": "lord"
+    }
+   ],
+   "clue": "lord of beings",
+   "names": "Śiva",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw-parts",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "mahādeva",
+   "parts": [
+    {
+     "iast": "mahā",
+     "sense": "great"
+    },
+    {
+     "iast": "deva",
+     "sense": "god"
+    }
+   ],
+   "clue": "the great god",
+   "names": "Śiva",
+   "type": "karmadhāraya",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "maheśvara",
+   "parts": [
+    {
+     "iast": "mahā",
+     "sense": "great"
+    },
+    {
+     "iast": "īśvara",
+     "sense": "lord"
+    }
+   ],
+   "clue": "the great lord",
+   "names": "Śiva",
+   "type": "karmadhāraya",
+   "source": {
+    "analysis": "mw-parts",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "sadāśiva",
+   "parts": [
+    {
+     "iast": "sadā",
+     "sense": "always"
+    },
+    {
+     "iast": "śiva",
+     "sense": "auspicious"
+    }
+   ],
+   "clue": "ever-auspicious",
+   "names": "Śiva",
+   "type": "karmadhāraya",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "naṭarāja",
+   "parts": [
+    {
+     "iast": "naṭa",
+     "sense": "dancer"
+    },
+    {
+     "iast": "rāja",
+     "sense": "king"
+    }
+   ],
+   "clue": "king of dancers",
+   "names": "Śiva",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw-parts",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "kapardin",
+   "parts": [
+    {
+     "iast": "kaparda",
+     "sense": "a braid of matted hair"
+    },
+    {
+     "iast": "-in",
+     "sense": "having"
+    }
+   ],
+   "clue": "the matted-haired one",
+   "names": "Śiva",
+   "type": "derivative",
+   "source": {
+    "analysis": "mw-parts",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "śaṅkara",
+   "parts": [
+    {
+     "iast": "śam",
+     "sense": "weal, blessing"
+    },
+    {
+     "iast": "kara",
+     "sense": "maker"
+    }
+   ],
+   "clue": "maker of weal",
+   "names": "Śiva",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw-parts",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "śambhu",
+   "parts": [
+    {
+     "iast": "śam",
+     "sense": "weal, blessing"
+    },
+    {
+     "iast": "bhu",
+     "sense": "being"
+    }
+   ],
+   "clue": "being for weal",
+   "names": "Śiva",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "viśvanātha",
+   "parts": [
+    {
+     "iast": "viśva",
+     "sense": "all, the universe"
+    },
+    {
+     "iast": "nātha",
+     "sense": "lord"
+    }
+   ],
+   "clue": "lord of all",
+   "names": "Śiva",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "kedāranātha",
+   "parts": [
+    {
+     "iast": "kedāra",
+     "sense": "Kedāra"
+    },
+    {
+     "iast": "nātha",
+     "sense": "lord"
+    }
+   ],
+   "clue": "lord of Kedāra",
+   "names": "Śiva",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "somanātha",
+   "parts": [
+    {
+     "iast": "soma",
+     "sense": "the moon"
+    },
+    {
+     "iast": "nātha",
+     "sense": "lord"
+    }
+   ],
+   "clue": "lord of Soma",
+   "names": "Śiva",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "padmanābha",
+   "parts": [
+    {
+     "iast": "padma",
+     "sense": "lotus"
+    },
+    {
+     "iast": "nābha",
+     "sense": "navel"
+    }
+   ],
+   "clue": "lotus-navelled",
+   "names": "Viṣṇu",
+   "type": "bahuvrīhi",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "pītāmbara",
+   "parts": [
+    {
+     "iast": "pīta",
+     "sense": "yellow"
+    },
+    {
+     "iast": "ambara",
+     "sense": "garment"
+    }
+   ],
+   "clue": "yellow-robed",
+   "names": "Viṣṇu",
+   "type": "bahuvrīhi",
+   "source": {
+    "analysis": "mw-parts",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "cakrapāṇi",
+   "parts": [
+    {
+     "iast": "cakra",
+     "sense": "discus"
+    },
+    {
+     "iast": "pāṇi",
+     "sense": "hand"
+    }
+   ],
+   "clue": "discus in hand",
+   "names": "Viṣṇu",
+   "type": "bahuvrīhi",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "gadādhara",
+   "parts": [
+    {
+     "iast": "gadā",
+     "sense": "mace"
+    },
+    {
+     "iast": "dhara",
+     "sense": "bearer"
+    }
+   ],
+   "clue": "mace-bearer",
+   "names": "Viṣṇu",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "śārṅgadhara",
+   "parts": [
+    {
+     "iast": "śārṅga",
+     "sense": "Viṣṇu’s bow"
+    },
+    {
+     "iast": "dhara",
+     "sense": "bearer"
+    }
+   ],
+   "clue": "bearer of Śārṅga",
+   "names": "Viṣṇu",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "garuḍadhvaja",
+   "parts": [
+    {
+     "iast": "garuḍa",
+     "sense": "Garuḍa"
+    },
+    {
+     "iast": "dhvaja",
+     "sense": "banner"
+    }
+   ],
+   "clue": "Garuḍa-bannered",
+   "names": "Viṣṇu",
+   "type": "bahuvrīhi",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "lakṣmīpati",
+   "parts": [
+    {
+     "iast": "lakṣmī",
+     "sense": "Lakṣmī"
+    },
+    {
+     "iast": "pati",
+     "sense": "husband"
+    }
+   ],
+   "clue": "husband of Lakṣmī",
+   "names": "Viṣṇu",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "vanamālin",
+   "parts": [
+    {
+     "iast": "vanamālā",
+     "sense": "a garland of wild flowers"
+    },
+    {
+     "iast": "-in",
+     "sense": "wearing"
+    }
+   ],
+   "clue": "wearing the woodland garland",
+   "names": "Viṣṇu",
+   "type": "derivative",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "trivikrama",
+   "parts": [
+    {
+     "iast": "tri",
+     "sense": "three"
+    },
+    {
+     "iast": "vikrama",
+     "sense": "stride"
+    }
+   ],
+   "clue": "of the three strides",
+   "names": "Viṣṇu",
+   "type": "bahuvrīhi",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "puruṣottama",
+   "parts": [
+    {
+     "iast": "puruṣa",
+     "sense": "person"
+    },
+    {
+     "iast": "uttama",
+     "sense": "highest"
+    }
+   ],
+   "clue": "the highest person",
+   "names": "Viṣṇu",
+   "type": "karmadhāraya",
+   "source": {
+    "analysis": "mw-parts",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "nṛsiṃha",
+   "parts": [
+    {
+     "iast": "nṛ",
+     "sense": "man"
+    },
+    {
+     "iast": "siṃha",
+     "sense": "lion"
+    }
+   ],
+   "clue": "man-lion",
+   "names": "Viṣṇu",
+   "type": "karmadhāraya",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "murāri",
+   "parts": [
+    {
+     "iast": "mura",
+     "sense": "the demon Mura"
+    },
+    {
+     "iast": "ari",
+     "sense": "enemy"
+    }
+   ],
+   "clue": "foe of Mura",
+   "names": "Viṣṇu",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw-parts",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "acyuta",
+   "parts": [
+    {
+     "iast": "a-",
+     "sense": "not"
+    },
+    {
+     "iast": "cyuta",
+     "sense": "fallen"
+    }
+   ],
+   "clue": "the unfallen",
+   "names": "Viṣṇu",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw-parts",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "śrīdhara",
+   "parts": [
+    {
+     "iast": "śrī",
+     "sense": "Śrī, splendour"
+    },
+    {
+     "iast": "dhara",
+     "sense": "bearer"
+    }
+   ],
+   "clue": "bearer of Śrī",
+   "names": "Viṣṇu",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "jagadambā",
+   "parts": [
+    {
+     "iast": "jagat",
+     "sense": "the world"
+    },
+    {
+     "iast": "ambā",
+     "sense": "mother"
+    }
+   ],
+   "clue": "mother of the world",
+   "names": "Devī",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "annapūrṇā",
+   "parts": [
+    {
+     "iast": "anna",
+     "sense": "food"
+    },
+    {
+     "iast": "pūrṇā",
+     "sense": "full"
+    }
+   ],
+   "clue": "full of food",
+   "names": "Devī",
+   "type": "bahuvrīhi",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "mahāmāyā",
+   "parts": [
+    {
+     "iast": "mahā",
+     "sense": "great"
+    },
+    {
+     "iast": "māyā",
+     "sense": "illusion"
+    }
+   ],
+   "clue": "the great illusion",
+   "names": "Devī",
+   "type": "karmadhāraya",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "tripurasundarī",
+   "parts": [
+    {
+     "iast": "tripura",
+     "sense": "the three cities"
+    },
+    {
+     "iast": "sundarī",
+     "sense": "beautiful one"
+    }
+   ],
+   "clue": "the beauty of the three cities",
+   "names": "Devī",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "kāmākṣī",
+   "parts": [
+    {
+     "iast": "kāma",
+     "sense": "love"
+    },
+    {
+     "iast": "akṣi",
+     "sense": "eye"
+    }
+   ],
+   "clue": "loving-eyed",
+   "names": "Devī",
+   "type": "bahuvrīhi",
+   "source": {
+    "analysis": "mw-parts",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "mahiṣāsuramardinī",
+   "parts": [
+    {
+     "iast": "mahiṣa",
+     "sense": "buffalo"
+    },
+    {
+     "iast": "asura",
+     "sense": "demon"
+    },
+    {
+     "iast": "mardinī",
+     "sense": "crusher"
+    }
+   ],
+   "clue": "crusher of the buffalo-demon",
+   "names": "Devī",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "kuṇḍalinī",
+   "parts": [
+    {
+     "iast": "kuṇḍala",
+     "sense": "a coil, a ring"
+    },
+    {
+     "iast": "-inī",
+     "sense": "having"
+    }
+   ],
+   "clue": "the coiled one",
+   "names": "the coiled power",
+   "type": "derivative",
+   "source": {
+    "analysis": "mw-parts",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "durgā",
+   "parts": [
+    {
+     "iast": "dur-",
+     "sense": "hard"
+    },
+    {
+     "iast": "ga",
+     "sense": "going"
+    }
+   ],
+   "clue": "hard to go through",
+   "names": "Devī",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "amṛta",
+   "parts": [
+    {
+     "iast": "a-",
+     "sense": "not"
+    },
+    {
+     "iast": "mṛta",
+     "sense": "dead"
+    }
+   ],
+   "clue": "not dead",
+   "names": "nectar, the deathless",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw-parts",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "bhagavat",
+   "parts": [
+    {
+     "iast": "bhaga",
+     "sense": "fortune, majesty"
+    },
+    {
+     "iast": "-vat",
+     "sense": "possessing"
+    }
+   ],
+   "clue": "possessing bhaga",
+   "names": "the Blessed One",
+   "type": "derivative",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "namaskāra",
+   "parts": [
+    {
+     "iast": "namas",
+     "sense": "a bow"
+    },
+    {
+     "iast": "kāra",
+     "sense": "making"
+    }
+   ],
+   "clue": "the making of homage",
+   "names": "salutation",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "paramātman",
+   "parts": [
+    {
+     "iast": "parama",
+     "sense": "highest"
+    },
+    {
+     "iast": "ātman",
+     "sense": "self"
+    }
+   ],
+   "clue": "the highest self",
+   "names": "the supreme Self",
+   "type": "karmadhāraya",
+   "source": {
+    "analysis": "mw-parts",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "sarvajña",
+   "parts": [
+    {
+     "iast": "sarva",
+     "sense": "all"
+    },
+    {
+     "iast": "jña",
+     "sense": "knowing"
+    }
+   ],
+   "clue": "all-knowing",
+   "names": "the omniscient",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "bhūtakṛt",
+   "parts": [
+    {
+     "iast": "bhūta",
+     "sense": "being"
+    },
+    {
+     "iast": "kṛt",
+     "sense": "maker"
+    }
+   ],
+   "clue": "maker of beings",
+   "names": "the creator",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "bhūtabhṛt",
+   "parts": [
+    {
+     "iast": "bhūta",
+     "sense": "being"
+    },
+    {
+     "iast": "bhṛt",
+     "sense": "bearer"
+    }
+   ],
+   "clue": "bearer of beings",
+   "names": "the sustainer",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "gopāla",
+   "parts": [
+    {
+     "iast": "go",
+     "sense": "cow"
+    },
+    {
+     "iast": "pāla",
+     "sense": "protector"
+    }
+   ],
+   "clue": "cow-protector",
+   "names": "a cowherd",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "mw",
+    "sense": "curriculum"
+   }
+  }
+ ],
+ "opaque": [
+  {
+   "iast": "padma",
+   "why": "no settled derivation"
+  },
+  {
+   "iast": "kamala",
+   "why": "no settled derivation"
+  },
+  {
+   "iast": "aravinda",
+   "why": "no settled derivation"
+  },
+  {
+   "iast": "puṇḍarīka",
+   "why": "no settled derivation"
+  },
+  {
+   "iast": "nalina",
+   "why": "no settled derivation"
+  },
+  {
+   "iast": "rājīva",
+   "why": "no settled derivation"
+  },
+  {
+   "iast": "utpala",
+   "why": "the analysis is disputed, and the word properly names the blue water-lily"
+  },
+  {
+   "iast": "candra",
+   "why": "a primary word, not a compound"
+  },
+  {
+   "iast": "soma",
+   "why": "a primary word; the plant, the drink and the moon share it"
+  },
+  {
+   "iast": "indu",
+   "why": "no settled derivation"
+  },
+  {
+   "iast": "vidhu",
+   "why": "no settled derivation"
+  },
+  {
+   "iast": "sūrya",
+   "why": "ancient and disputed"
+  },
+  {
+   "iast": "mārtaṇḍa",
+   "why": "traditional analyses disagree"
+  },
+  {
+   "iast": "anala",
+   "why": "the traditional a-nala reading is a folk etymology"
+  },
+  {
+   "iast": "kṛśānu",
+   "why": "no settled derivation"
+  },
+  {
+   "iast": "vaiśvānara",
+   "why": "a derivative of viśvānara, itself disputed"
+  },
+  {
+   "iast": "sāgara",
+   "why": "named from the legend of king Sagara, not from its parts"
+  },
+  {
+   "iast": "sindhu",
+   "why": "a primary word"
+  },
+  {
+   "iast": "medinī",
+   "why": "traditional analyses disagree"
+  },
+  {
+   "iast": "antarikṣa",
+   "why": "the antar-īkṣa reading is a folk etymology"
+  },
+  {
+   "iast": "nārāyaṇa",
+   "why": "two traditional analyses, and the app already gives both"
+  },
+  {
+   "iast": "keśava",
+   "why": "two traditional analyses, and the app already gives both"
+  },
+  {
+   "iast": "govinda",
+   "why": "two traditional analyses, and the app already gives both"
+  },
+  {
+   "iast": "mādhava",
+   "why": "two traditional analyses, and the app already gives both"
+  },
+  {
+   "iast": "vāsudeva",
+   "why": "two traditional analyses, and the app already gives both"
+  },
+  {
+   "iast": "dāmodara",
+   "why": "lexicalized from a story, not readable off its parts"
+  },
+  {
+   "iast": "hṛṣīkeśa",
+   "why": "two traditional analyses"
+  },
+  {
+   "iast": "adhokṣaja",
+   "why": "no settled derivation"
+  },
+  {
+   "iast": "bhairava",
+   "why": "traditional analyses disagree"
+  },
+  {
+   "iast": "vāmadeva",
+   "why": "traditional analyses disagree"
+  },
+  {
+   "iast": "dhūrjaṭi",
+   "why": "no settled derivation"
+  },
+  {
+   "iast": "tryambaka",
+   "why": "traditional analyses disagree — three eyes, or three mothers"
+  }
+ ]
+}

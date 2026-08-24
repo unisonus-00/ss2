@@ -23,22 +23,30 @@ const DECK = 'Puruṣa-lakāra — person, tense and mood · practice';
 
 /* Expected counts come from the practice files themselves, so adding a
    lesson's practice does not break the suite — what is checked is that the
-   build carried across everything the sources declare. */
+   build carried across everything the sources declare.  The lexical layer is
+   run here too, over the same lessons the build runs it over, so a generated
+   list is counted exactly as an authored one is and a generator that stopped
+   being deterministic shows up as a mismatch. */
 const EXPECTED = (() => {
   const fs = require('fs');
   const root = path.resolve(__dirname, '..');
-  const files = [];
+  const lexicon = require('./lexicon');
+  const lessons = [];
   for (const d of fs.readdirSync(root).sort()) {
-    if (/^\d\d-/.test(d) && fs.existsSync(path.join(root, d, 'practice.json')))
-      files.push(path.join(root, d, 'practice.json'));
+    if (/^\d\d-/.test(d) && fs.existsSync(path.join(root, d, 'practice.json'))) {
+      lessons.push({ lesson: d, stage: +d.slice(0, 2),
+                     decks: JSON.parse(fs.readFileSync(path.join(root, d, 'practice.json'), 'utf8')).decks });
+    }
   }
-  if (fs.existsSync(path.join(root, 'practice.json'))) files.push(path.join(root, 'practice.json'));
+  if (fs.existsSync(path.join(root, 'practice.json'))) {
+    lessons.push({ lesson: '00-overview', stage: 0,
+                   decks: JSON.parse(fs.readFileSync(path.join(root, 'practice.json'), 'utf8')).decks });
+  }
+  const lex = lexicon.apply(lessons);
+  if (lex.problems.length) throw new Error('lexicon: ' + lex.problems.join(' | '));
   let decks = 0, cards = 0;
-  for (const f of files) {
-    const j = JSON.parse(fs.readFileSync(f, 'utf8'));
-    for (const d of j.decks) { decks++; cards += d.cards.length; }
-  }
-  return { lessons: files.length, decks, cards };
+  for (const L of lessons) for (const d of L.decks) { decks++; cards += d.cards.length; }
+  return { lessons: lessons.length, decks, cards, generated: lex.made, clued: lex.clued };
 })();
 
 const fail = [];
@@ -3826,7 +3834,9 @@ const open = async (browser, opts = {}) => {
       /* Keyed by the stem, not by the Devanagari: viṣṇuḥ in a curated list and
          viṣṇu in a bank list are one word in two citation forms, and comparing
          the strings is how twenty of these went unnoticed. */
-      const stem = s => norm(s).replace(/[ḥṃ]$/, '');
+      /* `jñānam` and `jñāna` are one word in two citation forms, and folding
+         only the visarga let six such pairs sit in one lesson unnoticed. */
+      const stem = s => norm(s).replace(/[ḥṃ]$/, '').replace(/m$/, '');
       const byLesson = {};
       Object.keys(DECKS).forEach(n => {
         const L = DECK_LESSON[n];
@@ -3915,6 +3925,220 @@ const open = async (browser, opts = {}) => {
     });
     ok('no list asks for the same derivation four times over',
       !r.length, r.slice(0, 3).join(' | '));
+    await p.close();
+  }
+
+  // ── the lexical layer says where it got everything ────────────────
+  // The relationships — root, prefix, suffix, derivative, compound member,
+  // synonym set — are defined once in lexicon/ and used everywhere.  What is
+  // checked here is that they agree with the curriculum they claim to
+  // describe, and that every enriched claim names a source.
+  {
+    const lexicon = require('./lexicon');
+    const lex = lexicon.load();
+    ok('the lexicon agrees with the lessons it describes',
+      !lex.problems.length, lex.problems.slice(0, 4).join(' | '));
+
+    const fs = require('fs');
+    const at = f => JSON.parse(fs.readFileSync(
+      path.resolve(__dirname, '..', 'lexicon', f), 'utf8'));
+    const ids = new Set(Object.keys(at('sources.json').sources));
+    const unsourced = [], unknown = [];
+    const check = (what, o) => {
+      if (!o.source) { unsourced.push(what); return; }
+      Object.values(o.source).forEach(v => String(v).split('+').forEach(one => {
+        if (!ids.has(one)) unknown.push(what + ' → ' + one);
+      }));
+    };
+    at('roots.json').roots.forEach(r => check(r.iast, r));
+    at('compounds.json').compounds.forEach(c => check(c.iast, c));
+    at('synonyms.json').categories.forEach(c => check(c.key, c));
+    at('synonyms.json').cautions.forEach(c => check(c.iast, c));
+    ok('every enriched claim names where it came from',
+      !unsourced.length, unsourced.slice(0, 4).join(' | '));
+    ok('and names one the registry defines',
+      !unknown.length, unknown.slice(0, 4).join(' | '));
+
+    /* An analysis the dictionary does not itself state is labelled as read
+       off its parts.  Conflating the two would report a reading of ours as
+       one Monier-Williams gives. */
+    const kinds = new Set(at('compounds.json').compounds.map(c => c.source.analysis));
+    ok('a reading off the parts is not reported as the dictionary’s',
+      kinds.has('mw') && kinds.has('mw-parts') && kinds.size === 2,
+      [...kinds].join(' | '));
+
+    /* And the refusals are refusals: a word listed as unreadable is never
+       also analysed, and every one says why. */
+    const opaque = at('compounds.json').opaque;
+    const analysed = new Set(at('compounds.json').compounds.map(c => c.iast));
+    ok('a word is analysed or refused, never both',
+      !opaque.some(o => analysed.has(o.iast)),
+      opaque.filter(o => analysed.has(o.iast)).map(o => o.iast).join(' | '));
+    ok('and every refusal says why',
+      opaque.length > 0 && opaque.every(o => o.why && o.why.length > 10),
+      opaque.length + ' words left alone');
+  }
+
+  // ── a clue has to be readable off the word it sits on ──────────────
+  // "paṅka + ja" is a clue because paṅka and ja are in paṅkaja.  A clue
+  // whose parts are not in the headword is an invention, and an invention is
+  // worse than no clue at all: it is memorable, and wrong.  Checked against
+  // what the lexical layer ADDS — the sources' own annotations are the
+  // curriculum's, and are not this file's to police.
+  {
+    const fs = require('fs');
+    const lexicon = require('./lexicon');
+    const root = path.resolve(__dirname, '..');
+    const before = new Map(), lessons = [];
+    for (const d of fs.readdirSync(root).sort()) {
+      const f = path.join(root, d, 'practice.json');
+      if (!/^\d\d-/.test(d) || !fs.existsSync(f)) continue;
+      const decks = JSON.parse(fs.readFileSync(f, 'utf8')).decks;
+      /* the note as a STRING: apply() mutates the very cards this holds */
+      decks.forEach(k => k.cards.forEach(c => before.set(c.id, c.note || '')));
+      lessons.push({ lesson: d, stage: +d.slice(0, 2), decks });
+    }
+    lexicon.apply(lessons);
+
+    const fold = t => t.normalize('NFD').replace(/[̀-ͯ]/g, '')
+                       .replace(/[^a-z]/gi, '').toLowerCase();
+    const bad = [], onOpaque = [], added = [];
+    const lex = lexicon.load();
+    lessons.forEach(L => L.decks.forEach(d => d.cards.forEach(c => {
+      const was = before.get(c.id);
+      if (was === undefined || (c.note || '') === was) return;
+      const clue = (c.note || '').slice(was.length).replace(/^ · /, '');
+      added.push(clue);
+      /* a word the lexicon refuses to analyse must never pick up an analysis */
+      if (lex.opaque.has(lexicon.key(c.iast || c.answer || ''))) onOpaque.push(c.id);
+      const parts = /^(.+?) \+ (.+?)(?: — |$)/.exec(clue);
+      if (!parts) return;
+      /* an interactive card is clued off its ANSWER; a reveal card off its
+         own headword */
+      const word = c.iast || c.answer;
+      if (typeof word !== 'string') return;
+      /* Sandhi meets in the middle — mahā + īśvara is maheśvara — so the
+         first member has to open the word and the last has to close it,
+         which is what survives any join. */
+      const w = fold(word).replace(/[hm]$/, '');     // drop the citation ending
+      const head = fold(parts[1]), tail = fold(parts[2]);
+      if (head.length >= 2 && !w.startsWith(head.slice(0, 2))) {
+        bad.push(c.id + ': ' + parts[1] + ' does not open ' + word);
+      }
+      /* A root is followed by whatever built the word out of it — durgama is
+         dur- and √gam and an -a — so a root member has to be IN the word
+         where a stem member has to end it. */
+      const isRoot = parts[2].trim().startsWith('√');
+      const ok2 = tail.length < 3 || /^-/.test(parts[2].trim())
+        || (isRoot ? w.includes(tail) : w.endsWith(tail.slice(-3)));
+      if (!ok2) bad.push(c.id + ': ' + parts[2] + ' does not close ' + word);
+    })));
+    ok('the lexical layer clued cards that were carrying nothing',
+      added.length >= 40, added.length + ' clues added');
+    ok('every compound clue opens and closes the word it explains',
+      !bad.length, bad.slice(0, 4).join(' | '));
+    ok('and a word the lexicon refuses to analyse is left alone',
+      !onOpaque.length, onOpaque.slice(0, 4).join(' | '));
+  }
+
+  // ── the root cards carry the whole of what the reference gives ─────
+  // Stage 9 is where the class and the pada are spelled out rather than
+  // written "4Ā", and where a root's sense is allowed to travel: the chain
+  // goes on `detail`, which is part of the ANSWER, so a reversed card cannot
+  // be answered by reading it.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const shape = /^dhātu · class \d+ · (parasmaipada|ātmanepada|both padas) · \S+/;
+      const cards = [];
+      Object.keys(DECKS).forEach(n => {
+        if (!n.startsWith('Dhātu ')) return;
+        DECKS[n].forEach(c => cards.push(c));
+      });
+      const chains = cards.filter(c => c.detail && c.detail.includes(' → '));
+      /* and the chain is on the back in both directions */
+      const one = chains[0];
+      const front = ['reveal', 'produce'].map(d => {
+        setDir(d); startRound([one], {});
+        return document.getElementById('dn').textContent
+             + '¦' + document.getElementById('detail').textContent;
+      });
+      return {
+        n: cards.length,
+        misshapen: cards.filter(c => !shape.test(c.note || '')).map(c => c.iast),
+        chains: chains.length,
+        hidden: front.every(f => !f.split('¦')[0].includes('→')),
+        shownAfter: (() => {
+          setDir('reveal'); startRound([one], {}); reveal();
+          return document.getElementById('detail').textContent;
+        })(),
+      };
+    });
+    ok('every root card names its class and pada in words',
+      r.n >= 50 && !r.misshapen.length, r.misshapen.slice(0, 4).join(' | '));
+    ok('and the ones whose sense travels carry the chain',
+      r.chains >= 20, r.chains + ' chains');
+    ok('the chain is part of the answer, not the prompt',
+      r.hidden && r.shownAfter.includes(' → '), r.shownAfter);
+    await p.close();
+  }
+
+  // ── a generated list is held to what an authored one is ───────────
+  // The lexical layer writes cards, so the ways a card can be wrong have to
+  // be checked on what it writes: two options that are the same answer, two
+  // cards that ask the same question, an English cue with more than one
+  // right Sanskrit answer.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const MADE = ['Kula', 'Upasarga-artha', 'Anekārtha', 'Vyutpatti'];
+      const decks = Object.keys(DECKS).filter(n => MADE.some(m => n.startsWith(m)));
+      const dupOption = [], dupCue = [], notChoice = [], sourceless = [];
+      decks.forEach(n => {
+        const asked = new Map();
+        DECKS[n].forEach(c => {
+          if ((c.type || 'reveal') !== 'choice') { notChoice.push(c.id); return; }
+          if (!c.source) sourceless.push(c.id);
+          const opts = c.options.map(o => o.trim().toLowerCase());
+          if (new Set(opts).size !== opts.length) dupOption.push(c.id);
+          /* an option that CONTAINS the answer is the answer twice over —
+             "Devī" beside "Devī, the unassailable" has two right taps */
+          c.options.filter(o => o !== c.answer).forEach(o => {
+            if (o.includes(c.answer) || c.answer.includes(o)) dupOption.push(c.id + ': ' + o);
+          });
+          const cue = c.front.trim().toLowerCase();
+          if (asked.has(cue)) dupCue.push(n + ': ' + cue);
+          asked.set(cue, c.id);
+        });
+      });
+      /* the reverse-recall guard, over the whole app: within one list, one
+         English cue may have only one Sanskrit answer */
+      const clash = [];
+      Object.entries(DECKS).forEach(([n, cs]) => {
+        const by = {};
+        cs.forEach(c => {
+          if ((c.type || 'reveal') !== 'reveal') return;
+          const k = (c.gloss || '').trim().toLowerCase();
+          (by[k] = by[k] || []).push(c.iast);
+        });
+        Object.entries(by).forEach(([k, ws]) => {
+          if (ws.length > 1) clash.push(n + ' · "' + k + '"');
+        });
+      });
+      return { decks: decks.length, dupOption, dupCue, notChoice, sourceless, clash,
+               cards: decks.reduce((a, n) => a + DECKS[n].length, 0) };
+    });
+    ok('the lexical layer put its lists in the app',
+      r.decks === 4 && r.cards >= 50, r.decks + ' lists · ' + r.cards + ' cards');
+    ok('no generated option is the answer a second time',
+      !r.dupOption.length, r.dupOption.slice(0, 4).join(' | '));
+    ok('no two generated cards ask the same question',
+      !r.dupCue.length, r.dupCue.slice(0, 4).join(' | '));
+    ok('every generated card is graded, and says where it came from',
+      !r.notChoice.length && !r.sourceless.length,
+      r.notChoice.concat(r.sourceless).slice(0, 4).join(' | '));
+    ok('and no English cue in any list has two Sanskrit answers',
+      !r.clash.length, r.clash.slice(0, 4).join(' | '));
     await p.close();
   }
 

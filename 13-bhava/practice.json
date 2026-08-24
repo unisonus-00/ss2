@@ -37,7 +37,8 @@
           "devanagari": "भयम्",
           "iast": "bhayam",
           "gloss": "fear",
-          "note": "noun · neuter · a-stem · stem: bhaya-"
+          "note": "noun · neuter · a-stem · stem: bhaya-",
+          "source": "DM 4.28"
         },
         {
           "id": "13-bhava:bhava:krodhah",
@@ -107,7 +108,8 @@
           "devanagari": "वैराग्यम्",
           "iast": "vairāgyam",
           "gloss": "dispassion",
-          "note": "noun · neuter · a-stem · stem: vairāgya-"
+          "note": "noun · neuter · a-stem · stem: vairāgya-",
+          "source": "DM 1.27"
         }
       ],
       "stream": "enrichment"
@@ -171,13 +173,6 @@
           "iast": "prasphuritādhara",
           "gloss": "with quivering lip (from rage)",
           "note": "adjective · a-stem · stem: prasphuritādhara- · DM 6.21"
-        },
-        {
-          "id": "13-bhava:emotions-mind:bhaya",
-          "devanagari": "भय",
-          "iast": "bhaya",
-          "gloss": "fear",
-          "note": "noun · neuter · a-stem · stem: bhaya- · DM 4.28"
         },
         {
           "id": "13-bhava:emotions-mind:trasa",
@@ -476,13 +471,6 @@
           "iast": "smṛti",
           "gloss": "memory",
           "note": "noun · feminine · i-stem · stem: smṛti- · from √smṛ · DM 5.45"
-        },
-        {
-          "id": "13-bhava:emotions-mind:vairagya",
-          "devanagari": "वैराग्य",
-          "iast": "vairāgya",
-          "gloss": "dispassion",
-          "note": "noun · neuter · a-stem · stem: vairāgya- · DM 1.27"
         },
         {
           "id": "13-bhava:emotions-mind:dhairya",

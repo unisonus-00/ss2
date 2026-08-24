@@ -1,0 +1,25 @@
+{
+ "note": "Every lexical claim in this directory names where it came from. A `source` value is one of these ids. See lexicon/README.md.",
+ "sources": {
+  "curriculum": {
+   "label": "the curriculum",
+   "detail": "A lesson's own theory.md, reference.md or workbook in this repository.",
+   "authority": "canonical — where a dictionary disagrees, the curriculum wins"
+  },
+  "mw": {
+   "label": "Monier-Williams",
+   "detail": "A Sanskrit-English Dictionary, Monier-Williams 1899, in the Cologne Digital Sanskrit Dictionaries text (sanskrit-lexicon/csl-orig, v02/mw/mw.txt).",
+   "authority": "enrichment and validation only"
+  },
+  "mw-parts": {
+   "label": "Monier-Williams, read off the parts",
+   "detail": "The compound is not split by Monier-Williams in its own headword, but every member of it is a Monier-Williams headword and the reading is the sum of them. Kept apart from `mw` so an analysis that rests on the parts is never reported as one the dictionary states.",
+   "authority": "enrichment and validation only"
+  }
+ },
+ "notUsed": {
+  "amarakosa": "No machine-readable Amarakośa was reachable from this environment — it is not among the 45 dictionaries in csl-orig — so nothing here is sourced to it. The synonym categories in 10-paryaya/reference.md are of that tradition, and they are cited to the curriculum, which is where this repository actually carries them.",
+  "apte": "Apte 1890 (csl-orig v02/ap90) was consulted while checking senses but is cited nowhere: every claim that survived is one Monier-Williams also carries, and two source ids for one fact is a second thing to keep in step.",
+  "vidyut": "Vidyut's Dhātupāṭha data was not used. The fifty roots this app teaches are the curriculum's own list, with their gaṇa, pada and present form given in 09-dhatu/reference.md, and that list is canonical here."
+ }
+}

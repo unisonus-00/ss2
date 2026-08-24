@@ -1,0 +1,2483 @@
+{
+ "note": "Verbal roots. The mechanical fields are the curriculum's own; the enrichment fields are checked against Monier-Williams. See lexicon/README.md.",
+ "roots": [
+  {
+   "id": "kṛ",
+   "iast": "√kṛ",
+   "gana": 8,
+   "pada": "both padas",
+   "present": "karoti",
+   "sense": "to do, to make",
+   "curriculumSense": "do/make",
+   "keyDerivatives": [
+    "karma",
+    "kṛta"
+   ],
+   "family": [
+    {
+     "iast": "karman",
+     "formation": "-man",
+     "sense": "act, work, the fruit of an act"
+    },
+    {
+     "iast": "kṛta",
+     "formation": "-ta",
+     "sense": "done"
+    },
+    {
+     "iast": "kartṛ",
+     "formation": "-tṛ",
+     "sense": "the doer"
+    },
+    {
+     "iast": "kriyā",
+     "formation": "-yā",
+     "sense": "an action, a rite"
+    },
+    {
+     "iast": "saṃskāra",
+     "formation": "sam- + -a",
+     "sense": "a making-together: a rite that shapes a person"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw",
+    "development": "mw",
+    "upasarga": "curriculum+mw"
+   },
+   "development": [
+    "make, form",
+    "do, perform",
+    "perform a rite"
+   ],
+   "upasarga": [
+    {
+     "prefix": "sam",
+     "iast": "saṃskāra",
+     "sense": "a rite that shapes a person",
+     "literally": "make together"
+    },
+    {
+     "prefix": "vi",
+     "iast": "vikāra",
+     "sense": "change, modification",
+     "literally": "make apart"
+    },
+    {
+     "prefix": "pra",
+     "iast": "prakṛti",
+     "sense": "nature, the first material",
+     "literally": "make forth"
+    }
+   ]
+  },
+  {
+   "id": "bhū",
+   "iast": "√bhū",
+   "gana": 1,
+   "pada": "parasmaipada",
+   "present": "bhavati",
+   "sense": "to be, to become",
+   "curriculumSense": "be/become",
+   "keyDerivatives": [
+    "bhava",
+    "bhūta"
+   ],
+   "family": [
+    {
+     "iast": "bhava",
+     "formation": "-a",
+     "sense": "coming to be, existence"
+    },
+    {
+     "iast": "bhūta",
+     "formation": "-ta",
+     "sense": "become; a being"
+    },
+    {
+     "iast": "bhūmi",
+     "formation": "-mi",
+     "sense": "the ground, the earth"
+    },
+    {
+     "iast": "vibhūti",
+     "formation": "vi- + -ti",
+     "sense": "outspread power, glory"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw"
+   }
+  },
+  {
+   "id": "as",
+   "iast": "√as",
+   "gana": 2,
+   "pada": "parasmaipada",
+   "present": "asti",
+   "sense": "to be, to exist",
+   "curriculumSense": "be/exist",
+   "keyDerivatives": [
+    "sat",
+    "astitva"
+   ],
+   "family": [
+    {
+     "iast": "sat",
+     "formation": "-at",
+     "sense": "being, real, true"
+    },
+    {
+     "iast": "satya",
+     "formation": "-ya",
+     "sense": "the truth"
+    },
+    {
+     "iast": "astitva",
+     "formation": "asti + -tva",
+     "sense": "the fact of being, existence"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw"
+   }
+  },
+  {
+   "id": "gam",
+   "iast": "√gam",
+   "gana": 1,
+   "pada": "parasmaipada",
+   "present": "gacchati",
+   "sense": "to go",
+   "curriculumSense": "go",
+   "keyDerivatives": [
+    "gati",
+    "gata"
+   ],
+   "family": [
+    {
+     "iast": "gati",
+     "formation": "-ti",
+     "sense": "a going, a course, a destiny"
+    },
+    {
+     "iast": "gata",
+     "formation": "-ta",
+     "sense": "gone"
+    },
+    {
+     "iast": "āgama",
+     "formation": "ā- + -a",
+     "sense": "a coming down: received tradition"
+    },
+    {
+     "iast": "saṃgama",
+     "formation": "sam- + -a",
+     "sense": "a coming together, confluence"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw",
+    "upasarga": "curriculum+mw"
+   },
+   "upasarga": [
+    {
+     "prefix": "ā",
+     "iast": "āgama",
+     "sense": "received tradition, scripture",
+     "literally": "come toward"
+    },
+    {
+     "prefix": "sam",
+     "iast": "saṃgama",
+     "sense": "a confluence, a meeting",
+     "literally": "go together"
+    },
+    {
+     "prefix": "adhi",
+     "iast": "adhigama",
+     "sense": "attainment",
+     "literally": "go over to"
+    },
+    {
+     "prefix": "dur",
+     "iast": "durgama",
+     "sense": "hard to go through, inaccessible",
+     "literally": "hard to go"
+    },
+    {
+     "prefix": "su",
+     "iast": "sugama",
+     "sense": "easy to go through",
+     "literally": "easy to go"
+    }
+   ]
+  },
+  {
+   "id": "dā",
+   "iast": "√dā",
+   "gana": 3,
+   "pada": "parasmaipada",
+   "present": "dadāti",
+   "sense": "to give",
+   "curriculumSense": "give",
+   "keyDerivatives": [
+    "dāna",
+    "datta"
+   ],
+   "family": [
+    {
+     "iast": "dāna",
+     "formation": "-ana",
+     "sense": "giving, a gift"
+    },
+    {
+     "iast": "datta",
+     "formation": "-ta",
+     "sense": "given"
+    },
+    {
+     "iast": "dātṛ",
+     "formation": "-tṛ",
+     "sense": "the giver"
+    },
+    {
+     "iast": "pradāna",
+     "formation": "pra- + -ana",
+     "sense": "handing over, bestowal"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw"
+   }
+  },
+  {
+   "id": "dhā",
+   "iast": "√dhā",
+   "gana": 3,
+   "pada": "both padas",
+   "present": "dadhāti",
+   "sense": "to put, to place",
+   "curriculumSense": "place/hold",
+   "keyDerivatives": [
+    "dhāman",
+    "hita"
+   ],
+   "family": [
+    {
+     "iast": "dhāman",
+     "formation": "-man",
+     "sense": "a seat, an abode"
+    },
+    {
+     "iast": "hita",
+     "formation": "-ta",
+     "sense": "placed; wholesome, good"
+    },
+    {
+     "iast": "vidhi",
+     "formation": "vi- + -i",
+     "sense": "a laying-out: a rule, an ordinance"
+    },
+    {
+     "iast": "sandhi",
+     "formation": "sam- + -i",
+     "sense": "a putting-together: the join of two sounds"
+    },
+    {
+     "iast": "nidhi",
+     "formation": "ni- + -i",
+     "sense": "a laying-down: a treasure"
+    },
+    {
+     "iast": "śraddhā",
+     "formation": "śrat + √dhā",
+     "sense": "placing the heart on: faith"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw",
+    "development": "mw",
+    "upasarga": "curriculum+mw"
+   },
+   "development": [
+    "put, place",
+    "set down, establish",
+    "hold, sustain"
+   ],
+   "upasarga": [
+    {
+     "prefix": "sam",
+     "iast": "sandhi",
+     "sense": "the join of two sounds",
+     "literally": "put together"
+    },
+    {
+     "prefix": "vi",
+     "iast": "vidhi",
+     "sense": "a rule, an ordinance",
+     "literally": "lay out"
+    },
+    {
+     "prefix": "ni",
+     "iast": "nidhi",
+     "sense": "a treasure",
+     "literally": "lay down"
+    }
+   ]
+  },
+  {
+   "id": "dṛś",
+   "iast": "√dṛś",
+   "gana": 1,
+   "pada": "parasmaipada",
+   "present": "paśyati",
+   "sense": "to see",
+   "curriculumSense": "see",
+   "keyDerivatives": [
+    "darśana",
+    "dṛṣṭa"
+   ],
+   "family": [
+    {
+     "iast": "darśana",
+     "formation": "-ana",
+     "sense": "seeing, sight; a way of seeing, a school"
+    },
+    {
+     "iast": "dṛṣṭi",
+     "formation": "-ti",
+     "sense": "the sight, the gaze"
+    },
+    {
+     "iast": "dṛṣṭa",
+     "formation": "-ta",
+     "sense": "seen"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw",
+    "development": "mw"
+   },
+   "development": [
+    "see, behold",
+    "see with the mind, understand",
+    "a way of seeing"
+   ]
+  },
+  {
+   "id": "śru",
+   "iast": "√śru",
+   "gana": 5,
+   "pada": "parasmaipada",
+   "present": "śṛṇoti",
+   "sense": "to hear",
+   "curriculumSense": "hear",
+   "keyDerivatives": [
+    "śruti",
+    "śruta"
+   ],
+   "family": [
+    {
+     "iast": "śruti",
+     "formation": "-ti",
+     "sense": "hearing; what was heard, revealed scripture"
+    },
+    {
+     "iast": "śruta",
+     "formation": "-ta",
+     "sense": "heard, learnt"
+    },
+    {
+     "iast": "śravaṇa",
+     "formation": "-ana",
+     "sense": "the act of hearing; the ear"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw",
+    "development": "mw"
+   },
+   "development": [
+    "hear",
+    "listen to a teacher, learn",
+    "what is heard, revelation"
+   ]
+  },
+  {
+   "id": "jñā",
+   "iast": "√jñā",
+   "gana": 9,
+   "pada": "both padas",
+   "present": "jānāti",
+   "sense": "to know",
+   "curriculumSense": "know",
+   "keyDerivatives": [
+    "jñāna",
+    "jñāta"
+   ],
+   "family": [
+    {
+     "iast": "jñāna",
+     "formation": "-ana",
+     "sense": "knowing, knowledge"
+    },
+    {
+     "iast": "jñāta",
+     "formation": "-ta",
+     "sense": "known"
+    },
+    {
+     "iast": "vijñāna",
+     "formation": "vi- + -ana",
+     "sense": "knowing apart: discernment"
+    },
+    {
+     "iast": "prajñā",
+     "formation": "pra- + -ā",
+     "sense": "knowing forth: insight, wisdom"
+    },
+    {
+     "iast": "ājñā",
+     "formation": "ā- + -ā",
+     "sense": "a command"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw",
+    "development": "mw",
+    "upasarga": "curriculum+mw"
+   },
+   "development": [
+    "know, become acquainted with",
+    "recognise, discern",
+    "acknowledge"
+   ],
+   "upasarga": [
+    {
+     "prefix": "vi",
+     "iast": "vijñāna",
+     "sense": "discernment",
+     "literally": "know apart"
+    },
+    {
+     "prefix": "pra",
+     "iast": "prajñā",
+     "sense": "insight, wisdom",
+     "literally": "know forth"
+    },
+    {
+     "prefix": "ā",
+     "iast": "ājñā",
+     "sense": "a command",
+     "literally": "make known to"
+    }
+   ]
+  },
+  {
+   "id": "vid",
+   "iast": "√vid",
+   "gana": 2,
+   "pada": "parasmaipada",
+   "present": "vetti",
+   "sense": "to know, to find",
+   "curriculumSense": "know",
+   "keyDerivatives": [
+    "vidyā",
+    "vidita"
+   ],
+   "family": [
+    {
+     "iast": "vidyā",
+     "formation": "-yā",
+     "sense": "knowledge, a branch of learning"
+    },
+    {
+     "iast": "vidita",
+     "formation": "-ta",
+     "sense": "known"
+    },
+    {
+     "iast": "veda",
+     "formation": "-a",
+     "sense": "knowledge; the Veda"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw"
+   }
+  },
+  {
+   "id": "vac",
+   "iast": "√vac",
+   "gana": 2,
+   "pada": "parasmaipada",
+   "present": "vakti",
+   "sense": "to speak",
+   "curriculumSense": "speak",
+   "keyDerivatives": [
+    "vāc",
+    "ukta"
+   ],
+   "family": [
+    {
+     "iast": "vāc",
+     "formation": "-",
+     "sense": "speech, the voice"
+    },
+    {
+     "iast": "ukta",
+     "formation": "-ta",
+     "sense": "spoken"
+    },
+    {
+     "iast": "vacana",
+     "formation": "-ana",
+     "sense": "speaking, an utterance"
+    },
+    {
+     "iast": "vākya",
+     "formation": "-ya",
+     "sense": "a sentence"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw",
+    "development": "mw"
+   },
+   "development": [
+    "speak, say",
+    "declare, name",
+    "what is spoken"
+   ]
+  },
+  {
+   "id": "brū",
+   "iast": "√brū",
+   "gana": 2,
+   "pada": "both padas",
+   "present": "bravīti",
+   "sense": "to say",
+   "curriculumSense": "say",
+   "keyDerivatives": [],
+   "family": [],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw"
+   }
+  },
+  {
+   "id": "man",
+   "iast": "√man",
+   "gana": 4,
+   "pada": "ātmanepada",
+   "present": "manyate",
+   "sense": "to think",
+   "curriculumSense": "think",
+   "keyDerivatives": [
+    "manas",
+    "mata"
+   ],
+   "family": [
+    {
+     "iast": "manas",
+     "formation": "-as",
+     "sense": "the mind"
+    },
+    {
+     "iast": "mata",
+     "formation": "-ta",
+     "sense": "thought; an opinion"
+    },
+    {
+     "iast": "mantra",
+     "formation": "-tra",
+     "sense": "the instrument of thought: a mantra"
+    },
+    {
+     "iast": "manana",
+     "formation": "-ana",
+     "sense": "pondering"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw",
+    "development": "mw"
+   },
+   "development": [
+    "think",
+    "hold to be, consider",
+    "the thinking faculty"
+   ]
+  },
+  {
+   "id": "budh",
+   "iast": "√budh",
+   "gana": 1,
+   "pada": "parasmaipada",
+   "present": "bodhati",
+   "sense": "to wake, to be aware",
+   "curriculumSense": "know/wake",
+   "keyDerivatives": [
+    "bodha",
+    "buddha"
+   ],
+   "family": [
+    {
+     "iast": "bodha",
+     "formation": "-a",
+     "sense": "waking, understanding"
+    },
+    {
+     "iast": "buddha",
+     "formation": "-ta",
+     "sense": "awakened"
+    },
+    {
+     "iast": "buddhi",
+     "formation": "-ti",
+     "sense": "the waking faculty: intellect"
+    },
+    {
+     "iast": "bodhi",
+     "formation": "-i",
+     "sense": "awakening"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw",
+    "development": "mw"
+   },
+   "development": [
+    "wake up",
+    "become aware, notice",
+    "understand, be enlightened"
+   ]
+  },
+  {
+   "id": "nam",
+   "iast": "√nam",
+   "gana": 1,
+   "pada": "parasmaipada",
+   "present": "namati",
+   "sense": "to bend, to bow",
+   "curriculumSense": "bow",
+   "keyDerivatives": [
+    "namas",
+    "nata"
+   ],
+   "family": [
+    {
+     "iast": "namas",
+     "formation": "-as",
+     "sense": "a bow, homage"
+    },
+    {
+     "iast": "nata",
+     "formation": "-ta",
+     "sense": "bowed"
+    },
+    {
+     "iast": "namaskāra",
+     "formation": "namas + √kṛ",
+     "sense": "the making of homage"
+    },
+    {
+     "iast": "praṇāma",
+     "formation": "pra- + -a",
+     "sense": "bowing forth: prostration"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw",
+    "development": "mw",
+    "upasarga": "curriculum+mw"
+   },
+   "development": [
+    "bend",
+    "bow to",
+    "submit, yield"
+   ],
+   "upasarga": [
+    {
+     "prefix": "pra",
+     "iast": "praṇāma",
+     "sense": "prostration",
+     "literally": "bow forth"
+    }
+   ]
+  },
+  {
+   "id": "bhaj",
+   "iast": "√bhaj",
+   "gana": 1,
+   "pada": "both padas",
+   "present": "bhajati",
+   "sense": "to share, to partake of",
+   "curriculumSense": "serve/adore",
+   "keyDerivatives": [
+    "bhakti",
+    "bhakta"
+   ],
+   "family": [
+    {
+     "iast": "bhakti",
+     "formation": "-ti",
+     "sense": "a share; devotion"
+    },
+    {
+     "iast": "bhakta",
+     "formation": "-ta",
+     "sense": "shared out; devoted, a devotee"
+    },
+    {
+     "iast": "bhajana",
+     "formation": "-ana",
+     "sense": "worship, singing"
+    },
+    {
+     "iast": "bhāga",
+     "formation": "-a",
+     "sense": "a share, a portion"
+    },
+    {
+     "iast": "bhāgavata",
+     "formation": "-vata",
+     "sense": "belonging to the Lord"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw",
+    "development": "mw"
+   },
+   "development": [
+    "share out",
+    "partake of, receive a share",
+    "resort to, attend on",
+    "be devoted to"
+   ]
+  },
+  {
+   "id": "pūj",
+   "iast": "√pūj",
+   "gana": 10,
+   "pada": "both padas",
+   "present": "pūjayati",
+   "sense": "to honour, to worship",
+   "curriculumSense": "worship",
+   "keyDerivatives": [
+    "pūjā",
+    "pūjita"
+   ],
+   "family": [
+    {
+     "iast": "pūjā",
+     "formation": "-ā",
+     "sense": "worship"
+    },
+    {
+     "iast": "pūjita",
+     "formation": "-ta",
+     "sense": "worshipped"
+    },
+    {
+     "iast": "pūjya",
+     "formation": "-ya",
+     "sense": "to be worshipped"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw"
+   }
+  },
+  {
+   "id": "stu",
+   "iast": "√stu",
+   "gana": 2,
+   "pada": "both padas",
+   "present": "stauti",
+   "sense": "to praise",
+   "curriculumSense": "praise",
+   "keyDerivatives": [
+    "stuti",
+    "stuta"
+   ],
+   "family": [
+    {
+     "iast": "stuti",
+     "formation": "-ti",
+     "sense": "praise"
+    },
+    {
+     "iast": "stuta",
+     "formation": "-ta",
+     "sense": "praised"
+    },
+    {
+     "iast": "stotra",
+     "formation": "-tra",
+     "sense": "the instrument of praise: a hymn"
+    },
+    {
+     "iast": "stotṛ",
+     "formation": "-tṛ",
+     "sense": "the praiser"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw"
+   }
+  },
+  {
+   "id": "sev",
+   "iast": "√sev",
+   "gana": 1,
+   "pada": "ātmanepada",
+   "present": "sevate",
+   "sense": "to stay beside, to attend on",
+   "curriculumSense": "serve",
+   "keyDerivatives": [
+    "sevā",
+    "sevita"
+   ],
+   "family": [
+    {
+     "iast": "sevā",
+     "formation": "-ā",
+     "sense": "attendance, service"
+    },
+    {
+     "iast": "sevita",
+     "formation": "-ta",
+     "sense": "attended on, served"
+    },
+    {
+     "iast": "sevaka",
+     "formation": "-aka",
+     "sense": "a servant, an attendant"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw",
+    "development": "mw"
+   },
+   "development": [
+    "stay near, frequent",
+    "attend upon",
+    "serve, honour"
+   ]
+  },
+  {
+   "id": "yaj",
+   "iast": "√yaj",
+   "gana": 1,
+   "pada": "both padas",
+   "present": "yajati",
+   "sense": "to worship with an offering",
+   "curriculumSense": "sacrifice",
+   "keyDerivatives": [
+    "yajña",
+    "iṣṭa"
+   ],
+   "family": [
+    {
+     "iast": "yajña",
+     "formation": "-na",
+     "sense": "a sacrifice"
+    },
+    {
+     "iast": "iṣṭa",
+     "formation": "-ta",
+     "sense": "sacrificed; sought after"
+    },
+    {
+     "iast": "yajamāna",
+     "formation": "-māna",
+     "sense": "the one for whom the rite is done, the patron"
+    },
+    {
+     "iast": "ijyā",
+     "formation": "-yā",
+     "sense": "offering, worship"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw"
+   }
+  },
+  {
+   "id": "hu",
+   "iast": "√hu",
+   "gana": 3,
+   "pada": "parasmaipada",
+   "present": "juhoti",
+   "sense": "to pour an oblation",
+   "curriculumSense": "pour (oblation)",
+   "keyDerivatives": [
+    "homa",
+    "huta"
+   ],
+   "family": [
+    {
+     "iast": "homa",
+     "formation": "-a",
+     "sense": "pouring into fire, an oblation"
+    },
+    {
+     "iast": "huta",
+     "formation": "-ta",
+     "sense": "offered"
+    },
+    {
+     "iast": "āhuti",
+     "formation": "ā- + -ti",
+     "sense": "an offering poured in"
+    },
+    {
+     "iast": "havis",
+     "formation": "-is",
+     "sense": "what is offered"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw"
+   }
+  },
+  {
+   "id": "sthā",
+   "iast": "√sthā",
+   "gana": 1,
+   "pada": "parasmaipada",
+   "present": "tiṣṭhati",
+   "sense": "to stand",
+   "curriculumSense": "stand",
+   "keyDerivatives": [
+    "sthāna",
+    "sthita"
+   ],
+   "family": [
+    {
+     "iast": "sthāna",
+     "formation": "-ana",
+     "sense": "standing; a place"
+    },
+    {
+     "iast": "sthita",
+     "formation": "-ta",
+     "sense": "standing, established"
+    },
+    {
+     "iast": "adhiṣṭhāna",
+     "formation": "adhi- + -ana",
+     "sense": "standing over: a seat, a foundation"
+    },
+    {
+     "iast": "pratiṣṭhā",
+     "formation": "prati- + -ā",
+     "sense": "standing firm: consecration"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw",
+    "development": "mw",
+    "upasarga": "curriculum+mw"
+   },
+   "development": [
+    "stand",
+    "stay, abide",
+    "be established, hold good"
+   ],
+   "upasarga": [
+    {
+     "prefix": "adhi",
+     "iast": "adhiṣṭhāna",
+     "sense": "a seat, a foundation",
+     "literally": "stand over"
+    },
+    {
+     "prefix": "prati",
+     "iast": "pratiṣṭhā",
+     "sense": "establishment, consecration",
+     "literally": "stand firm"
+    },
+    {
+     "prefix": "ut",
+     "iast": "utthāna",
+     "sense": "rising up",
+     "literally": "stand up"
+    }
+   ]
+  },
+  {
+   "id": "nī",
+   "iast": "√nī",
+   "gana": 1,
+   "pada": "both padas",
+   "present": "nayati",
+   "sense": "to lead",
+   "curriculumSense": "lead",
+   "keyDerivatives": [
+    "nīti",
+    "nīta"
+   ],
+   "family": [
+    {
+     "iast": "nīti",
+     "formation": "-ti",
+     "sense": "leading; conduct, policy"
+    },
+    {
+     "iast": "nīta",
+     "formation": "-ta",
+     "sense": "led"
+    },
+    {
+     "iast": "naya",
+     "formation": "-a",
+     "sense": "guidance, prudence"
+    },
+    {
+     "iast": "vinaya",
+     "formation": "vi- + -a",
+     "sense": "leading away: discipline, humility"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw"
+   }
+  },
+  {
+   "id": "pā",
+   "iast": "√pā",
+   "gana": 2,
+   "pada": "parasmaipada",
+   "present": "pāti",
+   "sense": "to protect",
+   "curriculumSense": "protect",
+   "keyDerivatives": [
+    "pāla",
+    "pālita"
+   ],
+   "family": [
+    {
+     "iast": "pāla",
+     "formation": "-a",
+     "sense": "a protector"
+    },
+    {
+     "iast": "pālita",
+     "formation": "-ta",
+     "sense": "protected"
+    },
+    {
+     "iast": "gopāla",
+     "formation": "go + pāla",
+     "sense": "cow-protector: a cowherd"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw",
+    "development": "mw"
+   },
+   "development": [
+    "protect, defend",
+    "watch over, keep",
+    "rule"
+   ]
+  },
+  {
+   "id": "rakṣ",
+   "iast": "√rakṣ",
+   "gana": 1,
+   "pada": "parasmaipada",
+   "present": "rakṣati",
+   "sense": "to guard",
+   "curriculumSense": "protect",
+   "keyDerivatives": [
+    "rakṣā",
+    "rakṣita"
+   ],
+   "family": [
+    {
+     "iast": "rakṣā",
+     "formation": "-ā",
+     "sense": "protection, an amulet"
+    },
+    {
+     "iast": "rakṣita",
+     "formation": "-ta",
+     "sense": "guarded"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw"
+   }
+  },
+  {
+   "id": "hṛ",
+   "iast": "√hṛ",
+   "gana": 1,
+   "pada": "both padas",
+   "present": "harati",
+   "sense": "to carry, to carry off",
+   "curriculumSense": "take/seize",
+   "keyDerivatives": [
+    "haraṇa",
+    "hṛta"
+   ],
+   "family": [
+    {
+     "iast": "haraṇa",
+     "formation": "-ana",
+     "sense": "carrying off"
+    },
+    {
+     "iast": "hṛta",
+     "formation": "-ta",
+     "sense": "taken"
+    },
+    {
+     "iast": "hara",
+     "formation": "-a",
+     "sense": "the remover"
+    },
+    {
+     "iast": "saṃhāra",
+     "formation": "sam- + -a",
+     "sense": "drawing together: withdrawal, destruction"
+    },
+    {
+     "iast": "āhāra",
+     "formation": "ā- + -a",
+     "sense": "bringing to oneself: food"
+    },
+    {
+     "iast": "vihāra",
+     "formation": "vi- + -a",
+     "sense": "carrying apart: roaming, a pleasure-ground"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw",
+    "development": "mw",
+    "upasarga": "curriculum+mw"
+   },
+   "development": [
+    "carry, bring",
+    "carry off, take away",
+    "remove, destroy"
+   ],
+   "upasarga": [
+    {
+     "prefix": "sam",
+     "iast": "saṃhāra",
+     "sense": "withdrawal, destruction",
+     "literally": "carry together"
+    },
+    {
+     "prefix": "ā",
+     "iast": "āhāra",
+     "sense": "food",
+     "literally": "carry toward oneself"
+    },
+    {
+     "prefix": "vi",
+     "iast": "vihāra",
+     "sense": "roaming, a pleasure-ground",
+     "literally": "carry apart"
+    },
+    {
+     "prefix": "pra",
+     "iast": "prahāra",
+     "sense": "a blow",
+     "literally": "carry forth"
+    }
+   ]
+  },
+  {
+   "id": "grah",
+   "iast": "√grah",
+   "gana": 9,
+   "pada": "both padas",
+   "present": "gṛhṇāti",
+   "sense": "to seize, to take hold of",
+   "curriculumSense": "grasp",
+   "keyDerivatives": [
+    "graha",
+    "gṛhīta"
+   ],
+   "family": [
+    {
+     "iast": "graha",
+     "formation": "-a",
+     "sense": "seizing; a seizer, a planet"
+    },
+    {
+     "iast": "gṛhīta",
+     "formation": "-ta",
+     "sense": "seized"
+    },
+    {
+     "iast": "anugraha",
+     "formation": "anu- + -a",
+     "sense": "seizing after: favour, grace"
+    },
+    {
+     "iast": "nigraha",
+     "formation": "ni- + -a",
+     "sense": "seizing down: restraint"
+    },
+    {
+     "iast": "saṃgraha",
+     "formation": "sam- + -a",
+     "sense": "seizing together: a collection"
+    },
+    {
+     "iast": "parigraha",
+     "formation": "pari- + -a",
+     "sense": "seizing around: acceptance, a household"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw",
+    "development": "mw",
+    "upasarga": "curriculum+mw"
+   },
+   "development": [
+    "seize, take hold of",
+    "receive, accept",
+    "take hold of with the mind"
+   ],
+   "upasarga": [
+    {
+     "prefix": "anu",
+     "iast": "anugraha",
+     "sense": "favour, grace",
+     "literally": "seize after"
+    },
+    {
+     "prefix": "ni",
+     "iast": "nigraha",
+     "sense": "restraint, control",
+     "literally": "seize down"
+    },
+    {
+     "prefix": "sam",
+     "iast": "saṃgraha",
+     "sense": "a collection",
+     "literally": "seize together"
+    },
+    {
+     "prefix": "pari",
+     "iast": "parigraha",
+     "sense": "acceptance, a household",
+     "literally": "seize around"
+    },
+    {
+     "prefix": "vi",
+     "iast": "vigraha",
+     "sense": "separation, strife; a form",
+     "literally": "seize apart"
+    }
+   ]
+  },
+  {
+   "id": "muc",
+   "iast": "√muc",
+   "gana": 6,
+   "pada": "parasmaipada",
+   "present": "muñcati",
+   "sense": "to loosen, to let go",
+   "curriculumSense": "release",
+   "keyDerivatives": [
+    "mokṣa",
+    "mukta"
+   ],
+   "family": [
+    {
+     "iast": "mokṣa",
+     "formation": "-a",
+     "sense": "release, liberation"
+    },
+    {
+     "iast": "mukta",
+     "formation": "-ta",
+     "sense": "released"
+    },
+    {
+     "iast": "mukti",
+     "formation": "-ti",
+     "sense": "release"
+    },
+    {
+     "iast": "vimocana",
+     "formation": "vi- + -ana",
+     "sense": "loosing apart, deliverance"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw",
+    "development": "mw"
+   },
+   "development": [
+    "loosen, slacken",
+    "let go, release",
+    "set free"
+   ]
+  },
+  {
+   "id": "yuj",
+   "iast": "√yuj",
+   "gana": 7,
+   "pada": "both padas",
+   "present": "yunakti",
+   "sense": "to yoke, to join",
+   "curriculumSense": "join",
+   "keyDerivatives": [
+    "yoga",
+    "yukta"
+   ],
+   "family": [
+    {
+     "iast": "yoga",
+     "formation": "-a",
+     "sense": "yoking, union, discipline"
+    },
+    {
+     "iast": "yukta",
+     "formation": "-ta",
+     "sense": "yoked, joined"
+    },
+    {
+     "iast": "yogin",
+     "formation": "-in",
+     "sense": "one who has yoga"
+    },
+    {
+     "iast": "prayoga",
+     "formation": "pra- + -a",
+     "sense": "application, use"
+    },
+    {
+     "iast": "saṃyoga",
+     "formation": "sam- + -a",
+     "sense": "a joining-together"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw",
+    "development": "mw",
+    "upasarga": "curriculum+mw"
+   },
+   "development": [
+    "yoke, harness",
+    "join, fit together",
+    "hold together, concentrate"
+   ],
+   "upasarga": [
+    {
+     "prefix": "pra",
+     "iast": "prayoga",
+     "sense": "application, use",
+     "literally": "join forth"
+    },
+    {
+     "prefix": "sam",
+     "iast": "saṃyoga",
+     "sense": "a joining-together",
+     "literally": "join together"
+    },
+    {
+     "prefix": "vi",
+     "iast": "viyoga",
+     "sense": "separation",
+     "literally": "join apart"
+    }
+   ]
+  },
+  {
+   "id": "jan",
+   "iast": "√jan",
+   "gana": 4,
+   "pada": "ātmanepada",
+   "present": "jāyate",
+   "sense": "to be born",
+   "curriculumSense": "be born",
+   "keyDerivatives": [
+    "janma",
+    "jāta"
+   ],
+   "family": [
+    {
+     "iast": "janman",
+     "formation": "-man",
+     "sense": "birth"
+    },
+    {
+     "iast": "jāta",
+     "formation": "-ta",
+     "sense": "born"
+    },
+    {
+     "iast": "jana",
+     "formation": "-a",
+     "sense": "a person, people"
+    },
+    {
+     "iast": "jananī",
+     "formation": "-anī",
+     "sense": "the one who gives birth: mother"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw"
+   }
+  },
+  {
+   "id": "mṛ",
+   "iast": "√mṛ",
+   "gana": 6,
+   "pada": "ātmanepada",
+   "present": "mriyate",
+   "sense": "to die",
+   "curriculumSense": "die",
+   "keyDerivatives": [
+    "mṛtyu",
+    "mṛta"
+   ],
+   "family": [
+    {
+     "iast": "mṛtyu",
+     "formation": "-tyu",
+     "sense": "death"
+    },
+    {
+     "iast": "mṛta",
+     "formation": "-ta",
+     "sense": "dead"
+    },
+    {
+     "iast": "amṛta",
+     "formation": "a- + mṛta",
+     "sense": "not dead: the deathless, nectar"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw",
+    "development": "mw"
+   },
+   "development": [
+    "die"
+   ]
+  },
+  {
+   "id": "ji",
+   "iast": "√ji",
+   "gana": 1,
+   "pada": "parasmaipada",
+   "present": "jayati",
+   "sense": "to win, to conquer",
+   "curriculumSense": "conquer",
+   "keyDerivatives": [
+    "jaya",
+    "jita"
+   ],
+   "family": [
+    {
+     "iast": "jaya",
+     "formation": "-a",
+     "sense": "victory"
+    },
+    {
+     "iast": "jita",
+     "formation": "-ta",
+     "sense": "conquered"
+    },
+    {
+     "iast": "vijaya",
+     "formation": "vi- + -a",
+     "sense": "victory"
+    },
+    {
+     "iast": "parājaya",
+     "formation": "parā- + -a",
+     "sense": "defeat"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw"
+   }
+  },
+  {
+   "id": "vṛt",
+   "iast": "√vṛt",
+   "gana": 1,
+   "pada": "ātmanepada",
+   "present": "vartate",
+   "sense": "to turn, to go on",
+   "curriculumSense": "turn/exist",
+   "keyDerivatives": [
+    "vṛtti",
+    "vṛtta"
+   ],
+   "family": [
+    {
+     "iast": "vṛtti",
+     "formation": "-ti",
+     "sense": "turning; a way of going on, conduct"
+    },
+    {
+     "iast": "vṛtta",
+     "formation": "-ta",
+     "sense": "turned; a metre"
+    },
+    {
+     "iast": "pravṛtti",
+     "formation": "pra- + -ti",
+     "sense": "turning forth: engagement in action"
+    },
+    {
+     "iast": "nivṛtti",
+     "formation": "ni- + -ti",
+     "sense": "turning back: withdrawal from action"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw",
+    "development": "mw",
+    "upasarga": "curriculum+mw"
+   },
+   "development": [
+    "turn, revolve",
+    "go on, proceed",
+    "be, exist"
+   ],
+   "upasarga": [
+    {
+     "prefix": "pra",
+     "iast": "pravṛtti",
+     "sense": "engagement in action",
+     "literally": "turn forth"
+    },
+    {
+     "prefix": "ni",
+     "iast": "nivṛtti",
+     "sense": "withdrawal from action",
+     "literally": "turn back"
+    },
+    {
+     "prefix": "ā",
+     "iast": "āvṛtti",
+     "sense": "repetition",
+     "literally": "turn again"
+    }
+   ]
+  },
+  {
+   "id": "car",
+   "iast": "√car",
+   "gana": 1,
+   "pada": "parasmaipada",
+   "present": "carati",
+   "sense": "to move, to go about",
+   "curriculumSense": "move/act",
+   "keyDerivatives": [
+    "carya",
+    "carita"
+   ],
+   "family": [
+    {
+     "iast": "carya",
+     "formation": "-ya",
+     "sense": "going about; observance, practice"
+    },
+    {
+     "iast": "carita",
+     "formation": "-ta",
+     "sense": "gone through; a life-story"
+    },
+    {
+     "iast": "ācāra",
+     "formation": "ā- + -a",
+     "sense": "moving toward: right conduct"
+    },
+    {
+     "iast": "vicāra",
+     "formation": "vi- + -a",
+     "sense": "moving apart: reflection, enquiry"
+    },
+    {
+     "iast": "upacāra",
+     "formation": "upa- + -a",
+     "sense": "moving near: attendance, an act of service"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw",
+    "development": "mw",
+    "upasarga": "curriculum+mw"
+   },
+   "development": [
+    "move, wander",
+    "go about, act",
+    "conduct oneself"
+   ],
+   "upasarga": [
+    {
+     "prefix": "ā",
+     "iast": "ācāra",
+     "sense": "right conduct",
+     "literally": "move toward"
+    },
+    {
+     "prefix": "vi",
+     "iast": "vicāra",
+     "sense": "reflection, enquiry",
+     "literally": "move apart"
+    },
+    {
+     "prefix": "upa",
+     "iast": "upacāra",
+     "sense": "an act of service in worship",
+     "literally": "move near"
+    }
+   ]
+  },
+  {
+   "id": "pat",
+   "iast": "√pat",
+   "gana": 1,
+   "pada": "parasmaipada",
+   "present": "patati",
+   "sense": "to fly, to fall",
+   "curriculumSense": "fall",
+   "keyDerivatives": [
+    "pāta",
+    "patita"
+   ],
+   "family": [
+    {
+     "iast": "pāta",
+     "formation": "-a",
+     "sense": "a fall, a flight"
+    },
+    {
+     "iast": "patita",
+     "formation": "-ta",
+     "sense": "fallen"
+    },
+    {
+     "iast": "patana",
+     "formation": "-ana",
+     "sense": "falling"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw"
+   }
+  },
+  {
+   "id": "kram",
+   "iast": "√kram",
+   "gana": 1,
+   "pada": "both padas",
+   "present": "krāmati",
+   "sense": "to step",
+   "curriculumSense": "step",
+   "keyDerivatives": [
+    "krama"
+   ],
+   "family": [
+    {
+     "iast": "krama",
+     "formation": "-a",
+     "sense": "a step; order, sequence"
+    },
+    {
+     "iast": "vikrama",
+     "formation": "vi- + -a",
+     "sense": "striding out: valour"
+    },
+    {
+     "iast": "parikrama",
+     "formation": "pari- + -a",
+     "sense": "stepping around: circumambulation"
+    },
+    {
+     "iast": "atikrama",
+     "formation": "ati- + -a",
+     "sense": "stepping beyond: transgression"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw"
+   }
+  },
+  {
+   "id": "prach",
+   "iast": "√prach",
+   "gana": 6,
+   "pada": "parasmaipada",
+   "present": "pṛcchati",
+   "sense": "to ask",
+   "curriculumSense": "ask",
+   "keyDerivatives": [
+    "praśna",
+    "pṛṣṭa"
+   ],
+   "family": [
+    {
+     "iast": "praśna",
+     "formation": "-na",
+     "sense": "a question"
+    },
+    {
+     "iast": "pṛṣṭa",
+     "formation": "-ta",
+     "sense": "asked"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw"
+   }
+  },
+  {
+   "id": "labh",
+   "iast": "√labh",
+   "gana": 1,
+   "pada": "ātmanepada",
+   "present": "labhate",
+   "sense": "to take, to obtain",
+   "curriculumSense": "obtain",
+   "keyDerivatives": [
+    "lābha",
+    "labdha"
+   ],
+   "family": [
+    {
+     "iast": "lābha",
+     "formation": "-a",
+     "sense": "gain, acquisition"
+    },
+    {
+     "iast": "labdha",
+     "formation": "-ta",
+     "sense": "obtained"
+    },
+    {
+     "iast": "upalabdhi",
+     "formation": "upa- + -ti",
+     "sense": "coming upon: perception"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw",
+    "development": "mw"
+   },
+   "development": [
+    "take, catch",
+    "find, come upon",
+    "obtain, receive"
+   ]
+  },
+  {
+   "id": "tyaj",
+   "iast": "√tyaj",
+   "gana": 1,
+   "pada": "parasmaipada",
+   "present": "tyajati",
+   "sense": "to leave, to give up",
+   "curriculumSense": "abandon",
+   "keyDerivatives": [
+    "tyāga",
+    "tyakta"
+   ],
+   "family": [
+    {
+     "iast": "tyāga",
+     "formation": "-a",
+     "sense": "letting go, renunciation"
+    },
+    {
+     "iast": "tyakta",
+     "formation": "-ta",
+     "sense": "abandoned"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw"
+   }
+  },
+  {
+   "id": "smṛ",
+   "iast": "√smṛ",
+   "gana": 1,
+   "pada": "parasmaipada",
+   "present": "smarati",
+   "sense": "to remember",
+   "curriculumSense": "remember",
+   "keyDerivatives": [
+    "smṛti",
+    "smṛta"
+   ],
+   "family": [
+    {
+     "iast": "smṛti",
+     "formation": "-ti",
+     "sense": "memory; what was remembered, transmitted law"
+    },
+    {
+     "iast": "smṛta",
+     "formation": "-ta",
+     "sense": "remembered"
+    },
+    {
+     "iast": "smaraṇa",
+     "formation": "-ana",
+     "sense": "calling to mind"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw",
+    "development": "mw"
+   },
+   "development": [
+    "remember, call to mind",
+    "hold in mind",
+    "what is remembered, tradition"
+   ]
+  },
+  {
+   "id": "dhyai",
+   "iast": "√dhyai",
+   "gana": 1,
+   "pada": "parasmaipada",
+   "present": "dhyāyati",
+   "sense": "to meditate",
+   "curriculumSense": "meditate",
+   "keyDerivatives": [
+    "dhyāna"
+   ],
+   "family": [
+    {
+     "iast": "dhyāna",
+     "formation": "-ana",
+     "sense": "meditation"
+    },
+    {
+     "iast": "dhyātṛ",
+     "formation": "-tṛ",
+     "sense": "the one who meditates"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw"
+   }
+  },
+  {
+   "id": "jap",
+   "iast": "√jap",
+   "gana": 1,
+   "pada": "parasmaipada",
+   "present": "japati",
+   "sense": "to mutter, to chant",
+   "curriculumSense": "chant",
+   "keyDerivatives": [
+    "japa"
+   ],
+   "family": [
+    {
+     "iast": "japa",
+     "formation": "-a",
+     "sense": "muttered repetition of a mantra"
+    },
+    {
+     "iast": "japya",
+     "formation": "-ya",
+     "sense": "to be muttered"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw"
+   }
+  },
+  {
+   "id": "gai",
+   "iast": "√gai",
+   "gana": 1,
+   "pada": "parasmaipada",
+   "present": "gāyati",
+   "sense": "to sing",
+   "curriculumSense": "sing",
+   "keyDerivatives": [
+    "gāna",
+    "gīta"
+   ],
+   "family": [
+    {
+     "iast": "gāna",
+     "formation": "-ana",
+     "sense": "singing, a song"
+    },
+    {
+     "iast": "gīta",
+     "formation": "-ta",
+     "sense": "sung"
+    },
+    {
+     "iast": "gīti",
+     "formation": "-ti",
+     "sense": "a song"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw"
+   }
+  },
+  {
+   "id": "likh",
+   "iast": "√likh",
+   "gana": 6,
+   "pada": "parasmaipada",
+   "present": "likhati",
+   "sense": "to scratch, to write",
+   "curriculumSense": "write",
+   "keyDerivatives": [
+    "lekha",
+    "likhita"
+   ],
+   "family": [
+    {
+     "iast": "lekha",
+     "formation": "-a",
+     "sense": "a writing, a letter"
+    },
+    {
+     "iast": "likhita",
+     "formation": "-ta",
+     "sense": "written"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw"
+   }
+  },
+  {
+   "id": "paṭh",
+   "iast": "√paṭh",
+   "gana": 1,
+   "pada": "parasmaipada",
+   "present": "paṭhati",
+   "sense": "to recite",
+   "curriculumSense": "recite",
+   "keyDerivatives": [
+    "pāṭha"
+   ],
+   "family": [
+    {
+     "iast": "pāṭha",
+     "formation": "-a",
+     "sense": "recitation, a text as recited"
+    },
+    {
+     "iast": "pāṭhaka",
+     "formation": "-aka",
+     "sense": "a reciter"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw"
+   }
+  },
+  {
+   "id": "vas",
+   "iast": "√vas",
+   "gana": 1,
+   "pada": "parasmaipada",
+   "present": "vasati",
+   "sense": "to dwell",
+   "curriculumSense": "dwell",
+   "keyDerivatives": [
+    "vāsa"
+   ],
+   "family": [
+    {
+     "iast": "vāsa",
+     "formation": "-a",
+     "sense": "dwelling, an abode"
+    },
+    {
+     "iast": "nivāsa",
+     "formation": "ni- + -a",
+     "sense": "settling down: a dwelling"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw"
+   }
+  },
+  {
+   "id": "īś",
+   "iast": "√īś",
+   "gana": 2,
+   "pada": "ātmanepada",
+   "present": "īṣṭe",
+   "sense": "to be master of, to rule",
+   "curriculumSense": "rule",
+   "keyDerivatives": [
+    "īśvara"
+   ],
+   "family": [
+    {
+     "iast": "īśvara",
+     "formation": "-vara",
+     "sense": "the lord, the master"
+    },
+    {
+     "iast": "īśa",
+     "formation": "-a",
+     "sense": "a lord"
+    },
+    {
+     "iast": "aiśvarya",
+     "formation": "-ya",
+     "sense": "lordship, sovereignty"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw",
+    "development": "mw"
+   },
+   "development": [
+    "own, be master of",
+    "have power over",
+    "rule"
+   ]
+  },
+  {
+   "id": "śī",
+   "iast": "√śī",
+   "gana": 2,
+   "pada": "ātmanepada",
+   "present": "śete",
+   "sense": "to lie down",
+   "curriculumSense": "lie/sleep",
+   "keyDerivatives": [
+    "śayana"
+   ],
+   "family": [
+    {
+     "iast": "śayana",
+     "formation": "-ana",
+     "sense": "lying down; a bed"
+    },
+    {
+     "iast": "śayita",
+     "formation": "-ta",
+     "sense": "lying, asleep"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw"
+   }
+  },
+  {
+   "id": "sad",
+   "iast": "√sad",
+   "gana": 1,
+   "pada": "parasmaipada",
+   "present": "sīdati",
+   "sense": "to sit, to settle",
+   "curriculumSense": "sit",
+   "keyDerivatives": [
+    "sādana"
+   ],
+   "family": [
+    {
+     "iast": "sādana",
+     "formation": "-ana",
+     "sense": "sitting; a seat"
+    },
+    {
+     "iast": "prasāda",
+     "formation": "pra- + -a",
+     "sense": "settling clear: calm, favour, the grace given back as food"
+    },
+    {
+     "iast": "viṣāda",
+     "formation": "vi- + -a",
+     "sense": "sinking apart: despondency"
+    },
+    {
+     "iast": "upaniṣad",
+     "formation": "upa- + ni- + -",
+     "sense": "sitting down close: an Upaniṣad"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw",
+    "development": "mw",
+    "upasarga": "curriculum+mw"
+   },
+   "development": [
+    "sit down",
+    "settle, sink",
+    "settle clear, become calm"
+   ],
+   "upasarga": [
+    {
+     "prefix": "pra",
+     "iast": "prasāda",
+     "sense": "calm, grace",
+     "literally": "settle forth"
+    },
+    {
+     "prefix": "vi",
+     "iast": "viṣāda",
+     "sense": "despondency",
+     "literally": "sink apart"
+    },
+    {
+     "prefix": "upa-ni",
+     "iast": "upaniṣad",
+     "sense": "an Upaniṣad",
+     "literally": "sit down close"
+    }
+   ]
+  },
+  {
+   "id": "kṣam",
+   "iast": "√kṣam",
+   "gana": 1,
+   "pada": "ātmanepada",
+   "present": "kṣamate",
+   "sense": "to endure, to forgive",
+   "curriculumSense": "forgive",
+   "keyDerivatives": [
+    "kṣamā"
+   ],
+   "family": [
+    {
+     "iast": "kṣamā",
+     "formation": "-ā",
+     "sense": "patience, forgiveness"
+    },
+    {
+     "iast": "kṣānta",
+     "formation": "-ta",
+     "sense": "borne with, endured"
+    }
+   ],
+   "source": {
+    "gana": "curriculum",
+    "pada": "curriculum",
+    "present": "curriculum",
+    "keyDerivatives": "curriculum",
+    "sense": "mw",
+    "family": "mw"
+   }
+  },
+  {
+   "id": "vad",
+   "iast": "√vad",
+   "gana": 1,
+   "pada": "both padas",
+   "present": "vadati",
+   "sense": "to speak, to say",
+   "family": [
+    {
+     "iast": "vāda",
+     "formation": "-a",
+     "sense": "speech, a statement, a dispute"
+    },
+    {
+     "iast": "vādin",
+     "formation": "-in",
+     "sense": "one who speaks"
+    }
+   ],
+   "keyDerivatives": [],
+   "extra": true,
+   "source": {
+    "gana": "mw",
+    "pada": "mw",
+    "present": "mw",
+    "sense": "mw",
+    "family": "mw"
+   }
+  },
+  {
+   "id": "vand",
+   "iast": "√vand",
+   "gana": 1,
+   "pada": "ātmanepada",
+   "present": "vandate",
+   "sense": "to praise, to venerate",
+   "family": [
+    {
+     "iast": "vandana",
+     "formation": "-ana",
+     "sense": "praise, salutation"
+    },
+    {
+     "iast": "vandita",
+     "formation": "-ta",
+     "sense": "venerated"
+    }
+   ],
+   "keyDerivatives": [],
+   "extra": true,
+   "source": {
+    "gana": "mw",
+    "pada": "mw",
+    "present": "mw",
+    "sense": "mw",
+    "family": "mw"
+   }
+  }
+ ]
+}

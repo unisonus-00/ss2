@@ -190,7 +190,8 @@
           "devanagari": "हृदयम्",
           "iast": "hṛdayam",
           "gloss": "heart",
-          "note": "noun · neuter · a-stem · stem: hṛdaya-"
+          "note": "noun · neuter · a-stem · stem: hṛdaya-",
+          "source": "DM 9.34"
         },
         {
           "id": "17-puja-vak:anga:sikha",
@@ -840,13 +841,6 @@
           "iast": "meda",
           "gloss": "fat",
           "note": "noun · neuter · a-stem · stem: meda- · LS passim"
-        },
-        {
-          "id": "17-puja-vak:body-adornment:hrdaya",
-          "devanagari": "हृदय",
-          "iast": "hṛdaya",
-          "gloss": "heart",
-          "note": "noun · neuter · a-stem · stem: hṛdaya- · DM 9.34"
         },
         {
           "id": "17-puja-vak:body-adornment:kostha",

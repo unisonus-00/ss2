@@ -1,0 +1,267 @@
+{
+ "note": "Set membership lives in 10-paryaya/reference.md and is not copied here. This file carries the reading of those sets: which are names for one being and which are words for one thing, which members merely describe, and which are not free swaps for the rest. See lexicon/README.md.",
+ "categories": [
+  {
+   "key": "Śiva",
+   "english": "Śiva",
+   "kind": "deity",
+   "defaultRelation": "epithet",
+   "source": {
+    "members": "curriculum",
+    "reading": "mw"
+   }
+  },
+  {
+   "key": "Viṣṇu",
+   "english": "Viṣṇu",
+   "kind": "deity",
+   "defaultRelation": "epithet",
+   "source": {
+    "members": "curriculum",
+    "reading": "mw"
+   }
+  },
+  {
+   "key": "Devī",
+   "english": "the Goddess",
+   "kind": "deity",
+   "defaultRelation": "epithet",
+   "source": {
+    "members": "curriculum",
+    "reading": "mw"
+   }
+  },
+  {
+   "key": "Sun",
+   "english": "the sun",
+   "kind": "thing",
+   "defaultRelation": "synonym",
+   "source": {
+    "members": "curriculum",
+    "reading": "mw"
+   }
+  },
+  {
+   "key": "Moon",
+   "english": "the moon",
+   "kind": "thing",
+   "defaultRelation": "synonym",
+   "source": {
+    "members": "curriculum",
+    "reading": "mw"
+   }
+  },
+  {
+   "key": "Lotus",
+   "english": "the lotus",
+   "kind": "thing",
+   "defaultRelation": "synonym",
+   "source": {
+    "members": "curriculum",
+    "reading": "mw"
+   }
+  },
+  {
+   "key": "Water",
+   "english": "water",
+   "kind": "thing",
+   "defaultRelation": "synonym",
+   "source": {
+    "members": "curriculum",
+    "reading": "mw"
+   }
+  },
+  {
+   "key": "Fire",
+   "english": "fire",
+   "kind": "thing",
+   "defaultRelation": "synonym",
+   "source": {
+    "members": "curriculum",
+    "reading": "mw"
+   }
+  },
+  {
+   "key": "Earth",
+   "english": "the earth",
+   "kind": "thing",
+   "defaultRelation": "synonym",
+   "source": {
+    "members": "curriculum",
+    "reading": "mw"
+   }
+  },
+  {
+   "key": "Sky",
+   "english": "the sky",
+   "kind": "thing",
+   "defaultRelation": "synonym",
+   "source": {
+    "members": "curriculum",
+    "reading": "mw"
+   }
+  },
+  {
+   "key": "Mountain",
+   "english": "a mountain",
+   "kind": "thing",
+   "defaultRelation": "synonym",
+   "source": {
+    "members": "curriculum",
+    "reading": "mw"
+   }
+  },
+  {
+   "key": "Ocean",
+   "english": "the ocean",
+   "kind": "thing",
+   "defaultRelation": "synonym",
+   "source": {
+    "members": "curriculum",
+    "reading": "mw"
+   }
+  }
+ ],
+ "cautions": [
+  {
+   "iast": "mitraḥ",
+   "category": "Sun",
+   "alsoMeans": "also a friend, and the Āditya Mitra",
+   "source": {
+    "also": "mw",
+    "alsoMeans": "mw"
+   },
+   "also": "a friend"
+  },
+  {
+   "iast": "arkaḥ",
+   "category": "Sun",
+   "alsoMeans": "also a ray of light, and the arka plant",
+   "source": {
+    "also": "mw",
+    "alsoMeans": "mw"
+   },
+   "also": "a ray of light"
+  },
+  {
+   "iast": "savitā",
+   "category": "Sun",
+   "alsoMeans": "the one who impels — the god Savitṛ",
+   "source": {
+    "also": "mw",
+    "alsoMeans": "mw"
+   },
+   "also": "the impeller"
+  },
+  {
+   "iast": "somaḥ",
+   "category": "Moon",
+   "alsoMeans": "also the soma plant and its juice",
+   "source": {
+    "also": "mw",
+    "alsoMeans": "mw"
+   },
+   "also": "the soma plant"
+  },
+  {
+   "iast": "induḥ",
+   "category": "Moon",
+   "alsoMeans": "a drop first of all",
+   "source": {
+    "also": "mw",
+    "alsoMeans": "mw"
+   },
+   "also": "a bright drop"
+  },
+  {
+   "iast": "payaḥ",
+   "category": "Water",
+   "alsoMeans": "any fluid, and milk first of all",
+   "source": {
+    "also": "mw",
+    "alsoMeans": "mw"
+   },
+   "also": "milk"
+  },
+  {
+   "iast": "āpaḥ",
+   "category": "Water",
+   "alsoMeans": "a plural word: the waters",
+   "source": {
+    "also": "mw",
+    "alsoMeans": "mw"
+   },
+   "ask": "is used only in the plural"
+  },
+  {
+   "iast": "ambaram",
+   "category": "Sky",
+   "alsoMeans": "a garment too — which is what it means in pītāmbara",
+   "source": {
+    "also": "mw",
+    "alsoMeans": "mw"
+   },
+   "also": "a garment"
+  },
+  {
+   "iast": "kham",
+   "category": "Sky",
+   "alsoMeans": "a cavity or an opening",
+   "source": {
+    "also": "mw",
+    "alsoMeans": "mw"
+   },
+   "also": "a hollow, an opening"
+  },
+  {
+   "iast": "śikhī",
+   "category": "Fire",
+   "alsoMeans": "a peacock too — both are named for the crest",
+   "source": {
+    "also": "mw",
+    "alsoMeans": "mw"
+   },
+   "also": "a peacock"
+  },
+  {
+   "iast": "utpalam",
+   "category": "Lotus",
+   "alsoMeans": "properly the blue water-lily, not the padma",
+   "source": {
+    "also": "mw",
+    "alsoMeans": "mw"
+   },
+   "also": "the blue water-lily"
+  },
+  {
+   "iast": "nagaḥ",
+   "category": "Mountain",
+   "alsoMeans": "a tree too — both are “not going”",
+   "source": {
+    "also": "mw",
+    "alsoMeans": "mw"
+   },
+   "also": "a tree"
+  },
+  {
+   "iast": "mahī",
+   "category": "Earth",
+   "alsoMeans": "the feminine of mahat, the great one",
+   "source": {
+    "also": "mw",
+    "alsoMeans": "mw"
+   },
+   "also": "simply “the great one”"
+  },
+  {
+   "iast": "sindhuḥ",
+   "category": "Ocean",
+   "alsoMeans": "a river, and the Indus in particular",
+   "source": {
+    "also": "mw",
+    "alsoMeans": "mw"
+   },
+   "also": "a river"
+  }
+ ]
+}

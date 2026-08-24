@@ -236,7 +236,8 @@
           "devanagari": "चक्रम्",
           "iast": "cakram",
           "gloss": "discus",
-          "note": "noun · neuter · a-stem · stem: cakra-"
+          "note": "noun · neuter · a-stem · stem: cakra-",
+          "source": "DM 2.21"
         },
         {
           "id": "01-nama:ayudha:sankhah",
@@ -381,7 +382,8 @@
           "devanagari": "आसनम्",
           "iast": "āsanam",
           "gloss": "seat",
-          "note": "noun · neuter · a-stem · stem: āsana-"
+          "note": "noun · neuter · a-stem · stem: āsana-",
+          "source": "KKS 129"
         },
         {
           "id": "01-nama:puja-dravya:arghyam",
@@ -2423,13 +2425,6 @@
           "note": "m/n. · DM 2.20"
         },
         {
-          "id": "01-nama:weapons-battle-gear:cakra",
-          "devanagari": "चक्र",
-          "iast": "cakra",
-          "gloss": "discus",
-          "note": "noun · neuter · a-stem · stem: cakra- · from √car · DM 2.21"
-        },
-        {
           "id": "01-nama:weapons-battle-gear:dhanus",
           "devanagari": "धनुस् / कोदण्ड",
           "iast": "dhanus / kodaṇḍa",
@@ -3794,13 +3789,6 @@
           "iast": "siṃhāsana",
           "gloss": "lion-throne",
           "note": "noun · neuter · a-stem · stem: siṃhāsana- · LS 3"
-        },
-        {
-          "id": "01-nama:numbers-time-space:asana",
-          "devanagari": "आसन",
-          "iast": "āsana",
-          "gloss": "seat",
-          "note": "noun · neuter · a-stem · stem: āsana- · KKS 129"
         },
         {
           "id": "01-nama:numbers-time-space:vasa",

@@ -3,6 +3,7 @@
   "decks": [
     {
       "name": "Dhātu I — being, motion and dwelling",
+      "role": "core",
       "pair": "root → meaning",
       "cards": [
         {
@@ -100,6 +101,7 @@
     },
     {
       "name": "Dhātu II — knowing and speaking",
+      "role": "core",
       "pair": "root → meaning",
       "cards": [
         {
@@ -197,6 +199,7 @@
     },
     {
       "name": "Dhātu III — worship and offering",
+      "role": "core",
       "pair": "root → meaning",
       "cards": [
         {
@@ -294,6 +297,7 @@
     },
     {
       "name": "Dhātu IV — doing, giving and holding",
+      "role": "core",
       "pair": "root → meaning",
       "cards": [
         {

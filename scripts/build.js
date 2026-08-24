@@ -22,6 +22,7 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 const markdown = require('./markdown');
+const lexicon = require('./lexicon');
 
 const ROOT = path.resolve(__dirname, '..');
 const APP = path.join(ROOT, 'app');
@@ -130,11 +131,13 @@ function loadReferences(lessons) {
 
 /* ── validate ───────────────────────────────────────────────────────── */
 
-function loadPractice() {
+/* Read every lesson's practice.json.  Nothing is validated here: the lexical
+   layer adds lists and clues after this, and generated practice has to face
+   exactly the checks authored practice does — so validation runs over the
+   finished set, below. */
+function readPractice() {
   const problems = [];
-  const ids = new Map();          // id -> where it was first seen
   const lessons = [];
-  let cards = 0, decks = 0;
 
   for (const { dir, stage, file } of discover()) {
     const where = path.relative(ROOT, file);
@@ -151,14 +154,39 @@ function loadPractice() {
       continue;
     }
 
+    lessons.push({ lesson: dir, stage, ...lessonTitle(dir),
+                   where, decks: data.decks });
+  }
+
+  /* A practice.json somewhere it does not belong is a silent no-op otherwise:
+     it would simply never be discovered. */
+  for (const f of fs.readdirSync(ROOT)) {
+    const p = path.join(ROOT, f, 'practice.json');
+    if (/^\d\d-/.test(f) || !fs.existsSync(p)) continue;
+    problems.push(`${f}/practice.json: not a numbered lesson directory, so it is never loaded`);
+  }
+
+  return { lessons, problems };
+}
+
+/* Every check the practice data has to pass, run over the finished set —
+   what the lessons carry plus what the lexical layer added, so a generated
+   list is held to exactly what an authored one is. */
+function validate(lessons) {
+  const problems = [];
+  const ids = new Map();          // id -> where it was first seen
+  let cards = 0, decks = 0;
+
+  for (const L of lessons) {
+    const where = L.where;
     const outDecks = [];
-    data.decks.forEach((deck, di) => {
+    L.decks.forEach((deck, di) => {
       const at = `${where} deck ${di}`;
       if (!deck.name) { problems.push(`${at}: no name`); return; }
       if (!Array.isArray(deck.cards) || !deck.cards.length) {
         problems.push(`${at} ("${deck.name}"): no cards`); return;
       }
-      /* Which of the three streams the list is in.  Absent is the core
+      /* Which of the four streams the list is in.  Absent is the core
          acquisition path; a typo here would quietly drop a list out of the
          track's percentage or move it to another section altogether. */
       if (deck.stream !== undefined && !STREAMS.has(deck.stream)) {
@@ -232,19 +260,11 @@ function loadPractice() {
       outDecks.push(deck);
       decks++;
     });
-
-    lessons.push({ lesson: dir, stage, ...lessonTitle(dir), decks: outDecks });
+    L.decks = outDecks;
+    delete L.where;
   }
 
-  /* A practice.json somewhere it does not belong is a silent no-op otherwise:
-     it would simply never be discovered. */
-  for (const f of fs.readdirSync(ROOT)) {
-    const p = path.join(ROOT, f, 'practice.json');
-    if (/^\d\d-/.test(f) || !fs.existsSync(p)) continue;
-    problems.push(`${f}/practice.json: not a numbered lesson directory, so it is never loaded`);
-  }
-
-  return { lessons, problems, cards, decks };
+  return { problems, cards, decks };
 }
 
 /* ── build ──────────────────────────────────────────────────────────── */
@@ -252,7 +272,13 @@ function loadPractice() {
 function build() {
   let html = read('index.html');
 
-  const { lessons, problems, cards, decks } = loadPractice();
+  const { lessons, problems: unread } = readPractice();
+  /* The lexical layer goes on before anything is validated: it clues cards
+     the lessons already carry and adds the lists the relationships make
+     possible, and both have to face the same checks. */
+  const lex = lessons.length ? lexicon.apply(lessons) : { problems: [] };
+  const { problems: bad, cards, decks } = validate(lessons);
+  const problems = [...unread, ...lex.problems, ...bad];
   if (problems.length) {
     console.error('build: practice data is invalid —');
     problems.forEach(p => console.error('  ' + p));
@@ -295,7 +321,8 @@ function build() {
      would make --check fail every day for no reason. */
   const stamp = crypto.createHash('sha256').update(html).digest('hex').slice(0, 7);
   html = html.replace(BUILD, stamp);
-  return { html, lessons, cards, decks, stamp, refs: Object.keys(references).length };
+  return { html, lessons, cards, decks, stamp, lex,
+           refs: Object.keys(references).length };
 }
 
 /* A page that reaches the network is a broken page here, so the build refuses
@@ -318,7 +345,7 @@ function assertSelfContained(html) {
   }
 }
 
-const { html, lessons, cards, decks, stamp, refs } = build();
+const { html, lessons, cards, decks, stamp, refs, lex } = build();
 assertSelfContained(html);
 
 if (process.argv.includes('--check')) {
@@ -337,3 +364,10 @@ console.log(
   `build: dist/abhyasah.html  ${(html.length / 1024).toFixed(0)} KB  ` +
   `${lessons.length} lessons, ${decks} decks, ${cards} cards, ${refs} references  · ${stamp}`
 );
+if (lex && lex.made) {
+  console.log(
+    `       lexicon: ${lex.words} words indexed · ${lex.clued} cards clued · ` +
+    `${lex.roots.n} roots enriched, ${lex.chains} with a sense chain · ` +
+    lex.made.map(m => `${m.cards} ${m.name.split(' — ')[0]}`).join(', ')
+  );
+}

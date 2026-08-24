@@ -45,7 +45,8 @@
           "devanagari": "ज्ञानम्",
           "iast": "jñānam",
           "gloss": "knowledge",
-          "note": "noun · neuter · a-stem · stem: jñāna-"
+          "note": "noun · neuter · a-stem · stem: jñāna-",
+          "source": "DM 13.18"
         },
         {
           "id": "26-darshana:darsana:avidya",
@@ -352,13 +353,6 @@
       "name": "V13 · Jñāna-bandha — knowledge and bondage · LS · VS",
       "role": "breadth",
       "cards": [
-        {
-          "id": "26-darshana:philosophy-tattvas:jnana",
-          "devanagari": "ज्ञान",
-          "iast": "jñāna",
-          "gloss": "knowledge",
-          "note": "noun · neuter · a-stem · stem: jñāna- · from √jñā · DM 13.18"
-        },
         {
           "id": "26-darshana:philosophy-tattvas:vijnana",
           "devanagari": "विज्ञान",
