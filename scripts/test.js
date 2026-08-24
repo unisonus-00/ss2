@@ -1778,6 +1778,12 @@ const open = async (browser, opts = {}) => {
       /Welcome to Abhyāsa/.test(r.txt) && /five tracks/.test(r.txt)
       && /never required/.test(r.txt)
       && /comes back later/.test(r.txt), r.txt.slice(0, 60));
+    /* And what it is FOR.  The curriculum is scriptural Sanskrit — read a
+       verse, follow a rite, use the words in practice — and a learner should
+       not have to reach Pūjā-Vāk to find that out. */
+    ok('and what the Sanskrit is for',
+      /scripture/.test(r.txt) && /rite/.test(r.txt) && /practice/.test(r.txt),
+      r.txt.slice(0, 80));
     ok('it carries the two figures the drawer carries',
       /^\d+%$/.test(r.mastery) && /^\d+$/.test(r.lists), r.mastery + ' · ' + r.lists);
     /* Nothing has been begun on a first run, so there is nothing "in

@@ -6,6 +6,26 @@ Build **Abhyāsa** as the lightweight practice layer for Sanskrit School.
 
 Follow the repository curriculum. Do not create a parallel curriculum.
 
+### What the Sanskrit is for
+
+**Scriptural Sanskrit, for interpretation, practice and ritual.** This is a
+project goal, not a flavour: the target is a learner who can read a verse and
+say what it means, follow the words of a rite while performing it, and carry
+those words into their own practice. `README.md` puts it in the curriculum's
+own terms — *Sanskrit is learned here by describing your iṣṭadevatā, not by
+translating textbook sentences* … *Grammar connects to living worship.*
+
+It is why the vocabulary is deity names, offerings and the parts of a rite
+rather than a reader's word list; why Pūjā-Vāk and Svara-Vidyā are tracks
+rather than appendices; why the sentence work is `___ namaḥ` and
+`gandhaṃ samarpayāmi`; and why the poetry track ends in composition rather
+than in analysis.
+
+**The landing card says so in its first sentence**, because a learner who has
+not been told will assume the usual textbook aim and read every deity name as
+incidental vocabulary. A test fails if the card stops naming scripture, rite
+and practice.
+
 ## Curriculum hierarchy
 
 Each numbered lesson directory is the unit of organization.
@@ -792,8 +812,9 @@ because it is read once rather than answered:
 ```
 अभ्यास
 Welcome to Abhyāsa!
-Learn Sanskrit through practice, from your first words to composition,
-poetry, Vedic recitation, and Avadhāna.
+Learn the Sanskrit of scripture — enough to read a verse and see for
+yourself what it says, to follow the words of a rite while you perform
+it, and to carry them into your own practice.
 …
 OVERALL MASTERY                    0%
 LISTS COMPLETE                      0
