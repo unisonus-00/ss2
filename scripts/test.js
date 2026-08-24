@@ -5017,6 +5017,28 @@ const open = async (browser, opts = {}) => {
       JSON.stringify(r.sets));
     console.log('        ' + r.decks + ' lists · ' + r.cards + ' cards, counting towards no track');
     await p.close();
+
+    /* And the app does not LAND in it.  With nothing remembered, loadDeck
+       fell back to the first list in DECKS — which this track now is — and
+       openDrawer lands on the track holding the current list, so the drawer
+       opened with the optional section expanded and the five shut: the one
+       row in there behaving unlike its neighbours. */
+    const q = await browser.newPage();
+    q.on('pageerror', e => { console.log('  PAGEERROR ' + e.message); fail.push('pageerror'); });
+    await q.goto(FILE, { waitUntil: 'load' });
+    await q.click('#nav');
+    const boot = await q.evaluate(() => ({
+      deck: deckName,
+      stream: streamOf(deckName),
+      open: [...document.querySelectorAll('.tr')]
+        .filter(x => x.querySelector('.tr-body') && !x.querySelector('.tr-body').hidden)
+        .map(x => x.querySelector('.tr-name').textContent),
+    }));
+    ok('a first load lands on the course, not on the optional section',
+      boot.stream === 'core', boot.deck + ' · ' + boot.stream);
+    ok('so the drawer opens on a course track and the optional one stays shut',
+      boot.open.length === 1 && boot.open[0] !== 'Devanāgarī', boot.open.join(' | '));
+    await q.close();
   }
 
   // ── progress is counted from cards, at every level ─────────────────

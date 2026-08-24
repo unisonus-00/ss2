@@ -2135,6 +2135,18 @@ function leavePage() {
 }
 const leaveWelcome = leavePage;     // the name the rest of the app grew up with
 
+/* Where the app lands with nothing remembered.  NOT the first list in
+   `DECKS`: Devanagari is drawn above the five tracks and is optional, so
+   the app's own default round would be a section nobody is asked to take —
+   and `openDrawer` lands on the track holding the current list, so the
+   drawer would open with the optional section expanded and the five shut,
+   which is the one thing in there behaving unlike its neighbours.  The
+   course's own first list is what a first-time learner should find. */
+const firstList = () => {
+  const row = TRACK_ROWS.find(r => TRACKS.indexOf(r.track) >= 0);
+  return (row && recommendPath(row)[0]) || Object.keys(DECKS)[0];
+};
+
 function loadDeck(name) {
   leaveWelcome();
   if (!Object.keys(DECKS).length) {              // nothing parsed — say so instead of dying
@@ -2147,7 +2159,7 @@ function loadDeck(name) {
   }
   /* Called with no name on first load: fall back to the list last used, and
      to the first one in the curriculum if that list is gone. */
-  if (!name || !DECKS[name]) name = DECKS[SAVED.deck] ? SAVED.deck : Object.keys(DECKS)[0];
+  if (!name || !DECKS[name]) name = DECKS[SAVED.deck] ? SAVED.deck : firstList();
   deckName = name;
   SAVED.deck = name; save();
   mixed = false;

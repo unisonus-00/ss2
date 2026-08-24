@@ -705,6 +705,13 @@ Script Literacy · 14 lists
   the row, not a layout**: the section opens and shuts like every other one,
   and a track drawn open by default would be the only thing in the drawer
   behaving differently from its neighbours.
+- **And the app does not land in it.** `loadDeck` with nothing remembered
+  fell back to `Object.keys(DECKS)[0]`, which this track now is — so a
+  first-time learner's current list was a script list, and since `openDrawer`
+  lands on the track holding the current list, the drawer opened with the
+  optional section expanded and the five shut. `firstList()` is the course's
+  own first list instead: the first list of the first track in `TRACKS`,
+  taken in recommendation order.
 - **The landing card names it**, because nothing else would. The one thing
   that can stop a learner before the course has begun deserves a sentence on
   the page they open on; the `Begin` button still names the first **course**
