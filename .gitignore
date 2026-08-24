@@ -7,3 +7,7 @@ dist/abhyasa-demo-v*.html
 *.png
 # ...except the brand logo's own artwork, which is a tracked source asset.
 !app/logo.png
+
+# Local install of playwright-core for scripts/test.js; the app keeps no dependencies.
+node_modules/
+package-lock.json
