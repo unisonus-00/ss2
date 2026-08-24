@@ -213,13 +213,6 @@
       "role": "breadth",
       "cards": [
         {
-          "id": "04-guna:adjectives-of-power-beauty:ugra",
-          "devanagari": "उग्र",
-          "iast": "ugra",
-          "gloss": "fierce, formidable",
-          "note": "adjective · a-stem · stem: ugra- · DM 8.5; KS 46; VS 340"
-        },
-        {
           "id": "04-guna:adjectives-of-power-beauty:ghora",
           "devanagari": "घोर",
           "iast": "ghora",
@@ -322,13 +315,6 @@
           "iast": "sundara / ramya / rucira / manohara",
           "gloss": "beautiful",
           "note": "adjective · a-stem · stem: sundara- · LS passim; KS passim; VS passim"
-        },
-        {
-          "id": "04-guna:adjectives-of-power-beauty:divya",
-          "devanagari": "दिव्य",
-          "iast": "divya",
-          "gloss": "divine, celestial",
-          "note": "adjective · a-stem · stem: divya- · DM 2.10; LS passim; KS passim"
         },
         {
           "id": "04-guna:adjectives-of-power-beauty:sobhana-sobha",
@@ -496,20 +482,6 @@
           "iast": "pavitra / pūta",
           "gloss": "sacred, purified",
           "note": "adjective · a-stem · stem: pavitra- · LS passim; KS 108; VS passim"
-        },
-        {
-          "id": "04-guna:adjectives-of-power-beauty:mangala",
-          "devanagari": "मङ्गल",
-          "iast": "maṅgala",
-          "gloss": "auspicious",
-          "note": "adjective · a-stem · stem: maṅgala- · DM 11.10; KS passim"
-        },
-        {
-          "id": "04-guna:adjectives-of-power-beauty:subha",
-          "devanagari": "शुभ",
-          "iast": "śubha",
-          "gloss": "auspicious, good",
-          "note": "adjective · a-stem · stem: śubha- · DM 12.12; KS 81; VS passim"
         },
         {
           "id": "04-guna:adjectives-of-power-beauty:punya",

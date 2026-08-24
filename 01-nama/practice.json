@@ -818,13 +818,6 @@
           "note": "noun · feminine · ā-stem · stem: kālikā- · DM 7.23"
         },
         {
-          "id": "01-nama:goddess-names:laksmi",
-          "devanagari": "लक्ष्मी",
-          "iast": "lakṣmī",
-          "gloss": "prosperity, beauty, fortune",
-          "note": "noun · feminine · ī-stem · stem: lakṣmī- · DM 4.8"
-        },
-        {
           "id": "01-nama:goddess-names:siva",
           "devanagari": "शिवा",
           "iast": "śivā",
@@ -1525,13 +1518,6 @@
       "role": "breadth",
       "cards": [
         {
-          "id": "01-nama:god-names-celestials:visnu",
-          "devanagari": "विष्णु",
-          "iast": "viṣṇu",
-          "gloss": "the all-pervader",
-          "note": "noun · masculine · u-stem · stem: viṣṇu- · from √viṣ · DM 1.13+"
-        },
-        {
           "id": "01-nama:god-names-celestials:siva-sankara",
           "devanagari": "शिव / शङ्कर",
           "iast": "śiva / śaṅkara",
@@ -1572,13 +1558,6 @@
           "iast": "nārāyaṇa",
           "gloss": "dwelling in beings/waters",
           "note": "noun · masculine · a-stem · stem: nārāyaṇa- · DM 1.73"
-        },
-        {
-          "id": "01-nama:god-names-celestials:hari",
-          "devanagari": "हरि",
-          "iast": "hari",
-          "gloss": "the remover (of sin)",
-          "note": "noun · masculine · i-stem · stem: hari- · from √hṛ · VS 4"
         },
         {
           "id": "01-nama:god-names-celestials:kesava",
@@ -1903,25 +1882,11 @@
           "note": "noun · masculine · a-stem · stem: indra- · DM 2.9"
         },
         {
-          "id": "01-nama:god-names-celestials:agni",
-          "devanagari": "अग्नि",
-          "iast": "agni",
-          "gloss": "fire",
-          "note": "noun · masculine · i-stem · stem: agni- · DM 2.14"
-        },
-        {
           "id": "01-nama:god-names-celestials:varuna",
           "devanagari": "वरुण",
           "iast": "varuṇa",
           "gloss": "lord of waters",
           "note": "noun · masculine · a-stem · stem: varuṇa- · DM 2.15"
-        },
-        {
-          "id": "01-nama:god-names-celestials:vayu",
-          "devanagari": "वायु",
-          "iast": "vāyu",
-          "gloss": "wind",
-          "note": "noun · masculine · u-stem · stem: vāyu- · DM 2.15"
         },
         {
           "id": "01-nama:god-names-celestials:yama",
@@ -2507,20 +2472,6 @@
           "note": "n./m. · DM 2.20"
         },
         {
-          "id": "01-nama:weapons-battle-gear:pasa",
-          "devanagari": "पाश",
-          "iast": "pāśa",
-          "gloss": "noose",
-          "note": "noun · masculine · a-stem · stem: pāśa- · DM 2.24"
-        },
-        {
-          "id": "01-nama:weapons-battle-gear:ankusa",
-          "devanagari": "अङ्कुश",
-          "iast": "aṅkuśa",
-          "gloss": "goad / elephant-hook",
-          "note": "noun · masculine · a-stem · stem: aṅkuśa- · DM 2.24"
-        },
-        {
           "id": "01-nama:weapons-battle-gear:kunta",
           "devanagari": "कुन्त",
           "iast": "kunta",
@@ -2701,13 +2652,6 @@
       "role": "breadth",
       "cards": [
         {
-          "id": "01-nama:weapons-battle-gear:sankha",
-          "devanagari": "शङ्ख",
-          "iast": "śaṅkha",
-          "gloss": "conch",
-          "note": "noun · masculine · a-stem · stem: śaṅkha- · DM 2.26"
-        },
-        {
           "id": "01-nama:weapons-battle-gear:dundubhi",
           "devanagari": "दुन्दुभि",
           "iast": "dundubhi",
@@ -2875,13 +2819,6 @@
           "note": "noun · feminine · ā-stem · stem: gaṅgā- · KS passim"
         },
         {
-          "id": "01-nama:nature-cosmos:kalindi-yamuna",
-          "devanagari": "कालिन्दी / यमुना",
-          "iast": "kālindī / yamunā",
-          "gloss": "the Yamunā",
-          "note": "noun · feminine · KKS 688"
-        },
-        {
           "id": "01-nama:nature-cosmos:kaveri",
           "devanagari": "कावेरी",
           "iast": "kāverī",
@@ -2930,20 +2867,6 @@
           "note": "noun · feminine · ā-stem · stem: jvālā- · DM 10.25"
         },
         {
-          "id": "01-nama:nature-cosmos:jyoti",
-          "devanagari": "ज्योति",
-          "iast": "jyoti",
-          "gloss": "light",
-          "note": "noun · neuter · i-stem · stem: jyoti- · LS passim"
-        },
-        {
-          "id": "01-nama:nature-cosmos:dipa",
-          "devanagari": "दीप",
-          "iast": "dīpa",
-          "gloss": "lamp",
-          "note": "noun · masculine · a-stem · stem: dīpa- · KKS 140"
-        },
-        {
           "id": "01-nama:nature-cosmos:tejas",
           "devanagari": "तेजस्",
           "iast": "tejas",
@@ -2963,20 +2886,6 @@
           "iast": "vidyut",
           "gloss": "lightning",
           "note": "noun · feminine · DM 11.44"
-        },
-        {
-          "id": "01-nama:nature-cosmos:ravi-surya-bhanu-divakara",
-          "devanagari": "रवि / सूर्य / भानु / दिवाकर",
-          "iast": "ravi / sūrya / bhānu / divākara",
-          "gloss": "sun",
-          "note": "noun · masculine · DM 2.14"
-        },
-        {
-          "id": "01-nama:nature-cosmos:candra-indu-sasin-soma",
-          "devanagari": "चन्द्र / इन्दु / शशिन् / सोम",
-          "iast": "candra / indu / śaśin / soma",
-          "gloss": "moon",
-          "note": "noun · masculine · DM 2.14"
         },
         {
           "id": "01-nama:nature-cosmos:tara-naksatra",
@@ -3048,13 +2957,6 @@
           "note": "noun · neuter · a-stem · stem: vana- · DM 1.6"
         },
         {
-          "id": "01-nama:nature-cosmos:vrksa",
-          "devanagari": "वृक्ष",
-          "iast": "vṛkṣa",
-          "gloss": "tree",
-          "note": "noun · masculine · a-stem · stem: vṛkṣa- · KKS 111+"
-        },
-        {
           "id": "01-nama:nature-cosmos:kusuma-puspa",
           "devanagari": "कुसुम / पुष्प",
           "iast": "kusuma / puṣpa",
@@ -3102,13 +3004,6 @@
           "iast": "karavīra",
           "gloss": "oleander",
           "note": "noun · masculine · a-stem · stem: karavīra- · KKS 512"
-        },
-        {
-          "id": "01-nama:nature-cosmos:karanja",
-          "devanagari": "करञ्ज",
-          "iast": "karañja",
-          "gloss": "pongam tree",
-          "note": "noun · masculine · a-stem · stem: karañja- · KKS 111-115"
         },
         {
           "id": "01-nama:nature-cosmos:phala",
@@ -3520,8 +3415,8 @@
         },
         {
           "id": "01-nama:numbers-time-space:dvi-dvitiya",
-          "devanagari": "द्वि / द्वितीय",
-          "iast": "dvi / dvitīya",
+          "devanagari": "द्वि",
+          "iast": "dvi",
           "gloss": "2",
           "note": "dvitīyo'dhyāyaḥ; dvijā (twice-born) · DM colophons"
         },
@@ -3783,13 +3678,6 @@
           "note": "m./n./m. · DM 2.3 (abdaśatam)"
         },
         {
-          "id": "01-nama:numbers-time-space:masa",
-          "devanagari": "मास",
-          "iast": "māsa",
-          "gloss": "month",
-          "note": "noun · masculine · a-stem · stem: māsa- · DM passim"
-        },
-        {
           "id": "01-nama:numbers-time-space:paksa",
           "devanagari": "पक्ष",
           "iast": "pakṣa",
@@ -3802,13 +3690,6 @@
           "iast": "dina / ahar / divasa",
           "gloss": "day",
           "note": "n./n./m. · DM passim"
-        },
-        {
-          "id": "01-nama:numbers-time-space:ratri",
-          "devanagari": "रात्रि",
-          "iast": "rātri",
-          "gloss": "night",
-          "note": "noun · feminine · i-stem · stem: rātri- · DM 1.78 (kālarātri)"
         },
         {
           "id": "01-nama:numbers-time-space:rtu",
@@ -4120,25 +4001,11 @@
           "note": "noun · neuter · a-stem · stem: yajñopavīta- · KS passim"
         },
         {
-          "id": "01-nama:sacred-geography-plants:kapala",
-          "devanagari": "कपाल",
-          "iast": "kapāla",
-          "gloss": "skull-bowl",
-          "note": "noun · neuter · a-stem · stem: kapāla- · KKS 137+"
-        },
-        {
           "id": "01-nama:sacred-geography-plants:rudraksa",
           "devanagari": "रुद्राक्ष",
           "iast": "rudrākṣa",
           "gloss": "Rudra's eye (prayer bead)",
           "note": "noun · masculine · a-stem · stem: rudrākṣa- · KS passim"
-        },
-        {
-          "id": "01-nama:sacred-geography-plants:kalasa",
-          "devanagari": "कलश",
-          "iast": "kalaśa",
-          "gloss": "sacred pot",
-          "note": "noun · masculine · a-stem · stem: kalaśa- · KKS 520"
         }
       ]
     },
@@ -4161,14 +4028,6 @@
           "gloss": "saffron (Crocus)",
           "note": "noun · neuter · a-stem · stem: kuṅkuma-",
           "source": "KKS 747, 839-842"
-        },
-        {
-          "id": "01-nama:sacred-geography-plants:karpura",
-          "devanagari": "कर्पूर",
-          "iast": "karpūra",
-          "gloss": "camphor (Cinnamomum camphora)",
-          "note": "noun · neuter · a-stem · stem: karpūra-",
-          "source": "KKS 531-537"
         },
         {
           "id": "01-nama:sacred-geography-plants:kasturi",
@@ -4225,14 +4084,14 @@
           "id": "01-nama:sacred-geography-plants:punnaga",
           "devanagari": "पुण्णाग",
           "iast": "puṇṇāga",
-          "gloss": "Calophyllum",
+          "gloss": "Alexandrian laurel (Calophyllum)",
           "source": "LS 12"
         },
         {
           "id": "01-nama:sacred-geography-plants:asoka",
           "devanagari": "अशोक",
           "iast": "aśoka",
-          "gloss": "Saraca asoca",
+          "gloss": "the sorrowless tree (Saraca asoca)",
           "source": "LS 12"
         },
         {

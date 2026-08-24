@@ -3865,13 +3865,22 @@ const open = async (browser, opts = {}) => {
       /* One word, two senses — these are not duplicates, and the substring
          test cannot tell the difference on its own. */
       const SENSES = ['śakti', 'kāla', 'madhu'];
+      /* Nor is a name of Viṣṇu the same card as the god it usually names:
+         in the Sahasranāma rudra and maheśvara are Viṣṇu's. */
+      const VS = n => /^V02 · Viṣṇu-nāma|^V02 · Viśva|^V02 · Dharma/.test(n);
       const norm = s => (s || '').toLowerCase().replace(/[^a-zāīūṛṅñṭḍṇśṣḥṃ ]/g, '').trim();
+      /* Keyed by the stem, not by the Devanagari: viṣṇuḥ in a curated list and
+         viṣṇu in a bank list are one word in two citation forms, and comparing
+         the strings is how twenty of these went unnoticed. */
+      const stem = s => norm(s).replace(/[ḥṃ]$/, '');
       const byLesson = {};
       Object.keys(DECKS).forEach(n => {
         const L = DECK_LESSON[n];
         DECKS[n].forEach(c => {
           if ((c.type || 'reveal') !== 'reveal') return;
-          const w = (c.devanagari || '').trim();
+          /* a card that merges synonyms carries words the other one does not */
+          if ((c.iast || '').indexOf(' / ') >= 0) return;
+          const w = stem(c.iast || '');
           if (!w) return;
           ((byLesson[L] = byLesson[L] || {})[w] = byLesson[L][w] || []).push(
             { deck: n, gloss: norm(c.gloss), iast: (c.iast || '').trim(), id: c.id });
@@ -3881,7 +3890,8 @@ const open = async (browser, opts = {}) => {
       Object.keys(byLesson).forEach(L => Object.keys(byLesson[L]).forEach(w => {
         const v = byLesson[L][w];
         for (let i = 0; i < v.length; i++) for (let k = i + 1; k < v.length; k++) {
-          if (SENSES.indexOf(v[i].iast) >= 0) continue;
+          if (SENSES.indexOf(stem(v[i].iast)) >= 0) continue;
+          if (VS(v[i].deck) || VS(v[k].deck)) continue;
           const a = v[i].gloss, b = v[k].gloss;
           if (!a || !b) continue;
           const same = a === b || (a.length > 3 && b.length > 3

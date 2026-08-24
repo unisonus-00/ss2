@@ -124,13 +124,6 @@
           "note": "noun · masculine · a-stem · stem: kopa- · DM 6.20"
         },
         {
-          "id": "13-bhava:emotions-mind:krodha",
-          "devanagari": "क्रोध",
-          "iast": "krodha",
-          "gloss": "wrath",
-          "note": "noun · masculine · a-stem · stem: krodha- · from √krudh · DM 9.5"
-        },
-        {
           "id": "13-bhava:emotions-mind:rosa",
           "devanagari": "रोष",
           "iast": "roṣa",
@@ -235,25 +228,11 @@
       "role": "breadth",
       "cards": [
         {
-          "id": "13-bhava:emotions-mind:harsa",
-          "devanagari": "हर्ष",
-          "iast": "harṣa",
-          "gloss": "joy",
-          "note": "noun · masculine · a-stem · stem: harṣa- · DM 3.43"
-        },
-        {
           "id": "13-bhava:emotions-mind:priti",
           "devanagari": "प्रीति",
           "iast": "prīti",
           "gloss": "delight, love",
           "note": "noun · feminine · i-stem · stem: prīti- · from √prī · DM 4.30"
-        },
-        {
-          "id": "13-bhava:emotions-mind:ananda",
-          "devanagari": "आनन्द",
-          "iast": "ānanda",
-          "gloss": "bliss",
-          "note": "noun · masculine · a-stem · stem: ānanda- · LS 216 (paramānanda)"
         },
         {
           "id": "13-bhava:emotions-mind:tusti",
@@ -296,13 +275,6 @@
           "iast": "duḥkha",
           "gloss": "suffering, sorrow",
           "note": "noun · neuter · a-stem · stem: duḥkha- · DM 4.22"
-        },
-        {
-          "id": "13-bhava:emotions-mind:soka",
-          "devanagari": "शोक",
-          "iast": "śoka",
-          "gloss": "grief",
-          "note": "noun · masculine · a-stem · stem: śoka- · from √śuc · DM 1.8"
         },
         {
           "id": "13-bhava:emotions-mind:dina",
@@ -464,13 +436,6 @@
       "role": "breadth",
       "cards": [
         {
-          "id": "13-bhava:emotions-mind:bhakti",
-          "devanagari": "भक्ति",
-          "iast": "bhakti",
-          "gloss": "devotion",
-          "note": "noun · feminine · i-stem · stem: bhakti- · from √bhaj · DM passim"
-        },
-        {
           "id": "13-bhava:emotions-mind:dhrti",
           "devanagari": "धृति",
           "iast": "dhṛti",
@@ -511,13 +476,6 @@
           "iast": "smṛti",
           "gloss": "memory",
           "note": "noun · feminine · i-stem · stem: smṛti- · from √smṛ · DM 5.45"
-        },
-        {
-          "id": "13-bhava:emotions-mind:santi",
-          "devanagari": "शान्ति",
-          "iast": "śānti",
-          "gloss": "peace",
-          "note": "noun · feminine · i-stem · stem: śānti- · from √śam · DM 5.35"
         },
         {
           "id": "13-bhava:emotions-mind:vairagya",

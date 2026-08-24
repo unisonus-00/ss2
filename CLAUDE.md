@@ -1996,6 +1996,61 @@ if four cards of a list are left with the same skeleton. The threshold is four
 and the skeleton must keep a word of its own, which is what separates
 `śakti of §` from a vigraha whose whole gloss is derived.
 
+### The bare duplicate, and what is not one
+
+`One fact, carded once` was tested by comparing a card's **Devanagari**, and
+that is why twenty-odd of these survived the first pass: `विष्णुः` in the
+curated god-names list and `विष्णु` in the Sahasranāma list are one word in
+two citation forms, and the strings do not match. The test keys on the stem
+now, and skips any card that merges synonyms — which is the whole of the rule:
+
+> When a lesson holds one word twice, keep the copy that carries more and cut
+> the bare one.
+
+The copy that carries more is the merged synonym card (`bāṇa / śara / sāyaka /
+iṣu` holds three words the curated `bāṇaḥ` does not) or the curated card
+itself, which carries the citation form and the full annotation. **44 cards
+went**, all of them a bare headword already carded in the same lesson with the
+same meaning:
+
+| | |
+|:--|:--|
+| **Nāma** | 20 — `śaṅkha`, `pāśa`, `aṅkuśa`, `dīpa`, `jyoti`, `vṛkṣa`, `karañja`, `kalaśa`, `kapāla`, `karpūra`, `rātri`, `māsa`, `agni`, `vāyu`, `lakṣmī`, `viṣṇu`, `hari`, the Yamunā, and the sun and moon sets that `V02 · Deva-gaṇa` already held whole |
+| **Darśana** | 7 — `māyā`, `prakṛti`, `puruṣa`, `dharma`, `śakti`, `bindu`, `śrīvidyā`, each taught by `21 · Darśana` |
+| **Bhāva** | 6 — `bhakti`, `śānti`, `ānanda`, `śoka`, `harṣa`, `krodha` |
+| **Pūjā-Vāk** | 6 — `homa`, `abhiṣeka`, `prasāda`, `svāhā`, `svadhā`, and one of the two garland cards |
+| **Guṇa** | 4 — `śubha`, `maṅgala`, `divya`, `ugra` |
+| **Vākya** | 1 — `iti` |
+
+The synonym decks keep their range: `V09 · Harṣa-śoka` loses *joy* and *grief*
+and still teaches prīti, tuṣṭi, sukha, santoṣa, hlāda, ullāsa, duḥkha, dīna,
+nirviṇṇa, pīḍā, ārti, tāpa and santāpa. The base word is the path deck's; the
+range is the bank's.
+
+**Three things look like duplicates and are not**, and the test names each:
+
+- **A merged card.** `dayā / karuṇā` beside `karuṇā` is one extra word, and
+  extra words are the reason the bank exists.
+- **One word, two senses.** `śakti` is a spear and a power, `madhu` a demon and
+  honey, `kāla` time and death, `sarasvatī` a goddess and a river.
+- **A name of Viṣṇu.** In the Sahasranāma `rudra`, `śiva` and `maheśvara` are
+  **Viṣṇu's** names, which is the striking fact those lists carry; `viṣṇu` and
+  `hari` are not — same referent, same meaning, so those two went.
+
+Two more decisions worth recording, both canonical rather than tidy:
+
+- **The cardinals stay doubled.** `pañca … daśa` are in the curated list as
+  the neuter forms the workbook uses and in the bank as the stems, and for
+  5–10 those coincide. Cutting either side leaves a hole in a counting
+  sequence, and the coincidence is itself the fact: 1, 2, 3, 4 and 6 do
+  inflect and 5 to 10 do not. `V19 · Saṅkhyā`'s card lost `dvitīya`, though —
+  an ordinal in the cardinal list, and `V19 · Pūraṇa` is where ordinals live.
+- **A Latin genus is not a meaning on its own.** `puṇṇāga — Calophyllum` and
+  `aśoka — Saraca asoca` are now *Alexandrian laurel* and *the sorrowless
+  tree* with the binomial after them, which is the shape the same deck already
+  used for `karañja — Indian beech (Pongamia)` and `kiṃśuka — flame of the
+  forest (Butea)`.
+
 ### Two data bugs the Stage 1 audit turned up
 
 Both found by comparing every Nāma card against the source it came from, and
@@ -2005,7 +2060,7 @@ both one line:
   the one place on a card that claims to say what the word is underneath its
   ending, so a visarga inside it is simply wrong; it reads `sāvarṇi-` now, and
   a test walks every card and fails on a stem ending in a visarga or anusvāra.
-  It was the only one in 2210 cards.
+  It was the only one in 2166 cards.
 - **`cāmaram`** glossed *fly-whisk* sat in the same lesson as `cāmara` glossed
   *demon general* (`V03`, DM 2.43) with nothing on either card to tell them
   apart — the annotations differ in gender, which is not something a learner
@@ -2380,7 +2435,7 @@ Three things here are load-bearing for the compatibility list above:
   chain, and keep each step stamping its own version rather than the newest;
   every `localStorage` touch stays guarded, since it can be absent or full.
 
-The app carries 28 lessons, 176 decks, and 2210 cards — 1849 `reveal`, 356
+The app carries 28 lessons, 176 decks, and 2166 cards — 1805 `reveal`, 356
 `choice` and 5 `sequence`, spread over 34 interactive decks in 16 lessons,
 plus the mastery decks holding complete paradigms.
 They are curated practice, not conversions of the reference tables:

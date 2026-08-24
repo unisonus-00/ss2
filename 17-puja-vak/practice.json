@@ -925,13 +925,6 @@
           "note": "noun · neuter · a-stem · stem: mañjīra- · LS 40"
         },
         {
-          "id": "17-puja-vak:body-adornment:malyam-mala",
-          "devanagari": "माल्यम् / माला",
-          "iast": "mālyam / mālā",
-          "gloss": "garland",
-          "note": "n./f. · DM 2.26"
-        },
-        {
           "id": "17-puja-vak:body-adornment:sindura",
           "devanagari": "सिन्दूर",
           "iast": "sindūra",
@@ -1036,13 +1029,6 @@
           "note": "n. from √jap · DM 13.10"
         },
         {
-          "id": "17-puja-vak:ritual-worship:homa",
-          "devanagari": "होम",
-          "iast": "homa",
-          "gloss": "fire oblation",
-          "note": "noun · masculine · a-stem · stem: homa- · KKS 104"
-        },
-        {
           "id": "17-puja-vak:ritual-worship:bali",
           "devanagari": "बलि",
           "iast": "bali",
@@ -1055,13 +1041,6 @@
           "iast": "tarpaṇa",
           "gloss": "libation, satiating",
           "note": "noun · neuter · a-stem · stem: tarpaṇa- · from √tṛp · DM 13.11"
-        },
-        {
-          "id": "17-puja-vak:ritual-worship:abhiseka",
-          "devanagari": "अभिषेक",
-          "iast": "abhiṣeka",
-          "gloss": "consecration/bathing",
-          "note": "noun · masculine · a-stem · stem: abhiṣeka- · KS passim"
         },
         {
           "id": "17-puja-vak:ritual-worship:ahuti",
@@ -1235,20 +1214,6 @@
           "iast": "oṃ / praṇava",
           "gloss": "the primordial sound",
           "note": "indecl./m. · all texts"
-        },
-        {
-          "id": "17-puja-vak:ritual-worship:svaha",
-          "devanagari": "स्वाहा",
-          "iast": "svāhā",
-          "gloss": "offering-call (for fire)",
-          "note": "indecl. · DM passim"
-        },
-        {
-          "id": "17-puja-vak:ritual-worship:svadha",
-          "devanagari": "स्वधा",
-          "iast": "svadhā",
-          "gloss": "offering-call (for ancestors)",
-          "note": "indecl. · LS 463"
         },
         {
           "id": "17-puja-vak:ritual-worship:hum-hum",
@@ -1429,13 +1394,6 @@
           "iast": "vara / varadāna",
           "gloss": "boon / boon-granting",
           "note": "noun · masculine · a-stem · stem: vara- · DM 4.37"
-        },
-        {
-          "id": "17-puja-vak:ritual-worship:prasada",
-          "devanagari": "प्रसाद",
-          "iast": "prasāda",
-          "gloss": "grace, favor",
-          "note": "noun · masculine · a-stem · stem: prasāda- · pra + √sad · DM passim"
         },
         {
           "id": "17-puja-vak:ritual-worship:anugraha",

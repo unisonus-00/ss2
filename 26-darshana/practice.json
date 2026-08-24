@@ -173,20 +173,6 @@
           "note": "noun · masculine · an-stem · stem: paramātman- · VS 10"
         },
         {
-          "id": "26-darshana:philosophy-tattvas:purusa",
-          "devanagari": "पुरुष",
-          "iast": "puruṣa",
-          "gloss": "the cosmic person",
-          "note": "noun · masculine · a-stem · stem: puruṣa- · VS 14"
-        },
-        {
-          "id": "26-darshana:philosophy-tattvas:prakrti",
-          "devanagari": "प्रकृति",
-          "iast": "prakṛti",
-          "gloss": "primordial nature/matter",
-          "note": "noun · feminine · i-stem · stem: prakṛti- · LS 397"
-        },
-        {
           "id": "26-darshana:philosophy-tattvas:para-parama",
           "devanagari": "पर / परम",
           "iast": "para / parama",
@@ -213,13 +199,6 @@
           "iast": "nirdvaitā",
           "gloss": "without duality",
           "note": "noun · feminine · ā-stem · stem: nirdvaitā- · LS passim"
-        },
-        {
-          "id": "26-darshana:philosophy-tattvas:maya",
-          "devanagari": "माया",
-          "iast": "māyā",
-          "gloss": "creative illusion, cosmic power",
-          "note": "noun · feminine · ā-stem · stem: māyā- · DM 1.40"
         },
         {
           "id": "26-darshana:philosophy-tattvas:mahamaya",
@@ -430,13 +409,6 @@
           "note": "noun · neuter · an-stem · stem: karman- · KKS 317-345"
         },
         {
-          "id": "26-darshana:philosophy-tattvas:dharma",
-          "devanagari": "धर्म",
-          "iast": "dharma",
-          "gloss": "righteousness, duty, cosmic law",
-          "note": "noun · masculine · a-stem · stem: dharma- · from √dhṛ · DM passim"
-        },
-        {
           "id": "26-darshana:philosophy-tattvas:adharma",
           "devanagari": "अधर्म",
           "iast": "adharma",
@@ -506,13 +478,6 @@
       "role": "breadth",
       "cards": [
         {
-          "id": "26-darshana:philosophy-tattvas:sakti",
-          "devanagari": "शक्ति",
-          "iast": "śakti",
-          "gloss": "power, energy, goddess",
-          "note": "noun · feminine · i-stem · stem: śakti- · from √śak · DM 5.25"
-        },
-        {
           "id": "26-darshana:philosophy-tattvas:parasakti",
           "devanagari": "पराशक्ति",
           "iast": "parāśakti",
@@ -569,26 +534,11 @@
           "note": "noun · neuter · a-stem · stem: sahasrāra- · LS passim"
         },
         {
-          "id": "26-darshana:philosophy-tattvas:srividya",
-          "devanagari": "श्रीविद्या",
-          "iast": "śrīvidyā",
-          "gloss": "the auspicious knowledge (15/16-syllable mantra)",
-          "note": "noun · feminine · ā-stem · stem: śrīvidyā-",
-          "source": "LS 585"
-        },
-        {
           "id": "26-darshana:philosophy-tattvas:trikona",
           "devanagari": "त्रिकोण",
           "iast": "trikoṇa",
           "gloss": "triangle (of Śrīcakra)",
           "source": "KS passim; LS passim"
-        },
-        {
-          "id": "26-darshana:philosophy-tattvas:bindu",
-          "devanagari": "बिन्दु",
-          "iast": "bindu",
-          "gloss": "point (center of Śrīcakra)",
-          "source": "LS passim; KS passim"
         },
         {
           "id": "26-darshana:philosophy-tattvas:navacakra",
