@@ -1954,6 +1954,29 @@ asks for complete paradigms, so they stay.
 `scripts/test.js` fails if a lesson holds the same headword with the same
 meaning in two lists, and if a core dhātu is carded anywhere but Stage 9.
 
+### Two data bugs the Stage 1 audit turned up
+
+Both found by comparing every Nāma card against the source it came from, and
+both one line:
+
+- **`stem: sāvarṇiḥ-`** was a citation form with a hyphen after it. The chip is
+  the one place on a card that claims to say what the word is underneath its
+  ending, so a visarga inside it is simply wrong; it reads `sāvarṇi-` now, and
+  a test walks every card and fails on a stem ending in a visarga or anusvāra.
+  It was the only one in 2226 cards.
+- **`cāmaram`** glossed *fly-whisk* sat in the same lesson as `cāmara` glossed
+  *demon general* (`V03`, DM 2.43) with nothing on either card to tell them
+  apart — the annotations differ in gender, which is not something a learner
+  reads as a disambiguation. It is **`yak-tail fly-whisk`** now: one word, the
+  ordinary description of the object, and it links to `cāmarī — yak`, which
+  the same lesson already teaches.
+
+`cāmaram` is also one of the five Stage 1 headwords the repository does not
+attest anywhere (`putrī`, `bhrātā`, `bhaginī`, `patnī` are the others, all in
+`25 · Jana`, filling out a kinship set whose other members are attested).
+Five words in 595 cards, left as they are — the vocabulary is right, the
+sources simply do not carry it.
+
 ### A meaning has to be in English
 
 `skandaḥ` glossed **`Kārttikeya`** answers a Sanskrit word with a Sanskrit

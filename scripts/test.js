@@ -3909,6 +3909,25 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
+  // ── a stem is a stem ──────────────────────────────────────────────
+  // "stem: sāvarṇiḥ-" is a citation form with a hyphen after it, not a stem,
+  // and the chip is the one place on the card that claims to say what the
+  // word is underneath its ending.
+  {
+    const p = await open(browser);
+    const bad = await p.evaluate(() => {
+      const out = [];
+      Object.keys(DECKS).forEach(n => DECKS[n].forEach(c => {
+        const m = /stem: (\S+?)-/.exec(c.note || '');
+        if (m && /[ḥṃ]$/.test(m[1])) out.push(c.id + ' · ' + m[0]);
+      }));
+      return out;
+    });
+    ok('a stem annotation carries a stem, not a citation form',
+      !bad.length, bad.slice(0, 3).join(' | '));
+    await p.close();
+  }
+
   // ── a meaning has to be in English ────────────────────────────────
   // A deck that runs word → meaning promises a meaning on the back, and
   // "skandaḥ → Kārttikeya" is not one: it renames the god in Sanskrit and
