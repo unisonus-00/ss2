@@ -742,8 +742,8 @@
   .tr:last-child { border-bottom: none; }
   .tr-head {
     display: grid; width: 100%; text-align: left; cursor: pointer;
-    grid-template-columns: 1fr auto; gap: .1rem .6rem;
-    grid-template-areas: "name pct" "sub sub" "bar bar";
+    grid-template-columns: 1fr auto auto; gap: .1rem .6rem;
+    grid-template-areas: "name pct caret" "sub sub caret" "bar bar bar";
     background: none; border: 0; font-family: inherit; color: var(--leaf);
     padding: .75rem .2rem .8rem; min-height: 48px;
   }
@@ -761,8 +761,8 @@
   /* a lesson inside a track */
   .ls-head {
     display: grid; width: 100%; text-align: left; cursor: pointer;
-    grid-template-columns: 1fr auto; gap: .1rem .6rem;
-    grid-template-areas: "name pct" "sub sub" "bar bar";
+    grid-template-columns: 1fr auto auto; gap: .1rem .6rem;
+    grid-template-areas: "name pct caret" "sub sub caret" "bar bar bar";
     background: none; border: 0; font-family: inherit; color: var(--leaf);
     padding: .5rem .2rem; min-height: 44px;
   }
@@ -779,6 +779,22 @@
   /* A list standing in for the level above it — a track that is one list, or a
      lesson that is one — keeps that level's size and indent, and takes the
      current-list outline a deck row gets instead of an expander's caret. */
+  /* The expander's caret.  Only a row that actually has a body carries one:
+     `aria-expanded` is removed from a row standing in for a single list, and
+     the caret goes with it rather than pointing at nothing. */
+  .ex-caret { display: none; }
+  .tr-head[aria-expanded] > .ex-caret, .ls-head[aria-expanded] > .ex-caret {
+    display: block; grid-area: caret; align-self: center;
+    width: 7px; height: 7px; margin: -3px .1rem 0;
+    border-right: 1px solid var(--faded); border-bottom: 1px solid var(--faded);
+    transform: rotate(45deg);
+  }
+  .tr-head[aria-expanded="true"] > .ex-caret,
+  .ls-head[aria-expanded="true"] > .ex-caret {
+    transform: rotate(-135deg); margin-top: 3px;
+  }
+  .tr-head:hover > .ex-caret, .ls-head:hover > .ex-caret { border-color: var(--leaf); }
+
   .tr-head.leaf, .ls-head.leaf { cursor: pointer; }
   .tr-head.on, .ls-head.on {
     border: 1px solid var(--leaf); border-radius: 2px;

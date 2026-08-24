@@ -563,16 +563,32 @@ and navigation at the last two.
 
 | | |
 |:--|:--|
-| a track row | **opens its page**, and leaves the track expanded for the way back |
-| a lesson row | expands to its lists |
-| a list row | starts the round |
+| a track row | **opens its page**, and expands or collapses the track |
+| a lesson row | expands or collapses its lists |
+| a list row | starts the round, and closes the menu |
+
+**The menu stays up until you tap away from it.** A track row used to close
+the drawer and jump to the page, which cost two things at once: there was no
+way to **collapse** a track — the row's only action was to expand it and
+leave — and a learner browsing the tree was thrown out of the place they were
+browsing every time they read a track's name. The page still opens; it opens
+*behind* the menu, and is there when the veil, the ✕ or a list dismisses it.
+
+**And every row that expands says so.** A track head and a lesson head look
+exactly like a row that starts something, so each carries a caret at its
+right edge, turned down when shut and up when open — drawn with a rotated
+border, like the nav handle's own, because the page ships no font of its own
+and a ▾ glyph is missing from some Devanagari-first stacks. It is shown only
+where `aria-expanded` is actually set, so a row standing in for a single list
+carries none rather than pointing at nothing.
 
 **Each level is shut until the level above has been read.** Before the landing
 card's `Begin` the track names are greyed; before a track's `Begin` its lists
 are. Nothing is hidden — a learner should see what is coming — and one line at
 the top of the shut group says what opens it, naming whichever gate is
 actually closed: *Open Home and press Begin to start*, then *Tap the name
-above and press Begin to open these*.
+above to open its page, then close this menu and press Begin* — which is what
+the two taps now are, since the page opens behind the menu.
 
 `SAVED.begun` is the whole mechanism: `home`, and a track id per track begun.
 Pressing a track's `Begin` sets both, because you cannot be inside a track

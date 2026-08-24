@@ -2240,22 +2240,33 @@ const open = async (browser, opts = {}) => {
        own name in the drawer, the landing card by the row that leads to it. */
     const again2 = await p.evaluate(() => {
       openDrawer();
-      openTracks.add('bhasha'); renderDrawer();
-      const head = [...document.querySelectorAll('.tr-head')]
+      openTracks.clear(); renderDrawer();
+      const at = () => [...document.querySelectorAll('.tr-head')]
         .find(b => b.querySelector('.tr-name').textContent === 'Bhāṣā-Vidyā');
-      head.click();
-      return { shut: document.getElementById('drawer').hidden,
-               page: !document.getElementById('trackcard').hidden,
-               name: document.getElementById('s-name').textContent,
-               /* no row inside a track stands for an introduction */
-               nested: [...document.querySelectorAll('.tr-body button, .ls-body button')]
-                 .filter(b => /about|introduction/i.test(b.textContent)).length };
+      at().click();                       // opens the page, and expands the row
+      const first = { open: at().getAttribute('aria-expanded'),
+                      shut: document.getElementById('drawer').hidden,
+                      page: !document.getElementById('trackcard').hidden,
+                      name: document.getElementById('s-name').textContent };
+      at().click();                       // and the same tap collapses it again
+      return Object.assign(first, {
+        second: at().getAttribute('aria-expanded'),
+        stillOpen: !document.getElementById('drawer').hidden,
+        /* no row inside a track stands for an introduction */
+        nested: [...document.querySelectorAll('.tr-body button, .ls-body button')]
+          .filter(b => /about|introduction/i.test(b.textContent)).length });
     });
     ok('tapping a track name in the drawer opens its page',
-      again2.shut && again2.page && /Bhāṣā/.test(again2.name), again2.name);
+      again2.page && /Bhāṣā/.test(again2.name), again2.name);
+    /* and leaves the menu up.  A tap that navigated AND closed the drawer
+       left no way to collapse a track at all, and threw the learner out of
+       the place they were browsing. */
+    ok('and leaves the menu open, expanding the row rather than leaving',
+      !again2.shut && again2.open === 'true', JSON.stringify(again2));
+    ok('and the same tap collapses it again',
+      again2.second === 'false' && again2.stillOpen, again2.second);
     ok('and no row is nested under the name to stand for it',
       again2.nested === 0, again2.nested + ' rows');
-    await p.click('#nav');
     await p.click('#dr-home');
     const home = await p.evaluate(() => ({
       welcome: !document.getElementById('welcome').hidden,
@@ -5314,6 +5325,38 @@ const open = async (browser, opts = {}) => {
     }));
     ok('the handle opens the drawer', opened.open && opened.veil);
     ok('every track is a heading', opened.tracks === 8, opened.tracks + ' headings');
+
+    /* A row that expands says so, and says which way it is facing.  Without
+       it a track head looked exactly like a row that starts something. */
+    const caret = await p.evaluate(() => {
+      TRACK_ROWS.forEach(x => openTracks.add(x.track.id));
+      renderDrawer();
+      const rows = [...document.querySelectorAll('.tr-head, .ls-head')];
+      const shown = b => getComputedStyle(b.querySelector('.ex-caret')).display !== 'none';
+      const turn = b => getComputedStyle(b.querySelector('.ex-caret')).transform;
+      const expandable = rows.filter(b => b.hasAttribute('aria-expanded'));
+      const leaves = rows.filter(b => !b.hasAttribute('aria-expanded'));
+      const open = expandable.find(b => b.getAttribute('aria-expanded') === 'true');
+      /* shut one to compare against, without disturbing what is on screen */
+      const shut = (() => {
+        const b = expandable.find(x => x.getAttribute('aria-expanded') === 'true');
+        if (!b) return null;
+        b.setAttribute('aria-expanded', 'false');
+        const t = turn(b);
+        b.setAttribute('aria-expanded', 'true');
+        return t;
+      })();
+      return { n: expandable.length,
+               allShown: expandable.every(shown),
+               noneOnLeaves: leaves.every(b => !shown(b)),
+               leaves: leaves.length,
+               turns: open && shut && turn(open) !== shut };
+    });
+    ok('every expandable row carries a caret', caret.n > 0 && caret.allShown,
+      caret.n + ' expandable rows');
+    ok('and a row with nothing to expand carries none',
+      caret.noneOnLeaves, caret.leaves + ' leaf rows');
+    ok('the caret turns with the row', caret.turns);
     ok('the drawer lands on the group holding the current list',
       opened.lessons > 0 && opened.here, opened.lessons + ' groups showing');
     /* The section's own statistic is lists carried to 100%, not a card count

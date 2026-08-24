@@ -1556,8 +1556,14 @@ const count = (n, word) => n + ' ' + word + (n === 1 ? '' : 's');
 function rowButton(cls, { name, pct, sub, full, on, bar, title }) {
   const b = document.createElement('button');
   b.className = (cls === 'dk' ? 'dk' : cls + '-head') + (on ? ' on' : '');
+  /* A row that has a body says so, and says whether it is open.  Drawn
+     rather than typed, like the nav handle's own caret, and shown only where
+     `aria-expanded` is actually set — a row standing in for a single list
+     has nothing to expand. */
   b.innerHTML = `<span class="${cls}-name"></span><span class="${cls}-pct"></span>`
-              + `<span class="${cls}-sub"></span>` + (bar ? '<span class="bar"><i></i></span>' : '');
+              + `<span class="${cls}-sub"></span>`
+              + (cls === 'dk' ? '' : '<span class="ex-caret" aria-hidden="true"></span>')
+              + (bar ? '<span class="bar"><i></i></span>' : '');
   fillRow(b, { ['.' + cls + '-name']: name,
                ['.' + cls + '-pct']: full ? '✓' : pct + '%',
                ['.' + cls + '-sub']: sub });
@@ -1698,9 +1704,13 @@ function trackRow(row, over) {
     b.classList.add('locked');
     b.title = t.name + ' — open Home and press Begin';
   } else b.addEventListener('click', () => {
-    openTracks.add(t.id);           // its stages are there on the way back
-    closeDrawer();
+    /* Expand or collapse, and open the track's page behind the menu.  The
+       menu stays up.  A tap that navigated AND closed the drawer left no way
+       to collapse a track at all, and threw the learner out of the place
+       they were browsing; the page is there when they tap away. */
+    toggleIn(openTracks, t.id);
     showTrack(t.id);
+    renderDrawer();
   });
   return b;
 }
@@ -1814,7 +1824,7 @@ function renderDrawer() {
        the name above is shut too, and pointing at it would be a dead end. */
     if (!trackBegun(t.id))
       body.appendChild(shutNote(started()
-        ? 'Tap the name above and press Begin to open these.'
+        ? 'Tap the name above to open its page, then close this menu and press Begin.'
         : 'Open Home and press Begin to start.'));
     /* one group: its lists stand directly under the track */
     if (only) only.decks.forEach(n => body.appendChild(deckRow(n)));

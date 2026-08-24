@@ -749,8 +749,8 @@
   .tr:last-child { border-bottom: none; }
   .tr-head {
     display: grid; width: 100%; text-align: left; cursor: pointer;
-    grid-template-columns: 1fr auto; gap: .1rem .6rem;
-    grid-template-areas: "name pct" "sub sub" "bar bar";
+    grid-template-columns: 1fr auto auto; gap: .1rem .6rem;
+    grid-template-areas: "name pct caret" "sub sub caret" "bar bar bar";
     background: none; border: 0; font-family: inherit; color: var(--leaf);
     padding: .75rem .2rem .8rem; min-height: 48px;
   }
@@ -768,8 +768,8 @@
   /* a lesson inside a track */
   .ls-head {
     display: grid; width: 100%; text-align: left; cursor: pointer;
-    grid-template-columns: 1fr auto; gap: .1rem .6rem;
-    grid-template-areas: "name pct" "sub sub" "bar bar";
+    grid-template-columns: 1fr auto auto; gap: .1rem .6rem;
+    grid-template-areas: "name pct caret" "sub sub caret" "bar bar bar";
     background: none; border: 0; font-family: inherit; color: var(--leaf);
     padding: .5rem .2rem; min-height: 44px;
   }
@@ -786,6 +786,22 @@
   /* A list standing in for the level above it — a track that is one list, or a
      lesson that is one — keeps that level's size and indent, and takes the
      current-list outline a deck row gets instead of an expander's caret. */
+  /* The expander's caret.  Only a row that actually has a body carries one:
+     `aria-expanded` is removed from a row standing in for a single list, and
+     the caret goes with it rather than pointing at nothing. */
+  .ex-caret { display: none; }
+  .tr-head[aria-expanded] > .ex-caret, .ls-head[aria-expanded] > .ex-caret {
+    display: block; grid-area: caret; align-self: center;
+    width: 7px; height: 7px; margin: -3px .1rem 0;
+    border-right: 1px solid var(--faded); border-bottom: 1px solid var(--faded);
+    transform: rotate(45deg);
+  }
+  .tr-head[aria-expanded="true"] > .ex-caret,
+  .ls-head[aria-expanded="true"] > .ex-caret {
+    transform: rotate(-135deg); margin-top: 3px;
+  }
+  .tr-head:hover > .ex-caret, .ls-head:hover > .ex-caret { border-color: var(--leaf); }
+
   .tr-head.leaf, .ls-head.leaf { cursor: pointer; }
   .tr-head.on, .ls-head.on {
     border: 1px solid var(--leaf); border-radius: 2px;
@@ -1076,7 +1092,7 @@
     <div id="b-list"></div>
     <!-- Which build this is.  A bug report that cannot name the build it came
          from cannot be acted on, and several are in the wild at once. -->
-    <div class="b-build">build 5fddcc7</div>
+    <div class="b-build">build e0764b6</div>
   </div>
 </div>
 
@@ -2809,8 +2825,14 @@ const count = (n, word) => n + ' ' + word + (n === 1 ? '' : 's');
 function rowButton(cls, { name, pct, sub, full, on, bar, title }) {
   const b = document.createElement('button');
   b.className = (cls === 'dk' ? 'dk' : cls + '-head') + (on ? ' on' : '');
+  /* A row that has a body says so, and says whether it is open.  Drawn
+     rather than typed, like the nav handle's own caret, and shown only where
+     `aria-expanded` is actually set — a row standing in for a single list
+     has nothing to expand. */
   b.innerHTML = `<span class="${cls}-name"></span><span class="${cls}-pct"></span>`
-              + `<span class="${cls}-sub"></span>` + (bar ? '<span class="bar"><i></i></span>' : '');
+              + `<span class="${cls}-sub"></span>`
+              + (cls === 'dk' ? '' : '<span class="ex-caret" aria-hidden="true"></span>')
+              + (bar ? '<span class="bar"><i></i></span>' : '');
   fillRow(b, { ['.' + cls + '-name']: name,
                ['.' + cls + '-pct']: full ? '✓' : pct + '%',
                ['.' + cls + '-sub']: sub });
@@ -2951,9 +2973,13 @@ function trackRow(row, over) {
     b.classList.add('locked');
     b.title = t.name + ' — open Home and press Begin';
   } else b.addEventListener('click', () => {
-    openTracks.add(t.id);           // its stages are there on the way back
-    closeDrawer();
+    /* Expand or collapse, and open the track's page behind the menu.  The
+       menu stays up.  A tap that navigated AND closed the drawer left no way
+       to collapse a track at all, and threw the learner out of the place
+       they were browsing; the page is there when they tap away. */
+    toggleIn(openTracks, t.id);
     showTrack(t.id);
+    renderDrawer();
   });
   return b;
 }
@@ -3067,7 +3093,7 @@ function renderDrawer() {
        the name above is shut too, and pointing at it would be a dead end. */
     if (!trackBegun(t.id))
       body.appendChild(shutNote(started()
-        ? 'Tap the name above and press Begin to open these.'
+        ? 'Tap the name above to open its page, then close this menu and press Begin.'
         : 'Open Home and press Begin to start.'));
     /* one group: its lists stand directly under the track */
     if (only) only.decks.forEach(n => body.appendChild(deckRow(n)));
