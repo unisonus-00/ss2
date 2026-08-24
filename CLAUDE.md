@@ -1326,13 +1326,13 @@ a learner can name are worth more than three they have to look up.
 
 **A list, a stage and a track are each complete when every card in them is
 learned, and retained when every card is retained.** The drawer marks a
-retained list in its descriptor (`the eight śaktis · LS · 8 cards ·
+retained list in its descriptor (`the great names · LS · 11 cards ·
 retained`), and finishing any of the six things announces itself once, on the
 results screen, in the right-answer pigment:
 
 ```
 समाप्तम् — clean round
-Mātṛkā complete · every card right on its first showing
+Devī-nāma complete · every card right on its first showing
 Known on the first showing: 8 of 8
 ```
 
@@ -1954,6 +1954,48 @@ asks for complete paradigms, so they stay.
 `scripts/test.js` fails if a lesson holds the same headword with the same
 meaning in two lists, and if a core dhātu is carded anywhere but Stage 9.
 
+### One operation, carded once
+
+`V01 · Mātṛkā` was eight cards, and seven of them asked the same thing:
+
+```
+brāhmī   → śakti of Brahmā
+māheśvarī → śakti of Maheśvara
+kaumārī  → śakti of Kumāra
+vaiṣṇavī → śakti of Viṣṇu
+```
+
+One derivation — vṛddhi of the god's name, plus a feminine ī — asked seven
+times, with the answer sitting inside the prompt. A learner who gets the
+second is not going to miss the sixth, and the six extra cards cost a sitting
+to teach what the first already taught. The deck is gone; `śivadūtī`, the one
+card of the eight that is not the derivation (*she who sent Śiva as envoy*),
+moved to `V01 · Devī-nāma` with its id intact.
+
+The same reading of the rest of the app found four more, all of them a
+template repeated with the vocabulary swapped:
+
+| | |
+|:--|:--|
+| **`V17 · Karmadhāraya`** | four of seven were `mahātī ca sā X ca`. One stays; `para-brahman`, `sad-guru` and `nīla-sarasvatī` stay too, because each shows a different agreement — neuter `tat`, masculine `asau`, feminine `sā` |
+| **`V17 · Dvandva`** | three were two masculine a-stems joined by `ca … ca`. `śumbha-niśumbha` stays; the plural `devāsura` and the two three-member compounds were never the same card |
+| **`V17 · Tatpuruṣa`** | `śarāṇāṃ vṛṣṭiḥ` after `puṣpāṇāṃ vṛṣṭiḥ` is the same genitive plural into the same head word. `triśūla-dhāriṇī` was the third `X + verb + iti` |
+| **`Namaḥ`** | one dative per stem class is the deck; `gaṇeśāya` after `śivāya` and `gurave` after `viṣṇave` are the same ending twice |
+
+Sixteen cards, and the app went from 177 lists to 176.
+
+**What was left alone, and why.** Three groups look like templates and are
+not: `demon Śumbha` / `demon Niśumbha` name different demons and neither is
+derived from the other, the river and city classifiers are the honest form of
+a place-name gloss (see **A meaning has to be in English**), and a vigraha's
+case endings differ — `kapālānāṃ`, `cintāmaṇeḥ`, `phalasya` — where a crude
+prefix match sees one shape.
+
+`scripts/test.js` blanks every gloss word built out of the headword and fails
+if four cards of a list are left with the same skeleton. The threshold is four
+and the skeleton must keep a word of its own, which is what separates
+`śakti of §` from a vigraha whose whole gloss is derived.
+
 ### Two data bugs the Stage 1 audit turned up
 
 Both found by comparing every Nāma card against the source it came from, and
@@ -1963,7 +2005,7 @@ both one line:
   the one place on a card that claims to say what the word is underneath its
   ending, so a visarga inside it is simply wrong; it reads `sāvarṇi-` now, and
   a test walks every card and fails on a stem ending in a visarga or anusvāra.
-  It was the only one in 2226 cards.
+  It was the only one in 2210 cards.
 - **`cāmaram`** glossed *fly-whisk* sat in the same lesson as `cāmara` glossed
   *demon general* (`V03`, DM 2.43) with nothing on either card to tell them
   apart — the annotations differ in gender, which is not something a learner
@@ -2338,7 +2380,7 @@ Three things here are load-bearing for the compatibility list above:
   chain, and keep each step stamping its own version rather than the newest;
   every `localStorage` touch stays guarded, since it can be absent or full.
 
-The app carries 28 lessons, 177 decks, and 2226 cards — 1865 `reveal`, 356
+The app carries 28 lessons, 176 decks, and 2210 cards — 1849 `reveal`, 356
 `choice` and 5 `sequence`, spread over 34 interactive decks in 16 lessons,
 plus the mastery decks holding complete paradigms.
 They are curated practice, not conversions of the reference tables:

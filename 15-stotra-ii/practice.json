@@ -125,22 +125,6 @@
           "gloss": "salutation to Viṣṇu",
           "note": "caturthī ekavacana · u-stem · viṣṇu",
           "source": "workbook A1.3"
-        },
-        {
-          "id": "15-stotra-ii:namah:ganeshaya",
-          "devanagari": "गणेशाय नमः",
-          "iast": "gaṇeśāya namaḥ",
-          "gloss": "salutation to Gaṇeśa",
-          "note": "caturthī ekavacana · a-stem · gaṇeśa",
-          "source": "workbook A1.4"
-        },
-        {
-          "id": "15-stotra-ii:namah:gurave",
-          "devanagari": "गुरवे नमः",
-          "iast": "gurave namaḥ",
-          "gloss": "salutation to the Guru",
-          "note": "caturthī ekavacana · u-stem · guru",
-          "source": "workbook A1.5"
         }
       ]
     },

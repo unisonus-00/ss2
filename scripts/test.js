@@ -2403,7 +2403,11 @@ const open = async (browser, opts = {}) => {
           /* a delta table is short because the delta is: the reference gives
              one ṛ-stem table for mātṛ and pitṛ together, so the feminine list
              holds the cell it does not share and says so */
-          && !(n.startsWith('Śabda-rūpa') && !n.includes('all 24 cells')))
+          && !(n.startsWith('Śabda-rūpa') && !n.includes('all 24 cells'))
+          /* and the dative salutation is one card per stem class, of which
+             the stotra uses three: śivāya, devyai, viṣṇave.  A second a-stem
+             drills nothing the first did. */
+          && !n.startsWith('Namaḥ'))
         .map(([n, cs]) => n + ':' + cs.length);
       return { big, clash, tiny, decks: Object.keys(DECKS).length,
                cards: Object.values(DECKS).reduce((a, b) => a + b.length, 0) };
@@ -3906,6 +3910,47 @@ const open = async (browser, opts = {}) => {
       !r.twice.length, r.twice.slice(0, 3).join(' | '));
     ok('and a core dhātu is carded at the stage that owns roots, once',
       !r.rootsTwice.length, r.rootsTwice.slice(0, 3).join(' | '));
+    await p.close();
+  }
+
+  // ── one operation, carded once ────────────────────────────────────
+  // The eight Mātṛkās were seven cards of "X → śakti of X": one derivation,
+  // asked seven times, with the answer sitting in the prompt.  A learner who
+  // gets the second is not going to miss the sixth.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const fold = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+      /* blank any gloss word built out of the headword; what is left is the
+         card's own contribution */
+      const skeleton = (front, gloss) => {
+        const fs = fold(front).split(/[^a-z]+/).filter(w => w.length >= 4);
+        return gloss.split(/(\W+)/).map(w => {
+          const s = fold(w);
+          return s.length >= 4
+            && fs.some(f => f.startsWith(s.slice(0, 4)) || s.startsWith(f.slice(0, 4)))
+            ? '§' : w;
+        }).join('');
+      };
+      const bad = [];
+      Object.keys(DECKS).forEach(n => {
+        const g = {};
+        DECKS[n].forEach(c => {
+          if ((c.type || 'reveal') !== 'reveal') return;
+          const k = skeleton(c.iast || '', (c.gloss || '').trim());
+          /* a skeleton with no words of its own is not a template — the case
+             endings of a vigraha differ where a four-letter prefix does not */
+          if (k.indexOf('§') < 0 || !/[a-z]{2}/i.test(k.replace(/§/g, ''))) return;
+          (g[k] = g[k] || []).push(c.iast);
+        });
+        Object.keys(g).forEach(k => {
+          if (g[k].length >= 4) bad.push(n + ' · "' + k + '" ×' + g[k].length);
+        });
+      });
+      return bad;
+    });
+    ok('no list asks for the same derivation four times over',
+      !r.length, r.slice(0, 3).join(' | '));
     await p.close();
   }
 

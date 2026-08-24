@@ -851,6 +851,13 @@
           "iast": "mahāsarasvatī",
           "gloss": "the great Sarasvatī",
           "note": "noun · feminine · ī-stem · stem: mahāsarasvatī- · DM Ch.5-13 presiding deity"
+        },
+        {
+          "id": "01-nama:goddess-names:sivaduti",
+          "devanagari": "शिवदूती",
+          "iast": "śivadūtī",
+          "gloss": "she who sent Śiva as envoy",
+          "note": "noun · feminine · ī-stem · stem: śivadūtī- · DM 8.28"
         }
       ]
     },
@@ -1309,68 +1316,6 @@
           "iast": "ameyā",
           "gloss": "immeasurable",
           "note": "noun · feminine · ā-stem · stem: ameyā- · KS passim"
-        }
-      ]
-    },
-    {
-      "name": "V01 · Mātṛkā — the eight śaktis · LS",
-      "role": "breadth",
-      "cards": [
-        {
-          "id": "01-nama:goddess-names:brahmi-brahmani",
-          "devanagari": "ब्राह्मी / ब्रह्माणी",
-          "iast": "brāhmī / brahmāṇī",
-          "gloss": "śakti of Brahmā",
-          "note": "noun · feminine · ī-stem · stem: brāhmī- · DM 8.13"
-        },
-        {
-          "id": "01-nama:goddess-names:mahesvari",
-          "devanagari": "माहेश्वरी",
-          "iast": "māheśvarī",
-          "gloss": "śakti of Maheśvara",
-          "note": "noun · feminine · ī-stem · stem: māheśvarī- · DM 8.14"
-        },
-        {
-          "id": "01-nama:goddess-names:kaumari",
-          "devanagari": "कौमारी",
-          "iast": "kaumārī",
-          "gloss": "śakti of Kumāra",
-          "note": "noun · feminine · ī-stem · stem: kaumārī- · DM 8.15"
-        },
-        {
-          "id": "01-nama:goddess-names:vaisnavi",
-          "devanagari": "वैष्णवी",
-          "iast": "vaiṣṇavī",
-          "gloss": "śakti of Viṣṇu",
-          "note": "noun · feminine · ī-stem · stem: vaiṣṇavī- · DM 8.16"
-        },
-        {
-          "id": "01-nama:goddess-names:varahi",
-          "devanagari": "वाराही",
-          "iast": "vārāhī",
-          "gloss": "śakti of Varāha",
-          "note": "noun · feminine · ī-stem · stem: vārāhī- · DM 8.18"
-        },
-        {
-          "id": "01-nama:goddess-names:narasimhi",
-          "devanagari": "नारसिंही",
-          "iast": "nārasiṃhī",
-          "gloss": "śakti of Narasiṃha",
-          "note": "noun · feminine · ī-stem · stem: nārasiṃhī- · DM 8.17"
-        },
-        {
-          "id": "01-nama:goddess-names:aindri-indrani",
-          "devanagari": "ऐन्द्री / इन्द्राणी",
-          "iast": "aindrī / indrāṇī",
-          "gloss": "śakti of Indra",
-          "note": "noun · feminine · ī-stem · stem: aindrī- · DM 8.19"
-        },
-        {
-          "id": "01-nama:goddess-names:sivaduti",
-          "devanagari": "शिवदूती",
-          "iast": "śivadūtī",
-          "gloss": "she who sent Śiva as envoy",
-          "note": "noun · feminine · ī-stem · stem: śivadūtī- · DM 8.28"
         }
       ]
     },
@@ -2940,7 +2885,7 @@
           "id": "01-nama:nature-cosmos:kaveri",
           "devanagari": "कावेरी",
           "iast": "kāverī",
-          "gloss": "the Kāverī",
+          "gloss": "the Kāverī river",
           "note": "noun · feminine · ī-stem · stem: kāverī- · KKS 705"
         },
         {

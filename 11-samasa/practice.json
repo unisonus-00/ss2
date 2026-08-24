@@ -259,13 +259,6 @@
           "note": "destroyer of dire suffering · LS"
         },
         {
-          "id": "11-samasa:compounds-broken-down:trisula-dharini",
-          "devanagari": "त्रिशूल-धारिणी",
-          "iast": "triśūla-dhāriṇī",
-          "gloss": "triśūlaṃ dhārayati iti",
-          "note": "wielder of the trident · DM passim"
-        },
-        {
           "id": "11-samasa:compounds-broken-down:simha-vahini",
           "devanagari": "सिंह-वाहिनी",
           "iast": "siṃha-vāhinī",
@@ -315,13 +308,6 @@
           "note": "rain of flowers · DM 4.30"
         },
         {
-          "id": "11-samasa:compounds-broken-down:sara-vrsti",
-          "devanagari": "शर-वृष्टि",
-          "iast": "śara-vṛṣṭi",
-          "gloss": "śarāṇāṃ vṛṣṭiḥ",
-          "note": "rain of arrows · DM 3.7"
-        },
-        {
           "id": "11-samasa:compounds-broken-down:phala-sruti",
           "devanagari": "फल-श्रुति",
           "iast": "phala-śruti",
@@ -341,27 +327,6 @@
           "iast": "mahā-māyā",
           "gloss": "mahātī ca sā māyā ca",
           "note": "the great illusion · DM 1.40"
-        },
-        {
-          "id": "11-samasa:compounds-broken-down:maha-devi",
-          "devanagari": "महा-देवी",
-          "iast": "mahā-devī",
-          "gloss": "mahātī ca sā devī ca",
-          "note": "the great goddess · DM passim"
-        },
-        {
-          "id": "11-samasa:compounds-broken-down:maha-vidya",
-          "devanagari": "महा-विद्या",
-          "iast": "mahā-vidyā",
-          "gloss": "mahātī ca sā vidyā ca",
-          "note": "the great knowledge · DM 1.55"
-        },
-        {
-          "id": "11-samasa:compounds-broken-down:maha-kali",
-          "devanagari": "महा-काली",
-          "iast": "mahā-kālī",
-          "gloss": "mahātī ca sā kālī ca",
-          "note": "the great Kālī · DM Ch.1"
         },
         {
           "id": "11-samasa:compounds-broken-down:para-brahman",
@@ -488,20 +453,6 @@
           "iast": "śumbha-niśumbha",
           "gloss": "śumbhaḥ ca niśumbhaḥ ca",
           "note": "Śumbha and Niśumbha · DM 5.4+"
-        },
-        {
-          "id": "11-samasa:compounds-broken-down:canda-munda",
-          "devanagari": "चण्ड-मुण्ड",
-          "iast": "caṇḍa-muṇḍa",
-          "gloss": "caṇḍaḥ ca muṇḍaḥ ca",
-          "note": "Caṇḍa and Muṇḍa · DM 7.1"
-        },
-        {
-          "id": "11-samasa:compounds-broken-down:madhu-kaitabha",
-          "devanagari": "मधु-कैटभ",
-          "iast": "madhu-kaiṭabha",
-          "gloss": "madhuḥ ca kaiṭabhaḥ ca",
-          "note": "Madhu and Kaiṭabha · DM 1.72"
         },
         {
           "id": "11-samasa:compounds-broken-down:bhoga-svarga-apavarga",
