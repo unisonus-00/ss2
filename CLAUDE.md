@@ -3278,6 +3278,15 @@ distributable. **The version counts up on every run** — `demo-version` is
 tracked, so the number keeps going across sessions and a published demo can be
 named in a message without ambiguity.
 
+**Every change ends with a published demo, and its link.** Not on request —
+by default. The work is not reviewable until it is on the phone it is used
+on, and a change described in a message is a claim while a demo is the
+thing itself. So the last three steps of any change to `app/`, `lexicon/`
+or `scripts/` are always: `node scripts/build.js`, `node scripts/demo.js`,
+publish the new `dist/abhyasa-demo-v<N>.html` as an Artifact, and hand over
+the URL with the version named. Commit the `demo-version` bump with the
+change, so the number a message quotes is the number in the repository.
+
 ### Known conflicts
 
 **Stage 20 is drawn in two places.** The course-track diagram gives
