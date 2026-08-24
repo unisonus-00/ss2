@@ -1,0 +1,1481 @@
+{
+  "lesson": "00-devanagari",
+  "decks": [
+    {
+      "name": "Svara-varṇa — written alone",
+      "role": "core",
+      "stream": "script",
+      "pair": "glyph → sound",
+      "cards": [
+        {
+          "id": "00-devanagari:glyph:a",
+          "devanagari": "अ",
+          "gloss": "a",
+          "note": "vowel letter · a vowel is written like this only where no consonant carries it — in practice, at the start of a word"
+        },
+        {
+          "id": "00-devanagari:glyph:aa",
+          "devanagari": "आ",
+          "gloss": "ā",
+          "note": "vowel letter · अ with a bar added on the right"
+        },
+        {
+          "id": "00-devanagari:glyph:i",
+          "devanagari": "इ",
+          "gloss": "i",
+          "note": "vowel letter"
+        },
+        {
+          "id": "00-devanagari:glyph:ii",
+          "devanagari": "ई",
+          "gloss": "ī",
+          "note": "vowel letter · the long counterpart of इ"
+        },
+        {
+          "id": "00-devanagari:glyph:u",
+          "devanagari": "उ",
+          "gloss": "u",
+          "note": "vowel letter · easily taken for ज"
+        },
+        {
+          "id": "00-devanagari:glyph:uu",
+          "devanagari": "ऊ",
+          "gloss": "ū",
+          "note": "vowel letter · the long counterpart of उ"
+        },
+        {
+          "id": "00-devanagari:glyph:r-vowel",
+          "devanagari": "ऋ",
+          "gloss": "ṛ",
+          "note": "vowel letter · a vowel in its own right, and the first sound of ऋषिः"
+        },
+        {
+          "id": "00-devanagari:glyph:rr-vowel",
+          "devanagari": "ॠ",
+          "gloss": "ṝ",
+          "note": "vowel letter · the long ऋ, and rare on the page"
+        },
+        {
+          "id": "00-devanagari:glyph:l-vowel",
+          "devanagari": "ऌ",
+          "gloss": "ḷ",
+          "note": "vowel letter · rarer still — it turns up in one root, kḷp"
+        },
+        {
+          "id": "00-devanagari:glyph:e",
+          "devanagari": "ए",
+          "gloss": "e",
+          "note": "vowel letter · always long in Sanskrit; there is no short e"
+        },
+        {
+          "id": "00-devanagari:glyph:ai",
+          "devanagari": "ऐ",
+          "gloss": "ai",
+          "note": "vowel letter · ए with a second stroke above"
+        },
+        {
+          "id": "00-devanagari:glyph:o",
+          "devanagari": "ओ",
+          "gloss": "o",
+          "note": "vowel letter · always long; there is no short o"
+        },
+        {
+          "id": "00-devanagari:glyph:au",
+          "devanagari": "औ",
+          "gloss": "au",
+          "note": "vowel letter · ओ with a second stroke above"
+        }
+      ]
+    },
+    {
+      "name": "Sparśa I — throat, palate and dome",
+      "role": "core",
+      "stream": "script",
+      "pair": "glyph → sound",
+      "cards": [
+        {
+          "id": "00-devanagari:glyph:ka",
+          "devanagari": "क",
+          "gloss": "ka",
+          "note": "consonant · the k row · a consonant letter is read with a built-in a — क on its own is ka, never bare k"
+        },
+        {
+          "id": "00-devanagari:glyph:kha",
+          "devanagari": "ख",
+          "gloss": "kha",
+          "note": "consonant · the k row · easily taken for the two letters रव"
+        },
+        {
+          "id": "00-devanagari:glyph:ga",
+          "devanagari": "ग",
+          "gloss": "ga",
+          "note": "consonant · the k row"
+        },
+        {
+          "id": "00-devanagari:glyph:gha",
+          "devanagari": "घ",
+          "gloss": "gha",
+          "note": "consonant · the k row · easily taken for ध"
+        },
+        {
+          "id": "00-devanagari:glyph:nga",
+          "devanagari": "ङ",
+          "gloss": "ṅa",
+          "note": "consonant · the k row’s nasal · almost only ever seen inside a conjunct, as in अङ्कुशः"
+        },
+        {
+          "id": "00-devanagari:glyph:ca",
+          "devanagari": "च",
+          "gloss": "ca",
+          "note": "consonant · the c row"
+        },
+        {
+          "id": "00-devanagari:glyph:cha",
+          "devanagari": "छ",
+          "gloss": "cha",
+          "note": "consonant · the c row"
+        },
+        {
+          "id": "00-devanagari:glyph:ja",
+          "devanagari": "ज",
+          "gloss": "ja",
+          "note": "consonant · the c row · easily taken for उ"
+        },
+        {
+          "id": "00-devanagari:glyph:jha",
+          "devanagari": "झ",
+          "gloss": "jha",
+          "note": "consonant · the c row"
+        },
+        {
+          "id": "00-devanagari:glyph:nya",
+          "devanagari": "ञ",
+          "gloss": "ña",
+          "note": "consonant · the c row’s nasal · seen almost only inside ज्ञ"
+        },
+        {
+          "id": "00-devanagari:glyph:tta",
+          "devanagari": "ट",
+          "gloss": "ṭa",
+          "note": "consonant · the ṭ row"
+        },
+        {
+          "id": "00-devanagari:glyph:ttha",
+          "devanagari": "ठ",
+          "gloss": "ṭha",
+          "note": "consonant · the ṭ row"
+        },
+        {
+          "id": "00-devanagari:glyph:dda",
+          "devanagari": "ड",
+          "gloss": "ḍa",
+          "note": "consonant · the ṭ row · easily taken for ङ"
+        },
+        {
+          "id": "00-devanagari:glyph:ddha",
+          "devanagari": "ढ",
+          "gloss": "ḍha",
+          "note": "consonant · the ṭ row"
+        },
+        {
+          "id": "00-devanagari:glyph:nna",
+          "devanagari": "ण",
+          "gloss": "ṇa",
+          "note": "consonant · the ṭ row’s nasal · common in ordinary words — कृष्णः, गणेशः"
+        }
+      ]
+    },
+    {
+      "name": "Sparśa II — teeth and lips",
+      "role": "core",
+      "stream": "script",
+      "pair": "glyph → sound",
+      "cards": [
+        {
+          "id": "00-devanagari:glyph:ta",
+          "devanagari": "त",
+          "gloss": "ta",
+          "note": "consonant · the t row"
+        },
+        {
+          "id": "00-devanagari:glyph:tha",
+          "devanagari": "थ",
+          "gloss": "tha",
+          "note": "consonant · the t row · easily taken for य"
+        },
+        {
+          "id": "00-devanagari:glyph:da",
+          "devanagari": "द",
+          "gloss": "da",
+          "note": "consonant · the t row"
+        },
+        {
+          "id": "00-devanagari:glyph:dha",
+          "devanagari": "ध",
+          "gloss": "dha",
+          "note": "consonant · the t row · easily taken for घ"
+        },
+        {
+          "id": "00-devanagari:glyph:na",
+          "devanagari": "न",
+          "gloss": "na",
+          "note": "consonant · the t row’s nasal"
+        },
+        {
+          "id": "00-devanagari:glyph:pa",
+          "devanagari": "प",
+          "gloss": "pa",
+          "note": "consonant · the p row · easily taken for ष"
+        },
+        {
+          "id": "00-devanagari:glyph:pha",
+          "devanagari": "फ",
+          "gloss": "pha",
+          "note": "consonant · the p row"
+        },
+        {
+          "id": "00-devanagari:glyph:ba",
+          "devanagari": "ब",
+          "gloss": "ba",
+          "note": "consonant · the p row · easily taken for व"
+        },
+        {
+          "id": "00-devanagari:glyph:bha",
+          "devanagari": "भ",
+          "gloss": "bha",
+          "note": "consonant · the p row · easily taken for म"
+        },
+        {
+          "id": "00-devanagari:glyph:ma",
+          "devanagari": "म",
+          "gloss": "ma",
+          "note": "consonant · the p row’s nasal"
+        }
+      ]
+    },
+    {
+      "name": "Antaḥstha-ūṣman — semivowels and sibilants",
+      "role": "core",
+      "stream": "script",
+      "pair": "glyph → sound",
+      "cards": [
+        {
+          "id": "00-devanagari:glyph:ya",
+          "devanagari": "य",
+          "gloss": "ya",
+          "note": "semivowel · easily taken for थ"
+        },
+        {
+          "id": "00-devanagari:glyph:ra",
+          "devanagari": "र",
+          "gloss": "ra",
+          "note": "semivowel · the one letter that vanishes into a different shape inside a conjunct — see Repha"
+        },
+        {
+          "id": "00-devanagari:glyph:la",
+          "devanagari": "ल",
+          "gloss": "la",
+          "note": "semivowel"
+        },
+        {
+          "id": "00-devanagari:glyph:va",
+          "devanagari": "व",
+          "gloss": "va",
+          "note": "semivowel · easily taken for ब"
+        },
+        {
+          "id": "00-devanagari:glyph:sha",
+          "devanagari": "श",
+          "gloss": "śa",
+          "note": "sibilant · it takes shapes of its own in conjuncts — श्र, श्च, श्व"
+        },
+        {
+          "id": "00-devanagari:glyph:ssa",
+          "devanagari": "ष",
+          "gloss": "ṣa",
+          "note": "sibilant · the second element of क्ष"
+        },
+        {
+          "id": "00-devanagari:glyph:sa",
+          "devanagari": "स",
+          "gloss": "sa",
+          "note": "sibilant"
+        },
+        {
+          "id": "00-devanagari:glyph:ha",
+          "devanagari": "ह",
+          "gloss": "ha",
+          "note": "the aspirate · it hangs its conjunct partner underneath — ह्म, ह्य"
+        }
+      ]
+    },
+    {
+      "name": "Mātrā — the vowel signs",
+      "role": "core",
+      "stream": "script",
+      "pair": "glyph → sound",
+      "cards": [
+        {
+          "id": "00-devanagari:matra:kaa",
+          "devanagari": "का",
+          "gloss": "kā",
+          "note": "vowel sign · ā is a bar to the right of the letter"
+        },
+        {
+          "id": "00-devanagari:matra:ki",
+          "devanagari": "कि",
+          "gloss": "ki",
+          "note": "vowel sign · i is written to the LEFT of its consonant and read after it — the one place the page and the sound part company"
+        },
+        {
+          "id": "00-devanagari:matra:kii",
+          "devanagari": "की",
+          "gloss": "kī",
+          "note": "vowel sign · ī sits to the right, the mirror of the i sign"
+        },
+        {
+          "id": "00-devanagari:matra:ku",
+          "devanagari": "कु",
+          "gloss": "ku",
+          "note": "vowel sign · u is written below the letter"
+        },
+        {
+          "id": "00-devanagari:matra:kuu",
+          "devanagari": "कू",
+          "gloss": "kū",
+          "note": "vowel sign · ū is written below, and is not the u sign"
+        },
+        {
+          "id": "00-devanagari:matra:kr",
+          "devanagari": "कृ",
+          "gloss": "kṛ",
+          "note": "vowel sign · ṛ is written below — कृष्णः opens with it"
+        },
+        {
+          "id": "00-devanagari:matra:krr",
+          "devanagari": "कॄ",
+          "gloss": "kṝ",
+          "note": "vowel sign · the long ṛ, and rare"
+        },
+        {
+          "id": "00-devanagari:matra:kl",
+          "devanagari": "कॢ",
+          "gloss": "kḷ",
+          "note": "vowel sign · rarer still, and effectively confined to the root kḷp"
+        },
+        {
+          "id": "00-devanagari:matra:ke",
+          "devanagari": "के",
+          "gloss": "ke",
+          "note": "vowel sign · e is a stroke above the headline"
+        },
+        {
+          "id": "00-devanagari:matra:kai",
+          "devanagari": "कै",
+          "gloss": "kai",
+          "note": "vowel sign · ai is two strokes above"
+        },
+        {
+          "id": "00-devanagari:matra:ko",
+          "devanagari": "को",
+          "gloss": "ko",
+          "note": "vowel sign · o is the ā bar with one stroke above it"
+        },
+        {
+          "id": "00-devanagari:matra:kau",
+          "devanagari": "कौ",
+          "gloss": "kau",
+          "note": "vowel sign · au is the ā bar with two strokes above it"
+        }
+      ]
+    },
+    {
+      "name": "Saṃyukta — conjuncts to know by sight",
+      "role": "core",
+      "stream": "script",
+      "pair": "glyph → sound",
+      "cards": [
+        {
+          "id": "00-devanagari:conjunct:kssa",
+          "devanagari": "क्ष",
+          "gloss": "kṣa",
+          "note": "conjunct · क + ष, and nothing of either shape survives — लक्ष्मीः, अक्षताः"
+        },
+        {
+          "id": "00-devanagari:conjunct:jnya",
+          "devanagari": "ज्ञ",
+          "gloss": "jña",
+          "note": "conjunct · ज + ञ, unreadable from its parts and said several ways aloud"
+        },
+        {
+          "id": "00-devanagari:conjunct:tta",
+          "devanagari": "त्त",
+          "gloss": "tta",
+          "note": "conjunct · त + त, stacked rather than joined side by side"
+        },
+        {
+          "id": "00-devanagari:conjunct:kta",
+          "devanagari": "क्त",
+          "gloss": "kta",
+          "note": "conjunct · क + त · the ending of hundreds of past participles"
+        },
+        {
+          "id": "00-devanagari:conjunct:tra",
+          "devanagari": "त्र",
+          "gloss": "tra",
+          "note": "conjunct · त + र · the र is the stroke underneath — त्रिशूलम् opens with it"
+        },
+        {
+          "id": "00-devanagari:conjunct:shva",
+          "devanagari": "श्व",
+          "gloss": "śva",
+          "note": "conjunct · श + व · श takes a shape of its own — महेश्वरः carries it"
+        },
+        {
+          "id": "00-devanagari:conjunct:shca",
+          "devanagari": "श्च",
+          "gloss": "śca",
+          "note": "conjunct · श + च"
+        },
+        {
+          "id": "00-devanagari:conjunct:shra",
+          "devanagari": "श्र",
+          "gloss": "śra",
+          "note": "conjunct · श + र"
+        }
+      ]
+    },
+    {
+      "name": "Sadṛśa — the letters that look alike · practice",
+      "stream": "script",
+      "cards": [
+        {
+          "id": "00-devanagari:discrimination:bha-ma:bha",
+          "type": "choice",
+          "front": "Read it: भ",
+          "options": [
+            "bha",
+            "ma",
+            "ba",
+            "dha"
+          ],
+          "answer": "bha",
+          "note": "one of the eight pairs of look-alikes the source singles out · भ / म",
+          "source": "workbook E1"
+        },
+        {
+          "id": "00-devanagari:discrimination:bha-ma:ma",
+          "type": "choice",
+          "front": "Read it: म",
+          "options": [
+            "bha",
+            "ma",
+            "sa",
+            "na"
+          ],
+          "answer": "ma",
+          "note": "one of the eight pairs of look-alikes the source singles out · भ / म",
+          "source": "workbook E1"
+        },
+        {
+          "id": "00-devanagari:discrimination:ba-va:ba",
+          "type": "choice",
+          "front": "Read it: ब",
+          "options": [
+            "ba",
+            "va",
+            "da",
+            "ca"
+          ],
+          "answer": "ba",
+          "note": "one of the eight pairs of look-alikes the source singles out · ब / व",
+          "source": "workbook E2"
+        },
+        {
+          "id": "00-devanagari:discrimination:ba-va:va",
+          "type": "choice",
+          "front": "Read it: व",
+          "options": [
+            "ba",
+            "va",
+            "ya",
+            "da"
+          ],
+          "answer": "va",
+          "note": "one of the eight pairs of look-alikes the source singles out · ब / व",
+          "source": "workbook E2"
+        },
+        {
+          "id": "00-devanagari:discrimination:tha-ya:tha",
+          "type": "choice",
+          "front": "Read it: थ",
+          "options": [
+            "tha",
+            "ya",
+            "pha",
+            "dha"
+          ],
+          "answer": "tha",
+          "note": "one of the eight pairs of look-alikes the source singles out · थ / य",
+          "source": "workbook E3"
+        },
+        {
+          "id": "00-devanagari:discrimination:tha-ya:ya",
+          "type": "choice",
+          "front": "Read it: य",
+          "options": [
+            "tha",
+            "ya",
+            "pa",
+            "va"
+          ],
+          "answer": "ya",
+          "note": "one of the eight pairs of look-alikes the source singles out · थ / य",
+          "source": "workbook E3"
+        },
+        {
+          "id": "00-devanagari:discrimination:kha-rava:kha",
+          "type": "choice",
+          "front": "Read it: ख",
+          "options": [
+            "kha",
+            "rava",
+            "gha",
+            "cha"
+          ],
+          "answer": "kha",
+          "note": "one of the eight pairs of look-alikes the source singles out · ख / रव — one letter against two",
+          "source": "workbook E4"
+        },
+        {
+          "id": "00-devanagari:discrimination:kha-rava:rava",
+          "type": "choice",
+          "front": "Read it: रव",
+          "options": [
+            "kha",
+            "rava",
+            "ra",
+            "va"
+          ],
+          "answer": "rava",
+          "note": "one of the eight pairs of look-alikes the source singles out · ख / रव — two letters against one",
+          "source": "workbook E4"
+        },
+        {
+          "id": "00-devanagari:discrimination:gha-dha:gha",
+          "type": "choice",
+          "front": "Read it: घ",
+          "options": [
+            "gha",
+            "dha",
+            "bha",
+            "da"
+          ],
+          "answer": "gha",
+          "note": "one of the eight pairs of look-alikes the source singles out · घ / ध",
+          "source": "workbook E5"
+        },
+        {
+          "id": "00-devanagari:discrimination:gha-dha:dha",
+          "type": "choice",
+          "front": "Read it: ध",
+          "options": [
+            "gha",
+            "dha",
+            "bha",
+            "da"
+          ],
+          "answer": "dha",
+          "note": "one of the eight pairs of look-alikes the source singles out · घ / ध",
+          "source": "workbook E5"
+        },
+        {
+          "id": "00-devanagari:discrimination:pa-ssa:pa",
+          "type": "choice",
+          "front": "Read it: प",
+          "options": [
+            "pa",
+            "ṣa",
+            "pha",
+            "ya"
+          ],
+          "answer": "pa",
+          "note": "one of the eight pairs of look-alikes the source singles out · प / ष",
+          "source": "workbook E6"
+        },
+        {
+          "id": "00-devanagari:discrimination:pa-ssa:ssa",
+          "type": "choice",
+          "front": "Read it: ष",
+          "options": [
+            "pa",
+            "ṣa",
+            "śa",
+            "sa"
+          ],
+          "answer": "ṣa",
+          "note": "one of the eight pairs of look-alikes the source singles out · प / ष, with the other two sibilants alongside",
+          "source": "workbook E6"
+        },
+        {
+          "id": "00-devanagari:discrimination:nga-dda:nga",
+          "type": "choice",
+          "front": "Read it: ङ",
+          "options": [
+            "ṅa",
+            "ḍa",
+            "ṇa",
+            "ña"
+          ],
+          "answer": "ṅa",
+          "note": "one of the eight pairs of look-alikes the source singles out · ङ / ड",
+          "source": "workbook E7"
+        },
+        {
+          "id": "00-devanagari:discrimination:nga-dda:dda",
+          "type": "choice",
+          "front": "Read it: ड",
+          "options": [
+            "ṅa",
+            "ḍa",
+            "ḍha",
+            "ṇa"
+          ],
+          "answer": "ḍa",
+          "note": "one of the eight pairs of look-alikes the source singles out · ङ / ड",
+          "source": "workbook E7"
+        },
+        {
+          "id": "00-devanagari:discrimination:u-ja:u",
+          "type": "choice",
+          "front": "Read it: उ",
+          "options": [
+            "u",
+            "ja",
+            "ū",
+            "jha"
+          ],
+          "answer": "u",
+          "note": "one of the eight pairs of look-alikes the source singles out · उ / ज — a vowel letter against a consonant",
+          "source": "workbook E8"
+        },
+        {
+          "id": "00-devanagari:discrimination:u-ja:ja",
+          "type": "choice",
+          "front": "Read it: ज",
+          "options": [
+            "u",
+            "ja",
+            "ca",
+            "jha"
+          ],
+          "answer": "ja",
+          "note": "one of the eight pairs of look-alikes the source singles out · उ / ज",
+          "source": "workbook E8"
+        }
+      ]
+    },
+    {
+      "name": "Mātrā-viśeṣa — signs out of place · practice",
+      "stream": "script",
+      "cards": [
+        {
+          "id": "00-devanagari:matra-special:before",
+          "type": "choice",
+          "front": "Which vowel sign is written before its consonant and read after it?",
+          "options": [
+            "the i sign, as in कि",
+            "the ī sign, as in की",
+            "the u sign, as in कु",
+            "the e sign, as in के"
+          ],
+          "answer": "the i sign, as in कि",
+          "note": "the page and the sound part company here, and nowhere else among the signs",
+          "source": "workbook D1"
+        },
+        {
+          "id": "00-devanagari:matra-special:hr",
+          "type": "choice",
+          "front": "Read it: हृ",
+          "options": [
+            "hṛ",
+            "hu",
+            "hū",
+            "he"
+          ],
+          "answer": "hṛ",
+          "note": "ह takes the ṛ sign in a place of its own — हृदयम् opens with it",
+          "source": "workbook D2"
+        },
+        {
+          "id": "00-devanagari:matra-special:ru",
+          "type": "choice",
+          "front": "Read it: रु",
+          "options": [
+            "ru",
+            "rū",
+            "rṛ",
+            "ra"
+          ],
+          "answer": "ru",
+          "note": "र carries u in a shape of its own rather than the ordinary sign",
+          "source": "workbook D3"
+        },
+        {
+          "id": "00-devanagari:matra-special:ruu",
+          "type": "choice",
+          "front": "Read it: रू",
+          "options": [
+            "rū",
+            "ru",
+            "rī",
+            "rau"
+          ],
+          "answer": "rū",
+          "note": "and ū likewise — the pair रु / रू is worth learning together",
+          "source": "workbook D4"
+        },
+        {
+          "id": "00-devanagari:matra-special:kim",
+          "type": "choice",
+          "front": "Read it: किम्",
+          "options": [
+            "kim",
+            "kīm",
+            "ikam",
+            "kmi"
+          ],
+          "answer": "kim",
+          "note": "the i sign stands to the left of क and is read after it; the virāma ends the word",
+          "source": "workbook D5"
+        },
+        {
+          "id": "00-devanagari:matra-special:nadi",
+          "type": "choice",
+          "front": "Read it: नदी",
+          "options": [
+            "nadī",
+            "nadi",
+            "ndī",
+            "nādī"
+          ],
+          "answer": "nadī",
+          "note": "the ī sign belongs to द, and nothing is written for the a on न",
+          "source": "workbook D6"
+        }
+      ]
+    },
+    {
+      "name": "Virāma — the built-in a and its cancelling · practice",
+      "stream": "script",
+      "cards": [
+        {
+          "id": "00-devanagari:virama:rule",
+          "type": "choice",
+          "front": "What does a virāma do to the letter it sits under?",
+          "options": [
+            "it takes away the a that letter would otherwise carry",
+            "it puts a short a on a letter that had none",
+            "it lengthens the vowel already there",
+            "it marks the end of the sentence"
+          ],
+          "answer": "it takes away the a that letter would otherwise carry",
+          "note": "nothing is written for the built-in a, so something has to be written to take it away",
+          "source": "workbook B"
+        },
+        {
+          "id": "00-devanagari:virama:bare-k",
+          "type": "choice",
+          "front": "Read it: क्",
+          "options": [
+            "k, with no vowel after it",
+            "ka",
+            "kā",
+            "ki"
+          ],
+          "answer": "k, with no vowel after it",
+          "note": "virāma · the stroke under the letter",
+          "source": "workbook B1"
+        },
+        {
+          "id": "00-devanagari:virama:nama",
+          "type": "choice",
+          "front": "Read it: नम",
+          "options": [
+            "nama",
+            "nam",
+            "nāma",
+            "nma"
+          ],
+          "answer": "nama",
+          "note": "no vowel sign and no virāma, so both letters keep their built-in a",
+          "source": "workbook B2"
+        },
+        {
+          "id": "00-devanagari:virama:namah-final",
+          "type": "choice",
+          "front": "Which of these ends in a bare consonant?",
+          "options": [
+            "नम्",
+            "नम",
+            "ना",
+            "नि"
+          ],
+          "answer": "नम्",
+          "note": "the virāma under the last letter is the only thing that stops it being ma",
+          "source": "workbook B3"
+        },
+        {
+          "id": "00-devanagari:virama:kara",
+          "type": "choice",
+          "front": "Read it: कर",
+          "options": [
+            "kara",
+            "kra",
+            "kar",
+            "kāra"
+          ],
+          "answer": "kara",
+          "note": "two letters, two built-in a’s, and nothing written for either",
+          "source": "workbook B4"
+        },
+        {
+          "id": "00-devanagari:virama:tat",
+          "type": "choice",
+          "front": "Read it: तत्",
+          "options": [
+            "tat",
+            "tata",
+            "tāt",
+            "tta"
+          ],
+          "answer": "tat",
+          "note": "one virāma, at the end; the first त keeps its a",
+          "source": "workbook B5"
+        },
+        {
+          "id": "00-devanagari:virama:vad",
+          "type": "choice",
+          "front": "Read it: वद्",
+          "options": [
+            "vad",
+            "vada",
+            "vād",
+            "vd"
+          ],
+          "answer": "vad",
+          "note": "the same contrast as नम / नम्, on a different pair of letters",
+          "source": "workbook B6"
+        },
+        {
+          "id": "00-devanagari:virama:vastram",
+          "type": "choice",
+          "front": "Read it: वस्त्रम्",
+          "options": [
+            "vastram",
+            "vasatram",
+            "vastaram",
+            "vāstram"
+          ],
+          "answer": "vastram",
+          "note": "स्त्र is three consonants with no vowel between them, and the page shows that by writing them as one",
+          "source": "workbook B7"
+        }
+      ]
+    },
+    {
+      "name": "Saṃyoga — splitting a conjunct · practice",
+      "stream": "script",
+      "cards": [
+        {
+          "id": "00-devanagari:conjunct-rule:how",
+          "type": "choice",
+          "front": "How is an ordinary conjunct built?",
+          "options": [
+            "the first letter loses its upright stroke and the next is joined on",
+            "the two letters are written side by side, both unchanged",
+            "a dot is placed above the first letter",
+            "the second letter is written above the first"
+          ],
+          "answer": "the first letter loses its upright stroke and the next is joined on",
+          "note": "a conjunct says one thing only: no vowel comes between these consonants",
+          "source": "workbook F"
+        },
+        {
+          "id": "00-devanagari:conjunct:nda",
+          "type": "choice",
+          "front": "Split it: ण्ड",
+          "options": [
+            "ṇ + ḍa",
+            "ṇ + da",
+            "na + ḍa",
+            "ḍ + ṇa"
+          ],
+          "answer": "ṇ + ḍa",
+          "note": "both letters are retroflex, and चण्डिका turns on hearing that",
+          "source": "workbook F1"
+        },
+        {
+          "id": "00-devanagari:conjunct:tma",
+          "type": "choice",
+          "front": "Split it: त्म",
+          "options": [
+            "t + ma",
+            "t + ya",
+            "m + ta",
+            "th + ma"
+          ],
+          "answer": "t + ma",
+          "note": "the ordinary rule: त gives up its upright stroke",
+          "source": "workbook F2"
+        },
+        {
+          "id": "00-devanagari:conjunct:tmya",
+          "type": "choice",
+          "front": "Split it: त्म्य",
+          "options": [
+            "t + m + ya",
+            "t + mya",
+            "th + m + ya",
+            "m + t + ya"
+          ],
+          "answer": "t + m + ya",
+          "note": "three consonants in one shape, and the rule is applied twice over",
+          "source": "workbook F3"
+        },
+        {
+          "id": "00-devanagari:conjunct:kka",
+          "type": "choice",
+          "front": "Split it: क्क",
+          "options": [
+            "k + ka",
+            "k + kha",
+            "ka + ga",
+            "kh + ka"
+          ],
+          "answer": "k + ka",
+          "note": "the same letter twice, which is not the same as one letter written large",
+          "source": "workbook F4"
+        },
+        {
+          "id": "00-devanagari:conjunct:dma",
+          "type": "choice",
+          "front": "Split it: द्म",
+          "options": [
+            "d + ma",
+            "d + ya",
+            "dh + ma",
+            "m + da"
+          ],
+          "answer": "d + ma",
+          "note": "द has no upright stroke to give up, so its partner hangs underneath",
+          "source": "workbook F5"
+        },
+        {
+          "id": "00-devanagari:conjunct:dbha",
+          "type": "choice",
+          "front": "Split it: द्भ",
+          "options": [
+            "d + bha",
+            "dh + ba",
+            "d + ba",
+            "b + dha"
+          ],
+          "answer": "d + bha",
+          "note": "stacked again — and the lower letter is भ, not ब",
+          "source": "workbook F6"
+        },
+        {
+          "id": "00-devanagari:conjunct:dya",
+          "type": "choice",
+          "front": "Split it: द्य",
+          "options": [
+            "d + ya",
+            "dh + ya",
+            "d + ma",
+            "j + ya"
+          ],
+          "answer": "d + ya",
+          "note": "नैवेद्यम् is read off this one",
+          "source": "workbook F7"
+        },
+        {
+          "id": "00-devanagari:conjunct:nna",
+          "type": "choice",
+          "front": "Split it: न्न",
+          "options": [
+            "n + na",
+            "n + ta",
+            "ṇ + na",
+            "na + da"
+          ],
+          "answer": "n + na",
+          "note": "न doubled, and neither of them retroflex",
+          "source": "workbook F8"
+        },
+        {
+          "id": "00-devanagari:conjunct:pta",
+          "type": "choice",
+          "front": "Split it: प्त",
+          "options": [
+            "p + ta",
+            "p + tha",
+            "pa + da",
+            "t + pa"
+          ],
+          "answer": "p + ta",
+          "note": "the ordinary rule once more",
+          "source": "workbook F9"
+        }
+      ]
+    },
+    {
+      "name": "Repha — r above the line and below it · practice",
+      "stream": "script",
+      "cards": [
+        {
+          "id": "00-devanagari:repha:arjuna",
+          "type": "choice",
+          "front": "What does the hook above ज say in अर्जुनः?",
+          "options": [
+            "an r sounded before ज",
+            "an r sounded after ज",
+            "a long vowel on ज",
+            "an anusvāra"
+          ],
+          "answer": "an r sounded before ज",
+          "note": "repha · र loses its own body and rides above whatever follows it",
+          "source": "workbook H1"
+        },
+        {
+          "id": "00-devanagari:rakara:cakra",
+          "type": "choice",
+          "front": "What does the stroke under क say in चक्र?",
+          "options": [
+            "an r sounded after क",
+            "an r sounded before क",
+            "a ṛ vowel on क",
+            "that क has no vowel at all"
+          ],
+          "answer": "an r sounded after क",
+          "note": "rakāra · the same letter र, hung underneath instead of above",
+          "source": "workbook H2"
+        },
+        {
+          "id": "00-devanagari:repha:karma",
+          "type": "choice",
+          "front": "Read it: कर्म",
+          "options": [
+            "karma",
+            "krama",
+            "kamra",
+            "karama"
+          ],
+          "answer": "karma",
+          "note": "the hook sits over म but is read before it",
+          "source": "workbook H3"
+        },
+        {
+          "id": "00-devanagari:repha:krama",
+          "type": "choice",
+          "front": "Read it: क्रम",
+          "options": [
+            "krama",
+            "karma",
+            "kamra",
+            "kṛma"
+          ],
+          "answer": "krama",
+          "note": "the same three consonants as कर्म, and only the position of र says which word it is",
+          "source": "workbook H4"
+        },
+        {
+          "id": "00-devanagari:repha:dharma",
+          "type": "choice",
+          "front": "Read it: धर्मः",
+          "options": [
+            "dharmaḥ",
+            "dhramaḥ",
+            "dhamraḥ",
+            "dharamaḥ"
+          ],
+          "answer": "dharmaḥ",
+          "note": "a repha over म, then a visarga",
+          "source": "workbook H5"
+        },
+        {
+          "id": "00-devanagari:repha:surya",
+          "type": "choice",
+          "front": "Read it: सूर्यः",
+          "options": [
+            "sūryaḥ",
+            "sūyraḥ",
+            "suryaḥ",
+            "srūyaḥ"
+          ],
+          "answer": "sūryaḥ",
+          "note": "the hook rides over य, so the r comes first",
+          "source": "workbook H6"
+        },
+        {
+          "id": "00-devanagari:repha:arghyam",
+          "type": "choice",
+          "front": "Read it: अर्घ्यम्",
+          "options": [
+            "arghyam",
+            "aghryam",
+            "argyham",
+            "arghayam"
+          ],
+          "answer": "arghyam",
+          "note": "a repha over घ्य, which is itself a conjunct",
+          "source": "workbook H7"
+        },
+        {
+          "id": "00-devanagari:repha:karpura",
+          "type": "choice",
+          "front": "Read it: कर्पूरः",
+          "options": [
+            "karpūraḥ",
+            "krapūraḥ",
+            "kapūraḥ",
+            "karpuraḥ"
+          ],
+          "answer": "karpūraḥ",
+          "note": "a repha over प, which also carries the ū sign",
+          "source": "workbook H8"
+        }
+      ]
+    },
+    {
+      "name": "Cihna — anusvāra, visarga and daṇḍa · practice",
+      "stream": "script",
+      "cards": [
+        {
+          "id": "00-devanagari:sign:anusvara",
+          "type": "choice",
+          "front": "What does a single dot above the line say?",
+          "options": [
+            "anusvāra — a nasal closing the syllable, written ṃ",
+            "visarga — a light breath, written ḥ",
+            "that the vowel under it is long",
+            "that the word ends here"
+          ],
+          "answer": "anusvāra — a nasal closing the syllable, written ṃ",
+          "note": "anusvāra · a sound, not punctuation",
+          "source": "workbook I1"
+        },
+        {
+          "id": "00-devanagari:sign:visarga",
+          "type": "choice",
+          "front": "What do two dots after a letter say?",
+          "options": [
+            "visarga — a light breath, written ḥ",
+            "anusvāra — a nasal, written ṃ",
+            "that the consonant is doubled",
+            "that the letter has no vowel"
+          ],
+          "answer": "visarga — a light breath, written ḥ",
+          "note": "visarga · it closes an enormous number of Sanskrit words — शिवः, गणेशः, नमः",
+          "source": "workbook I2"
+        },
+        {
+          "id": "00-devanagari:sign:anusvara-word",
+          "type": "choice",
+          "front": "Read it: हंसः",
+          "options": [
+            "haṃsaḥ",
+            "hamasaḥ",
+            "hasaḥ",
+            "haṃsā"
+          ],
+          "answer": "haṃsaḥ",
+          "note": "the dot is a sound of its own, so nothing is dropped and nothing is added",
+          "source": "workbook I3"
+        },
+        {
+          "id": "00-devanagari:sign:visarga-word",
+          "type": "choice",
+          "front": "Read it: नरः",
+          "options": [
+            "naraḥ",
+            "naram",
+            "narā",
+            "nari"
+          ],
+          "answer": "naraḥ",
+          "note": "two dots, not one, and not a bar",
+          "source": "workbook I4"
+        },
+        {
+          "id": "00-devanagari:sign:vamsha",
+          "type": "choice",
+          "front": "Read it: वंशः",
+          "options": [
+            "vaṃśaḥ",
+            "vamśaḥ",
+            "vaśaḥ",
+            "vaṃsaḥ"
+          ],
+          "answer": "vaṃśaḥ",
+          "note": "an anusvāra and a visarga in the same short word",
+          "source": "workbook I5"
+        },
+        {
+          "id": "00-devanagari:sign:samskrtam",
+          "type": "choice",
+          "front": "Read it: संस्कृतम्",
+          "options": [
+            "saṃskṛtam",
+            "sanskṛtam",
+            "saṃskrutam",
+            "saṃsakṛtam"
+          ],
+          "answer": "saṃskṛtam",
+          "note": "the dot is an anusvāra, so it is transliterated ṃ and not n",
+          "source": "workbook I6"
+        },
+        {
+          "id": "00-devanagari:punctuation:danda",
+          "type": "choice",
+          "front": "What is ।?",
+          "options": [
+            "daṇḍa — the end of a sentence in prose, or of a line in verse",
+            "a virāma",
+            "an anusvāra",
+            "a long ā sign"
+          ],
+          "answer": "daṇḍa — the end of a sentence in prose, or of a line in verse",
+          "note": "punctuation, and the only mark here that is not a sound",
+          "source": "workbook I7"
+        },
+        {
+          "id": "00-devanagari:punctuation:double-danda",
+          "type": "choice",
+          "front": "What is ॥?",
+          "options": [
+            "a double daṇḍa — it commonly closes a verse",
+            "two virāmas",
+            "a visarga",
+            "a pause of two beats"
+          ],
+          "answer": "a double daṇḍa — it commonly closes a verse",
+          "note": "you will meet it at the end of every śloka in the course",
+          "source": "workbook I8"
+        }
+      ]
+    },
+    {
+      "name": "Pada-pāṭha — reading a word you have met",
+      "stream": "script",
+      "pair": "glyph → sound",
+      "cards": [
+        {
+          "id": "00-devanagari:word:shivah",
+          "devanagari": "शिवः",
+          "gloss": "śivaḥ",
+          "note": "the i sign before श, then a visarga"
+        },
+        {
+          "id": "00-devanagari:word:vishnuh",
+          "devanagari": "विष्णुः",
+          "gloss": "viṣṇuḥ",
+          "note": "ष्ण is one shape holding two retroflex letters"
+        },
+        {
+          "id": "00-devanagari:word:krishnah",
+          "devanagari": "कृष्णः",
+          "gloss": "kṛṣṇaḥ",
+          "note": "the ṛ sign under क, then ष्ण, then a visarga"
+        },
+        {
+          "id": "00-devanagari:word:lakshmiih",
+          "devanagari": "लक्ष्मीः",
+          "gloss": "lakṣmīḥ",
+          "note": "क्ष्म is three consonants in one shape"
+        },
+        {
+          "id": "00-devanagari:word:ganeshah",
+          "devanagari": "गणेशः",
+          "gloss": "gaṇeśaḥ",
+          "note": "ण is retroflex and श is palatal — two letters, two sounds"
+        },
+        {
+          "id": "00-devanagari:word:pushpam",
+          "devanagari": "पुष्पम्",
+          "gloss": "puṣpam",
+          "note": "the conjunct ष्प swallows one built-in a, the final virāma the other"
+        },
+        {
+          "id": "00-devanagari:word:dhupah",
+          "devanagari": "धूपः",
+          "gloss": "dhūpaḥ",
+          "note": "ध and not घ, and the ū sign below it"
+        },
+        {
+          "id": "00-devanagari:word:naivedyam",
+          "devanagari": "नैवेद्यम्",
+          "gloss": "naivedyam",
+          "note": "ऐ on न, then द्य, then a virāma"
+        },
+        {
+          "id": "00-devanagari:word:akshatah",
+          "devanagari": "अक्षताः",
+          "gloss": "akṣatāḥ",
+          "note": "an independent अ, because nothing carries it, then क्ष"
+        },
+        {
+          "id": "00-devanagari:word:shankhah",
+          "devanagari": "शङ्खः",
+          "gloss": "śaṅkhaḥ",
+          "note": "ङ्ख — one of the few places ङ is seen"
+        },
+        {
+          "id": "00-devanagari:word:prithivii",
+          "devanagari": "पृथिवी",
+          "gloss": "pṛthivī",
+          "note": "the ṛ sign under प, थ and not य, then the ī sign"
+        },
+        {
+          "id": "00-devanagari:word:trishulam",
+          "devanagari": "त्रिशूलम्",
+          "gloss": "triśūlam",
+          "note": "म् is a bare m; the dot ं would have been ṃ"
+        },
+        {
+          "id": "00-devanagari:word:parvatii",
+          "devanagari": "पार्वती",
+          "gloss": "pārvatī",
+          "note": "a repha over व, read before it"
+        },
+        {
+          "id": "00-devanagari:word:sarasvatii",
+          "devanagari": "सरस्वती",
+          "gloss": "sarasvatī",
+          "note": "स्व is one shape holding two consonants"
+        },
+        {
+          "id": "00-devanagari:word:candikaa",
+          "devanagari": "चण्डिका",
+          "gloss": "caṇḍikā",
+          "note": "the i sign stands before ड and is read after it"
+        },
+        {
+          "id": "00-devanagari:word:maheshvarah",
+          "devanagari": "महेश्वरः",
+          "gloss": "maheśvaraḥ",
+          "note": "ए on ह, then श्व"
+        },
+        {
+          "id": "00-devanagari:word:jyotih",
+          "devanagari": "ज्योतिः",
+          "gloss": "jyotiḥ",
+          "note": "ज्य opens it, and the o sign belongs to the whole conjunct"
+        },
+        {
+          "id": "00-devanagari:word:nakshatram",
+          "devanagari": "नक्षत्रम्",
+          "gloss": "nakṣatram",
+          "note": "क्ष and त्र in one short word"
+        },
+        {
+          "id": "00-devanagari:word:diipah",
+          "devanagari": "दीपः",
+          "gloss": "dīpaḥ",
+          "note": "द and not ढ, with the ī sign"
+        },
+        {
+          "id": "00-devanagari:word:kalashah",
+          "devanagari": "कलशः",
+          "gloss": "kalaśaḥ",
+          "note": "three letters, two of them carrying an unwritten a"
+        }
+      ]
+    },
+    {
+      "name": "Apūrva-pada — reading a word you have not met",
+      "stream": "script",
+      "pair": "glyph → sound",
+      "cards": [
+        {
+          "id": "00-devanagari:transfer:namaste",
+          "devanagari": "नमस्ते",
+          "gloss": "namaste",
+          "note": "स्त is an ordinary conjunct, and the e sign belongs to it"
+        },
+        {
+          "id": "00-devanagari:transfer:samskritam",
+          "devanagari": "संस्कृतम्",
+          "gloss": "saṃskṛtam",
+          "note": "an anusvāra, then स्क, then the ṛ sign"
+        },
+        {
+          "id": "00-devanagari:transfer:yajnah",
+          "devanagari": "यज्ञः",
+          "gloss": "yajñaḥ",
+          "note": "ज्ञ, which cannot be read off its parts"
+        },
+        {
+          "id": "00-devanagari:transfer:ashvah",
+          "devanagari": "अश्वः",
+          "gloss": "aśvaḥ",
+          "note": "an independent अ, then श्व"
+        },
+        {
+          "id": "00-devanagari:transfer:uttamah",
+          "devanagari": "उत्तमः",
+          "gloss": "uttamaḥ",
+          "note": "त्त stacked, and उ rather than ज at the front"
+        },
+        {
+          "id": "00-devanagari:transfer:bhaktih",
+          "devanagari": "भक्तिः",
+          "gloss": "bhaktiḥ",
+          "note": "भ and not म, then क्त with the i sign before it"
+        },
+        {
+          "id": "00-devanagari:transfer:atra",
+          "devanagari": "अत्र",
+          "gloss": "atra",
+          "note": "त्र, and nothing written for the a on it"
+        },
+        {
+          "id": "00-devanagari:transfer:ashrama",
+          "devanagari": "आश्रमः",
+          "gloss": "āśramaḥ",
+          "note": "श्र, one of the eight to know by sight, with the ā bar on आ before it"
+        },
+        {
+          "id": "00-devanagari:transfer:kshetram",
+          "devanagari": "क्षेत्रम्",
+          "gloss": "kṣetram",
+          "note": "क्ष with an e stroke above, then त्र, then a virāma"
+        },
+        {
+          "id": "00-devanagari:transfer:garbhagriham",
+          "devanagari": "गर्भगृहम्",
+          "gloss": "garbhagṛham",
+          "note": "a repha over भ, and the ṛ sign under ग"
+        },
+        {
+          "id": "00-devanagari:transfer:pradakshina",
+          "devanagari": "प्रदक्षिणा",
+          "gloss": "pradakṣiṇā",
+          "note": "a rakāra under प, and the i sign on क्ष"
+        },
+        {
+          "id": "00-devanagari:transfer:nirmalam",
+          "devanagari": "निर्मलम्",
+          "gloss": "nirmalam",
+          "note": "the i sign before न, the repha over म"
+        },
+        {
+          "id": "00-devanagari:transfer:uttishtha",
+          "devanagari": "उत्तिष्ठ",
+          "gloss": "uttiṣṭha",
+          "note": "त्त stacked, then ष्ठ — and the i sign belongs to the second त"
+        }
+      ]
+    }
+  ]
+}

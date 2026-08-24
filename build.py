@@ -61,6 +61,11 @@ if os.path.exists(overview_path):
         })
 
 stage_meta = {
+    # Stage 0 sits before Nama and is optional: it teaches the script itself,
+    # for a reader who cannot yet decode the Devanagari every other stage is
+    # set in.  It is deliberately separate from Varna-Vidya, which teaches
+    # where in the mouth each sound is made rather than what the page says.
+    "00-devanagari": ("Devanagari", "Script Literacy"),
     "01-nama": ("Nama", "Basic Vocabulary"),
     "02-varna-vidya": ("Varna-Vidya", "Letters, Sthana-prayatna, Maheshvara Sutras"),
     "03-sandhi": ("Sandhi", "27 Snap-Rules for Joining Bricks"),

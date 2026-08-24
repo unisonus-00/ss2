@@ -99,9 +99,11 @@ const open = async (browser, opts = {}) => {
     ok('every card has an id', r.idsOnCards);
     ok('navigation grouped by lesson', r.groups.length === EXPECTED.lessons,
       r.groups.length + ' of ' + EXPECTED.lessons + ' lessons');
+    /* Devanāgarī comes first because the script comes before the words: a
+       learner who cannot decode the page does not meet Nāma as vocabulary. */
     ok('groups are curriculum-ordered',
       JSON.stringify(r.groups.slice(0, 4)) ===
-      JSON.stringify(['Nāma', 'Varṇa-Vidyā', 'Sandhi', 'Guṇa']),
+      JSON.stringify(['Devanāgarī', 'Nāma', 'Varṇa-Vidyā', 'Sandhi']),
       r.groups.slice(0, 4).join(' | '));
     ok('cross-cutting practice comes last',
       r.groups[r.groups.length - 1] === 'Saṃjñā',
@@ -2849,8 +2851,13 @@ const open = async (browser, opts = {}) => {
          merely "due". */
       SAVED.mastered = {}; SAVED.decks = {}; SAVED.trouble = {};
       let n = 0;
+      /* Reveal cards only.  What is measured here is the lapse-and-return
+         path; a choice card deliberately wants a second right answer on a
+         second day before it is mastered again, which is a different rule
+         with a test of its own, and it would read here as the review failing
+         to win the card back. */
       Object.keys(DECKS).forEach(d => DECKS[d].forEach(c => {
-        if (n < 600) { SAVED.mastered[c.id] = 1; n++; }
+        if (n < 600 && (c.type || 'reveal') === 'reveal') { SAVED.mastered[c.id] = 1; n++; }
       }));
       SAVED.review = { runs: 0, right: 0, seen: 0, cards: {} };
       const covBefore = coverageOf().done;
@@ -4888,6 +4895,101 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
+  // ── the script comes before the words ──────────────────────────────
+  // Every card in the app is set in Devanagari, so a learner who cannot
+  // decode it meets Stage 1 as a wall rather than as vocabulary.  The script
+  // track takes the wall down and does nothing else: it leads the drawer,
+  // it belongs to no course track's percentage, and — the rule the whole
+  // track turns on — it never shows a transliteration beside a glyph the
+  // learner is being asked to read.
+  {
+    const fs = require('fs');
+    const nama = new Set();
+    JSON.parse(fs.readFileSync(path.resolve(__dirname, '..', '01-nama', 'practice.json'), 'utf8'))
+      .decks.forEach(d => d.cards.forEach(c => { if (c.devanagari) nama.add(c.devanagari); }));
+
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const mine = Object.keys(DECKS).filter(n => streamOf(n) === 'script');
+      const out = { decks: mine.length, cards: 0, first: TRACK_ROWS[0].track.id,
+                    counted: [], carriesIast: [], toggleLive: [], frontIast: [],
+                    known: [], unknown: [], mixed: [], sets: {} };
+      mine.forEach(n => DECKS[n].forEach(c => { out.cards++; }));
+
+      /* it is drawn above the five, and none of its cards is in any course
+         track's denominator */
+      const ids = new Set();
+      mine.forEach(n => DECK_IDS[n].forEach(k => ids.add(k)));
+      TRACK_ROWS.forEach(x => {
+        if (x.track.id === 'devanagari') return;
+        x.pathIds.forEach(k => { if (ids.has(k)) out.counted.push(x.track.id); });
+      });
+
+      /* the IAST toggle governs a transliteration shown BESIDE the item.
+         Here the transliteration is the answer, so there is none to show and
+         the box is greyed — checked on every card, both ways round. */
+      const was = SAVED.iast;
+      setIast(true);
+      ['reveal', 'produce'].forEach(d => {
+        setDir(d);
+        mine.forEach(n => {
+          loadDeck(n);
+          DECKS[n].forEach(c => {
+            if (c.iast !== undefined) out.carriesIast.push(c.id);
+            startRound([c], {});
+            if (!document.getElementById('iast-on').disabled) out.toggleLive.push(c.id + ' / ' + d);
+            if (document.getElementById('iast').textContent) out.frontIast.push(c.id + ' / ' + d);
+          });
+        });
+      });
+      out.prefKept = SAVED.iast === true;          // setIast above, and nothing since
+      setIast(was);
+
+      /* a list is one kind of card throughout — the app's own rule, and the
+         reason an interactive deck can require a note and a source */
+      mine.forEach(n => {
+        if (new Set(DECKS[n].map(c => c.type || 'reveal')).size !== 1) out.mixed.push(n);
+      });
+
+      /* the decoding lists say what they are: one reuses Stage 1 vocabulary,
+         the other deliberately does not */
+      out.known = DECKS['Pada-pāṭha — reading a word you have met'].map(c => c.devanagari);
+      out.unknown = DECKS['Apūrva-pada — reading a word you have not met'].map(c => c.devanagari);
+
+      /* both members of every confusable set, because picking one out does
+         not mean you can pick out the other */
+      DECKS['Sadṛśa — the letters that look alike · practice'].forEach(c => {
+        const set = c.id.split(':')[2];
+        out.sets[set] = (out.sets[set] || 0) + 1;
+      });
+      return out;
+    });
+
+    ok('the script track leads the drawer', r.first === 'devanagari', r.first);
+    ok('and no course track counts its cards', !r.counted.length,
+      [...new Set(r.counted)].join(', '));
+    ok('no card in it carries a transliteration beside the glyph',
+      !r.carriesIast.length, r.carriesIast.slice(0, 3).join(' | '));
+    ok('so the IAST toggle is greyed on every one of its cards, both ways round',
+      !r.toggleLive.length, r.toggleLive.slice(0, 3).join(' | '));
+    ok('and nothing on the front of a card transliterates it',
+      !r.frontIast.length, r.frontIast.slice(0, 3).join(' | '));
+    ok('the learner’s own IAST setting is left as they had it', r.prefKept);
+    ok('every list in it holds one kind of card', !r.mixed.length, r.mixed.join(' | '));
+    ok('the words you have met are Stage 1 vocabulary',
+      r.known.length >= 20 && r.known.every(w => nama.has(w)),
+      r.known.filter(w => !nama.has(w)).join(' '));
+    ok('and the words you have not met are not',
+      r.unknown.length >= 10 && !r.unknown.some(w => nama.has(w)),
+      r.unknown.filter(w => nama.has(w)).join(' '));
+    ok('every confusable set is drilled from both sides',
+      Object.keys(r.sets).length === 8
+        && Object.values(r.sets).every(n => n === 2),
+      JSON.stringify(r.sets));
+    console.log('        ' + r.decks + ' lists · ' + r.cards + ' cards, counting towards no track');
+    await p.close();
+  }
+
   // ── progress is counted from cards, at every level ─────────────────
   {
     const p = await open(browser);
@@ -5146,14 +5248,21 @@ const open = async (browser, opts = {}) => {
          mid-round shows where you are */
       /* the group holding the current list — a unit where the track has
          them, a lesson where it does not */
-      here: [...document.querySelectorAll('.tr-body:not([hidden]) .ls-head')]
-        .some(b => b.querySelector('.ls-name').textContent
-                   === (GROUP_OF.get(deckName) || {}).label),
+      /* A track holding one lesson folds that level away, so its lists sit
+         straight under the track's own name and there is no group row to
+         mark — the track head is where you are. */
+      here: (() => {
+        const want = (GROUP_OF.get(deckName) || {}).label;
+        return [...document.querySelectorAll('.tr-body:not([hidden]) .ls-head')]
+                 .some(b => b.querySelector('.ls-name').textContent === want)
+            || [...document.querySelectorAll('.tr-name')]
+                 .some(e => e.textContent === want);
+      })(),
       cards: document.getElementById('dp-cards').textContent,
       heads: [...document.querySelectorAll('#dr-prog .dp-h')].map(x => x.textContent).join(' | '),
     }));
     ok('the handle opens the drawer', opened.open && opened.veil);
-    ok('every track is a heading', opened.tracks === 7, opened.tracks + ' headings');
+    ok('every track is a heading', opened.tracks === 8, opened.tracks + ' headings');
     ok('the drawer lands on the group holding the current list',
       opened.lessons > 0 && opened.here, opened.lessons + ' groups showing');
     /* The section's own statistic is lists carried to 100%, not a card count
@@ -5166,10 +5275,16 @@ const open = async (browser, opts = {}) => {
       /* The two gates are opened here rather than clicked through — the page
          block above tests them — so that what is left is the walk itself:
          track name -> its page, then the drawer -> lesson -> list. */
-      beginHome(); beginTrack(TRACK_ROWS[0].track.id);
+      /* The walk to test is track -> lesson -> list, so it is taken on a
+         track that actually draws lessons.  A track holding one lesson folds
+         that level away by design, and is checked below instead. */
+      const walk = TRACK_ROWS.find(x => x.groups.length > 1);
+      beginHome(); beginTrack(walk.track.id);
       openTracks.clear(); openLessons.clear(); renderDrawer();
       const before = document.querySelectorAll('.tr-body:not([hidden]) .ls-head').length;
-      document.querySelector('.tr-head').click();   // -> the track page
+      const head = [...document.querySelectorAll('.tr-head')]
+        .find(b => b.querySelector('.tr-name').textContent === walk.track.name);
+      head.click();                                 // -> the track page
       const page = !document.getElementById('trackcard').hidden;
       openDrawer();                                 // back to the drawer
       openLessons.clear(); renderDrawer();

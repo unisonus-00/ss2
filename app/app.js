@@ -659,6 +659,10 @@ const allRetained = ids => ids.size > 0 && countIn(ids, isRetained) === ids.size
                  over a stem and ask for one named cell.  What the Rūpa badge
                  asks for rather than what reading asks for, so it is drawn
                  under Rūpa-siddhi rather than in the middle of Stage 5.
+     script      decoding the Devanagari itself.  It comes BEFORE the course
+                 rather than inside it, and it is optional because many
+                 learners arrive already reading the script — so it is drawn
+                 under Devanagari, above the five tracks.
 
    `role: "breadth"` already said "this list widens rather than carries", so
    it is read as enrichment without 82 lists having to say it twice; a deck's
@@ -815,6 +819,49 @@ const TRACKS = [
     mentions: ['Avadhāna'],
     lessons: 1 },
 ];
+/* ── the script, before the course ─────────────────────────
+   Every card in the app is set in Devanagari, so a learner who cannot decode
+   it does not meet Stage 1 as a vocabulary problem — they meet it as a wall.
+   This track takes the wall down and does nothing else.
+
+   It is drawn ABOVE the five tracks, because that is where it belongs in
+   time: it is what you do before Nāma, not alongside it.  It is a row rather
+   than a sixth track for the same reason Rūpa-siddhi and Vyākaraṇam are —
+   it belongs to no track's percentage, and a learner who already reads the
+   script has skipped nothing.
+
+   It is deliberately NOT Varṇa-Vidyā.  Stage 2 teaches where in the mouth
+   each sound is made; this teaches which shape on the page says which sound,
+   which is a different subject and a different badge. */
+const SCRIPT_TRACK = {
+  id: 'devanagari', name: 'Devanāgarī', gloss: 'Script Literacy',
+  lead: 'Every word in this app is written in the Devanāgarī script, and if that '
+      + 'script is still a puzzle then every list after this one is really two '
+      + 'puzzles at once. This track is the script on its own, and it asks one '
+      + 'question only: given this shape, what do I read? You are never asked '
+      + 'what a word means here.',
+  plan: [
+    'The letters first. Svara-varṇa gives the vowels as they are written alone, '
+    + 'and the three lists after it give the consonants — and a consonant letter '
+    + 'already has a short a inside it, which is the thing beginners trip over '
+    + 'most.',
+    'Then Mātrā, the vowel signs hung on a consonant, and Saṃyukta, the eight '
+    + 'joined shapes that cannot be worked out from their parts.',
+    'Then the reading itself. Sadṛśa for the letters that look alike, '
+    + 'Mātrā-viśeṣa and Virāma for the vowel that is there without being written '
+    + 'and the mark that takes it away, Saṃyoga for pulling a joined shape apart, '
+    + 'Repha for the two places r hides, and Cihna for the dots around a word.',
+    'Last, whole words. Pada-pāṭha uses words you will meet in Nāma; Apūrva-pada '
+    + 'uses words you have never seen, which is the real test — if you can read '
+    + 'those, the script has stopped being in your way.',
+  ],
+  note: 'Skip all of this if you already read the script. It counts towards '
+      + 'nothing, and nothing later depends on your having opened it. If you do '
+      + 'not read it yet, an evening or two here will save you weeks.',
+  mentions: ['Svara-varṇa', 'Mātrā', 'Saṃyukta', 'Sadṛśa', 'Mātrā-viśeṣa',
+             'Virāma', 'Saṃyoga', 'Repha', 'Cihna', 'Pada-pāṭha', 'Apūrva-pada'],
+  lessons: 1,
+};
 /* ── the paradigm workshop ─────────────────────────────────
    Producing a form is not recognising one, and the two used to sit in the
    same stage: Rūpa ran eleven lists of terms and tables and then thirteen
@@ -903,6 +950,7 @@ const LESSONS = (() => {
    on the way through it. */
 const trackOfDeck = name => streamOf(name) === 'grammar' ? CROSS_TRACK
                           : streamOf(name) === 'mastery' ? MASTERY_TRACK
+                          : streamOf(name) === 'script'  ? SCRIPT_TRACK
                                                         : trackOf(DECK_STAGE[name]);
 
 /* ── what the drawer draws under a track ───────────────────
@@ -942,7 +990,9 @@ function makeGroup(key, label, gloss, names, optional) {
    so the bank must not sit in the denominator. */
 const TRACK_ROWS = (() => {
   const rows = [];
-  [...TRACKS, MASTERY_TRACK, CROSS_TRACK].forEach(track => {
+  /* The script track leads, because the script comes before the words; the paradigm
+     workshop and the grammar trail the five, because they come after them. */
+  [SCRIPT_TRACK, ...TRACKS, MASTERY_TRACK, CROSS_TRACK].forEach(track => {
     const mine = Object.keys(DECKS).filter(n => trackOfDeck(n) === track);
     if (!mine.length) return;
     const lessons = LESSONS.filter(L => L.decks.some(n => mine.indexOf(n) >= 0))
@@ -1223,7 +1273,9 @@ const CUES = {
   root:    'Give the root',      affix:     'Give the affix',
   's\u016btra': 'Name the s\u016btra', sounds: 'List the sounds',
   line:    'Recall the line',    relation:  'Give the relation',
-  vibhakti: 'Name the vibhakti'
+  vibhakti: 'Name the vibhakti',
+  /* The script track runs glyph → sound: the shape on the page, and what it says. */
+  sound:   'Say the sound',      glyph:     'Recall the shape'
 };
 /* The half the learner is being asked FOR, which is the back in the forward
    direction and the front in the reverse one. */
@@ -1250,8 +1302,30 @@ const DEVANAGARI = /[\u0900-\u097F]/;
    `ma · sa · ja · sa · ta · ta · ga` is a transliteration exactly. So the
    rule is applied per line: the toggle governs whichever pairs have
    Devanagari to transliterate, and leaves the others alone. */
-const transliterates = c => DEVANAGARI.test(c.devanagari || '');
-const detailTransliterates = c => DEVANAGARI.test(c.detail || '');
+/* And the mirror of it, which is what the script track needs.  A card only
+   has a transliteration to hide if it carries one as a SECOND LINE beside the
+   Devanagari.  On a script card the transliteration IS the answer — क is asked
+   for, and `ka` is what the learner has to produce — so there is no parallel
+   line, `iast` is absent, and the toggle governs nothing.  Showing it live
+   would offer to reveal the answer; showing it live and inert would be worse.
+   No existing card in the app has Devanagari without an `iast`, so this
+   greys the box exactly where it should and nowhere else. */
+/* One written shape — a letter, a letter with its vowel sign, a conjunct —
+   as against a word made of several.  This is the "orthographic syllable":
+   what a reader takes in at once, and what a cursor steps over.  Intl's
+   grapheme segmentation already draws exactly that boundary (क्ष and कौ are
+   one, शिवः is two), so nothing here reimplements it, and a card showing one
+   is set large rather than at the size a word wants.  Where the segmenter is
+   missing the class is simply not applied. */
+const SEGMENT = (() => {
+  try { return new Intl.Segmenter('sa', { granularity: 'grapheme' }); }
+  catch (e) { return null; }
+})();
+const soloGlyph = t => !!SEGMENT && DEVANAGARI.test(t || '')
+  && [...SEGMENT.segment(t)].length === 1;
+
+const transliterates = c => DEVANAGARI.test(c.devanagari || '') && !!c.iast;
+const detailTransliterates = c => DEVANAGARI.test(c.detail || '') && !!c.detailIast;
 const hasIastToggle = c => transliterates(c) || detailTransliterates(c);
 const showIast = c => IAST || !transliterates(c);
 const showDetailIast = c => IAST || !detailTransliterates(c);
@@ -1260,8 +1334,22 @@ const showDetailIast = c => IAST || !detailTransliterates(c);
    one way, and the IAST there *is* the content rather than a gloss of it.
    They are greyed for as long as one is showing, and the direction button
    stops claiming a pair it cannot offer. */
-function setToggles(dirOn, iastOn, asked) {
+/* Why the IAST box is greyed, when it is.  Three reasons, and they are
+   genuinely different things to say: an interactive card, a card whose second
+   line is content rather than a transliteration, and a script card whose
+   transliteration is the answer being asked for. */
+const IAST_WHY_INTERACTIVE = 'This card runs one way, and the transliteration '
+  + 'on it is the content rather than a gloss of it.';
+const iastReason = c => hasIastToggle(c) ? ''
+  : DEVANAGARI.test(c.devanagari || '')
+    ? 'On this card the transliteration is the answer, so there is nothing to '
+      + 'show beside the Devanagari until you turn the card over.'
+    : 'This card has no Devanagari, so its second line is content rather than '
+      + 'a transliteration, and is always shown.';
+
+function setToggles(dirOn, iastOn, asked, iastWhy) {
   if (iastOn === undefined) iastOn = dirOn;
+  if (iastWhy === undefined) iastWhy = IAST_WHY_INTERACTIVE;
   $('dir').disabled = !dirOn;
   $('iast-on').disabled = !iastOn;
   /* Three states, not two: the learner's to change, the review's to state, or
@@ -1278,9 +1366,7 @@ function setToggles(dirOn, iastOn, asked) {
     ? 'Abhyāsa chooses the direction: a card that has come back once is asked '
       + 'the other way round.'
     : '';
-  $('iast-on').title = iastOn ? ''
-    : 'This card has no Devanagari, so its second line is content rather than '
-      + 'a transliteration, and is always shown.';
+  $('iast-on').title = iastOn ? '' : iastWhy;
 }
 
 function setDir(d) {
@@ -1877,7 +1963,11 @@ function renderWelcome() {
      with no idea what it was for; the button opens the first track instead,
      and that track's own Begin opens its lists. */
   const go = $('w-go');
-  const first = TRACK_ROWS[0].track;
+  /* The first COURSE track, which is not the first row: Devanagari is drawn above
+     the five and is optional, and pointing a first-time learner at it would
+     make an optional track the thing the app tells them to begin. The card
+     names it in its own prose instead. */
+  const first = (TRACK_ROWS.find(r => TRACKS.indexOf(r.track) >= 0) || TRACK_ROWS[0]).track;
   if (started()) {
     go.textContent = 'In progress';
     go.title = deckName ? 'Continue ' + DECK_SHORT(deckName) : 'Continue where you left off';
@@ -1914,7 +2004,8 @@ function renderTrack(id) {
      Thirteen stages and 137 lists is a wall; four units and the lists that
      make them up is a course. */
   const held = t.units ? count(row.units.length, 'unit') + ' · ' + count(path.length, 'list')
-    : t === CROSS_TRACK || t === MASTERY_TRACK ? count(names.length, 'list')
+    : t === CROSS_TRACK || t === MASTERY_TRACK || t === SCRIPT_TRACK
+      ? count(names.length, 'list')
     : count(row.lessons.length, 'stage') + ' · ' + count(names.length, 'list');
   fillRow(document, {
     '#s-held': held,
@@ -2688,7 +2779,7 @@ function paint() {
   $('keys').textContent = KEYS_REVEAL;
   /* The review's choice while one is running, the learner's otherwise. */
   const asked = askedDir(c), locked = dirLocked();
-  setToggles(!locked, hasIastToggle(c), locked ? asked : null);
+  setToggles(!locked, hasIastToggle(c), locked ? asked : null, iastReason(c));
   /* Set here rather than in next(), which runs before the card is dequeued —
      harmless while the direction was one global setting, wrong once it is a
      fact about the card being painted. */
@@ -2702,7 +2793,7 @@ function paint() {
      line.  It used to be appended to the annotation in the produce direction,
      so the card showed no IAST at all and the toggle appeared to rewrite the
      morphology instead. */
-  const iast = showIast(c) ? c.iast : '';
+  const iast = showIast(c) ? (c.iast || '') : '';
   if (asked === 'produce') {
     $('dn').textContent        = c.gloss;
     $('iast').textContent      = '';
@@ -2718,6 +2809,8 @@ function paint() {
      round the card is running.  A metre is identified by its gaṇa formula as
      much as by its name; putting the formula on the front handed the learner
      the answer they were being asked for. */
+  $('dn').classList.toggle('solo', soloGlyph($('dn').textContent));
+  $('gloss').classList.toggle('solo', soloGlyph($('gloss').textContent));
   $('cue').textContent         = cueText();
   $('detail').textContent      = c.detail || '';
   $('detail-iast').textContent = c.detail && showDetailIast(c) ? c.detailIast || '' : '';
@@ -2740,6 +2833,28 @@ function paint() {
    The direction toggle does not apply: a transformation only runs one way,
    and the IAST toggle does not either, because here the IAST *is* the
    content rather than a transliteration of it. */
+/* A prompt is a sentence, so it is set as one — except where it ends in a
+   single written shape.  A discrimination card hands over one letter and asks
+   what it says, and the shape IS the exercise: the stroke that tells घ from ध
+   is a couple of pixels at prompt size.  So where the item after the label is
+   one orthographic syllable, it is set on its own line as the item it is.
+   Read off the prompt rather than flagged on the card, for the same reason
+   `soloGlyph` is: a list can hold both, and "Read it: कर्म" is a word. */
+function paintPrompt(front) {
+  const dn = $('dn');
+  dn.classList.remove('solo');
+  dn.textContent = front || '';
+  const at = String(front || '').lastIndexOf(': ');
+  if (at < 0) return;
+  const item = String(front).slice(at + 2).trim();
+  if (!soloGlyph(item)) return;
+  dn.textContent = String(front).slice(0, at + 1);
+  const b = document.createElement('span');
+  b.className = 'prompt-item';
+  b.textContent = item;
+  dn.appendChild(b);
+}
+
 let choiceRight = null;                  // null until answered, then true/false
 const KEYS_REVEAL = $('keys').textContent;
 
@@ -2773,7 +2888,8 @@ function paintChoice(c) {
   $('card').classList.remove('seq-card');
   $('card').classList.add('choice');
   $('card').setAttribute('aria-label', 'Choose the answer');
-  $('dn').textContent   = c.front || '';
+  paintPrompt(c.front);
+  $('gloss').classList.remove('solo');
   $('iast').textContent = '';
   /* An interactive card carries its task in its own prompt — "Join: nara +
      indrah" — so a cue over the top would only repeat it. */
@@ -2848,6 +2964,8 @@ function paintSequence(c) {
   $('card').classList.add('seq-card');
   $('card').setAttribute('aria-label', 'Build the answer by tapping pieces');
   $('dn').textContent = c.front || '';
+  $('dn').classList.remove('solo');
+  $('gloss').classList.remove('solo');
   $('iast').textContent = '';
   /* An interactive card carries its task in its own prompt — "Join: nara +
      indrah" — so a cue over the top would only repeat it. */

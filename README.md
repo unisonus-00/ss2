@@ -26,6 +26,10 @@ Work through the stages sequentially. Master each milestone before moving on.
 
 ```
  ┌──────────────────────────────────────────────────────────┐
+ │  STAGE 0        Devanāgarī: Script Literacy   (optional) │
+ │                 Reading the page — letters, vowel signs, │
+ │                 conjuncts. Skip it if you already read   │
+ ├──────────────────────────────────────────────────────────┤
  │  STAGES 1–13    Language Acquisition                     │
  │                 Nouns → free composition,                │
  │                 grounded in devotional context           │

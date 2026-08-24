@@ -235,6 +235,14 @@
   .cue:empty { display: none; }
   .dn { font-family: "Noto Serif Devanagari", "Kohinoor Devanagari", serif;
         font-size: 2.5rem; line-height: 1.5; }
+  /* A card that shows ONE written shape is a card about that shape, and the
+     difference between घ and ध is a single stroke.  At the size a card of
+     words wants, that stroke is a few pixels, so the script track would be
+     asking a learner to tell letters apart at a size that does not let them.
+     A lone orthographic syllable is therefore set large.  Applied per card by
+     `soloGlyph` in app.js, not per list — a list can hold both. */
+  .dn.solo { font-size: 5.5rem; line-height: 1.25; }
+  .mode-produce .gloss.solo { font-size: 5.5rem; line-height: 1.25; }
   .iast { font-size: 1.3rem; font-style: italic; margin-top: .3rem; }
   .rule { width: 42px; height: 1px; background: var(--leaf-edge); margin-top: 1.1rem; display: none; }
   .card.open .rule { display: block; }
@@ -280,6 +288,13 @@
     line-height: 1.55; max-width: 22rem;
     /* a prompt may put the English meaning above the Sanskrit frame */
     white-space: pre-line;
+  }
+  /* and where the prompt ends in one written shape, that shape is the
+     exercise rather than part of the sentence — see `paintPrompt` */
+  .card.choice .dn .prompt-item {
+    display: block; margin-top: .5rem;
+    font-family: "Noto Serif Devanagari", "Kohinoor Devanagari", serif;
+    font-style: normal; font-size: 4.5rem; line-height: 1.25;
   }
   /* The stem class sits under the stem, secondary to it: it names the
      paradigm the form has to come out of without competing with the item.

@@ -184,9 +184,11 @@ Optimize for learning value per unit of complexity.
 Accurate as of the last update to this file; verify before relying on it.
 
 **Curriculum content** — 36 numbered lesson directories (`01-nama` …
-`36-avadhana-seva`), plus `00-overview.md`, a `vocab/` library of 22 thematic
-lists, and `vyakaranam/` (formal Pāṇinian grammar, chapters `ch00`–`ch04`),
-which complements the numbered stages rather than replacing them.
+`36-avadhana-seva`), plus `00-devanagari` before them (the optional script
+stage — see **Devanāgarī: the script, before the course**), `00-overview.md`,
+a `vocab/` library of 22 thematic lists, and `vyakaranam/` (formal Pāṇinian
+grammar, chapters `ch00`–`ch04`), which complements the numbered stages rather
+than replacing them.
 
 Every lesson directory carries `theory.md`, `reference.md`,
 `workbook-questions.md`, `workbook-answers.md`, and `badge.md`. `bricks.md`
@@ -608,7 +610,7 @@ than it is.
 Two separations fix it, and neither deletes anything.
 
 **A list declares its stream.** `stream` on a deck in `practice.json`, one of
-four, defaulting to the first:
+five, defaulting to the first:
 
 | | |
 |:--|:--|
@@ -616,6 +618,7 @@ four, defaulting to the first:
 | **enrichment** | vocabulary breadth and the lexical stages — Paryāya, Bhāva, the 82 bank lists. Present, open from the start, and deliberately outside the figure: a learner who takes none of it has still finished the track. |
 | **grammar** | the formal, Pāṇinian layer — the Maheśvara sūtras and pratyāhāras, the named sandhi rules, the kṛt and taddhita affixes, the ten lakāras. Real Sanskrit grammar, and optional to a *reader*, so it is drawn under Vyākaraṇam with the rest of the metalanguage rather than in the middle of the path. |
 | **mastery** | drilling a paradigm to the end — the thirteen lists that hand over a stem and ask for one named cell. What the Rūpa badge asks for rather than what reading asks for, so it is drawn under **Rūpa-siddhi** rather than in the middle of Stage 5. |
+| **script** | decoding the Devanagari itself. It comes *before* the course rather than inside it, and it is optional because many learners arrive already reading the script — so it is drawn under **Devanāgarī**, above the five tracks. |
 
 `role: "breadth"` already said *this list widens rather than carries*, so it
 reads as enrichment without 82 lists having to say it twice; a deck's own
@@ -667,6 +670,100 @@ lists and 938 cards are still in the drawer, in the enrichment row, counting
 towards nothing; the 10 grammar lists and 117 cards are under Vyākaraṇam and
 the 13 production lists and 180 cards under Rūpa-siddhi, neither of which
 counts towards any track's percentage.
+
+### Devanāgarī: the script, before the course
+
+Every card in the app is set in Devanāgarī. A learner who cannot yet decode
+that script does not meet Stage 1 as a vocabulary problem; they meet it as a
+wall — and nothing in the curriculum took the wall down, because
+**Varṇa-Vidyā is phonology, not orthography**. Stage 2 teaches where in the
+mouth each sound is made, the five sthānas, the sparśa matrix and the
+Maheśvara sūtras, and its reference is written in IAST from end to end. It
+never says which mark on the page says which sound.
+
+So `00-devanagari` sits before `01-nama`, and asks one question: **given this
+shape, what do I read?**
+
+```
+Devanāgarī                                                             0%
+Script Literacy · 14 lists
+    Svara-varṇa   written alone · 13 cards · next
+    Sparśa I      throat, palate and dome · 15 cards
+    …
+    Apūrva-pada   reading a word you have not met · 13 cards
+```
+
+- **It is optional, and it is first.** Optional in the sense Rūpa-siddhi and
+  Vyākaraṇam are: it belongs to no course track's percentage, `Continue —`
+  never points into it from inside Bhāṣā-Vidyā, and a learner who already
+  reads the script has skipped nothing. First in the drawer, because that is
+  where it belongs in *time*.
+- **The landing card names it**, because nothing else would. The one thing
+  that can stop a learner before the course has begun deserves a sentence on
+  the page they open on; the `Begin` button still names the first **course**
+  track, since pointing a beginner at an optional track would misdescribe it.
+- **It is routed by `stream`, not by stage.** `stream: "script"` sends a list
+  here whatever lesson it sits in, the same mechanism that draws the grammar
+  under Vyākaraṇam and the paradigm production under Rūpa-siddhi. Nothing
+  needed a stage number, and `00-overview`'s cross-cutting lists — also stage
+  0 — are untouched.
+
+#### The IAST toggle is off here, and it is off for a reason
+
+The toggle hides a **transliteration**: a second line shown *beside* the
+Devanāgarī. On a script card the transliteration is not a gloss of the item —
+it **is the answer**. क is the prompt and `ka` is what the learner has to
+produce, so there is nothing to show beside the item and nothing to hide.
+
+The rule already in the app was *a card with no Devanāgarī has no
+transliteration to hide*. Its mirror was missing and is now stated:
+`transliterates(c)` requires the card to carry an `iast` line at all. No
+existing card in the app has Devanāgarī without one, so this greys the box
+exactly where it should and nowhere else, and the greyed box says which of
+the three reasons applies. **No card in this stage carries an `iast` field**:
+the answer lives in `gloss`, where the reveal puts it. `SAVED.iast` is never
+written, so the learner's own setting comes back exactly as they left it.
+
+#### A card that shows one written shape sets it large
+
+The difference between घ and ध is one stroke. At the 2.5rem a card of *words*
+wants, that stroke is a few pixels, and a discrimination deck would be asking
+a learner to tell letters apart at a size that does not let them.
+
+So an item that is **one orthographic syllable** is set at 5.5rem.
+`Intl.Segmenter` at grapheme granularity already draws exactly that boundary —
+क्ष and कौ are one, शिवः is two — so `soloGlyph` reimplements nothing, and the
+rule is per **card**, not per list: `Pada-pāṭha`'s words stay at word size in
+the same track. On a `choice` card the same test is applied to the item after
+the prompt's label, and `paintPrompt` sets it on its own line: *Read it:* over
+a full-size म.
+
+#### What is carded, and what is deliberately not
+
+Six lists show, eight test, in that order.
+
+| | |
+|:--|:--|
+| **Svara-varṇa, Sparśa I–II, Antaḥstha-ūṣman** | the 13 vowel letters and the 33 consonants, one card each, `glyph → sound` |
+| **Mātrā** | the twelve vowel signs, all on one letter — the system transfers, so every consonant × every vowel is exactly the permutation blow-up the plan forbids |
+| **Saṃyukta** | the eight conjuncts the productive rule will not get you: क्ष ज्ञ त्त क्त त्र श्व श्च श्र |
+| **Sadṛśa** | the eight confusable sets, **both members of each** — picking one out does not mean you can pick out the other |
+| **Mātrā-viśeṣa, Virāma** | हृ, रु, रू, where the sign sits where the rule would not put it; and the built-in a with the mark that takes it away |
+| **Saṃyoga** | decomposition, nine conjuncts and the rule itself — enough to establish it, not a table of every shape |
+| **Repha, Cihna** | the two forms of र (कर्म against क्रम is the whole lesson), then anusvāra, visarga and the daṇḍa |
+| **Pada-pāṭha, Apūrva-pada** | 20 Stage 1 words, then 13 the course never teaches. The second is the mastery check: it proves a *system* was learnt rather than a word list, and a test asserts the first list is entirely Stage 1 vocabulary and the second entirely not |
+
+- **No meanings are asked here.** `pair` is `glyph → sound` throughout, so the
+  lexical layer skips these lists (it clues only lists that answer with a
+  meaning) and the `word → meaning` rules do not apply to them.
+- **The avagraha is in the reference and on no card.** It earns a lookup
+  entry; it does not earn a card until something in the curriculum needs to
+  read one.
+- **The prose describes shapes, not strokes**, in the discrimination deck
+  especially: how two letters differ depends on the typeface, and a mnemonic
+  verified against one font is a fact about that font.
+- **No handwriting, no alphabet-order recitation, no free-text grading, no
+  `sequence`.** Nothing here needed a new interaction.
 
 ### Rūpa-siddhi: the paradigm workshop
 
@@ -2954,8 +3051,8 @@ Three things here are load-bearing for the compatibility list above:
   chain, and keep each step stamping its own version rather than the newest;
   every `localStorage` touch stays guarded, since it can be absent or full.
 
-The app carries 28 lessons, 180 decks, and 2219 cards — 1799 `reveal`, 415
-`choice` and 5 `sequence`, spread over 38 interactive decks in 17 lessons,
+The app carries 29 lessons, 194 decks, and 2375 cards — 1898 `reveal`, 472
+`choice` and 5 `sequence`, spread over 44 interactive decks in 18 lessons,
 plus the mastery decks holding complete paradigms. Four of those lists are
 **generated from `lexicon/` at build time** rather than authored in a
 `practice.json`; see **The lexical layer**.
