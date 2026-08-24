@@ -1772,10 +1772,12 @@ const open = async (browser, opts = {}) => {
       };
     });
     ok('the app opens on the welcome card', r.on);
+    /* what the app is, how it is laid out, and the promise the whole of it
+       rests on — in the card's own words, whatever they happen to be */
     ok('it says what Abhyāsa is',
-      /Welcome to Abhyāsa/.test(r.txt) && /a handful of units/.test(r.txt)
+      /Welcome to Abhyāsa/.test(r.txt) && /five tracks/.test(r.txt)
       && /never required/.test(r.txt)
-      && /Abhyāsa Review/.test(r.txt), r.txt.slice(0, 60));
+      && /comes back later/.test(r.txt), r.txt.slice(0, 60));
     ok('it carries the two figures the drawer carries',
       /^\d+%$/.test(r.mastery) && /^\d+$/.test(r.lists), r.mastery + ' · ' + r.lists);
     /* Nothing has been begun on a first run, so there is nothing "in
@@ -1791,8 +1793,7 @@ const open = async (browser, opts = {}) => {
       r.nav.sample && r.nav.bars && r.nav.caret && /Finding your way/i.test(r.txt),
       JSON.stringify(r.nav));
     ok('and says it is what tracks progress and moves you on',
-      /progress marked at every level down to the list/.test(r.txt)
-      && /five tracks/.test(r.txt), '');
+      /marks how far you have got/.test(r.txt) && /five tracks/.test(r.txt), '');
     ok('the sample is not a second navigation button', r.nav.inert);
     ok('nothing that belongs to a running card is showing', r.quiet);
     ok('and it adds no h1 to the page', r.h1 === 0, r.h1 + ' found');
@@ -4074,11 +4075,13 @@ const open = async (browser, opts = {}) => {
       /^\d+% correct on first try$/.test(r.panelScore), r.panelScore);
     ok('and what it is drawing on, and what is waiting',
       /^Reviewing \d+ cards from \d+ learned · \d+\+? due now$/.test(r.panelWhat), r.panelWhat);
+    /* the mechanism in the learner's terms — what a card is measured on, and
+       what makes it come back — with none of the arithmetic behind it */
     ok('the explanation describes the mode, not the arithmetic',
-      /^Abhyāsa checks how well your studied material is holding up over time\./
-        .test(r.panelNote)
-        && /return later/.test(r.panelNote) && /return\s+sooner/.test(r.panelNote)
-        && !/[×x] \d/.test(r.panelNote),
+      /^Abhyāsa checks/.test(r.panelNote)
+        && /first answer counts/.test(r.panelNote)
+        && /come back later/.test(r.panelNote) && /come back\s+sooner/.test(r.panelNote)
+        && !/[×x] \d/.test(r.panelNote) && !/%/.test(r.panelNote),
       r.panelNote.slice(0, 48));
     ok('the panel names the figure exactly as the drawer does',
       /^Overall mastery \d+% · [A-Z]/.test(r.panelTop)

@@ -695,7 +695,7 @@ This is the track that teaches you to read. You start with words…
 HOW THIS TRACK RUNS
 1. Śabda — words and sounds. Nāma gives you several hundred words…
 2. Rūpa — the shape of a word. The eight cases that say what a word is…
-│ Enrichment sits below the four, and is exactly that…
+│ Below the four you will find extra vocabulary — synonym sets…
 
 WHILE YOU PRACTISE
 noun · neuter · a-stem   The red line under an answer. Tap it and it says
@@ -722,6 +722,22 @@ here keeps coming back.
   what the track gives you, the plan says how it runs in three or four steps
   and names the stages where naming them helps, and one optional italic aside
   defuses the thing most likely to put a learner off.
+- **It describes the learning, never the app.** Every intro page — the landing
+  card, all seven track pages, the review window — was written first in the
+  vocabulary the maintainer thinks in, and it showed: *counts towards nothing*,
+  *the acquisition path*, *what is carded here*, *bounded things*, *the badge*,
+  *the workbook*, *every wrong option is another cell of the same paradigm*.
+  Each names a real decision in this file, and none of them means anything to
+  someone who has opened the app for the first time. A learner is told what
+  they will be able to do, in ordinary words, with the sentences kept short
+  enough to read on a phone.
+
+  The metric vocabulary went the same way. **`known cold` was the app's own
+  term for its central signal and appeared on five surfaces**, and nothing
+  anywhere defined it. It is `right on its first showing` now — `Abhyāsa opens
+  once you have learnt 40 cards`, `Right first time: 8 of 8`, `locked · 12 of
+  40 cards learned`. The maintainer's term stays in this file, where it is
+  exact and has a definition beside it.
 - **The page shows the two controls rather than naming them.** The red line
   and the Study icon are the two things a learner cannot discover on their
   own, and prose describing them taught nothing: the page carries a real
@@ -819,7 +835,7 @@ Navigation is a **left drawer**, opened
 from a selector at the top left — aligned with the card, not centred over it —
 which names the lesson and list in play. Inside is the curriculum's own shape:
 **track → lesson → deck**, or **track → unit → deck** where a track groups its
-stages into units — see **Three streams, and four units**.
+stages into units — see **Four streams, and four units**.
 
 The five tracks are the course. Stage ranges are given here because this is a
 maintainer's file; **they are not shown in the app**:
@@ -1033,10 +1049,10 @@ MASTERY REVIEW
 65% correct on first try
 Reviewing 20 cards from 59 learned · 12 due now
 
-Abhyāsa checks how well your studied material is holding up over time.
-It mixes cards from completed lists and counts only your first answer.
-Cards you remember return later; cards you miss return sooner, so
-review stays focused without becoming repetitive.
+Abhyāsa checks whether what you have learnt is still there. A card
+joins it the moment you get it right first time, and only your first
+answer counts. Cards you remember come back later; cards you miss come
+back sooner, so a review stays useful without becoming repetitive.
 ────────────────────────────────────────────────
 Overall mastery 1% · Novice
 65% review accuracy · 2% course coverage
@@ -1286,7 +1302,7 @@ results screen, in the right-answer pigment:
 
 ```
 समाप्तम् — clean round
-Mātṛkā complete · every card known cold
+Mātṛkā complete · every card right on its first showing
 Known on the first showing: 8 of 8
 ```
 
@@ -1762,7 +1778,7 @@ it.** The 82 vocab-bank lists carry it, and it decides two things: what
 `Continue —` points at next, and — since a list that widens rather than
 carries is enrichment by definition — which stream it is in without 82 lists
 having to say so twice. See **The course leads, the vocabulary follows** and
-**Three streams, and four units**.
+**Four streams, and four units**.
 
 **A list marked `"stream"` says which of the three it is in** —
 `enrichment` or `grammar`; absent is the core acquisition path. It is a

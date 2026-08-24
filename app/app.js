@@ -761,11 +761,11 @@ const TRACKS = [
       { id: 'vakya', name: 'Vākya', gloss: 'words into sentences',
         lessons: ['03-sandhi', '07-karaka', '11-samasa', '12-vakya'] },
     ],
-    lead: 'This is the track that teaches you to read. You start with words — the '
+    lead: 'This is the track that teaches you to read. You start with words — '
         + 'names of the divine, the things on an altar, the parts of a day — and '
-        + 'end able to assemble a Sanskrit sentence of your own and follow one you '
-        + 'have never seen. Nothing here assumes you already know grammar: every '
-        + 'term is taught before it is used.',
+        + 'finish able to build a Sanskrit sentence of your own and follow one '
+        + 'you have never seen. Nothing here assumes you know any grammar: every '
+        + 'term is explained before it is used.',
     plan: [
       'Śabda — words and sounds. Nāma gives you several hundred words, and '
       + 'Varṇa-Vidyā the order the alphabet is really in: by where in the mouth '
@@ -780,10 +780,10 @@ const TRACKS = [
       + 'Kāraka for the part a word plays in an action, Samāsa for how two words '
       + 'weld into one, and Vākya for sentences of your own.',
     ],
-    note: 'Enrichment sits below the four, and is exactly that: the vocabulary '
-        + 'bank, the synonym sets and the names for inner states. It is open from '
-        + 'the start and counts towards nothing — finish the four units and you '
-        + 'have finished the track.',
+    note: 'Below the four you will find extra vocabulary — synonym sets, words '
+        + 'for inner states, hundreds of names. None of it is required: work '
+        + 'through the four and you have done this track. Take the extras '
+        + 'whenever you want more words.',
     mentions: ['Nāma', 'Varṇa-Vidyā', 'Sandhi', 'Rūpa', 'Kriyā', 'Dhātu',
                'Kāraka', 'Samāsa', 'Vākya'],
     lessons: 13 },
@@ -807,9 +807,9 @@ const TRACKS = [
       + 'forms that ask, Kathā the past tense a story is told in, and '
       + 'Paryāya-Chandas the synonym that fits the slot the metre leaves.',
     ],
-    note: 'The composing itself belongs to the workbook, where a good verse can be '
-        + 'read as one however you have written it. These lists give you the '
-        + 'bounded things worth knowing by heart first.',
+    note: 'Writing whole verses happens on paper, where a good line can be read '
+        + 'as one however you have set it down. What you get here are the pieces '
+        + 'worth knowing by heart first.',
     mentions: ['Stotra I', 'Stotra II', 'Chandas I', 'Chandas II', 'Chandas III',
                'Alaṅkāra', 'Rasa', 'Darśana', 'Prārthanā', 'Kathā', 'Paryāya-Chandas'],
     lessons: 11 },
@@ -825,8 +825,8 @@ const TRACKS = [
       'Then the wider bank: ornament and offering, rites, mantra and bīja, the '
       + 'texts, and the fruits of practice.',
     ],
-    note: 'One stage, eleven lists. Take them in any order — each is a field of '
-        + 'its own, and none depends on the one before it.',
+    note: 'Eleven lists, and you can take them in any order — each is a world of '
+        + 'its own, and none of them depends on the one before it.',
     mentions: ['Upacāra', 'Aṅga', 'Saṅkalpa-vāk'],
     lessons: 1 },
 
@@ -839,9 +839,9 @@ const TRACKS = [
       'One list: Svara, giving the three accents, the modes of recitation and the '
       + 'terms that describe them.',
     ],
-    note: 'Classical Sanskrit — everything else in Abhyāsa — does not use these '
-        + 'accents. This is a door into a different kind of text, not a '
-        + 'prerequisite for anything else.',
+    note: 'Classical Sanskrit — everything else here — does not use these '
+        + 'accents. This is a door into a different kind of text, and nothing '
+        + 'else depends on it.',
     mentions: ['Svara'],
     lessons: 1 },
 
@@ -854,8 +854,8 @@ const TRACKS = [
       'One list to start: the vocabulary of the discipline — the eight challenges, '
       + 'and the roles in a performance.',
     ],
-    note: 'The performing is the badge, and it belongs to the workbook. What is '
-        + 'carded here is what you need to be able to name before you try it.',
+    note: 'The performing itself happens out loud, in front of people. What you '
+        + 'learn here is what you need to be able to name before you try it.',
     mentions: ['Avadhāna'],
     lessons: 1 },
 ];
@@ -873,28 +873,23 @@ const TRACKS = [
    taught there, and the page says so before it offers anything. */
 const MASTERY_TRACK = {
   id: 'siddhi', name: 'Rūpa-siddhi', gloss: 'Form Production',
-  lead: 'Recognising a form and producing one are different skills, and this is '
-      + 'where the second is drilled. Rūpa gives you the eight cases and shows '
-      + 'you the tables whole; here you are handed a bare stem and one named '
-      + 'cell — the caturthī singular of devī- — and asked for the form itself. '
-      + 'That is what the badge asks for, and what writing a line of Sanskrit '
-      + 'actually needs.',
+  lead: 'Recognising a form and producing one are different skills, and this '
+      + 'is where you practise the second. Rūpa shows you the tables whole; here '
+      + 'you are given a bare stem and one slot to fill — the caturthī singular '
+      + 'of devī- — and asked for the form itself. That is what writing a line '
+      + 'of Sanskrit actually needs.',
   plan: [
-    'Take Rūpa first. Every prompt here names a vibhakti, and every wrong '
-    + 'option is another cell of the same paradigm, so both the terms and the '
-    + 'tables are assumed.',
-    'The nouns come in the order the patterns build. Śiva is the masculine '
-    + 'a-stem and the one everything else is compared to; Phala is four rows '
-    + 'off it, and Viṣṇu is Agni with one vowel changed. Mālā, Devī, Pitṛ and '
-    + 'Bhagavat are patterns in their own right.',
-    'The pronouns last, and whole: Asmad and Yuṣmad share no stem between '
-    + 'their forms — aham, mām, mayā, mahyam — so nothing here predicts '
-    + 'anything, and there is nothing to collapse.',
+    'Take Rūpa first. Every question here names a case, so you will want the '
+    + 'case names and the tables behind you.',
+    'The nouns come in the order that builds. Śiva is first because every other '
+    + 'pattern is compared to it; Phala is the same table with a few rows '
+    + 'changed, and Viṣṇu is Agni with one vowel swapped. Mālā, Devī, Pitṛ and '
+    + 'Bhagavat are patterns of their own.',
+    'The pronouns come last, and whole: aham, mām, mayā and mahyam share no '
+    + 'stem at all, so every form has to be learnt on its own.',
   ],
-  note: 'A list here is a paradigm rather than a sitting of vocabulary: the '
-      + 'same eight cases every time, in fourteen to eighteen cards. The '
-      + 'repetition is the point — this is the one place in Abhyāsa that drills '
-      + 'a table to the end.',
+  note: 'Each list is one table, and it is the same eight cases every time. The '
+      + 'repetition is deliberate — this is where a table finally sticks.',
   mentions: ['Śiva', 'Phala', 'Mālā', 'Devī', 'Agni', 'Viṣṇu', 'Pitṛ',
              'Bhagavat', 'Asmad', 'Yuṣmad'],
   lessons: 1,
@@ -905,23 +900,21 @@ const MASTERY_TRACK = {
 const CROSS_TRACK = {
   id: 'vyakaranam', name: 'Vyākaraṇam', gloss: 'Formal Grammar',
   lead: 'Vyākaraṇam is the grammarians\u2019 own vocabulary — the words Sanskrit '
-      + 'uses to talk about itself. It cuts across every stage rather than '
-      + 'belonging to one, which is why it sits apart at the end of the list.',
+      + 'uses to talk about itself. It belongs to no one stage, which is why it '
+      + 'sits on its own at the end.',
   plan: [
     'Vyākaraṇam I gives the building blocks: root, suffix, prefix, stem, junction.',
     'Vyākaraṇam II gives the words for what a sentence is made of, and the terms '
     + 'grammarians use about their own terms.',
-    'Then the formal layer of four acquisition stages, drawn here rather than in '
-    + 'the middle of them: Varṇa-Vidyā\u2019s Maheśvara sūtras and pratyāhāras, '
-    + 'Sandhi\u2019s named rules, Dhātu\u2019s kṛt and taddhita affixes, and '
-    + 'Kriyā\u2019s ten lakāras.',
-    'Take these whenever a word in a red annotation is doing more work than you '
-    + 'can follow. Nothing else depends on them.',
+    'Then the formal side of four stages: Varṇa-Vidyā\u2019s Maheśvara sūtras and '
+    + 'pratyāhāras, Sandhi\u2019s named rules, Dhātu\u2019s kṛt and taddhita affixes, '
+    + 'and Kriyā\u2019s ten lakāras.',
+    'Take these whenever a word in the red line under an answer is doing more '
+    + 'work than you can follow. Nothing else depends on them.',
   ],
-  note: 'This is not a track and it is not required. Joining a word to the next '
-      + 'one is on the acquisition path; knowing that the join is called guṇa is '
-      + 'here. It is the shortest way to make the annotations on every other card '
-      + 'readable.',
+  note: 'None of this is required. Joining one word to the next is part of '
+      + 'learning to read; knowing that the join is called guṇa is here. It is '
+      + 'the quickest way to make the red line under an answer readable.',
   mentions: ['Vyākaraṇam I', 'Vyākaraṇam II', 'Varṇa-Vidyā', 'Sandhi', 'Dhātu',
              'Kriyā'],
   lessons: 5,
@@ -1785,11 +1778,11 @@ function renderReviewPanel() {
     ? "Learn " + REVIEW_MIN + " cards to unlock \u2014 " + pool + " so far"
     : "Reviewing " + REVIEW_SIZE + " cards from " + learned + " learned \u00b7 "
       + dueLabel(due) + " now";
-  $('rp-note').textContent = "Abhy\u0101sa checks how well your studied material is "
-    + "holding up over time. A card joins it the moment you answer it right "
-    + "first time, and only your first answer counts here. Cards you remember "
-    + "return later; cards you miss return sooner, so review stays focused "
-    + "without becoming repetitive.";
+  $('rp-note').textContent = "Abhy\u0101sa checks whether what you have learnt is "
+    + "still there. A card joins it the moment you get it right first time, and "
+    + "only your first answer counts. Cards you remember come back later; cards "
+    + "you miss come back sooner, so a review stays useful without becoming "
+    + "repetitive.";
   /* Stated here as well as in the drawer, and in the same words: the figure
      and its two readings.  Never the multiplication. */
   const r = rankOf();
@@ -1958,8 +1951,8 @@ function renderTrack(id) {
   $('s-side').hidden = !begun;
   const pool = reviewPool().length;
   $('s-side').textContent = pool < REVIEW_MIN
-    ? 'Abhyāsa opens at ' + REVIEW_MIN + ' cards known cold — ' + pool + ' so far. '
-      + 'It brings them back later to see whether they stayed.'
+    ? 'Abhyāsa opens once you have learnt ' + REVIEW_MIN + ' cards — ' + pool
+      + ' so far. It brings them back later to see whether they stayed.'
     : due
     ? (due > REVIEW_SIZE
         ? 'Abhyāsa has a full session waiting: cards you have already got right, '
@@ -3014,7 +3007,7 @@ function renderAwards() {
   host.textContent = '';
   host.hidden = !fresh.length;
   const WHY = {
-    'list:complete':     'every card known cold',
+    'list:complete':     'every card right on its first showing',
     'list:retained':     'and it has held up in Abhyāsa',
     'stage:complete':    'every list in the stage',
     'stage:retained':    'the whole stage has held up in Abhyāsa',
@@ -3212,7 +3205,7 @@ function finish() {
         trouble
       ? 'Every one of them on the first showing. Two more sittings like that and they leave the list.'
       : mixed && !reviewing
-      ? 'Every card cold, straight out of its list. Draw again, or go back to a list.'
+      ? 'Every card right first time, straight out of its list. Draw again, or go back to a list.'
       : reviewing
       ? 'All of them clear this time. Back to the whole deck, or pick another list.'
       : 'Every card on the first showing. Pick another list, or run this one again.') + '</div>');
@@ -3265,7 +3258,7 @@ function scoreText() {
     return "अभ्यास · sanskrit flashcards\n"
          + "Mixed review — a random draw across " + r.lists
          + " list" + (r.lists > 1 ? "s" : "") + "\n"
-         + "Known cold: " + r.firstPass + " of " + r.total + " · " + pct + "%\n"
+         + "Right first time: " + r.firstPass + " of " + r.total + " · " + pct + "%\n"
          + "\u25cf".repeat(filled) + "\u25cb".repeat(10 - filled)
          + (m === null ? "" : "\nReview mastery: " + m + "%");
   }
@@ -3408,7 +3401,7 @@ function renderBoard() {
     $('b-mpct').textContent = "";
     $('b-msub').textContent = pool >= REVIEW_MIN
       ? "unlocked \u00b7 open Abhyāsa from the drawer"
-      : "locked \u00b7 " + pool + " of " + REVIEW_MIN + " cards known cold";
+      : "locked \u00b7 " + pool + " of " + REVIEW_MIN + " cards learned";
   }
 
   const rows = Object.keys(DECKS)
