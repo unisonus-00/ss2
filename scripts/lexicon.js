@@ -316,6 +316,15 @@ function addClues(lex, ix, lessons) {
       if (!e || e.opaque) return;
       const clue = clueFor(e, c);
       if (!clue) return;
+      /* A card that already said "from bhaga" and now gets "bhaga + -vatī"
+         would say the same thing twice, the weaker way first.  The fuller
+         reading replaces it rather than trailing after it. */
+      const first = (e.compound ? e.compound.parts[0].iast : '').trim();
+      const weaker = first && new RegExp('(?:^| · )from ' + first.replace(
+        /[.*+?^${}()|[\]\\]/g, '\\$&') + '(?= · |$)');
+      if (weaker && weaker.test(c.note || '')) {
+        c.note = c.note.replace(weaker, '').replace(/^ · | · $/g, '');
+      }
       c.note = c.note ? c.note + ' · ' + clue : clue;
       n++;
       });

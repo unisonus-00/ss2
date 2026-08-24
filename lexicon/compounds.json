@@ -2645,6 +2645,158 @@
     "analysis": "curriculum",
     "sense": "curriculum"
    }
+  },
+  {
+   "iast": "sarasvatī",
+   "parts": [
+    {
+     "iast": "saras",
+     "sense": "pool"
+    },
+    {
+     "iast": "-vatī",
+     "sense": "possessing (feminine)"
+    }
+   ],
+   "clue": "possessing waters",
+   "type": "derivative",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "bhagavatī",
+   "parts": [
+    {
+     "iast": "bhaga",
+     "sense": "fortune, majesty"
+    },
+    {
+     "iast": "-vatī",
+     "sense": "possessing (feminine)"
+    }
+   ],
+   "clue": "possessing fortune",
+   "type": "derivative",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "caṇḍikā",
+   "parts": [
+    {
+     "iast": "caṇḍa",
+     "sense": "fierce"
+    },
+    {
+     "iast": "-ikā",
+     "sense": "descriptive feminine"
+    }
+   ],
+   "clue": "the fierce one",
+   "type": "derivative",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "kāminī",
+   "parts": [
+    {
+     "iast": "kāma",
+     "sense": "desire"
+    },
+    {
+     "iast": "-inī",
+     "sense": "possessive feminine"
+    }
+   ],
+   "clue": "possessing desire",
+   "type": "derivative",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "anugrahadā",
+   "parts": [
+    {
+     "iast": "anugraha",
+     "sense": "grace"
+    },
+    {
+     "iast": "-dā",
+     "sense": "giving (feminine)"
+    }
+   ],
+   "clue": "giving grace",
+   "type": "derivative",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "sarvasvarūpiṇī",
+   "parts": [
+    {
+     "iast": "sarva",
+     "sense": "all"
+    },
+    {
+     "iast": "-svarūpiṇī",
+     "sense": "whose essential nature is (feminine)"
+    }
+   ],
+   "clue": "whose essential nature is everything",
+   "type": "derivative",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "karuṇāmayī",
+   "parts": [
+    {
+     "iast": "karuṇā",
+     "sense": "compassion"
+    },
+    {
+     "iast": "-mayī",
+     "sense": "made of (feminine)"
+    }
+   ],
+   "clue": "made of compassion",
+   "type": "derivative",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "sattvarūpiṇī",
+   "parts": [
+    {
+     "iast": "sattva",
+     "sense": "purity, being"
+    },
+    {
+     "iast": "-rūpiṇī",
+     "sense": "having the form of (feminine)"
+    }
+   ],
+   "clue": "having the form of sattva",
+   "type": "derivative",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
   }
  ],
  "opaque": [

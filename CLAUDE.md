@@ -1984,6 +1984,46 @@ none, because it is memorable and wrong.
 `pati` husband and lord; the popover prints `love; desire`, because choosing
 one would make half the compounds that use it read wrongly.
 
+#### The suffix a word is made with, and the one root it cannot name
+
+`sarasvatī` is traditionally **√sṛ → saras → sarasvat → sarasvatī** — flow, to
+waters, to possessing waters, to the goddess of the flowing. The last two
+links are verifiable here and the first is not, so the app carries the two and
+says nothing about the third.
+
+- **`-vatī` is the curriculum's own.** `vocab/16-prefixes-suffixes.md` is a
+  fully sourced table of 15 upasargas and 25 suffixes, each with its function
+  in English and attested examples, and the lexical layer had never read it.
+  `-vatī | possessing (feminine) | kalavatī, bhagavatī, guṇavatī` is where the
+  second half of `sarasvatī` comes from.
+- **`saras` the lexicon already glossed**, as a member of `sarasija` and
+  `saroja`, the lotus that is *pool-born*.
+- **`√sṛ` is nowhere in this repository.** It is not among the fifty roots
+  `09-dhatu/reference.md` names, and no lesson teaches it. Adding it would put
+  a root in the data that the course never carries, which is a curriculum
+  decision rather than a lexical one. `roots.json` does hold two roots beyond
+  the fifty — `√vad` and `√vand` — and both earn it by being taught in the app
+  already.
+
+Eight words are analysed this way: `sarasvatī`, `bhagavatī`, `caṇḍikā`,
+`kāminī`, `anugrahadā`, `sarvasvarūpiṇī`, `karuṇāmayī`, `sattvarūpiṇī`. The
+suffix carries its function into the popover exactly as a compound member
+carries its sense, because it *is* one — `-vatī · possessing (feminine)`.
+
+**Only eight, because the automatic version was wrong three times in
+thirteen.** Matching a headword's tail against the suffix table and its head
+against a word the app glosses returns 13 candidates, and among them
+`kālikā = kāla + -ikā` (it is the feminine of `kālī`, not of `kāla`) and
+`ambikā = amba + -ikā` (whose base is a vocative card). A closed suffix list
+and an exact base match is a far tighter rule than the tail match rejected
+above, and it still is not tight enough to run unattended. The `-ā` row is
+excluded outright: it matches every feminine noun in the app and analyses
+`nidrā` as `nidrā + -ā`.
+
+**A fuller reading replaces a weaker one rather than trailing after it.**
+`bhagavatī` already said `from bhaga`, and appending `bhaga + -vatī` left the
+chip saying the same thing twice, the poorer way first.
+
 #### What the generators refuse to do
 
 Every selection is a fact about the course, never a judgement about the word.
