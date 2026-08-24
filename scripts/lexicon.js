@@ -66,6 +66,7 @@ function load() {
   const problems = [];
   const sources = readJSON('sources.json');
   const roots = readJSON('roots.json').roots;
+  const dhatupatha = readJSON('dhatupatha.json');
   const comp = readJSON('compounds.json');
   const syn = readJSON('synonyms.json');
 
@@ -91,18 +92,45 @@ function load() {
   if (table.size !== 50) problems.push(`09-dhatu/reference.md: ${table.size} roots, expected 50`);
 
   const PADA = { P: 'parasmaipada', U: 'both padas', 'Ā': 'ātmanepada' };
+  /* ── the Dhātu-pāṭha, as a check ──────────────────────────────────────
+     A secondary canonical source for roots, and the only one here that
+     states a root's own sense in English.  It agrees with the reference on
+     the gaṇa and the present of every one of the fifty; this keeps it that
+     way, and where the two ever diverge the LESSON wins — the disagreement
+     is reported so a person decides, never silently applied. */
+  const DP = new Map(dhatupatha.roots.map(d => [d.id, d]));
+  const notAttested = new Set(dhatupatha.notAttested || []);
+  roots.forEach(r => {
+    const d = DP.get(r.id);
+    const at = `lexicon/dhatupatha.json ${r.iast}`;
+    if (!d) {
+      if (!notAttested.has(r.id)) problems.push(`${at}: not extracted, and not listed as unattested`);
+      return;
+    }
+    if (d.gana !== r.gana) {
+      problems.push(`${at}: gaṇa ${d.gana}, but roots.json says ${r.gana} — the lesson wins, `
+        + `so either fix roots.json or record the disagreement`);
+    }
+    if (d.present && r.present && d.present !== r.present) {
+      problems.push(`${at}: present "${d.present}", but roots.json says "${r.present}"`);
+    }
+  });
   const byRoot = new Map();
   roots.forEach(r => {
     const at = `lexicon/roots.json ${r.iast}`;
     byRoot.set(r.id, r);
     const t = table.get(r.id);
-    /* Two roots the app teaches are not among the reference's fifty.  They
+    /* A few roots the app needs are not among the reference's fifty.  They
        are allowed, and they must say so: everything about them is sourced to
-       the dictionary rather than to a curriculum table that does not carry
-       them. */
+       a dictionary rather than to a curriculum table that does not carry
+       them, and the gaṇa — the one thing a lesson would have settled — has
+       to name which. */
+    const ROOT_SOURCES = ['mw', 'dhatupatha'];
     if (!t) {
       if (!r.extra) problems.push(`${at}: not one of the reference's fifty roots`);
-      else if (r.source.gana !== 'mw') problems.push(`${at}: an extra root must cite its gaṇa`);
+      else if (ROOT_SOURCES.indexOf(r.source.gana) < 0) {
+        problems.push(`${at}: an extra root must cite its gaṇa to ${ROOT_SOURCES.join(' or ')}`);
+      }
       sourced(at, r.source);
       return;
     }
@@ -725,7 +753,17 @@ function glossary(lex) {
   lex.roots.forEach(r => {
     roots[r.id] = { sense: r.sense, gana: r.gana, pada: r.pada, present: r.present };
   });
-  return { members, roots };
+  /* And where a member is itself a word grown from a root, the popover can
+     carry the last step of the derivation too: saras is a member of
+     sarasvatī, and saras is √sṛ's.  That is how a chain reaches a learner —
+     one link per section, each of them separately sourced. */
+  const from = {};
+  lex.roots.forEach(r => (r.family || []).forEach(f => {
+    const k = key(f.iast);
+    if (members[k] && !from[k]) from[k] = r.id;
+    if (members[f.iast] && !from[f.iast]) from[f.iast] = r.id;
+  }));
+  return { members, roots, from };
 }
 
 module.exports = { apply, load, index, stems, key };

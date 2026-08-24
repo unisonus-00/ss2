@@ -4187,8 +4187,10 @@ const open = async (browser, opts = {}) => {
       out.rootEg = [...document.querySelectorAll('#pop .eg-iast')].pop().textContent;
       return out;
     });
+    /* the fifty the curriculum teaches, plus the few the lexicon carries
+       beyond them and marks `extra` */
     ok('the page carries a glossary of members and roots',
-      r.size.members > 100 && r.size.roots === 50 + 2,
+      r.size.members > 100 && r.size.roots >= 50,
       JSON.stringify(r.size));
     ok('a compound clue is read as one part per member',
       r.compound.join(' ') === 'term:ī-stem stem:kāmākṣī- member:kāma member:akṣi',

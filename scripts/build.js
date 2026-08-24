@@ -296,7 +296,7 @@ function build() {
   if (!LEXICON.test(html)) throw new Error('index.html has no <script id="lexicon"> block');
   html = html.replace(LEXICON,
     '<script id="lexicon" type="application/json">'
-    + island(lex.glossary || { members: {}, roots: {} }) + '</script>');
+    + island(lex.glossary || { members: {}, roots: {}, from: {} }) + '</script>');
 
   const references = loadReferences(lessons);
   if (!REFERENCE.test(html)) throw new Error('index.html has no <script id="references"> block');

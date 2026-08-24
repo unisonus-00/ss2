@@ -1,0 +1,561 @@
+{
+ "note": "The Dhātu-pāṭha, as a check on the roots this app carries and as the one source here that states a root's own sense in English. Only the roots lexicon/roots.json holds are extracted: nothing is fetched at build time, and the page must stay one self-contained file. `citation` is the form the Dhātu-pāṭha files the root under — often the Pāṇinian one (ṇam for nam, ṣṭhā for sthā) — and `hom` picks out which of its homonymous entries this is, so every claim is traceable back to a row. The curriculum stays canonical: where the two disagree the lesson wins and the build says so.",
+ "source": {
+  "name": "Dhātu-pāṭha",
+  "author": "Maṇḍala Pati dāsa",
+  "desc": "List of verbal roots with final forms",
+  "uri": "http://sourceforge.net/p/dhatu-patha"
+ },
+ "notAttested": [
+  "vand"
+ ],
+ "roots": [
+  {
+   "id": "kṛ",
+   "citation": "कृ",
+   "hom": 1,
+   "gana": 8,
+   "sense": "to do, make",
+   "pada": "U",
+   "it": "aniṭ",
+   "transitivity": "sak",
+   "present": "karoti"
+  },
+  {
+   "id": "bhū",
+   "citation": "भू",
+   "hom": 2,
+   "gana": 1,
+   "sense": "to be, become, exist",
+   "pada": "P",
+   "it": "seṭ",
+   "transitivity": "ak",
+   "present": "bhavati"
+  },
+  {
+   "id": "as",
+   "citation": "अस्",
+   "hom": 1,
+   "gana": 2,
+   "sense": "to be, become, exist (भू means सत्ता \"being\")",
+   "pada": "P",
+   "it": "seṭ",
+   "transitivity": "ak",
+   "present": "asti"
+  },
+  {
+   "id": "gam",
+   "citation": "गम्",
+   "hom": 0,
+   "gana": 1,
+   "sense": "to go, move",
+   "pada": "P",
+   "it": "aniṭ",
+   "transitivity": "sak",
+   "present": "gacchati"
+  },
+  {
+   "id": "dā",
+   "citation": "दा",
+   "hom": 0,
+   "gana": 3,
+   "sense": "to give",
+   "pada": "U",
+   "it": "aniṭ",
+   "transitivity": "sak",
+   "present": "dadāti"
+  },
+  {
+   "id": "dhā",
+   "citation": "धा",
+   "hom": 0,
+   "gana": 3,
+   "sense": "to hold, make; to support, bestow",
+   "pada": "U",
+   "it": "aniṭ",
+   "transitivity": "sak",
+   "present": "dadhāti"
+  },
+  {
+   "id": "dṛś",
+   "citation": "दृश्",
+   "hom": 0,
+   "gana": 1,
+   "sense": "to see",
+   "pada": "P",
+   "it": "aniṭ",
+   "transitivity": "sak",
+   "present": "paśyati"
+  },
+  {
+   "id": "śru",
+   "citation": "श्रु",
+   "hom": 1,
+   "gana": 5,
+   "sense": null,
+   "present": "śṛṇoti"
+  },
+  {
+   "id": "jñā",
+   "citation": "ज्ञा",
+   "hom": 0,
+   "gana": 9,
+   "sense": "to know",
+   "pada": "P",
+   "it": "aniṭ",
+   "transitivity": "sak",
+   "present": "jānāti"
+  },
+  {
+   "id": "vid",
+   "citation": "विद्",
+   "hom": 0,
+   "gana": 2,
+   "sense": "to know",
+   "pada": "P",
+   "it": "seṭ",
+   "transitivity": "sak",
+   "present": "vetti"
+  },
+  {
+   "id": "vac",
+   "citation": "वच्",
+   "hom": 0,
+   "gana": 2,
+   "sense": "to speak, say, tell",
+   "pada": "P",
+   "it": "aniṭ",
+   "transitivity": "sak",
+   "present": "vakti"
+  },
+  {
+   "id": "brū",
+   "citation": "ब्रू",
+   "hom": 0,
+   "gana": 2,
+   "sense": "to speak, say, tell",
+   "pada": "U",
+   "it": "aniṭ",
+   "transitivity": "sak",
+   "present": "bravīti"
+  },
+  {
+   "id": "man",
+   "citation": "मन्",
+   "hom": 0,
+   "gana": 4,
+   "sense": "to think, consider as",
+   "pada": "A",
+   "it": "aniṭ",
+   "transitivity": "sak"
+  },
+  {
+   "id": "budh",
+   "citation": "बुध्",
+   "hom": 0,
+   "gana": 1,
+   "sense": "to understand",
+   "pada": "P",
+   "it": "seṭ",
+   "transitivity": "sak"
+  },
+  {
+   "id": "nam",
+   "citation": "णम्",
+   "hom": 0,
+   "gana": 1,
+   "sense": "to bend, bow down; to sound (प्रह्वत्व means नमस्कार \"offering obeisances\" and नम्रता \"being submissive\")",
+   "pada": "P",
+   "it": "seṭ",
+   "transitivity": "sak"
+  },
+  {
+   "id": "bhaj",
+   "citation": "भज्",
+   "hom": 0,
+   "gana": 1,
+   "sense": "to serve, worship, divide, experience",
+   "pada": "U",
+   "it": "aniṭ",
+   "transitivity": "sak",
+   "present": "bhajati"
+  },
+  {
+   "id": "pūj",
+   "citation": "पूज्",
+   "hom": 0,
+   "gana": 10,
+   "sense": "to honor, worship",
+   "pada": "P",
+   "it": "seṭ",
+   "transitivity": "sak"
+  },
+  {
+   "id": "stu",
+   "citation": "ष्टु",
+   "hom": 0,
+   "gana": 2,
+   "sense": "to praise",
+   "pada": "U",
+   "it": "aniṭ",
+   "transitivity": "sak"
+  },
+  {
+   "id": "sev",
+   "citation": "षेव्",
+   "hom": 0,
+   "gana": 1,
+   "sense": "to serve, visit, dwell",
+   "pada": "A",
+   "it": "seṭ",
+   "transitivity": "sak"
+  },
+  {
+   "id": "yaj",
+   "citation": "यज्",
+   "hom": 0,
+   "gana": 1,
+   "sense": "to worship, sacrifice; to meet; to give",
+   "pada": "U",
+   "it": "aniṭ",
+   "transitivity": "sak",
+   "present": "yajati"
+  },
+  {
+   "id": "hu",
+   "citation": "हु",
+   "hom": 0,
+   "gana": 3,
+   "sense": "to offer into the sacrificial fire, to sacrifice",
+   "pada": "P",
+   "it": "aniṭ",
+   "transitivity": "sak",
+   "present": "juhoti"
+  },
+  {
+   "id": "sthā",
+   "citation": "ष्ठा",
+   "hom": 0,
+   "gana": 1,
+   "sense": "to stand, remain",
+   "pada": "P",
+   "it": "aniṭ",
+   "transitivity": "ak",
+   "present": "tiṣṭhati"
+  },
+  {
+   "id": "nī",
+   "citation": "णी",
+   "hom": 0,
+   "gana": 1,
+   "sense": "to lead",
+   "pada": "U",
+   "it": "aniṭ",
+   "transitivity": "sak",
+   "present": "nayati"
+  },
+  {
+   "id": "pā",
+   "citation": "पा",
+   "hom": 1,
+   "gana": 2,
+   "sense": "to protect",
+   "pada": "P",
+   "it": "aniṭ",
+   "transitivity": "sak",
+   "present": "pāti"
+  },
+  {
+   "id": "rakṣ",
+   "citation": "रक्ष्",
+   "hom": 0,
+   "gana": 1,
+   "sense": "to protect, hide",
+   "pada": "P",
+   "it": "seṭ",
+   "transitivity": "sak"
+  },
+  {
+   "id": "hṛ",
+   "citation": "हृ",
+   "hom": 0,
+   "gana": 1,
+   "sense": "to take, remove, steal (हरण means देशान्तर-प्रापणम् (taking to another place))",
+   "pada": "U",
+   "it": "aniṭ",
+   "transitivity": "sak",
+   "present": "harati"
+  },
+  {
+   "id": "grah",
+   "citation": "ग्रह्",
+   "hom": 0,
+   "gana": 9,
+   "sense": "to accept, take",
+   "pada": "U",
+   "it": "veṭ",
+   "transitivity": "sak",
+   "present": "gṛhṇāti"
+  },
+  {
+   "id": "muc",
+   "citation": "मुच्",
+   "hom": 1,
+   "gana": 6,
+   "sense": "to release, abandon",
+   "pada": "U",
+   "it": "aniṭ",
+   "transitivity": "sak"
+  },
+  {
+   "id": "yuj",
+   "citation": "युज्",
+   "hom": 2,
+   "gana": 7,
+   "sense": null,
+   "pada": "U",
+   "it": "aniṭ",
+   "transitivity": "sak"
+  },
+  {
+   "id": "jan",
+   "citation": "जन्",
+   "hom": 1,
+   "gana": 4,
+   "sense": "to be born, produced, to occur, happen",
+   "pada": "A",
+   "it": "seṭ",
+   "transitivity": "ak",
+   "present": "jāyate"
+  },
+  {
+   "id": "mṛ",
+   "citation": "मृ",
+   "hom": 0,
+   "gana": 6,
+   "sense": "to die",
+   "pada": "A",
+   "it": "aniṭ",
+   "transitivity": "ak"
+  },
+  {
+   "id": "ji",
+   "citation": "जि",
+   "hom": 0,
+   "gana": 1,
+   "sense": "to conquer, be glorious",
+   "pada": "P",
+   "it": "aniṭ",
+   "transitivity": "sak",
+   "present": "jayati"
+  },
+  {
+   "id": "vṛt",
+   "citation": "वृत्",
+   "hom": 2,
+   "gana": 1,
+   "sense": "to be, exist, remain, happen",
+   "pada": "A",
+   "it": "seṭ",
+   "transitivity": "ak",
+   "present": "vartate"
+  },
+  {
+   "id": "car",
+   "citation": "चर्",
+   "hom": 0,
+   "gana": 1,
+   "sense": "to go, move",
+   "pada": "P",
+   "it": "seṭ",
+   "transitivity": "sak",
+   "present": "carati"
+  },
+  {
+   "id": "pat",
+   "citation": "पत्",
+   "hom": 0,
+   "gana": 1,
+   "sense": "to fall, fly",
+   "pada": "P",
+   "it": "seṭ",
+   "transitivity": "ak"
+  },
+  {
+   "id": "kram",
+   "citation": "क्रम्",
+   "hom": 0,
+   "gana": 1,
+   "sense": "to step, walk",
+   "pada": "P",
+   "it": "seṭ",
+   "transitivity": "sak",
+   "present": "krāmati"
+  },
+  {
+   "id": "prach",
+   "citation": "प्रच्छ्",
+   "hom": 0,
+   "gana": 6,
+   "sense": "to ask, question",
+   "pada": "P",
+   "it": "aniṭ",
+   "transitivity": "sak",
+   "present": "pṛcchati"
+  },
+  {
+   "id": "labh",
+   "citation": "लभ्",
+   "hom": 0,
+   "gana": 1,
+   "sense": "to obtain, possess",
+   "pada": "A",
+   "it": "aniṭ",
+   "transitivity": "sak"
+  },
+  {
+   "id": "tyaj",
+   "citation": "त्यज्",
+   "hom": 0,
+   "gana": 1,
+   "sense": "to abandon",
+   "pada": "P",
+   "it": "aniṭ",
+   "transitivity": "sak"
+  },
+  {
+   "id": "smṛ",
+   "citation": "स्मृ",
+   "hom": 0,
+   "gana": 1,
+   "sense": "to long for, to remember with regret (आध्यान means सोत्कण्ठ-स्मरण (remembering with longing or regret))",
+   "pada": "P",
+   "it": "aniṭ",
+   "transitivity": "sak"
+  },
+  {
+   "id": "dhyai",
+   "citation": "ध्यै",
+   "hom": 0,
+   "gana": 1,
+   "sense": "to think, meditate",
+   "pada": "P",
+   "it": "aniṭ",
+   "transitivity": "sak"
+  },
+  {
+   "id": "jap",
+   "citation": "जप्",
+   "hom": 0,
+   "gana": 1,
+   "sense": "to utter in a low voice, chant; to repeat internally",
+   "pada": "P",
+   "it": "seṭ",
+   "transitivity": "sak"
+  },
+  {
+   "id": "gai",
+   "citation": "गै",
+   "hom": 0,
+   "gana": 1,
+   "sense": "to sing, praise",
+   "pada": "P",
+   "it": "aniṭ",
+   "transitivity": "sak",
+   "present": "gāyati"
+  },
+  {
+   "id": "likh",
+   "citation": "लिख्",
+   "hom": 0,
+   "gana": 6,
+   "sense": "to write",
+   "pada": "P",
+   "it": "seṭ",
+   "transitivity": "sak"
+  },
+  {
+   "id": "paṭh",
+   "citation": "पठ्",
+   "hom": 0,
+   "gana": 1,
+   "sense": "to read, study, describe, mention",
+   "pada": "P",
+   "it": "seṭ",
+   "transitivity": "sak",
+   "present": "paṭhati"
+  },
+  {
+   "id": "vas",
+   "citation": "वस्",
+   "hom": 1,
+   "gana": 1,
+   "sense": "to dwell, live, stay",
+   "pada": "P",
+   "it": "aniṭ",
+   "transitivity": "ak",
+   "present": "vasati"
+  },
+  {
+   "id": "īś",
+   "citation": "ईश्",
+   "hom": 0,
+   "gana": 2,
+   "sense": "to be master of, to be able",
+   "pada": "A",
+   "it": "seṭ",
+   "transitivity": "sak"
+  },
+  {
+   "id": "śī",
+   "citation": "शी",
+   "hom": 0,
+   "gana": 2,
+   "sense": "to sleep, lie down",
+   "pada": "A",
+   "it": "seṭ",
+   "transitivity": "ak"
+  },
+  {
+   "id": "sad",
+   "citation": "षद्",
+   "hom": 0,
+   "gana": 1,
+   "sense": "to burst, open; to go, move; to be dejected, perish",
+   "pada": "P",
+   "it": "aniṭ",
+   "transitivity": "sak"
+  },
+  {
+   "id": "kṣam",
+   "citation": "क्षम्",
+   "hom": 1,
+   "gana": 1,
+   "sense": "to tolerate, forgive",
+   "pada": "A",
+   "it": "veṭ",
+   "transitivity": "sak",
+   "present": "kṣamate"
+  },
+  {
+   "id": "vad",
+   "citation": "वद्",
+   "hom": 1,
+   "gana": 1,
+   "sense": "to speak, say, tell",
+   "pada": "P",
+   "it": "seṭ",
+   "transitivity": "sak"
+  },
+  {
+   "id": "sṛ",
+   "citation": "सृ",
+   "hom": 0,
+   "gana": 1,
+   "sense": "to go, move, run, flow",
+   "pada": "P",
+   "it": "aniṭ",
+   "transitivity": "sak"
+  }
+ ]
+}
