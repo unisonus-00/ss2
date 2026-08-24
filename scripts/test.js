@@ -2175,6 +2175,23 @@ const open = async (browser, opts = {}) => {
     ok('and unlocks the track for good', gone.begun && gone.open > 0,
       gone.open + ' lists open');
 
+    /* A mode the learner cannot open yet has no business on the page that
+       introduces the track: the figures stay, the reminder waits. */
+    const locked = await p.evaluate(() => {
+      const held = SAVED.mastered;
+      SAVED.mastered = {};
+      showTrack('bhasha');
+      const out = { review: !document.getElementById('s-review').hidden,
+                    side: !document.getElementById('s-side').hidden,
+                    stats: !document.getElementById('s-stats').hidden,
+                    txt: document.getElementById('trackcard').innerText };
+      SAVED.mastered = held;
+      return out;
+    });
+    ok('a locked Abhyāsa is not offered on the track page',
+      !locked.review && !locked.side && !/Abhyāsa/.test(locked.txt), locked.txt.slice(-40));
+    ok('but the track still reports its own progress', locked.stats);
+
     // once there is progress the page reports it instead of offering to start
     const again = await p.evaluate(() => {
       Object.keys(DECKS).filter(n => trackIdOf(n) === 'bhasha').slice(0, 6)
@@ -2184,6 +2201,7 @@ const open = async (browser, opts = {}) => {
                stats: !document.getElementById('s-stats').hidden,
                pct: document.getElementById('s-pct').textContent,
                review: !document.getElementById('s-review').hidden,
+               reviewLabel: document.getElementById('s-review').textContent,
                side: document.getElementById('s-side').textContent.replace(/\s+/g, ' ').trim(),
                menu: document.querySelectorAll('#trackcard .dk').length,
                figures: [...document.querySelectorAll('#s-stats .w-stat')]
@@ -2195,7 +2213,8 @@ const open = async (browser, opts = {}) => {
     ok('and reports aggregates, never a directory of what is in the track',
       again.figures <= 2 && !again.menu, again.figures + ' figures');
     ok('Abhyāsa is a reminder with a way in, not a section',
-      again.review && /Abhyāsa/.test(again.side), again.side.slice(0, 40));
+      again.review && /Abhy/.test(again.reviewLabel) && again.side.length < 40,
+      again.side.slice(0, 40));
 
     // and that way in opens the review, returning to the track afterwards
     await p.click('#s-review');

@@ -705,9 +705,8 @@ noun · neuter · a-stem   The red line under an answer. Tap it and it says
 
 TRACK PROGRESS                                                        12%
 UNITS COMPLETE                                                     1 of 4
-[ Continue — Vibhakti-prayoga ]  [ Abhyāsa review ]
-Abhyāsa mixes cards from every list you have completed, so what you learn
-here keeps coming back.
+[ Continue — Vibhakti-prayoga ]  [ Abhyāsa · 12 due ]
+Demonstrate your mastery.
 ```
 
 - **The prose lives in `TRACKS`**, beside the definition of the track it
@@ -759,10 +758,20 @@ here keeps coming back.
 - **It carries no list menu.** The lists are in the drawer, where navigation
   lives; repeating all 129 of them here would make an orientation page into a
   directory. One aggregate figure, and the next action.
-- **Abhyāsa is a reminder, not a section.** One line under the actions saying
-  that completed lists come back, and a button that opens the review. It is
-  deliberately the smaller of the two buttons: the track's own next list is
-  what this page is for.
+- **Abhyāsa is a reminder, not a section, and it waits until it can be used.**
+  A button beside the track's own next step, with one short line under it —
+  *Demonstrate your mastery.* It is deliberately the smaller of the two: the
+  next list is what this page is for.
+
+  **While the mode is locked, neither appears.** The page used to carry
+  *Abhyāsa opens once you have learnt 40 cards — 12 so far*, which is a page
+  introducing a track telling the learner about something that is not there
+  yet, and it was the longest paragraph on it. The counting-up figure belongs
+  on the surfaces that measure progress — the drawer's row and the
+  Scoreboard both still carry it — not on the one that orients. The track's
+  own figures are untouched and read `0%` from the start. The button carries
+  what is waiting (`Abhyāsa · 12 due`), so the line beneath it stays a caption
+  rather than repeating the count.
 - **No binding holes.** They mark a flashcard as a leaf of the manuscript; on
   a page that is read rather than answered they are two dots interrupting the
   prose. The landing card lost them too.

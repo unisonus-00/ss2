@@ -1943,24 +1943,18 @@ function renderTrack(id) {
       + ' — review it';
     go.onclick = () => { beginTrack(id); openPanel('reviewpanel'); };
   }
-  /* Abhyāsa is a reminder here, not a section: one line and a way in — and
-     the line says what is waiting rather than only what the mode is. */
-  const due = reviewPool().length >= REVIEW_MIN ? dueCount() : 0;
-  $('s-review').hidden = !begun;
+  /* Abhyāsa is a reminder here, not a section: one line and a way in, under
+     the track's own next step.  It appears only once it can be used — a mode
+     the learner cannot open yet is an orientation page telling them about
+     something that is not there, and the counting-up figure belongs on the
+     surfaces that measure progress rather than on the one that introduces a
+     track.  The button carries what is waiting; the line stays a caption. */
+  const ready = reviewPool().length >= REVIEW_MIN;
+  const due = ready ? dueCount() : 0;
+  $('s-review').hidden = !begun || !ready;
   $('s-review').textContent = due ? 'Abhyāsa \u00b7 ' + dueLabel(due) : 'Abhyāsa review';
-  $('s-side').hidden = !begun;
-  const pool = reviewPool().length;
-  $('s-side').textContent = pool < REVIEW_MIN
-    ? 'Abhyāsa opens once you have learnt ' + REVIEW_MIN + ' cards — ' + pool
-      + ' so far. It brings them back later to see whether they stayed.'
-    : due
-    ? (due > REVIEW_SIZE
-        ? 'Abhyāsa has a full session waiting: cards you have already got right, '
-          + 'brought back before they fade.'
-        : 'Abhyāsa has ' + due + ' card' + (due === 1 ? '' : 's') + ' waiting: cards you '
-          + 'have already got right, brought back before they fade.')
-    : 'A card joins Abhyāsa the moment you get it right first time, and comes '
-      + 'back later to see whether it stayed.';
+  $('s-side').hidden = !begun || !ready;
+  $('s-side').textContent = 'Demonstrate your mastery.';
   $('s-review').onclick = () => openPanel('reviewpanel');
   trackShown = id;
   return true;
