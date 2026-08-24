@@ -522,16 +522,24 @@ function vyutpattiDeck(lex, ix, cap) {
      answers with a god, so its distractors are the other two gods; a nature
      word answers with a thing, so its distractors are other things.  A pool
      of "everything" would make half of these answerable by elimination. */
-  const bucketOf = c => /Śiva|Viṣṇu|Devī/.test(c.names) ? 'deity'
+  const bucketOf = c => /Śiva|Viṣṇu|Devī/.test(c.names || '') ? 'deity'
     : [...lex.category.values()].some(x => x.kind === 'thing' && c.names === x.english)
       ? 'thing' : 'other';
   const pools = {};
   lex.compounds.forEach(c => {
+    if (!c.names) return;
     (pools[bucketOf(c)] = pools[bucketOf(c)] || new Set()).add(c.names);
   });
 
   const made = [];
   lex.compounds.forEach((c, w) => {
+    /* `names` is what the compound turns out to be — "the lotus", "Śiva" —
+       and it is this deck's answer.  An analysis may perfectly well exist
+       without one: rājarājeśvarī is read off its parts, but "the Goddess" is
+       the answer to a dozen other epithets and asking it would be a question
+       with a dozen right answers.  Those enrich a card's chip and its
+       popover, and are not made into a riddle. */
+    if (!c.names) return;
     const parts = c.parts.filter(p => !p.iast.startsWith('-'));
     if (parts.length !== c.parts.length) return;         // a suffix, not a compound
     const b = bucketOf(c);
@@ -669,8 +677,40 @@ function apply(lessons) {
     });
   }));
 
-  return { problems, clued, roots, made,
+  return { problems, clued, roots, made, glossary: glossary(lex),
            words: ix.of.size, chains: roots.chains };
+}
+
+/* ── what the card's own annotation can be asked about ────────────────
+   The chip already reads "kāma + akṣi — loving-eyed" and "· from √hṛ", and
+   until this the popover could say nothing about either: it explained the
+   grammar words around them and left the Sanskrit itself unglossed, which is
+   the half a learner cannot look up for themselves.
+
+   So the analyses go into the page as a glossary the popover reads — one
+   entry per compound member and one per root.  It is small (a couple of
+   hundred short strings) because it holds only what is already claimed on a
+   card, and it is derived rather than authored: every sense here is the one
+   `compounds.json` and `roots.json` already carry, so a clue and its
+   explanation cannot drift apart.
+
+   A member with two attested senses keeps both, separated as the cards
+   separate them — `pati` is husband and lord, and choosing one would make
+   half the compounds that use it read wrongly. */
+function glossary(lex) {
+  const parts = {};
+  lex.compounds.forEach(c => c.parts.forEach(p => {
+    const at = parts[p.iast] = parts[p.iast] || [];
+    if (at.indexOf(p.sense) < 0) at.push(p.sense);
+  }));
+  const members = {};
+  Object.keys(parts).sort().forEach(k => { members[k] = parts[k].join('; '); });
+
+  const roots = {};
+  lex.roots.forEach(r => {
+    roots[r.id] = { sense: r.sense, gana: r.gana, pada: r.pada, present: r.present };
+  });
+  return { members, roots };
 }
 
 module.exports = { apply, load, index, stems, key };

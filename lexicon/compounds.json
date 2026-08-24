@@ -1744,6 +1744,470 @@
     "analysis": "mw",
     "sense": "curriculum"
    }
+  },
+  {
+   "iast": "rājarājeśvarī",
+   "parts": [
+    {
+     "iast": "rāja",
+     "sense": "king"
+    },
+    {
+     "iast": "rāja",
+     "sense": "king"
+    },
+    {
+     "iast": "īśvarī",
+     "sense": "sovereign lady"
+    }
+   ],
+   "clue": "sovereign of sovereigns",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "bhuvaneśvarī",
+   "parts": [
+    {
+     "iast": "bhuvana",
+     "sense": "world"
+    },
+    {
+     "iast": "īśvarī",
+     "sense": "sovereign lady"
+    }
+   ],
+   "clue": "sovereign of the worlds",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "jagadīśvarī",
+   "parts": [
+    {
+     "iast": "jagat",
+     "sense": "the world"
+    },
+    {
+     "iast": "īśvarī",
+     "sense": "sovereign lady"
+    }
+   ],
+   "clue": "ruler of the world",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "jaganmātā",
+   "parts": [
+    {
+     "iast": "jagat",
+     "sense": "the world"
+    },
+    {
+     "iast": "mātā",
+     "sense": "mother"
+    }
+   ],
+   "clue": "mother of the world",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "jaganmayī",
+   "parts": [
+    {
+     "iast": "jagat",
+     "sense": "the world"
+    },
+    {
+     "iast": "-mayī",
+     "sense": "made of"
+    }
+   ],
+   "clue": "made of the world",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "mahālakṣmī",
+   "parts": [
+    {
+     "iast": "mahā",
+     "sense": "great"
+    },
+    {
+     "iast": "lakṣmī",
+     "sense": "Lakṣmī"
+    }
+   ],
+   "clue": "the great Lakṣmī",
+   "type": "karmadhāraya",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "mahākālī",
+   "parts": [
+    {
+     "iast": "mahā",
+     "sense": "great"
+    },
+    {
+     "iast": "kālī",
+     "sense": "Kālī"
+    }
+   ],
+   "clue": "the great Kālī",
+   "type": "karmadhāraya",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "mahāsarasvatī",
+   "parts": [
+    {
+     "iast": "mahā",
+     "sense": "great"
+    },
+    {
+     "iast": "sarasvatī",
+     "sense": "Sarasvatī"
+    }
+   ],
+   "clue": "the great Sarasvatī",
+   "type": "karmadhāraya",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "bhadrakālī",
+   "parts": [
+    {
+     "iast": "bhadra",
+     "sense": "auspicious"
+    },
+    {
+     "iast": "kālī",
+     "sense": "Kālī"
+    }
+   ],
+   "clue": "the auspicious Kālī",
+   "type": "karmadhāraya",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "guhyakālī",
+   "parts": [
+    {
+     "iast": "guhya",
+     "sense": "secret"
+    },
+    {
+     "iast": "kālī",
+     "sense": "Kālī"
+    }
+   ],
+   "clue": "the secret Kālī",
+   "type": "karmadhāraya",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "ugratārā",
+   "parts": [
+    {
+     "iast": "ugra",
+     "sense": "fierce"
+    },
+    {
+     "iast": "tārā",
+     "sense": "Tārā"
+    }
+   ],
+   "clue": "the fierce Tārā",
+   "type": "karmadhāraya",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "kālarātri",
+   "parts": [
+    {
+     "iast": "kāla",
+     "sense": "time"
+    },
+    {
+     "iast": "rātri",
+     "sense": "night"
+    }
+   ],
+   "clue": "the night of time",
+   "type": "karmadhāraya",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "viśvarūpā",
+   "parts": [
+    {
+     "iast": "viśva",
+     "sense": "all"
+    },
+    {
+     "iast": "rūpa",
+     "sense": "form"
+    }
+   ],
+   "clue": "having every form",
+   "type": "bahuvrīhi",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "sarvamaṅgalā",
+   "parts": [
+    {
+     "iast": "sarva",
+     "sense": "all"
+    },
+    {
+     "iast": "maṅgala",
+     "sense": "auspicious"
+    }
+   ],
+   "clue": "wholly auspicious",
+   "type": "karmadhāraya",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "sarvajñā",
+   "parts": [
+    {
+     "iast": "sarva",
+     "sense": "all"
+    },
+    {
+     "iast": "jña",
+     "sense": "knowing"
+    }
+   ],
+   "clue": "all-knowing",
+   "type": "bahuvrīhi",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "sarvamayī",
+   "parts": [
+    {
+     "iast": "sarva",
+     "sense": "all"
+    },
+    {
+     "iast": "-mayī",
+     "sense": "made of"
+    }
+   ],
+   "clue": "made of everything",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "triśūla",
+   "parts": [
+    {
+     "iast": "tri",
+     "sense": "three"
+    },
+    {
+     "iast": "śūla",
+     "sense": "spike"
+    }
+   ],
+   "clue": "three-spike",
+   "type": "dvigu",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "akṣamālā",
+   "parts": [
+    {
+     "iast": "akṣa",
+     "sense": "bead"
+    },
+    {
+     "iast": "mālā",
+     "sense": "garland"
+    }
+   ],
+   "clue": "garland of beads",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "yoganidrā",
+   "parts": [
+    {
+     "iast": "yoga",
+     "sense": "yoga"
+    },
+    {
+     "iast": "nidrā",
+     "sense": "sleep"
+    }
+   ],
+   "clue": "the sleep of yoga",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "viṣṇumāyā",
+   "parts": [
+    {
+     "iast": "viṣṇu",
+     "sense": "Viṣṇu"
+    },
+    {
+     "iast": "māyā",
+     "sense": "illusion"
+    }
+   ],
+   "clue": "Viṣṇu's illusion",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "śmaśānakālikā",
+   "parts": [
+    {
+     "iast": "śmaśāna",
+     "sense": "cremation ground"
+    },
+    {
+     "iast": "kālikā",
+     "sense": "Kālī"
+    }
+   ],
+   "clue": "the Kālī of the cremation ground",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "trailokyarakṣiṇī",
+   "parts": [
+    {
+     "iast": "trailokya",
+     "sense": "the three worlds"
+    },
+    {
+     "iast": "rakṣiṇī",
+     "sense": "protectress"
+    }
+   ],
+   "clue": "protectress of the three worlds",
+   "type": "tatpuruṣa",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "triloka",
+   "parts": [
+    {
+     "iast": "tri",
+     "sense": "three"
+    },
+    {
+     "iast": "loka",
+     "sense": "world"
+    }
+   ],
+   "clue": "the three worlds",
+   "type": "dvigu",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
+  },
+  {
+   "iast": "kapālinī",
+   "parts": [
+    {
+     "iast": "kapāla",
+     "sense": "skull"
+    },
+    {
+     "iast": "-in",
+     "sense": "having"
+    },
+    {
+     "iast": "-ī",
+     "sense": "feminine"
+    }
+   ],
+   "clue": "she who bears the skull",
+   "type": "derivative",
+   "source": {
+    "analysis": "curriculum",
+    "sense": "curriculum"
+   }
   }
  ],
  "opaque": [

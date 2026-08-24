@@ -33,6 +33,7 @@ const read = f => fs.readFileSync(path.join(APP, f), 'utf8');
 const LINK = '<link rel="stylesheet" href="styles.css">';
 const SCRIPT = '<script src="app.js"></script>';
 const PRACTICE = /<script id="practice" type="application\/json">[\s\S]*?<\/script>/;
+const LEXICON  = /<script id="lexicon" type="application\/json">[\s\S]*?<\/script>/;
 const REFERENCE = /<script id="references" type="application\/json">[\s\S]*?<\/script>/;
 /* A contents list earns its place on a long reference and clutters a short
    one.  Five top-level sections is where these files start needing one. */
@@ -291,6 +292,11 @@ function build() {
 
   html = html.replace(PRACTICE,
     '<script id="practice" type="application/json">' + island({ lessons }) + '</script>');
+
+  if (!LEXICON.test(html)) throw new Error('index.html has no <script id="lexicon"> block');
+  html = html.replace(LEXICON,
+    '<script id="lexicon" type="application/json">'
+    + island(lex.glossary || { members: {}, roots: {} }) + '</script>');
 
   const references = loadReferences(lessons);
   if (!REFERENCE.test(html)) throw new Error('index.html has no <script id="references"> block');

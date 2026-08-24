@@ -1390,6 +1390,24 @@ const REFERENCES = (() => {
   try { return JSON.parse(src.textContent) || {}; }
   catch (e) { return {}; }
 })();
+/* ── what the annotation itself can be asked about ─────────
+   The chip reads `kāma + akṣi — loving-eyed` and `· from √hṛ`, and until this
+   the popover explained the grammar words around those and left the Sanskrit
+   unglossed — which is the half a learner cannot look up for themselves.
+
+   One entry per compound member and one per root, derived from `lexicon/` at
+   build time, so a clue and its explanation cannot drift apart: both are the
+   same `sense` field. Absent-tolerant, like every other island. */
+const LEXICON = (() => {
+  const src = document.getElementById('lexicon');
+  const empty = { members: {}, roots: {} };
+  if (!src) return empty;
+  try {
+    const d = JSON.parse(src.textContent) || {};
+    return { members: d.members || {}, roots: d.roots || {} };
+  } catch (e) { return empty; }
+})();
+
 /* A mixed round belongs to no one lesson, so there is nothing to look up and
    the button is not offered. */
 const studyFor = () => (deckName && deckName !== MIX
@@ -2492,8 +2510,26 @@ function readAnnotation(text) {
   const parts = [], seen = new Set();
   const stem = text.match(/stem:\s*([^·]+)/);
   if (stem) parts.push({ at: stem.index, kind: 'stem', value: stem[1].trim().replace(/,\s*$/, '') });
-  const root = text.match(/(?:(\w+)\s*\+\s*)?√(\S+)/);
-  if (root) parts.push({ at: root.index, kind: 'root', value: root[0] });
+  const root = text.match(/(?:([\w\u00c0-\u1eff]+-?)\s*\+\s*)?√([^\s·]+)/);
+  if (root) {
+    parts.push({ at: root.index, kind: 'root', value: root[0], id: root[2],
+                 upasarga: root[1] || null });
+  }
+  /* The compound clue: `kāma + akṣi — loving-eyed`, or three members deep.
+     Each member gets a section of its own, because "loving-eyed" explains the
+     whole and nothing explains the halves — which is exactly the part a
+     learner has no way to look up.  Only members the glossary actually knows
+     are offered: better silent than guessed at. */
+  const cx = text.match(/(?:^|·\s*)([^·]*?\s\+\s[^·]*?)(?:\s+—\s+([^·]+))?(?=\s*·|$)/);
+  if (cx && !/√/.test(cx[1])) {
+    const at = text.indexOf(cx[1]);
+    cx[1].split(/\s*\+\s*/).forEach((w, i) => {
+      const m = w.trim();
+      if (!m || seen.has('m:' + m) || !LEXICON.members[m]) return;
+      seen.add('m:' + m);
+      parts.push({ at: at + i / 100, kind: 'member', value: m });
+    });
+  }
   for (let i = 0; i < text.length; ) {
     const t = termAt(text, i);
     if (!t) { i++; continue; }
@@ -2513,8 +2549,13 @@ function section(title, en, body, eg) {
   const e = document.createElement('span'); e.className = 'sec-e'; e.textContent = en;
   h.appendChild(t); h.appendChild(e);
   d.appendChild(h);
-  const b = document.createElement('p'); b.className = 'sec-b'; b.textContent = body;
-  d.appendChild(b);
+  /* A body is optional: the second and third members of a compound repeat a
+     paragraph the first one already gave, and four copies of it is most of a
+     phone screen. */
+  if (body) {
+    const b = document.createElement('p'); b.className = 'sec-b'; b.textContent = body;
+    d.appendChild(b);
+  }
   if (eg) {
     const g = document.createElement('div'); g.className = 'sec-eg';
     [['eg-dn', eg.dn], ['eg-iast', eg.iast], ['eg-tr', eg.tr]].forEach(([cls, val]) => {
@@ -2581,6 +2622,7 @@ function openPop(btn) {
   const pop = $('pop');
   pop.textContent = '';
   pop.scrollTop = 0;
+  let said = false;                      // the compound paragraph, said once
   parts.forEach(part => {
     if (part.kind === 'stem') {
       pop.appendChild(section(part.value, 'stem', cite
@@ -2589,9 +2631,28 @@ function openPop(btn) {
         : "The dictionary stem underlying the displayed form. Case endings are added to this "
           + "stem; the stem itself may sometimes also appear as a complete form.", null));
     } else if (part.kind === 'root') {
-      pop.appendChild(section(part.value, 'root',
+      /* The root's own sense, where the curriculum's fifty supply one.  The
+         generic line alone said what a root IS and never what this one
+         means, which is the question the chip actually raises. */
+      const r = LEXICON.roots[part.id] || null;
+      pop.appendChild(section(part.value, r ? r.sense : 'root',
         "The verbal root the form is built from. A root is never used bare — each tense "
-        + "and mood reshapes it.", null));
+        + "and mood reshapes it."
+        + (part.upasarga ? " The prefix in front of it turns that sense: a root takes on "
+            + "a new meaning as much as a shade of the old one." : ""),
+        /* the present 3sg is how a root is cited and recognised; the heading
+           already carries the root itself, so the Devanagari slot is left
+           out rather than repeating it */
+        r && r.present
+          ? { dn: '', iast: r.present, tr: 'class ' + r.gana + ' \u00b7 ' + r.pada }
+          : null));
+    } else if (part.kind === 'member') {
+      /* Said once, over the first member: a compound has two or three of
+         these, and the same paragraph three times is most of a phone screen. */
+      pop.appendChild(section(part.value, LEXICON.members[part.value], said
+        ? "" : "One part of the compound on this card. Take the members in turn and "
+             + "the whole word can be read rather than memorised.", null));
+      said = true;
     } else {
       const c = GLOSSARY[part.value];
       if (!c) return;

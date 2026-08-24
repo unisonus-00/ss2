@@ -18,7 +18,7 @@
   }
  },
  "notUsed": {
-  "amarakosa": "No machine-readable Amarakośa was reachable from this environment — it is not among the 45 dictionaries in csl-orig — so nothing here is sourced to it. The synonym categories in 10-paryaya/reference.md are of that tradition, and they are cited to the curriculum, which is where this repository actually carries them.",
+  "amarakosa": "An Amarakośa pada index (amara_pada: 11,746 rows of Devanagari pada, kāṇḍa.varga.śloka reference, gender, varga, synset head and a Sanskrit semantic category) has since been supplied, and unisonus-00/amarakosha carries a synonyms table but ships no dataset. Still cited nowhere, and for a reason that is about what the text holds rather than whether it is reachable: it gives synset membership in Devanagari and no English sense at all, so it cannot say what a compound member means, which is the one thing the popover needs. Where it would earn its place is verifying the synonym categories of 10-paryaya against the tradition they come from. The categories are cited to the curriculum, which is where this repository actually carries them.",
   "apte": "Apte 1890 (csl-orig v02/ap90) was consulted while checking senses but is cited nowhere: every claim that survived is one Monier-Williams also carries, and two source ids for one fact is a second thing to keep in step.",
   "vidyut": "Vidyut's Dhātupāṭha data was not used. The fifty roots this app teaches are the curriculum's own list, with their gaṇa, pada and present form given in 09-dhatu/reference.md, and that list is canonical here."
  }

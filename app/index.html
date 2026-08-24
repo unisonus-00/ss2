@@ -387,6 +387,12 @@
      Empty here so this file still opens directly for layout work. -->
 <script id="practice" type="application/json">{"lessons":[]}</script>
 
+<!-- What the red annotation can be asked about: one entry per compound member
+     and one per root, derived from lexicon/ at build time.  The chip already
+     reads "kāma + akṣi — loving-eyed"; this is what lets the popover say what
+     kāma and akṣi each mean. -->
+<script id="lexicon" type="application/json">{"members":{},"roots":{}}</script>
+
 <!-- Every loaded lesson's reference.md, rendered to HTML at build time.  It is
      inlined for the same reason the practice is: the page must open from
      file:// with nothing to fetch. -->

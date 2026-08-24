@@ -3964,8 +3964,19 @@ const open = async (browser, opts = {}) => {
        one Monier-Williams gives. */
     const kinds = new Set(at('compounds.json').compounds.map(c => c.source.analysis));
     ok('a reading off the parts is not reported as the dictionary’s',
-      kinds.has('mw') && kinds.has('mw-parts') && kinds.size === 2,
+      kinds.has('mw') && kinds.has('mw-parts')
+        && [...kinds].every(k => ids.has(k)),
       [...kinds].join(' | '));
+    /* A split the curriculum itself supplies — the regular sandhi of two
+       members the app already glosses — is sourced to the curriculum, and
+       then every sense in it must be too.  Half a claim from the lesson and
+       half from somewhere else is the conflation this section exists to
+       stop. */
+    const mixed = at('compounds.json').compounds
+      .filter(c => c.source.analysis === 'curriculum' && c.source.sense !== 'curriculum')
+      .map(c => c.iast);
+    ok('and a curriculum analysis takes its senses from the curriculum',
+      !mixed.length, mixed.slice(0, 4).join(' | '));
 
     /* And the refusals are refusals: a word listed as unreadable is never
        also analysed, and every one says why. */
@@ -4139,6 +4150,61 @@ const open = async (browser, opts = {}) => {
       r.notChoice.concat(r.sourceless).slice(0, 4).join(' | '));
     ok('and no English cue in any list has two Sanskrit answers',
       !r.clash.length, r.clash.slice(0, 4).join(' | '));
+    await p.close();
+  }
+
+  // ── the annotation explains its own Sanskrit ──────────────────────
+  // The chip read "kāma + akṣi — loving-eyed" and "· from √hṛ", and the
+  // popover explained the grammar words around them while leaving the
+  // Sanskrit itself unglossed — which is the half a learner cannot look up.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const out = {};
+      out.size = { members: Object.keys(LEXICON.members).length,
+                   roots: Object.keys(LEXICON.roots).length };
+      const read = t => readAnnotation(t).map(x => x.kind + ':' + x.value);
+      out.compound = read('noun · feminine · ī-stem · stem: kāmākṣī- · kāma + akṣi — loving-eyed');
+      out.root = read('noun · masculine · a-stem · stem: hara- · from √hṛ');
+      /* a prefixed root is one part, not a member split at the plus */
+      out.prefixed = read('noun · masculine · anu- + √grah — seize after');
+
+      /* and the popover renders a section per member, each with its sense */
+      const card = { devanagari: 'क', iast: 'kāmākṣī', gloss: 'she of loving eyes',
+                     note: 'noun · feminine · ī-stem · stem: kāmākṣī- · kāma + akṣi — loving-eyed' };
+      startRound([card], {}); reveal();
+      openPop(document.querySelector('#tag .ann'));
+      out.heads = [...document.querySelectorAll('#pop .sec-t')].map(e => e.textContent);
+      out.senses = [...document.querySelectorAll('#pop .sec-e')].map(e => e.textContent);
+      /* the paragraph is said once, not once per member */
+      out.bodies = document.querySelectorAll('#pop .sec-b').length;
+
+      const rc = { devanagari: 'ह', iast: 'haraḥ', gloss: 'the remover',
+                   note: 'noun · masculine · a-stem · stem: hara- · from √hṛ' };
+      startRound([rc], {}); reveal();
+      openPop(document.querySelector('#tag .ann'));
+      out.rootSense = [...document.querySelectorAll('#pop .sec-e')].pop().textContent;
+      out.rootEg = [...document.querySelectorAll('#pop .eg-iast')].pop().textContent;
+      return out;
+    });
+    ok('the page carries a glossary of members and roots',
+      r.size.members > 100 && r.size.roots === 50 + 2,
+      JSON.stringify(r.size));
+    ok('a compound clue is read as one part per member',
+      r.compound.join(' ') === 'term:ī-stem stem:kāmākṣī- member:kāma member:akṣi',
+      r.compound.join(' '));
+    ok('a root clue is one part, and a prefixed root still one',
+      r.root.indexOf('root:√hṛ') >= 0 && r.prefixed.length === 1,
+      r.root.join(' ') + ' || ' + r.prefixed.join(' '));
+    ok('every member of the compound gets its own meaning',
+      r.heads.indexOf('kāma') >= 0 && r.heads.indexOf('akṣi') >= 0
+        && r.senses.indexOf('love') >= 0 && r.senses.indexOf('eye') >= 0,
+      r.heads.join(' | ') + ' → ' + r.senses.join(' | '));
+    ok('and the compound paragraph is said once, not per member',
+      r.bodies === r.heads.length - 1, r.bodies + ' bodies for ' + r.heads.length + ' sections');
+    ok('a root is glossed with its own sense and cited by its present',
+      /carry/.test(r.rootSense) && r.rootEg === 'harati',
+      r.rootSense + ' · ' + r.rootEg);
     await p.close();
   }
 

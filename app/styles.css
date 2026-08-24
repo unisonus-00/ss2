@@ -584,6 +584,8 @@
            color: var(--kumkuma); margin-left: .45rem; }
   .sec-b { margin: 0; }
   .sec-eg { margin-top: .5rem; }
+  /* a root's example has no Devanagari of its own — the heading carries it */
+  .eg-dn:empty { display: none; }
   .eg-dn { display: block; font-size: 1.1rem; line-height: 1.5;
            font-family: "Noto Serif Devanagari", "Kohinoor Devanagari", serif; }
   .eg-iast { display: block; font-style: italic; }

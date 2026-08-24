@@ -1877,6 +1877,71 @@ partake of, receive a share → resort to, attend on → be devoted to*. `detail
 is a second line of the **answer**, so a reversed card cannot be answered by
 reading it.
 
+#### The annotation explains its own Sanskrit
+
+The chip read `kāma + akṣi — loving-eyed` and `· from √hṛ`, and tapping it
+explained `ī-stem` and `stem:` and then stopped — the grammar words around the
+Sanskrit, and not the Sanskrit. That is exactly backwards: a learner can look
+up "ī-stem" in the lesson and has nowhere at all to find out what `akṣi`
+means.
+
+So the popover carries a section per **constituent**:
+
+```
+kāma   LOVE
+One part of the compound on this card. Take the members in turn and
+the whole word can be read rather than memorised.
+
+akṣi   EYE
+```
+
+- **The senses are the ones the clue is already built from.** A `members` map
+  and a `roots` map go into the page as a third JSON island, derived from
+  `lexicon/` at build time — so the clue and its explanation are the same
+  `sense` field and cannot drift apart. 153 members and 52 roots, a couple of
+  hundred short strings.
+- **A root is glossed and cited.** `√jan` used to get a line saying what a
+  root *is*; it now also says what this one means — `to be born` — with
+  `jāyate · class 4 · ātmanepada` beneath it, off `roots.json`.
+- **A member the glossary does not know is not offered.** Better silent than
+  guessed at, which is the rule the whole layer runs on.
+- **The paragraph is said once.** A three-member compound would otherwise
+  repeat the same explanation three times, which is most of a phone screen;
+  the members after the first carry their gloss alone.
+- **A prefixed root stays one part.** `anu- + √grah` is not a compound split
+  at the plus, and the parser tests for the `√` before it tests for a `+`.
+
+#### `names` is optional, and 24 more words are analysed
+
+`rājarājeśvarī` had no clue at all, because nothing had analysed it. Twenty-four
+more compounds now do — the ones a learner actually meets in the Devī and Deva
+lists (`bhuvaneśvarī`, `jaganmātā`, `mahālakṣmī`, `bhadrakālī`, `kālarātri`,
+`triśūla`, `akṣamālā`, `viśvarūpā`, `sarvajñā`, `trailokyarakṣiṇī` …), each
+one the regular sandhi of members the app itself already glosses. Their
+`source.analysis` is therefore **`curriculum`**, not `mw-parts`: the split is
+the lesson's own, and a test now requires that such an entry take its senses
+from the curriculum too, so half a claim can never come from somewhere else.
+
+Every one was checked against the word before it was written — the first
+member has to open it and the last to close it, which is the same test the
+suite applies to a shipped clue.
+
+**A compound may be analysed without being a riddle.** `names` — what the
+compound turns out to be — is the answer in `11 · Vyutpatti`, and *the
+Goddess* is the answer to a dozen epithets at once. So `names` is optional
+now: an entry without one enriches the card's chip and its popover and is
+skipped by the generator, rather than being forced into a question with a
+dozen right answers.
+
+**The Amarakośa is still not a source here**, and the reason changed. A pada
+index has since been supplied — 11,746 rows of Devanagari pada, reference,
+gender, varga and synset head — and `unisonus-00/amarakosha` is a Rails app
+that ships no dataset. What the index gives is synset membership in
+Devanagari and **no English sense at all**, so it cannot say what a compound
+member means, which is the one thing this section needs. Where it would earn
+its place is checking `10-paryaya`'s synonym categories against the tradition
+they come from. `lexicon/sources.json` records that.
+
 #### What the generators refuse to do
 
 Every selection is a fact about the course, never a judgement about the word.
@@ -2264,7 +2329,7 @@ both one line:
   the one place on a card that claims to say what the word is underneath its
   ending, so a visarga inside it is simply wrong; it reads `sāvarṇi-` now, and
   a test walks every card and fails on a stem ending in a visarga or anusvāra.
-  It was the only one in 2166 cards.
+  It was the only one in 2219 cards.
 - **`cāmaram`** glossed *fly-whisk* sat in the same lesson as `cāmara` glossed
   *demon general* (`V03`, DM 2.43) with nothing on either card to tell them
   apart — the annotations differ in gender, which is not something a learner
