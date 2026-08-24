@@ -203,13 +203,6 @@
     </div>
   </div>
 
-  <div class="board" id="trouble">
-    <h2>Trouble cards</h2>
-    <div class="score" id="t-sub"></div>
-    <div class="note" id="t-note"></div>
-    <div id="t-list"></div>
-  </div>
-
   <!-- Study is a reference VIEWER: the lesson's own reference.md, rendered at
        build time and shown as written.  Not a second learning system — it
        holds no cards, tracks no progress and grades nothing. -->
@@ -274,11 +267,6 @@
     <button id="rp-draw" class="primary"></button>
   </div>
 
-  <div class="actions" id="t-actions" hidden>
-    <button id="t-drill" class="primary">Practise these</button>
-    <button id="t-copy">Copy the list</button>
-  </div>
-
   <!-- The way out of a panel, and deliberately BELOW the panel's own action:
        a window that describes a mode and then offers only "back" reads as
        having nothing to start.  The mode's button leads; this follows it. -->
@@ -308,7 +296,7 @@
 </div>
 
 <!-- Navigation: the five course tracks, each expanding to its lessons and
-     their decks, with review, trouble and the scoreboard alongside.  A left
+     their decks, with the review and the scoreboard alongside.  A left
      drawer rather than a fixed sidebar — this page is used on a phone. -->
 <div class="dveil" id="dveil" hidden></div>
 <nav class="drawer" id="drawer" role="dialog" aria-modal="true"
@@ -360,18 +348,24 @@
       <span class="dm-name">Scoreboard</span>
       <span class="dm-sub" id="dm-board">best scores</span>
     </button>
-    <button id="dr-trouble" class="dr-mode">
-      <span class="dm-name">Trouble cards</span>
-      <span class="dm-sub" id="dm-trouble">repeat offenders</span>
-    </button>
   </div>
 
   <!-- 176 lists live under the five tracks, and a learner who remembers a
        name should not have to know which track holds it.  This narrows the
        tree; it does not replace it, and it is empty every time the drawer
        is opened. -->
-  <input id="dr-q" class="dr-find" type="search" autocomplete="off"
-         spellcheck="false" placeholder="Find a list" aria-label="Find a list">
+  <div class="dr-search">
+    <!-- The glass says "search" in every app a learner has ever used, and it
+         says it without a word of English standing over a drawer of Sanskrit
+         list names.  The field keeps its label for anyone not looking at it. -->
+    <svg class="dr-glass" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+      <circle cx="7" cy="7" r="4.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      <line x1="10.4" y1="10.4" x2="14" y2="14" stroke="currentColor"
+            stroke-width="1.6" stroke-linecap="round"/>
+    </svg>
+    <input id="dr-q" class="dr-find" type="search" autocomplete="off"
+           spellcheck="false" aria-label="Find a list">
+  </div>
 
   <div class="dr-tracks" id="dr-tracks"></div>
 </nav>

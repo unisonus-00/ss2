@@ -157,7 +157,6 @@ Preserve unless intentionally changing them:
 - IAST toggle
 - morphology/tooltips
 - immediate relearning
-- trouble cards
 - mixed review
 - scoreboard
 - saved progress
@@ -294,39 +293,28 @@ creeps back.
                                          ABHYĀSA
 JOINS AND SPLITS            31 LEFT  0 LEARNED  0 MISSED
 ┌──────────────────────────────────────────────────────┐
-│                                                       │
 │                       the card                        │
-│                                                       │
-│              (all the height going spare)             │
-│                                                       │
+│                        250px                          │
 └──────────────────────────────────────────────────────┘
-                      [ ✕ ]      [ ✓ ]      ← kumkuma / patra
-                 ⇄ join → result    ☑ IAST
+              [ ✕ ]      [ ✓ ]      ← kumkuma / patra
+         ⇄ join → result    ☑ IAST
 ```
 
-**The card takes the height that is going spare, and everything under it sits
-at the foot of the screen.** It was a fixed 250px block at the top: on a
-390×844 phone the exercise finished at 370px, the two buttons pressed on
-*every single card* landed at 394px — 45% of the height — and the whole bottom
-half of the phone, some 400px of it, was bare ground. The card now runs 522px
-there and the grade row sits at 664px, in the thumb's own reach.
+**The card is a fixed block at the top of the screen** — `min-height: 250px`,
+so on a 390×844 phone the grade row sits at 394px and the space below it is
+left empty.
 
-- **A floor and a ceiling, and both are the point.** `clamp(250px, 100dvh -
-  20rem, 520px)` — the floor is the old height, so a phone held sideways is no
-  worse than it was; the ceiling stops a desktop window stretching one word
-  down a whole screen; the 20rem is the chrome above plus the tray below, so
-  the tray lands at the foot of the screen rather than past it. A test walks
-  390×844 and 360×640 and fails if the practice screen scrolls at all.
-- **It is a `min-height`, never a height or a flex-grow.** A tall choice card
-  has to grow past it; a fixed height would clip the leaf's own edge, and
-  `overflow` cannot help — the background stops where the box does.
-- **Everything under the card is one tray, and it keeps a constant height
-  while a card is up.** Revealing an answer used to push the toggles down the
-  screen with the grade row; the row appears in reserved space now, and a test
-  fails if anything under the card moves between the front and the back.
-- **The layout is a fact about what is on screen.** `body.practising` is set
-  by the six places that show or hide the card, so a page, a panel and the
-  results screen — read rather than answered — flow as they always did.
+It ran `clamp(250px, 100dvh - 20rem, 520px)` for several builds, with the tray
+held at the foot of the screen and `body.practising` switching that layout on
+and off. **That was reverted on request**, and the reasoning that put it there
+is in the history at `075b65f` if it is ever wanted again: on a 390×844 phone
+the fixed block finishes the exercise at 370px, puts the two buttons pressed
+on *every single card* at 45% of the height, and leaves some 400px of bare
+ground under them.
+
+- **It is a `min-height`, never a height.** A tall choice card has to grow past
+  it; a fixed height would clip the leaf's own edge, and `overflow` cannot
+  help — the background stops where the box does.
 
 - **Navigation top left, the logo top right**, on one row. There is no centred
   logo during practice; a test asserts there is no `h1` at all.
@@ -397,9 +385,7 @@ recognising it.
 - **The learner's own setting is untouched.** `SAVED.dir` is not written by a
   review; ordinary practice comes back exactly as they left it.
 - **Two rounds are deliberately exempt.** An interactive card runs one way by
-  construction, and the trouble drill is not escalated — those are cards the
-  learner is already losing, and the harder direction is the last thing they
-  need.
+  construction.
 - **The typography follows the direction actually asked**, not the stored
   setting: `mode-produce` decides which side is set in Devanagari, so it is
   applied per card during a review and cleared for interactive cards.
@@ -462,7 +448,7 @@ wrong.
 - **Interactive cards get none.** A `choice` or `sequence` prompt already names
   its task — `Join: nara + indraḥ`, `Identify the case: śivam` — and a cue over
   the top would only repeat it.
-- **A cross-list draw falls back with the pair.** Review and trouble rounds run
+- **A cross-list draw falls back with the pair.** Review rounds run
   on `word → meaning`, so they cue `Recall the meaning` / `Produce the word`.
 - `29 · Gaṇa` was re-paired `pattern → name` → **`pattern → gaṇa`**: the cue is
   read off the destination noun, and `name` names nothing.
@@ -479,8 +465,8 @@ Two rules beyond that:
   on those cards *is* the content rather than a gloss of it. A deck of nothing
   but interactive cards is therefore greyed for its whole round, which is what
   "disabled by lesson structure" amounts to.
-- **A cross-list draw falls back to `word → meaning`.** Review and trouble
-  rounds mix decks, so no single pair describes them.
+- **A cross-list draw falls back to `word → meaning`.** A review mixes decks,
+  so no single pair describes it.
 
 ### The IAST toggle
 
@@ -544,7 +530,7 @@ lookup.
 - **A contents list appears at five top-level sections**, which is where these
   files start needing one. Thirteen of the twenty-three get one.
 - **Hidden, not greyed, where there is nothing to look up** — a lesson with no
-  `reference.md`, and mixed or trouble rounds, which belong to no one lesson.
+  `reference.md`, and a mixed round, which belongs to no one lesson.
 - **The button sits on the status row, not beside the selector.** The top row
   is genuinely full: below 375px *no* logo size leaves room for a fourth
   control **and** the longest list name, and the list name is what that row is
@@ -863,7 +849,7 @@ LISTS COMPLETE                      0
   `Scoreboard`.
 - **Anything that starts a round dismisses it.** `loadDeck()` and
   `startRound()` both call `leaveWelcome()`, so every other surface — the
-  drawer, a review draw, the trouble drill — reaches the cards without
+  drawer, a review draw — reaches the cards without
   knowing the landing card exists. It is never something to get past.
 - **It is the first of the two gates.** With nothing begun there is nothing
   in progress, and `In progress` would have dropped a first-time learner into
@@ -901,12 +887,17 @@ way through it but the tree: `Vṛtta` is findable only by knowing it moved to
 Chandas III. One field above the tracks narrows them.
 
 ```
-[ vrtta                                    ✕ ]
+[ 🔍  vrtta                                ✕ ]
 1 LIST FOUND
 Vṛtta
 Kāvya-Racanā · Chandas III · the classical metres · 14 cards
 ```
 
+- **A magnifier, not a prompt.** The field read `Find a list` in English over
+  a drawer of Sanskrit list names, and the glass says the same thing in every
+  app a learner has ever opened. It sits inside the field's own box, so the
+  field is still one 44px tap target and the glyph never takes a tap of its
+  own; `aria-label` keeps the words for anyone not looking at it.
 - **Matched without diacritics, both ways round.** The names are IAST and a
   phone keyboard carries no ā, ṛ or ṣ, so `vrtta` has to find `Vṛtta`. NFD
   splits every one of those into a letter and a combining mark, and dropping
@@ -1003,7 +994,7 @@ The mode rows are **not** curriculum, and were briefly given the same
 treatment: `Aṅkāḥ`, `Parīkṣā`, `Kliṣṭāni`. That named the concepts correctly
 and made the features unfindable — nobody scanning for a scoreboard finds
 `Aṅkāḥ`, and the scoreboard read as simply missing. They are `Scoreboard` and
-`Trouble cards`, in English, and so are the headings of the panels they open.
+in English, and so are the headings of the panels they open.
 Abhyāsa is the deliberate exception, and the section above says why.
 
 Each row's subheading carries that mode's live state, so the drawer answers
@@ -1012,7 +1003,29 @@ the obvious question without being opened into:
 | | |
 |:--|:--|
 | `Scoreboard` | *best scores · 3 of 153 lists finished* |
-| `Trouble cards` | *7 cards to clear · 2 cleared* |
+
+### The trouble list is gone, and its day-stamp is not
+
+The drawer had a third mode: cards you had missed three times, drawn as a
+weighted drill, cleared by three right answers on three separate days.
+**Removed on request** — the row, the panel, the drill, the shared-score
+shape and the `· N cleared` tally with it.
+
+What stays is one field of what it stored. `markWrong` still writes
+`SAVED.trouble[id] = { w, m }`, and `lostToday` still reads `m` back, because
+**a right answer on a day the card was lost earns no mastery tick** — see
+*Progress is mastered cards over cards held*. That rule is the app's central
+signal and has nothing to do with the drill; it merely lived in the same
+record. The store key keeps its name: it is invisible plumbing, and renaming
+it would cost a migration for no visible benefit.
+
+Nothing needs migrating in either direction. A store written while the drill
+existed carries `r`, `s` and `cleared` fields that are now simply never read,
+and the v1 lift onto stable ids still runs, because the day-stamp rides on the
+same record it always did.
+
+`Practise these again` and the missed pile are untouched: relearning on the
+spot was always their job rather than the drill's.
 
 ### Abhyāsa, and overall mastery
 
@@ -1182,16 +1195,14 @@ If fewer cards are due than a session holds, the rest of the session is filled
 with the longest-rested cards anyway — a short pool should still give a full
 review. The draw is still **not** weighted towards the cards you keep missing
 — a card that has been failed ten times gets no more of the session than one
-failed once, and the trouble drill is where weighted practice lives. What
-rule 3 fixes is narrower and was a real bug: see below.
+failed once. What rule 3 fixes is narrower and was a real bug: see below.
 
 **A missed card used to leave Abhyāsa altogether.** Missing a card un-masters
 it — a lesson has to be able to lose its tick — and the pool was
 `SAVED.mastered` exactly, so the one card a review had just proved was weak
 became the one card it would never show again. It reached no list's missed
 pile either, because a draw keeps no list's books, and nothing brought it
-back until three separate misses had built it a trouble record. That is the
-opposite of the promise printed on the review card.
+back at all. That is the opposite of the promise printed on the review card.
 
 So the pool is split, and neither half stores anything new:
 
@@ -1503,7 +1514,7 @@ Two things are deliberately absent from the drawer, and tests assert both:
   which still tells a `Practice` deck in Rūpa from one in Kriyā. `DECK_STAGE`
   survives only to map a lesson to its track.
 
-Review, trouble and the scoreboard live in the drawer too, above the tracks,
+The review and the scoreboard live in the drawer too, above the tracks,
 with the scoreboard first. A panel is opened from the drawer, which then
 closes, so the way back cannot be the button that opened it: `#panel-back`
 does that instead — and it sits **below** the panel's own action, never above
@@ -1518,10 +1529,10 @@ on the row **and** in the window it comes from, as soon as there is one.
 
 **Progress is mastered cards over cards held.** A card is mastered once it
 comes back right on its **first** showing in a round — the same cold-recall
-signal a deck's best score is built from, and the one that counts a card out
-of the trouble list. A wrong answer takes it back; a percentage that could
+signal a deck's best score is built from. A wrong answer takes it back; a
+percentage that could
 only ever rise would leave a lesson ticked long after it had gone. Every kind
-of round feeds this, review draws and trouble drills included: whether a card
+of round feeds this, review draws included: whether a card
 came back cold is a fact about the card, not about the round it turned up in.
 
 Three rules keep the figure honest:
@@ -1549,31 +1560,20 @@ Three rules keep the figure honest:
   signal was one button-press deep.
 
 `markWrong` stamps the day a card was lost and `lostToday` reads it back; a
-right answer on that day earns no tick. This is the project's own rule applied
-where it was missing — the trouble list already refuses three right answers in
-one sitting, because *three right answers in one sitting is recognition, not
-memory*.
+right answer on that day earns no tick. *Three right answers in one sitting
+is recognition, not memory*, and the day is the unit that says so.
 
-**The trouble list's two ends are deliberately asymmetric**, and the code
-comment used to claim otherwise. Three *wrong* answers count however close
-together they were — a card you keep losing today is trouble today — while
-three *right* ones count once a day each. Getting in is easy and getting out
-is not, which is the way round it should be.
-
-**And its "sitting" is a day**, like every other sitting in the app. It keyed
-on a page-load id until this pass, which fails in both directions: a phone
-tab left open for a week held one "session" the whole time, so a card could
-never be cleared all week, and a reload between two rounds handed out a free
-credit. `markRight` stamps `today()` now, exactly as `lostToday` does, and a
-test checks the stamp is a date rather than a random string.
+**Every wrong answer counts, however close together they were** — a card you
+keep losing today is one you have lost today. What the day governs is the
+*right* answer: it earns nothing on a day the card was already lost.
 
 **The day, not the page-load id `SESSION`.** A page load is not a unit of time
 at all: a phone tab left open for a week holds one session for as long as it
 lives, so a card lost on Monday could never be counted again all week — a
 worse fault than the one being fixed — while a reload would hand out a free
 pass. The day rolls over on its own and cannot be minted. Nothing new is
-stored: the stamp goes on the trouble record `markWrong` already creates, and
-a missing stamp reads as "not lost today", so no store needs migrating.
+stored: the stamp goes on the loss record `markWrong` already creates, and a
+missing stamp reads as "not lost today", so no store needs migrating.
 
 Two things follow, and both are the point rather than side effects:
 
@@ -1594,8 +1594,7 @@ anything. The exposure is all in the one type — 372 cards, the thirteen
 production the badges actually ask for the most guessable material here — so
 the friction goes there and nowhere else. This is the app's own idiom rather
 than a new one: `retained` already means right on the first try in two
-separate review sessions, and the trouble list already refuses three right
-answers in one sitting.
+separate review sessions, days apart.
 
 **A list of choice cards therefore reads 0% after a faultless first round,
 and that has to be said rather than left to be discovered.** An unexplained
@@ -2413,7 +2412,7 @@ puts its `✓` on a line of its own. Keep sets to three members.
 analysis?") and controlled transformation ("make it 'I'") differ only in the
 prompt. Options are shuffled per showing, so position is never what gets
 remembered. Grading is not a separate scheme: the right option ends as
-`knew()`, a wrong one as `didntKnow()`, so the trouble list, missed pile,
+`knew()`, a wrong one as `didntKnow()`, so the missed pile,
 review mastery and scoreboard all see one retrieval event — the same as a
 reveal. Neither the direction toggle nor the IAST toggle applies, since a
 transformation runs one way and the IAST here *is* the content.
@@ -2484,7 +2483,7 @@ Three things here are load-bearing for the compatibility list above:
   the brand settled on the bare stem **Abhyāsa**, and left alone: it is
   invisible plumbing, not displayed text, and renaming it would only add
   migration risk for no visible benefit. Versioned by `SAVED.v`
-  (now 7). v1 keyed trouble history by `devanagari + '¦' + gloss`; the app
+  (now 7). v1 keyed the loss record by `devanagari + '¦' + gloss`; the app
   lifts those records onto stable ids on first load. v2→v3 seeds `SAVED.mastered`
   from the one case that can be resolved exactly rather than guessed at — a
   deck whose best round was perfect *and* whose size has not changed since.
@@ -2618,7 +2617,7 @@ the number and taught nothing.
 **A split is not a rename.** No chunk is the old deck, so the old deck's best
 score and missed pile are orphaned rather than carried onto practice they were
 not earned on, and `DECK_RENAMES` gets no entry. Nothing else moves: mastery
-and trouble history are keyed by card id, every id survives a split untouched,
+and the loss record are keyed by card id, every id survives a split untouched,
 and lesson and track percentages therefore do not change at all.
 
 What is bloat is the same card twice in one lesson, and unbounded expansion of
@@ -2630,7 +2629,7 @@ all 24 cells and every conjugated dhātu all 9 laṭ forms.
 records it does not recognise alone, `pileCards()` resolves a pile against the
 deck rather than the other way round, and `ds.best` is compared as a ratio —
 so a best score set on a larger version of a deck stays meaningful. A card
-that is removed and later restored brings its trouble history back with it.
+that is removed and later restored brings its loss record back with it.
 Tests cover all four.
 
 **Each pigment has a light tint for the dark ground.** `--kumkuma` and
@@ -2652,7 +2651,7 @@ lowercase.
 
 **Testing** — `node scripts/test.js` drives the built file in headless
 Chromium from `file://` and checks the compatibility list above: saved
-progress and its migration, trouble cards, review replay, both toggles,
+progress and its migration, review replay, both toggles,
 morphology, mobile touch targets, the choice interaction, drawer navigation
 down to a deck, and the mastery figure at every level. It needs
 `playwright-core` on the path but is deliberately not in a `package.json`; the

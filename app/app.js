@@ -75,7 +75,6 @@ const $ = id => document.getElementById(id);
    MIX is the picker value it hides behind — \u00a6 cannot occur in a deck
    header, so it can never collide with a real name. */
 const MIX = '\u00a6mix';
-const TROUBLE = '\u00a6trouble';
 const REVIEW_SIZE = 20;
 /* Below this many distinct cards to draw from, a "random" draw is most of
    the pool and proves nothing.  The button stays on show regardless,
@@ -91,8 +90,6 @@ let reviewing = false;  // true when the round is a replay of missed cards only
 let lastRound = null;   // the round just finished, for the share summary
 let deckName = null;    // the list the current round belongs to
 let mixed = false;      // true when the round draws across lists, not from one
-let trouble = false;    // true when that cross-list round is a trouble drill
-let clearedAt = 0;      // the cleared tally as the round began, for the delta
 
 /* remembered across visits: last deck, direction, per-deck best score and
    missed pile.  localStorage may be absent or full — every touch is guarded. */
@@ -355,7 +352,7 @@ const DECK_RENAMES = {
 /* A SPLIT is not a rename and has no entry here.  When a long list is broken
    into chunks, no one chunk is the old deck, so its best score and missed pile
    are deliberately orphaned rather than carried onto practice they were not
-   earned on.  Nothing else is lost: mastery and trouble history are keyed by
+   earned on.  Nothing else is lost: mastery and the loss record are keyed by
    card id, and every id survives a split untouched, so lesson and track
    percentages do not move at all. */
 Object.entries(DECK_RENAMES).forEach(([from, to]) => {
@@ -371,8 +368,7 @@ SAVED.review.cards = SAVED.review.cards || {};
 /* The last few sessions' results, [right, seen] each: what review accuracy
    is now measured over. */
 SAVED.review.recent = SAVED.review.recent || [];
-SAVED.trouble = SAVED.trouble || {};       // per-card history, keyed by card
-SAVED.cleared = SAVED.cleared || 0;        // cards that have left the trouble list
+SAVED.trouble = SAVED.trouble || {};       // per-card losses, keyed by card
 SAVED.mastered = SAVED.mastered || {};     // card ids answered right on a cold showing
 /* Choice cards awaiting a second, independent success: id -> the day of the
    first one.  See markMastered. */
@@ -389,12 +385,12 @@ function save() {
 }
 /* A card's stable identity, assigned in practice.json and never derived from
    what the card happens to display.  Before ids existed the key was the
-   visible text, so trouble history is lifted across once, below. */
+   visible text, so the loss record is lifted across once, below. */
 const cardKey = c => c.id;
 const deckState = name => SAVED.decks[name] = SAVED.decks[name] || {};
 
 /* \u2500\u2500 saved-progress migration \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
-   v1 keyed trouble history by devanagari + '\u00a6' + gloss.  Rebuild that key
+   v1 keyed the loss record by devanagari + '\u00a6' + gloss.  Rebuild that key
    for every card we now hold, and move the record onto the card's id.  Runs
    once; a record whose card no longer exists is left where it is rather than
    thrown away, in case a later build brings the card back.
@@ -415,7 +411,7 @@ if ((SAVED.v || 1) < 2) {
   }));
   SAVED.v = 2;                        // this step only — v3 runs below
   save();
-  if (moved) console.info("abhy\u0101sa\u1e25: carried " + moved + " trouble records onto stable ids");
+  if (moved) console.info("abhy\u0101sa\u1e25: carried " + moved + " loss records onto stable ids");
 }
 
 /* v3 introduced SAVED.mastered, and nothing before it recorded which cards
@@ -452,28 +448,11 @@ if ((SAVED.v || 1) < 4) {
   save();
 }
 
-/* ── trouble cards ─────────────────────────────────────────
-   A card lands on the list after TROUBLE_WRONG wrong answers and leaves
-   after TROUBLE_CLEAR right ones.  The two are deliberately asymmetric:
-   getting it wrong three times counts however close together those were —
-   a card you keep losing today is trouble today — while getting it right
-   three times only counts once per session, because three right answers in
-   one sitting is recognition, not memory.  A wrong
-   answer starts that count over: it is still trouble.
+/* ── the day a card was lost ────────────────────────────────
+   Nothing here is a feature the learner sees.  `SAVED.trouble` is the
+   per-card record of losses, and the one thing still read off it is the day
+   of the last one, which is what keeps a right answer honest.
 
-   Keyed by card rather than by card-in-a-list, so a word you keep losing
-   is one problem however many lists happen to carry it. */
-const TROUBLE_WRONG = 3, TROUBLE_CLEAR = 3;
-function markWrong(card) {
-  const k = cardKey(card);
-  const rec = SAVED.trouble[k] = SAVED.trouble[k] || { w: 0, r: 0, s: "" };
-  rec.w++;
-  rec.r = 0; rec.s = "";               // the run of clean recalls starts again
-  rec.m = today();                     // the day it was last lost — see lostToday
-  save();
-}
-
-/* ── a right answer has to be cold ─────────────────────────
    `knew()` already refused to count a card that had been missed earlier in
    the SAME round: being told the answer and handing it back four cards later
    is relearning, not remembering.  But a round is not the unit that makes a
@@ -483,50 +462,28 @@ function markWrong(card) {
    mastery feeds coverage, list completion, the awards and the review pool.
    The app's central signal was one button-press deep.
 
-   The unit is the day the card was lost.  That is the project's own rule
-   applied where it was missing: the trouble list already refuses three right
-   answers in one sitting, because "three right answers in one sitting is
-   recognition, not memory".
+   The unit is the day the card was lost, rather than a page-load id.  A page
+   load is not a unit of time at all: a phone tab left open for a week would
+   hold one "session" the whole time, so a card lost on Monday could never be
+   counted again all week — a worse fault than the one being fixed.  And a
+   reload would otherwise hand out a free pass.  The day rolls over on its
+   own and cannot be minted.
 
-   The day rather than a page-load id, for two reasons.  A page load is not a
-   unit of time at all: a phone tab left open for a week would hold one
-   "session" the whole time, so a card lost on Monday could never be counted
-   again all week — a worse fault than the one being fixed.  And a reload
-   would otherwise hand out a free pass.  The day rolls over on its own and
-   cannot be minted.  The trouble list's own clearing rule keyed on that
-   page-load id until it was brought into line here.
+   A missing stamp reads as "not lost today", so an older store needs no
+   migration, and a store written by a build that still had the trouble
+   drill carries its extra fields harmlessly.
 
-   Nothing new is stored: the stamp goes on the trouble record, which
-   `markWrong` already creates on the first wrong answer.  A missing stamp
-   reads as "not lost today", so an older store needs no migration. */
-const lostToday = card => (SAVED.trouble[cardKey(card)] || {}).m === today();
-
-function markRight(card) {
-  const k = cardKey(card), rec = SAVED.trouble[k];
-  if (!rec || rec.w < TROUBLE_WRONG) return;   // only cards on the list count out
-  /* One credit a day, however many rounds — and the day rather than the
-     page-load id this used to key on.  A page load is not a unit of time at
-     all: a phone tab left open for a week held one "session" for as long as
-     it lived, so a card could never be cleared all week; a reload between
-     two rounds handed out a free credit.  The day rolls over on its own and
-     cannot be minted, which is the same reason `lostToday` uses it. */
-  if (rec.s === today()) return;
-  rec.s = today();
-  if (++rec.r >= TROUBLE_CLEAR) { delete SAVED.trouble[k]; SAVED.cleared++; }
+   Keyed by card rather than by card-in-a-list, so a word you keep losing is
+   one problem however many lists happen to carry it. */
+function markWrong(card) {
+  const k = cardKey(card);
+  const rec = SAVED.trouble[k] = SAVED.trouble[k] || { w: 0 };
+  rec.w++;
+  rec.m = today();                     // the day it was last lost
   save();
 }
 
-/* The list itself: the worst first, one entry per distinct card. */
-function troubleCards() {
-  const out = [], seen = new Set();
-  Object.keys(DECKS).forEach(n => DECKS[n].forEach(c => {
-    const k = cardKey(c), rec = SAVED.trouble[k];
-    if (seen.has(k) || !rec || rec.w < TROUBLE_WRONG) return;
-    seen.add(k);
-    out.push(c);
-  }));
-  return out.sort((a, b) => SAVED.trouble[cardKey(b)].w - SAVED.trouble[cardKey(a)].w);
-}
+const lostToday = card => (SAVED.trouble[cardKey(card)] || {}).m === today();
 
 /* The lists every card of which has come back cold at least once.  Playing a
    list to the end used to be enough — `ds.best` exists at any score, so a
@@ -562,7 +519,7 @@ function masteredPool() {
    of Abhyāsa altogether.  The one card a review had just proved was weak
    became the one card it would never show again: a draw keeps no list's
    books, so it reached no missed pile either, and nothing brought it back
-   until three separate misses had built it a trouble record.  That is the
+   until nothing brought it back at all.  That is the
    opposite of what the review card promises, and the opposite of what a
    review is for.
 
@@ -594,11 +551,11 @@ const dueLabel = n => (n > REVIEW_SIZE ? REVIEW_SIZE + '+' : n) + ' due';
 /* ── mastery ───────────────────────────────────────
    A card is mastered once it has come back right on its FIRST showing in a
    round — the same cold-recall signal a deck's best score is built from, and
-   the same one that counts a card out of the trouble list.  A wrong answer
+   the same one a deck's best score is built from.  A wrong answer
    takes it back: a percentage that could only ever rise would leave a lesson
    ticked long after it had gone, which is not what a tick is for.
 
-   Every kind of round feeds this, review draws and trouble drills included.
+   Every kind of round feeds this, review draws included.
    Whether a card came back cold is a fact about the card, not about which
    round it happened to turn up in. */
 /* ── a guess is not a recall ────────────────────────────────
@@ -615,8 +572,7 @@ const dueLabel = n => (n > REVIEW_SIZE ? REVIEW_SIZE + '+' : n) + ' due';
    alone then has to land twice, which is one time in nine or sixteen, and a
    miss in between resets it.  That is the app's own idiom for durable
    evidence rather than a new one: `retained` already means right on the first
-   try in two separate review sessions, and the trouble list already refuses
-   three right answers in one sitting.
+   try in two separate review sessions.
 
    Choice cards only, and the reason is the arithmetic.  A four-piece sequence
    assembled at random comes out right one time in twenty-four, and there are
@@ -1220,10 +1176,9 @@ const currentPair = () => (mixed || !deckName ? DEFAULT_PAIR : pairOf(deckName))
    `retained` therefore now means something it did not before: two review
    sessions days apart, at least one of them producing the form rather than
    recognising it. Interactive cards are untouched — a transformation runs one
-   way — and so is the trouble drill, where the cards are ones the learner is
-   already losing and the last thing they need is the harder direction. */
+   way. */
 function askedDir(card) {
-  if (!card || !mixed || trouble) return DIR;
+  if (!card || !mixed) return DIR;
   if ((card.type || 'reveal') !== 'reveal') return DIR;
   return streakOf(cardKey(card)) >= 1 ? 'produce' : 'reveal';
 }
@@ -1232,7 +1187,7 @@ function askedDir(card) {
 const dirNow = () => (current ? askedDir(current.card) : DIR);
 /* Is the review dictating it?  Then the toggle shows what is being asked and
    does not offer to change it. */
-const dirLocked = () => !!current && mixed && !trouble
+const dirLocked = () => !!current && mixed
   && (current.card.type || 'reveal') === 'reveal';
 
 function dirLabel(d) {
@@ -1435,9 +1390,9 @@ const REFERENCES = (() => {
   try { return JSON.parse(src.textContent) || {}; }
   catch (e) { return {}; }
 })();
-/* A mixed or trouble round belongs to no one lesson, so there is nothing to
-   look up and the button is not offered. */
-const studyFor = () => (deckName && deckName !== MIX && deckName !== TROUBLE
+/* A mixed round belongs to no one lesson, so there is nothing to look up and
+   the button is not offered. */
+const studyFor = () => (deckName && deckName !== MIX
   ? REFERENCES[DECK_LESSON[deckName]] : null) || null;
 
 /* The button where the picker used to be, naming the list in play.  It
@@ -1447,10 +1402,9 @@ const studyFor = () => (deckName && deckName !== MIX && deckName !== TROUBLE
 function syncNav() {
   const label = deckName ? LESSON_LABEL[DECK_LESSON[deckName]] : '';   // the lesson, in IAST
   $('nav-label').textContent =
-      deckName === MIX     ? 'abhyāsa'
-    : deckName === TROUBLE ? 'trouble cards'
-    : deckName             ? [label, DECK_SHORT(deckName)].filter(Boolean).join(' \u00b7 ')
-    :                        'lists';
+      deckName === MIX ? 'abhyāsa'
+    : deckName         ? [label, DECK_SHORT(deckName)].filter(Boolean).join(' \u00b7 ')
+    :                    'lists';
   /* Hidden outright rather than greyed: a lesson with no reference.md has
      nothing behind the button, and a disabled control still takes the room
      the list name needs on a phone. */
@@ -1460,13 +1414,6 @@ function syncNav() {
     'Study \u00b7 ' + LESSON_LABEL[DECK_LESSON[deckName]] + ' reference';
 }
 
-/* The practice screen is laid out for a thumb — the card takes the height
-   going spare and the tray sits at the foot of the screen — and that only
-   makes sense while a card is actually showing.  Every surface that shows or
-   hides the card says so here. */
-function practising(on) {
-  document.body.classList.toggle('practising', !!on);
-}
 
 function fillRow(el, parts) {
   Object.entries(parts).forEach(([sel, text]) => {
@@ -1806,7 +1753,7 @@ async function chooseDeck(name) {
   closeDrawer('card');
 }
 
-/* Review, trouble and the scoreboard all open from the drawer, which then
+/* The review and the scoreboard both open from the drawer, which then
    gets out of the way. */
 function openFromDrawer(fn) {
   closeDrawer();
@@ -1814,8 +1761,7 @@ function openFromDrawer(fn) {
 }
 
 /* The row is live from the first load whether the mode is or not: a locked
-   one opens the panel that says what it is and what unlocks it, exactly as
-   the trouble row does with an empty list. */
+   one opens the panel that says what it is and what unlocks it. */
 function syncReviewUI() {
   $('dr-prog').classList.toggle('on', panelOpen === 'reviewpanel');
 }
@@ -1855,7 +1801,7 @@ function renderReviewPanel() {
   $('rp-actions').hidden = false;
   $('rp-draw').hidden = !ready;
   $('rp-draw').textContent = "Review " + REVIEW_SIZE
-    + (mixed && !trouble ? " more" : " cards");
+    + (mixed ? " more" : " cards");
 }
 
 const shuffle = a => {
@@ -1875,18 +1821,13 @@ function startRound(cards, opt) {
   roundSource = cards;
   reviewing = !!opt.review;
   mixed = !!opt.mixed;
-  trouble = !!opt.trouble;
-  clearedAt = SAVED.cleared;
   established = new Set();              // the scaffold returns with a new round
   queue = shuffle(cards.map(card => ({ card, missedThisRound: false })));
   missed = []; learned = 0;
-  if (trouble)            $('stage').textContent = "trouble cards \u00b7 " + cards.length
-                                                 + (reviewing ? " you missed" : " to clear");
-  else if (reviewing && mixed) $('stage').textContent = "abhyāsa \u00b7 " + cards.length + " you missed in the draw";
+  if (reviewing && mixed) $('stage').textContent = "abhyāsa \u00b7 " + cards.length + " you missed in the draw";
   else if (reviewing)     $('stage').textContent = "review \u00b7 " + cards.length + " cards you missed";
   $('review').style.display = 'none';
   $('card').style.display = 'flex';
-  practising(true);
   $('after').hidden = true;
   $('tally').style.visibility = 'visible';
   $('keys').hidden = false;
@@ -2036,7 +1977,6 @@ function showTrack(id) {
 /* everything a running card owns, put away */
 function quietChrome() {
   $('card').style.display = 'none';
-  practising(false);
   $('review').style.display = 'none';
   $('tally').style.visibility = 'hidden';
   $('grade').hidden = true;
@@ -2068,7 +2008,6 @@ function leavePage() {
   if (!on) return;
   relabelAll();                     // Study reappears if the lesson has a reference
   $('card').style.display = 'flex';
-  practising(true);
   $('tally').style.visibility = 'visible';
   $('keys').hidden = false;
   $('controls').hidden = false;
@@ -2090,7 +2029,7 @@ function loadDeck(name) {
   if (!name || !DECKS[name]) name = DECKS[SAVED.deck] ? SAVED.deck : Object.keys(DECKS)[0];
   deckName = name;
   SAVED.deck = name; save();
-  mixed = trouble = false;
+  mixed = false;
   relabelAll();
   setToggles(true);            // the new list names its own pair
   $('restart').textContent = "Whole deck again";
@@ -2139,7 +2078,7 @@ function loadDeck(name) {
 
    The draw is deliberately NOT weighted towards the cards you keep missing.
    It measures what stayed, and favouring the weak cards would flatter the
-   figure.  Weighted practice is what the trouble drill is for. */
+   figure. */
 const REST = [0, 1, 2, 4, 8, 16];
 const restFor = streak => REST[Math.min(Math.max(streak, 0), REST.length - 1)];
 
@@ -2251,7 +2190,7 @@ function mixCards() {
 
 /* Record what the session found.  Only the FIRST answer counts: that is the
    retention signal the whole mode is built on, and it is the same signal a
-   deck's best score and the trouble list already use. */
+   deck's best score already uses. */
 function recordReview(cards, missedSet) {
   const now = SAVED.review.runs;
   cards.forEach(c => {
@@ -2281,20 +2220,6 @@ function startMixedReview() {
   $('pile').hidden = true;
   $('restart').textContent = "Draw " + REVIEW_SIZE + " more";
   startRound(cards, { mixed: true });
-}
-
-/* ── the trouble drill ──────────────────────────────────────
-   A cross-list round like the review, and like it, it keeps no list's
-   books.  Unlike it, it never feeds review mastery: these are the cards
-   you already know you are losing, so counting them would flatter it. */
-function startTroubleDrill() {
-  const cards = troubleCards();
-  if (!cards.length) return;
-  deckName = TROUBLE;
-  $('pile').hidden = true;
-  $('restart').textContent = "Drill these again";
-  startRound(cards, { review: true, mixed: true, trouble: true });
-  relabelAll();
 }
 
 /* the persisted "missed last time" pile for the current deck */
@@ -2743,7 +2668,7 @@ function paint() {
 
    Grading is not a separate scheme.  Tapping the right option is a cold
    recall and ends as knew(); tapping a wrong one ends as didntKnow().  So
-   the trouble list, the missed pile, review mastery and the scoreboard all
+   the missed pile, review mastery and the scoreboard all
    see a choice card as exactly one retrieval event, the same as a reveal.
 
    The direction toggle does not apply: a transformation only runs one way,
@@ -2838,7 +2763,7 @@ function choiceNext() {
 /* ── sequence cards ────────────────────────────────────────
    Assemble supplied pieces in order.  The same shared grading as everything
    else: a correct assembly ends as knew(), a wrong one as didntKnow(), so a
-   sequence card is one retrieval event to the trouble list and the
+   sequence card is one retrieval event to the missed pile and the
    scoreboard like any other.
 
    Built pieces are tracked by their INDEX in `parts`, not by their text, so
@@ -2995,7 +2920,7 @@ function knew() {
   /* Both guards earn their place: the round-local one still catches a card
      re-shown across midnight, when the day stamp has already rolled over. */
   if (!current.missedThisRound && !lostToday(current.card)) {
-    markRight(current.card); markMastered(current.card);
+    markMastered(current.card);
   }
   learned++;
   next();
@@ -3189,10 +3114,9 @@ const AFTER_BUTTONS = ['again-missed', 'next-list', 'restart', 'review-due', 'sh
 function finish() {
   const total = roundSource.length;
   const firstPass = total - missed.length;
-  const justCleared = SAVED.cleared - clearedAt;
   lastRound = { deck: deckName, lesson: LESSON_LABEL[DECK_LESSON[deckName]], firstPass, total,
-                reviewing, mixed, trouble, justCleared,
-                lists: mixed && !trouble
+                reviewing, mixed,
+                lists: mixed
                   ? new Set(roundSource.map(c => DECK_OF.get(c))).size : 0 };
 
   if (mixed) {
@@ -3200,7 +3124,7 @@ function finish() {
        list's missed pile moves on the strength of a review — and only the
        fresh draw counts towards mastery, since re-drilling the cards you
        just missed would make the figure say nothing. */
-    if (!reviewing && !trouble) {
+    if (!reviewing) {
       const r = SAVED.review;
       /* A session is a DAY you reviewed, not a round you played.  The rest
          ladder is indexed by `runs`, so while every draw advanced it, three
@@ -3244,7 +3168,6 @@ function finish() {
   bumpStreak();                       // a day with a round finished in it
   relabelAll();                       // a finished list may have opened the review
   $('card').style.display = 'none';
-  practising(false);
   $('review').style.display = 'block';
   $('tally').style.visibility = 'hidden';
   $('grade').hidden = true;
@@ -3258,18 +3181,14 @@ function finish() {
   refreshPile();
 
   const isReview = reviewing || mixed;
-  $('r-title').textContent = trouble
-    ? (missed.length ? "समाप्तम् — drill finished" : "समाप्तम् — drill clear")
-    : missed.length
+  $('r-title').textContent = missed.length
     ? (isReview ? "समाप्तम् — review finished" : "समाप्तम् — round finished")
     : (isReview ? "समाप्तम् — review clear" : "समाप्तम् — clean round");
   let scoreLine = (reviewing ? "Cleared on the first showing this time: " : "Known on the first showing: ")
     + "<b>" + firstPass + " of " + total + "</b>";
-  if (mixed && !reviewing && !trouble)
+  if (mixed && !reviewing)
     scoreLine += "<br>Review accuracy: <b>" + masteryPct() + "%</b> over "
                + SAVED.review.seen + " cards reviewed";
-  if (justCleared)
-    scoreLine += "<br><b>" + justCleared + "</b> left the trouble list";
   /* A choice card wants its evidence twice, so a faultless first round on a
      list of them moves no percentage at all.  Say so here, where the work was
      just done: an unexplained 0% after a clean round reads as a fault. */
@@ -3288,12 +3207,10 @@ function finish() {
      cards went wrong but which LISTS are holding up.  Card-level detail is
      the evidence underneath; the learner-facing unit is the list, and this
      is what says where to go back to. */
-  if (mixed && !trouble) byListSummary(list, roundSource, missed);
+  if (mixed) byListSummary(list, roundSource, missed);
   if (!missed.length) {
     list.insertAdjacentHTML('beforeend', '<div class="clean">' + (
-        trouble
-      ? 'Every one of them on the first showing. Two more sittings like that and they leave the list.'
-      : mixed && !reviewing
+        mixed && !reviewing
       ? 'Every card right first time, straight out of its list. Draw again, or go back to a list.'
       : reviewing
       ? 'All of them clear this time. Back to the whole deck, or pick another list.'
@@ -3335,13 +3252,6 @@ function scoreText() {
   if (!r) return "";
   const pct = Math.round(r.firstPass / r.total * 100);
   const filled = Math.round(pct / 10);
-  if (r.trouble) {
-    return "अभ्यास · sanskrit flashcards\n"
-         + "Trouble cards — a drill of the " + r.total + " giving me most trouble\n"
-         + "Known on the first showing: " + r.firstPass + " of " + r.total + " · " + pct + "%\n"
-         + "\u25cf".repeat(filled) + "\u25cb".repeat(10 - filled)
-         + (r.justCleared ? "\n" + r.justCleared + " left the list" : "");
-  }
   if (r.mixed) {
     const m = masteryPct();
     return "अभ्यास · sanskrit flashcards\n"
@@ -3556,7 +3466,6 @@ const PANELS = {
   study:       { render: renderStudy,       relabel: syncStudyUI },
   board:       { render: renderBoard,       relabel: syncBoardUI,   actions: 'b-actions' },
   reviewpanel: { render: renderReviewPanel, relabel: syncReviewUI,  actions: 'rp-actions' },
-  trouble:     { render: renderTrouble,     relabel: syncTroubleUI, actions: 't-actions' }
 };
 const relabelAll = () => { syncNav(); Object.values(PANELS).forEach(x => x.relabel()); };
 
@@ -3571,7 +3480,6 @@ function closePanel() {
   $('welcome').hidden = panelWas.welcome;
   $('trackcard').hidden = panelWas.trackcard;
   $('card').style.display = panelWas.card;
-  practising(panelWas.card !== 'none');
   $('review').style.display = panelWas.review;
   $('tally').style.visibility = panelWas.tally;
   $('grade').hidden = panelWas.grade;
@@ -3597,7 +3505,6 @@ function openPanel(which) {
   $('welcome').hidden = true;
   $('trackcard').hidden = true;
   $('card').style.display = 'none';
-  practising(false);
   $('review').style.display = 'none';
   $('tally').style.visibility = 'hidden';
   $('grade').hidden = true;
@@ -3645,60 +3552,6 @@ function renderStudy() {
   $('st-body').scrollTop = 0;
 }
 
-/* ── the trouble window ─────────────────────────────────────
-   The list, what it takes to get off it, and how many have. */
-function renderTrouble() {
-  const cards = troubleCards();
-  $('t-sub').textContent = (cards.length
-      ? cards.length + " on the list"
-      : "nothing on the list")
-    + " \u00b7 " + SAVED.cleared + " cleared";
-  $('t-note').textContent = "A card lands here after " + TROUBLE_WRONG
-    + " wrong answers, and leaves after " + TROUBLE_CLEAR
-    + " right ones in separate sittings. A wrong answer starts that count again.";
-
-  const list = $('t-list');
-  list.innerHTML = "";
-  $('t-actions').hidden = false;
-  $('t-drill').hidden = !cards.length;
-  $('t-copy').hidden = !cards.length;
-  if (!cards.length) {
-    list.innerHTML = '<div class="clean">Nothing is giving you trouble yet.</div>';
-    return;
-  }
-  cards.forEach(card => {
-    const d = document.createElement('div');
-    d.className = 'row';
-    d.innerHTML = '<span class="r-dn"></span><span class="r-iast"></span>'
-                + '<span class="t-count"></span>'
-                + '<span class="r-gloss"></span><span class="r-tag"></span>';
-    d.querySelector('.r-dn').textContent    = card.devanagari;
-    d.querySelector('.r-iast').textContent  = card.iast;
-    d.querySelector('.t-count').textContent = SAVED.trouble[cardKey(card)].w + " wrong";
-    d.querySelector('.r-gloss').textContent = card.gloss;
-    d.querySelector('.r-tag').textContent   =
-      [DECK_SHORT(DECK_OF.get(card) || ""), card.note].filter(Boolean).join(" \u00b7 ");
-    list.appendChild(d);
-  });
-}
-
-/* The copyable form: the same pipe-delimited shape as the card data, so a
-   pasted list drops straight back into a deck file. */
-function troubleText() {
-  const cards = troubleCards();
-  return "अभ्यास \u00b7 trouble cards (" + cards.length + ")\n"
-       + SAVED.cleared + " cleared so far\n\n"
-       + cards.map(c => [c.devanagari, c.iast, c.gloss].join(" | ")).join("\n");
-}
-
-function syncTroubleUI() {
-  const n = troubleCards().length;
-  $('dm-trouble').textContent =
-    (n ? n + ' card' + (n > 1 ? 's' : '') + ' to clear' : 'nothing on the list')
-    + (SAVED.cleared ? ' \u00b7 ' + SAVED.cleared + ' cleared' : '');
-  $('dr-trouble').classList.toggle('on', panelOpen === 'trouble');
-}
-
 /* ── wiring ────────────────────────────────────────────── */
 $('card').addEventListener('click', reveal);
 
@@ -3724,7 +3577,7 @@ $('s-check').addEventListener('click', seqCheck);
 $('miss').addEventListener('click', didntKnow);
 $('again-missed').addEventListener('click', () => {
   if (!missed.length) return;          // nothing to review — should be unreachable
-  startRound([...missed], { review: true, mixed, trouble });   // only the ones marked "Didn't know it"
+  startRound([...missed], { review: true, mixed });   // only the ones marked "Didn't know it"
 });
 /* Typing narrows the tracks under it; the field itself is outside the part
    of the drawer that is redrawn, so what is being typed survives the redraw. */
@@ -3741,7 +3594,6 @@ $('dveil').addEventListener('click', closeDrawer);
 $('dr-home').addEventListener('click', () => openFromDrawer(showWelcome));
 $('dr-board').addEventListener('click', () => openFromDrawer(() => openPanel('board')));
 $('dr-prog').addEventListener('click', () => openFromDrawer(() => openPanel('reviewpanel')));
-$('dr-trouble').addEventListener('click', () => openFromDrawer(() => openPanel('trouble')));
 $('study-btn').addEventListener('click',
   () => panelOpen === 'study' ? closePanel() : openPanel('study'));
 $('p-back').addEventListener('click', closePanel);
@@ -3749,17 +3601,9 @@ $('rp-draw').addEventListener('click', async () => {
   if (roundInProgress() && !await ask('Leave this round to review?', 'Leave it')) return;
   startMixedReview();
 });
+
 $('restart').addEventListener('click',
-  () => trouble ? startTroubleDrill() : mixed ? startMixedReview() : loadDeck(deckName));
-$('t-drill').addEventListener('click', async () => {
-  if (roundInProgress() && !await ask('Leave this round for the drill?', 'Leave it')) return;
-  startTroubleDrill();
-});
-$('t-copy').addEventListener('click', async () => {
-  const b = $('t-copy'), ok = await copyText(troubleText());
-  b.textContent = ok ? "copied \u2713" : "press \u2318/Ctrl+C";
-  setTimeout(() => { b.textContent = "Copy the list"; }, 1800);
-});
+  () => mixed ? startMixedReview() : loadDeck(deckName));
 $('share').addEventListener('click', shareScore);
 
 /* ── the two controls a tester needs ───────────────────────

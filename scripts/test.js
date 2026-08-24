@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /* Regression tests for the built distributable.
  *
- * These guard the compatibility list in CLAUDE.md — saved progress, trouble
+ * These guard the compatibility list in CLAUDE.md — saved progress, the
  * cards, review, the IAST toggle, mobile usability — which are exactly the
  * things a refactor breaks silently.
  *
@@ -130,7 +130,7 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
-  // ── 3. trouble history migrates off the old text key ──────────────
+  // ── 3. the loss record migrates off the old text key ──────────────
   {
     const p = await browser.newPage();
     // Seed v1-shaped saved state before the app script runs.
@@ -151,7 +151,6 @@ const open = async (browser, opts = {}) => {
         oldGone: !raw.trouble['कामाक्षी¦she of loving eyes'],
         newRec: raw.trouble['01-nama:devi:kamaksi'] || null,
         deckBestKept: raw.decks['01 · Devī — goddess names'],
-        clearedKept: raw.cleared,
         /* the gate: a learner already holding a best score in Nāma has
            plainly met the track it belongs to, and is not sent back to it */
         begun: raw.begun || {},
@@ -165,7 +164,6 @@ const open = async (browser, opts = {}) => {
     ok('old text key removed', r.oldGone);
     ok('record moved onto the stable id', r.newRec && r.newRec.w === 3, JSON.stringify(r.newRec));
     ok('per-deck best score untouched', r.deckBestKept && r.deckBestKept.best === 12, JSON.stringify(r.deckBestKept));
-    ok('cleared tally untouched', r.clearedKept === 4);
     await p.close();
   }
 
@@ -266,7 +264,7 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
-  // ── a wrong tap grades as didntKnow() and feeds trouble ───────────
+  // ── a wrong tap grades as didntKnow() and records the loss ────────
   {
     const p = await open(browser);
     const before = await p.evaluate(() => ({ learned, missed: missed.length, id: current.card.id }));
@@ -287,8 +285,9 @@ const open = async (browser, opts = {}) => {
     }));
     ok('wrong answer joins the missed pile', after.missed === before.missed + 1);
     ok('wrong answer does not count as learned', after.learned === before.learned);
-    ok('trouble strike recorded against the card id',
-      after.trouble[before.id] && after.trouble[before.id].w === 1,
+    ok('the loss is recorded against the card id, and dated',
+      after.trouble[before.id] && after.trouble[before.id].w === 1
+        && /^\d{4}-\d\d-\d\d$/.test(after.trouble[before.id].m),
       JSON.stringify(after.trouble[before.id]));
     await p.close();
   }
@@ -410,7 +409,7 @@ const open = async (browser, opts = {}) => {
   }
 
   
-  // ── choice cards feed review and the trouble drill ────────────────
+  // ── choice cards feed the missed pile and its replay ──────────────
   {
     const p = await open(browser);
     const r = await p.evaluate(() => {
@@ -435,27 +434,6 @@ const open = async (browser, opts = {}) => {
       r.replay.len === 3 && r.replay.isChoice && r.replay.opts >= 2);
     await p.close();
   }
-  {
-    const p = await open(browser);
-    const r = await p.evaluate(() => {
-      const card = DECKS['Puruṣa-lakāra — person, tense and mood · practice'][0];
-      SAVED.trouble[card.id] = { w: 3, r: 0, s: '' }; save();
-      const onList = troubleCards().some(c => c.id === card.id);
-      startTroubleDrill();
-      const drill = { started: !!current,
-                      isChoice: document.getElementById('card').classList.contains('choice') };
-      const k = current.card.id;
-      [...document.querySelectorAll('#choices .opt')].find(x => x.textContent === current.card.answer).click();
-      document.getElementById('g-next').click();
-      return { onList, drill, rec: SAVED.trouble[k] };
-    });
-    ok('a missed choice card reaches the trouble list', r.onList);
-    ok('the trouble drill renders choice cards', r.drill.started && r.drill.isChoice);
-    ok('a right answer in the drill counts towards clearing',
-      r.rec && r.rec.r === 1, JSON.stringify(r.rec));
-    await p.close();
-  }
-
   // ── the sandhi set drills the operation, not the rule names ───────
   {
     const p = await browser.newPage();
@@ -650,7 +628,7 @@ const open = async (browser, opts = {}) => {
     ok('the feedback spells the chain out',
       r.gloss === 'Correct order: ' + r.chain, JSON.stringify(r.gloss));
     ok('it joins the missed pile', r.missed === 1 && r.learned === 0);
-    ok('and records a trouble strike', r.trouble && r.trouble.w === 1, JSON.stringify(r.trouble));
+    ok('and records the loss', r.trouble && r.trouble.w === 1, JSON.stringify(r.trouble));
     await p.close();
   }
 
@@ -794,18 +772,14 @@ const open = async (browser, opts = {}) => {
       const raw = JSON.parse(localStorage.getItem('abhyāsaḥ'));
       return {
         best: raw.decks[name].best,
-        cleared: raw.cleared,
         staleKept: !!raw.trouble[g],
         pile: pileCards().length,
-        trouble: troubleCards().length,
       };
     }, GONE);
-    ok('a removed card keeps its trouble record', r.staleKept);
+    ok('a removed card keeps its loss record', r.staleKept);
     ok('a best score set on the old, larger deck survives',
       r.best && r.best[0] === 55 && r.best[1] === 61, JSON.stringify(r.best));
-    ok('the cleared tally survives curation', r.cleared === 7);
     ok('stale pile keys resolve to nothing rather than breaking', r.pile === 0);
-    ok('stale trouble keys do not enter the drill', r.trouble === 0);
     await p.close();
   }
 
@@ -2478,20 +2452,17 @@ const open = async (browser, opts = {}) => {
        opens with; what is left is named in English. */
     ok('the mode rows are named in English',
       JSON.stringify(rows.map(r => r.name)) ===
-        JSON.stringify(['Home', 'Scoreboard', 'Trouble cards']),
+        JSON.stringify(['Home', 'Scoreboard']),
       rows.map(r => r.name).join(' | '));
     const sub = n => (rows.find(r => r.name === n) || {}).sub || '';
     ok('the scoreboard row counts what it holds',
       /\d+ of \d+ lists completed/.test(sub('Scoreboard')), sub('Scoreboard'));
-    ok('the trouble row says what is on the list',
-      /cleared/.test(sub('Trouble cards')), sub('Trouble cards'));
 
     await p.evaluate(() => loadDeck(Object.keys(DECKS)[0]));  // off the landing card
     // and every one of them still opens and renders
     for (const [btn, id, want] of [
       ['#dr-board', 'board', /lists complete · \d+ played/],
       ['#dr-prog', 'reviewpanel', /Reviewing \d+ cards from \d+ learned/],
-      ['#dr-trouble', 'trouble', /cleared/],
     ]) {
       await p.click('#nav');
       await p.click(btn);
@@ -2859,8 +2830,7 @@ const open = async (browser, opts = {}) => {
   // again.  It used not to: missing a card un-masters it, the pool was the
   // mastered set alone, and a draw keeps no list's books, so the one card
   // just proved weak left Abhyāsa altogether and reached no missed pile
-  // either.  Nothing brought it back until three separate misses had built
-  // it a trouble record.
+  // either.  Nothing brought it back at all.
   {
     const p = await open(browser);
     const r = await p.evaluate(() => {
@@ -3237,14 +3207,6 @@ const open = async (browser, opts = {}) => {
                        live: !document.getElementById('dir').disabled,
                        label: document.getElementById('dir-label').textContent };
 
-      /* the trouble drill is not escalated: these are cards already being
-         lost, and the harder direction is the last thing they need */
-      const card = DECKS[names[0]][0];
-      SAVED.review.cards[card.id] = [SAVED.review.runs, 3];
-      SAVED.trouble[card.id] = { w: 3, r: 0, s: '' };
-      startTroubleDrill();
-      out.troubleDir = askedDir(current.card);
-
       /* an interactive card in a review runs one way, as it always did */
       const ch = Object.keys(DECKS).find(nm => DECKS[nm].every(c => c.type === 'choice'));
       const cc = DECKS[ch][0];
@@ -3272,7 +3234,6 @@ const open = async (browser, opts = {}) => {
     ok('and the learner\u2019s own setting is left alone',
       r.settingUntouched === 'reveal' && r.practice.deva && r.practice.live,
       JSON.stringify(r.practice));
-    ok('the trouble drill is never escalated', r.troubleDir === 'reveal', r.troubleDir);
     ok('nor is an interactive card, which runs one way',
       r.choiceDir === 'reveal' && r.choiceLabel === 'one direction only',
       r.choiceLabel);
@@ -3791,36 +3752,29 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
-  // ── a sitting is a day, on both ends of the trouble list ──────────
-  // The clearing rule used to key on a page-load id: a tab left open for a
-  // week could never clear a card, and a reload between two rounds handed
-  // out a free credit.
+  // ── a loss is stamped with the day it happened ────────────────────
+  // The unit is the day, not a page-load id: a tab left open for a week is
+  // one page load, so a card lost on Monday could never count again all
+  // week, and a reload between two rounds would hand out a free pass.
   {
     const p = await open(browser);
     const r = await p.evaluate(() => {
       const out = {};
       const c = DECKS[Object.keys(DECKS)[0]][0];
       SAVED.trouble = {};
-      for (let i = 0; i < 3; i++) markWrong(c);        // onto the list
-      out.listed = troubleCards().length === 1;
-      markRight(c); markRight(c); markRight(c);        // three in one sitting
-      out.oneCredit = (SAVED.trouble[c.id] || {}).r === 1;
-      /* a new day, and the next credit lands */
-      SAVED.trouble[c.id].s = '2020-01-01';
-      markRight(c);
-      out.nextDay = (SAVED.trouble[c.id] || {}).r === 2;
-      /* the stamp is a date, not a random page id */
-      out.stampsADay = /^\d{4}-\d{2}-\d{2}$/.test(SAVED.trouble[c.id].s);
-      /* and a wrong answer counts however close together they were */
-      SAVED.trouble = {};
       markWrong(c); markWrong(c); markWrong(c);
-      out.wrongsCount = (SAVED.trouble[c.id] || {}).w === 3;
+      out.counted = (SAVED.trouble[c.id] || {}).w === 3;
+      out.stampsADay = /^\d{4}-\d{2}-\d{2}$/.test(SAVED.trouble[c.id].m);
+      out.lostToday = lostToday(c);
+      /* yesterday's loss does not stand in the way of today's recall */
+      SAVED.trouble[c.id].m = '2020-01-01';
+      out.notToday = !lostToday(c);
       return out;
     });
-    ok('three wrong answers list a card, however close together', r.listed && r.wrongsCount);
-    ok('but three right ones in a sitting are one credit', r.oneCredit);
-    ok('and the next day the next credit lands', r.nextDay);
-    ok('the sitting is stamped as a day, not a page load', r.stampsADay);
+    ok('every wrong answer counts, however close together', r.counted);
+    ok('the loss is stamped as a day, not a page load', r.stampsADay);
+    ok('a card lost today is known to have been', r.lostToday);
+    ok('and one lost on another day is not', r.notToday);
     await p.close();
   }
 
@@ -4259,10 +4213,6 @@ const open = async (browser, opts = {}) => {
       /* unlocked but never reviewed: the card says what it will draw on */
       out.cardBefore = document.getElementById('rp-what').textContent;
 
-      openPanel('trouble');
-      out.troubleRows = rows();
-      closePanel();
-
       /* and once a draw has happened the figure is on the row and in the
          window it came from */
       openPanel('reviewpanel');
@@ -4283,8 +4233,6 @@ const open = async (browser, opts = {}) => {
       && rows.indexOf(own) < rows.indexOf('panel-back');
     ok('review offers the draw above the way out',
       r.drawShown && leads(r.reviewRows, 'rp-actions'), r.reviewRows.join(' | '));
-    ok('so does the trouble drill', leads(r.troubleRows, 't-actions'),
-      r.troubleRows.join(' | '));
     ok('unlocked and unused, the card says what it draws on',
       /^Reviewing \d+ cards from \d+ learned · \d+\+? due now$/.test(r.cardBefore),
       JSON.stringify(r.cardBefore));
@@ -4959,13 +4907,12 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
-  // ── review, trouble and the scoreboard, opened from the drawer ─────
+  // ── the review and the scoreboard, opened from the drawer ─────────
   {
     const p = await open(browser);
     for (const [btn, panel, name] of [
       ['#dr-board', 'board', 'the scoreboard'],
       ['#dr-prog', 'reviewpanel', 'the abhyāsa draw'],
-      ['#dr-trouble', 'trouble', 'trouble cards'],
     ]) {
       await p.click('#nav');
       await p.click(btn);
@@ -5013,79 +4960,6 @@ const open = async (browser, opts = {}) => {
     ok('changing lists mid-round asks first', r.asked);
     ok('keeping going stays on the list', r.stayed);
     ok('leaving it changes the list', r.moved);
-    await p.close();
-  }
-
-  // ── the practice screen is laid out for a thumb ────────────────────
-  // The card was a fixed 250px at the top of the screen and the two buttons
-  // pressed on every card landed at about 45% of the height, with some 400px
-  // of bare ground under them.  The card takes the height going spare now and
-  // the tray sits at the foot of the screen.
-  {
-    for (const [w, h] of [[390, 844], [360, 640]]) {
-      const p = await browser.newPage({ viewport: { width: w, height: h } });
-      p.on('pageerror', e => { console.log('  PAGEERROR ' + e.message); fail.push('pageerror'); });
-      await p.goto(FILE, { waitUntil: 'load' });
-      /* a deck that flips: a choice card grades itself and shows no grade row */
-      await p.evaluate(() => loadDeck(Object.keys(DECKS).find(
-        n => DECKS[n].every(c => !c.type || c.type === 'reveal'))));
-      const r = await p.evaluate(() => {
-        const box = s => {
-          const e = document.querySelector(s);
-          return e && !e.hidden ? e.getBoundingClientRect() : null;
-        };
-        const read = () => ({
-          card: box('.panel').bottom,
-          grade: box('#grade') && box('#grade').top,
-          controls: box('.controls').top,
-          keys: box('.keys').bottom,
-        });
-        const front = read();
-        reveal();
-        const back = read();
-        return {
-          front, back,
-          view: window.innerHeight,
-          /* the whole practice screen fits: nothing a learner taps is below
-             the fold, and the page does not scroll to reach it */
-          scrolls: document.documentElement.scrollHeight > window.innerHeight + 1,
-          practising: document.body.classList.contains('practising'),
-        };
-      });
-      ok('the card takes the height going spare at ' + w + 'x' + h,
-        r.front.card > r.view * 0.5, 'card ends ' + Math.round(r.front.card)
-          + ' of ' + r.view);
-      ok('the grade buttons sit in the lower third at ' + w + 'x' + h,
-        r.back.grade > r.view * 0.66 && r.back.grade + 52 <= r.view,
-        'grade at ' + Math.round(r.back.grade) + ' of ' + r.view);
-      ok('the practice screen does not scroll at ' + w + 'x' + h, !r.scrolls);
-      /* revealing the answer must not move the controls under it: the tray
-         keeps a constant height and the grade row appears in reserved space */
-      ok('revealing an answer moves nothing under the card at ' + w + 'x' + h,
-        r.front.controls === r.back.controls && r.front.keys === r.back.keys,
-        r.front.controls + ' → ' + r.back.controls);
-      ok('the toggles still sit below the card at ' + w + 'x' + h,
-        r.back.controls > r.back.card && r.practising);
-      await p.close();
-    }
-
-    /* and the layout is a fact about what is on screen: a page, a panel or
-       the results screen is read rather than answered */
-    const p = await open(browser);
-    const r = await p.evaluate(() => {
-      const on = () => document.body.classList.contains('practising');
-      const out = { card: on() };
-      showWelcome();     out.welcome = on();
-      loadDeck(deckName); out.back = on();
-      openPanel('board'); out.panel = on();
-      closePanel();      out.closed = on();
-      while (current) knew();
-      out.results = on();
-      return out;
-    });
-    ok('the practice layout is on for a card and off for a page',
-      r.card && !r.welcome && r.back && !r.panel && r.closed && !r.results,
-      JSON.stringify(r));
     await p.close();
   }
 
