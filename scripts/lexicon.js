@@ -542,13 +542,16 @@ function establishedRoot(lex, findRoot, c) {
   const words = String(c.iast || '').trim().split(/\s*\/\s*/).filter(Boolean);
   if (!words.length) return null;
   const resolve = (w, gloss) => {
+    /* a curādi root spelt like its own noun — rūpa/√rūpa, kathā/√katha —
+       explains the thing by itself, which is no explanation.  Tested
+       against every fold of the headword, not just the one that matched:
+       kathā resolves through its own -ā fold and would otherwise pass. */
+    const self = new Set(stems(w));
     for (const st of stems(w)) {
       const cur = lex.nirukti.get(st);
       if (cur) return { root: cur.root };
       const f = findRoot(st, gloss);
-      /* a curādi root spelt like its own noun — rūpa, √rūpa — explains the
-         thing by itself, which is no explanation */
-      if (f && f.root !== st) return f;
+      if (f && !self.has(f.root)) return f;
     }
     return null;
   };
@@ -1028,7 +1031,7 @@ function tooltipRoot(glossed, note) {
    their dhātu.  It records what has been achieved so a regression fails the
    build; raise it when coverage genuinely grows, never lower it to make a
    build pass. */
-const TOOLTIP_ROOT_FLOOR = 226;
+const TOOLTIP_ROOT_FLOOR = 249;
 
 /* ── what the card's own annotation can be asked about ────────────────
    The chip already reads "kāma + akṣi — loving-eyed" and "· from √hṛ", and
@@ -1113,7 +1116,7 @@ function glossary(lex, findRoot) {
     if (from[m] || /-/.test(m)) return;       // a suffix or prefix has no root
     const f = findRoot(m, members[m]);
     /* a curādi root spelt like its own noun — aṅka, √aṅka — is no chain */
-    if (f && f.root !== m && roots[f.root]) from[m] = f.root;
+    if (f && !stems(m).includes(f.root) && roots[f.root]) from[m] = f.root;
   });
   return { members, roots, from };
 }

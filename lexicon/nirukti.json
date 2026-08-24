@@ -48,6 +48,126 @@
    "root": "pū",
    "why": "pū + -itra, the instrument suffix the rules do not carry — Monier-Williams files pavitra, the purifier, under √pū",
    "source": "traditional"
+  },
+  {
+   "iast": "lalitā",
+   "root": "lal",
+   "why": "lal + -ita, the playful — Monier-Williams files lalita under √lal; only the wording of the gloss against the root's sense kept the automatic link silent",
+   "source": "mw"
+  },
+  {
+   "iast": "pāśa",
+   "root": "paś",
+   "why": "paś + -a, the binder — Monier-Williams files pāśa, the noose, under √paś, to bind",
+   "source": "mw"
+  },
+  {
+   "iast": "dīpa",
+   "root": "dīp",
+   "why": "dīp + -a, the shiner — Monier-Williams files dīpa, the lamp, under √dīp, to shine",
+   "source": "mw"
+  },
+  {
+   "iast": "puṣpa",
+   "root": "puṣp",
+   "why": "puṣp + -a, what opens — Monier-Williams files puṣpa, the flower, under √puṣp, to blossom",
+   "source": "mw"
+  },
+  {
+   "iast": "dhūpa",
+   "root": "dhūp",
+   "why": "dhūp + -a — Monier-Williams files dhūpa, incense, under √dhūp, to fumigate",
+   "source": "mw"
+  },
+  {
+   "iast": "āsana",
+   "root": "ās",
+   "why": "ās + -ana, the sitting — the rules reach √as, to be, as well, so the automatic link rightly refuses the ambiguity; Monier-Williams settles it on √ās, to sit",
+   "source": "mw"
+  },
+  {
+   "iast": "arcana",
+   "root": "arc",
+   "why": "arc + -ana, the worshipping — Monier-Williams files arcana under √arc, to worship",
+   "source": "mw"
+  },
+  {
+   "iast": "jvālā",
+   "root": "jval",
+   "why": "jval + -ā, the blazing — Monier-Williams files jvālā, the flame, under √jval, to blaze",
+   "source": "mw"
+  },
+  {
+   "iast": "sarpa",
+   "root": "sṛp",
+   "why": "sṛp + -a with guṇa, the crawler — Monier-Williams files sarpa, the serpent, under √sṛp, to crawl",
+   "source": "mw"
+  },
+  {
+   "iast": "mūṣaka",
+   "root": "mūṣ",
+   "why": "mūṣ + -aka, the stealer — Monier-Williams files mūṣaka, the mouse, under √mūṣ, to steal",
+   "source": "mw"
+  },
+  {
+   "iast": "śakti",
+   "root": "śak",
+   "why": "śak + -ti, the being-able — a transparent kṛt formation; power is the noun of √śak, to be able",
+   "source": "mw"
+  },
+  {
+   "iast": "jāti",
+   "root": "jan",
+   "why": "jan + -ti with the nasal dropped, the being-born — a transparent kṛt formation on a root the curriculum teaches",
+   "source": "mw"
+  },
+  {
+   "iast": "tuṣṭi",
+   "root": "tuṣ",
+   "why": "tuṣ + -ti, the being-satisfied — a transparent kṛt formation; contentment is the noun of √tuṣ",
+   "source": "mw"
+  },
+  {
+   "iast": "dhṛti",
+   "root": "dhṛ",
+   "why": "dhṛ + -ti, the holding — a transparent kṛt formation; steadfastness is the noun of √dhṛ, to hold",
+   "source": "mw"
+  },
+  {
+   "iast": "medhā",
+   "root": "medh",
+   "why": "medh + -ā — Monier-Williams files medhā, wisdom, under √medh, to know",
+   "source": "mw"
+  },
+  {
+   "iast": "varṣa",
+   "root": "vṛṣ",
+   "why": "vṛṣ + -a with guṇa, the raining — Monier-Williams files varṣa, the rains and so the year, under √vṛṣ, to rain",
+   "source": "mw"
+  },
+  {
+   "iast": "nadī",
+   "root": "nad",
+   "why": "nad + -ī, the roarer — Monier-Williams files nadī, the river, under √nad, to sound, roar",
+   "source": "mw"
+  },
+  {
+   "iast": "tejas",
+   "root": "tij",
+   "why": "tij + -as with guṇa — Monier-Williams files tejas, fiery brilliance, under √tij, to be sharp",
+   "source": "mw"
+  },
+  {
+   "iast": "yuga",
+   "root": "yuj",
+   "why": "yuj + -a, what is yoked — Monier-Williams files yuga under √yuj, a root the curriculum teaches",
+   "source": "mw"
+  },
+  {
+   "iast": "mṛga",
+   "root": "mṛg",
+   "why": "mṛg + -a, the hunted — Monier-Williams files mṛga, the deer, under √mṛg, to hunt",
+   "source": "mw"
   }
  ],
  "members": [

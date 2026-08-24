@@ -2312,12 +2312,30 @@ Three changes made the guarantee worth stating:
   entry is the file's own: a derivation the tradition does not state is not
   entered.
 
-Coverage when the guarantee was laid down: **226** of 1,506 vocabulary-round
-reveal cards carry their dhātu (the build prints the number). The rest are
-words with no establishable root — denominals, borrowings, words whose
-etymology is genuinely contested (indra, sūrya as a simple word, ambā) — and
-the honest limit moves only by adding verified links: a curriculum family, a
-nirukti entry, or a rule the curriculum itself states.
+**And twenty more transparent formations.** Beside the epithets, a second
+batch of `nirukti.json` entries is the ordinary kṛt vocabulary the form
+rules already rebuild and only the English wording blocked: `dīpa` is √dīp
+*to shine*, `puṣpa` √puṣp *to blossom*, `pāśa` √paś *to bind*, `śakti` √śak
+*to be able*, `dhṛti` √dhṛ *to hold*, `nadī` √nad *to roar*. Those are
+cited `mw` rather than `traditional` — a dictionary states them, tradition
+does not have to. The junk the sense filter was rejecting stays rejected
+and is the reason it exists: `bālā` from √bal *to breathe*, `mātā` from
+√man, `padma` from √pad, `śata` from √śam.
+
+**A root spelt like its own noun explains nothing**, and the guard for it
+is tested against every fold of the headword rather than the one that
+matched — `kathā` reaches √katha through its own `-ā` fold and would
+otherwise have shipped as *kathā, story, from √katha*.
+
+Coverage when the guarantee was laid down: **249** of 1,506 vocabulary-round
+reveal cards carry their dhātu (the build prints the number, and
+`TOOLTIP_ROOT_FLOOR` holds it). Of the rest, the form rules reach a sensed
+root for about 205 — candidates a hand-check could confirm or reject, one
+entry at a time — and reach nothing at all for the remaining thousand:
+denominals, borrowings, and words whose etymology is genuinely contested
+(indra, sūrya as a simple word, ambā). The honest limit moves only by adding
+verified links: a curriculum family, a nirukti entry, or a rule the
+curriculum itself states.
 
 #### What the generators refuse to do
 
