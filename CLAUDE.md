@@ -1954,6 +1954,44 @@ asks for complete paradigms, so they stay.
 `scripts/test.js` fails if a lesson holds the same headword with the same
 meaning in two lists, and if a core dhātu is carded anywhere but Stage 9.
 
+### A meaning has to be in English
+
+`skandaḥ` glossed **`Kārttikeya`** answers a Sanskrit word with a Sanskrit
+word. A learner who already knows the second name learnt nothing, and one who
+does not is no better off than before the card — the back renames the god
+rather than saying who he is. `vocab/02-god-names.md` had the answer all
+along: *the youthful war-god*.
+
+Eleven cards were like that, and three of them were the same word twice:
+
+| | |
+|:--|:--|
+| `skandaḥ` | `Kārttikeya` → **`the war-god, Kārttikeya`** |
+| `hrīṃ` `krīṃ` `klīṃ` | `māyā-bīja` → **`māyā-bīja, the seed-syllable of illusion`**, and the same for Kālī and desire. The list's own `bīja → seed-syllable` card supplies the English, and `13 · Moha` supplies *illusion* and *desire* |
+| `kāśī` `kāñcī` `kedāra` | `Vārāṇasī` → **`the city of Vārāṇasī`** |
+| `mathurā` `ayodhyā` `yamunā` | `Mathurā` → **`the city of Mathurā`**; `Yamunā` → **`the Yamunā river`** |
+| `himavān` | `Himālaya` → **`the Himālaya mountains`** |
+
+**The classifier is the deck's own idiom, not an invention.** `V20 · Tīrtha`
+already read `vindhyācala — Vindhya mountains`, `sarasvatī — Sarasvatī river`
+and `kāmpilya — ancient city`; the eight that did not were simply
+inconsistent with the seventeen that did. Where the source states a meaning it
+is used verbatim.
+
+A place name is the one gloss that cannot be translated away — *what* `kāśī`
+means **is** which city it is — so those cards read as a name with an English
+classifier, and reversed they cue the name. That is the honest form of the
+question, and the deck was already asking it that way.
+
+**A deck that pairs Sanskrit with Sanskrit by design says so in its `pair`,**
+and is not asked this question: `join → result`, `parts → compound`,
+`compound → vigraha`, `sūtra → sounds`, `pattern → metre`. Numerals,
+`O Rāma!` and a Latin binomial are all meanings — the rule is not "must
+contain an English word" but **must not be entirely Sanskrit**, tested as
+every word of the gloss carrying a diacritic. `scripts/test.js` walks every
+`word → meaning` deck, and carries a self-check that the rule still catches
+`Kārttikeya` while leaving `the city of Vārāṇasī` alone.
+
 ### A reversed deck must still have one answer per cue
 
 Every reveal deck can be run backwards, and in that direction **the gloss is

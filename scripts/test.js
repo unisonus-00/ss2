@@ -3909,6 +3909,48 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
+  // ── a meaning has to be in English ────────────────────────────────
+  // A deck that runs word → meaning promises a meaning on the back, and
+  // "skandaḥ → Kārttikeya" is not one: it renames the god in Sanskrit and
+  // leaves a learner who does not already know the second name with nothing.
+  // Decks that pair Sanskrit with Sanskrit by design say so in their own
+  // pair — join → result, compound → vigraha, pattern → metre — and are not
+  // asked this question.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const DIA = 'āīūṛṝḷḹṅñṭḍṇśṣṃḥĀĪŪṚṜṄÑṬḌṆŚṢṂḤ';
+      const sanskrit = t => [...t].some(ch => DIA.indexOf(ch) >= 0);
+      const bad = [];
+      Object.keys(DECKS).forEach(n => {
+        if ((DECK_PAIR[n] || 'word → meaning') !== 'word → meaning') return;
+        DECKS[n].forEach(c => {
+          if ((c.type || 'reveal') !== 'reveal') return;
+          /* Every word of the gloss carrying diacritics means the whole back
+             is Sanskrit.  A numeral, an "O …!" or a plain English word beside
+             the name is what makes it a meaning. */
+          const words = (c.gloss || '').split(/[^A-Za-z\u00C0-\u1EFF]+/).filter(Boolean);
+          if (words.length && words.every(sanskrit)) bad.push(c.id + ' → ' + c.gloss);
+        });
+      });
+      /* and the rule has teeth: the card that prompted it, as it was */
+      const caught = ['Kārttikeya', 'māyā-bīja', 'Vārāṇasī'].every(g => {
+        const w = g.split(/[^A-Za-z\u00C0-\u1EFF]+/).filter(Boolean);
+        return w.length && w.every(sanskrit);
+      }) && !['the city of Vārāṇasī', 'O Rāma!', 'Kerala', 'Sarasvatī river']
+        .some(g => {
+          const w = g.split(/[^A-Za-z\u00C0-\u1EFF]+/).filter(Boolean);
+          return w.length && w.every(sanskrit);
+        });
+      return { bad: bad, caught: caught };
+    });
+    ok('a word → meaning card answers with a meaning, not another Sanskrit word',
+      !r.bad.length, r.bad.slice(0, 3).join(' | '));
+    ok('and the rule catches a Sanskrit gloss without catching an English one',
+      r.caught);
+    await p.close();
+  }
+
   // ── the paradigm workshop is its own track ───────────────────────
   {
     const p = await open(browser);

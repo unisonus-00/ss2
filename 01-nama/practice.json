@@ -146,7 +146,7 @@
           "id": "01-nama:deva:skandah",
           "devanagari": "स्कन्दः",
           "iast": "skandaḥ",
-          "gloss": "Kārttikeya",
+          "gloss": "the war-god, Kārttikeya",
           "note": "noun · masculine · a-stem · stem: skanda-"
         },
         {
@@ -3051,7 +3051,7 @@
           "id": "01-nama:nature-cosmos:himavan-himacala-tuhinacala",
           "devanagari": "हिमवान् / हिमाचल / तुहिनाचल",
           "iast": "himavān / himācala / tuhinācala",
-          "gloss": "Himālaya",
+          "gloss": "the Himālaya mountains",
           "note": "noun · masculine · DM 6.8"
         },
         {
@@ -3993,14 +3993,14 @@
           "id": "01-nama:sacred-geography-plants:kasi",
           "devanagari": "काशी",
           "iast": "kāśī",
-          "gloss": "Vārāṇasī",
+          "gloss": "the city of Vārāṇasī",
           "source": "KKS 610; KS passim"
         },
         {
           "id": "01-nama:sacred-geography-plants:kanci",
           "devanagari": "काञ्ची",
           "iast": "kāñcī",
-          "gloss": "Kāñcīpuram",
+          "gloss": "the city of Kāñcīpuram",
           "note": "noun · feminine · ī-stem · stem: kāñcī-",
           "source": "KKS 501, 611"
         },
@@ -4022,7 +4022,7 @@
           "id": "01-nama:sacred-geography-plants:kedara",
           "devanagari": "केदार",
           "iast": "kedāra",
-          "gloss": "Kedārnāth",
+          "gloss": "the shrine of Kedārnāth",
           "source": "KKS 967-968"
         },
         {
@@ -4057,14 +4057,14 @@
           "id": "01-nama:sacred-geography-plants:mathura",
           "devanagari": "मथुरा",
           "iast": "mathurā",
-          "gloss": "Mathurā",
+          "gloss": "the city of Mathurā",
           "source": "KS passim"
         },
         {
           "id": "01-nama:sacred-geography-plants:ayodhya",
           "devanagari": "अयोध्या",
           "iast": "ayodhyā",
-          "gloss": "Ayodhyā",
+          "gloss": "the city of Ayodhyā",
           "source": "KS passim"
         },
         {
@@ -4092,7 +4092,7 @@
           "id": "01-nama:sacred-geography-plants:yamuna-kalindi",
           "devanagari": "यमुना / कालिन्दी",
           "iast": "yamunā / kālindī",
-          "gloss": "Yamunā",
+          "gloss": "the Yamunā river",
           "note": "noun · feminine",
           "source": "KKS 688-689; KS passim"
         },
