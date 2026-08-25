@@ -1,22 +1,29 @@
   :root {
-    /* This page paints its own dark ground and puts a deliberately light,
-       palm-leaf card on top of it.  Without a declared scheme Chrome and
-       Brave treat it as a light page they are free to auto-darken, and they
-       repaint that card a muddy olive with inverted text.  Declaring the
-       scheme opts the page out: the colours below are already the dark
-       design, and nothing should second-guess them. */
+    /* Every surface on this page is dark — the ground behind the cards and
+       the cards themselves alike.  Without a declared scheme Chrome and
+       Brave treat it as a light page they are free to auto-darken, and a
+       forced repaint on top of colours that are already the dark design
+       only muddies them.  Declaring the scheme opts the page out. */
     color-scheme: dark;
     --ground: #241f19;
+    /* the raised surface a card, panel, popover or the drawer sits on — one
+       step lighter than the ground, so each reads as set apart from the
+       page behind it even though both are dark. */
+    --surface: #2b251e;
     --leaf: #e9dcbe;
-    --leaf-edge: #cdbb95;
-    --ink: #322a20;
+    --leaf-edge: #55493a;
+    /* content on a surface takes the same ink the ground's own chrome does
+       — both are light text on a dark ground now — but keeps its own name
+       so a surface's type can be retuned without touching the chrome's. */
+    --ink: var(--leaf);
     --kumkuma: #a5341f;
-    --faded: #7d705c;
+    --faded: #9c8e78;
     /* right answers.  kumkuma already means wrong everywhere on this page,
-       so correctness gets the other pigment on the same shelf.  Both are
-       chosen to sit on the light card; on the dark ground they read at about
-       2.4:1, which is right for a border and far too low for a glyph.  So
-       each has a light tint for use as ink there, at ~7.5:1 — the tint is
+       so correctness gets the other pigment on the same shelf.  Both
+       pigments are saturated enough to read as a border or a fill at a few
+       pixels, but on this page's dark surfaces they read at about 2.4:1 as
+       a glyph, which is right for a border and far too low for text.  So
+       each has a light tint for use as ink instead, at ~7:1 — the tint is
        its own pigment lightened, same hue and saturation, not a new colour. */
     --patra: #4f6137;
     --patra-ink: #a2b983;
@@ -95,8 +102,8 @@
   body.practising .tray { min-height: 9.6rem; justify-content: flex-end; }
   /* On a phone the leaf takes everything that is going, and there is no bare
      ground left under the buttons at all.  On a desktop that would be a
-     900px cream rectangle with one word in the middle of it, so past a
-     phone's width the leaf stops growing.  A floor, never a ceiling: a tall
+     900px panel with one word in the middle of it, so past a phone's width
+     the leaf stops growing.  A floor, never a ceiling: a tall
      card still grows past it and the page scrolls, because the leaf's
      background stops where its box does. */
   @media (min-width: 700px) {
@@ -206,11 +213,11 @@
   }
   .tally b { font-size: .95rem; font-weight: 500; letter-spacing: 0;
              text-transform: none; color: var(--leaf); margin-right: .25rem; }
-  .tally .miss b { color: var(--kumkuma); }
+  .tally .miss b { color: var(--kumkuma-ink); }
 
   .panel {
     width: 100%; max-width: 440px;
-    background: var(--leaf); color: var(--ink);
+    background: var(--surface); color: var(--ink);
     border: 1px solid var(--leaf-edge); border-radius: 3px;
     box-shadow: 0 12px 30px rgba(0,0,0,.35);
     position: relative;
@@ -239,8 +246,9 @@
                  color: var(--faded); }
   .w-stat b { font-size: 1rem; font-weight: 600; font-variant-numeric: tabular-nums; }
   /* On the leaf, not on the ground.  The app's buttons are inked --leaf for
-     the dark background, which is invisible on a light card — the same
-     reason the choice options carry their own palette. */
+     the ground; a card takes its own --ink instead, so its type can be
+     retuned without touching the chrome's — the same reason the choice
+     options carry their own palette. */
   .w-eyebrow { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase;
                color: var(--faded); margin-bottom: .3rem; }
   .s-plan { margin: .2rem 0 1rem; }
@@ -290,7 +298,7 @@
   /* The one switch that opens both gates at once, in the colour the app uses
      for wrong: it is deliberately not the state a learner should be in. */
   .w-switch { display: flex; align-items: flex-start; gap: .5rem; margin-top: 1.1rem;
-              font-size: .78rem; line-height: 1.45; color: var(--kumkuma); cursor: pointer; }
+              font-size: .78rem; line-height: 1.45; color: var(--kumkuma-ink); cursor: pointer; }
   .w-switch input { accent-color: var(--kumkuma); flex: none; margin-top: .1rem; }
   .w-actions { display: flex; gap: .6rem; margin-top: 1.3rem; }
   .w-actions button {
@@ -357,7 +365,7 @@
      Uppercasing also set the wide letter-spacing against every word at once,
      so a two-clause annotation ran to four shouting lines under the answer. */
   .tag { margin-top: .6rem; font-size: .74rem; letter-spacing: .05em; line-height: 1.75;
-         text-transform: none; color: var(--kumkuma); }
+         text-transform: none; color: var(--kumkuma-ink); }
   /* where the exercise came from — provenance, not morphology, so it stays
      outside the annotation chip and its popover */
   .src { margin-top: .45rem; font-size: .68rem; font-style: italic;
@@ -365,7 +373,7 @@
   .src:empty { display: none; }
   .seen-before { position: absolute; top: 12px; right: 28px;
                  font-size: .65rem; letter-spacing: .12em; text-transform: uppercase;
-                 color: var(--kumkuma); }
+                 color: var(--kumkuma-ink); }
 
   /* ── choice cards ──────────────────────────────────────────
      Same panel, same grading — only the front differs.
@@ -410,11 +418,11 @@
   .opt:focus-visible { outline: 2px solid var(--kumkuma); outline-offset: 2px; }
   .opt:disabled { cursor: default; opacity: 1; }      /* locked, not greyed out */
   .opt.right {
-    border-color: var(--patra); color: var(--patra);
+    border-color: var(--patra); color: var(--patra-ink);
     box-shadow: inset 0 0 0 1px var(--patra);
   }
   .opt.wrong {
-    border-color: var(--kumkuma); color: var(--kumkuma);
+    border-color: var(--kumkuma); color: var(--kumkuma-ink);
     text-decoration: line-through; text-decoration-thickness: 1px;
   }
   /* A choice note carries rule names and vowel equations — "guṇa · a + i → e"
@@ -460,8 +468,8 @@
   .chip:focus-visible { outline: 2px solid var(--kumkuma); outline-offset: 2px; }
   .chip:disabled { cursor: default; opacity: 1; }
   .built .chip { border-color: var(--faded); }
-  .built .chip.right { border-color: var(--patra); color: var(--patra); }
-  .built .chip.wrong { border-color: var(--kumkuma); color: var(--kumkuma); }
+  .built .chip.right { border-color: var(--patra); color: var(--patra-ink); }
+  .built .chip.wrong { border-color: var(--kumkuma); color: var(--kumkuma-ink); }
   .built .chip.right::after { content: " ✓"; }
   .built .chip.wrong::after { content: " ✕"; }
   /* the answer, spelled out, when the assembly was wrong */
@@ -476,9 +484,9 @@
   /* What was just completed.  The right-answer pigment, because that is what
      it is: the round's own good news, above the score it came from. */
   .awards { margin: 0 0 .9rem; display: flex; flex-direction: column; gap: .35rem; }
-  /* the pigment, not its tint: this sits on the palm leaf, and --patra-ink
-     is the lightened version for the dark ground */
-  .awards div { font-size: .9rem; line-height: 1.4; color: var(--patra); }
+  /* the tint, not the pigment: this is a glyph, and --patra alone is a
+     border colour on this page's dark surfaces, not a readable one */
+  .awards div { font-size: .9rem; line-height: 1.4; color: var(--patra-ink); }
   .awards b { font-weight: 600; }
   .awards span { color: var(--faded); }
   /* Everything under the card, in one column. */
@@ -571,9 +579,9 @@
   .score { font-size: .9rem; color: var(--faded); margin-bottom: 1.3rem; }
   .score b { color: var(--ink); font-weight: 500; }
   .missed-head { font-size: .7rem; letter-spacing: .14em; text-transform: uppercase;
-                 color: var(--kumkuma); border-bottom: 1px solid var(--leaf-edge);
+                 color: var(--kumkuma-ink); border-bottom: 1px solid var(--leaf-edge);
                  padding-bottom: .4rem; margin-bottom: .2rem; }
-  .row { padding: .7rem 0; border-bottom: 1px solid rgba(205,187,149,.5); }
+  .row { padding: .7rem 0; border-bottom: 1px solid var(--leaf-edge); }
   .row:last-child { border-bottom: none; }
   .row .r-dn { font-family: "Noto Serif Devanagari", "Kohinoor Devanagari", serif; font-size: 1.35rem; }
   .row .r-iast { font-style: italic; margin-left: .5rem; }
@@ -587,7 +595,7 @@
   .board { padding: 1.8rem 1.5rem; display: none; }
   .board h2 { margin: 0 0 .2rem; font-size: 1.2rem; font-weight: 500; }
   .brow { display: flex; align-items: baseline; gap: .8rem;
-          padding: .55rem 0; border-bottom: 1px solid rgba(205,187,149,.5); }
+          padding: .55rem 0; border-bottom: 1px solid var(--leaf-edge); }
   .brow:last-child { border-bottom: none; }
   .b-name { flex: 1; font-size: .95rem; }
   .b-stage { font-size: .68rem; letter-spacing: .1em; text-transform: uppercase;
@@ -595,15 +603,15 @@
   .b-score { font-variant-numeric: tabular-nums; font-size: .95rem; }
   .b-pct { font-size: .8rem; color: var(--faded);
            min-width: 3.2em; text-align: right; font-variant-numeric: tabular-nums; }
-  .brow.full .b-score, .brow.full .b-pct { color: var(--kumkuma); }
+  .brow.full .b-score, .brow.full .b-pct { color: var(--kumkuma-ink); }
   /* In the round summary a full row means a list that HELD UP, so it takes
      the right-answer pigment rather than the accent the scoreboard uses to
      mark a finished list. */
-  #r-list .brow.full .b-score, #r-list .brow.full .b-pct { color: var(--patra); }
+  #r-list .brow.full .b-score, #r-list .brow.full .b-pct { color: var(--patra-ink); }
 
   /* ── Study ────────────────────────────────────────────────────────────
      A reading surface, not a card — but it sits on the same palm-leaf panel
-     every window here does, so it is dark ink on light ground, not the app's
+     every window here does, so it takes the panel's own ink, not the app's
      chrome palette.  It scrolls inside itself rather than pushing the rest of
      the app off the bottom.  Everything in .st-body was produced by
      scripts/markdown.js from the lesson's own reference.md. */
@@ -630,7 +638,7 @@
   .st-body blockquote { margin: .6rem 0; padding-left: .8rem;
                         border-left: 2px solid var(--leaf-edge); }
   .st-body pre { margin: .6rem 0; padding: .6rem .7rem; overflow-x: auto;
-                 background: rgba(50,42,32,.06); border: 1px solid var(--leaf-edge);
+                 background: rgba(233,220,190,.05); border: 1px solid var(--leaf-edge);
                  border-radius: 3px; }
   .st-body code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
                   font-size: .76rem; line-height: 1.5; white-space: pre; }
@@ -669,7 +677,7 @@
   .ask {
     position: fixed; z-index: 61; left: 50%; top: 50%; transform: translate(-50%, -50%);
     width: min(20rem, calc(100vw - 2rem));
-    background: var(--leaf); color: var(--ink);
+    background: var(--surface); color: var(--ink);
     border: 1px solid var(--leaf-edge); border-radius: 3px;
     box-shadow: 0 14px 34px rgba(0,0,0,.5);
     padding: 1.1rem 1.1rem 1rem; text-align: center;
@@ -677,12 +685,12 @@
   .ask p { margin: 0 0 1rem; font-size: .95rem; line-height: 1.5; }
   .ask-btns { display: flex; gap: .6rem; justify-content: center; flex-wrap: wrap; }
   .ask-btns button { color: var(--ink); border-color: var(--faded); font-size: .9rem; }
-  .ask-btns button.primary { border-color: var(--kumkuma); color: var(--kumkuma); }
+  .ask-btns button.primary { border-color: var(--kumkuma); color: var(--kumkuma-ink); }
 
   /* the annotation popover */
   .pop {
     position: fixed; z-index: 50; width: min(21rem, calc(100vw - 1.4rem));
-    background: var(--leaf); color: var(--ink);
+    background: var(--surface); color: var(--ink);
     border: 1px solid var(--leaf-edge); border-radius: 3px;
     box-shadow: 0 14px 34px rgba(0,0,0,.5);
     padding: .85rem 1rem 1rem; text-align: left;
@@ -694,7 +702,7 @@
   .sec-h { margin-bottom: .3rem; }
   .sec-t { font-size: 1.02rem; }
   .sec-e { font-size: .66rem; letter-spacing: .12em; text-transform: uppercase;
-           color: var(--kumkuma); margin-left: .45rem; }
+           color: var(--kumkuma-ink); margin-left: .45rem; }
   .sec-b { margin: 0; }
   .sec-eg { margin-top: .5rem; }
   /* a root's example has no Devanagari of its own — the heading carries it */
@@ -710,7 +718,7 @@
              border-bottom: 1px solid var(--leaf-edge); }
   .m-label { display: block; margin-bottom: .2rem;
              font-size: .7rem; letter-spacing: .14em; text-transform: uppercase;
-             color: var(--kumkuma); }
+             color: var(--kumkuma-ink); }
   .m-pct { font-size: 1.6rem; font-variant-numeric: tabular-nums; }
   .m-sub { margin-left: .55rem; font-size: .74rem; color: var(--faded); }
 
@@ -729,7 +737,7 @@
   .drawer {
     position: fixed; z-index: 55; top: 0; left: 0; bottom: 0;
     width: min(23rem, 90vw); overflow-y: auto; -webkit-overflow-scrolling: touch;
-    background: #2b251e; border-right: 1px solid var(--faded);
+    background: var(--surface); border-right: 1px solid var(--faded);
     box-shadow: 6px 0 26px rgba(0,0,0,.45);
     /* clear of the notch at the top and the home indicator at the foot; the
        scroll stays inside the drawer rather than carrying on into the page
@@ -791,7 +799,7 @@
      rather than letting the note land on top of this line. */
   /* what kind of thing this window is, under its name */
   .rp-kind { font-size: .7rem; letter-spacing: .14em; text-transform: uppercase;
-             color: var(--kumkuma); margin: .1rem 0 .5rem; }
+             color: var(--kumkuma-ink); margin: .1rem 0 .5rem; }
   #reviewpanel .score { margin-bottom: .2rem; }
   .rp-what { font-size: .82rem; color: var(--faded); margin-bottom: 1.1rem; }
   #reviewpanel .note { margin-top: 0; }
@@ -857,7 +865,7 @@
   .tr-pct { grid-area: pct; align-self: center; font-size: .85rem;
             color: var(--faded); font-variant-numeric: tabular-nums; }
   .tr-head .bar { grid-area: bar; margin-top: .5rem; }
-  .tr.full .tr-pct { color: var(--patra); }
+  .tr.full .tr-pct { color: var(--patra-ink); }
   .tr-head[aria-expanded="true"] .tr-name { color: var(--leaf); }
   .tr-body { padding: 0 0 .6rem .55rem; border-left: 1px solid rgba(125,112,92,.3);
              margin-left: .2rem; }
@@ -877,7 +885,7 @@
             color: var(--faded); font-variant-numeric: tabular-nums; }
   .ls-head .bar { grid-area: bar; margin-top: .35rem; }
   /* a lesson is ticked only when every card it holds is back cold */
-  .ls.full .ls-pct { color: var(--patra); font-size: .95rem; }
+  .ls.full .ls-pct { color: var(--patra-ink); font-size: .95rem; }
   .ls-body { padding: .1rem 0 .5rem .55rem; }
 
   /* A list standing in for the level above it — a track that is one list, or a
@@ -925,7 +933,7 @@
   .dk-sub .nx, .ls-sub .nx, .tr-sub .nx { color: var(--leaf); font-weight: 600; font-style: normal; }
   .dk-pct { grid-area: pct; align-self: center; font-size: .74rem;
             color: var(--faded); font-variant-numeric: tabular-nums; }
-  .dk.full .dk-pct { color: var(--patra); font-size: .9rem; }
+  .dk.full .dk-pct { color: var(--patra-ink); font-size: .9rem; }
   /* A row whose level has not been opened yet: visible, so the learner sees
      what is coming, but not yet a way in. */
   .locked { opacity: .42; cursor: default; }

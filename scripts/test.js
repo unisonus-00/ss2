@@ -1210,9 +1210,10 @@ const open = async (browser, opts = {}) => {
 
   // ── the card survives a browser's own dark mode ────────────────────
   // Chrome and Brave auto-darken pages that do not declare a colour scheme,
-  // and they repainted the palm-leaf card a muddy olive with inverted text.
-  // Nothing in the cascade changes when they do it — getComputedStyle still
-  // reports the right colour — so this reads the pixel that was painted.
+  // and without one they would repaint an already-dark card a muddy olive
+  // with inverted text. Nothing in the cascade changes when they do it —
+  // getComputedStyle still reports the right colour — so this reads the
+  // pixel that was painted.
   {
     const zlib = require('zlib');
     const firstPixel = png => {            // the one pixel of a 1×1 screenshot
@@ -1225,7 +1226,7 @@ const open = async (browser, opts = {}) => {
       const raw = zlib.inflateSync(Buffer.concat(idat));
       return [raw[1], raw[2], raw[3]];     // byte 0 is the scanline filter
     };
-    const LEAF = [233, 220, 190];          // --leaf, #e9dcbe
+    const SURFACE = [43, 37, 30];          // --surface, #2b251e
 
     for (const [args, tag] of [[[], 'left alone'],
                                [['--enable-features=WebContentsForceDark'], 'forced dark']]) {
@@ -1237,8 +1238,8 @@ const open = async (browser, opts = {}) => {
         return { x: Math.round(r.x + 8), y: Math.round(r.y + 8) };
       });
       const got = firstPixel(await p.screenshot({ clip: { ...at, width: 1, height: 1 } }));
-      ok('the card is painted --leaf with the browser ' + tag,
-        got.every((v, i) => Math.abs(v - LEAF[i]) <= 2), 'rgb(' + got.join(', ') + ')');
+      ok('the card is painted --surface with the browser ' + tag,
+        got.every((v, i) => Math.abs(v - SURFACE[i]) <= 2), 'rgb(' + got.join(', ') + ')');
       await b2.close();
     }
   }
@@ -2094,9 +2095,9 @@ const open = async (browser, opts = {}) => {
         menu: card.querySelectorAll('.dk').length,
         /* nor the decorative binding holes, which belong to a flashcard */
         holes: getComputedStyle(card, '::before').content,
-        kumkuma: (() => {
+        kumkumaInk: (() => {
           const probe = document.createElement('span');
-          probe.style.color = 'var(--kumkuma)';
+          probe.style.color = 'var(--kumkuma-ink)';
           card.appendChild(probe);
           const c = getComputedStyle(probe).color;
           probe.remove();
@@ -2124,7 +2125,7 @@ const open = async (browser, opts = {}) => {
       r.shown.held + ' · ' + r.shown.name);
     ok('it walks through how the track runs', r.shown.steps >= 2, r.shown.steps + ' steps');
     ok('it shows the annotation as it appears — red, and underlined',
-      r.shown.tagLine === 'dotted' && r.shown.kumkuma === r.shown.tagInk,
+      r.shown.tagLine === 'dotted' && r.shown.kumkumaInk === r.shown.tagInk,
       r.shown.tagInk + ' · ' + r.shown.tagLine);
     ok('and the Study control as the glyph it is', r.shown.glyph);
     ok('the page carries no list menu', r.shown.menu === 0, r.shown.menu + ' rows');
@@ -4498,8 +4499,8 @@ const open = async (browser, opts = {}) => {
                strongInk: strong ? getComputedStyle(strong).color : '',
                /* resolved, not declared — a var() that fails to resolve is
                   not an error, it just inherits */
-               patra: (() => { const d = document.createElement('div');
-                 d.style.color = 'var(--patra)'; document.body.appendChild(d);
+               patraInk: (() => { const d = document.createElement('div');
+                 d.style.color = 'var(--patra-ink)'; document.body.appendChild(d);
                  const c = getComputedStyle(d).color; d.remove(); return c; })(),
                head: (document.querySelector('#r-list .missed-head') || {}).textContent,
                score: document.getElementById('r-score').textContent,
@@ -4514,7 +4515,7 @@ const open = async (browser, opts = {}) => {
       r.rows[0].name === r.weak && r.rows[0].verdict === 'practise',
       r.rows[0].name + ' ' + r.rows[0].score + ' · ' + r.rows[0].verdict);
     ok('a list that held up is marked strong, in the right-answer pigment',
-      r.rows.some(x => x.full && x.verdict === 'strong') && r.strongInk === r.patra,
+      r.rows.some(x => x.full && x.verdict === 'strong') && r.strongInk === r.patraInk,
       r.rows.map(x => x.name + ' ' + x.score).join(' | ') + ' · ' + r.strongInk);
     ok('the review score is still stated', /Review accuracy/.test(r.score),
       r.score.replace(/\s+/g, ' ').slice(0, 60));
