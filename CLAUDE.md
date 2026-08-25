@@ -229,7 +229,10 @@ absent, so adding `bricks.md` to a lesson needs no build change. Run it with
 **Abhyāsa** — the primary project file, distributed as `dist/abhyasah.html`.
 It is one self-contained page with no external references of any kind: no CDN,
 no fonts, no `fetch`, no stylesheets. It opens from `file://` and works
-offline, and it must stay that way.
+offline, and it must stay that way. `dist/sw.js` is written beside it and is
+the **only** thing that could not travel inside it — see **It installs, and
+it opens with no network**; the page does not look for it unless it is being
+served, and works without it.
 
 Application code lives in `app/`; **edit there, never in `dist/`**. Curriculum
 content lives beside its lesson:
@@ -243,6 +246,8 @@ app/app.js
 scripts/build.js       discovers, validates and inlines -> dist/abhyasah.html
 scripts/lexicon.js     the lexical layer: validates lexicon/, clues cards, generates lists
 scripts/markdown.js    reference.md -> HTML, at build time, for Study
+scripts/icons.js       the launcher icons, cropped out of app/logo.png
+scripts/pwa.js         the web app manifest, and the offline shell
 scripts/demo.js        repackages the distributable for publishing as an Artifact
 lexicon/*.json         roots, compounds, synonym-set readings, and their sources
 NN-lesson/practice.json   the lesson's curated practice
@@ -250,9 +255,10 @@ NN-lesson/reference.md    the lesson's reference, shown by Study
 practice.json             cross-cutting practice, beside 00-overview.md
 ```
 
-`node scripts/build.js` inlines the CSS, the JS, the mark, and every
-`practice.json` into one file, running the lexical layer over the practice
-data on the way — see **The lexical layer** below. `--check` builds in memory and fails if `dist/` is stale, without
+`node scripts/build.js` inlines the CSS, the JS, the mark, the launcher icons,
+the manifest and every `practice.json` into one file, running the lexical
+layer over the practice data on the way — see **The lexical layer** below,
+and **It installs, and it opens with no network** for the last two. `--check` builds in memory and fails if `dist/` is stale, without
 writing.
 
 Practice files are **discovered, not listed** — any numbered lesson directory
@@ -286,6 +292,81 @@ launches Chromium a second time with `--enable-features=WebContentsForceDark`
 and reads the pixel actually painted at the card's corner. Without the
 declaration it reads `rgb(60, 51, 28)`.
 
+### It installs, and it opens with no network
+
+The page has always been offline-capable: it is one file with nothing to
+fetch, and it opens from `file://` on a phone with no network. What was
+missing was the other half of being an app — that a learner can put it on a
+home screen and have it open *without a browser around it*.
+
+Two rules pull against each other here, and the split between them is the
+whole design:
+
+> **The distributable is one file with nothing to fetch.** A PWA is installed
+> off a **manifest**, and served offline by a **service worker registered
+> from a real script URL**.
+
+So the manifest and every icon travel **inside** the page as `data:` URIs — a
+`data:` URI is not a fetch, and a page carrying one is still one file. The
+service worker cannot: registration refuses anything but a script URL. It is
+written beside the page as **`dist/sw.js`** and registered at runtime, and
+only where it can mean anything:
+
+```js
+if (!/^https?:$/.test(location.protocol)) return;
+```
+
+Opened from `file://` nothing is attempted and nothing breaks — the page was
+already offline. A deployment that ships the page without `sw.js` beside it
+simply fails to register and carries on.
+
+- **`start_url` is written by the page, not by the build.** A manifest's URLs
+  resolve against the *manifest's* own address, and this one has none, so a
+  relative `start_url` cannot resolve at all and Chrome refuses to install
+  without one. The page writes `location.href` in and links the result —
+  which is also the honest answer for a single file: where it starts is
+  wherever it was opened from. The manifest arrives as a JSON island beside
+  the practice and lexicon islands, one field short.
+- **Not base64, for the manifest.** It carries `Abhyāsa` and an em dash, and
+  `btoa` refuses anything outside Latin-1. `encodeURIComponent` instead.
+- **The icons are the ring mark, cropped out of `app/logo.png`.**
+  `scripts/icons.js` decodes that PNG with `zlib` alone — no dependency
+  added — finds the last run of inked columns, box-filters it down and
+  composites it on the app's own ground. So the icon and the page are one
+  drawing, and redrawing the lockup redraws the icons. The wordmark is left
+  out: it does not survive being squeezed into a 48px tile.
+- **They are indexed PNGs, on a ramp from `--ground` to `--leaf`.** The
+  artwork is one cream ink keyed onto transparency, so every pixel of a
+  composited icon lies on exactly that ramp: an index per pixel is lossless
+  here and a third of the bytes. Five icons — 192, 512, maskable 512, an
+  Apple touch icon and a favicon — come to 39 KB rather than 86.
+- **The worker has no precache list.** The page is one file whose name and
+  path depend on where it was deployed, so a hard-coded list would be wrong
+  somewhere. A navigation goes to the network first — a redeploy is picked up
+  on the next visit — and falls back to the copy the browser itself put in
+  the cache, which is the whole promise. The cache is named for the build
+  stamp, so a new build is a new cache and the last one is dropped.
+- **The build proves all of it.** `assertSelfContained` now allows exactly
+  three `<link>`s — `icon`, `apple-touch-icon`, `manifest` — and **only from
+  a `data:` URI**; anything else still fails the build. `--check` compares
+  `dist/sw.js` as well as the page.
+- **And the suite proves it in a browser.** `scripts/test.js` serves `dist/`
+  over http, reads the manifest through the DevTools protocol, asserts there
+  are no installability errors of the page's own making, waits for the worker
+  to activate, then **cuts the network and reloads** — the app has to come
+  back with all 194 lists and its references intact.
+
+The page also declares what an installed copy needs and a browser tab does
+not: `viewport-fit=cover` and `env(safe-area-inset-*)` padding, so the ground
+runs under the notch and the home indicator while nothing tappable does;
+`theme-color`, so the splash and the status bar are the same ground the page
+paints; the `apple-mobile-web-app-*` metas, since iOS reads none of the
+manifest; `overscroll-behavior`, so a pull-to-refresh cannot throw a round
+away mid-round; and `100dvh`, because `100vh` is the height *without* the
+phone browser's own bar and a `vh`-sized shell starts every screen slightly
+scrolled. **Zoom is deliberately not disabled** — the card is set in
+Devanāgarī and a learner may well want to look closer.
+
 ### The practice screen
 
 The exercise is the page. Everything above the card is small, left-aligned on
@@ -296,30 +377,61 @@ creeps back.
 ```
 ☰ Sandhi · Practice ›                    अभ्यास  (◎)
                                          ABHYĀSA
-JOINS AND SPLITS            31 LEFT  0 LEARNED  0 MISSED
+JOINS AND SPLITS
+31 LEFT  0 LEARNED  0 MISSED
 ┌──────────────────────────────────────────────────────┐
+│                                                       │
 │                       the card                        │
-│                        250px                          │
+│              takes the height going spare             │
+│                                                       │
 └──────────────────────────────────────────────────────┘
-              [ ✕ ]      [ ✓ ]      ← kumkuma / patra
-         ⇄ join → result    ☑ IAST
+         [    ✕    ]        [    ✓    ]   ← kumkuma / patra
+              ⇄ join → result    ☑ IAST
+         tap / space — flip · 1 — didn't know · 2 — knew it
 ```
 
-**The card is a fixed block at the top of the screen** — `min-height: 250px`,
-so on a 390×844 phone the grade row sits at 394px and the space below it is
-left empty.
+**The leaf takes the height that is going spare, and the tray sits under it.**
+Installed to a home screen this page *is* the app — there is no browser
+chrome around it — so it has to hold the screen itself rather than sit at the
+top of one. On a 390×844 phone the card runs to about 67% of the height, the
+two buttons pressed on *every single card* land at 89% of it, and there is no
+bare ground under them at all.
 
-It ran `clamp(250px, 100dvh - 20rem, 520px)` for several builds, with the tray
-held at the foot of the screen and `body.practising` switching that layout on
-and off. **That was reverted on request**, and the reasoning that put it there
-is in the history at `075b65f` if it is ever wanted again: on a 390×844 phone
-the fixed block finishes the exercise at 370px, puts the two buttons pressed
-on *every single card* at 45% of the height, and leaves some 400px of bare
-ground under them.
+This was tried once before as `clamp(250px, 100dvh - 20rem, 520px)` and
+**reverted on request**; it is back because the app is now asked to be an
+installable one, and the reasoning was always the same — the alternative
+finishes the exercise at 370px, puts the grade buttons at 45% of the height
+and leaves some 400px of nothing beneath them.
 
+- **`body.practising` is the whole mechanism.** `showCard()` in `app.js` sets
+  it and every page and panel clears it, so the layout hears about a card
+  being on screen without anything else in the app knowing the layout exists.
+  Away from the cards the block is the size of what it holds, exactly as
+  before.
 - **It is a `min-height`, never a height.** A tall choice card has to grow past
   it; a fixed height would clip the leaf's own edge, and `overflow` cannot
-  help — the background stops where the box does.
+  help — the background stops where the box does. On a 320px phone the card
+  really is taller than the space and the page scrolls, which is the right
+  failure.
+- **The tray keeps one height for the whole card.** A reveal card has no grade
+  row until the answer is uncovered and a choice card no `Next` until it is
+  answered — and with the leaf taking up the slack, a row appearing under it
+  made the leaf shrink and the headword inside it jump *at the moment the
+  learner was reading the answer*. The tray is reserved at its tallest
+  (9.6rem: grade row, toggles, key line) and fills from the bottom, so the
+  card is a constant height and every control appears where the last one was.
+  A test asserts the card measures identically front and back at three phone
+  widths, and that nothing under it moves.
+- **Past a phone's width the leaf stops growing.** 32rem or 62dvh, whichever
+  is less. On a desktop the same rule would be a 900px cream rectangle with
+  one word in the middle of it.
+- **The results screen is the same shape**, and reaches the tray for the same
+  reason: what was just finished on the leaf, what to do next under it. The
+  alternative was a short panel with the buttons half a screen below it. It
+  is `body:has(#after:not([hidden]))` — no second flag, and no JS.
+- **Everywhere else the tray drops to the foot** — the scoreboard, Study, a
+  page. Whatever the app is offering next is then always in the same place,
+  and that place is where a thumb rests.
 
 - **Navigation top left, the logo top right**, on one row. There is no centred
   logo during practice; a test asserts there is no `h1` at all.
@@ -3289,7 +3401,11 @@ lowercase.
 Chromium from `file://` and checks the compatibility list above: saved
 progress and its migration, review replay, both toggles,
 morphology, mobile touch targets, the choice interaction, drawer navigation
-down to a deck, and the mastery figure at every level. It runs the lexical
+down to a deck, and the mastery figure at every level. It also stands the
+built page up on a **local http server** for the installable layer — the
+manifest, the installability errors, the service worker, and the app coming
+back with the network cut — because none of that can be observed from
+`file://`. It runs the lexical
 layer over the sources too, so a generated list is counted and checked exactly
 as an authored one is. It needs
 `playwright-core` on the path but is deliberately not in a `package.json`; the

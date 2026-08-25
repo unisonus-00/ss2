@@ -5721,6 +5721,125 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
+  // ── the shell holds the screen, and the card holds the shell ──────
+  // Installed, this page IS the app: there is no browser chrome around it,
+  // so the exercise has to fill the screen without the page scrolling and
+  // the two buttons pressed on every card have to land where a thumb is.
+  {
+    for (const [w, h] of [[360, 640], [390, 844], [430, 932]]) {
+      const p = await browser.newPage({ viewport: { width: w, height: h } });
+      p.on('pageerror', e => { console.log('  PAGEERROR ' + e.message); fail.push('pageerror'); });
+      await p.goto(FILE, { waitUntil: 'load' });
+      const r = await p.evaluate(() => {
+        const box = s => document.querySelector(s).getBoundingClientRect();
+        const cardH = () => Math.round(box('.card').height);
+        const out = {};
+        /* a deck of nothing but reveal cards: the grade row is what appears
+           when the answer does, and it is what must not move anything */
+        loadDeck(Object.keys(DECKS).find(n =>
+          DECKS[n].every(c => (c.type || 'reveal') === 'reveal')));
+        out.front = cardH();
+        const ctlBefore = Math.round(box('.controls').top);
+        reveal();
+        out.back = cardH();
+        out.ctlMoved = Math.round(box('.controls').top) - ctlBefore;
+        const g = box('#miss');
+        out.gradeW = Math.round(g.width);
+        out.gradeH = Math.round(g.height);
+        /* how far down the screen the most-tapped control sits */
+        out.gradeAt = g.bottom / innerHeight;
+        out.fills = box('.card').height / innerHeight;
+        out.scrolls = document.body.scrollHeight > innerHeight + 1;
+        out.sideways = document.documentElement.scrollWidth > innerWidth + 1;
+        return out;
+      });
+      const at = ' at ' + w + '×' + h;
+      ok('the exercise fills the screen without scrolling it' + at,
+        !r.scrolls && !r.sideways && r.fills > 0.4,
+        Math.round(r.fills * 100) + '% of the height');
+      ok('revealing an answer moves nothing' + at,
+        r.front === r.back && r.ctlMoved === 0,
+        r.front + 'px vs ' + r.back + 'px, toggles moved ' + r.ctlMoved);
+      ok('the grade buttons are a thumb\u2019s reach from the foot' + at,
+        r.gradeAt > 0.7 && r.gradeH >= 44 && r.gradeW >= 64,
+        Math.round(r.gradeAt * 100) + '% down, ' + r.gradeW + '×' + r.gradeH);
+      await p.close();
+    }
+  }
+
+  // ── it installs, and it opens with no network ─────────────────────
+  // The page has always been offline-capable from file://.  What is checked
+  // here is the other half of being an app: SERVED, it hands a launcher a
+  // manifest it can install, and it opens again with the network gone.
+  {
+    const http = require('http');
+    const fs = require('fs');
+    const DIST = path.resolve(__dirname, '..', 'dist');
+    const TYPES = { '.html': 'text/html;charset=utf-8', '.js': 'text/javascript;charset=utf-8' };
+    const server = http.createServer((req, res) => {
+      const f = path.join(DIST, req.url.split('?')[0] === '/' ? 'abhyasah.html' : req.url.split('?')[0]);
+      if (!f.startsWith(DIST) || !fs.existsSync(f)) { res.writeHead(404); res.end(); return; }
+      res.writeHead(200, { 'Content-Type': TYPES[path.extname(f)] || 'application/octet-stream' });
+      res.end(fs.readFileSync(f));
+    });
+    await new Promise(r => server.listen(0, '127.0.0.1', r));
+    const base = 'http://127.0.0.1:' + server.address().port + '/';
+
+    const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } });
+    const p = await ctx.newPage();
+    p.on('pageerror', e => { console.log('  PAGEERROR ' + e.message); fail.push('pageerror'); });
+    await p.goto(base, { waitUntil: 'load' });
+
+    const cdp = await ctx.newCDPSession(p);
+    await cdp.send('Page.enable');
+    const got = await cdp.send('Page.getAppManifest');
+    let man = null;
+    try { man = JSON.parse(got.data || 'null'); } catch (e) { /* reported below */ }
+    ok('the manifest parses, with nothing wrong in it',
+      !!man && !(got.errors || []).length, JSON.stringify(got.errors || []));
+    ok('it asks to run as an app, in its own colours',
+      man && man.display === 'standalone' && man.theme_color === '#241f19'
+        && man.background_color === '#241f19',
+      man && [man.display, man.theme_color].join(' '));
+    /* Chrome refuses to install without a start_url it can resolve, and a
+       manifest carried as a data: URI has no address for a relative one to
+       resolve against — so the page writes its own in. */
+    ok('and names where it starts', man && man.start_url === base,
+      man && String(man.start_url));
+    ok('the icons travel with it, at the sizes a launcher asks for',
+      man && ['192x192', '512x512'].every(sz =>
+        man.icons.some(i => i.sizes === sz && /^data:image\/png/.test(i.src)))
+        && man.icons.some(i => i.purpose === 'maskable'),
+      man && man.icons.map(i => i.sizes + ' ' + (i.purpose || 'any')).join(' · '));
+    /* whatever else is wrong, it must not be the page's own doing */
+    const why = await cdp.send('Page.getInstallabilityErrors')
+      .then(x => x.installabilityErrors.map(e => e.errorId).filter(e => e !== 'in-incognito'))
+      .catch(() => []);
+    ok('nothing in the page stands in the way of installing it',
+      !why.length, why.join(', '));
+
+    const sw = await p.evaluate(() =>
+      navigator.serviceWorker.ready.then(r => !!r.active).catch(() => false));
+    ok('the offline shell registers itself', sw);
+
+    /* the round trip that matters: cache filled, network gone, app back */
+    await p.reload({ waitUntil: 'load' });
+    await ctx.setOffline(true);
+    await p.reload({ waitUntil: 'load' });
+    const offline = await p.evaluate(() => {
+      loadDeck(Object.keys(DECKS)[0]);
+      return { decks: Object.keys(DECKS).length,
+               refs: Object.keys(REFERENCES).length,
+               card: document.getElementById('dn').textContent };
+    });
+    ok('and it opens again with no network at all',
+      offline.decks === EXPECTED.decks && offline.refs > 0 && !!offline.card,
+      offline.decks + ' lists, ' + offline.refs + ' references');
+    await ctx.setOffline(false);
+    await ctx.close();
+    server.close();
+  }
+
   await browser.close();
   console.log(fail.length ? `\n${fail.length} FAILED: ${fail.join(', ')}` : '\nall checks passed');
   process.exit(fail.length ? 1 : 0);

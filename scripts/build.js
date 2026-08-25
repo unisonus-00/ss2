@@ -23,10 +23,17 @@ const path = require('path');
 const crypto = require('crypto');
 const markdown = require('./markdown');
 const lexicon = require('./lexicon');
+const iconry = require('./icons');
+const pwaOut = require('./pwa');
 
 const ROOT = path.resolve(__dirname, '..');
 const APP = path.join(ROOT, 'app');
 const OUT = path.join(ROOT, 'dist', 'abhyasah.html');
+/* The one thing the installable layer cannot inline: a service worker is
+   registered from a script URL, so it has to be a file of its own beside the
+   page.  See scripts/pwa.js — the page works without it, and does not look
+   for it at all unless it is being served. */
+const SW = path.join(ROOT, 'dist', 'sw.js');
 
 const read = f => fs.readFileSync(path.join(APP, f), 'utf8');
 
@@ -35,6 +42,7 @@ const SCRIPT = '<script src="app.js"></script>';
 const PRACTICE = /<script id="practice" type="application\/json">[\s\S]*?<\/script>/;
 const LEXICON  = /<script id="lexicon" type="application\/json">[\s\S]*?<\/script>/;
 const REFERENCE = /<script id="references" type="application\/json">[\s\S]*?<\/script>/;
+const MANIFEST = /<script id="manifest" type="application\/json">[\s\S]*?<\/script>/;
 /* A contents list earns its place on a long reference and clutters a short
    one.  Five top-level sections is where these files start needing one. */
 const TOC_FROM = 5;
@@ -43,6 +51,7 @@ const TOC_FROM = 5;
    stay one file with nothing to fetch. */
 const LOGO = '<!--logo-->';
 const BUILD = '<!--build-->';
+const PWA = '<!--pwa-->';
 
 const CARD_TYPES = new Set(['reveal', 'choice', 'sequence']);
 /* The five streams a list can be in: the core acquisition path (the default,
@@ -129,6 +138,38 @@ function loadReferences(lessons) {
     };
   }
   return out;
+}
+
+/* ── the installable layer ──────────────────────────────────────────
+   Every icon the launcher needs travels inside the page as a data: URI, so
+   a single file dropped on any host installs — see scripts/pwa.js for why
+   the service worker is the one piece that cannot travel with them.
+
+   The two <link>s go in the head; the manifest goes in as a JSON island
+   instead, because it is the page that has to finish it.  It has one field
+   the build cannot know — where the app starts, which is wherever the file
+   was opened from — and app.js writes that in and links the result. */
+function pwaBuild() {
+  const built = iconry.icons(path.join(APP, 'logo.png'));
+  const find = n => built.find(i => i.name === n);
+  const uri = n => iconry.dataUri(find(n).png);
+  const entry = (n, purpose) => ({
+    src: uri(n), sizes: `${find(n).size}x${find(n).size}`,
+    type: 'image/png', purpose,
+  });
+  return {
+    html: [
+      `<link rel="icon" type="image/png" href="${uri('favicon.png')}">`,
+      `<link rel="apple-touch-icon" href="${uri('apple-touch-icon.png')}">`,
+    ].join('\n'),
+    manifest: pwaOut.manifest([
+      entry('icon-192.png', 'any'),
+      entry('icon-512.png', 'any'),
+      entry('icon-maskable.png', 'maskable'),
+    ]),
+    icons: built.length,
+    bytes: built.reduce((n, i) => n + i.png.length, 0),
+  };
 }
 
 /* ── validate ───────────────────────────────────────────────────────── */
@@ -304,6 +345,13 @@ function build() {
   html = html.replace(REFERENCE,
     '<script id="references" type="application/json">' + island(references) + '</script>');
 
+  if (!html.includes(PWA)) throw new Error(`index.html has no ${PWA}`);
+  const pwaBits = pwaBuild();
+  html = html.replace(PWA, pwaBits.html);
+  if (!MANIFEST.test(html)) throw new Error('index.html has no <script id="manifest"> block');
+  html = html.replace(MANIFEST,
+    '<script id="manifest" type="application/json">' + island(pwaBits.manifest) + '</script>');
+
   for (const [tag, file, open, close] of [
     [LINK, 'styles.css', '<style>', '</style>'],
     [SCRIPT, 'app.js', '<script>', '</script>'],
@@ -328,7 +376,7 @@ function build() {
      would make --check fail every day for no reason. */
   const stamp = crypto.createHash('sha256').update(html).digest('hex').slice(0, 7);
   html = html.replace(BUILD, stamp);
-  return { html, lessons, cards, decks, stamp, lex,
+  return { html, lessons, cards, decks, stamp, lex, pwa: pwaBits,
            refs: Object.keys(references).length };
 }
 
@@ -336,8 +384,21 @@ function build() {
    to emit one.  Checks the output, not the source, so it also catches anything
    an inlined file smuggles in. */
 function assertSelfContained(html) {
+  /* The installable layer adds three <link>s to the head, and every one of
+     them carries its payload inline as a data: URI — so "nothing to fetch"
+     is unchanged and the rule can say exactly that: an icon, a touch icon or
+     a manifest may be linked, and only from a data: URI. */
+  const INLINE_LINK =
+    /<link\b[^>]*\brel=["']?(?:icon|apple-touch-icon|manifest)["']?[^>]*\bhref=["']data:/i;
+  for (const tag of html.match(/<link\b[^>]*>/gi) || []) {
+    if (/\brel=["']?(?:icon|apple-touch-icon|manifest)\b/i.test(tag) && !INLINE_LINK.test(tag)) {
+      throw new Error('output is not self-contained: an icon or manifest <link> '
+        + 'that is not a data: URI — ' + tag.slice(0, 80));
+    }
+  }
   const banned = [
-    [/<link\b(?![^>]*rel=["']?icon)/i, 'a <link> to an external stylesheet'],
+    [/<link\b(?![^>]*rel=["']?(?:icon|apple-touch-icon|manifest))/i,
+     'a <link> to an external stylesheet'],
     [/<script\b[^>]*\bsrc=/i, 'a <script src=...>'],
     [/\bfetch\s*\(/, 'a fetch() call'],
     [/\bXMLHttpRequest\b/, 'an XMLHttpRequest'],
@@ -352,24 +413,35 @@ function assertSelfContained(html) {
   }
 }
 
-const { html, lessons, cards, decks, stamp, refs, lex } = build();
+const { html, lessons, cards, decks, stamp, refs, lex, pwa: pwaBits } = build();
 assertSelfContained(html);
 
 if (process.argv.includes('--check')) {
-  const current = fs.existsSync(OUT) ? fs.readFileSync(OUT, 'utf8') : null;
-  if (current === html) {
-    console.log('build --check: dist/abhyasah.html is up to date');
+  const at = f => (fs.existsSync(f) ? fs.readFileSync(f, 'utf8') : null);
+  const stale = [
+    at(OUT) === html ? null : 'dist/abhyasah.html',
+    at(SW) === pwaOut.worker(stamp) ? null : 'dist/sw.js',
+  ].filter(Boolean);
+  if (!stale.length) {
+    console.log('build --check: dist/ is up to date');
     process.exit(0);
   }
-  console.error('build --check: dist/abhyasah.html differs from a fresh build of app/');
+  console.error(`build --check: ${stale.join(' and ')} differs from a fresh build of app/`);
   process.exit(1);
 }
 
 fs.mkdirSync(path.dirname(OUT), { recursive: true });
 fs.writeFileSync(OUT, html);
+/* Beside the page, never inside it: see scripts/pwa.js.  Named by the build
+   stamp, so a new build is a new cache and the last one is dropped. */
+fs.writeFileSync(SW, pwaOut.worker(stamp));
 console.log(
   `build: dist/abhyasah.html  ${(html.length / 1024).toFixed(0)} KB  ` +
   `${lessons.length} lessons, ${decks} decks, ${cards} cards, ${refs} references  · ${stamp}`
+);
+console.log(
+  `       pwa: ${pwaBits.icons} icons (${(pwaBits.bytes / 1024).toFixed(0)} KB) and the ` +
+  `manifest inlined · dist/sw.js written`
 );
 if (lex && lex.made) {
   console.log(

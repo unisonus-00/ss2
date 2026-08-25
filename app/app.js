@@ -1988,7 +1988,7 @@ function startRound(cards, opt) {
   if (reviewing && mixed) $('stage').textContent = "abhyāsa \u00b7 " + cards.length + " you missed in the draw";
   else if (reviewing)     $('stage').textContent = "review \u00b7 " + cards.length + " cards you missed";
   $('review').style.display = 'none';
-  $('card').style.display = 'flex';
+  showCard('flex');
   $('after').hidden = true;
   $('tally').style.visibility = 'visible';
   $('keys').hidden = false;
@@ -2144,11 +2144,29 @@ function showTrack(id) {
   leavePage();
   $('trackcard').hidden = false;
   quietChrome();
+  toTop();
+}
+
+/* A view that replaces what was on the screen starts at its own top.  A
+   track page is a long read and so is a reference, so opening one from
+   halfway down another leaves the learner in the middle of a page they have
+   not begun.  Where the new view is SHORTER than the old the browser clamps
+   the scroll itself, which is why the practice screen needs nothing. */
+const toTop = () => scrollTo(0, 0);
+
+/* Whether a card is on the screen, said once so the LAYOUT can hear it.
+   During practice the leaf takes whatever height is going spare and the tray
+   sits under it, where a thumb is; on a page or a panel the card is away and
+   the block is the size of what it holds.  `body.practising` is the whole
+   mechanism — everything else is CSS. */
+function showCard(how) {
+  $('card').style.display = how;
+  document.body.classList.toggle('practising', how !== 'none');
 }
 
 /* everything a running card owns, put away */
 function quietChrome() {
-  $('card').style.display = 'none';
+  showCard('none');
   $('review').style.display = 'none';
   $('tally').style.visibility = 'hidden';
   $('grade').hidden = true;
@@ -2167,6 +2185,7 @@ function showWelcome() {
   renderWelcome();
   $('welcome').hidden = false;
   quietChrome();
+  toTop();
 }
 
 /* Leaves whichever page is showing — the landing card or a track page — and
@@ -2179,7 +2198,7 @@ function leavePage() {
   trackShown = null;
   if (!on) return;
   relabelAll();                     // Study reappears if the lesson has a reference
-  $('card').style.display = 'flex';
+  showCard('flex');
   $('tally').style.visibility = 'visible';
   $('keys').hidden = false;
   $('controls').hidden = false;
@@ -3426,7 +3445,7 @@ function finish() {
   }
   bumpStreak();                       // a day with a round finished in it
   relabelAll();                       // a finished list may have opened the review
-  $('card').style.display = 'none';
+  showCard('none');
   $('review').style.display = 'block';
   $('tally').style.visibility = 'hidden';
   $('grade').hidden = true;
@@ -3738,7 +3757,7 @@ function closePanel() {
   relabelAll();
   $('welcome').hidden = panelWas.welcome;
   $('trackcard').hidden = panelWas.trackcard;
-  $('card').style.display = panelWas.card;
+  showCard(panelWas.card);
   $('review').style.display = panelWas.review;
   $('tally').style.visibility = panelWas.tally;
   $('grade').hidden = panelWas.grade;
@@ -3763,7 +3782,7 @@ function openPanel(which) {
   };
   $('welcome').hidden = true;
   $('trackcard').hidden = true;
-  $('card').style.display = 'none';
+  showCard('none');
   $('review').style.display = 'none';
   $('tally').style.visibility = 'hidden';
   $('grade').hidden = true;
@@ -3775,6 +3794,7 @@ function openPanel(which) {
   panelOpen = which;
   relabelAll();
   PANELS[which].render();
+  toTop();
 }
 /* ── Study ──────────────────────────────────────────────────
    The lesson's own reference.md, as written.  Everything here was decided at
@@ -4013,4 +4033,44 @@ $('w-test').addEventListener('change', e => {
     el.appendChild(ul);
     console.warn("skipped cards", PARSE.skipped);
   }
+})();
+
+/* ── the offline shell ──────────────────────────────────────
+   The page is already offline-capable: it is one file with nothing to
+   fetch, and it opens from file:// on a phone with no network.  What the
+   worker adds is the other half of being an app — that a copy SERVED over
+   http(s), and installed to a home screen, still opens when there is no
+   network to serve it.
+
+   Registered here rather than in the markup, and only where it can mean
+   anything: from file:// there is no origin to register against and nothing
+   to cache that the page has not already got, so nothing is attempted.  A
+   deployment that ships the page without sw.js beside it simply fails to
+   register and carries on — the app has never needed it. */
+(() => {
+  if (!/^https?:$/.test(location.protocol)) return;
+
+  /* The manifest, finished and linked.  A manifest's URLs resolve against
+     the manifest's own address, and this one has none — it travels inside
+     the page — so `start_url` has to be written in absolutely, and the only
+     address that is true of a single file is the one it was opened from.
+     Not base64: the manifest carries "Abhyāsa" and an em dash, and btoa
+     refuses anything outside Latin-1. */
+  try {
+    const src = document.getElementById('manifest');
+    const spec = src && JSON.parse(src.textContent || '{}');
+    if (spec && spec.name) {
+      spec.start_url = location.href;
+      const link = document.createElement('link');
+      link.rel = 'manifest';
+      link.href = 'data:application/manifest+json;charset=utf-8,'
+                + encodeURIComponent(JSON.stringify(spec));
+      document.head.appendChild(link);
+    }
+  } catch (e) { /* an unusable manifest is not a reason to lose the app */ }
+
+  if (!('serviceWorker' in navigator)) return;
+  addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  });
 })();
