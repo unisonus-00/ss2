@@ -246,7 +246,13 @@
     font-family: "Noto Serif Devanagari", "Kohinoor Devanagari", serif;
     font-size: 2.1rem; line-height: 1.2; letter-spacing: .01em;
   }
-  .w-head { margin: .5rem 0 .9rem; font-size: 1.3rem; font-weight: 600; }
+  /* Every view's heading takes the gold — the one accent on the page — so a
+     heading reads as a heading and not as the first line of the prose.  Held
+     in one place, so "Welcome to Abhyāsa!", a track's own name, the round
+     summary, the scoreboard, the mastery card and a lesson title all carry
+     the same distinctive colour on every screen. */
+  .w-head { margin: .5rem 0 .9rem; font-size: 1.3rem; font-weight: 600;
+            color: var(--gold); letter-spacing: .01em; }
   .welcome p { margin: 0 0 .8rem; font-size: .9rem; line-height: 1.55; }
   .w-lead { font-size: .98rem !important; }
   .welcome p:last-of-type { margin-bottom: 1.3rem; }
@@ -587,7 +593,7 @@
 
   /* review screen */
   .review { padding: 1.8rem 1.5rem; display: none; }
-  .review h2 { margin: 0 0 .2rem; font-size: 1.2rem; font-weight: 500; }
+  .review h2 { margin: 0 0 .2rem; font-size: 1.2rem; font-weight: 600; color: var(--gold); }
   .score { font-size: .9rem; color: var(--faded); margin-bottom: 1.3rem; }
   .score b { color: var(--ink); font-weight: 500; }
   .missed-head { font-size: .7rem; letter-spacing: .14em; text-transform: uppercase;
@@ -605,7 +611,7 @@
 
   /* scoreboard — same shell as the review screen */
   .board { padding: 1.8rem 1.5rem; display: none; }
-  .board h2 { margin: 0 0 .2rem; font-size: 1.2rem; font-weight: 500; }
+  .board h2 { margin: 0 0 .2rem; font-size: 1.2rem; font-weight: 600; color: var(--gold); }
   .brow { display: flex; align-items: baseline; gap: .8rem;
           padding: .55rem 0; border-bottom: 1px solid var(--leaf-edge); }
   .brow:last-child { border-bottom: none; }
