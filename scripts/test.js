@@ -17,7 +17,7 @@
  */
 const { chromium } = require('playwright-core');
 const path = require('path');
-const FILE = 'file://' + path.resolve(__dirname, '..', 'dist', 'abhyasah.html');
+const FILE = 'file://' + path.resolve(__dirname, '..', 'index.html');
 const EXE = process.env.CHROME || '/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
 const DECK = 'Puruṣa-lakāra — person, tense and mood · practice';
 
@@ -1226,7 +1226,7 @@ const open = async (browser, opts = {}) => {
       const raw = zlib.inflateSync(Buffer.concat(idat));
       return [raw[1], raw[2], raw[3]];     // byte 0 is the scanline filter
     };
-    const SURFACE = [35, 29, 23];          // --surface, #231d17
+    const SURFACE = [19, 19, 31];          // --surface, #13131f
 
     for (const [args, tag] of [[[], 'left alone'],
                                [['--enable-features=WebContentsForceDark'], 'forced dark']]) {
@@ -5836,10 +5836,10 @@ const open = async (browser, opts = {}) => {
   {
     const http = require('http');
     const fs = require('fs');
-    const DIST = path.resolve(__dirname, '..', 'dist');
+    const DIST = path.resolve(__dirname, '..');
     const TYPES = { '.html': 'text/html;charset=utf-8', '.js': 'text/javascript;charset=utf-8' };
     const server = http.createServer((req, res) => {
-      const f = path.join(DIST, req.url.split('?')[0] === '/' ? 'abhyasah.html' : req.url.split('?')[0]);
+      const f = path.join(DIST, req.url.split('?')[0] === '/' ? 'index.html' : req.url.split('?')[0]);
       if (!f.startsWith(DIST) || !fs.existsSync(f)) { res.writeHead(404); res.end(); return; }
       res.writeHead(200, { 'Content-Type': TYPES[path.extname(f)] || 'application/octet-stream' });
       res.end(fs.readFileSync(f));
@@ -5860,8 +5860,8 @@ const open = async (browser, opts = {}) => {
     ok('the manifest parses, with nothing wrong in it',
       !!man && !(got.errors || []).length, JSON.stringify(got.errors || []));
     ok('it asks to run as an app, in its own colours',
-      man && man.display === 'standalone' && man.theme_color === '#1c1712'
-        && man.background_color === '#1c1712',
+      man && man.display === 'standalone' && man.theme_color === '#0d0d18'
+        && man.background_color === '#0d0d18',
       man && [man.display, man.theme_color].join(' '));
     /* Chrome refuses to install without a start_url it can resolve, and a
        manifest carried as a data: URI has no address for a relative one to

@@ -6,7 +6,10 @@ import json
 import re
 
 SCHOOL_DIR = os.path.dirname(os.path.abspath(__file__))
-OUTPUT = os.path.join(SCHOOL_DIR, "index.html")
+# The repository root index.html belongs to Abhyāsa, the primary app
+# (scripts/build.js). The Sanskrit School lesson viewer builds to school/
+# so the two no longer collide at the root.
+OUTPUT = os.path.join(SCHOOL_DIR, "school", "index.html")
 
 # ── Guard the vyākaraṇam duplicates ──
 #
@@ -1860,6 +1863,7 @@ buildSidebar();
 </html>
 """
 
+os.makedirs(os.path.dirname(OUTPUT), exist_ok=True)
 with open(OUTPUT, "w") as f:
     f.write(html)
 

@@ -17,7 +17,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
-const SRC = path.join(ROOT, 'dist', 'abhyasah.html');
+const SRC = path.join(ROOT, 'index.html');
 /* The demo is published for someone to try, so it carries a version they can
    name in a message: abhyasa-demo-v7, then v8.  `demo-version` is tracked, so
    the number keeps counting across sessions rather than restarting. */
@@ -44,6 +44,7 @@ const styles = head.match(/<style[\s\S]*?<\/style>/gi) || [];
 if (!title) console.error('demo: warning — no <title>, the artifact will be unnamed');
 
 const out = [title, ...styles, body.trim(), ''].filter(Boolean).join('\n');
+fs.mkdirSync(path.dirname(OUT), { recursive: true });
 fs.writeFileSync(OUT, out);
 
 // A stray </body> or <html> left in the output means the regexes mismatched.

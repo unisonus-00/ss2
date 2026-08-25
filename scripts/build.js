@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* Build dist/abhyasah.html from app/ plus every lesson's practice.json.
+/* Build the root index.html from app/ plus every lesson's practice.json.
  *
  * The whole point of the distributable is that it is one file with nothing
  * to fetch: it has to open from file:// on a phone with no network.  So the
@@ -28,12 +28,15 @@ const pwaOut = require('./pwa');
 
 const ROOT = path.resolve(__dirname, '..');
 const APP = path.join(ROOT, 'app');
-const OUT = path.join(ROOT, 'dist', 'abhyasah.html');
+/* Abhyāsa is the primary app: it is the site's root index.html, so opening
+   the repository — or the published site — lands on it, not on the Sanskrit
+   School lesson viewer (that now builds to school/index.html via build.py). */
+const OUT = path.join(ROOT, 'index.html');
 /* The one thing the installable layer cannot inline: a service worker is
    registered from a script URL, so it has to be a file of its own beside the
    page.  See scripts/pwa.js — the page works without it, and does not look
-   for it at all unless it is being served. */
-const SW = path.join(ROOT, 'dist', 'sw.js');
+   for it at all unless it is being served.  Root page, root sibling. */
+const SW = path.join(ROOT, 'sw.js');
 
 const read = f => fs.readFileSync(path.join(APP, f), 'utf8');
 
@@ -426,11 +429,11 @@ assertSelfContained(html);
 if (process.argv.includes('--check')) {
   const at = f => (fs.existsSync(f) ? fs.readFileSync(f, 'utf8') : null);
   const stale = [
-    at(OUT) === html ? null : 'dist/abhyasah.html',
-    at(SW) === pwaOut.worker(stamp) ? null : 'dist/sw.js',
+    at(OUT) === html ? null : 'index.html',
+    at(SW) === pwaOut.worker(stamp) ? null : 'sw.js',
   ].filter(Boolean);
   if (!stale.length) {
-    console.log('build --check: dist/ is up to date');
+    console.log('build --check: the built app is up to date');
     process.exit(0);
   }
   console.error(`build --check: ${stale.join(' and ')} differs from a fresh build of app/`);
@@ -443,12 +446,12 @@ fs.writeFileSync(OUT, html);
    stamp, so a new build is a new cache and the last one is dropped. */
 fs.writeFileSync(SW, pwaOut.worker(stamp));
 console.log(
-  `build: dist/abhyasah.html  ${(html.length / 1024).toFixed(0)} KB  ` +
+  `build: index.html  ${(html.length / 1024).toFixed(0)} KB  ` +
   `${lessons.length} lessons, ${decks} decks, ${cards} cards, ${theory} theory  · ${stamp}`
 );
 console.log(
   `       pwa: ${pwaBits.icons} icons (${(pwaBits.bytes / 1024).toFixed(0)} KB) and the ` +
-  `manifest inlined · dist/sw.js written`
+  `manifest inlined · sw.js written`
 );
 if (lex && lex.made) {
   console.log(

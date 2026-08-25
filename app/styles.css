@@ -5,19 +5,31 @@
        forced repaint on top of colours that are already the dark design
        only muddies them.  Declaring the scheme opts the page out. */
     color-scheme: dark;
-    --ground: #1c1712;
+    /* Near-black navy, with almost no contrast between the ground and the
+       raised surfaces on top of it. */
+    --ground: #0d0d18;
     /* the raised surface a card, panel, popover or the drawer sits on — one
        step lighter than the ground, so each reads as set apart from the
        page behind it even though both are dark. */
-    --surface: #231d17;
-    --leaf: #e9dcbe;
-    --leaf-edge: #55493a;
+    --surface: #13131f;
+    /* warm ivory, the light ink read against every dark surface here. */
+    --leaf: #e6ddd4;
+    --leaf-edge: #2a2a3b;
     /* content on a surface takes the same ink the ground's own chrome does
        — both are light text on a dark ground now — but keeps its own name
        so a surface's type can be retuned without touching the chrome's. */
     --ink: var(--leaf);
+    /* muted antique gold — the accent for the active tab, the selected list,
+       primary buttons and emphasized terms.  Its dim tone is for a hairline
+       or a marker where the full gold would shout. */
+    --gold: #c5a04b;
+    --gold-dim: #9c7d38;
+    /* dusty terracotta / copper — the section-heading pigment (eyebrows,
+       cue lines, the "kind of card" labels).  It carries the small uppercase
+       headings that kumkuma used to, freeing kumkuma to mean only "wrong". */
+    --accent-warm: #bd8067;
     --kumkuma: #a5341f;
-    --faded: #9c8e78;
+    --faded: #877c6d;
     /* right answers.  kumkuma already means wrong everywhere on this page,
        so correctness gets the other pigment on the same shelf.  Both
        pigments are saturated enough to read as a border or a fill at a few
@@ -175,7 +187,7 @@
      44px box laid over it, which takes no space in the flow. */
   .studybtn::after { content: ""; position: absolute; left: 50%; top: 50%;
                      width: 44px; height: 44px; transform: translate(-50%, -50%); }
-  .studybtn:hover, .studybtn.on { color: var(--leaf); }
+  .studybtn:hover, .studybtn.on { color: var(--gold); }
   .studybtn[hidden] { display: none; }
   /* The selector, left-aligned with the card.  It is a way in to the drawer,
      not a title, so it is a row control rather than a boxed imitation of the
@@ -250,10 +262,10 @@
      retuned without touching the chrome's — the same reason the choice
      options carry their own palette. */
   .w-eyebrow { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase;
-               color: var(--faded); margin-bottom: .3rem; }
+               color: var(--accent-warm); margin-bottom: .3rem; }
   .s-plan { margin: .2rem 0 1rem; }
   .s-h { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase;
-         color: var(--faded); margin-bottom: .5rem; }
+         color: var(--accent-warm); margin-bottom: .5rem; }
   .s-plan ol { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: .5rem;
                font-size: .9rem; line-height: 1.55; }
   .s-plan li::marker { color: var(--faded); font-size: .8rem; }
@@ -294,7 +306,7 @@
   .s-lists { border-top: 1px solid var(--leaf-edge); margin-top: 1.5rem; padding-top: .9rem; }
   .s-lists .dk { color: var(--ink); }
   .s-lists .dk:hover { border-color: var(--leaf-edge); }
-  .s-lists .dk.on { border-color: var(--ink); }
+  .s-lists .dk.on { border-color: var(--gold); }
   /* The one switch that opens both gates at once, in the colour the app uses
      for wrong: it is deliberately not the state a learner should be in. */
   .w-switch { display: flex; align-items: flex-start; gap: .5rem; margin-top: 1.1rem;
@@ -306,7 +318,7 @@
     border: 1px solid var(--leaf-edge); font-size: .95rem;
   }
   .w-actions button:hover { border-color: var(--faded); }
-  .w-actions button.primary { border-color: var(--ink); }
+  .w-actions button.primary { border-color: var(--gold); color: var(--gold); }
   /* Abhyāsa is a way back to consolidation, not the thing this page is for:
      it takes the width it needs and the stage's own action takes the rest. */
   .w-actions #s-review { flex: 0 1 auto; font-size: .85rem; padding: .6rem .9rem; }
@@ -328,7 +340,7 @@
      quiet — it is an instruction, not the exercise, and it is on every card
      of a list, so it has to stay out of the way of the thing being learnt. */
   .cue { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase;
-         color: var(--faded); margin-bottom: .55rem; }
+         color: var(--accent-warm); margin-bottom: .55rem; }
   .cue:empty { display: none; }
   .dn { font-family: "Noto Serif Devanagari", "Kohinoor Devanagari", serif;
         font-size: 2.5rem; line-height: 1.5; }
@@ -528,7 +540,7 @@
            cursor: pointer; user-select: none; }
   .check input { accent-color: var(--kumkuma); width: 15px; height: 15px;
                  cursor: pointer; margin: 0; }
-  .check:has(input:checked) { color: var(--leaf); }
+  .check:has(input:checked) { color: var(--gold); }
   .check input:focus-visible { outline: 2px solid var(--kumkuma); outline-offset: 2px; }
   .pilebtn { margin-bottom: .8rem; font-size: .74rem; min-height: 38px;
              padding: .4rem .9rem;
@@ -545,7 +557,7 @@
   /* the produce direction sets the answer in Devanagari, so its
      transliteration takes the display size the front would have given it */
   .mode-produce .iast-back { font-size: 1.2rem; opacity: .85; }
-  button.primary { border-color: var(--leaf); }
+  button.primary { border-color: var(--gold); color: var(--gold); }
   button.miss { border-color: var(--kumkuma); color: var(--kumkuma-ink); }
   /* the counterpart: the same relationship, the other pigment */
   button.knew { border-color: var(--patra); color: var(--patra-ink); }
@@ -638,7 +650,7 @@
   .st-body blockquote { margin: .6rem 0; padding-left: .8rem;
                         border-left: 2px solid var(--leaf-edge); }
   .st-body pre { margin: .6rem 0; padding: .6rem .7rem; overflow-x: auto;
-                 background: rgba(233,220,190,.05); border: 1px solid var(--leaf-edge);
+                 background: rgba(230,221,212,.05); border: 1px solid var(--leaf-edge);
                  border-radius: 3px; }
   .st-body code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
                   font-size: .76rem; line-height: 1.5; white-space: pre; }
@@ -702,7 +714,7 @@
   .sec-h { margin-bottom: .3rem; }
   .sec-t { font-size: 1.02rem; }
   .sec-e { font-size: .66rem; letter-spacing: .12em; text-transform: uppercase;
-           color: var(--kumkuma-ink); margin-left: .45rem; }
+           color: var(--accent-warm); margin-left: .45rem; }
   .sec-b { margin: 0; }
   .sec-eg { margin-top: .5rem; }
   /* a root's example has no Devanagari of its own — the heading carries it */
@@ -762,9 +774,9 @@
   .dr-prog { position: relative; display: block; width: 100%; min-height: 0;
              text-align: left; font: inherit; cursor: pointer;
              padding: .8rem 2.1rem .85rem 1rem; margin: .2rem 0 1.1rem;
-             background: rgba(233,220,190,.045);
+             background: rgba(230,221,212,.045);
              border: 1px solid rgba(205,187,149,.42); border-radius: 3px; }
-  .dr-prog:hover, .dr-prog.on { background: rgba(233,220,190,.09);
+  .dr-prog:hover, .dr-prog.on { background: rgba(230,221,212,.09);
                                 border-color: rgba(205,187,149,.7); }
   .dp-label { display: block; font-size: .78rem; letter-spacing: .2em;
               text-transform: uppercase; color: var(--leaf); }
@@ -787,7 +799,7 @@
   .dp-go { position: absolute; right: 1rem; top: 50%; width: 9px; height: 9px;
            border-top: 1.5px solid var(--faded); border-right: 1.5px solid var(--faded);
            transform: translateY(-50%) rotate(45deg); }
-  .dr-prog:hover .dp-go, .dr-prog.on .dp-go { border-color: var(--leaf); }
+  .dr-prog:hover .dp-go, .dr-prog.on .dp-go { border-color: var(--gold); }
 
   /* the mastery figure, on the panel that produces it */
   .rank { margin-top: .9rem; padding-top: .8rem;
@@ -799,7 +811,7 @@
      rather than letting the note land on top of this line. */
   /* what kind of thing this window is, under its name */
   .rp-kind { font-size: .7rem; letter-spacing: .14em; text-transform: uppercase;
-             color: var(--kumkuma-ink); margin: .1rem 0 .5rem; }
+             color: var(--accent-warm); margin: .1rem 0 .5rem; }
   #reviewpanel .score { margin-bottom: .2rem; }
   .rp-what { font-size: .82rem; color: var(--faded); margin-bottom: 1.1rem; }
   #reviewpanel .note { margin-top: 0; }
@@ -820,7 +832,7 @@
   .dr-mode:hover { border-color: var(--faded); }
   /* the scoreboard leads, and is the one row drawn in full */
   .dr-mode.board { border-color: var(--kumkuma); }
-  .dr-mode.on { border-color: var(--leaf); }
+  .dr-mode.on { border-color: var(--gold); }
   .dm-name { display: block; font-size: .95rem; }
   .dm-sub { display: block; margin-top: .1rem; font-size: .69rem;
             font-style: italic; color: var(--faded); }
@@ -909,7 +921,7 @@
 
   .tr-head.leaf, .ls-head.leaf { cursor: pointer; }
   .tr-head.on, .ls-head.on {
-    border: 1px solid var(--leaf); border-radius: 2px;
+    border: 1px solid var(--gold); border-radius: 2px;
   }
   .ls-head.leaf .ls-sub, .tr-head.leaf .tr-sub { font-style: normal; }
 
@@ -925,7 +937,7 @@
     padding: .45rem .5rem; min-height: 44px;
   }
   .dk:hover { border-color: rgba(125,112,92,.5); }
-  .dk.on { border-color: var(--leaf); }
+  .dk.on { border-color: var(--gold); }
   .dk-name { grid-area: name; font-size: .86rem; }
   .dk-sub { grid-area: sub; font-size: .66rem; color: var(--faded); }
   /* the recommended list, in the drawer's own ink rather than the faded tone

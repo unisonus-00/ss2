@@ -128,7 +128,7 @@ Keep application code separate from curriculum content.
 Modular source is encouraged, but distribution must remain:
 
 ```
-dist/abhyasah.html
+index.html   (the repository root — Abhyāsa is the primary app)
 ```
 
 One self-contained file, offline-capable, usable from `file://`.
@@ -137,13 +137,14 @@ Prefer a small structure such as:
 
 ```
 app/
-  index.html
+  index.html      (source)
   styles.css
   app.js
 scripts/
   build.js
-dist/
-  abhyasah.html
+index.html        (built primary app; sw.js beside it)
+school/
+  index.html      (Sanskrit School lesson viewer, built by build.py)
 ```
 
 Split further only when maintenance clearly benefits.
@@ -226,16 +227,16 @@ into the single-page `index.html` at the repository root. It already knows the
 absent, so adding `bricks.md` to a lesson needs no build change. Run it with
 `python3 build.py`.
 
-**Abhyāsa** — the primary project file, distributed as `dist/abhyasah.html`.
+**Abhyāsa** — the primary app, built to the repository root `index.html`.
 It is one self-contained page with no external references of any kind: no CDN,
 no fonts, no `fetch`, no stylesheets. It opens from `file://` and works
-offline, and it must stay that way. `dist/sw.js` is written beside it and is
-the **only** thing that could not travel inside it — see **It installs, and
-it opens with no network**; the page does not look for it unless it is being
-served, and works without it.
+offline, and it must stay that way. `sw.js` is written beside it at the root
+and is the **only** thing that could not travel inside it — see **It installs,
+and it opens with no network**; the page does not look for it unless it is
+being served, and works without it.
 
-Application code lives in `app/`; **edit there, never in `dist/`**. Curriculum
-content lives beside its lesson:
+Application code lives in `app/`; **edit there, never the built root
+`index.html`**. Curriculum content lives beside its lesson:
 
 ```
 app/index.html         markup only — ~190 lines, no card data
@@ -243,7 +244,7 @@ app/logo.png           the brand logo artwork — edit this
 app/logo.svg           app/logo.png, base64-wrapped for the build
 app/styles.css
 app/app.js
-scripts/build.js       discovers, validates and inlines -> dist/abhyasah.html
+scripts/build.js       discovers, validates and inlines -> root index.html
 scripts/lexicon.js     the lexical layer: validates lexicon/, clues cards, generates lists
 scripts/markdown.js    reference.md -> HTML, at build time, for Study
 scripts/icons.js       the launcher icons, cropped out of app/logo.png
@@ -309,7 +310,7 @@ whole design:
 So the manifest and every icon travel **inside** the page as `data:` URIs — a
 `data:` URI is not a fetch, and a page carrying one is still one file. The
 service worker cannot: registration refuses anything but a script URL. It is
-written beside the page as **`dist/sw.js`** and registered at runtime, and
+written beside the page as **`sw.js`** (at the root) and registered at runtime, and
 only where it can mean anything:
 
 ```js
@@ -349,7 +350,7 @@ simply fails to register and carries on.
 - **The build proves all of it.** `assertSelfContained` now allows exactly
   three `<link>`s — `icon`, `apple-touch-icon`, `manifest` — and **only from
   a `data:` URI**; anything else still fails the build. `--check` compares
-  `dist/sw.js` as well as the page.
+  `sw.js` as well as the page.
 - **And the suite proves it in a browser.** `scripts/test.js` serves `dist/`
   over http, reads the manifest through the DevTools protocol, asserts there
   are no installability errors of the page's own making, waits for the worker
@@ -3458,10 +3459,10 @@ to `app/`, to `lexicon/`, or to `scripts/lexicon.js`.
 browser, and is the quick check while editing it.
 
 **Publishing a testable demo** — `node scripts/demo.js` rewrites
-`dist/abhyasah.html` into `dist/abhyasa-demo-v<N>.html`, stripping the
+the root `index.html` into `dist/abhyasa-demo-v<N>.html`, stripping the
 `<!doctype>`/`<html>`/`<head>`/`<body>` wrapper that the Artifact host supplies
 itself. Publish that file to give the learner a live page to try on a phone.
-The demo is generated and git-ignored; `dist/abhyasah.html` remains the real
+The demo is generated and git-ignored; the root `index.html` remains the real
 distributable. **The version counts up on every run** — `demo-version` is
 tracked, so the number keeps going across sessions and a published demo can be
 named in a message without ambiguity.
