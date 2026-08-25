@@ -1,0 +1,5 @@
+{
+  "name": "sanskrit school",
+  "install": "python3 build.py\nnode scripts/build.js\nnpm i --no-save --no-package-lock playwright-core@1.56.0\nnode node_modules/playwright-core/cli.js install chromium\nsudo -n mkdir -p /opt/pw-browsers/chromium-1194/chrome-linux 2>/dev/null && sudo -n ln -sfn \"$HOME/.cache/ms-playwright/chromium-1194/chrome-linux/chrome\" /opt/pw-browsers/chromium-1194/chrome-linux/chrome || true",
+  "start": "python3 -m http.server 8080"
+}
