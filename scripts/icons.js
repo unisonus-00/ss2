@@ -187,7 +187,7 @@ function draw(img, box, size, span) {
 
 /* The ground the page paints, so the icon and the app it opens are the same
    colour — --ground in app/styles.css. */
-const GROUND = [0x24, 0x1f, 0x19];
+const GROUND = [0x1c, 0x17, 0x12];
 /* and the ink the artwork is already drawn in — --leaf */
 const LEAF = [0xe9, 0xdc, 0xbe];
 

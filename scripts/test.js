@@ -1226,7 +1226,7 @@ const open = async (browser, opts = {}) => {
       const raw = zlib.inflateSync(Buffer.concat(idat));
       return [raw[1], raw[2], raw[3]];     // byte 0 is the scanline filter
     };
-    const SURFACE = [43, 37, 30];          // --surface, #2b251e
+    const SURFACE = [35, 29, 23];          // --surface, #231d17
 
     for (const [args, tag] of [[[], 'left alone'],
                                [['--enable-features=WebContentsForceDark'], 'forced dark']]) {
@@ -5799,8 +5799,8 @@ const open = async (browser, opts = {}) => {
     ok('the manifest parses, with nothing wrong in it',
       !!man && !(got.errors || []).length, JSON.stringify(got.errors || []));
     ok('it asks to run as an app, in its own colours',
-      man && man.display === 'standalone' && man.theme_color === '#241f19'
-        && man.background_color === '#241f19',
+      man && man.display === 'standalone' && man.theme_color === '#1c1712'
+        && man.background_color === '#1c1712',
       man && [man.display, man.theme_color].join(' '));
     /* Chrome refuses to install without a start_url it can resolve, and a
        manifest carried as a data: URI has no address for a relative one to

@@ -5,11 +5,11 @@
        forced repaint on top of colours that are already the dark design
        only muddies them.  Declaring the scheme opts the page out. */
     color-scheme: dark;
-    --ground: #241f19;
+    --ground: #1c1712;
     /* the raised surface a card, panel, popover or the drawer sits on — one
        step lighter than the ground, so each reads as set apart from the
        page behind it even though both are dark. */
-    --surface: #2b251e;
+    --surface: #231d17;
     --leaf: #e9dcbe;
     --leaf-edge: #55493a;
     /* content on a surface takes the same ink the ground's own chrome does

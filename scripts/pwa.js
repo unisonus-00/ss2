@@ -28,7 +28,7 @@ const DESCRIPTION = 'Sanskrit flashcards for scripture, practice and ritual — 
 
 /* The ground the page paints, so the splash screen, the status bar and the
    app itself are one colour rather than three — --ground in app/styles.css. */
-const GROUND = '#241f19';
+const GROUND = '#1c1712';
 
 /* `start_url` is deliberately NOT here, and is filled in by the page itself.
    A manifest's URLs resolve against the MANIFEST's own URL; this one travels
