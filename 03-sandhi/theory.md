@@ -47,7 +47,7 @@ The pratyāhāra **ac** (from the Māheśvara Sūtras) represents all svaras, he
 
 ---
 
-# Part I: Ac Sandhi (Svara / Vowel Sandhi)
+## Part I: Ac Sandhi (Svara / Vowel Sandhi)
 
 ## 1. Yan Sandhi (यण् सन्धि)
 
@@ -276,7 +276,7 @@ This sandhi applies only when:
 
 ---
 
-# Part II: Hal Sandhi (Vyañjana / Consonant Sandhi)
+## Part II: Hal Sandhi (Vyañjana / Consonant Sandhi)
 
 ## 8. Śchutva Sandhi (श्चुत्व सन्धि)
 
@@ -548,7 +548,7 @@ This sandhi has three sub-cases:
 
 ---
 
-# Part III: Viśeṣa Sandhi (Special Sandhis)
+## Part III: Viśeṣa Sandhi (Special Sandhis)
 
 These sandhis include visarga transformations and other special rules that do not fall neatly into the svara or vyañjana categories alone.
 

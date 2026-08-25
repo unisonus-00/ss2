@@ -618,106 +618,84 @@ pattern cards and two ordinary headwords (`उपजातिः`, `आर्य
 behaves as what it is. A per-deck flag would have got that deck wrong, and a
 future card needs no flag to be handled correctly.
 
-### Study
+### Study is the lesson-first presentation
 
-**Practice is retrieval, Study is lookup, the workbook is production, the badge
-is the demonstration.** Study is a reference *viewer* and holds to that: it
-carries no cards, tracks no progress, grades nothing, and generates nothing
-from what it shows.
+**Practice is retrieval, Study is the teaching, the workbook is production, the
+badge is the demonstration.** Study is a *viewer* and holds to that: it carries
+no cards, tracks no progress, grades nothing, and generates nothing from what it
+shows.
 
-A book icon opens the lesson's own `reference.md` in a panel, rendered at build
-time by `scripts/markdown.js` and inlined like everything else — the page still
-has nothing to fetch.
+**Study opens the lesson's own `theory.md`** — what the stage is for, its
+objective, the worked examples — rendered at build time by `scripts/markdown.js`
+and inlined as the `#theory-md` island, so the page still has nothing to fetch.
+It is a **lesson-first presentation**: the teaching leads, and the tray below it
+carries one prompt on to the lesson's first list — *Begin — Devī* — so a learner
+reads what a lesson is for and then steps straight into practising it. This is
+what "consolidate the landing page with the theory of what it teaches, then
+prompt on to the first deck" asked for.
 
-`theory.md` is now carried too, but as a **different thing in a different
-place** — see **The lesson's teaching** below. Study stays lookup; the teaching
-is the teaching, and the two never share a surface: the Study icon on the
-status row opens the reference mid-round, and the book-link at the head of a
-lesson's lists in the drawer opens the theory. Keeping them apart is what keeps
-Study to its one job.
+`reference.md` is **no longer a surface**. The app used to open the reference
+here; it now opens the teaching, and the reference viewer, its island and its
+loader are gone (the distributable dropped ~180 KB with them). The lesson's
+`reference.md` is still the repository's comprehensive lookup and still what
+`build.py`'s reader concatenates; it is simply not one of Abhyāsa's two book
+icons any more. The renderer that was written for the references now renders the
+theory, and `scripts/test.js` still checks it verbatim — a lesson's teaching
+must survive rendering with nothing dropped — now against the theory files
+rather than the reference ones.
 
+- **It is reached two ways, both opening the same surface.** The **Study icon**
+  on the status row opens the teaching for the list in play (mid-round or
+  before starting); the **book-link at the head of a lesson's lists** in the
+  drawer opens it for any lesson, keyed by the lesson rather than the round
+  (`openStudyFor(key)` sets `studyKey`), so a learner can read a lesson before
+  answering a single card in it. `theoryLink(key)` draws that book-link,
+  captioned *what &lt;Lesson&gt; teaches*, under each unit caption in the
+  drawer — a real button beside the rows, never nested in one; **absent, not
+  greyed**, for a lesson with no theory.
+- **The prompt points where the entry point means.** From the drawer it leads
+  to the lesson's own first unfinished list; a track's Begin passes the track's
+  next list instead (`openStudyFor(key, deck)` — a Rūpa-siddhi row rests on the
+  Rūpa lesson but leads on to Śiva, not to the first declension table). Reading
+  the whole lesson is never forced: tapping a list in the drawer always starts
+  the round directly.
 - **The renderer is narrow on purpose.** Headings, paragraphs, pipe tables,
   bullet and numbered lists, blockquotes, fenced blocks, rules and `**`/`*`
-  emphasis — exactly what the reference files use. Anything else falls through
-  as paragraph text rather than being guessed at. **An inconsistency in a
-  reference is a content bug to fix in the lesson**, never something the reader
-  reinterprets.
-- **Line breaks inside a paragraph are kept.** Every multi-line paragraph in
-  these files is line-significant — verse pādas, parallel epithet lists — so
-  reflowing them the way Markdown normally would is not "verbatim".
-  `scripts/test.js` checks 6256 fragments across all 36 references against the
-  rendered output and fails if any goes missing.
+  emphasis — exactly what these files use. **An inconsistency is a content bug
+  to fix in the lesson**, never something the reader reinterprets: `03-sandhi`'s
+  theory headed its three Parts with `#` where every other lesson uses `##`, and
+  a `|` inside a Svara-Vidyā table cell split the cell — both fixed in the
+  lesson, and `scripts/test.js` checks every fragment of all 29 theory files
+  against the rendered output and fails if any goes missing.
 - **The panel is titled from the lesson, not from the file's own `h1`**, so
   Study and the drawer cannot disagree about what a lesson is called. The `h1`
   is dropped from the body, since it would be the same words twice.
 - **A contents list appears at five top-level sections**, which is where these
-  files start needing one. Thirteen of the twenty-three get one.
-- **Hidden, not greyed, where there is nothing to look up** — a lesson with no
-  `reference.md`, and a mixed round, which belongs to no one lesson.
-- **The button sits on the status row, not beside the selector.** The top row
-  is genuinely full: below 375px *no* logo size leaves room for a fourth
-  control **and** the longest list name, and the list name is what that row is
-  for. On the status row it reads as what it is — the lesson's reference beside
-  the lesson's descriptor — and it costs no height, because the glyph is 17px
-  with a 44px tap area laid over it. (`min-height` beats `height`, so the
-  shared `button` rule's 44px has to be cleared explicitly or the control sets
-  the row's height.)
+  files start needing one.
+- **Hidden, not greyed, where there is nothing to teach** — a lesson with no
+  `theory.md`, and a mixed round, which belongs to no one lesson.
+- **The icon sits on the status row, not beside the selector.** The top row is
+  genuinely full: below 375px *no* logo size leaves room for a fourth control
+  **and** the longest list name, and the list name is what that row is for. The
+  glyph is 17px with a 44px tap area laid over it. (`min-height` beats `height`,
+  so the shared `button` rule's 44px has to be cleared explicitly or the control
+  sets the row's height.)
 
-Three reference headings disagree with the directory scheme and are **left for
-upstream**: `03-sandhi` heads itself `Chapter 2: Sandhi -- Reference Guide`
-(the vyākaraṇam numbering, and an ASCII dash), while `02-varna-vidya`,
-`17-puja-vak` and `20-svara-vidya` carry no `Stage N:` at all. None reaches the
-reader, because the panel titles itself from the lesson. `03-sandhi` cannot be
-fixed on its own in any case: `build.py` holds it byte-identical to
-`vyakaranam/ch02-sandhi/reference.md`, where "Chapter 2" is correct.
-
-### The lesson's teaching
-
-Where Study is lookup, `theory.md` is the lesson's own **teaching** — what the
-stage is for, its objective, the worked examples — and until this pass it lived
-only in the repository, reachable from `build.py`'s reader but not from Abhyāsa.
-The brief was to consolidate lesson understanding into one source and surface
-it, **without** duplicating explanatory copy into the app or building a lesson
-page a learner is introduced to twice.
-
-So the teaching is **carried, not rewritten**, and reached from where the
-lesson's lists are rather than from a page of its own:
-
-- **Inlined like the reference.** `loadTheory` in `scripts/build.js` renders
-  each lesson's `theory.md` through the same narrow `scripts/markdown.js`, drops
-  the file's own `h1` (the panel titles itself from the lesson), and inlines it
-  as the `#theory-md` JSON island — one field per lesson, nothing to fetch. The
-  `00-overview` "lesson" is the root `00-overview.md`, which stands in as its
-  teaching. The build reports it (`… 29 theory`) and the offline test asserts it
-  survives the network being cut, exactly as the references do.
-- **Reached by a book-link at the head of a lesson's lists.** `theoryLink(key)`
-  draws the same book glyph Study carries, captioned *what &lt;Lesson&gt;
-  teaches*, at the top of every lesson's list group in the drawer — under each
-  unit caption, so a unit that captions several lessons carries one per lesson.
-  A real button beside the rows, never nested in one; **absent, not greyed**,
-  for a lesson with no theory, exactly as Study is hidden with no reference.
-- **It opens a viewer of Study's own shape.** `#theory` is a second board like
-  `#study` — a contents list at five sections, the rendered body, no card and no
-  grading. It is keyed by the **lesson**, not the round (`openTheory(key)`), so
-  a learner can read a lesson before answering a single card in it. `THEORY`
-  parses the `#theory-md` island; the island's id and the panel's id are
-  deliberately different, because two elements sharing `id="theory"` made
-  `getElementById` return the panel and the parse silently yield `{}`.
-
-**Two book icons, one family, kept apart on purpose.** The Study glyph on the
-status row opens the **reference** mid-round (lookup); the drawer book-link
-opens the **theory** (teaching). They look alike because they are both
-reference viewers; they never share a surface because lookup and teaching are
-different jobs — the discipline the Study section already states.
-
-### The intro page leads with its action
+### The intro page leads with its action, and into the teaching
 
 A track page said what the track gives before it asked anything, and its Begin
 sat at the **foot** of a long read — so a returning learner scrolled the whole
-orientation to reach *Continue —*. The brief moved the action up: **Begin (and,
-on an optional track, Skip) lead the page**, with progress beside them, and the
-orientation prose, the plan and the "while you practise" controls below.
+orientation to reach *Continue —*. Two changes: **Begin (and, on an optional
+track, Skip) lead the page**, with progress beside them and the orientation
+prose below; and Begin is now **lesson-first**.
 
+- **Begin opens what the next lesson teaches**, and that teaching's own prompt
+  carries the learner on to the first list — the same consolidated surface the
+  drawer book-link opens. A lesson already in progress is continued straight
+  into (the teaching has been read), and a lesson with no theory begins
+  directly; a learner who wants to skip the reading taps the list in the drawer,
+  which always starts the round. So the track page is theory-first too: the walk
+  is track intro → what the lesson teaches → its first list.
 - **Skip is offered only where there is something to skip.** An optional track
   (`t.optional`) carries a `Skip — it's optional` beside Begin, leading to the
   first course track's page; a course track has nothing to skip and shows none.

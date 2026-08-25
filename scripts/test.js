@@ -2172,21 +2172,33 @@ const open = async (browser, opts = {}) => {
       shut.locked === shut.drawn && shut.said,
       shut.locked + ' of ' + shut.drawn + ' shut');
 
-    // begin hands over to the first list, and the page gets out of the way
+    // begin is lesson-first: it opens what the first lesson teaches, and the
+    // teaching's own prompt carries the learner on to the first list
     await p.evaluate(() => closeDrawer());
     await p.click('#s-go');
+    const teach = await p.evaluate(() => ({
+      panel: document.getElementById('study').style.display,
+      title: document.getElementById('st-title').textContent,
+      go: document.getElementById('st-go').textContent,
+      begun: !!SAVED.begun.bhasha,
+    }));
+    ok('“Begin” opens what the track’s first lesson teaches',
+      teach.panel === 'block' && teach.title === 'Nāma' && /^(Begin|Continue) — /.test(teach.go),
+      teach.title + ' · ' + teach.go);
+    ok('and unlocks the track for good', teach.begun);
+    await p.click('#st-go');
     const gone = await p.evaluate(() => ({
       page: document.getElementById('trackcard').hidden,
+      panel: document.getElementById('study').style.display,
       card: getComputedStyle(document.getElementById('card')).display,
       deck: deckName, track: trackIdOf(deckName), running: !!current,
-      begun: !!SAVED.begun.bhasha,
       open: [...document.querySelectorAll('.dk')].filter(b => !b.disabled).length,
     }));
-    ok('“Begin” opens the track’s first list',
-      gone.page && gone.card !== 'none' && gone.running && gone.track === 'bhasha',
+    ok('and its prompt opens the track’s first list',
+      gone.page && gone.panel === 'none' && gone.card !== 'none'
+        && gone.running && gone.track === 'bhasha',
       JSON.stringify({ deck: gone.deck, running: gone.running }));
-    ok('and unlocks the track for good', gone.begun && gone.open > 0,
-      gone.open + ' lists open');
+    ok('the track is open for good', gone.open > 0, gone.open + ' lists open');
 
     /* A mode the learner cannot open yet has no business on the page that
        introduces the track: the figures stay, the reminder waits. */
@@ -2664,10 +2676,11 @@ const open = async (browser, opts = {}) => {
   }
 
   // ── the Study renderer drops nothing ──────────────────────────────
-  // Study preserves the reference essentially verbatim: it may strip the
-  // markup that makes a heading a heading, and nothing else.  Checked line by
-  // line against the source rather than by eye, because a renderer that
-  // quietly eats a table row would look perfectly fine on screen.
+  // Study now shows the lesson's theory.md, and preserves it essentially
+  // verbatim: it may strip the markup that makes a heading a heading, and
+  // nothing else.  Checked line by line against the source rather than by eye,
+  // because a renderer that quietly eats a table row would look perfectly fine
+  // on screen.
   {
     const fs = require('fs');
     const markdown = require('./markdown');
@@ -2680,7 +2693,7 @@ const open = async (browser, opts = {}) => {
     const lost = [];
     let files = 0, fragments = 0;
     for (const d of fs.readdirSync(root).filter(x => /^\d\d-/.test(x))) {
-      const f = path.join(root, d, 'reference.md');
+      const f = path.join(root, d, 'theory.md');
       if (!fs.existsSync(f)) continue;
       const md = fs.readFileSync(f, 'utf8');
       const got = squash(text(markdown.render(md).html));
@@ -2709,9 +2722,9 @@ const open = async (browser, opts = {}) => {
         });
       });
     }
-    ok('the Study renderer loses no reference text', !lost.length,
+    ok('the Study renderer loses no teaching text', !lost.length,
       lost.length ? lost.slice(0, 3).join(' | ')
-                  : fragments + ' fragments across ' + files + ' references');
+                  : fragments + ' fragments across ' + files + ' theory files');
   }
 
   // ── Abhyāsa is the drawer's opening section, not one row of three ──
@@ -3317,12 +3330,14 @@ const open = async (browser, opts = {}) => {
         .reduce((a, x) => a + x.cards, 0);
       out.noBreadthOnTheWay = path.slice(0, leave).every(x => !x.breadth);
 
-      /* the track page recommends from the same order */
+      /* the track page recommends from the same order — and is lesson-first,
+         so an untouched first lesson names the lesson it opens the teaching of,
+         not the deck that teaching leads on to */
       SAVED.mastered = {};
       SAVED.begun = { home: 1, bhasha: 1 };
       showTrack('bhasha');
       out.trackGo = document.getElementById('s-go').textContent;
-      out.wantGo = DECK_SHORT(recommendOrder(row)[0]);
+      out.wantGo = LESSON_LABEL[DECK_LESSON[recommendOrder(row)[0]]];
 
       /* nothing is hidden or reordered in the drawer by any of this */
       const nav = trackDecks(row);
@@ -4474,6 +4489,15 @@ const open = async (browser, opts = {}) => {
                 go: document.getElementById('s-go').textContent },
       };
     });
+    /* lesson-first: it opens what Rūpa teaches, and that teaching's prompt leads
+       on to Śiva — the pattern everything else is compared to */
+    await p.evaluate(() => showTrack('siddhi'));
+    await p.click('#s-go');
+    const step = await p.evaluate(() => ({
+      panel: document.getElementById('study').style.display,
+      title: document.getElementById('st-title').textContent,
+      go: document.getElementById('st-go').textContent,
+    }));
     ok('the production lists are drawn as a track of their own',
       r.lists === 13 && !r.inACourseTrack, r.lists + ' lists');
     ok('and are still Stage 5 lists, under a row that says so',
@@ -4487,8 +4511,10 @@ const open = async (browser, opts = {}) => {
       r.page.held + ' · ' + r.page.name);
     ok('and its plan says what it rests on, first',
       /^Take Rūpa first/.test(r.page.plan[0] || ''), (r.page.plan[0] || '').slice(0, 40));
-    ok('it opens on the pattern everything else is compared to',
-      /Begin — Śiva/.test(r.page.go), r.page.go);
+    ok('it opens the teaching it rests on, which leads to the first pattern',
+      /Begin — Rūpa/.test(r.page.go)
+        && step.panel === 'block' && /Begin — Śiva/.test(step.go),
+      r.page.go + ' → ' + step.title + ' → ' + step.go);
     await p.close();
   }
 
@@ -4712,140 +4738,93 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
-  // ── Study: the lesson's reference, and nothing more ───────────────
-  // A reference VIEWER, not a second learning system.  It shows the lesson's
-  // own reference.md, rendered at build time and inlined, and it holds no
-  // cards, tracks nothing and grades nothing.
+  // ── Study is the lesson-first presentation ───
+  // Study now shows the lesson's own theory.md — what it teaches, rendered at
+  // build time and inlined — and the tray below carries the one prompt on to
+  // the lesson's first list.  A viewer, not a second learning system: no cards,
+  // no grading, no toggles.  Reached by the Study icon during practice and by
+  // the book-link at the head of a lesson's lists in the drawer; there is no
+  // separate reference surface any more.
   {
     const p = await open(browser, { viewport: { width: 360, height: 740 } });
     const r = await p.evaluate(() => {
       const el = id => document.getElementById(id);
       const out = {};
 
-      /* a lesson that has one: the button is offered and opens its reference */
-      loadDeck('S \u00b7 Ac sandhi — vowel joins');
+      /* the icon studies the lesson in play: teaching shown, prompt on to the
+         first list */
+      loadDeck('S · Ac sandhi — vowel joins');
       out.offered = !el('study-btn').hidden;
       el('study-btn').click();
       const body = el('st-body');
       out.opened = el('study').style.display === 'block';
-      out.title = el('st-title').textContent;
-      out.tables = body.querySelectorAll('table').length;
-      out.pre = body.querySelectorAll('pre').length;
-      /* the file's own h1 is the panel heading, so it is not repeated below */
-      out.h1 = body.querySelectorAll('h1').length;
-      /* it reads inside itself rather than pushing the app off the bottom */
+      out.title = el('st-title').textContent;             // titled from the lesson
+      out.h1 = body.querySelectorAll('h1').length;         // the file's h1 is the panel heading
       out.scrolls = body.scrollHeight > body.clientHeight + 10;
       out.sideways = document.documentElement.scrollWidth > window.innerWidth;
       out.back = !el('panel-back').hidden;
-      /* a long reference gets a contents list, and it addresses real headings */
-      out.toc = [...document.querySelectorAll('.st-link')].length;
-      out.tocHits = [...document.querySelectorAll('.st-body h2')].length;
-      /* Study holds no exercise: no card, no grading, no toggles */
       out.noCard = el('card').style.display === 'none'
                 && el('grade').hidden && el('controls').hidden;
+      out.promptShown = !el('st-actions').hidden;
+      out.prompt = el('st-go').textContent;
 
-      /* and closing it puts the round back exactly as it was */
-      const was = el('dn').textContent;
-      el('p-back').click();
-      out.restored = el('dn').textContent === was && el('card').style.display !== 'none';
+      /* the prompt starts the round and closes the panel */
+      el('st-go').click();
+      out.started = !!current && el('study').style.display === 'none'
+                 && el('card').style.display !== 'none';
+      out.startedLesson = deckName && DECK_LESSON[deckName] === '03-sandhi';
 
-      /* a short reference gets no contents list */
-      loadDeck(Object.keys(DECKS).find(n => DECK_LESSON[n] === '09-dhatu'));
+      /* a long teaching gets a contents list addressing real headings */
+      loadDeck(Object.keys(DECKS).find(n => DECK_LESSON[n] === '06-kriya'));
       el('study-btn').click();
-      out.shortToc = el('st-toc').hidden;
+      out.toc = [...document.querySelectorAll('#st-toc .st-link')].length;
+      out.tocHits = [...document.querySelectorAll('#st-body h2')].length;
+      out.kriyaTitle = el('st-title').textContent;
       el('p-back').click();
 
-      /* hidden where there is nothing to look up */
-      const cross = Object.keys(DECKS).find(n => DECK_LESSON[n] === '00-overview');
-      loadDeck(cross);
-      out.hiddenNoRef = el('study-btn').hidden;
-      startMixedReview();
+      /* the drawer book-link opens the same surface for any lesson */
+      SAVED.guided = false; save();
+      openDrawer(); openTracks.add('bhasha'); openLessons.add('bhasha/vakya'); renderDrawer();
+      const link = [...document.querySelectorAll('.th-link')].find(b => /Sandhi/.test(b.title));
+      out.linkShown = !!link;
+      if (link) link.click();
+      out.linkOpened = el('study').style.display === 'block'
+                    && el('st-title').textContent === 'Sandhi';
+      el('p-back').click();
+
+      /* a mixed round belongs to no lesson, so nothing to study */
+      deckName = MIX; syncNav();
       out.hiddenMixed = el('study-btn').hidden;
 
-      /* every loaded lesson with a reference offers one, and none is empty */
-      const empty = [];
-      Object.keys(REFERENCES).forEach(k => {
-        if (!REFERENCES[k].html || REFERENCES[k].html.length < 200) empty.push(k);
-      });
-      out.refs = Object.keys(REFERENCES).length;
-      out.empty = empty;
-      return out;
-    });
-
-    ok('Study is offered for a lesson that has a reference', r.offered);
-    ok('and opens that lesson\'s reference', r.opened && r.tables >= 3, r.tables + ' tables');
-    ok('titled from the lesson, not the file\'s own heading',
-      r.title === 'Sandhi', JSON.stringify(r.title));
-    ok('the file heading is not repeated inside it', r.h1 === 0);
-    ok('it reads inside itself, not down the page', r.scrolls && !r.sideways);
-    ok('a long reference gets a contents list', r.toc >= 5 && r.toc <= r.tocHits,
-      r.toc + ' of ' + r.tocHits + ' sections');
-    ok('a short one does not', r.shortToc);
-    ok('Study holds no exercise', r.noCard);
-    ok('and leaves the round untouched', r.restored && r.back);
-    ok('hidden where there is nothing to look up',
-      r.hiddenNoRef && r.hiddenMixed);
-    ok('every carried reference has content', !r.empty.length,
-      r.refs + ' references' + (r.empty.length ? ', empty: ' + r.empty.join(', ') : ''));
-    await p.close();
-  }
-
-  // ── the lesson's teaching is a tap from its lists ──────────────────
-  // theory.md is inlined the same way the reference is, and reached by the
-  // book-link at the head of a lesson's lists in the drawer.  Where the
-  // reference is lookup, this is the teaching — the objective and the worked
-  // examples — so a lesson can be understood before its first card, without a
-  // lesson page the learner is taken to twice.
-  {
-    const p = await open(browser);
-    const r = await p.evaluate(() => {
-      const el = id => document.getElementById(id);
-      const out = {};
-      SAVED.guided = false; save();               // ungate so every lesson expands
-
-      /* every lesson the app carries theory for opens, and none is empty */
+      /* every carried teaching has real content, and the book-link is absent
+         (not broken) for a lesson with none */
       const empty = [];
       Object.keys(THEORY).forEach(k => {
         if (!THEORY[k].html || THEORY[k].html.length < 200) empty.push(k);
       });
       out.count = Object.keys(THEORY).length;
       out.empty = empty;
-
-      /* the drawer carries the book-link under a lesson, and it opens that
-         lesson's theory — titled from the lesson, worked tables inside it, the
-         file's own h1 dropped, no card and no grading */
-      openDrawer();
-      openTracks.add('bhasha'); openLessons.add('bhasha/kriya'); renderDrawer();
-      const link = [...document.querySelectorAll('.th-link')]
-        .find(b => /Kriyā/.test(b.title));
-      out.linkShown = !!link;
-      if (link) link.click();
-      out.opened = el('theory').style.display === 'block';
-      out.title = el('th-title').textContent;
-      const body = el('th-body');
-      out.tables = body.querySelectorAll('table').length;
-      out.h1 = body.querySelectorAll('h1').length;
-      out.toc = [...el('th-toc').querySelectorAll('.st-link')].length;
-      out.noCard = el('card').style.display === 'none'
-                && el('grade').hidden && el('controls').hidden;
-      out.back = !el('panel-back').hidden;
-      out.sideways = document.documentElement.scrollWidth > window.innerWidth;
-
-      /* a book-link is absent, not broken, for a lesson with no theory */
       out.linkFns = typeof theoryLink === 'function'
                  && theoryLink('does-not-exist') === null;
       return out;
     });
 
-    ok('theory is carried for every lesson that has it', r.count >= 28 && !r.empty.length,
+    ok('Study is offered for a lesson, showing its teaching', r.offered && r.opened);
+    ok('titled from the lesson, its own h1 dropped',
+      r.title === 'Sandhi' && r.h1 === 0, JSON.stringify(r.title));
+    ok('it reads inside itself, not down the page', r.scrolls && !r.sideways);
+    ok('Study holds no exercise', r.noCard && r.back);
+    ok('it prompts on to the lesson first list',
+      r.promptShown && /^(Begin|Continue) — /.test(r.prompt), r.prompt);
+    ok('and that prompt starts the round in the same lesson',
+      r.started && r.startedLesson);
+    ok('a long teaching gets a contents list', r.toc >= 5 && r.toc <= r.tocHits,
+      r.kriyaTitle + ': ' + r.toc + ' of ' + r.tocHits + ' sections');
+    ok('the drawer book-link opens the same teaching for any lesson',
+      r.linkShown && r.linkOpened);
+    ok('a mixed round has no lesson to study', r.hiddenMixed);
+    ok('every carried teaching has content', r.count >= 28 && !r.empty.length,
       r.count + ' lessons' + (r.empty.length ? ', empty: ' + r.empty.join(', ') : ''));
-    ok('a lesson\'s lists carry a book-link to its teaching', r.linkShown);
-    ok('and it opens that lesson\'s theory', r.opened && r.tables >= 1,
-      r.title + ' · ' + r.tables + ' tables');
-    ok('titled from the lesson, its own h1 dropped', r.title === 'Kriyā' && r.h1 === 0,
-      JSON.stringify(r.title));
-    ok('a long teaching gets a contents list', r.toc >= 5, r.toc + ' sections');
-    ok('the teaching holds no exercise', r.noCard && r.back && !r.sideways);
     ok('a lesson with no theory gets no book-link', r.linkFns);
     await p.close();
   }
@@ -5912,13 +5891,12 @@ const open = async (browser, opts = {}) => {
     const offline = await p.evaluate(() => {
       loadDeck(Object.keys(DECKS)[0]);
       return { decks: Object.keys(DECKS).length,
-               refs: Object.keys(REFERENCES).length,
                theory: Object.keys(THEORY).length,
                card: document.getElementById('dn').textContent };
     });
     ok('and it opens again with no network at all',
-      offline.decks === EXPECTED.decks && offline.refs > 0 && offline.theory > 0 && !!offline.card,
-      offline.decks + ' lists, ' + offline.refs + ' references, ' + offline.theory + ' theory');
+      offline.decks === EXPECTED.decks && offline.theory > 0 && !!offline.card,
+      offline.decks + ' lists, ' + offline.theory + ' theory');
     await ctx.setOffline(false);
     await ctx.close();
     server.close();

@@ -41,7 +41,6 @@ const LINK = '<link rel="stylesheet" href="styles.css">';
 const SCRIPT = '<script src="app.js"></script>';
 const PRACTICE = /<script id="practice" type="application\/json">[\s\S]*?<\/script>/;
 const LEXICON  = /<script id="lexicon" type="application\/json">[\s\S]*?<\/script>/;
-const REFERENCE = /<script id="references" type="application\/json">[\s\S]*?<\/script>/;
 const THEORY   = /<script id="theory-md" type="application\/json">[\s\S]*?<\/script>/;
 const MANIFEST = /<script id="manifest" type="application\/json">[\s\S]*?<\/script>/;
 /* A contents list earns its place on a long reference and clutters a short
@@ -114,31 +113,6 @@ function discover() {
   if (fs.existsSync(root)) found.push({ dir: '00-overview', stage: 0, file: root });
 
   return found;
-}
-
-/* A lesson's reference.md, rendered.  Study is a reference viewer, so the
-   content goes through essentially verbatim: no summarising, no extraction,
-   no cards made from it.  A lesson with no reference.md simply gets none, and
-   the app hides the button rather than opening an empty panel. */
-function loadReferences(lessons) {
-  const out = {};
-  for (const { lesson } of lessons) {
-    const f = path.join(ROOT, lesson, 'reference.md');
-    if (!fs.existsSync(f)) continue;
-    const { html, toc } = markdown.render(fs.readFileSync(f, 'utf8'));
-    /* A reference opens with its own title — "Stage 5: Rūpa — Reference
-       Guide" — and the panel already has a heading, so the h1 would be the
-       same words twice.  Dropped here rather than hidden in CSS, so the
-       contents list underneath cannot pick it up either.  The panel titles
-       itself from the LESSON, which keeps Study and the drawer agreeing and
-       does not depend on how a given reference happens to head itself. */
-    const sections = toc.filter(t => t.level === 2);
-    out[lesson] = {
-      html: html.replace(/^<h1[^>]*>[\s\S]*?<\/h1>\n?/, ''),
-      toc: sections.length >= TOC_FROM ? sections : []
-    };
-  }
-  return out;
 }
 
 /* A lesson's theory.md, rendered.  Where reference.md is lookup, theory.md is
@@ -373,11 +347,6 @@ function build() {
     '<script id="lexicon" type="application/json">'
     + island(lex.glossary || { members: {}, roots: {}, from: {} }) + '</script>');
 
-  const references = loadReferences(lessons);
-  if (!REFERENCE.test(html)) throw new Error('index.html has no <script id="references"> block');
-  html = html.replace(REFERENCE,
-    '<script id="references" type="application/json">' + island(references) + '</script>');
-
   const theory = loadTheory(lessons);
   if (!THEORY.test(html)) throw new Error('index.html has no <script id="theory-md"> block');
   html = html.replace(THEORY,
@@ -415,7 +384,6 @@ function build() {
   const stamp = crypto.createHash('sha256').update(html).digest('hex').slice(0, 7);
   html = html.replace(BUILD, stamp);
   return { html, lessons, cards, decks, stamp, lex, pwa: pwaBits,
-           refs: Object.keys(references).length,
            theory: Object.keys(theory).length };
 }
 
@@ -452,7 +420,7 @@ function assertSelfContained(html) {
   }
 }
 
-const { html, lessons, cards, decks, stamp, refs, theory, lex, pwa: pwaBits } = build();
+const { html, lessons, cards, decks, stamp, theory, lex, pwa: pwaBits } = build();
 assertSelfContained(html);
 
 if (process.argv.includes('--check')) {
@@ -476,7 +444,7 @@ fs.writeFileSync(OUT, html);
 fs.writeFileSync(SW, pwaOut.worker(stamp));
 console.log(
   `build: dist/abhyasah.html  ${(html.length / 1024).toFixed(0)} KB  ` +
-  `${lessons.length} lessons, ${decks} decks, ${cards} cards, ${refs} references, ${theory} theory  · ${stamp}`
+  `${lessons.length} lessons, ${decks} decks, ${cards} cards, ${theory} theory  · ${stamp}`
 );
 console.log(
   `       pwa: ${pwaBits.icons} icons (${(pwaBits.bytes / 1024).toFixed(0)} KB) and the ` +

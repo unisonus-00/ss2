@@ -131,7 +131,7 @@ The KYV tradition preserves every mantra in (at least) two forms:
 | Form | What It Is | Example |
 |------|-----------|---------|
 | **Saṃhitā-pāṭha** | Continuous recitation with full sandhi | *namo̍ rudra̱ya ca* (sounds flow together) |
-| **Pada-pāṭha** | Word-by-word with sandhi dissolved | *namaḥ | rudrāya | ca* (each word isolated) |
+| **Pada-pāṭha** | Word-by-word with sandhi dissolved | *namaḥ · rudrāya · ca* (each word isolated) |
 
 ### Why Both Exist
 

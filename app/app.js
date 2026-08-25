@@ -1485,21 +1485,11 @@ function syncStudyUI() {
   $('study-btn').classList.toggle('on', panelOpen === 'study');
 }
 
-/* Study material: every loaded lesson's reference.md, rendered to HTML at
-   build time and inlined here.  A reference VIEWER, not a second learning
-   system — it holds no cards, tracks nothing and grades nothing.  Practice is
-   retrieval, Study is lookup, the workbook is production and the badge is the
-   demonstration; this keeps to its own job. */
-const REFERENCES = (() => {
-  const src = document.getElementById('references');
-  if (!src) return {};
-  try { return JSON.parse(src.textContent) || {}; }
-  catch (e) { return {}; }
-})();
-/* A lesson's theory.md, rendered at build time and inlined the same way.  Where
-   the reference is lookup, this is the lesson's own teaching — its objective and
-   worked examples — reached by the book-link on each lesson in the drawer.  A
-   viewer, not a second learning system: it holds no cards and grades nothing. */
+/* Study material: every loaded lesson's theory.md, rendered to HTML at build
+   time and inlined here.  Study is the lesson-first presentation — the lesson's
+   own teaching, its objective and worked examples, shown before the practice
+   and prompting on to the first list.  A viewer, not a second learning system:
+   it holds no cards, tracks nothing and grades nothing. */
 const THEORY = (() => {
   const src = document.getElementById('theory-md');
   if (!src) return {};
@@ -1524,10 +1514,23 @@ const LEXICON = (() => {
   } catch (e) { return empty; }
 })();
 
-/* A mixed round belongs to no one lesson, so there is nothing to look up and
-   the button is not offered. */
-const studyFor = () => (deckName && deckName !== MIX
-  ? REFERENCES[DECK_LESSON[deckName]] : null) || null;
+/* Which lesson Study is showing.  Usually the lesson of the list in play — the
+   Study icon opens the teaching for what you are practising — but a drawer
+   book-link sets it to any lesson, so a learner can read a lesson before its
+   first card.  A mixed round belongs to no one lesson, so it studies nothing. */
+let studyKey = null, studyDeck = null;
+const studyLesson = () => studyKey
+  || (deckName && deckName !== MIX ? DECK_LESSON[deckName] : null);
+const studyFor = () => { const k = studyLesson(); return (k && THEORY[k]) || null; };
+
+/* The lesson's first list to move on to — the first one not yet finished, or
+   its first list if the lesson is untouched, so the prompt at the foot of the
+   teaching always points somewhere useful. */
+function lessonFirstDeck(key) {
+  const L = LESSONS.find(x => x.lesson === key);
+  if (!L || !L.decks.length) return null;
+  return L.decks.find(n => finishedDecks().indexOf(n) < 0) || L.decks[0];
+}
 
 /* The button where the picker used to be, naming the list in play.  It
    carries the lesson as well as the deck: within a lesson the decks are
@@ -1539,13 +1542,14 @@ function syncNav() {
       deckName === MIX ? 'abhyāsa'
     : deckName         ? [label, DECK_SHORT(deckName)].filter(Boolean).join(' \u00b7 ')
     :                    'lists';
-  /* Hidden outright rather than greyed: a lesson with no reference.md has
-     nothing behind the button, and a disabled control still takes the room
-     the list name needs on a phone. */
-  const ref = studyFor();
-  $('study-btn').hidden = !ref;
-  if (ref) $('study-btn').title =
-    'Study \u00b7 ' + LESSON_LABEL[DECK_LESSON[deckName]] + ' reference';
+  /* Hidden outright rather than greyed: a lesson with no theory.md has nothing
+     behind the button, and a disabled control still takes the room the list
+     name needs on a phone.  Keyed off the LESSON in play, not studyKey, which
+     a drawer link sets only for the moment the panel is open. */
+  const has = deckName && deckName !== MIX && THEORY[DECK_LESSON[deckName]];
+  $('study-btn').hidden = !has;
+  if (has) $('study-btn').title =
+    'What ' + LESSON_LABEL[DECK_LESSON[deckName]] + ' teaches';
 }
 
 
@@ -1774,7 +1778,7 @@ function theoryLink(key) {
   b.setAttribute('aria-label', b.title);
   b.addEventListener('click', e => {
     e.stopPropagation();
-    openFromDrawer(() => openTheory(key));
+    openFromDrawer(() => openStudyFor(key));
   });
   return b;
 }
@@ -2156,8 +2160,21 @@ function renderTrack(id) {
        "Continue —" before they had answered a single card.  Progress is the
        honest test: a track with nothing mastered in it is one you begin. */
     const touched = progressOf(row.pathIds).done > 0;
-    go.textContent = (touched ? 'Continue — ' : 'Begin — ') + DECK_SHORT(next);
-    go.onclick = () => { beginTrack(id); chooseDeck(next); };
+    /* Lesson-first: entering a lesson you have not started opens what it
+       teaches, and its own prompt carries you on to the first list.  A lesson
+       you are already inside is continued straight into — you have read the
+       teaching — and a lesson with no theory has nothing to read first, so it
+       too begins directly.  A learner who wants to skip the reading taps the
+       list in the drawer, which always starts the round. */
+    const les = DECK_LESSON[next];
+    const L = LESSONS.find(x => x.lesson === les);
+    const lessonTouched = L && progressOf(L.ids).done > 0;
+    const first = !lessonTouched && THEORY[les];
+    go.textContent = (touched ? 'Continue — ' : 'Begin — ')
+      + (first ? (LESSON_LABEL[les] || DECK_SHORT(next)) : DECK_SHORT(next));
+    go.onclick = first
+      ? () => { beginTrack(id); openStudyFor(les, next); }
+      : () => { beginTrack(id); chooseDeck(next); };
   } else {
     /* Nothing left that this track asks for.  It may still hold enrichment,
        and saying "every list" there would be false. */
@@ -3794,8 +3811,7 @@ function syncBoardUI() {
    that belongs to it.  Every relabel() runs on every open and close, so a
    button can never be left reading "back to the cards" for a shut panel. */
 const PANELS = {
-  study:       { render: renderStudy,       relabel: syncStudyUI },
-  theory:      { render: renderTheory,      relabel: syncTheoryUI },
+  study:       { render: renderStudy,       relabel: syncStudyUI,   actions: 'st-actions' },
   board:       { render: renderBoard,       relabel: syncBoardUI,   actions: 'b-actions' },
   reviewpanel: { render: renderReviewPanel, relabel: syncReviewUI,  actions: 'rp-actions' },
 };
@@ -3807,6 +3823,7 @@ function closePanel() {
   $(panelOpen).style.display = 'none';
   if (spec.actions) $(spec.actions).hidden = true;
   $('panel-back').hidden = true;
+  studyKey = null; studyDeck = null;   // the next Study icon reads the lesson in play
   panelOpen = null;
   relabelAll();
   $('welcome').hidden = panelWas.welcome;
@@ -3850,64 +3867,36 @@ function openPanel(which) {
   PANELS[which].render();
   toTop();
 }
-/* ── Study ──────────────────────────────────────────────────
-   The lesson's own reference.md, as written.  Everything here was decided at
-   build time; this only puts it on screen, so an inconsistency in a reference
-   is a content bug to fix in the lesson rather than something to reinterpret
-   in the reader. */
+/* ── Study: the lesson-first presentation ───
+   The lesson's own theory.md, as written — what it teaches, its objective and
+   worked examples — rendered at build time.  Everything here was decided in the
+   lesson, so an inconsistency is a content bug to fix there rather than
+   something to reinterpret in the reader.  Keyed by the LESSON (studyKey), not
+   the round, so a learner can read a lesson before its first card; and the tray
+   below carries the one prompt on from teaching to practice. */
+/* `deck` optionally overrides which list the prompt moves on to — a track's
+   Begin points it at the track's own next list, which may be a later list of
+   the lesson than the lesson would open on its own (a Rūpa-siddhi row rests on
+   the Rūpa lesson but leads on to Śiva, not to the first declension table). */
+function openStudyFor(key, deck) {
+  studyKey = key && THEORY[key] ? key : null;
+  studyDeck = deck || null;
+  openPanel('study');
+}
 function renderStudy() {
-  const ref = studyFor();
-  const key = deckName ? DECK_LESSON[deckName] : null;
-  /* Titled from the lesson, not from the reference's own h1: the drawer and
-     Study then cannot disagree about what a lesson is called, whatever a
-     given reference file happens to head itself with. */
-  $('st-title').textContent = key ? LESSON_LABEL[key] : 'Study';
+  const key = studyLesson();
+  const doc = studyFor();
+  /* Titled from the lesson, not from the file's own h1: the drawer and Study
+     cannot then disagree about what a lesson is called. */
+  $('st-title').textContent = key ? LESSON_LABEL[key] || key : 'Lesson';
   $('st-sub').textContent = key && LESSON_GLOSS[key]
-    ? LESSON_GLOSS[key] + ' \u00b7 reference' : 'reference';
-  $('st-body').innerHTML = ref ? ref.html : '';
-
-  /* A contents list is built only for a reference long enough to need one —
-     the build decides, and hands over an empty list otherwise. */
-  const toc = $('st-toc');
-  toc.innerHTML = '';
-  toc.hidden = !ref || !ref.toc.length;
-  if (toc.hidden) return;
-  ref.toc.forEach(t => {
-    const a = document.createElement('button');
-    a.className = 'st-link';
-    a.textContent = t.text;
-    a.addEventListener('click', () => {
-      const h = document.getElementById(t.id);
-      if (h) h.scrollIntoView({ block: 'start' });
-    });
-    toc.appendChild(a);
-  });
-  $('st-body').scrollTop = 0;
-}
-
-/* ── the lesson's teaching ──────────────────────────────────
-   theory.md, rendered at build time.  Study answers "look this up mid-round";
-   this answers "what is this lesson for, and what does it want of me" — the
-   objective and the worked examples, in the lesson's own words rather than
-   duplicated into the app.  Opened from the book-link that sits on every
-   lesson in the drawer, so it is reachable wherever a lesson is, and keyed by
-   the lesson rather than by the round, since a learner may want to read a
-   lesson before they have started a single card in it. */
-let theoryKey = null;
-function openTheory(key) {
-  theoryKey = key && THEORY[key] ? key : null;
-  openPanel('theory');
-}
-function renderTheory() {
-  const key = theoryKey;
-  const doc = key ? THEORY[key] : null;
-  $('th-title').textContent = key ? LESSON_LABEL[key] || key : 'Lesson';
-  $('th-sub').textContent = key && LESSON_GLOSS[key]
     ? LESSON_GLOSS[key] + ' · what this lesson teaches'
     : 'what this lesson teaches';
-  $('th-body').innerHTML = doc ? doc.html : '';
+  $('st-body').innerHTML = doc ? doc.html : '';
 
-  const toc = $('th-toc');
+  /* A contents list is built only for a teaching long enough to need one —
+     the build decides, and hands over an empty list otherwise. */
+  const toc = $('st-toc');
   toc.innerHTML = '';
   toc.hidden = !doc || !doc.toc.length;
   if (!toc.hidden) doc.toc.forEach(t => {
@@ -3915,14 +3904,27 @@ function renderTheory() {
     a.className = 'st-link';
     a.textContent = t.text;
     a.addEventListener('click', () => {
-      const h = $('th-body').querySelector('#' + CSS.escape(t.id));
+      const h = $('st-body').querySelector('#' + CSS.escape(t.id));
       if (h) h.scrollIntoView({ block: 'start' });
     });
     toc.appendChild(a);
   });
-  $('th-body').scrollTop = 0;
+  $('st-body').scrollTop = 0;
+
+  /* The lesson-first prompt: read the teaching, then move on to the lesson's
+     first list.  A learner already partway through the lesson is invited to
+     continue it; #panel-back below stays the way out. */
+  const first = (studyDeck && DECKS[studyDeck]) ? studyDeck
+              : key ? lessonFirstDeck(key) : null;
+  const go = $('st-go');
+  $('st-actions').hidden = !first;
+  if (first) {
+    const L = LESSONS.find(x => x.lesson === key);
+    const touched = L && progressOf(L.ids).done > 0;
+    go.textContent = (touched ? 'Continue — ' : 'Begin — ') + DECK_SHORT(first);
+    go.onclick = () => { const d = first; closePanel(); chooseDeck(d); };
+  }
 }
-function syncTheoryUI() {}
 
 /* ── wiring ────────────────────────────────────────────── */
 $('card').addEventListener('click', reveal);
@@ -3967,7 +3969,8 @@ $('dr-home').addEventListener('click', () => openFromDrawer(showWelcome));
 $('dr-board').addEventListener('click', () => openFromDrawer(() => openPanel('board')));
 $('dr-prog').addEventListener('click', () => openFromDrawer(() => openPanel('reviewpanel')));
 $('study-btn').addEventListener('click',
-  () => panelOpen === 'study' ? closePanel() : openPanel('study'));
+  () => panelOpen === 'study' ? closePanel()
+      : (studyKey = null, openPanel('study')));   // the icon studies the lesson in play
 $('p-back').addEventListener('click', closePanel);
 $('rp-draw').addEventListener('click', async () => {
   if (roundInProgress() && !await ask('Leave this round to review?', 'Leave it')) return;
