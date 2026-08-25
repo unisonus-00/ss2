@@ -1496,6 +1496,16 @@ const REFERENCES = (() => {
   try { return JSON.parse(src.textContent) || {}; }
   catch (e) { return {}; }
 })();
+/* A lesson's theory.md, rendered at build time and inlined the same way.  Where
+   the reference is lookup, this is the lesson's own teaching — its objective and
+   worked examples — reached by the book-link on each lesson in the drawer.  A
+   viewer, not a second learning system: it holds no cards and grades nothing. */
+const THEORY = (() => {
+  const src = document.getElementById('theory-md');
+  if (!src) return {};
+  try { return JSON.parse(src.textContent) || {}; }
+  catch (e) { return {}; }
+})();
 /* ── what the annotation itself can be asked about ─────────
    The chip reads `kāma + akṣi — loving-eyed` and `· from √hṛ`, and until this
    the popover explained the grammar words around those and left the Sanskrit
@@ -1741,6 +1751,34 @@ function trackRow(row, over) {
   return b;
 }
 
+/* The book-link that sits at the head of a lesson's lists in the drawer.  It
+   opens the lesson's own theory.md — what the stage is for, its objective and
+   worked examples — so the teaching is a quick tap from wherever the lesson's
+   lists are, without a lesson page having to be somewhere a learner is taken
+   twice.  A real button beside the rows rather than nested inside one, and
+   absent (not greyed) for a lesson with no theory, exactly as Study is. */
+function theoryLink(key) {
+  if (!key || !THEORY[key]) return null;
+  const b = document.createElement('button');
+  b.className = 'th-link';
+  b.innerHTML =
+    '<svg viewBox="0 0 20 20" aria-hidden="true" focusable="false">'
+    + '<path d="M3 4.2c2.3-.9 4.4-.9 6.6.4v11c-2.2-1.3-4.3-1.3-6.6-.4z'
+    + 'M17 4.2c-2.3-.9-4.4-.9-6.6.4v11c2.2-1.3 4.3-1.3 6.6-.4z"/></svg>';
+  const span = document.createElement('span');
+  span.textContent = LESSON_LABEL[key]
+    ? 'what ' + LESSON_LABEL[key] + ' teaches'
+    : 'what this lesson teaches';
+  b.appendChild(span);
+  b.title = 'Read what ' + (LESSON_LABEL[key] || key) + ' teaches';
+  b.setAttribute('aria-label', b.title);
+  b.addEventListener('click', e => {
+    e.stopPropagation();
+    openFromDrawer(() => openTheory(key));
+  });
+  return b;
+}
+
 function lessonRow(L, locked) {
   const one = soleDeck(L);
   if (one) {
@@ -1779,13 +1817,18 @@ function lessonRow(L, locked) {
      lists.  One line of type rather than one more level to tap through: the
      curriculum name stays visible without the path growing a step. */
   const many = (L.parts || []).length > 1;
-  (L.parts || [{ decks: L.decks }]).forEach(part => {
+  (L.parts || [{ decks: L.decks, lesson: L.lesson }]).forEach(part => {
     if (many) {
       const cap = document.createElement('div');
       cap.className = 'ls-cap';
       cap.textContent = part.label;
       body.appendChild(cap);
     }
+    /* The lesson's teaching, at the head of its lists: one tap to what the
+       stage is for, above the practice it is for.  One per lesson-part, so a
+       unit that captions several lessons carries a link under each caption. */
+    const th = theoryLink(part.lesson);
+    if (th) body.appendChild(th);
     part.decks.forEach(name => body.appendChild(deckRow(name)));
   });
   wrap.appendChild(body);
@@ -2135,6 +2178,16 @@ function renderTrack(id) {
   $('s-side').hidden = !begun || !ready;
   $('s-side').textContent = 'Demonstrate your mastery.';
   $('s-review').onclick = () => openPanel('reviewpanel');
+  /* An optional track offers a way past it, up top beside Begin: the one thing
+     a learner who already reads the script (or does not want the grammar) needs
+     is the course, not this.  It leads to the first course track's page. */
+  const skip = $('s-skip');
+  const elective = !!t.optional;
+  skip.hidden = !elective;
+  if (elective) {
+    const course = TRACKS.find(x => TRACK_ROWS.some(r => r.track === x));
+    skip.onclick = () => { if (course) showTrack(course.id); };
+  }
   trackShown = id;
   return true;
 }
@@ -3742,6 +3795,7 @@ function syncBoardUI() {
    button can never be left reading "back to the cards" for a shut panel. */
 const PANELS = {
   study:       { render: renderStudy,       relabel: syncStudyUI },
+  theory:      { render: renderTheory,      relabel: syncTheoryUI },
   board:       { render: renderBoard,       relabel: syncBoardUI,   actions: 'b-actions' },
   reviewpanel: { render: renderReviewPanel, relabel: syncReviewUI,  actions: 'rp-actions' },
 };
@@ -3830,6 +3884,45 @@ function renderStudy() {
   });
   $('st-body').scrollTop = 0;
 }
+
+/* ── the lesson's teaching ──────────────────────────────────
+   theory.md, rendered at build time.  Study answers "look this up mid-round";
+   this answers "what is this lesson for, and what does it want of me" — the
+   objective and the worked examples, in the lesson's own words rather than
+   duplicated into the app.  Opened from the book-link that sits on every
+   lesson in the drawer, so it is reachable wherever a lesson is, and keyed by
+   the lesson rather than by the round, since a learner may want to read a
+   lesson before they have started a single card in it. */
+let theoryKey = null;
+function openTheory(key) {
+  theoryKey = key && THEORY[key] ? key : null;
+  openPanel('theory');
+}
+function renderTheory() {
+  const key = theoryKey;
+  const doc = key ? THEORY[key] : null;
+  $('th-title').textContent = key ? LESSON_LABEL[key] || key : 'Lesson';
+  $('th-sub').textContent = key && LESSON_GLOSS[key]
+    ? LESSON_GLOSS[key] + ' · what this lesson teaches'
+    : 'what this lesson teaches';
+  $('th-body').innerHTML = doc ? doc.html : '';
+
+  const toc = $('th-toc');
+  toc.innerHTML = '';
+  toc.hidden = !doc || !doc.toc.length;
+  if (!toc.hidden) doc.toc.forEach(t => {
+    const a = document.createElement('button');
+    a.className = 'st-link';
+    a.textContent = t.text;
+    a.addEventListener('click', () => {
+      const h = $('th-body').querySelector('#' + CSS.escape(t.id));
+      if (h) h.scrollIntoView({ block: 'start' });
+    });
+    toc.appendChild(a);
+  });
+  $('th-body').scrollTop = 0;
+}
+function syncTheoryUI() {}
 
 /* ── wiring ────────────────────────────────────────────── */
 $('card').addEventListener('click', reveal);

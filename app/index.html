@@ -79,6 +79,34 @@
   <div class="welcome" id="trackcard" hidden>
     <div class="w-eyebrow" id="s-held"></div>
     <h2 class="w-head" id="s-name"></h2>
+
+    <!-- Begin and Skip lead the page: what you do here sits above what it is,
+         so a returning learner reaches "Continue —" without scrolling the
+         orientation, and an optional track offers its way past first. -->
+    <div class="w-actions">
+      <button id="s-go" class="primary"></button>
+      <!-- Only where there is something to skip: an optional track offers a
+           way straight to the course. -->
+      <button id="s-skip" hidden>Skip &#8212; it&#8217;s optional</button>
+      <button id="s-review" hidden>Abhy&#257;sa review</button>
+    </div>
+    <p class="s-side" id="s-side" hidden></p>
+
+    <div class="w-stats" id="s-stats" hidden>
+      <div class="w-stat"><span>Track progress</span><b id="s-pct"></b></div>
+      <!-- The same figure the drawer carries, measured against this track's
+           cards rather than all 2298 — over the whole course nothing a
+           learner does in an evening visibly moves it. -->
+      <div class="w-stat" id="s-rankrow" hidden>
+        <span>Track mastery</span><b id="s-rank"></b>
+      </div>
+      <!-- A track that groups its stages into units counts the units, which
+           are what it asks of the learner; one that does not counts stages. -->
+      <div class="w-stat" id="s-stagerow" hidden>
+        <span id="s-steplabel">Stages complete</span><b id="s-stages"></b>
+      </div>
+    </div>
+
     <p class="w-lead" id="s-lead"></p>
     <div class="s-plan"><div class="s-h">How this track runs</div>
       <ol id="s-plan"></ol></div>
@@ -99,26 +127,6 @@
       <p>The Study icon, beside the list name. It opens this lesson&#8217;s own
         reference to read while you practise.</p>
     </div>
-
-    <div class="w-stats" id="s-stats" hidden>
-      <div class="w-stat"><span>Track progress</span><b id="s-pct"></b></div>
-      <!-- The same figure the drawer carries, measured against this track's
-           cards rather than all 2298 — over the whole course nothing a
-           learner does in an evening visibly moves it. -->
-      <div class="w-stat" id="s-rankrow" hidden>
-        <span>Track mastery</span><b id="s-rank"></b>
-      </div>
-      <!-- A track that groups its stages into units counts the units, which
-           are what it asks of the learner; one that does not counts stages. -->
-      <div class="w-stat" id="s-stagerow" hidden>
-        <span id="s-steplabel">Stages complete</span><b id="s-stages"></b>
-      </div>
-    </div>
-    <div class="w-actions">
-      <button id="s-go" class="primary"></button>
-      <button id="s-review" hidden>Abhy&#257;sa review</button>
-    </div>
-    <p class="s-side" id="s-side" hidden></p>
   </div>
 
   <div class="welcome" id="welcome" hidden>
@@ -239,6 +247,17 @@
     <div class="score" id="st-sub">reference</div>
     <nav class="st-toc" id="st-toc" aria-label="Sections" hidden></nav>
     <div class="st-body" id="st-body"></div>
+  </div>
+
+  <!-- The lesson's own theory.md — what the stage teaches: its objective and
+       worked examples — reached by the book-link on each lesson in the drawer.
+       Study is lookup; this is the teaching, so it is a viewer of the same
+       shape and, like Study, holds no cards and grades nothing. -->
+  <div class="board study" id="theory">
+    <h2 id="th-title">Lesson</h2>
+    <div class="score" id="th-sub">what this lesson teaches</div>
+    <nav class="st-toc" id="th-toc" aria-label="Sections" hidden></nav>
+    <div class="st-body" id="th-body"></div>
   </div>
 
   <div class="board" id="board">
@@ -425,6 +444,12 @@
      inlined for the same reason the practice is: the page must open from
      file:// with nothing to fetch. -->
 <script id="references" type="application/json">{}</script>
+
+<!-- Every loaded lesson's theory.md, rendered to HTML at build time.  Where a
+     reference is lookup, theory is the lesson's own teaching — the objective
+     and the worked examples — reached by the book-link on each lesson in the
+     drawer.  Inlined for the same reason the references are: nothing to fetch. -->
+<script id="theory-md" type="application/json">{}</script>
 
 <!-- The web app manifest, inlined by scripts/build.js with the icons already
      in it.  It arrives here one field short: `start_url` is where the app

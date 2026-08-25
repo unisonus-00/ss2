@@ -948,6 +948,18 @@
   .ls-cap { font-size: .6rem; letter-spacing: .1em; text-transform: uppercase;
             color: var(--faded); padding: .5rem .5rem .15rem; }
   .ls-cap:first-child { padding-top: .15rem; }
+  /* The lesson's teaching, at the head of its lists: the book-link that opens
+     theory.md.  Quieter than a list row — it starts no round — but a real
+     44px-high tap target, with the same book glyph Study carries so the two
+     reference viewers read as one family. */
+  .th-link {
+    display: flex; align-items: center; gap: .4rem; width: 100%;
+    text-align: left; background: none; border: 0; font-family: inherit;
+    cursor: pointer; color: var(--faded); padding: .3rem .5rem;
+    min-height: 34px; font-size: .68rem; font-style: italic;
+  }
+  .th-link svg { width: 15px; height: 15px; flex: none; fill: currentColor; }
+  .th-link:hover { color: var(--leaf); }
   /* An optional group — the enrichment stream — is drawn as what it is:
      present, open, and not part of the figure above it.
 

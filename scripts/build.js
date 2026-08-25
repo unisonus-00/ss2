@@ -42,6 +42,7 @@ const SCRIPT = '<script src="app.js"></script>';
 const PRACTICE = /<script id="practice" type="application\/json">[\s\S]*?<\/script>/;
 const LEXICON  = /<script id="lexicon" type="application\/json">[\s\S]*?<\/script>/;
 const REFERENCE = /<script id="references" type="application\/json">[\s\S]*?<\/script>/;
+const THEORY   = /<script id="theory-md" type="application\/json">[\s\S]*?<\/script>/;
 const MANIFEST = /<script id="manifest" type="application\/json">[\s\S]*?<\/script>/;
 /* A contents list earns its place on a long reference and clutters a short
    one.  Five top-level sections is where these files start needing one. */
@@ -131,6 +132,38 @@ function loadReferences(lessons) {
        contents list underneath cannot pick it up either.  The panel titles
        itself from the LESSON, which keeps Study and the drawer agreeing and
        does not depend on how a given reference happens to head itself. */
+    const sections = toc.filter(t => t.level === 2);
+    out[lesson] = {
+      html: html.replace(/^<h1[^>]*>[\s\S]*?<\/h1>\n?/, ''),
+      toc: sections.length >= TOC_FROM ? sections : []
+    };
+  }
+  return out;
+}
+
+/* A lesson's theory.md, rendered.  Where reference.md is lookup, theory.md is
+   the lesson's own teaching — what the stage is for, the objective, the worked
+   examples — and it is what a learner reads to understand a lesson before (or
+   while) practising it.  It goes through the same narrow renderer as the
+   reference, verbatim, no cards made from it.  A lesson with no theory.md
+   simply gets none, and the app hides its book-link rather than opening an
+   empty panel.
+
+   The `00-overview` "lesson" is not a directory but the root `00-overview.md`;
+   it is the terminology used throughout, so its own file stands in as its
+   teaching where a directory theory.md would sit. */
+function loadTheory(lessons) {
+  const out = {};
+  for (const { lesson } of lessons) {
+    let f = path.join(ROOT, lesson, 'theory.md');
+    if (!fs.existsSync(f)) {
+      const flat = path.join(ROOT, lesson + '.md');   // 00-overview.md and the like
+      if (fs.existsSync(flat)) f = flat; else continue;
+    }
+    const { html, toc } = markdown.render(fs.readFileSync(f, 'utf8'));
+    /* Titled from the lesson in the panel, so the file's own h1 would be the
+       same words twice — dropped here, exactly as the reference's is, so the
+       contents list underneath cannot pick it up either. */
     const sections = toc.filter(t => t.level === 2);
     out[lesson] = {
       html: html.replace(/^<h1[^>]*>[\s\S]*?<\/h1>\n?/, ''),
@@ -345,6 +378,11 @@ function build() {
   html = html.replace(REFERENCE,
     '<script id="references" type="application/json">' + island(references) + '</script>');
 
+  const theory = loadTheory(lessons);
+  if (!THEORY.test(html)) throw new Error('index.html has no <script id="theory-md"> block');
+  html = html.replace(THEORY,
+    '<script id="theory-md" type="application/json">' + island(theory) + '</script>');
+
   if (!html.includes(PWA)) throw new Error(`index.html has no ${PWA}`);
   const pwaBits = pwaBuild();
   html = html.replace(PWA, pwaBits.html);
@@ -377,7 +415,8 @@ function build() {
   const stamp = crypto.createHash('sha256').update(html).digest('hex').slice(0, 7);
   html = html.replace(BUILD, stamp);
   return { html, lessons, cards, decks, stamp, lex, pwa: pwaBits,
-           refs: Object.keys(references).length };
+           refs: Object.keys(references).length,
+           theory: Object.keys(theory).length };
 }
 
 /* A page that reaches the network is a broken page here, so the build refuses
@@ -413,7 +452,7 @@ function assertSelfContained(html) {
   }
 }
 
-const { html, lessons, cards, decks, stamp, refs, lex, pwa: pwaBits } = build();
+const { html, lessons, cards, decks, stamp, refs, theory, lex, pwa: pwaBits } = build();
 assertSelfContained(html);
 
 if (process.argv.includes('--check')) {
@@ -437,7 +476,7 @@ fs.writeFileSync(OUT, html);
 fs.writeFileSync(SW, pwaOut.worker(stamp));
 console.log(
   `build: dist/abhyasah.html  ${(html.length / 1024).toFixed(0)} KB  ` +
-  `${lessons.length} lessons, ${decks} decks, ${cards} cards, ${refs} references  · ${stamp}`
+  `${lessons.length} lessons, ${decks} decks, ${cards} cards, ${refs} references, ${theory} theory  · ${stamp}`
 );
 console.log(
   `       pwa: ${pwaBits.icons} icons (${(pwaBits.bytes / 1024).toFixed(0)} KB) and the ` +

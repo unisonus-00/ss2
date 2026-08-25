@@ -2086,6 +2086,12 @@ const open = async (browser, opts = {}) => {
         go: document.getElementById('s-go').textContent,
         stats: !document.getElementById('s-stats').hidden,
         review: !document.getElementById('s-review').hidden,
+        /* Begin leads the page: the action sits above the orientation prose,
+           so a returning learner reaches "Continue —" without scrolling it. */
+        goAboveLead: document.getElementById('s-go').getBoundingClientRect().top
+                   < card.querySelector('.w-lead').getBoundingClientRect().top,
+        /* a course track has nothing to skip */
+        skipHidden: document.getElementById('s-skip').hidden,
         /* the two controls, shown as they appear rather than named: the red
            dotted annotation and the Study glyph itself */
         tagInk: getComputedStyle(tools.querySelector('.ann')).color,
@@ -2133,6 +2139,22 @@ const open = async (browser, opts = {}) => {
       r.shown.holes === 'none', r.shown.holes);
     ok('an untouched track offers to begin, with no progress to report',
       /^Begin/.test(r.shown.go) && !r.shown.stats && !r.shown.review, r.shown.go);
+    ok('Begin leads the page, above the orientation prose',
+      r.shown.goAboveLead && r.shown.skipHidden);
+
+    // an optional track offers a way past it, beside Begin and up top
+    const opt = await p.evaluate(() => {
+      showTrack('devanagari');
+      const skip = document.getElementById('s-skip'), go = document.getElementById('s-go');
+      const lead = document.querySelector('#trackcard .w-lead');
+      const out = { shown: !skip.hidden,
+               aboveLead: skip.getBoundingClientRect().top < lead.getBoundingClientRect().top,
+               go: go.textContent };
+      showTrack('bhasha');            // the assertions after this expect the course track
+      return out;
+    });
+    ok('an optional track offers Skip beside Begin, up top',
+      opt.shown && opt.aboveLead && /^Begin/.test(opt.go), opt.go);
 
     // until then its lists are visible in the drawer but shut
     const shut = await p.evaluate(() => {
@@ -4768,6 +4790,66 @@ const open = async (browser, opts = {}) => {
     await p.close();
   }
 
+  // ── the lesson's teaching is a tap from its lists ──────────────────
+  // theory.md is inlined the same way the reference is, and reached by the
+  // book-link at the head of a lesson's lists in the drawer.  Where the
+  // reference is lookup, this is the teaching — the objective and the worked
+  // examples — so a lesson can be understood before its first card, without a
+  // lesson page the learner is taken to twice.
+  {
+    const p = await open(browser);
+    const r = await p.evaluate(() => {
+      const el = id => document.getElementById(id);
+      const out = {};
+      SAVED.guided = false; save();               // ungate so every lesson expands
+
+      /* every lesson the app carries theory for opens, and none is empty */
+      const empty = [];
+      Object.keys(THEORY).forEach(k => {
+        if (!THEORY[k].html || THEORY[k].html.length < 200) empty.push(k);
+      });
+      out.count = Object.keys(THEORY).length;
+      out.empty = empty;
+
+      /* the drawer carries the book-link under a lesson, and it opens that
+         lesson's theory — titled from the lesson, worked tables inside it, the
+         file's own h1 dropped, no card and no grading */
+      openDrawer();
+      openTracks.add('bhasha'); openLessons.add('bhasha/kriya'); renderDrawer();
+      const link = [...document.querySelectorAll('.th-link')]
+        .find(b => /Kriyā/.test(b.title));
+      out.linkShown = !!link;
+      if (link) link.click();
+      out.opened = el('theory').style.display === 'block';
+      out.title = el('th-title').textContent;
+      const body = el('th-body');
+      out.tables = body.querySelectorAll('table').length;
+      out.h1 = body.querySelectorAll('h1').length;
+      out.toc = [...el('th-toc').querySelectorAll('.st-link')].length;
+      out.noCard = el('card').style.display === 'none'
+                && el('grade').hidden && el('controls').hidden;
+      out.back = !el('panel-back').hidden;
+      out.sideways = document.documentElement.scrollWidth > window.innerWidth;
+
+      /* a book-link is absent, not broken, for a lesson with no theory */
+      out.linkFns = typeof theoryLink === 'function'
+                 && theoryLink('does-not-exist') === null;
+      return out;
+    });
+
+    ok('theory is carried for every lesson that has it', r.count >= 28 && !r.empty.length,
+      r.count + ' lessons' + (r.empty.length ? ', empty: ' + r.empty.join(', ') : ''));
+    ok('a lesson\'s lists carry a book-link to its teaching', r.linkShown);
+    ok('and it opens that lesson\'s theory', r.opened && r.tables >= 1,
+      r.title + ' · ' + r.tables + ' tables');
+    ok('titled from the lesson, its own h1 dropped', r.title === 'Kriyā' && r.h1 === 0,
+      JSON.stringify(r.title));
+    ok('a long teaching gets a contents list', r.toc >= 5, r.toc + ' sections');
+    ok('the teaching holds no exercise', r.noCard && r.back && !r.sideways);
+    ok('a lesson with no theory gets no book-link', r.linkFns);
+    await p.close();
+  }
+
   // ── every reveal card names the operation before it is answered ────
   // A reveal card shows an item and nothing else, so the task lived only in
   // the direction button below the card.  The cue is derived from the deck's
@@ -5831,11 +5913,12 @@ const open = async (browser, opts = {}) => {
       loadDeck(Object.keys(DECKS)[0]);
       return { decks: Object.keys(DECKS).length,
                refs: Object.keys(REFERENCES).length,
+               theory: Object.keys(THEORY).length,
                card: document.getElementById('dn').textContent };
     });
     ok('and it opens again with no network at all',
-      offline.decks === EXPECTED.decks && offline.refs > 0 && !!offline.card,
-      offline.decks + ' lists, ' + offline.refs + ' references');
+      offline.decks === EXPECTED.decks && offline.refs > 0 && offline.theory > 0 && !!offline.card,
+      offline.decks + ' lists, ' + offline.refs + ' references, ' + offline.theory + ' theory');
     await ctx.setOffline(false);
     await ctx.close();
     server.close();
