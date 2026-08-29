@@ -11,6 +11,8 @@
 | 3 | Savarṇadīrgha | Same-class vowels merge into dīrgha form | vidyā + ālayaḥ → vidyālayaḥ | Yes |
 | 4 | Guṇa (गुण) | a/ā + i/ī → e; a/ā + u/ū → o; a/ā + ṛ → ar | nara + indraḥ → narendraḥ | Yes |
 | 5 | Vṛddhi (वृद्धि) | a/ā + e/ai → ai; a/ā + o/au → au | sadā + eva → sadaiva | Yes |
+| 5b | Ayavāyāva (अयवायाव) | e/o/ai/au (pada-anta) + vowel → ay/av/āy/āv | viṣṇo + e → viṣṇave | Yes |
+| 5c | Lopaḥ Śākalyasya (लोपः शाकल्यस्य) | pada-final y/v after a/ā + vowel/soft C → y/v optionally elided | harayaḥ + iha → haraya iha | Optional |
 | 6 | Pūrvarūpa (पूर्वरूप) | e/o (pada-anta) + a → e/o (a deleted, avagraha) | hare + atra → hare'tra | Yes (pada-anta) |
 | 7 | Pararūpa (पररूप) | upasarga ending a + dhātu beginning a → a (para form) | upa + ajati → upajati | Restricted |
 
@@ -43,6 +45,13 @@
 | 25 | Visarga + a Pūrvarūpa | aḥ + a → o + avagraha | rāmaḥ + asti → rāmo'sti | Yes |
 | 26 | Visarga Lopa (āḥ) | āḥ + voiced consonant → ā (ḥ deleted) | devāḥ + gacchanti → devā gacchanti | Yes |
 | 27 | Visarga Rephādeśa (avyaya/rephānta) | (avyaya/rephānta) ḥ + voiced → r | punaḥ + api → punar api | Yes |
+
+### Pada-Anta (Word-Final) Consonant Rules
+
+| # | Rule Name | Rule Summary | Example | Mandatory? |
+|---|-----------|-------------|---------|-----------|
+| 28 | Na-Lopa (नकारलोप) | Terminal n of a prātipadika/pada is elided | rājan → rājā | Yes |
+| 29 | Ku-Tvam (कुत्व) | Terminal cavarga → corresponding kavarga letter | vāc → vāk | Yes |
 
 *\* Anunāsika is optional between padas, mandatory within a word (prakṛti-pratyaya boundary).*
 
@@ -175,12 +184,16 @@ Is para pa/pha?
 | Sandhi | Sūtra | Reference |
 |--------|-------|-----------|
 | Yan | iko yaṇ aci | 6.1.77 |
+| Ayavāyāva | eco'yavāyāvaḥ | 6.1.78 |
 | Savarṇadīrgha | akaḥ savarṇe dīrghaḥ | 6.1.101 |
 | Guṇa | ādguṇaḥ | 6.1.87 |
 | Vṛddhi | vṛddhir eci | 6.1.88 |
 | Pūrvarūpa | eṅaḥ padāntād ati | 6.1.109 |
+| Na-Lopa | naḥ (padasya) | 8.2.7 |
+| Ku-Tvam | coḥ kuḥ | 8.2.30 |
 | Śchutva | stoḥ ścunā ścuḥ | 8.4.40 |
 | Ṣṭutva | ṣṭunā ṣṭuḥ | 8.4.41 |
 | Jaśtva | jhalaṃ jaśo'nte | 8.2.39 |
+| Lopaḥ Śākalyasya | lopaḥ śākalyasya | 8.3.19 |
 | Anusvāra | mo'nusvāraḥ | 8.3.23 |
 | Parasavarṇa | anusvārasya yayi parasavarṇaḥ / torli | 8.4.58 / 8.4.60 |

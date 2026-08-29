@@ -18,3 +18,7 @@ Post your submission in **#badge-submissions** on Discord. A reviewer will verif
 ## Unlock
 
 Completing this badge unlocks Stage 3 content and grants the **Varṇajña** role on Discord.
+
+## Drill Deck
+
+For daily spaced-repetition drilling of everything on this badge — the six sthānas, the 5×5 varga matrix, prayatna (spṛṣṭa / īṣat-spṛṣṭa / īṣad-vivṛta / vivṛta / saṃvṛta), voicing and aspiration, savarṇa, guṇa / vṛddhi, the udātta / anudātta / svarita accents, bīja anatomy, and every pratyāhāra used in the sūtras — see cards **SS2-001 → SS2-047** in [`../flashcards/esg2-flashcards.csv`](../flashcards/esg2-flashcards.csv).

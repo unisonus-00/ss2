@@ -25,6 +25,17 @@ Understand and apply all 27 sandhi rules of Sanskrit grammar. Given any two word
 | Samāsa (compound words) | Yes (nitya) |
 | Vākya (between words in a sentence) | Optional (vikalpa) |
 
+### Utsarga and Apavāda — General Rule and Exception
+
+Two Pāṇinian concepts that decide *which* sandhi fires when several could apply:
+
+| Term | Meaning |
+|------|---------|
+| **Utsarga** (उत्सर्ग) | The general rule — what happens by default. |
+| **Apavāda** (अपवाद) | A specific exception that overrides the general rule for its own narrower scope. |
+
+When an apavāda's condition holds, it wins. Everywhere else, utsarga fires. Example: Savarṇa-dīrgha ("same-class vowels merge to dīrgha") is the general rule for two similar vowels; Guṇa ("a/ā + i/ī → e") is the apavāda that takes over when the vowels are dissimilar in the specific a-class + i-class direction — the two rules never fight because their conditions do not overlap. Almost every sandhi you meet is either an utsarga or an apavāda to some broader rule.
+
 ---
 
 ## Classification of Sandhi
@@ -208,6 +219,73 @@ When **a/ā** is followed by **e/ai** or **o/au**, the two vowels are replaced b
 
 - Vṛddhi vowels are ai and au.
 - This sandhi is an extension of Guṇa Sandhi: where Guṇa handles i/u/ṛ class, Vṛddhi handles e/o class (which are themselves guṇa grades).
+
+---
+
+## 5b. Ayavāyāva Sandhi (अयवायाव सन्धि)
+
+### Rule
+
+When **e, o, ai, or au** stands at the end of a pada and is followed by **any vowel**, each is replaced by its corresponding semivowel form:
+
+| Pūrva | Result before a vowel |
+|-------|-----------------------|
+| e | **ay** |
+| o | **av** |
+| ai | **āy** |
+| au | **āv** |
+
+### Sūtra
+
+> eco'yavāyāvaḥ (एचोऽयवायावः) — Pāṇini 6.1.78
+
+### Examples
+
+| Before | After | Explanation |
+|--------|-------|-------------|
+| hare + i (viz. hare + ye → hareye) | hareye | e + vowel → ay + vowel |
+| viṣṇo + e (viṣṇave) | viṣṇave | o + vowel → av + vowel |
+| nai + aka | nāyaka | ai + vowel → āy + vowel |
+| nau + ika | nāvika | au + vowel → āv + vowel |
+| bho + ati (bhavati) | bhavati | o + vowel → av + vowel (inside the verb form) |
+
+### Key Points
+
+- Ayavāyāva is what happens to e / o / ai / au when Pūrvarūpa **does not** apply (i.e., when the following vowel is not a short a at pada-anta).
+- The e/o family lands on the -ay/-av semivowel; the vṛddhi ai/au land on the long-vowelled -āy/-āv.
+- These are the same eco letters (e, o, ai, au) that also drive Vṛddhi Sandhi as *para* — here they are the pūrva.
+
+---
+
+## 5c. Lopaḥ Śākalyasya (लोपः शाकल्यस्य)
+
+### Rule
+
+When **y** or **v** stands at the end of a pada, preceded by a/ā and followed by a vowel or a soft consonant, the y or v may be **optionally elided** (lopa).
+
+### Sūtra
+
+> lopaḥ śākalyasya (लोपः शाकल्यस्य) — Pāṇini 8.3.19
+
+### Conditions
+
+- Pūrva: pada-final **y** or **v**, immediately preceded by **a** or **ā**.
+- Para: any vowel or any voiced (soft) consonant.
+- The elision is optional — Śākalya permits it; other schools may keep the y/v.
+
+### Examples
+
+| Before (after Ayavāyāva) | After (Śākalya's lopa) | Explanation |
+|--------------------------|------------------------|-------------|
+| harayaḥ + iha → haray iha | **haraya iha** | y after a is elided |
+| viṣṇavaḥ + iha → viṣṇav iha | **viṣṇava iha** | v after a is elided |
+| tay + iha (from te + iha) | **ta iha** | y after a is elided |
+
+### Key Points
+
+- Śākalya's lopa is a common consequence of Ayavāyāva: first e → ay before a vowel, then optionally the y drops, leaving just the a.
+- The rule bears an ācārya's name — one of the very few sandhi rules in Pāṇini's system named after the grammarian who preserved it (Śākalya).
+- Because it is optional, both forms are grammatical.
 
 ---
 
@@ -928,6 +1006,76 @@ This combines rephādeśa with subsequent svara sandhis. When a rephānta word (
 
 - The rephādeśa often triggers a chain: visarga → r → then svara sandhi with the following vowel.
 - This is particularly common with avyayas like punaḥ, antaḥ, prātaḥ.
+
+---
+
+---
+
+# Part IV: Word-Final Consonant Rules (Pada-Anta)
+
+These rules govern what a consonant becomes at the end of a **pada** (fully-formed word) before anything else joins on. They fire before any sandhi across the boundary and often set up the input for the sandhis in Parts II–III.
+
+## 28. Na-Lopa (नकारलोप — Pāṇini 8.2.7)
+
+### Rule
+
+The letter **n** at the end of a **prātipadika** (nominal base) or a **pada** is elided.
+
+### Sūtra
+
+> naḥ (नः) — Pāṇini 8.2.7 (in the chapter *padasya* — "of a pada")
+
+### Examples
+
+| Before (base) | Pada-Anta Form | Explanation |
+|---------------|----------------|-------------|
+| rājan (n-stem) | rājā | terminal n dropped in the nom.sg |
+| ātman | ātmā | terminal n dropped |
+| yuvan | yuvā | terminal n dropped |
+| brahman | brahmā | terminal n dropped |
+
+### Key Points
+
+- This is the rule that explains why every -an stem nominal (ātman, rājan, brahman, yuvan) surfaces without its n in the nominative singular.
+- It is the input for many downstream sandhis: once the n is gone, the preceding a can further behave as a plain vowel-ending word.
+- Distinguish from Anunāsika Sandhi (rule 11), which is about a *following* nasal, not about deleting a terminal one.
+
+---
+
+## 29. Ku-Tvam (कुत्व — Pāṇini 8.2.30)
+
+### Rule
+
+A **cavarga** (palatal) consonant at the end of a pada (or before certain consonantal suffixes) is replaced by the **corresponding kavarga** (guttural) letter.
+
+### Sūtra
+
+> coḥ kuḥ (चोः कुः) — Pāṇini 8.2.30 (name of the operation: *ku-tvam*, "becoming a kavarga letter")
+
+### Table
+
+| Original (cavarga) | Ādeśa (kavarga) |
+|--------------------|-----------------|
+| c | k |
+| ch | kh |
+| j | g |
+| jh | gh |
+| ñ | ṅ |
+
+### Examples
+
+| Before | After | Explanation |
+|--------|-------|-------------|
+| vāc (nom.sg) | vāk | c → k at pada-anta (then further sandhi fires: e.g. vāg īśaḥ by Jaśtva) |
+| pratyañc + suffix beginning with a consonant | pratyaṅ- | ñ → ṅ |
+| samyañc | samyaṅ | ñ → ṅ |
+| sṛj (root, in pada-final position) | sṛk (then jaśtva → sṛg before a voiced sound) | j → k |
+
+### Key Points
+
+- Ku-tvam is why words that "look like they end in c or j" in the lexicon (vāc, sṛj) surface as -k, -g at the end of an actual pada.
+- The rule fires *before* Jaśtva, Chartva, or Anunāsika — it feeds them.
+- Along with Na-lopa, this is the class of rules that tell you *what a word actually ends in* before any sandhi across the boundary can begin.
 
 ---
 

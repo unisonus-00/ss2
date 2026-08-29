@@ -73,6 +73,59 @@ The sandhyakṣaras arise as follows:
 
 Since e = a (1 mātrā) + i (1 mātrā), the resulting e is 2 mātrās — therefore e, ai, o, au are always dīrgha.
 
+### 3.3 Savarṇa — Similar Sounds
+
+Two sounds are **savarṇa** (सवर्ण, "of the same class") when they share both:
+
+1. the same sthāna (place of articulation), *and*
+2. the same ābhyantara-prayatna (internal effort).
+
+Savarṇa vowel pairs:
+
+| Pair | Sthāna | Prayatna |
+|------|--------|----------|
+| a ↔ ā | Kaṇṭha | Vivṛta (saṃvṛta for short a in-word) |
+| i ↔ ī | Tālu | Vivṛta |
+| u ↔ ū | Oṣṭha | Vivṛta |
+| ṛ ↔ ṝ | Mūrdhan | Vivṛta |
+| ḷ ↔ (ḹ) | Danta | Vivṛta |
+
+**Savarṇa is the trigger for Savarṇa-dīrgha sandhi** (Pāṇini 6.1.101, *akaḥ savarṇe dīrghaḥ*): when two savarṇa vowels meet, they merge into the dīrgha form. This is why the concept belongs here, in the letters chapter — the sandhi rule in Stage 3 assumes you already know what savarṇa means.
+
+### 3.4 Vowel Accents — Udātta, Anudātta, Svarita
+
+Every Vedic vowel carries one of three pitch-accents:
+
+| Accent | Sanskrit | Pitch |
+|--------|----------|-------|
+| Udātta | उदात्त — "raised" | Higher pitch |
+| Anudātta | अनुदात्त — "not-raised" | Lower pitch |
+| Svarita | स्वरित — "sounded / mixed" | A fall from udātta down through anudātta within one syllable |
+
+In classical (laukika) Sanskrit the accent is not written and often not observed, but it is essential for Vedic recitation. In the Kṛṣṇa-Yajurveda tradition the accents are learned by ear, marked in the Devanāgarī script with underscores (anudātta) and vertical strokes (svarita), and taught systematically in **Stage 19 — Svara-Vidyā**. Everything you learn about accent here is a preview of that stage.
+
+### 3.5 Guṇa and Vṛddhi as Vowel Grades
+
+Independently of sandhi, Pāṇini classifies the vowels into three strength-grades:
+
+| Grade | Sanskrit | Vowels | Sūtra |
+|-------|----------|--------|-------|
+| Base | — | i, ī, u, ū, ṛ, ṝ, ḷ | — |
+| Guṇa | गुण — "quality / middle grade" | a, e, o | *adeṅ guṇaḥ* (1.1.2) |
+| Vṛddhi | वृद्धि — "strengthening / highest grade" | ā, ai, au | *vṛddhirādaic* (1.1.1) |
+
+Each base vowel has a guṇa form and a vṛddhi form:
+
+| Base | Guṇa | Vṛddhi |
+|------|------|--------|
+| a / ā | a | ā |
+| i / ī | e | ai |
+| u / ū | o | au |
+| ṛ / ṝ | ar | ār |
+| ḷ | al | āl |
+
+This grading powers both Guṇa-sandhi (a/ā + i/ī → e, etc.) and countless verbal-root strengthenings (√kṛ → kar → kār) that you will meet in Stage 5 (Kriyā) and Stage 8 (Dhātu).
+
 ---
 
 ## 4. Vyañjanāni — Consonants
@@ -228,8 +281,11 @@ Every letter originates from a specific place in the vocal apparatus (sthāna) a
 |----------|-------------|---------|
 | Spṛṣṭa | Complete contact | sparśa (stop consonants) |
 | Īṣat-spṛṣṭa | Slight contact | antaḥstha (semivowels) |
-| Vivṛta | Open | svaras (vowels) |
-| Īṣad-vivṛta | Slightly open | ūṣman (sibilants) |
+| Īṣad-vivṛta | Slightly open (friction narrow) | ūṣman (sibilants) |
+| Vivṛta | Open (no contact) | svaras (vowels) |
+| Saṃvṛta | Tightened / contracted | the short **a** in ordinary (laukika) speech |
+
+**Note on saṃvṛta (the short a's private effort):** In isolation the short a is vivṛta like every other vowel. Inside a word the classical Śikṣā tradition says it becomes saṃvṛta — narrower than any other vowel. No other letter shares this effort. This is why the short a is treated as a special case throughout Sanskrit phonetics and grammar (e.g., it is the vowel that most often collapses at the boundary, and the a that guṇa/pararūpa/pūrvarūpa cluster around).
 
 **Bāhya prayatna** (external effort) — voicing and aspiration:
 

@@ -61,6 +61,8 @@ Each stage contains four files:
 
 A `vocab/` library provides 20 thematic word lists — goddess names, weapons, nature, ritual, philosophy, and more.
 
+A `flashcards/` deck provides progressive, stage-aligned spaced-repetition cards. Stages 2 (Varṇa-Vidyā) and 3 (Sandhi) are covered by `flashcards/esg2-flashcards.csv` — 86 cards ordered from sthānas through bīja anatomy through every one of the 27+2 sandhi rules. Each card's `source_refs` field points back at the theory file it was drawn from.
+
 <br>
 
 ## Two Tracks

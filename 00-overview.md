@@ -149,6 +149,8 @@ The **Grammar** section covers Pāṇinian vyākaraṇam — the formal snap-rul
 
 The **Vocab** section is your brick warehouse — 20 thematic word lists with flashcards.
 
+The **Flashcards** section (`flashcards/`) holds progressive, stage-aligned spaced-repetition decks in CSV. The first deck — `esg2-flashcards.csv` — covers Stage 2 (Varṇa-Vidyā) and Stage 3 (Sandhi) in 86 cards: sthānas → varga matrix → prayatna → bīja anatomy → Māheśvara sūtras & pratyāhāras → every one of the 27 sandhis plus the two pada-anta rules (na-lopa, ku-tvam). Each card carries a `source_refs` pointer back into the theory files.
+
 Work through stages sequentially. Master the milestone before moving on.
 
 ## Cross-References to Source Material
